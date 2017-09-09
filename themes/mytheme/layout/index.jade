@@ -1,0 +1,36 @@
+extends partial/base
+
+block header
+    include partial/index-header
+
+block content
+    div(class="container", role="main")
+        .row
+            .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+                .posts-list
+                    - page.posts.each(function (post) {
+                    article.post-preview
+                        a(href=url_for(post.path))
+                            h2.post-title!= post.title
+                            if post.subtitle
+                                h3.post-subtitle!= post.subtitle
+                        include partial/post-meta
+                        +post_meta(post.date, post.tags)
+                        .post-entry!=post.excerpt
+                        
+                    - })
+                ul.pager.main-pager
+                    if page.prev
+                        li.previous
+                            a(href=url_for(page.prev === 1 ? "/" : ("/" + config.pagination_dir + "/" + page.prev)))= __('prev')
+                    if page.next
+                        li.next
+                            a(href=url_for("/" + config.pagination_dir + "/" + page.next))= __('next')
+
+
+
+
+
+
+
+

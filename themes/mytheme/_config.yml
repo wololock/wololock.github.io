@@ -1,0 +1,58 @@
+navbar-links:
+    Archive: /archives
+    Github: https://github.com/wololock/wololock.github.io
+#    About: /about/
+
+avatar: /hexo.png
+favicon: /hexo.png
+
+index_cover: /img/index-header.jpg
+
+header:
+  title: "Wololock's blog"
+  motto: Programming &bull; Java &bull; Learning &bull; Breaking things &bull; Enjoying life
+
+rss: /atom.xml
+googlefonts:
+  - "Lora:400,700,400italic,700italic"
+  - "Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+  - "Noto+Serif:400,700,400italic"
+  - "Source+Code+Pro"
+
+highlight:
+  enable: true
+  style_path: "/css/highlight.css"
+
+footer:
+  github:
+    link: https://github.com/wololock
+    title: GitHub
+    icon: fa-github
+    enable: true
+  stackoverflow:
+    link: https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile
+    title: StackOverflow
+    icon: fa-stack-overflow
+    enable: false
+  twitter:
+    link: https://twitter.com/wololock
+    title: Twitter
+    icon: fa-twitter
+    enable: true
+  mail:
+    link: 'mailto:szymon.stepniak@gmail.com'
+    title: Email me
+    icon: fa-envelope
+    enable: true
+  linkedin:
+    link: https://www.linkedin.com/in/szymon-stępniak-9a0b1630
+    title: LinkedIn
+    icon: fa-linkedin
+    enable: false
+
+google_analytics: UA-42400890-5
+
+comment:
+  enable: disqus
+  id: eprintstacktracenet
+

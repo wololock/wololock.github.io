@@ -1,0 +1,41 @@
+extends partial/base
+
+include partial/post-meta
+
+
+block header
+    header.header-section
+        .intro-header(style='background-image: url(' + (page.cover || theme.index_cover) + ');')
+            .container
+                .row
+                    .col-lg-10.col-lg-offset-1.col-md-10.col-md-offset-1
+                        .post-heading
+                            h1= page.title
+                            if page.subtitle
+                                h2.post-subheading= page.subtitle
+                            +post_meta(page.date, page.tags)
+
+block content
+    .container
+        .row
+            .col-lg-10.col-lg-offset-1.col-md-10.col-md-offset-1
+                article(role="main", class="blog-post")
+                    != page.content
+
+                    section.post-tags
+                        - page.tags.each(function(tag) {
+                            a.tag.post-meta(href=url_for(tag.path))= tag.name
+                        - })
+
+                    include partial/post-footer
+
+                nav(role="pagination", class="pagination")
+                    if page.prev
+                        a.newer-posts(href=url_for(page.prev.path))="← Next post"
+                    if page.next
+                        a.older-posts(href=url_for(page.next.path))="Previous post →"
+
+                include partial/comment
+
+
+

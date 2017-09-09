@@ -1,0 +1,17 @@
+footer.post-footer
+    section.author
+        .container
+            .row
+                .col-lg-1
+                    img.avatar-img(src=config.photo)
+                .col-lg-6
+                    h4=config.author
+                    p=config.bio
+    section.share
+        h4="Share this post"
+        a(href='https://twitter.com/share?url=' + page.permalink + '&via=wololock&text=' + page.title, onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;")
+            span.fa.fa-twitter
+        a(href='https://www.facebook.com/sharer/sharer.php?u' + page.permalink, onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;")
+            span.fa.fa-facebook-square
+        a(href='https://plus.google.com/share?url=' + page.permalink, onclick='window.open(this.href, "google-plus-share", "width=490,height=530");return false;')
+            span.fa.fa-google-plus-square

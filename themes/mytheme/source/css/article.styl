@@ -1,0 +1,238 @@
+highlight-background = #2d2d2d
+highlight-current-line = #393939
+highlight-selection = #515151
+highlight-foreground = #cccccc
+highlight-comment = #777
+highlight-red = #f2777a
+highlight-orange = #f99157
+highlight-yellow = #ffcc66
+highlight-green = #99cc99
+highlight-aqua = #66cccc
+highlight-blue = #6699cc
+highlight-purple = #cc99cc
+
+article
+  .container
+    .row
+    // Responsive Images
+      img
+        max-width 100% !important
+        height auto
+        display inline-block
+      .video-container
+        position relative
+        padding-bottom 56.25%
+        padding-top 30px
+        height 0
+        overflow hidden
+        iframe, object, embed
+          position absolute
+          top 0
+          left 0
+          width 100%
+          height 100%
+          margin-top 0
+      blockquote
+        font-style italic
+        font-family font-serif
+        font-size 1.2em
+        padding 0 30px 15px
+        text-align center
+        footer
+          border-top none
+          font-size 0.8em
+          line-height 1
+          margin 20px 0 0
+          padding-top 0
+          cite
+            &:before
+              content '—'
+              color #ccc
+              padding 0 0.5em
+
+      .pullquote
+        float right
+        border none
+        padding 0
+        margin 1em 0 0.5em 1.5em
+        text-align left
+        width 45%
+        font-size 1.5em
+        &.left
+          float left
+
+  footer.post-footer
+    position relative
+    margin 4rem 0 0 0
+    padding 3rem 0 4rem 0
+    border-top #ebf2f6 1px solid
+
+    h4
+      font-size 1.8rem
+      margin 0
+    p
+      margin 1rem 0
+      font-size 1.4rem
+      line-height 1.6em
+
+    .author
+      margin-right 220px
+    .share
+      position absolute
+      top 4rem
+      right 0
+      width 180px
+
+      a
+        font-size 1.8rem
+        display inline-block
+        margin 1.4rem 1.6rem 1.6rem 0
+        color #BBC7CC
+        text-decoration none
+
+.pagination
+  position relative
+  width 100%
+  margin 3rem auto
+  font-family 'Open Sans', sans-serif
+  font-size 1.3rem
+  color #9EABB3
+  text-align center
+
+  a
+    color #9EABB3
+
+  .older-posts,.newer-posts
+    position absolute
+    display inline-block
+    padding 10px 15px
+    border #ebf2f6 2px solid
+    text-decoration none
+    border-radius 30px
+    transition border ease 0.3s
+
+    &:hover
+      border-color #9EABB3
+
+  .older-posts
+    right 0
+  .newer-posts
+    left 0
+
+.disqus-comments
+  margin-top 60px
+
+figure.highlight
+  background #333
+  margin-top 15px
+  padding 7px 15px
+  border-radius 2px
+  line-height 1.6
+  overflow auto
+  position relative
+  font-size 1em
+  color color-meta
+  font-family font-mono
+  figcaption
+    color color-meta
+    margin-bottom 5px
+    text-shadow 0 0 1px #fff
+    a
+      position absolute
+      right 15px
+
+  pre
+    border none
+    padding 0
+    margin 0
+    background none
+
+  table
+    margin-top 0
+    border-spacing 0
+
+    .gutter
+      padding-right 15px
+      text-align right
+      pre
+        color color-gutter
+
+    .code
+      padding-left 7px
+      color #aaa
+
+    .line
+      height: 20px
+      font-family font-mono
+
+    .line.marked
+      background: #aaa
+
+pre
+  color color-meta
+  .comment
+    color highlight-comment
+    font-style italic
+    
+  .title
+    color color-meta
+
+  .function .title
+    color highlight-yellow
+    
+  .function .params
+    color color-meta
+
+  .variable
+  .attribute
+  .tag
+  .regexp
+  .ruby .constant
+  .xml .tag .title
+  .xml .pi
+  .xml .doctype
+  .html .doctype
+  .css .id
+  .css .class
+  .css .pseudo
+    color highlight-red
+
+  .number
+  .preprocessor
+  .built_in
+  .literal
+  .params
+  .constant
+    color highlight-blue
+
+  .class
+  .ruby .class .title
+  .css .rules .attribute
+    color: highlight-green
+
+  .string
+  .value
+  .inheritance
+  .header
+  .ruby .symbol
+  .xml .cdata
+    color highlight-green
+
+  .css .hexcolor
+    color highlight-aqua
+
+  .function
+  .python .decorator
+  .python .title
+  .ruby .function .title
+  .ruby .title .keyword
+  .perl .sub
+  .javascript .title
+  .coffeescript .title
+    color highlight-blue
+    
+  .keyword
+  .javascript .function
+    color highlight-orange
+    font-weight 700
+

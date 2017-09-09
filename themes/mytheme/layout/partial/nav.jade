@@ -1,0 +1,14 @@
+nav.navbar.navbar-default.navbar-fixed-top.navbar-custom
+    .container-fluid
+        .navbar-header
+            button(class="navbar-toggle", type="button", data-toggle="collapse", data-target="#main-navbar")
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            a(class="navbar-brand", href=url_for())= config.title
+        #main-navbar.collapse.navbar-collapse
+            ul.nav.navbar-nav.navbar-right
+                each value, key in theme["navbar-links"]
+                    li
+                        a(href=url_for(value))!= key
