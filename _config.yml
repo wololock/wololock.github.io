@@ -78,11 +78,6 @@ pagination_dir: page
 #theme: clean-blog
 theme: mytheme
 
-# Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type:
-
 disqus_shortname: eprintstacktracenet
 
 marked:
