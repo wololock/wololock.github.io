@@ -87,3 +87,10 @@ disqus_shortname: eprintstacktracenet
 
 marked:
   breaks: false
+
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repo: git@github.com:wololock/wololock.github.io.git
+  branch: master
