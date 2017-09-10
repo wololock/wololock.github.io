@@ -7,7 +7,7 @@ title: e.printstacktrace.net
 subtitle: Lorem ipsum
 description: Lorem ipsum dolor sit amet
 author: Szymon Stepniak
-bio: Upwork's Top Rated freelancer, Toruń Java User Group founder, continuous learner, bedroom guitar player. I try to learn something new every single day and I'm very good in crushing things.
+bio: Upwork's Top Rated freelancer, Toruń Java User Group founder, continuous learner, bedroom guitar player. I try to learn something new every single day.
 photo: https://pbs.twimg.com/profile_images/879750342237450240/kxAaSbOR_400x400.jpg
 language: en
 timezone: Europe/Warsaw
@@ -91,3 +91,8 @@ deploy:
   branch: master
 
 all_minifier: true
+
+# Update versions after updating resources to prevent reading from cache
+version:
+  css: 1
+  js: 1
