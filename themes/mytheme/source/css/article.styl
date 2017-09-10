@@ -76,19 +76,29 @@ article
       line-height 1.6em
 
     .author
-      margin-right 220px
+      
     .share
-      position absolute
-      top 4rem
-      right 0
-      width 180px
-
       a
         font-size 1.8rem
         display inline-block
         margin 1.4rem 1.6rem 1.6rem 0
         color #BBC7CC
         text-decoration none
+        transition color ease 0.3s
+
+  @media only screen and (max-width: 767px)
+    .author
+      text-align center
+    
+    .share
+      text-align center
+      margin-top 30px
+
+      h4
+        border-top 1px #ebf2f6 solid
+        padding 20px 0
+
+
 
 .pagination
   position relative

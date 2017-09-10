@@ -1,17 +1,15 @@
 footer.post-footer
-    section.author
-        .container
-            .row
-                .col-lg-1
-                    img.avatar-img(src=config.photo)
-                .col-lg-6
-                    h4=config.author
-                    p=config.bio
-    section.share
-        h4="Share this post"
-        a(href='https://twitter.com/share?url=' + page.permalink + '&via=wololock&text=' + page.title, onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;")
-            span.fa.fa-twitter
-        a(href='https://www.facebook.com/sharer/sharer.php?u' + page.permalink, onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;")
-            span.fa.fa-facebook-square
-        a(href='https://plus.google.com/share?url=' + page.permalink, onclick='window.open(this.href, "google-plus-share", "width=490,height=530");return false;')
-            span.fa.fa-google-plus-square
+    .row
+        .col-lg-2.col-md-2.col-sm-2.hidden-xs
+            img.img-responsive.img-circle(src=config.photo)
+        .col-lg-6.col-md-7.col-sm-6.col-xs-12.author
+            h4=config.author
+            p=config.bio
+        .col-lg-4.col-md-3.col-sm-4.col-xs-12.share
+            h4="Share this post"
+            a(href='https://twitter.com/share?url=' + page.permalink + '&via=wololock&text=' + page.title, onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;")
+                span.fa.fa-twitter
+            a(href='https://www.facebook.com/sharer/sharer.php?u' + page.permalink, onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;")
+                span.fa.fa-facebook-square
+            a(href='https://plus.google.com/share?url=' + page.permalink, onclick='window.open(this.href, "google-plus-share", "width=490,height=530");return false;')
+                span.fa.fa-google-plus-square
