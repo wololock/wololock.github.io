@@ -10,10 +10,14 @@ block header
                 .row
                     .col-lg-10.col-lg-offset-1.col-md-10.col-md-offset-1
                         .post-heading
+                            if page.categories
+                                - page.categories.each(function(category) {
+                                    a.category(href=url_for(category.path))=category.name
+                                - })
                             h1= page.title
                             if page.subtitle
                                 h2.post-subheading= page.subtitle
-                            +post_meta(page.date, page.tags)
+                            +post_meta(page.date)
 
 block content
     .container

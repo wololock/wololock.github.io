@@ -18,6 +18,23 @@ p, li
 .color-red
   color color-red
 
+a.category
+  @extend .sans-serif
+  display inline-block
+  padding 5px 10px
+  background color-yellow
+  color color-black
+  text-transform uppercase
+  text-decoration none
+  font-weight 700
+  font-size 1.4rem
+  transition ease 0.5s
+  margin-right 10px
+
+  &:hover,&:focus
+    background none
+    color #fff
+
 h1, h2, h3, h4, h5, h6
   @extend .sans-serif
   font-weight 800
