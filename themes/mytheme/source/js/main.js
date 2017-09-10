@@ -65,6 +65,9 @@ var main = {
     $.each($("a:has(code:only-child)"), function(i,t){
         $(t).addClass("pre");
     });
+
+    var brand = $(".navbar-brand:first").text();
+    $(".navbar-brand:first").html(brand.split(".").join('<span class="color-red">.</span>'));
   }
 };
 
