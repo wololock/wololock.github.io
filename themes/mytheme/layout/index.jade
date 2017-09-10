@@ -10,14 +10,16 @@ block content
                 .posts-list
                     - page.posts.each(function (post) {
                     article.post-preview
-                        a(href=url_for(post.path))
-                            h2.post-title!= post.title
-                            if post.subtitle
-                                h3.post-subtitle!= post.subtitle
-                        include partial/post-meta
-                        +post_meta(post.date, post.tags)
-                        .post-entry!=post.excerpt
-                        
+                        header.post-header
+                            a(href=url_for(post.path))
+                                h2.post-title!= post.title
+                                if post.subtitle
+                                    h3.post-subtitle!= post.subtitle
+                            include partial/post-meta
+                            +post_meta(post.date, post.tags)
+                        section.post-excerpt!= post.excerpt
+                        p.post-read-more
+                            a.btn.btn-default(href=url_for(post.path) + '#more')="Read more →"
                     - })
                 ul.pager.main-pager
                     if page.prev

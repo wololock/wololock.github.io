@@ -14,6 +14,8 @@ You have probably faced a few times a situation where you had to divide n-size l
 ```java
 [1,2,3,4,5,6,7] -> [[1,2], [3,4], [5,6], [7]]
 ```
+
+<!-- more -->
     
 You won't find a simple method in Java SDK for such operation, although there are some utility methods in 3rd party
 libraries, e.g. [`Lists.partition(List list, int size)`](https://google.github.io/guava/releases/22.0/api/docs/com/google/common/collect/Lists.html#partition-java.util.List-int-) 
