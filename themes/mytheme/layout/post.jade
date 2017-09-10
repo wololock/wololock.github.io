@@ -31,9 +31,9 @@ block content
 
                 nav(role="pagination", class="pagination")
                     if page.prev
-                        a.newer-posts(href=url_for(page.prev.path))="← Next post"
+                        a.pull-left.btn(href=url_for(page.prev.path))="← Next post"
                     if page.next
-                        a.older-posts(href=url_for(page.next.path))="Previous post →"
+                        a.pull-right.btn(href=url_for(page.next.path))="Previous post →"
 
                 include partial/comment
 
