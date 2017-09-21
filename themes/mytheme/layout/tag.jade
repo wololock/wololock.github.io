@@ -6,6 +6,9 @@ block description
     meta(name="description", content="All posts tagged with " + page.tag)
     meta(name="keywords", content=page.tag)
 
+block site_title
+    = "Tag: " + page.tag + " | " + config.title
+
 block header
     include partial/tag-header
 

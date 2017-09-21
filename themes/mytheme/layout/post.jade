@@ -2,6 +2,13 @@ extends partial/base
 
 include partial/post-meta
 
+block description
+    - var tags = page.tags.data.map(function(data) { return data.name }).join(",")
+    meta(name="description", content=truncate(strip_html(page.content), {length: 255}))
+    meta(name="keywords", content=tags)
+
+block site_title
+    = page.title + " | " + config.title
 
 block header
     header.header-section

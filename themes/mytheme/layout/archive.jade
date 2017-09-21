@@ -3,6 +3,9 @@ extends partial/base
 block description
     meta(name="description", content="The archive of all posts")
 
+block site_title
+    = "Archive of " + config.title
+
 block header
     header.header-section
         .intro-header(style='background-image: url(/img/archive-bg.jpg);')
