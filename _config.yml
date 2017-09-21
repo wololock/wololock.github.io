@@ -4,8 +4,8 @@
 
 # Site
 title: e.printstacktrace.net
-subtitle: Lorem ipsum
-description: Lorem ipsum dolor sit amet
+#subtitle: Lorem ipsum
+description: Welcome to my personal blog about programming, Java, Groovy, best practices, clean code and everything else!
 author: Szymon Stepniak
 bio: Upwork's Top Rated freelancer, Toruń Java User Group founder, continuous learner, bedroom guitar player. I try to learn something new every single day.
 photo: https://pbs.twimg.com/profile_images/879750342237450240/kxAaSbOR_400x400.jpg
@@ -17,7 +17,7 @@ timezone: Europe/Warsaw
 url: https://e.printstacktrace.net
 root: /
 #permalink: :year/:month/:day/:title/
-permalink: :title/
+permalink: :year/:month/:title/
 permalink_defaults:
 
 # Directory
