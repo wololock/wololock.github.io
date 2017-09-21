@@ -1,0 +1,13 @@
+include post-meta
+
+mixin post_preview(post)
+    article.post-preview
+        header.post-header
+            a(href=url_for(post.path))
+                h2.post-title!= post.title
+                if post.subtitle
+                    h3.post-subtitle!= post.subtitle
+            +post_meta(post.date, post.tags)
+        section.post-excerpt!= post.excerpt
+        p.post-read-more
+            a.btn.btn-default(href=url_for(post.path) + '#more')="Read more →"

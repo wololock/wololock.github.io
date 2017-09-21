@@ -1,0 +1,21 @@
+extends partial/base
+
+include partial/post-preview
+
+block description
+    meta(name="description", content="All posts tagged with " + page.tag)
+    meta(name="keywords", content=page.tag)
+
+block header
+    include partial/tag-header
+
+block content
+    div(class="container", role="main")
+        .row
+            .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+                .posts-list
+                    - page.posts.each(function (post) {
+                        +post_preview(post)
+                    - })
+                        
+                include partial/pagination
