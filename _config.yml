@@ -94,5 +94,5 @@ all_minifier: true
 
 # Update versions after updating resources to prevent reading from cache
 version:
-  css: 4
+  css: 5
   js: 2
