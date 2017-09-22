@@ -20,6 +20,8 @@ root: /
 permalink: :year/:month/:title/
 permalink_defaults:
 
+rss: http://feeds.feedburner.com/Eprintstacktracenet
+
 # Directory
 source_dir: source
 public_dir: public

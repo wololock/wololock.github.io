@@ -15,4 +15,10 @@ footer.site-footer
                     span="Deployed with "
                     a(href="https://travis-ci.org/wololock/wololock.github.io")="Travis CI"
 
+                if config.rss
+                    li
+                        span="Subscribe "
+                        a(href=config.rss)
+                            span.fa.fa-rss
+
 
