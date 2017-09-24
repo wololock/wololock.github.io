@@ -5,8 +5,7 @@ tags:
     - java
     - java-stream
 categories: 
-    - How to
-excerpt: You have probably faced a few times a situation where you had to divide n-size list to lists of m-size. 
+    - How to 
 cover: /img/post-bg-1.jpg
 ---
 You have probably faced a few times a situation where you had to divide n-size list to lists of m-size. Something like:
