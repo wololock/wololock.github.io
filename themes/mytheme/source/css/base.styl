@@ -11,10 +11,6 @@ p
   line-height 1.5
   margin 30px 0
 
-p, li
-  a
-    text-decoration underline
-
 .color-red
   color color-red
 
@@ -39,13 +35,16 @@ h1, h2, h3, h4, h5, h6
   @extend .sans-serif
   font-weight 800
 
-a
-  color gray-dark
-  &:hover, &:focus
+p
+  a
     color brand-primary
-a img
-  &:hover, &:focus
-    cursor zoom-in
+    text-decoration none
+    border-bottom 1px dashed brand-primary
+    &:hover, &:focus
+      color brand-primary-hover
+      text-decoration none
+      border-color brand-primary-hover
+      transition ease 1s
 
 hr.small
   max-width 100px
@@ -436,3 +435,13 @@ a.pre
 
 img.avatar-img
   border-radius 50%
+
+pre
+  border-radius 0
+  border none
+  background-color #333
+  color #ccc
+
+blockquote
+  background #fafafa
+  font-size 0.8em

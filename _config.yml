@@ -17,7 +17,7 @@ timezone: Europe/Warsaw
 url: https://e.printstacktrace.net
 root: /
 #permalink: :year/:month/:day/:title/
-permalink: :title/
+permalink: :year/:month/:title/
 permalink_defaults:
 
 rss: http://feeds.feedburner.com/Eprintstacktracenet
@@ -96,5 +96,5 @@ all_minifier: true
 
 # Update versions after updating resources to prevent reading from cache
 version:
-  css: 6
+  css: 7
   js: 3
