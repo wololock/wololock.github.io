@@ -72,3 +72,6 @@ var main = {
 };
 
 document.addEventListener('DOMContentLoaded', main.init);
+
+// Prevents Firefox BFCache
+window.addEventListener('unload', function () {});
