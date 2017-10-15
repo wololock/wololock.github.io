@@ -6,7 +6,7 @@ tags:
     - grails
     - grails-2.4
     - groovy
-    - Stack Overflow answers
+    - stackoverflow
 categories:
     - Tales from debugger
 cover: /img/post-debugger.jpg
