@@ -60,7 +60,7 @@ It may look counterintuitive and we could expect last line saying that the curre
 First thing we need to understand is that every Groovy script is compiled to a class that extends [`groovy.lang.Script`](http://docs.groovy-lang.org/2.4.12/html/api/groovy/lang/Script.html).
 Assuming that the script I've shown above is named `incrementing_number.groovy` then the compiled Java class would look like this:
 
-```groovy
+```java
 import groovy.lang.Binding;
 import groovy.lang.Closure;
 import groovy.lang.Script;
@@ -96,7 +96,7 @@ public class incrementing_number extends Script {
     }
 }
 
-``` 
+```
 
 Second thing - in this example we used `@Field` annotation on purpose in line 3. According to [class Javadoc documentation](http://docs.groovy-lang.org/2.4.12/html/gapi/groovy/transform/Field.html):
 
@@ -140,7 +140,7 @@ Now we have to get back for a moment to `groovy.lang.Script` class. It overrides
         else
             binding.setVariable(property, newValue);
     }
-``` 
+```
 
 <small>*Source: https://github.com/apache/groovy/blob/GROOVY_2_4_X/src/main/groovy/lang/Script.java#L54*</small>
 
