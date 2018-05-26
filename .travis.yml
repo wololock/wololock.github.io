@@ -1,10 +1,11 @@
 language: node_js
 node_js:
-- '4'
+- '6.3.1'
 branches:
   only:
   - develop
 before_install:
+- npm install hexo-cli -g
 - npm install hexo --save
 - npm install
 before_script:
