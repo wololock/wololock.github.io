@@ -5,7 +5,7 @@ branches:
   only:
   - develop
 before_install:
-- npm install -g hexo
+- npm install hexo --save
 - npm install
 before_script:
 - git config --global user.name 'Travis CI'
