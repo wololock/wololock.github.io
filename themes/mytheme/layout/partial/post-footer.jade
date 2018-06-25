@@ -5,6 +5,12 @@ footer.post-footer
         .col-lg-6.col-md-7.col-sm-6.col-xs-12.author
             h4=config.author
             p=config.bio
+            ul.social-links
+                each value, key in theme["footer"]
+                    li
+                        a(href=value.link, onclick="window.open(this.href);return false;")
+                            span.fa(class=value.icon)
+
         .col-lg-4.col-md-3.col-sm-4.col-xs-12.share
             h4="Share this post"
             a(href='https://twitter.com/share?url=' + page.permalink + '&via=wololock&text=' + page.title, onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;")
