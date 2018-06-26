@@ -15,3 +15,335 @@ to use it with [`GroovyRequestFixture`](https://ratpack.io/manual/1.5.4/api/ratp
 we will register `SessionModule` and then we will use a real session object.
 
 <!-- more -->
+
+Let's say we have a handler that uses a session object and we want to unit test this handler using `GroovyRequestFixture` to avoid
+booting up the application. Our handler under test class looks like this:
+
+```groovy
+class HandlerUnderTest implements Handler {
+
+    @Override
+    void handle(Context ctx) throws Exception {
+        ctx.get(Session).get('foo').map { Optional<String> o ->
+            o.orElse(null)
+        }.flatMap { value ->
+            Promise.value(value)
+        }.then { foo ->
+            ctx.render(json([foo: foo]))
+        }
+    }
+}
+```
+
+Nothing fancy - we retrieve value with key `foo` from session object and we return a simple JSON object like:
+
+    {"foo": "here is foo value"}
+    
+`GroovyRequestFixture` class has a method called `handle(chainAction, closure)` that expects two parameters:
+
+* `Action<? super Chain> chainAction`, a handler chain builder class that allows us to create a chain containing our handler under test class,
+* `Closure<?> closure`, a closure with request fixture specification.
+
+Let's begin with defining `GroovyChainAction` object that implements `Action<Chain>` that we can use later on.
+
+```groovy
+import ratpack.exec.Promise
+import ratpack.groovy.handling.GroovyChainAction
+import ratpack.handling.Context
+import ratpack.handling.Handler
+import ratpack.session.Session
+import spock.lang.Specification
+import spock.lang.Subject
+
+import static ratpack.jackson.Jackson.json
+
+class RetrieveFooValueFromSessionSpec extends Specification {
+
+    @Subject
+    final GroovyChainAction handlerChainAction = new GroovyChainAction() {
+        @Override
+        void execute() throws Exception {
+            get(new HandlerUnderTest())
+        }
+    }
+
+    static class HandlerUnderTest implements Handler {
+
+        @Override
+        void handle(Context ctx) throws Exception {
+            ctx.get(Session).get('foo').map { Optional<String> o ->
+                o.orElse(null)
+            }.flatMap { value ->
+                Promise.value(value)
+            }.then { foo ->
+                ctx.render(json([foo: foo]))
+            }
+        }
+    }
+}
+```
+
+The definition of `handlerChainAction` object says that there is a handler for `GET` request sent without any path and this
+handler is our `HandlerUnderTest`. No single test case so far, let's add one:
+
+```groovy
+import ratpack.exec.Promise
+import ratpack.groovy.handling.GroovyChainAction
+import ratpack.groovy.test.handling.GroovyRequestFixture
+import ratpack.handling.Context
+import ratpack.handling.Handler
+import ratpack.http.Status
+import ratpack.jackson.internal.DefaultJsonRender
+import ratpack.session.Session
+import spock.lang.Specification
+import spock.lang.Subject
+
+import static ratpack.jackson.Jackson.json
+
+class RetrieveFooValueFromSessionSpec extends Specification {
+
+    @Subject
+    final GroovyChainAction handlerChainAction = new GroovyChainAction() {
+        @Override
+        void execute() throws Exception {
+            get(new HandlerUnderTest())
+        }
+    }
+
+    def "should retrieve value for foo key from Session"() {
+        given:
+        def result = GroovyRequestFixture.handle(handlerChainAction) {
+            method 'GET'
+        }
+
+        expect:
+        result.status == Status.OK
+
+        and:
+        result.rendered(DefaultJsonRender).object == [foo: 'Foo value is 42']
+    }
+
+    static class HandlerUnderTest implements Handler {
+
+        @Override
+        void handle(Context ctx) throws Exception {
+            ctx.get(Session).get('foo').map { Optional<String> o ->
+                o.orElse(null)
+            }.flatMap { value ->
+                Promise.value(value)
+            }.then { foo ->
+                ctx.render(json([foo: foo]))
+            }
+        }
+    }
+}
+```
+
+Now our specification class contains first test case scenario - in this test we expect that calling `GET` request on predefined
+`handlerChainAction` returns a map object like:
+
+    [foo: 'Foo value is 42']
+    
+Let's see what happens if we run this test:
+
+    ratpack.test.handling.UnexpectedHandlerException: ratpack.registry.NotInRegistryException: No object for type 'ratpack.session.Session' in registry
+    
+        at ratpack.test.handling.internal.DefaultHandlingResult.rendered(DefaultHandlingResult.java:263)
+        at RetrieveFooValueFromSessionSpec.should retrieve value for foo key from Session(RetrieveFooValueFromSessionSpec.groovy:34)
+    Caused by: ratpack.registry.NotInRegistryException: No object for type 'ratpack.session.Session' in registry
+        at ratpack.registry.Registry.get(Registry.java:136)
+        at ratpack.handling.internal.DefaultContext.get(DefaultContext.java:375)
+        at ratpack.registry.Registry.get(Registry.java:120)
+        at RetrieveFooValueFromSessionSpec$HandlerUnderTest.handle(RetrieveFooValueFromSessionSpec.groovy:41)
+        at ratpack.handling.internal.DefaultContext.next(DefaultContext.java:157)
+        ....
+        
+This exception is pretty straightforward - there is no session object available in the registry. In this test specification we want 
+to avoid mocking session object and use the real one provided with `SessionModule` instead. To make it happened we need to register
+`SessionModule` using Guice registry. Luckily `GroovyChainAction` class has a method called `register(Registry registry)` that allows
+us to override existing registry. Here we will use `Guice.registry(Action<? super BindingsSpec> bindings)` method that returns `Function<Registry, Registry>`:
+
+    static final Function<Registry, Registry> guiceRegistry = Guice.registry { bindings ->
+        bindings.module(new SessionModule())
+    }
+    
+This `guiceRegistry` function will return a Guice registry with `SessionModule` bind correctly. The next step is to call this 
+`GroovyChainAction.register(guiceRegistry.apply(registry))` method inside `execute()` method we override for this test. The updated
+specification class looks like this:
+
+```groovy
+import ratpack.exec.Promise
+import ratpack.func.Function
+import ratpack.groovy.handling.GroovyChainAction
+import ratpack.groovy.test.handling.GroovyRequestFixture
+import ratpack.guice.Guice
+import ratpack.handling.Context
+import ratpack.handling.Handler
+import ratpack.http.Status
+import ratpack.jackson.internal.DefaultJsonRender
+import ratpack.registry.Registry
+import ratpack.session.Session
+import ratpack.session.SessionModule
+import spock.lang.Specification
+import spock.lang.Subject
+
+import static ratpack.jackson.Jackson.json
+
+class RetrieveFooValueFromSessionSpec extends Specification {
+
+    static final Function<Registry, Registry> guiceRegistry = Guice.registry { bindings ->
+        bindings.module(new SessionModule())
+    }
+
+    @Subject
+    final GroovyChainAction handlerChainAction = new GroovyChainAction() {
+        @Override
+        void execute() throws Exception {
+            register(guiceRegistry.apply(registry))
+
+            get(new HandlerUnderTest())
+        }
+    }
+
+    def "should retrieve value for foo key from Session"() {
+        given:
+        def result = GroovyRequestFixture.handle(handlerChainAction) {
+            method 'GET'
+        }
+
+        expect:
+        result.status == Status.OK
+
+        and:
+        result.rendered(DefaultJsonRender).object == [foo: 'Foo value is 42']
+    }
+
+    static class HandlerUnderTest implements Handler {
+
+        @Override
+        void handle(Context ctx) throws Exception {
+            ctx.get(Session).get('foo').map { Optional<String> o ->
+                o.orElse(null)
+            }.flatMap { value ->
+                Promise.value(value)
+            }.then { foo ->
+                ctx.render(json([foo: foo]))
+            }
+        }
+    }
+}
+```
+
+Let's run the test and see what happens:
+
+    Condition not satisfied:
+    
+    result.rendered(DefaultJsonRender).object == [foo: 'Foo value is 42']
+    |      |                           |      |
+    |      |                           |      false
+    |      |                           [foo:null]
+    |      ratpack.jackson.internal.DefaultJsonRender@9f6e406
+    ratpack.test.handling.internal.DefaultHandlingResult@400d912a
+    
+    Expected :foo: Foo value is 42
+    
+    Actual   :foo: null
+    
+Great! `SessionModule` gets bind correctly, there is no `No object for type 'ratpack.session.Session' in registry` exception anymore.
+To finalize this specification we need to satisfy the expectation. For purpose of this test we will add `all()` handler to the `GroovyChainAction`
+and in this handler we will initialize value in session for key `foo`.
+
+> #### The `all()` handler
+>
+> This handler is useful in some scenarios - when it's added at the top of the chain it inspects every incoming request. It's important
+> to remember that if we want to keep chain continuing we have to call `next()` method that instructs Ratpack that this handler
+> does not terminate request processing and it has to continue. Otherwise request handling ends up inside `all()` handler.
+>
+
+The simplest `all()` handler that sets value for session key`foo` may look like this:
+
+    all { Session session ->
+        session.set('foo', 'Foo value is 42').then {
+            next()
+        }
+    }
+
+
+It's important to call `next()` inside `then()` operation to let Ratpack's execution model does its job. Otherwise the next handler may start 
+processing before session object stores value for `foo` key.
+
+
+And here is what the full working specification looks like:
+
+```groovy
+import ratpack.exec.Promise
+import ratpack.func.Function
+import ratpack.groovy.handling.GroovyChainAction
+import ratpack.groovy.test.handling.GroovyRequestFixture
+import ratpack.guice.Guice
+import ratpack.handling.Context
+import ratpack.handling.Handler
+import ratpack.http.Status
+import ratpack.jackson.internal.DefaultJsonRender
+import ratpack.registry.Registry
+import ratpack.session.Session
+import ratpack.session.SessionModule
+import spock.lang.Specification
+import spock.lang.Subject
+
+import static ratpack.jackson.Jackson.json
+
+class RetrieveFooValueFromSessionSpec extends Specification {
+
+    static final Function<Registry, Registry> guiceRegistry = Guice.registry { bindings ->
+        bindings.module(new SessionModule())
+    }
+
+    @Subject
+    final GroovyChainAction handlerChainAction = new GroovyChainAction() {
+        @Override
+        void execute() throws Exception {
+            register(guiceRegistry.apply(registry))
+
+            all { Session session ->
+                session.set('foo', 'Foo value is 42').then {
+                    next()
+                }
+            }
+
+            get(new HandlerUnderTest())
+        }
+    }
+
+    def "should retrieve value for foo key from Session"() {
+        given:
+        def result = GroovyRequestFixture.handle(handlerChainAction) {
+            method 'GET'
+        }
+
+        expect:
+        result.status == Status.OK
+
+        and:
+        result.rendered(DefaultJsonRender).object == [foo: 'Foo value is 42']
+    }
+
+    static class HandlerUnderTest implements Handler {
+
+        @Override
+        void handle(Context ctx) throws Exception {
+            ctx.get(Session).get('foo').map { Optional<String> o ->
+                o.orElse(null)
+            }.flatMap { value ->
+                Promise.value(value)
+            }.then { foo ->
+                ctx.render(json([foo: foo]))
+            }
+        }
+    }
+}
+```
+
+This final specification passes as we expect:
+
+{% img img-thumbnail /images/ratpack-session-test-passed.png  %}
