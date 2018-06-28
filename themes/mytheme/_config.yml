@@ -54,5 +54,5 @@ google_analytics: UA-42400890-5
 
 comment:
   enable: disqus
-  id: eprintstacktracenet
+  id: eprintstacktrace
 

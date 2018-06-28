@@ -80,7 +80,7 @@ pagination_dir: page
 #theme: clean-blog
 theme: mytheme
 
-disqus_shortname: eprintstacktracenet
+disqus_shortname: eprintstacktrace
 
 marked:
   breaks: false
