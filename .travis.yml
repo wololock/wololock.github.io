@@ -1,21 +1,31 @@
 language: node_js
+
 node_js:
 - '6.3.1'
+
 branches:
   only:
   - develop
+
 before_install:
 - npm install hexo-cli -g
 - npm install hexo --save
 - npm install
+
 before_script:
 - git config --global user.name 'Travis CI'
 - git config --global user.email 'bot@travis-ci.org'
 - sed -i'' "s~git@github.com:wololock/wololock.github.io.git~https://${GH_TOKEN}:x-oauth-basic@github.com/wololock/wololock.github.io.git~" _config.yml
+
 install:
 - hexo generate
-script:
-- hexo deploy
+
 env:
   global:
   - secure: OSqePwoUTkKQj+qlNf6/zRWKDoHTLJA0H2YMAHYp3ZVh80ASDfzaiccxZRhvjFJ/GGcwb/8LEt78hkJCw5RF8YQlx0z03L6nkEm7X0R484hCBlkL1SU/VHmQEiJYXOjmnclkRamnKjapwfay3ouY7r6z7TlwVUvU5ohjlKRHjYYxGJMKMY1kGWAjxk7/qsBtl5nNxq/rSHKfiInqeLwoIRi/oP8AaE1U3vg/3aON/EPGynqxIFua+1GrYl3xt0/laPLARZ3/2NiGCxwpaUlcZPXhO1PiukLJSJhYs5ftEvlvvSAJyYspmyqfnLCFLeSrT2HJgwKoUpCggkj48IgLufy9PNGha9CirZIVyQ0ElJMEZS5UqwqfZMkwmEwSODUM0qBYxYpTLZIN+cnjoA0igDHngMaisT3gpkZTHjxCcjt93Vi5cOlyMtCWum+ab8E1fPx2dALqp6VQnfQctfL78wTNjSUX++zYn8MFWl+V6sg/dyIWnPqF0IOAYW8AiXafCRC9KT8OgP6tV4+Mj9blnHwxm8zSOdbIHDhmVwB5ziUp6UBhwyqewobAV7z8v0gsHi07Zux1XcywDtuBeh2HmITbF9kmQ7K1dogfNtLiXnBzh25GgnVCr1FF8CT/CmGKabEnNbU0Tnls619bE0JnqXZvhDfMpzFFj5/WfCmlt8s=
+
+deploy:
+  provider: script
+  script: hexo deploy
+  on:
+    branch: develop
