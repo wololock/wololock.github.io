@@ -12,22 +12,24 @@ categories:
 cover: /img/post-debugger.jpg
 ---
 This blog post is inspired by one of my recent Stack Overflow answers to following question: 
-[Grails: why is the Config.groovy file executed during compilation?](https://stackoverflow.com/questions/46279525/grails-why-is-the-config-groovy-file-executed-during-compilation/46376893).
+https://stackoverflow.com/questions/46279525/grails-why-is-the-config-groovy-file-executed-during-compilation/46376893[Grails: why is the Config.groovy file executed during compilation?].
 Here I'm going to show you step by step what makes `grails package` command executing `Config.groovy` script and how
 I've managed to find the answer to that question.
 
+++++
 <!-- more -->
+++++
 
-### Grails 2.4 configuration files
+=== Grails 2.4 configuration files
 
-According to following [Grails 2.4 documentation](http://docs.grails.org/2.4.4/guide/conf.html#config):
+According to following http://docs.grails.org/2.4.4/guide/conf.html#config[Grails 2.4 documentation]:
 
 > For general configuration Grails provides two files:
 >
->  * grails-app/conf/BuildConfig.groovy
->  * grails-app/conf/Config.groovy
+>  * `grails-app/conf/BuildConfig.groovy`
+>  * `grails-app/conf/Config.groovy`
 >  
-> Both of them use Groovy's [`ConfigSlurper`](http://docs.groovy-lang.org/2.4.6/html/gapi/groovy/util/ConfigSlurper.html) syntax. 
+> Both of them use Groovy's http://docs.groovy-lang.org/2.4.6/html/gapi/groovy/util/ConfigSlurper.html[`ConfigSlurper`] syntax.
 > The first, `BuildConfig.groovy`, is for settings that are used when running Grails commands, such as compile, doc, etc. 
 > The second file, `Config.groovy`, is for settings that are used when your application is running. This means that 
 > `Config.groovy` is packaged with your application, but `BuildConfig.groovy` is not. Don't worry if you're not clear 
@@ -36,12 +38,14 @@ According to following [Grails 2.4 documentation](http://docs.grails.org/2.4.4/g
 After reading such documentation you could run into assumption, that no matter what you put into `Config.groovy` file
 it will get executed while running application only. Unfortunately - this is not true.
 
-### Packaging Grails application
+=== Packaging Grails application
 
 Let's investigate together what happens when we call `grails package` command. Every Grails command has a Groovy script 
 associated. Those scripts are provided with Grails distribution. `package` command is represented by following Groovy script:
 
-```groovy
+.https://github.com/grails/grails-core/blob/2.4.x/grails-scripts/src/main/scripts/_GrailsPackage.groovy[grails-scripts/src/main/scripts/_GrailsPackage.groovy]
+[source,groovy]
+----
 /*
  * Copyright 2004-2005 the original author or authors.
  *
@@ -125,59 +129,63 @@ target(packageTlds:"packages tld definitions for the correct servlet version") {
 recompileCheck = { lastModified, callback ->
  // do nothing, here for compatibility
 }
-```
-<small>*Source: [grails-scripts/src/main/scripts/_GrailsPackage.groovy](https://github.com/grails/grails-core/blob/2.4.x/grails-scripts/src/main/scripts/_GrailsPackage.groovy)*</small>
+----
 
 When you run `grails package` Grails executes target `packageApp` defined in line 38. In line 48 Grails uses 
-[`GrailsProjectPackager.packageApplication()`](https://github.com/grails/grails-core/blob/2.4.x/grails-project-api/src/main/groovy/org/codehaus/groovy/grails/project/packaging/GrailsProjectPackager.groovy#L251)
+https://github.com/grails/grails-core/blob/2.4.x/grails-project-api/src/main/groovy/org/codehaus/groovy/grails/project/packaging/GrailsProjectPackager.groovy#L251[`GrailsProjectPackager.packageApplication()`]
 that does the packaging. Inside this method there is a call to a `createConfig()` private method that in line 345 delegates
-parsing of a configuration file to a [`ConfigSlurper.parse(configClass)`](https://github.com/grails/grails-core/blob/2.4.x/grails-project-api/src/main/groovy/org/codehaus/groovy/grails/project/packaging/GrailsProjectPackager.groovy#L345) method:
+parsing of a configuration file to a https://github.com/grails/grails-core/blob/2.4.x/grails-project-api/src/main/groovy/org/codehaus/groovy/grails/project/packaging/GrailsProjectPackager.groovy#L345[`ConfigSlurper.parse(configClass)`] method:
 
-```groovy
+.https://github.com/grails/grails-core/blob/2.4.x/grails-project-api/src/main/groovy/org/codehaus/groovy/grails/project/packaging/GrailsProjectPackager.groovy#L345[org/codehaus/groovy/grails/project/packaging/GrailsProjectPackager.groovy]
+[source,groovy]
+----
 config = configSlurper.parse(configClass)
-```
+----
 
-<small>*Source: [org/codehaus/groovy/grails/project/packaging/GrailsProjectPackager.groovy](https://github.com/grails/grails-core/blob/2.4.x/grails-project-api/src/main/groovy/org/codehaus/groovy/grails/project/packaging/GrailsProjectPackager.groovy#L345)*</small>
- 
 `ConfigSlurper` does several things, but there is one line of code we are interested the most:
 
-```groovy
+.https://github.com/groovy/groovy-core/blob/GROOVY_2_4_X/src/main/groovy/util/ConfigSlurper.groovy#L286[src/main/groovy/util/ConfigSlurper.groovy]
+[source,groovy]
+----
 script.run()
-```
+----
 
-<small>*Source: [src/main/groovy/util/ConfigSlurper.groovy](https://github.com/groovy/groovy-core/blob/GROOVY_2_4_X/src/main/groovy/util/ConfigSlurper.groovy#L286)*</small>
 
 This is our game changer. There is one thing worth mentioning here as well. `Config.groovy` is compiled to a Java class
 that extends `groovy.lang.Script` class. Basically all Groovy scripts are represented that way in the bytecode - this class is 
 simply a wrapper that provides `main` method that is executed by JVM. That's why `ConfigSlurper.parse(Script script, URL location)`
 is used to parse `Config.groovy` file.
 
-### Side effects
+=== Side effects
 
 There is only one major side effect of this situation - expect that any business logic inside `Config.groovy` file will be executed.
 This is not a problem in most cases, because this file is used mostly for a assigning values to a variables we can access with
 `grailsApplication.config` reference. But if you put something like
 
-```groovy
+[source,groovy]
+----
 println "Lorem ipsum dolor sit amet"
-```  
+----
 
 in the end of `Config.groovy` file, expect to see something like this when you package your Grails application:
 
-    |Loading Grails 2.4.5
-    |Configuring classpath
-    .
-    |Environment set to development
-    ................................
-    |Packaging Grails application
-    ..
-    |Compiling 10 source files
-    
-    ..
-    |Compiling 107 source files
-    
-    .......
-    |Compiling 8 source files
-    .....Lorem ipsum dolor sit amet
-    ...................Lorem ipsum dolor sit amet
-    .
+[source,plain]
+----
+|Loading Grails 2.4.5
+|Configuring classpath
+.
+|Environment set to development
+................................
+|Packaging Grails application
+..
+|Compiling 10 source files
+
+..
+|Compiling 107 source files
+
+.......
+|Compiling 8 source files
+.....Lorem ipsum dolor sit amet
+...................Lorem ipsum dolor sit amet
+.
+----

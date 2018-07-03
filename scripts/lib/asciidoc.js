@@ -12,7 +12,8 @@ const opts = {
         idprefix: '',
         idseparator: '-',
         sectids: false,
-        'source-highlighter': 'highlight.js'
+        'source-highlighter': 'highlight.js',
+        'listing-caption': 'Listing'
     }
 };
 
