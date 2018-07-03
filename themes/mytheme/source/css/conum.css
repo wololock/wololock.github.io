@@ -1,0 +1,54 @@
+.conum[data-value] {
+    display: inline-block;
+    color: #fff !important;
+    background-color: rgba(0, 0, 0, .8);
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    text-align: center;
+    font-size: .75em;
+    width: 1.67em;
+    height: 1.67em;
+    line-height: 1.67em;
+    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.conum[data-value] * {
+    color: #fff !important
+}
+
+.conum[data-value] + b {
+    display: none
+}
+
+.conum[data-value]:after {
+    content: attr(data-value)
+}
+
+pre .conum[data-value] {
+    position: relative;
+    top: -.085em;
+    width: 2em;
+    height: 2em;
+    padding: 3px;
+}
+
+b.conum * {
+    color: inherit !important
+}
+
+.conum:not([data-value]):empty {
+    display: none
+}
+
+.subheader, .admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title {
+    line-height: 1.45;
+    color: #7a2518;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: .25em;
+    font-style: italic;
+    font-size: 0.8em;
+}

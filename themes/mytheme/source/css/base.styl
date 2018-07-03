@@ -438,8 +438,25 @@ img.avatar-img
 pre
   border-radius 0
   border none
-  background-color #333
+  background-color transparent
+  padding 0
   color #ccc
+
+  code
+    white-space pre
+
+.hljs
+  padding 10px 15px
+  font-family "Droid Sans Mono", "Source Code Pro", monospace
+  font-weight 400
+  font-size 1.1em
+  line-height 1.4
+
+  @media only screen and (max-width: 767px)
+    font-size 0.9em
+
+.hljs-keyword, .hljs-selector-tag, .hljs-deletion
+  font-weight 700
 
 blockquote
   background #fff7e8
