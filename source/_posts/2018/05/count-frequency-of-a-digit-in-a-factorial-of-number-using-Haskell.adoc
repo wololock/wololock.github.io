@@ -141,7 +141,7 @@ represents the current value from list we are iterating over. The algorithm is s
 ____
 
 
-=== Find the digit with least frequency
+== Find the digit with least frequency
 
 Let's extend this example and let's try to find a digit that occurred the least amount of times. We can start with calculating frequencies
 for all digits. In our previous example we have "hardcode" comparison with character `7`. What if we parameterize it and apply these composed functions
@@ -196,7 +196,7 @@ Prelude> minimum $ map (\y -> (sum $ map (\x -> if x == y then 1 else 0) $ show 
 And the answer is that digit `5` occurs the least amount of times (213 times) in the factorial of 1000.
 
 
-=== Conclusion
+== Conclusion
 
 I hope you enjoyed today's post and you have learned something interesting. Don't hesitate to suggest alternative solutions to this
 puzzle - comment section is all yours. See you next time!

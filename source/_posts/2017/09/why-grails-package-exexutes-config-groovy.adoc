@@ -20,7 +20,7 @@ I've managed to find the answer to that question.
 <!-- more -->
 ++++
 
-=== Grails 2.4 configuration files
+== Grails 2.4 configuration files
 
 According to following http://docs.grails.org/2.4.4/guide/conf.html#config[Grails 2.4 documentation]:
 
@@ -38,7 +38,7 @@ According to following http://docs.grails.org/2.4.4/guide/conf.html#config[Grail
 After reading such documentation you could run into assumption, that no matter what you put into `Config.groovy` file
 it will get executed while running application only. Unfortunately - this is not true.
 
-=== Packaging Grails application
+== Packaging Grails application
 
 Let's investigate together what happens when we call `grails package` command. Every Grails command has a Groovy script 
 associated. Those scripts are provided with Grails distribution. `package` command is represented by following Groovy script:
@@ -156,7 +156,7 @@ that extends `groovy.lang.Script` class. Basically all Groovy scripts are repres
 simply a wrapper that provides `main` method that is executed by JVM. That's why `ConfigSlurper.parse(Script script, URL location)`
 is used to parse `Config.groovy` file.
 
-=== Side effects
+== Side effects
 
 There is only one major side effect of this situation - expect that any business logic inside `Config.groovy` file will be executed.
 This is not a problem in most cases, because this file is used mostly for a assigning values to a variables we can access with

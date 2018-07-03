@@ -61,7 +61,7 @@ Current number value is 15
 
 It may look counterintuitive and we could expect last line saying that the current number value is `25`. So what's going on?
 
-=== Extending `groovy.lang.Script`
+== Extending `groovy.lang.Script`
 
 First thing we need to understand is that every Groovy script is compiled to a class that extends http://docs.groovy-lang.org/2.4.12/html/api/groovy/lang/Script.html[`groovy.lang.Script`].
 Assuming that the script I've shown above is named `incrementing_number.groovy` then the compiled Java class would look like this:
@@ -126,7 +126,7 @@ In this example, without the annotation, variable awe would be a local script va
 
 That's why in compiled Java class we can find `Integer number` class field. The rest of the script body gets executed in `Script.run()` method.
 
-=== Calling closure inside Groovy script
+== Calling closure inside Groovy script
 
 Now let's investigate why closure `body` increments a `number` but does not modify the variable outside the closure. First thing we need to understand is
 that http://groovy-lang.org/closures.html#closure-owner[every closure has an `owner`] - an enclosing object that defines a closure. In this case `body.owner` property points to `incrementing_number` class instance.

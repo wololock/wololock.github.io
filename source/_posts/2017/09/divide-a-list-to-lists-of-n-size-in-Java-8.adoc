@@ -26,7 +26,7 @@ in Guava or https://commons.apache.org/proper/commons-collections/apidocs/org/ap
 in Apache Commons Collections. But what if you don't have these libraries added to your project and you don't want to add 
 them just for a single utility method?
 
-=== Use Java 8 Stream API
+== Use Java 8 Stream API
 
 Luckily you can utilize Java 8 Stream API to do same thing:
 

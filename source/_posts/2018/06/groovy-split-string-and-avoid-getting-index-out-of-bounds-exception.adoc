@@ -15,7 +15,7 @@ with extracted values. In this post I will show you how to do it in 3 different 
 <!-- more -->
 ++++
 
-=== Preparation
+== Preparation
 
 Let's start with defining input data and expected result. We will use following simple text input:
 
@@ -37,7 +37,7 @@ id: 3, name: Mark Doe, email: null, sibling: null
 id: 4, name: Clark Doe, email: clarkdoe@example.com, sibling: 2
 ----
     
-=== Ex. 1: Use `List.get(int index)` to extract values
+== Ex. 1: Use `List.get(int index)` to extract values
 
 This is the most Java-like way to do it. `List.get(int index)` method has one significant drawback -
 it throws `IndexOutOfBoundsException` when we are trying to get a value for non existing index. 
@@ -59,7 +59,7 @@ text.eachLine { line ->
 }
 ----
 
-=== Ex. 2: Use Groovy subscript operator
+== Ex. 2: Use Groovy subscript operator
 
 The previous example looks like there is something wrong with it. Luckily Groovy https://github.com/apache/groovy/blob/GROOVY_2_4_15/src/main/org/codehaus/groovy/runtime/DefaultGroovyMethods.java#L7246[overrides index operator
 for lists] and it makes expressions like `arr[4]` safe from `IndexOutOfBoundsException`.
@@ -80,7 +80,7 @@ text.eachLine { line ->
 }
 ----
 
-=== Ex. 3: Use Groovy multiple assignment feature
+== Ex. 3: Use Groovy multiple assignment feature
 
 There is even more Groovy way to get this job done - using http://groovy-lang.org/semantics.html#_multiple_assignment[multiple assignment] feature.
 It allows us to forget about that tokenize produces a list and we can assign a result of this operation
