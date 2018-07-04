@@ -22,6 +22,10 @@
     "hexo-renderer-marked": "^0.3.0",
     "hexo-renderer-sass": "^0.3.2",
     "hexo-renderer-stylus": "^0.3.1",
-    "hexo-server": "^0.2.0"
+    "hexo-server": "^0.2.0",
+    "asciidoctor.js": "^1.5.6",
+    "cheerio": "0.22.0",
+    "entities": "1.1.1",
+    "hexo-util": "0.6.3"
   }
 }

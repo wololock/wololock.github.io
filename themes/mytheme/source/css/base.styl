@@ -1,7 +1,6 @@
 @import "variables.styl"
 @import "mixins.styl"
 
-
 body
   @extend .serif
   font-size 20px
@@ -9,7 +8,7 @@ body
 
 p
   line-height 1.5
-  margin 30px 0
+  margin 25px 0
 
 .color-red
   color color-red
@@ -34,6 +33,7 @@ a.category
 h1, h2, h3, h4, h5, h6
   @extend .sans-serif
   font-weight 800
+  margin 40px 0 15px 0
 
 p
   a
@@ -438,13 +438,52 @@ img.avatar-img
 pre
   border-radius 0
   border none
-  background-color #333
+  background-color transparent
+  padding 0
   color #ccc
+
+  code
+    white-space pre
+
+.hljs
+  padding 10px 15px
+  font-family "Droid Sans Mono", "Source Code Pro", monospace
+  font-weight 400
+  font-size 1.1em
+  line-height 1.4
+
+  @media only screen and (max-width: 767px)
+    font-size 0.9em
+
+.hljs-keyword, .hljs-selector-tag, .hljs-deletion
+  font-weight 700
 
 blockquote
   background #fff7e8
   border-left-color #ffd68a
   font-size 0.8em
   margin 20px 0
-  >p
+  p
     margin-top 10px
+
+  ul
+    margin-top 10px
+    margin-bottom 10px
+
+  li
+    p
+      margin-top 0px
+
+  .listingblock
+    margin 20px 0
+
+  h1,h2,h3,h4,h5
+    margin 10px 0 20px 0
+
+ul
+  margin 0
+
+  li
+    margin 10px 0
+  p
+    margin 0

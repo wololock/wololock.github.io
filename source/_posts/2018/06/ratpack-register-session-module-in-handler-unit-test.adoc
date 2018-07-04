@@ -10,16 +10,19 @@ categories:
     - Ratpack Cookbook
 ---
 
-Unit testing Ratpack handlers has many benefits. In the previous post we have learned how to {% post_link ratpack-mocking-Session-object-in-GroovyRequestFixture-test mock Session object %}
-to use it with [`GroovyRequestFixture`](https://ratpack.io/manual/1.5.4/api/ratpack/groovy/test/handling/GroovyRequestFixture.html). Today instead of mocking
+Unit testing Ratpack handlers has many benefits. In the previous post we have learned how to +++{% post_link ratpack-mocking-Session-object-in-GroovyRequestFixture-test mock Session object %}+++
+to use it with https://ratpack.io/manual/1.5.4/api/ratpack/groovy/test/handling/GroovyRequestFixture.html[`GroovyRequestFixture`]. Today instead of mocking
 we will register `SessionModule` and then we will use a real session object.
 
+++++
 <!-- more -->
+++++
 
 Let's say we have a handler that uses a session object and we want to unit test this handler using `GroovyRequestFixture` to avoid
 booting up the application. Our handler under test class looks like this:
 
-```groovy
+[source,groovy]
+----
 class HandlerUnderTest implements Handler {
 
     @Override
@@ -33,11 +36,14 @@ class HandlerUnderTest implements Handler {
         }
     }
 }
-```
+----
 
 Nothing fancy - we retrieve value with key `foo` from session object and we return a simple JSON object like:
 
-    {"foo": "here is foo value"}
+[source,json]
+----
+{"foo": "here is foo value"}
+----
     
 `GroovyRequestFixture` class has a method called `handle(chainAction, closure)` that expects two parameters:
 
@@ -46,7 +52,8 @@ Nothing fancy - we retrieve value with key `foo` from session object and we retu
 
 Let's begin with defining `GroovyChainAction` object that implements `Action<Chain>` that we can use later on.
 
-```groovy
+[source,groovy]
+----
 import ratpack.exec.Promise
 import ratpack.groovy.handling.GroovyChainAction
 import ratpack.handling.Context
@@ -81,12 +88,13 @@ class RetrieveFooValueFromSessionSpec extends Specification {
         }
     }
 }
-```
+----
 
 The definition of `handlerChainAction` object says that there is a handler for `GET` request sent without any path and this
 handler is our `HandlerUnderTest`. No single test case so far, let's add one:
 
-```groovy
+[source,groovy]
+----
 import ratpack.exec.Promise
 import ratpack.groovy.handling.GroovyChainAction
 import ratpack.groovy.test.handling.GroovyRequestFixture
@@ -137,41 +145,51 @@ class RetrieveFooValueFromSessionSpec extends Specification {
         }
     }
 }
-```
+----
 
 Now our specification class contains first test case scenario - in this test we expect that calling `GET` request on predefined
 `handlerChainAction` returns a map object like:
 
-    [foo: 'Foo value is 42']
+[source,groovy]
+----
+[foo: 'Foo value is 42']
+----
     
 Let's see what happens if we run this test:
 
-    ratpack.test.handling.UnexpectedHandlerException: ratpack.registry.NotInRegistryException: No object for type 'ratpack.session.Session' in registry
-    
-        at ratpack.test.handling.internal.DefaultHandlingResult.rendered(DefaultHandlingResult.java:263)
-        at RetrieveFooValueFromSessionSpec.should retrieve value for foo key from Session(RetrieveFooValueFromSessionSpec.groovy:34)
-    Caused by: ratpack.registry.NotInRegistryException: No object for type 'ratpack.session.Session' in registry
-        at ratpack.registry.Registry.get(Registry.java:136)
-        at ratpack.handling.internal.DefaultContext.get(DefaultContext.java:375)
-        at ratpack.registry.Registry.get(Registry.java:120)
-        at RetrieveFooValueFromSessionSpec$HandlerUnderTest.handle(RetrieveFooValueFromSessionSpec.groovy:41)
-        at ratpack.handling.internal.DefaultContext.next(DefaultContext.java:157)
-        ....
+[source,console]
+----
+ratpack.test.handling.UnexpectedHandlerException: ratpack.registry.NotInRegistryException: No object for type 'ratpack.session.Session' in registry
+
+    at ratpack.test.handling.internal.DefaultHandlingResult.rendered(DefaultHandlingResult.java:263)
+    at RetrieveFooValueFromSessionSpec.should retrieve value for foo key from Session(RetrieveFooValueFromSessionSpec.groovy:34)
+Caused by: ratpack.registry.NotInRegistryException: No object for type 'ratpack.session.Session' in registry
+    at ratpack.registry.Registry.get(Registry.java:136)
+    at ratpack.handling.internal.DefaultContext.get(DefaultContext.java:375)
+    at ratpack.registry.Registry.get(Registry.java:120)
+    at RetrieveFooValueFromSessionSpec$HandlerUnderTest.handle(RetrieveFooValueFromSessionSpec.groovy:41)
+    at ratpack.handling.internal.DefaultContext.next(DefaultContext.java:157)
+    ....
+----
         
 This exception is pretty straightforward - there is no session object available in the registry. In this test specification we want 
 to avoid mocking session object and use the real one provided with `SessionModule` instead. To make it happened we need to register
 `SessionModule` using Guice registry. Luckily `GroovyChainAction` class has a method called `register(Registry registry)` that allows
 us to override existing registry. Here we will use `Guice.registry(Action<? super BindingsSpec> bindings)` method that returns `Function<Registry, Registry>`:
 
-    static final Function<Registry, Registry> guiceRegistry = Guice.registry { bindings ->
-        bindings.module(new SessionModule())
-    }
+[source,groovy]
+----
+static final Function<Registry, Registry> guiceRegistry = Guice.registry { bindings ->
+    bindings.module(new SessionModule())
+}
+----
     
 This `guiceRegistry` function will return a Guice registry with `SessionModule` bind correctly. The next step is to call this 
 `GroovyChainAction.register(guiceRegistry.apply(registry))` method inside `execute()` method we override for this test. The updated
 specification class looks like this:
 
-```groovy
+[source,groovy]
+----
 import ratpack.exec.Promise
 import ratpack.func.Function
 import ratpack.groovy.handling.GroovyChainAction
@@ -232,42 +250,52 @@ class RetrieveFooValueFromSessionSpec extends Specification {
         }
     }
 }
-```
+----
 
 Let's run the test and see what happens:
 
-    Condition not satisfied:
-    
-    result.rendered(DefaultJsonRender).object == [foo: 'Foo value is 42']
-    |      |                           |      |
-    |      |                           |      false
-    |      |                           [foo:null]
-    |      ratpack.jackson.internal.DefaultJsonRender@9f6e406
-    ratpack.test.handling.internal.DefaultHandlingResult@400d912a
-    
-    Expected :foo: Foo value is 42
-    
-    Actual   :foo: null
+[source,console]
+----
+Condition not satisfied:
+
+result.rendered(DefaultJsonRender).object == [foo: 'Foo value is 42']
+|      |                           |      |
+|      |                           |      false
+|      |                           [foo:null]
+|      ratpack.jackson.internal.DefaultJsonRender@9f6e406
+ratpack.test.handling.internal.DefaultHandlingResult@400d912a
+
+Expected :foo: Foo value is 42
+
+Actual   :foo: null
+----
     
 Great! `SessionModule` gets bind correctly, there is no `No object for type 'ratpack.session.Session' in registry` exception anymore.
 To finalize this specification we need to satisfy the expectation. For purpose of this test we will add `all()` handler to the `GroovyChainAction`
 and in this handler we will initialize value in session for key `foo`.
 
-> #### The `all()` handler
->
-> This handler is useful in some scenarios - when it's added at the top of the chain it inspects every incoming request. It's important
-> to remember that if we want to keep chain continuing we have to call `next()` method that instructs Ratpack that this handler
-> does not terminate request processing and it has to continue. Otherwise request handling ends up inside `all()` handler.
->
+____
+
+++++
+<h4>The <code>all()</code> handler</h4>
+++++
+
+This handler is useful in some scenarios - when it's added at the top of the chain it inspects every incoming request. It's important
+to remember that if we want to keep chain continuing we have to call `next()` method that instructs Ratpack that this handler
+does not terminate request processing and it has to continue. Otherwise request handling ends up inside `all()` handler.
+____
+
 
 The simplest `all()` handler that sets value for session key`foo` may look like this:
 
-    all { Session session ->
-        session.set('foo', 'Foo value is 42').then {
-            next()
-        }
+[source,groovy]
+----
+all { Session session ->
+    session.set('foo', 'Foo value is 42').then {
+        next()
     }
-
+}
+----
 
 It's important to call `next()` inside `then()` operation to let Ratpack's execution model does its job. Otherwise the next handler may start 
 processing before session object stores value for `foo` key.
@@ -275,7 +303,8 @@ processing before session object stores value for `foo` key.
 
 And here is what the full working specification looks like:
 
-```groovy
+[source,groovy]
+----
 import ratpack.exec.Promise
 import ratpack.func.Function
 import ratpack.groovy.handling.GroovyChainAction
@@ -342,8 +371,8 @@ class RetrieveFooValueFromSessionSpec extends Specification {
         }
     }
 }
-```
+----
 
 This final specification passes as we expect:
 
-{% img img-thumbnail /images/ratpack-session-test-passed.png  %}
++++{% img img-thumbnail /images/ratpack-session-test-passed.png  %}+++
