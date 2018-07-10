@@ -1,0 +1,181 @@
+---
+title: How to name Groovy script file?
+date: 2018-07-10 12:05:19
+tags:
+    - groovy
+    - java
+categories:
+    - Programming tips
+---
+
+Some time ago I have found a very interesting question on Stack Overflow about https://stackoverflow.com/questions/51238868/forbidden-characters-in-groovy-script-filenames[forbidden characters
+in Groovy script filenames]. Let's use it as an excuse to make a closer look at Groovy script
+files naming limitations - you will find out that there are none actually.
+
+++++
+<!-- more -->
+++++
+
+== Script name == class name
+
+The major rule of thumb says that you should apply the same standards for naming Groovy script
+as you apply for naming Java classes. It is simply because each Groovy script compiles to a class
+that extends `groovy.lang.Script` class. Let's take a look at following example.
+
+.helloWorld.groovy
+[source,groovy]
+----
+println "Hello, World!"
+----
+
+If we compile this simple script using `groovyc` compiler:
+
+[source,bash]
+----
+groovyc helloWorld.groovy
+----
+
+we will get a Java class file `helloWorld.class` that decompiles to:
+
+.javap helloWorld.class
+[source,java]
+----
+Compiled from "helloWorld.groovy"
+public class helloWorld extends groovy.lang.Script {
+  public static transient boolean __$stMC;
+  public helloWorld();
+  public helloWorld(groovy.lang.Binding);
+  public static void main(java.lang.String...);
+  public java.lang.Object run();
+  protected groovy.lang.MetaClass $getStaticMetaClass();
+}
+----
+
+TIP: *Tip 1: name your Groovy script just like Java class*
++++<br />+++This is the easiest way to avoid problems when you try to execute your compiled
+Groovy script from Java code for instance.
+
+== Special characters - are they allowed?
+
+Java https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.8[limits the range of characters] you can use
+to name your class. For instance, you cannot name your Java class as `Test-A` or `Test A` - Java compiler
+will throw an error when you try to compile class with such name:
+
+[source,text]
+----
+Test-A.java:1: error: '{' expected
+public class Test-A {
+                 ^
+1 error
+----
+
+Groovy on the other hand allows you to run and compile script named `test-a.groovy` or `test a.groovy`:
+
+.javap test-a.class
+[source,java]
+----
+Compiled from "test-a.groovy"
+public class test-a extends groovy.lang.Script {
+  public static transient boolean __$stMC;
+  public test-a();
+  public test-a(groovy.lang.Binding);
+  public static void main(java.lang.String...);
+  public java.lang.Object run();
+  protected groovy.lang.MetaClass $getStaticMetaClass();
+}
+----
+
+
+.javap test a.class
+[source,java]
+----
+Compiled from "test a.groovy"
+public class test_a extends groovy.lang.Script {
+  public static transient boolean __$stMC;
+  public test_a();
+  public test_a(groovy.lang.Binding);
+  public static void main(java.lang.String...);
+  public java.lang.Object run();
+  protected groovy.lang.MetaClass $getStaticMetaClass();
+}
+----
+
+As you can see `test a.groovy` script generates class with name `test_a` and `test-a.groovy` generates
+a class with name `test-a`. Java standard allows using `_` in class names, unlike `-` character.
+Let's see if Java will be able to run this `test-a` compiled class from a Groovy script:
+
+.Running compiled Groovy script as a Java program
+[source,bash]
+----
+java -classpath ".:./groovy-all-2.4.12.jar" test-a
+Hello, World!
+----
+
+
+TIP: In order to *run compiled Groovy script as a Java program* we have to add `groovy-all-[version].jar` to the classpath so the parent `groovy.lang.Script` class can be found in the runtime.
+
+
+It worked, surprisingly. It shows that `javac` compiler is more strict about naming limitations, unlike the
+Java Runtime Environment which has no problems with a class called `test-a`.
+
+== Using Java keywords as a Groovy script name
+
+It gets even more interesting when we name our Groovy script using one of the Java keyword. Let's
+say we have created a script called `public.groovy`:
+
+.public.groovy
+[source,groovy]
+----
+println "Hello, World from public.groovy script"
+----
+
+Now let's see what the compiled Java class looks like:
+
+.javap public.class
+[source,java]
+----
+Compiled from "public.groovy"
+public class public extends groovy.lang.Script {
+  public static transient boolean __$stMC;
+  public public();
+  public public(groovy.lang.Binding);
+  public static void main(java.lang.String...);
+  public java.lang.Object run();
+  protected groovy.lang.MetaClass $getStaticMetaClass();
+}
+----
+
+Java compiler would never allow us to name our class `public`:
+
+.javac public.java
+[source,text]
+----
+public.java:1: error: <identifier> expected
+public class public {
+            ^
+public.java:3: error: reached end of file while parsing
+}
+ ^
+2 errors
+----
+
+Groovy compiler didn't have problems with that. Java Runtime Environment does not complain as well:
+
+.Running compile public.groovy script as a Java program
+[source,bash]
+----
+java -classpath ".:./groovy-all-2.4.12.jar" public
+Hello, World from public.groovy script
+----
+
+Does it mean I can abuse and use non-standard script names without causing any troubles? It depends.
+If you are going to use your compiled Groovy code with other Java programs then it's better to follow
+the guidelines and use names that are 1:1 compatible with Java compiler class name standards. Otherwise
+you will get compilation errors when your Java code will try to instantiate for instance:
+
+[source,java]
+----
+new public()
+----
+
+With great power comes great responsibility.
