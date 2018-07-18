@@ -1,0 +1,136 @@
+---
+title: 365 consecutive days on Stack Overflow - what I have learned from this experiment
+date: 2018-07-18 09:25:33
+categories:
+    - Becoming a better person
+tags:
+    - stack-overflow
+    - career
+    - learning
+cover: /img/stack-overflow-bg.jpg
+---
+
+A few days ago I have reached 365 consecutive days on https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile[Stack Overflow].
+In the beginning of July 2017 I&nbsp;have decided to run an experiment - visit Stack Overflow every single day
+and do something useful to other community members (answer a question, review one of the queues, edit and improve existing questions and so on).
+Now it is the best time to summarize this experiment and share my thoughts with you.
+
+++++
+<!-- more -->
+++++
+
+== Motivation
+
+Let's start with _"why?"_. I enjoy learning new things and getting better in stuff I already know. Someone could call it
+a pursuit of mastering programming skills. I have heard a few years back that if you want to learn something precisely,
+you have to know how to explain it to others.footnote:[_"How Students Learn by Explaining Their Thinking"_ by Norene Wiesen - https://www.scilearn.com/blog/how-students-learn-by-explaining-their-thinking]
+There is this very popular quote attributed to Albert Einsteinfootnote:[Did Einstein say “if you can't explain it simply you don't understand it well enough”? - discussion at https://skeptics.stackexchange.com/questions/8742/did-einstein-say-if-you-cant-explain-it-simply-you-dont-understand-it-well-en[skeptics.stackexchange.com]]:
+
+> _If you can't explain it simply, you don't understand it well enough._
+
+Even though Einstein unlikely said that, it still sounds smart enough to give this quote a try and apply it in the real life.
+
+So I have decided I will be watching a few tagsfootnote:[Tags like: _groovy, java-8, spock, ratpack, gpars, spring-boot etc._] on
+Stack Overflow and I will try answering questions to solve people's programming problems. I wanted to achieve this by
+providing clear and detailed explanation of a solution (and problem as well).
+I've focused on stuff I knew something about - things I wanted to explore deeper to get a better understanding about how
+things work.
+
+== Starting point
+
+My Stack Overflow account exists since March 2013 and between 2013 and 2017 I was not very active user. My profile in the end
+of 2016footnote:[https://web.archive.org/web/20161222054315/https://stackoverflow.com/users/2194470/szymon-stepniak[WaybackMaching snapshot from December 22nd 2016]] looked like this:
+
+[.img-responsive.img-thumbnail]
+[link=/images/stack-overflow-beginnings.png]
+image::/images/stack-overflow-beginnings.png[]
+
+I couldn't get a snapshot from July 2017, but it didn't change significantly comparing to snapshot from December 2016.
+Anyway, I was pretty passive SO user as you can see - I have asked a few questions, I&nbsp;have delivered some answers, but
+I wasn't very consistent, especially if we take into account that I&nbsp;was a member for 4 years already.
+
+== Execution
+
+Now when you know what was my starting point, it's time to reveal what my Stack Overflow daily routine looked like for the
+last year:
+
+- [x] I have created a tag query like `[groovy] or [spock] or [java-stream] or ...` that lists only those questions I&nbsp;am the most interested in
+- [x] I have ignored tag `[android]` that shows up pretty often with `[gradle]` tag
+- [x] I reviewed newest questions to find something I could give an answer to
+- [x] If I've found a question I found useful to other people - I upvoted it and if I was able to answer it - I tried to deliver the best answer I could give at that time
+- [x] If I've found a question that was not expressed clearly - I asked for clarification and I tried to help improving the question
+- [x] If I've found a question I found completely uselessfootnote:[http://idownvotedbecau.se/noattempt/] (like _I have a homework task..._) - I downvoted and voted to close it
+- [x] After reviewing newest questions I went through the review queues or I scheduled doing it later that day
+- [x] I have repeated most of these steps every single day
+
+== What have I learned from this journey?
+
+During the last year I have participated in hundreds of Stack Overflow questions (answering, editing, commenting, voting and so on).
+Here are my thoughts about the things I have learned from this journey.
+
+=== 1. I don't have to chase the rabbit
+
+Many people say that getting involved in SO community these days does not make much sense, because all popular and interesting questions
+were already asked and it is almost impossible to earn high reputation based on questions that show up nowadays. If your goal
+is to chase people like Jon Skeet or even anyone who reached 100k reputation - you're in trouble. Many highly reputable users
+gained their reputation with a snowball effect - they have delivered valuable answers to popular questions a few years back and
+they are constantly rewarded for that. I have heard that this is a&nbsp;blocker for many newcomers. I have no problem with that, because
+I have realized that **I don't have to compete with anyone**. I focus on delivering valuable answers instead. And I won't lie to you -
+I love being rewarded with reputation points or badges, but I have accepted the fact that this is only a side-effect of doing
+a good job, not an end in itself.
+
+=== 2. There are many people waiting for my help
+
+I guess you have heard about impostor syndrome.footnote:[https://en.wikipedia.org/wiki/Impostor_syndrome] I've found it pretty
+hard to overcome, especially if you are competitive by the nature and you constantly compare yourself to people that are
+more experienced and skilled than you, just like I did. Stack Overflow helped me hold my horses and look in the opposite direction. It became
+clear to me that I can learn more effectively **if I help other people** reaching my current level of experience. Sharing the knowledge,
+digging deeper in the areas I'm already familiar with and explaining these ideas with the simplest possible words boosted my
+learning process. And to give you a concrete example - I work with Groovyfootnote:[Groovy programming language - http://groovy-lang.org/] for
+more than 6 years already and I always saw myself as a experienced Groovy developer who knows pretty much about how things
+work behind the scenes. Thanks to Stack Overflow and tons of questions about different things in Groovy I have learned
+even more - each time I saw a question that required some sort of research from my side I jumped into it and explore it
+deeply enough to fully understand what's going on. A good example of win-win situation - I have helped solving an issue and I have learned
+something new or I just understand the idea better.
+
+=== 3. There is nothing bad in being wrong
+
+It happened to me a few times to give a wrong or partially wrong answer to the question I've found interesting. The good thing
+about Stack Overflow community is that there are people who will kindly tell you that your answer is wrong and what you can do to fix or improve it.
+Of course, there are a few jerks out there who will try to prove you're stupid - simply ignore them.
+
+=== 4. Small actions repeated consistently produce great results
+
+A few months ago I have finally completed my first Stack Overflow milestone - gaining 10k reputation:
+
+++++
+<blockquote class="twitter-tweet tw-align-center" data-lang="en"><p lang="en" dir="ltr">1st milestone completed 🙃🏆👨🏻‍💻 <a href="https://twitter.com/hashtag/soreadytohelp?src=hash&amp;ref_src=twsrc%5Etfw">#soreadytohelp</a> <a href="https://twitter.com/hashtag/so?src=hash&amp;ref_src=twsrc%5Etfw">#so</a> <a href="https://twitter.com/hashtag/10k?src=hash&amp;ref_src=twsrc%5Etfw">#10k</a> <a href="https://t.co/0IX3efaN4T">https://t.co/0IX3efaN4T</a> <a href="https://t.co/SjxMLthAKZ">pic.twitter.com/SjxMLthAKZ</a></p>&mdash; Szymon Stepniak 🧔🏻 (@wololock) <a href="https://twitter.com/wololock/status/983605216057659392?ref_src=twsrc%5Etfw">April 10, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+++++
+
+When I was starting my one year of day-to-day Stack Overflow challenge I had problems in estimating how much time will
+it take to reach this 10k reputation barrier. It looked to me like something that is far far away - this is why I have focused on
+the next small step, the next question I&nbsp;can answer and learn something from. Points, badges and other digital rewards don't matter.
+Improving yourself and other people matters the most. Your reputation grows with its own pace.
+
+== Conclusion
+
+It's July 18th, one year and a few days later since I started my experiment. Why have I&nbsp;wrote this blog post? To brag about
+my progress? No. Nothing like that at all. I just want to summarize my experiment and show you that you can still actively participate
+in Stack Overflow community in 2018 and have a lot of fun while learning new things and mastering current skills. And many many
+people can learn from you writing better software every day.
+
+[.img-responsive.img-thumbnail]
+[link=/images/stack-overflow-now.png]
+image::/images/stack-overflow-now.png[]
+
+== Next steps
+
+My Stack Overflow journey is not done. I continue answering questions, improving existing ones, helping people solving
+their problems and making software developers community a better place for all people - experienced developers and newcomers
+that come to Stack Overflow every day.
+
+Before this post ends - what is your Stack Overflow story? What have you learned from your experience?
+Does participating in this community in 2018 make any sense to you? Please share your thoughts in the
+comments section below. I would love to hear it from you.
+
