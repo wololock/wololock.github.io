@@ -67,7 +67,13 @@ var main = {
     });
 
     var brand = $(".navbar-brand:first").text();
-    $(".navbar-brand:first").html(brand.split(".").join('<span class="color-red">.</span>'));
+    brand = brand.split(";").join('<span class="color-orange">;</span>');
+
+    var parts = brand.split("//");
+    if (parts.length > 1) {
+        brand = parts[0] + '<span class="color-gray">//' + parts[1] + '</span>'
+    }
+    $(".navbar-brand:first").html(brand);
   }
 };
 

@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: e.printstacktrace
+title: e.printStackTrace(); // Blog
 #subtitle: Lorem ipsum
 description: Welcome to my personal blog about programming, Java, Groovy, best practices, clean code and everything else!
 author: Szymon Stepniak
@@ -96,5 +96,5 @@ all_minifier: true
 
 # Update versions after updating resources to prevent reading from cache
 version:
-  css: 11
-  js: 3
+  css: 12
+  js: 4
