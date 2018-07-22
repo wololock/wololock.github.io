@@ -2,7 +2,7 @@
 title: 365 consecutive days on Stack Overflow - what I have learned from this experiment
 date: 2018-07-18 09:25:33
 categories:
-    - Softwre developer career boost
+    - Software developer career boost
 tags:
     - stackoverflow
     - career
