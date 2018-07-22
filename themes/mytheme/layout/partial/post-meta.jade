@@ -1,11 +1,10 @@
-mixin post_meta(date, tags)
-    p.post-meta!= "Posted on "
-        time(datetime=date_xml(date), itemprop="datePublished")!= full_date(date, "MMM D, YYYY")
-        if (typeof tags) !== "undefined"
-            - tags.each(function(tag){
-                = ' · '
-                a.tag.post-meta(href=url_for(tag.path))= tag.name
-            - })
-
+mixin post_meta(post)
+    div.post-meta
+        ul
+            li
+                time(datetime=date_xml(post.date), itemprop="datePublished")!= full_date(post.date, "MMM D, YYYY")
+            li="3 minutes read"
+            li
+                a(href=config.url + url_for(post.path) + "#disqus_thread")="0 Comments"
 
 

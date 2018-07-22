@@ -1,5 +1,7 @@
 extends partial/base
 
+include partial/post-preview
+
 block header
     include partial/index-header
 
@@ -9,17 +11,7 @@ block content
             .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
                 .posts-list
                     - page.posts.each(function (post) {
-                    article.post-preview
-                        header.post-header
-                            a(href=url_for(post.path))
-                                h2.post-title!= post.title
-                                if post.subtitle
-                                    h3.post-subtitle!= post.subtitle
-                            include partial/post-meta
-                            +post_meta(post.date, post.tags)
-                        section.post-excerpt!= post.excerpt
-                        p.post-read-more
-                            a.btn.btn-default(href=url_for(post.path) + '#more')="Read more →"
+                    +post_preview(post)
                     - })
                 ul.pager.main-pager
                     if page.prev
@@ -31,8 +23,4 @@ block content
 
 
 
-
-
-
-
-
+    script(id="dsq-count-scr", src="//#{theme.comment.id}.disqus.com/count.js")
