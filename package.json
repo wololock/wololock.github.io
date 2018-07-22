@@ -6,6 +6,9 @@
     "version": "3.7.1"
   },
   "dependencies": {
+    "asciidoctor.js": "^1.5.6",
+    "cheerio": "0.22.0",
+    "entities": "1.1.1",
     "hexo": "^3.7.1",
     "hexo-all-minifier": "^0.2.6",
     "hexo-browsersync": "^0.2.0",
@@ -17,15 +20,13 @@
     "hexo-generator-index": "^0.2.0",
     "hexo-generator-seo-friendly-sitemap": "0.0.21",
     "hexo-generator-tag": "^0.2.0",
+    "hexo-reading-time": "^1.0.3",
     "hexo-renderer-ejs": "^0.3.0",
     "hexo-renderer-jade": "^0.4.1",
     "hexo-renderer-marked": "^0.3.0",
     "hexo-renderer-sass": "^0.3.2",
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0",
-    "asciidoctor.js": "^1.5.6",
-    "cheerio": "0.22.0",
-    "entities": "1.1.1",
     "hexo-util": "0.6.3"
   }
 }
