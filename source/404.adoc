@@ -1,0 +1,9 @@
+---
+layout: page
+title: 404 Page Not Found
+---
+
+= 404 Not Found
+
+Requested page cannot be found
+

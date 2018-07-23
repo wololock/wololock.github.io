@@ -1,0 +1,24 @@
+extends partial/base
+
+block description
+    meta(name="description", content=page.title)
+
+block site_title
+    = page.title
+
+block header
+    header.header-section
+        .intro-header(style='background-image: url(/img/index-header.jpg);')
+            .container
+                .row
+                    .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+                        .page-heading
+            span.img-desc
+
+block content
+    .container
+        .row
+            .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0!= page.content
+
+
+
