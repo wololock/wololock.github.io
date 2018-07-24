@@ -6,7 +6,8 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-custom
                 span.icon-bar
                 span.icon-bar
                 span.icon-bar
-            a(class="navbar-brand", href=url_for())= config.title
+            a(class="navbar-brand", href=url_for())
+                span= config.title
         #main-navbar.collapse.navbar-collapse
             ul.nav.navbar-nav.navbar-right
                 each value, key in theme["navbar-links"]

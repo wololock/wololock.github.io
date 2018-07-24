@@ -66,14 +66,14 @@ var main = {
         $(t).addClass("pre");
     });
 
-    var brand = $(".navbar-brand:first").text();
+    var brand = $(".navbar-brand:first > span").text();
     brand = brand.split(";").join('<span class="color-orange">;</span>');
 
     var parts = brand.split("//");
     if (parts.length > 1) {
         brand = parts[0] + '<span class="color-gray">//' + parts[1] + '</span>'
     }
-    $(".navbar-brand:first").html(brand);
+    $(".navbar-brand:first span").html(brand);
   }
 };
 
