@@ -22,7 +22,7 @@ before_script:
 - git config --global user.email 'bot@travis-ci.org'
 - sed -i'' "s~git@github.com:wololock/wololock.github.io.git~https://${GH_TOKEN}:x-oauth-basic@github.com/wololock/wololock.github.io.git~" _config.yml
 
-install:
+script:
 - hexo generate
 
 deploy:
