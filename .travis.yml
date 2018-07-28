@@ -27,8 +27,6 @@ script:
 deploy:
   skip_cleanup: true
   provider: script
-  script:
-  - git clone --depth 1 --branch=master https://${GH_TOKEN}:x-oauth-basic@github.com/wololock/wololock.github.io.git .deploy_git
-  - hexo deploy
+  script: git clone --depth 1 --branch=master https://github.com/wololock/wololock.github.io.git .deploy_git && hexo deploy
   on:
     branch: develop
