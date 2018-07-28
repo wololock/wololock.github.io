@@ -1,6 +1,7 @@
 ---
 title: How to name Groovy script file?
 date: 2018-07-10 12:05:19
+updated: 2018-07-10 12:05:19
 tags:
     - groovy
     - java

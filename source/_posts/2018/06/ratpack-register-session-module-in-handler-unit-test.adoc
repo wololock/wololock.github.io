@@ -1,6 +1,7 @@
 ---
 title: 'Ratpack: register SessionModule in handler unit test'
 date: 2018-06-26 22:55:38
+updated: 2018-06-26 22:55:38
 tags:
     - ratpack
     - groovy

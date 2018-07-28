@@ -1,6 +1,7 @@
 ---
 title: Count frequency of a digit in a factorial of number using Haskell
 date: 2018-05-26 17:19:14
+updated: 2018-05-26 17:19:14
 tags:
     - haskell
     - functional programming

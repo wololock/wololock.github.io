@@ -1,6 +1,7 @@
 ---
 title: Divide a list to lists of n size in Java 8
 date: 2017-09-09 10:19:29
+updated: 2017-09-09 10:19:29
 tags:
     - java
     - java-stream

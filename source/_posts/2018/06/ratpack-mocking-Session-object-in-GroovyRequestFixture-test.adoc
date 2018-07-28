@@ -1,6 +1,7 @@
 ---
 title: 'Ratpack: mocking Session object in GroovyRequestFixture test'
 date: 2018-06-24 11:59:57
+updated: 2018-06-24 11:59:57
 tags:
     - ratpack
     - groovy

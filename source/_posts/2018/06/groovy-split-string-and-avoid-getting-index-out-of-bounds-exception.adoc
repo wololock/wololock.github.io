@@ -1,6 +1,7 @@
 ---
 title: 'Groovy: split string and avoid getting IndexOutOfBoundsException'
 date: 2018-06-30 22:48:16
+updated: 2018-06-30 22:48:16
 tags:
     - groovy
 categories:

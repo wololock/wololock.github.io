@@ -2,6 +2,7 @@
 title: Why "grails package" executes Config.groovy file?
 s: why-grails-package-exexutes-config-groovy-file
 date: 2017-09-30 07:18:20
+updated: 2017-09-30 07:18:20
 tags:
     - grails
     - grails-2.4
