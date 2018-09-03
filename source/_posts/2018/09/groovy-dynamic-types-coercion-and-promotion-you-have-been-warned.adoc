@@ -1,0 +1,233 @@
+---
+title: 'Groovy: dynamic types coercion and promotion - you have been warned!'
+date: 2018-09-03 11:28:05
+updated: 2018-09-03 11:28:05
+tags:
+    - groovy
+categories:
+    - Programming tips
+---
+
+http://groovy-lang.org/[Groovy] is a very powerful language on a JVM platform and with this great power
+comes great responsibility. There are many language features that are not intuitive for many people
+that start using Groovy. One of these features is dynamic coercion and type promotion which may cause
+you a&nbsp;headache if you use it carelessly.
+
+++++
+<!-- more -->
+++++
+
+== The good parts
+
+Dynamic type coercion and promotion may sound strange to you. If you work with statically compiled language like Java
+you know that expression:
+
+.Compilation error thrown because of incompatible types
+[source,java]
+----
+String str = 123; // Error:(4, 18) java: incompatible types: int cannot be converted to java.lang.String
+----
+
+does not compile. Groovy took a different approach and as long as you skip http://docs.groovy-lang.org/2.5.1/html/documentation/core-semantics.html#_static_compilation[static compilation] you are allowed to
+coerce a left side type to a right side expression. In this case expression like:
+
+.Type coercion from `Number` to `String` in Groovy
+[source,groovy]
+----
+String str = 234
+println str.dump() // <java.lang.String@c213 value=234 hash=49683>
+----
+
+compiles and converts `234` numeric value to its `String` representation.
+
+=== Examples
+
+We just saw that Groovy allows us to convert numeric value to its `String` representation without any issue.
+Now let's take a quick look at some of the other examples where type coercion and promotion makes more or less sense, yet still
+can make developers life easier.
+
+=== 1. Type to `Boolean` coercion
+
+.Examples of types to Boolean coercions
+[source,groovy]
+----
+Boolean numberToFalse = 0 // false
+Boolean numberToTrue = -10 // true
+Boolean stringToFalse = '' // false
+Boolean stringToTrue = 'false' // true
+Boolean listToFalse = [] // false
+Boolean listToTrue = [false, false] // true
+----
+
+The interesting part of this coercion is that you can take advantage of it when calling an `if` statement. For instance you can
+do something like this:
+
+.Simplified if-statement
+[source,groovy]
+----
+if (number) {
+    // ....
+}
+----
+
+and it will coerce numeric value to `false` if number is equal to `0` and `true` otherwise.
+
+=== 2. `String` to `Enum` coercion
+
+.String to Enum coercion example
+[source,groovy]
+----
+enum Type {
+  BASIC, ADVANCED
+}
+
+Type basic = 'BASIC'
+Type advanced = 'ADVANCED'
+
+println basic.dump() // prints <Type@10e92f8f name=BASIC ordinal=0>
+println advanced.dump() // prints <Type@1d119efb name=ADVANCED ordinal=1>
+----
+
+As you can see this is a short version of `Enum.valueOf(String value)` call.
+
+=== 3. `String` to `Class` coercion
+
+.String to Class coercion example
+[source,groovy]
+----
+Class clazz = 'java.lang.String'
+println clazz.dump() // prints <java.lang.Class@5ef04b5 cachedConstructor=null newInstanceCallerCache=null name=java.lang.String reflectionData=java.lang.ref.SoftReference@bef2d72 classRedefinedCount=0 genericInfo=sun.reflect.generics.repository.ClassRepository@69b2283a enumConstants=null enumConstantDirectory=null annotationData=java.lang.Class$AnnotationData@22a637e7 annotationType=null classValueMap=null>
+----
+
+=== 4. `Closure` to a functional interface coercion
+
+.Closure to a functional interface coercion example
+[source,groovy]
+----
+interface Worker<T,U> {
+  U work(T)
+}
+
+Worker<String, Integer> worker = { it.length() }
+println worker.work('abc') // prints 3
+----
+
+=== 5. `List` to a custom type coercion
+
+.Passing implicitely list elements to a class constructor
+[source,groovy]
+----
+import groovy.transform.Immutable
+
+@Immutable
+final class Point {
+  final int x
+  final int y
+}
+
+Point point = [10,23]
+println point.dump() // <Point@1de0c x=10 y=23 $hash$code=122380>
+----
+
+In this example we define constructor parameters as a list of elements. This type of coercion works only if number (and types)
+of list elements matches the number of constructor parameters. For instance, if we pass a list of size `3` we would
+get `GroovyCastException` while trying to initialize the object:
+
+.Passing incorrect number of constructor parameters throws an exception
+[source,groovy]
+----
+Point point = [10,23,43] // Throws org.codehaus.groovy.runtime.typehandling.GroovyCastException: Cannot cast object '[10, 23, 43]' with class 'java.util.ArrayList' to class 'Point' due to: groovy.lang.GroovyRuntimeException: Could not find matching constructor for: Point(java.lang.Integer, java.lang.Integer, java.lang.Integer)
+----
+
+=== 6. `Map` to a custom type coercion
+
+.Passing map to a class constructor method
+[source,groovy]
+----
+import groovy.transform.Immutable
+
+@Immutable
+final class Point {
+  final int x
+  final int y
+}
+
+Point point = [x: 4, y: -32]
+println point.dump() // <Point@1dd1b x=4 y=-32 $hash$code=122139>
+----
+
+This use case is similar to the previous one. In this case map keys have to match constructor parameters - number of map entries has
+to match number of constructor parameters and keys names have to match class properties names.
+
+== The bad parts
+
+You may find some of these dynamic coercions useful, however there are use cases where dynamic coercion and promotion
+causes more problems. There was one pretty https://stackoverflow.com/q/52103639/2194470[interesting question on Stack Overflow]
+which inspired me to write this blog post. Let's consider following example.
+
+.Collection coercion to Set type
+[source,groovy]
+----
+Set<Integer> integers = [1,2,3,4,3,2,1].asCollection()
+
+println integers // prints [1, 2, 3, 4]
+----
+
+This kind of assignment is not possible in Java - if you try casting `Collection` to `Set` you would get `ClassCastException`:
+
+[source,java]
+----
+Exception in thread "main" java.lang.ClassCastException: java.util.Collections$UnmodifiableCollection cannot be cast to java.util.Set
+----
+
+Groovy calls https://github.com/apache/groovy/blob/GROOVY_2_4_X/src/main/org/codehaus/groovy/runtime/typehandling/DefaultTypeTransformation.java#L248[`DefaultTypeTransformation.continueCastOnCollection(Object object, Class type)`]
+method in this case and allows promoting `Collection` to a `Set` (`LinkedHashSet` in this case).
+
+Well, what's the problem with that? If you get familiar with Groovy's source code then such conversions are pretty
+straightforward to you, right? That is true, however there are use case that confuse people even more. Take a look at following example:
+
+.Casting unmodifiable collection to Set example
+[source,groovy]
+----
+Set<Integer> integers = Collections.unmodifiableCollection([1,2,3,4,3,2,1].asCollection())
+integers.add(10)
+println integers
+----
+
+Now, do you think this code compiles? Or what `println integers` prints to the console? If you read the source code carefully
+you already know the answer. It compiles and it prints `[1, 2, 3, 4, 10]`. Why? Because unmodifiable collection does not get
+promoted to a unmodifiable set, but `LinkedHashSet` instead. If we only be more careful and stop relying on dynamic type
+coercion than the code like:
+
+.Adding an element to unmodifiable set
+[source,groovy]
+----
+Set<Integer> integers = Collections.unmodifiableSet([1,2,3,4,3,2,1] as Set)
+integers.add(10)
+println integers
+----
+
+would produce a compile time error that saves a lot of our time:
+
+[source,groovy]
+----
+Caught: java.lang.UnsupportedOperationException
+java.lang.UnsupportedOperationException
+	at java_util_Set$add.call(Unknown Source)
+	at test.run(test.groovy:3)
+----
+
+== How to disable dynamic type coercion?
+
+It's simple - enable http://docs.groovy-lang.org/2.5.1/html/documentation/core-semantics.html#_static_compilation[static compilation]
+and all dynamic coercions are turned off.
+
+== Conclusion
+
+I really like all different features of Groovy programming language, however exaggerating dynamic features usage
+may cause you a lot of problems when you are not careful enough. I always tend to be as explicit as possible when
+writing Groovy code - I don't overuse dynamic type coercions and only use them when they are very straightforward and
+don't add any level of complication to my code.
+
+How does it look like on your side? What are the use cases that work for you if it comes to dynamic type coercion? Please
+share your story in the comments section below.
