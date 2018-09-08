@@ -26,3 +26,5 @@ link(rel="stylesheet", href=url_for("/css/conum.css"))
 if theme.googlefonts
     each font in theme.googlefonts
         link(rel="stylesheet", href="//fonts.googleapis.com/css?family="+font)
+
+!= open_graph({ image: page.og_image || null, twitter_id: 'wololock' })
