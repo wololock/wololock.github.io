@@ -1,0 +1,300 @@
+---
+title: >-
+  Groovy: static propertyMissing and methodMissing methods - limitations and
+  possible issues
+date: 2018-09-08 23:22:19
+updated: 2018-09-08 23:22:19
+tags:
+    - groovy
+    - metaprogramming
+categories:
+    - Programming tips
+og_image: /images/og/groovy-static-propertymissing.jpg
+---
+
+Some time ago I have found another interesting https://stackoverflow.com/q/51921068/2194470[Groovy related question on Stack Overflow]. This time someone
+was asking about static variants of popular `propertyMissing` and `methodMissing` methods. The official Groovy documentation
+does not explain how to do it - it only explains how to add any static method through `metaClass`. Today we are going
+to learn how to define these methods in two different ways.
+
+++++
+<!-- more -->
+++++
+
+== Introduction
+
+Before we move on - I must admit that I never had to use static `methodMissing` and `propertyMissing` method variants
+in my daily Groovy practice. I use Groovy's metaprogramming capability very, very rarely, yet I still prefer more
+compile-time metaprogramming features to make it as explicit as possible. However, there are some rare cases where doing
+runtime metaprogramming might make sense and it fits better to the problem we are trying to solve.
+
+Let's say we have a very simple domain class `Person`.
+
+.Person domain class
+[source,groovy]
+----
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
+@ToString
+@EqualsAndHashCode
+class Person {
+
+    final String name
+
+    Person(String name) {
+        this.name = name
+    }
+}
+----
+
+Now, let's say that for some reason we want to instantiate an object not by calling a constructor directly, but by accessing
+non-existing property which holds person's name, for instance:
+
+.Creating `Person` instances through accessing non-existing class properties
+[source,groovy]
+----
+assert Person.John == new Person('John')
+assert Person.'Mary Jane' == new Person('Mary Jane')
+----
+
+== Adding static `propertyMissing` through `Person.metaClass`
+
+As you can see we are going to use static variant of `propertyMissing` method. How to define it?
+The official http://groovy-lang.org/metaprogramming.html#_static_methods[documentation says] we can do it similarly to
+adding an instance method, but with `static` qualifier added right before the method name. Something like this:
+
+.Defining static `propertyMissing` method for `Person` class
+[source,groovy]
+----
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
+@ToString
+@EqualsAndHashCode
+class Person {
+
+    final String name
+
+    Person(String name) {
+        this.name = name
+    }
+}
+
+Person.metaClass.static.propertyMissing = { String name -> //<1>
+    return new Person(name)
+}
+
+assert Person.John == new Person('John')
+assert Person.'Mary Jane' == new Person('Mary Jane') //<2>
+----
+<1> We define `propertyMissing` with `static` qualifier as a closure.
+<2> We can put property name in quotes if it contains e.g. whitespace.
+
+Looks like we are done and expression `Person.John` works as expected. The only thing we may don't like is the fact
+we have to define this method outside the class definition. The first question that comes to mind is - where to put it?
+I have a single `Person` class file and I would like to use it whenever this class gets imported.
+
+== Adding static `propertyMissing` as a class method
+
+Solution to this problem is very simple. The only problem is that you won't find it in the official documentation.
+If we take a look at the source code of `groovy.lang.MetaClassImpl` class, https://github.com/apache/groovy/blob/GROOVY_2_5_X/src/main/groovy/groovy/lang/MetaClassImpl.java#L120-L124[between lines 120 and 124] we can find
+something like this:
+
+.A part of `groovy.lang.MetaClassImpl` source code (lines 120-124)
+[source,groovy]
+----
+    protected static final String STATIC_METHOD_MISSING = "$static_methodMissing";
+    protected static final String STATIC_PROPERTY_MISSING = "$static_propertyMissing";
+    protected static final String METHOD_MISSING = "methodMissing";
+    protected static final String PROPERTY_MISSING = "propertyMissing";
+    protected static final String INVOKE_METHOD_METHOD = "invokeMethod";
+----
+
+Method `$static_propertyMissing` sounds like something we are looking for. Let's add this method to a `Person` class and
+see how it works:
+
+.`Person` class with implemented `$static_propertyMissing` method
+[source,groovy]
+----
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
+@ToString
+@EqualsAndHashCode
+class Person {
+
+    final String name
+
+    Person(String name) {
+        this.name = name
+    }
+
+    static def $static_propertyMissing(String name) {
+        return new Person(name)
+    }
+}
+
+assert Person.John == new Person('John')
+assert Person.'Mary Jane' == new Person('Mary Jane')
+----
+
+Works like a charm. `$static_propertyMissing` is a member of `Person` class and this behavior gets imported with the class.
+
+== Adding static `methodMissing` variant
+
+I guess you have already figured out how to implement static variant of `methodMissing` method. The source code reveals
+that the name of this method is `$static_methodMissing`. Let's see what we can do with it. If you know Grails Framework
+then you also know http://gorm.grails.org/[GORM]. For those of you who are not familiar with it - in a simple words, GORM takes advantage
+of Groovy metaprogramming and it "translates" methods like `User.findByNameAndEmail(name, email)` to a Hibernate
+HQL queries. It's a total simplification of what GORM is, but it doesn't matter at this point. Let's try to use
+`$static_methodMissing` implemented in `Person` class to support GORM-like methods:
+
+- `findByName(name)`
+- `findByNameAndAge(name, age)`
+- `findByNameOrAge(name, age)`
+
+Without any further ado let's take a look at following example:
+
+.An example of GORM-like dynamic `findByXXX` method in `Person` class
+[source,groovy]
+----
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
+import java.util.concurrent.CopyOnWriteArraySet
+
+@ToString
+@EqualsAndHashCode
+class Person {
+
+    private static Set<Person> people = [ //<1>
+        new Person('John', 42)
+    ] as CopyOnWriteArraySet
+
+
+    final String name
+    final int age
+
+    Person(String name, int age) {
+        this.name = name
+        this.age = age
+    }
+
+    static def $static_methodMissing(String name, Object args) {
+        if (name.startsWith('findBy')) { //<2>
+            final String[] parts =  name.replace('findBy', '')
+                    .split('(?=\\p{Upper})') // <3>
+                    .collect { it.toLowerCase() } //<4>
+
+            // <5>
+            final Closure<Boolean> predicate = parts.size() == 1 ? { it.@(parts[0]) == args[0] } :
+                    parts.size() == 3 ?
+                            parts[1] == 'and' ?
+                                    { it.@(parts[0]) == args[0] && it.@(parts[2]) == args[1] } :
+                                    parts[1] == 'or' ?
+                                            { it.@(parts[0]) == args[0] || it.@(parts[2]) == args[1] } :
+                                            {} : {}
+
+            return people.find(predicate) //<6>
+
+        }
+
+        throw new MissingMethodException(name, Person, args)
+    }
+}
+
+assert Person.findByNameAndAge('John', 21) == null
+assert Person.findByNameAndAge('John', 42) == new Person('John', 42)
+assert Person.findByNameOrAge('Denis', 42) == new Person('John', 42)
+assert Person.findByName('John') == new Person('John', 42)
+assert Person.findByName('Denis') == null
+----
+
+<1> We use internal `Set` to store some objects.
+<2> We consider only missing methods that starts with `findBy` prefix.
+<3> We split remaining part by uppercase (e.g. `['Name', 'And', 'Age']`).
+<4> It's time to lowercase `['name', 'and', 'age']`.
+<5> Here we create a predicate expressed as a closure (very dirty and verbose way).
+<6> And finally we call `find()` method to get the first element that matches predicate.
+
+== Limitations
+
+There is one huge limitation if it comes to static variants of `propertyMissing` and `methodMissing` methods - you can't
+define both of them in a single class. Not literally. You can still do it, but if you add `$static_propertyMissing` then your
+`$static_methodMissing` stops working and starts throwing exception like:
+
+.Exception thrown when both static variants are defined in the class
+[source,java]
+----
+Caught: groovy.lang.MissingMethodException: No signature of method: Person.call() is applicable for argument types: (String, Integer) values: [John, 21]
+Possible solutions: wait(), any(), wait(long, int), collect(), dump(), find()
+groovy.lang.MissingMethodException: No signature of method: Person.call() is applicable for argument types: (String, Integer) values: [John, 21]
+Possible solutions: wait(), any(), wait(long, int), collect(), dump(), find()
+	at test.run(test.groovy:70)
+----
+
+It happens because the method responsible for invoking static methods https://github.com/apache/groovy/blob/GROOVY_2_5_X/src/main/groovy/groovy/lang/MetaClassImpl.java#L1477[calls `getProperty()`] just in case caller might actually
+want to access property and not execute method. This sounds like a bug, because such behavior does not exist for
+non static variants of these two methods.
+
+.Combining `$static_propertyMissing` and `$static_methodMissing` causes excpetion
+[source,groovy]
+----
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
+import java.util.concurrent.CopyOnWriteArraySet
+
+@ToString
+@EqualsAndHashCode
+class Person {
+
+    private static Set<Person> people = [
+        new Person('John', 42)
+    ] as CopyOnWriteArraySet
+
+
+    final String name
+    final int age
+
+    Person(String name, int age) {
+        this.name = name
+        this.age = age
+    }
+
+    static def $static_propertyMissing(String name) {
+        return new Person(name, 0)
+    }
+
+    static def $static_methodMissing(String name, Object args) {
+        if (name.startsWith('findBy')) {
+            final String[] parts =  name.replace('findBy', '')
+                    .split('(?=\\p{Upper})')
+                    .collect { it.toLowerCase() }
+
+            final Closure<Boolean> predicate = parts.size() == 1 ? { it.@(parts[0]) == args[0] } :
+                    parts.size() == 3 ?
+                            parts[1] == 'and' ?
+                                    { it.@(parts[0]) == args[0] && it.@(parts[2]) == args[1] } :
+                                    parts[1] == 'or' ?
+                                            { it.@(parts[0]) == args[0] || it.@(parts[2]) == args[1] } :
+                                            {} : {}
+
+            return people.find(predicate)
+
+        }
+
+        throw new MissingMethodException(name, Person, args)
+    }
+}
+
+assert Person.findByNameAndAge('John', 21) == null //<1>
+----
+<1> This line throws `groovy.lang.MissingMethodException`
+
+== Conclusion
+
+Personally, I don't use much runtime metaprogramming in my Groovy code. Mostly because it makes reasoning about the
+program at least a few times harder. But if you want to start playing around and write some DSL with Groovy
+then you might find runtime metaprogramming an interesting starting point. Happy hacking!
