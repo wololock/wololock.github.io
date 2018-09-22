@@ -8,6 +8,7 @@ tags:
 categories:
     - Programming tips
 cover: /img/index-header2.jpg
+og_image: /images/og/groovy-java-equal-differences.jpg
 ---
 
 One of the first mistakes people do when starting their journey with Java programming language is
