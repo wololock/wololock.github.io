@@ -1,0 +1,15 @@
+---
+title: Hexo git deployer removes commits history? Let's do something about that
+date: 2018-09-24 23:18:31
+updated: 2018-09-24 23:18:31
+tags:
+    - hexo
+    - blogging
+categories:
+    - How to
+---
+
+
+++++
+<!-- more -->
+++++
