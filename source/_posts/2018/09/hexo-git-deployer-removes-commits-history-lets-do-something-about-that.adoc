@@ -1,15 +1,108 @@
 ---
-title: Hexo git deployer removes commits history? Let's do something about that
+title: Hexo git deployer removes commits history? Let's do something about that!
 date: 2018-09-24 23:18:31
 updated: 2018-09-24 23:18:31
 tags:
     - hexo
     - blogging
+    - git
+    - github
 categories:
     - How to
+cover: /img/hexo-github-bg.jpg
+og_image: /images/og/hexo-github-deployer.jpg
 ---
 
+I have found https://hexo.io[Hexo] a great tool for building a blog and apply many well-known software development
+principles. One of them is automation. This is why I have decided to integrate this blog with https://travis-ci.org/wololock/wololock.github.io[Travis CI]
+to perform a deployment to GitHub pages. It was a great decision, however a few days later I have noticed one significant
+issue - deploying a new version of the blog from the CI server caused removing all commits from `master` branch
+and starting with initial commit over and over again. It&nbsp;took me a while to find working solution to this problem.
+This blog post explains a simple solution to this problem.
 
 ++++
 <!-- more -->
 ++++
+
+== Why does `hexo deploy` removes the history in the first place?
+
+Let's start with understanding what actually happens. When you run `hexo deploy` footnote:[Documentation: https://hexo.io/docs/deployment]
+command for a&nbsp;git deployment option, Hexo creates a hidden folder called `.deploy_git` and it copies generated files from the
+`public` folder to it. Next, it initializes git repository (if it does not yet exist) that targets Hexo's remote deploy branch and
+it executes `git push --force` from this folder to a repository and a&nbsp;branch you have defined in the `_config.yml` footnote:[https://github.com/wololock/wololock.github.io/blob/develop/_config.yml#L88-L93] file.
+
+.Deployment configuration of e.printstacktrace.blog
+[source,yaml]
+----
+deploy:
+  type: git
+  repo: git@github.com:wololock/wololock.github.io.git
+  branch: master
+----
+
+If you build and deploy your blog from your local computer and you never delete (or accidentally lost) your blog
+source code, you may never face this issue. When you do it from the workspace that does not get wiped, then
+the folder `.deploy_git` with it's full history exists and `hexo deploy` pushes only those files that
+were actually modified. When you move to CI server like Travis CI, this is not true anymore, because it executes build
+with the clean workspace and the fresh clone of the repository. In&nbsp;this case `.deploy_git` folder simply does not exist
+and gets recreated from scratch.
+
+== How to deploy and keep the history then?
+
+The solution I have found working for me well is fairly simple. Previously my `.travis.yml` file part responsible
+for the deployment looked something like this:
+
+.Previous Travis CI deployment configuration
+[source,yaml]
+----
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: hexo deploy
+  on:
+    branch: develop
+----
+
+It simply triggered `hexo deploy` whenever I pushed changes to `develop` branch. In this case it ended up
+creating a new `.deploy_git` folder and force pushing an initial commit to the GitHub repository. Then, I have
+made a small improvement - I've created a short bash script instead.
+
+.Deploy script used by e.printstacktrace.blog
+[source,bash]
+----
+include::deploy.sh[]
+----
+
+This script does exactly what it says in the comments:
+
+* It clones `master` branch from remote repository to `.deploy_git` to get existing commits history.
+* Then it removes all non-git objects repository files from `.deploy_git` so copying files back from `public` folder
+will track deleted files.
+* And finally - it executes `hexo deploy` command that does the regular deployment.
+
+And the last but not least, here is what deployment configuration part looks like after introducing
+deployment bash script:
+
+.Current Travis CI deployment configuration
+[source,yaml]
+----
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: sh deploy.sh
+  on:
+    branch: develop
+----
+
+Thanks to this solution I was able to keep the history of site updates and to track changes of files
+that were actually modified with the given site update.
+
+[.img-responsive.img-thumbnail]
+[link=/images/github-hexo-history.png]
+image::/images/github-hexo-history.png[]
+
+== Final words
+
+I hope you find this post useful. It describes solution for Hexo + Travis CI + GitHub use case, but
+it can solve problems that other similar static site generators may have when running from CI server
+environment.

@@ -18,11 +18,11 @@ const opts = {
 };
 
 function render(data) {
-    if (data.path) {
-        const entry = path.parse(data.path);
-        const assetDir = path.join(entry.dir, entry.name);
-        opts.attributes.docdir = assetDir;
-    }
+    // if (data.path) {
+    //     const entry = path.parse(data.path);
+    //     const assetDir = path.join(entry.dir, entry.name);
+    //     opts.attributes.docdir = assetDir;
+    // }
 
     return asciidoctor.convert(data.text, opts);
 }
