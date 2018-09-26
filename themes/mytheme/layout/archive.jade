@@ -21,10 +21,10 @@ block header
 block content
     .container
         .row
-            .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0
+            .col-lg-10.col-lg-offset-1.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0
                 ul.archive-list
                     - var prev_year = 0;
-                    - page.posts.each(function(post) {
+                    - site.posts.sort('date').reverse().each(function(post) {
                     - var current_year = full_date(post.date, 'YYYY')-0;
                     if current_year !== prev_year
                         h2= current_year

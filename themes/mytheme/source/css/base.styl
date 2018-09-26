@@ -432,17 +432,45 @@ form .row:first-child .floating-label-form-group
     list-style none
     padding 5px 0
     overflow hidden
+    margin 0 0 8px 12px
 
     span.post-meta
       color #808080
       margin-right 25px
       font-style italic
+      display inline-block
+      width 70px
 
     a.post-title
       text-decoration none
       font-family 'Open Sans', sans-serif
-      font-weight 700
       font-size 1.7rem
+      font-weight 700
+      color #6a6a6a
+
+  h2
+    font-size 64pt
+    color #eaeaea
+
+  @media only screen and (max-width: 767px)
+    padding 0 5px
+    margin 0
+
+    h2
+      margin 0
+      text-align center
+
+    li
+      padding 0
+      margin 25px 0
+
+      span.post-meta
+        display block
+        font-size 1.3rem
+
+      a.post-title
+        font-size 1.7rem
+        font-weight 700
 
 ::-moz-selection
   color white
