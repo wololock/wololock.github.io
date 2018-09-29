@@ -1,7 +1,7 @@
 ---
-title: How Groovy's equal operator is different from Java's?
+title: How Groovy's equal operator differs from Java?
 date: 2018-09-22 09:53:42
-updated: 2018-09-22 09:53:42
+updated: 2018-09-29 11:13:21
 tags:
     - groovy
     - java
@@ -251,6 +251,32 @@ If `compareTo` gets executed between two different types, Groovy uses
 https://github.com/apache/groovy/blob/master/src/main/java/org/codehaus/groovy/runtime/typehandling/DefaultTypeTransformation.java#L543[`DefaultTypeTransformation.compareTo(left, right)`]
 method that tries to cast both sides to a common type so it can perform `compareTo` between them. Otherwise
 it simply returns `-1` and that's it.
+
+== Special use case: comparing object references
+
+There is one special use case where Groovy `==` operator behaves exactly the same as Java - it happens when you
+compare `object1 == object1`. How is this possible? You have to understand that Groovy translates `left == right` to
+something like this:
+
+.Java representation of Groovy `==` operator
+[source,groovy]
+----
+ScriptBytecodeAdapter.compareEqual(left, right)
+----
+
+If we take a quick look at the https://github.com/apache/groovy/blob/GROOVY_2_4_X/src/main/org/codehaus/groovy/runtime/ScriptBytecodeAdapter.java#L685[source code of this method]
+we will notice that in the first line it does:
+
+[source,java]
+----
+if (left==right) return true;
+----
+
+It means that in case of comparing a references to the same object, Groovy does not trigger `equals(o)` or `compareTo(o)`
+methods, but it simply returns `true`, similarly to what Java does in such case.
+
+[NOTE]
+I have provided even more detailed explanation of this use case https://stackoverflow.com/q/52555849/2194470[in the following Stack Overflow answer].
 
 == Conclusion
 
