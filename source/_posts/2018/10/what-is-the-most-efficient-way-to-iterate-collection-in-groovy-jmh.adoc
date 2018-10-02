@@ -1,7 +1,7 @@
 ---
 title: What is the most efficient way to iterate collection in Groovy? Let's play with JMH!
 date: 2018-10-02 12:43:26
-updated: 2018-10-02 12:43:26
+updated: 2018-10-02 19:55:52
 tags:
     - groovy
     - jmh
@@ -82,18 +82,22 @@ dependencies {
 jmh {
     include = ['bench\\.*'] //<1>
     benchmarkMode = ['avgt'] //<2>
-    timeUnit = 'ns' //<3>
-    warmup = '20s' //<4>
-    warmupIterations = 1 //<5>
+    timeUnit = 'ms' //<3>
+    iterations = 120 //<4>
+    timeOnIteration = '1s' //<5>
+    warmup = '60s' //<6>
+    warmupIterations = 1 //<7>
     batchSize = 1
     fork = 1
 }
 ----
 <1> Load test classes from `bench.` package
 <2> Use average execution time measurement
-<3> Measure time in nanoseconds
-<4> Warm-up for 20 seconds
-<5> Use a single iteration to warm-up
+<3> Measure time in milliseconds
+<4> Execute 120 iterations
+<5> Each iteration is limited to 1 second
+<6> Warm-up for 60 seconds
+<7> Use a single iteration to warm-up
 
 And now let's take a look at our benchmark test class:
 
@@ -194,20 +198,20 @@ And after about 7 minutes we can take a look at the results:
 .Benchmark results for 10M collection size
 [source,text]
 ----
-Benchmark                                       Mode  Cnt          Score          Error  Units
-GroovyBench.eachTest                            avgt    5  633762392,413 ± 21717237,049  ns/op
-GroovyBench.forEachTest                         avgt    5  304859324,455 ±  1336462,613  ns/op
-GroovyBench.forLoopTest                         avgt    5  369947463,094 ±  6228440,684  ns/op
-GroovyBench.iteratorTest                        avgt    5  350116325,628 ±  3477467,297  ns/op
-GroovyBench.java8ForEachWithAnonymousClassTest  avgt    5  334656594,260 ±  3979733,477  ns/op
-GroovyBench.java8ForEachWithClosureTest         avgt    5  730541060,100 ± 15761455,091  ns/op
+Benchmark                                       Mode  Cnt    Score   Error  Units
+GroovyBench.eachTest                            avgt  120  652,584 ± 2,064  ms/op
+GroovyBench.forEachTest                         avgt  120  221,790 ± 1,675  ms/op
+GroovyBench.forLoopTest                         avgt  120  533,534 ± 2,521  ms/op
+GroovyBench.iteratorTest                        avgt  120  369,492 ± 0,930  ms/op
+GroovyBench.java8ForEachWithAnonymousClassTest  avgt  120  248,371 ± 2,803  ms/op
+GroovyBench.java8ForEachWithClosureTest         avgt  120  785,309 ± 3,096  ms/op
 ----
 
-The benchmarks shows clearly that using Groovy `each` with a closure is at least two times slower
-than old Java for-each loop (`634` ms versus `304` ms). For-loop, iterator and Java 8 `forEach` with
-an anonymous class execution cost almost the same (from `334` ms to `369` ms). And the biggest looser
-of this competition is Java 8 `forEach` with closure - it took `97` ms more to execute comparing to
-Groovy `each`.
+* The benchmarks shows clearly that using Groovy `each` with a closure is almost three times slower
+than good old Java for-each loop (`653` ms versus `222` ms).
+* Java for-each and Java 8 `forEach` with anonymous class are pretty close - `222` ms versus `248` ms.
+* The slowest variant was Java 8 `forEach` with a closure in place of a lambda expression - it took
+`785` ms to execute (`133` ms more than Groovy `each`).
 
 No matter which variant won in this run it still feels like there is something wrong - iterating collection
 of 10 millions integers took `304` milliseconds at best, which is still quite slow. The reason of that is
@@ -216,6 +220,8 @@ static compilation and see how it works.
 
 [NOTE]
 Laptop specs: JDK 1.8.0_162 (Java HotSpot(TM) 64-Bit Server VM, 25.162-b12), Groovy 2.4.12, Intel(R) Core(TM) i7-4900MQ CPU @ 2.80GHz (4 cores, cache size 8192 KB), 16 GB RAM, OS: Fedora 26 (64 bit)
+
+Full log can be found here: https://gist.github.com/wololock/c4039cc75a359660b11f89bc8abd6629
 
 == The improvement: static compilation
 
@@ -252,24 +258,26 @@ Let's run `./gradlew clean jmh` and see the results:
 .Benchmark results for statically compiled Groovy code
 [source,text]
 ----
-Benchmark                                       Mode  Cnt          Score          Error  Units
-GroovyBench.eachTest                            avgt    5   89382897,982 ±  1047624,456  ns/op
-GroovyBench.forEachTest                         avgt    5   94256455,706 ±  3301172,743  ns/op
-GroovyBench.forLoopTest                         avgt    5  135676511,543 ±  1880573,278  ns/op
-GroovyBench.iteratorTest                        avgt    5   93617304,574 ±  1227003,158  ns/op
-GroovyBench.java8ForEachWithAnonymousClassTest  avgt    5  100807968,264 ± 11118576,504  ns/op
-GroovyBench.java8ForEachWithClosureTest         avgt    5  381053881,667 ±  4128907,926  ns/op
+Benchmark                                       Mode  Cnt    Score   Error  Units
+GroovyBench.eachTest                            avgt  120   91,897 ± 0,346  ms/op
+GroovyBench.forEachTest                         avgt  120   96,422 ± 0,550  ms/op
+GroovyBench.forLoopTest                         avgt  120  139,119 ± 0,723  ms/op
+GroovyBench.iteratorTest                        avgt  120  103,568 ± 0,648  ms/op
+GroovyBench.java8ForEachWithAnonymousClassTest  avgt  120  102,460 ± 2,473  ms/op
+GroovyBench.java8ForEachWithClosureTest         avgt  120  400,481 ± 1,036  ms/op
 ----
 
 As you can see, enabling static compilation was a game changer! To sum it up:
 
-* Groovy `each` recorded the best result - `89.38` ms (previously: `633.76` ms)
-* Second best result belongs to Java iterator - `93.61` ms (previously: `350.11` ms)
-* The old Java for-each is very close to iterator result - `94.25` ms (previously: `304.85` ms)
-* And again the slowest result belongs to Java 8 `forEach` with a closure - `381.05` ms (previously: `730.54` ms)
+* Groovy `each` recorded the best result - `91.897` ms (previously: `652.584` ms)
+* The second best result belongs to Java for-each - `96.422` ms (previously: `221.790` ms)
+* Java 8 `forEach` and iterator recorded almost the same result - `102.460` ms and `103.568` ms accordingly.
+* And again the slowest result belongs to Java 8 `forEach` with a closure - `400.481` ms (previously: `785.309 ` ms)
 
-As you can see Groovy `each` method with a closure can be faster than for-each or for-loop when static
+As you can see Groovy `each` method with a closure can be faster than other variants when static
 compilation is enabled. But is it always like that? It depends.
+
+Full log can be found here: https://gist.github.com/wololock/161aae90bcdaabd0fe6144f5339d1727
 
 == Small collection size
 
@@ -279,24 +287,25 @@ Let's run the same benchmark, but this time let's limit the numbers of elements 
 .Benchmark results for a list of size 10K
 [source,text]
 ----
-Benchmark                                       Mode  Cnt       Score       Error  Units
-GroovyBench.eachTest                            avgt    5   84627,728 ±  4774,917  ns/op
-GroovyBench.forEachTest                         avgt    5   78958,589 ± 19411,067  ns/op
-GroovyBench.forLoopTest                         avgt    5  152127,918 ± 30141,151  ns/op
-GroovyBench.iteratorTest                        avgt    5   79671,403 ± 24651,378  ns/op
-GroovyBench.java8ForEachWithAnonymousClassTest  avgt    5   82567,583 ±   702,511  ns/op
-GroovyBench.java8ForEachWithClosureTest         avgt    5  390646,704 ± 16284,169  ns/op
+Benchmark                                       Mode  Cnt  Score    Error  Units
+GroovyBench.eachTest                            avgt  120  0,087 ±  0,001  ms/op
+GroovyBench.forEachTest                         avgt  120  0,079 ±  0,001  ms/op
+GroovyBench.forLoopTest                         avgt  120  0,157 ±  0,002  ms/op
+GroovyBench.iteratorTest                        avgt  120  0,079 ±  0,002  ms/op
+GroovyBench.java8ForEachWithAnonymousClassTest  avgt  120  0,085 ±  0,001  ms/op
+GroovyBench.java8ForEachWithClosureTest         avgt  120  0,402 ±  0,002  ms/op
 ----
 
 Things got change as you can see.
 
-* For 10K collection size the best result was recorded by Java for-each - `0.0789` ms.
-* Java iterator recorded pretty similar average execution time - `0.0797` ms.
-* The third one in the race was Java 8 `forEach` with an anonymous class - `0.0826` ms.
-* Groovy `each` took 4th place - `0.0846` ms.
-* And again the slowest one was Java 8 `forEach` with a closure - `0.3906` ms.
+* For 10k size collection the best result gave Java for-each and iterator - `0.079` ms average.
+* Java 8 `forEach` with anonymous class was only `0.006` ms slower - `0.085` ms average.
+* Groovy `each` was only `0.008` ms slower than the best result - `0.087` ms average.
+* And again the slowest variant was Java 8 `forEach` with a closure - `0.402` ms average.
 
 Even though Groovy `each` didn't record the best result this time, it is still very close to the fastest variant.
+
+Full log can be found here: https://gist.github.com/wololock/3a9b1e169c58abbfb4e067aa69b9bfc0
 
 == Benchmarking Java
 
@@ -307,15 +316,17 @@ Java for-each and iterator:
 .Benchmark results for Java and 10M collection size
 [source,text]
 ----
-Benchmark                   Mode  Cnt        Score        Error  Units
-JavaBench.javaForEach       avgt    5  8767935,527 ±  64276,919  ns/op
-JavaBench.javaIteratorTest  avgt    5  8848990,288 ± 258149,424  ns/op
+Benchmark                                       Mode  Cnt    Score   Error  Units
+JavaBench.javaForEach                           avgt  120    8,839 ± 0,011  ms/op
+JavaBench.javaIteratorTest                      avgt  120    8,865 ± 0,011  ms/op
 ----
 
 Let's compare the results:
 
-* Groovy for-each took in average `94.2564` ms while Java did the same job in `8.7679` ms.
-* Groovy iterator test took in average `93.6173` ms while Java did the same job in `8.8489` ms.
+* Groovy for-each took in average `96.422` ms while Java did the same job in approximately `8.839` ms.
+* Groovy iterator test took in average `103.568` ms while Java did the same job in approximately `8.865` ms.
+
+Full log can be found here: https://gist.github.com/wololock/c895114949be2820b0fada72df099fcf
 
 == Conclusion
 
