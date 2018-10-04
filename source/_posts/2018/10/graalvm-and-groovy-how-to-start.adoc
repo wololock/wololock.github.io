@@ -255,6 +255,37 @@ Caused by: java.lang.ClassNotFoundException: org.codehaus.groovy.runtime.dgm$519
 This time class `org.codehaus.groovy.runtime.dgm$519` cannot be found. These `dgm$...` classes are Groovy classes
 representing generate meta methods. Let's add it to the `reflection.json` and repeat the last two steps. It will
 fail one more time - this time class `org.codehaus.groovy.runtime.dgm$1172` cannot be found. Let's add it and repeat.
+Final `reflection.json` file should look like this:
+
+.reflection.json
+[source,json]
+----
+[
+  {
+    "name": "RandomNumber$_main_closure1",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.codehaus.groovy.runtime.dgm$519",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.codehaus.groovy.runtime.dgm$1172",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  }
+]
+----
+
+And now when we try to run `./randomnumber` we will see the following output:
 
 [source,bash]
 ----
@@ -320,8 +351,9 @@ I must say that not everything look so bright. You have to be aware of many limi
 you start building Groovy native images with GraalVM:
 
 1. Building native images from dynamic Groovy scripts does not work at the momentfootnote:[https://github.com/oracle/graal/issues/708].
-2. Dynamic runtime metaprogramming may not work at all in GraalVM.
-3. Closures require manual configuration for reflection.
+2. Dynamic runtime metaprogramming may not work at all in GraalVM (some parts may be fixed by configuring classes for AOT reflection).
+3. Closures require manual configuration for reflection and you will face some issues when trying to cast a closure to some other type
+(e.g. when you use a closure in place of a functional interface).
 4. http://docs.groovy-lang.org/latest/html/documentation/grape.html[Grape], one of the most valuable Groovy scripts feature
 won't work as standalone native image, because it requires Groovy command line tool and its class loader that understand what
 does `@Grab` annotation mean.
@@ -333,10 +365,13 @@ to what this application does.
 I hope you have learned something useful from this blog post. I will continue exploring the world of GraalVM
 in cooperation with different technologies. I'm looking forward for learning and experimenting with more
 real-life and useful examples. I strongly encourage you to keep an eye on GraalVM - it is one of the hottest JVM topics
-these days for a good reason.
+these days for a good reason. And if you are looking for a project that is experimenting actively with GraalVM,
+take a look at http://micronaut.io/[Micronaut] framework - people from https://objectcomputing.com/[OCI] did
+a great job in this area and they documented their efforts in an official Micronaut user guide.
 
 == Useful resources
 
 * https://github.com/graemerocher/micronaut-graal-experiments
 * https://medium.com/graalvm/instant-netty-startup-using-graalvm-native-image-generation-ed6f14ff7692
+* http://guides.micronaut.io/micronaut-creating-first-graal-app/guide/index.html
 * https://blog.frankel.ch/first-impressions-graalvm/
