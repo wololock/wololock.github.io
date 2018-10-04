@@ -360,6 +360,62 @@ does `@Grab` annotation mean.
 5. And last but not least - Groovy native image for this example weight 24 MB, which is quite a lot comparing
 to what this application does.
 
+=== An example
+
+Before we close this article, let's take a look at example that does not work with GraalVM. Let's refactor above
+example to use Java 8 Stream API and closures in place of lambda expressions:
+
+.RandomNumber.groovy
+[source,groovy]
+----
+import groovy.transform.CompileStatic
+import groovy.transform.TypeChecked
+
+import java.util.stream.IntStream
+
+@CompileStatic
+@TypeChecked
+class RandomNumber {
+    static void main(String[] args) {
+        def random = new Random().nextInt(1000)
+
+        println "The random number is: $random"
+
+        Long sum = IntStream.rangeClosed(0, random)
+                    .boxed()
+                    .map { it * 2 }
+                    .mapToLong { it -> (long) it }
+                    .sum()
+
+        println "The doubled sum of numbers between 0 and $random is $sum"
+    }
+}
+----
+
+It compiles, GraalVM JDK runs it on JVM, native image builds. But when we try to run it we will see following output:
+
+[source,bash]
+----
+The random number is: 226
+Exception in thread "main" org.codehaus.groovy.runtime.typehandling.GroovyCastException: Cannot cast object 'RandomNumber$_main_closure1@7fcfe0745d78' with class 'RandomNumber$_main_closure1' to class 'java.util.function.Function'
+	at java.lang.Throwable.<init>(Throwable.java:265)
+	at java.lang.Exception.<init>(Exception.java:66)
+	at java.lang.RuntimeException.<init>(RuntimeException.java:62)
+	at java.lang.ClassCastException.<init>(ClassCastException.java:58)
+	at org.codehaus.groovy.runtime.typehandling.GroovyCastException.<init>(GroovyCastException.java:40)
+	at org.codehaus.groovy.runtime.typehandling.DefaultTypeTransformation.continueCastOnSAM(DefaultTypeTransformation.java:414)
+	at org.codehaus.groovy.runtime.typehandling.DefaultTypeTransformation.continueCastOnNumber(DefaultTypeTransformation.java:328)
+	at org.codehaus.groovy.runtime.typehandling.DefaultTypeTransformation.castToType(DefaultTypeTransformation.java:242)
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.castToType(ScriptBytecodeAdapter.java:617)
+	at RandomNumber.main(RandomNumber.groovy:15)
+	at com.oracle.svm.core.JavaMainWrapper.run(JavaMainWrapper.java:163)
+----
+
+As you can see closure we used for `map` operation cannot be cast to `java.util.function.Function` and program
+terminates. This is a huge problem for many Groovy programs - we tend to use closure in place of other types
+and we expect correct coercion to happen. I'm guessing this example requires some effort and finding which
+classes should be configured manually for reflection. I will share an update when I find solution to that problem.
+
 == Conclusion
 
 I hope you have learned something useful from this blog post. I will continue exploring the world of GraalVM
