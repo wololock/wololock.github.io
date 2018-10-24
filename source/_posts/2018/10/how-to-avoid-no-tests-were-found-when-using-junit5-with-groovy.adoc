@@ -1,0 +1,170 @@
+---
+title: How to avoid "No tests were found" when using JUnit 5 with Groovy?
+date: 2018-10-24 09:00:48
+updated: 2018-10-24 09:00:48
+tags:
+    - groovy
+    - junit
+    - unit test
+categories:
+    - How to
+cover: /img/groovy-junit5-bg.jpg
+og_image: /images/og/groovy-junit5.jpg
+---
+
+In this short blog post I would like to explain how to avoid popular mistake when you write your
+first JUnit 5 test case in Groovy.
+
+++++
+<!-- more -->
+++++
+
+== The example
+
+Let's start with the example. Here is our `build.gradle` file that adds JUnit 5 dependency:
+
+.build.gradle
+[source,groovy]
+----
+plugins {
+    id 'groovy'
+    id 'idea'
+}
+
+repositories {
+	jcenter()
+}
+
+dependencies {
+    compile localGroovy()
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+----
+
+And here is our test class:
+
+.src/test/groovy/UnitTest.groovy
+[source,groovy]
+----
+import org.junit.jupiter.api.Test
+
+class UnitTest {
+
+    @Test
+    def shouldThrowAnException() {
+        throw new RuntimeException()
+    }
+}
+----
+
+This test does nothing, but it's fine. We just want to execute this test.
+
+== The problem
+
+Let's see what happens when we try to run this test:
+
+[source,bash]
+----
+% gradle test
+
+BUILD SUCCESSFUL in 1s
+2 actionable tasks: 2 executed
+----
+
+Nothing happened. When we try to execute this test inside IntelliJ IDEA, we will see something like this:
+
+[.img-responsive.img-thumbnail]
+[link=/images/groovy-junit5-def-mistake.png]
+image::/images/groovy-junit5-def-mistake.png[]
+
+What's wrong?
+
+== The solution
+
+The problem we shown above is caused by a single `def` keyword we used in `shouldThrowAnException` prototype.
+This is common mistake, made very often by people who have experience with Spock Framework (which tolerates `def` btw).
+
+So, what is the problem with `def` keyword? Firstly, let's take a look at the decompiled class:
+
+.Decompiled UnitTest.class file
+[source,java]
+----
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+import groovy.lang.GroovyObject;
+import groovy.lang.MetaClass;
+import org.codehaus.groovy.runtime.callsite.CallSite;
+import org.junit.jupiter.api.Test;
+
+public class UnitTest implements GroovyObject {
+    public UnitTest() {
+        CallSite[] var1 = $getCallSiteArray();
+        super();
+        MetaClass var2 = this.$getStaticMetaClass();
+        this.metaClass = var2;
+    }
+
+    @Test
+    public Object shouldThrowAnException() {
+        CallSite[] var1 = $getCallSiteArray();
+        throw (Throwable)var1[0].callConstructor(RuntimeException.class);
+    }
+}
+----
+
+As you can see Groovy's `def` keyword gets compiled to `Object` type in this case. OK, but what is wrong with that?
+Well, JUnit 5 method resolver https://github.com/junit-team/junit5/blob/master/junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/discovery/predicates/IsTestMethod.java[uses `IsTestMethod` predicate]
+which requires that test method returns `void`. Otherwise method annotated with `@Test` does not get resolved.
+
+If we only replace `def` with `void` keyword:
+
+.Updated src/test/groovy/UnitTest.groovy
+[source,groovy]
+----
+import org.junit.jupiter.api.Test
+
+class UnitTest {
+
+    @Test
+    void shouldThrowAnException() {
+        throw new RuntimeException()
+    }
+}
+----
+
+the test will execute and fail as expected:
+
+[source,bash]
+----
+% gradle test
+
+> Task :test FAILED
+
+UnitTest > shouldThrowAnException() FAILED
+    java.lang.RuntimeException at UnitTest.groovy:7
+
+1 test completed, 1 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file:///home/wololock/workspace/groovy-junit5/build/reports/tests/test/index.html
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 1s
+2 actionable tasks: 2 executed
+----
