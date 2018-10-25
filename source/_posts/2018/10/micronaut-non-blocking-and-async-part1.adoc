@@ -1,0 +1,496 @@
+---
+title: Non-blocking and async Micronaut - quick start (part 1)
+date: 2018-10-25 02:33:37
+updated: 2018-10-25 02:33:37
+tags:
+    - micronaut
+    - java
+    - non-blocking
+    - async
+    - reactive-programming
+categories:
+    - How to
+cover: /img/micronaut-bg.jpg
+og_image: /images/og/micronaut-nonblocking-part1.jpg
+---
+
+If you haven't heard about http://micronaut.io/[Micronaut] you have been probably just woken up from deep hibernation. No&nbsp;worries, I'm joking :)
+Anyway, Micronaut 1.0 GA https://twitter.com/micronautfw/status/1054754150292967424[was released yesterday] and it is
+the right time to play around with it a bit. In this article I would like to show you how easy it is to handle HTTP requests
+in a non-blocking manner, using just a single computation thread. Interested? Let's start!
+
+++++
+<!-- more -->
+++++
+
+WARNING: This is not a introduction to Micronaut. If you are not familiar with the framework, consider reading official
+https://docs.micronaut.io/latest/guide/index.html[User Guide] first.
+
+== Introduction
+
+In this article I would like to show you a very simple example that simulates communication between two remote services:
+
+* *product-service* exposes a single endpoint `(GET) /product/{id}` which returns specific product information. We will
+simulate high latency (fixed on different products) - the idea is that this service might communicate with `n` different
+remote services to collect final product information.
+* *recommendations-service* exposes a single endpoint `(GET) /recommendations` which returns fixed number of recommendations.
+We won't focus on building solid recommendations system - this service is just a mock that communicates over HTTP with
+*product-service* to get the information about products it's going to recommend to the user. A single HTTP request to
+recommendations-service endpoint will cause 4 additional non-blocking requests to product-service endpoint.
+
+NOTE: This example was inspired by demo I made for my https://github.com/wololock/ratpack-quickstart-demo[_"Ratpack - practical quickstart"_] presentation.
+
+
+
+Micronaut is shipped with handy command line tool `mn`:
+
+[source,bash]
+----
+% mn --help
+Usage: mn [-hnvVx] [COMMAND]
+Micronaut CLI command line interface for generating projects and services.
+Commonly used commands are:
+  create-app NAME
+  create-cli-app NAME
+  create-federation NAME --services SERVICE_NAME[,SERVICE_NAME]...
+  create-function NAME
+
+Options:
+  -h, --help           Show this help message and exit.
+  -n, --plain-output   Use plain text instead of ANSI colors and styles.
+  -v, --verbose        Create verbose output.
+  -V, --version        Print version information and exit.
+  -x, --stacktrace     Show full stack trace when exceptions occur.
+
+Commands:
+  create-app         Creates an application
+  create-cli-app     Creates a command line application
+  create-federation  Creates a federation of services
+  create-function    Creates a serverless function application
+  create-profile     Creates a profile
+  help               Prints help information for a specific command
+  list-profiles      Lists the available profiles
+  profile-info       Display information about a given profile
+----
+
+NOTE: You can install Micronaut CLI using https://sdkman.io/sdks#micronaut[SDKMAN!] - `sdk install micronaut`
+
+Now we are able to create Micronaut application skeleton:
+
+[source,bash]
+----
+mn create-app micronaut-nonblocking-async-demo
+----
+
+It creates a new application using Gradle build tool (switching to Maven is possible if needed). After applying a few
+small changes our final `build.gradle` file looks like this:
+
+.build.gradle
+[source,groovy]
+----
+plugins {
+    id "io.spring.dependency-management" version "1.0.6.RELEASE"
+    id "com.github.johnrengelman.shadow" version "4.0.0"
+    id "net.ltgt.apt-eclipse" version "0.18"
+    id "net.ltgt.apt-idea" version "0.18"
+}
+
+apply plugin: "application"
+apply plugin: "java"
+apply plugin: "groovy"
+apply plugin: "jacoco"
+
+version "0.1"
+group "com.github.wololock.micronaut"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "https://jcenter.bintray.com" }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'io.micronaut:micronaut-bom:1.0.0'
+    }
+}
+
+dependencies {
+    annotationProcessor "io.micronaut:micronaut-inject-java"
+    annotationProcessor "io.micronaut:micronaut-validation"
+    compile "io.micronaut:micronaut-inject"
+    compile "io.micronaut:micronaut-validation"
+    compile "io.micronaut:micronaut-runtime"
+    compile "io.micronaut:micronaut-http-client"
+    compile "io.micronaut:micronaut-http-server-netty"
+    compileOnly "io.micronaut:micronaut-inject-java"
+    runtime "ch.qos.logback:logback-classic:1.2.3"
+    testCompile "io.micronaut:micronaut-inject-java"
+    testCompile("org.spockframework:spock-core:1.1-groovy-2.4")
+}
+
+shadowJar {
+    mergeServiceFiles()
+}
+
+run.jvmArgs('-noverify', '-XX:TieredStopAtLevel=1')
+
+mainClassName = "com.github.wololock.micronaut.Application"
+compileJava.options.compilerArgs += '-parameters'
+compileTestJava.options.compilerArgs += '-parameters'
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
+check.dependsOn jacocoTestReport
+----
+
+== Implementing product-service
+
+We start with writing some product-service code. For simplicity we will put both services to a single app - this is OK
+for this demo, but in real-life you would keep these two services as separate applications. Here is a list of files
+we are going to create:
+
+[source,bash]
+----
+products
+├── ProductClient.java
+├── ProductController.java
+├── Product.java
+└── ProductService.java
+----
+
+* `Product` class is defined by 3 simple properties: `id`, `name` and `price`. https://github.com/wololock/micronaut-nonblocking-async-demo/blob/master/src/main/java/com/github/wololock/micronaut/products/Product.java[Nothing fancy].
+* `ProductService` stores 4 exemplary products in memory and simulates high latency when retrieving products by id.
+* `ProductController` exposes a public API endpoint.
+* `ProductClient` is Micronaut's special interface that generates an HTTP client we can use to communicate with the API
+from other services (from recommendations-service for instance).
+
+Here is what implementation of `ProductService` looks like:
+
+.src/main/java/com/github/wololock/micronaut/products/ProductService.java
+[source,java]
+----
+package com.github.wololock.micronaut.products;
+
+import io.reactivex.Maybe;
+import io.reactivex.schedulers.Schedulers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.inject.Singleton;
+import java.math.BigDecimal;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Supplier;
+
+@Singleton //<1>
+final class ProductService {
+
+    private static final Logger log = LoggerFactory.getLogger(ProductService.class);
+
+    private static final Map<String, Supplier<Product>> products = new ConcurrentHashMap<>();
+
+    static {
+        products.put("PROD-001", createProduct("PROD-001", "Micronaut in Action", 29.99, 120));
+        products.put("PROD-002", createProduct("PROD-002", "Netty in Action", 31.22, 190));
+        products.put("PROD-003", createProduct("PROD-003", "Effective Java, 3rd edition", 31.22, 600));
+        products.put("PROD-004", createProduct("PROD-004", "Clean Code", 31.22, 1200));
+    }
+
+    public Maybe<Product> findProductById(final String id) { //<2>
+        return Maybe.just(id)
+                .subscribeOn(Schedulers.io()) //<3>
+                .map(it -> products.getOrDefault(it, () -> null).get());
+    }
+
+    private static Supplier<Product> createProduct(final String id, final String name, final Double price, final int latency) {
+        return () -> {
+            simulateLatency(latency); //<4>
+            log.debug("Product with id {} ready to return...", id);
+            return new Product(id, name, BigDecimal.valueOf(price));
+        };
+    }
+
+    private static void simulateLatency(final int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException ignored) {}
+    }
+}
+----
+<1> `@javax.inject.Singleton` annotation instructs Micronaut that this class represents a bean to inject.
+<2> `Maybe<Product>` return type means that this method returns a single `Product`, or no value, or throws exception.
+<3> Calling `subscribeOn(Schedulers.io())` moves calculation to a scheduler responsible for running IO-bound work.
+<4> We simulate latency with `Thread.sleep(millis)` before returning a `Product` object from a supplier.
+
+The most important and the most interesting part is implemented in `ProductService` class. Firstly, we store a few products
+in memory as `Supplier<Product>` to simulate latency inside supplier's body. Secondly, we return `Maybe<Product>` type
+to inform that `Product` may or not be returned, which is expected if we call the method with `id` that does not map to
+any existing product.
+
+Take a look how the `findProductById` method is implemented. We start with creating `Maybe<String>` object using `id`
+received from the method call. Then we switch to `Schedulers.io()` scheduler to move execution of this blocking
+operation to a thread-pool that is designed to execute such operations. And finally we map `id` to a product associated
+with it and we return `Maybe<Product>` type. For this demo purpose we also log some debug information - it will be useful
+when we execute a few parallel requests to see how it works.
+
+Now it is time to implement `ProductController` - our public API endpoint:
+
+.src/main/java/com/github/wololock/micronaut/products/ProductController.java
+[source,java]
+----
+package com.github.wololock.micronaut.products;
+
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Get;
+import io.reactivex.Maybe;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Controller("/product") //<1>
+final class ProductController {
+
+    private static final Logger log = LoggerFactory.getLogger(ProductController.class);
+
+    private final ProductService productService;
+
+    public ProductController(ProductService productService) { //<2>
+        this.productService = productService;
+    }
+
+    @Get("/{id}") //<3>
+    public Maybe<Product> getProduct(String id) { //<4>
+        log.debug("ProductController.getProduct({}) executed...", id);
+
+        return productService.findProductById(id).onErrorComplete(); //<5>
+    }
+}
+----
+<1> `@Controller("/products")` annotation registers HTTP handler class.
+<2> Constructor injection does not require any annotation.
+<3> `@Get("/{id}")` defines GET mapping and path token `id`.
+<4> `Maybe<Product>` return type instructs event-loop that we are going to execute this request in a non-blocking manner.
+<5> Calling `onErrorComplete()` ensures that in case of `null` product HTTP server will produce `404 Not Found` response.
+
+And the last, but not least - `ProductClient` interface:
+
+.src/main/java/com/github/wololock/micronaut/products/ProductClient.java
+[source,java]
+----
+package com.github.wololock.micronaut.products;
+
+import io.micronaut.http.annotation.Get;
+import io.micronaut.http.client.annotation.Client;
+import io.reactivex.Maybe;
+
+@Client("/product")
+public interface ProductClient {
+
+    @Get("/{id}")
+    Maybe<Product> getProduct(final String id);
+}
+----
+
+Micronaut will generate and compile HTTP client that implements this interface - no runtime proxy that slows down our applications. Brilliant!
+
+NOTE: Source code of the application described in this blog post can be found here https://github.com/wololock/micronaut-nonblocking-async-demo
+
+== Running product-service
+
+Now it is time to run our service and see it in action:
+
+[source,bash]
+----
+gradle run
+----
+
+After about a second we will information that our server application is running:
+
+[source,bash]
+----
+01:31:27.475 [main] INFO  - Startup completed in 636ms. Server Running: http://localhost:8080
+----
+
+Let's execute two requests. I will use https://httpie.org/[HTTPie] in below examples:
+
+[source,bash]
+----
+% http localhost:8080/product/PROD-001
+
+HTTP/1.1 200 OK
+Date: Thu, 25 Oct 2018 01:34:15 GMT
+connection: keep-alive
+content-length: 60
+content-type: application/json
+
+{
+    "id": "PROD-001",
+    "name": "Micronaut in Action",
+    "price": 29.99
+}
+----
+
+Product with id `PROD-001` returned successfully. Now let's take a look what does the response for non-existing product looks like:
+
+[source,bash]
+----
+% http localhost:8080/product/PROD-008
+
+HTTP/1.1 404 Not Found
+Date: Thu, 25 Oct 2018 01:35:11 GMT
+connection: close
+content-length: 93
+content-type: application/json
+
+{
+    "_links": {
+        "self": {
+            "href": "/product/PROD-008",
+            "templated": false
+        }
+    },
+    "message": "Page Not Found"
+}
+----
+
+== Executing multiple parallel requests
+
+Above examples shown that application works as expected. But does it process requests in a&nbsp;non-blocking manner?
+Let's test it out. Firstly, we will update `application.yml` and set a single event-loop to process all incoming requests:
+
+.src/main/resources/application.yml
+[source,yml]
+----
+micronaut:
+    application:
+        name: micronaut-nonblocking-async-demo
+
+    server:
+        maxRequestSize: 1MB
+        host: localhost
+        netty:
+           maxHeaderSize: 500KB
+           worker:
+              threads: 1
+           parent:
+              threads: 1
+           childOptions:
+              autoRead: true
+----
+
+Following configuration means that there is only one event-loop (a single thread) that is responsible for handling incoming
+HTTP requests. The whole idea here is to keep this event-loop ready to process requests and delegate all blocking operations
+to a separate thread-pool where they can block for some amount of time.
+
+We will use https://github.com/JoeDog/siege[siege] - an http load tester and benchmarking command line tool that allows
+us executing multiple concurrent requests. We will execute 20 multiple HTTP requests to see how our application reacts
+to 20 concurrent requests with just a single thread dedicated to handling requests:
+
+[source,bash]
+----
+% siege -c 20 -r 1 http://localhost:8080/product/PROD-003
+
+** SIEGE 4.0.4
+** Preparing 20 concurrent users for battle.
+The server is now under siege...
+HTTP/1.1 200     0.61 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.61 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.61 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.61 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.61 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.61 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.61 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.61 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.62 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.62 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.62 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.62 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.62 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.62 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.62 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.62 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.62 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.62 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.62 secs:      68 bytes ==> GET  /product/PROD-003
+HTTP/1.1 200     0.62 secs:      68 bytes ==> GET  /product/PROD-003
+
+Transactions:		          20 hits
+Availability:		      100.00 %
+Elapsed time:		        0.62 secs
+Data transferred:	        0.00 MB
+Response time:		        0.62 secs
+Transaction rate:	       32.26 trans/sec
+Throughput:		        0.00 MB/sec
+Concurrency:		       19.87
+Successful transactions:          20
+Failed transactions:	           0
+Longest transaction:	        0.62
+Shortest transaction:	        0.61
+----
+
+Our application handled 20 concurrent requests with a single computation thread. `PROD-003` has `600ms` latency, so all
+responses returned approximately at the same time. And here is what console log looks like after handling these 20 requests:
+
+[source,bash]
+----
+01:51:46.623 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.630 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.630 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.630 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.631 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.631 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.631 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.631 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.632 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.632 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.632 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.632 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.632 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.633 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.633 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.633 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.633 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.633 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.634 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:46.634 [nioEventLoopGroup-1-2     ] DEBUG - ProductController.getProduct(PROD-003) executed...
+01:51:47.231 [RxCachedThreadScheduler-1 ] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.231 [RxCachedThreadScheduler-2 ] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.231 [RxCachedThreadScheduler-4 ] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.231 [RxCachedThreadScheduler-5 ] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.231 [RxCachedThreadScheduler-3 ] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.231 [RxCachedThreadScheduler-6 ] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.231 [RxCachedThreadScheduler-7 ] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.232 [RxCachedThreadScheduler-8 ] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.232 [RxCachedThreadScheduler-9 ] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.232 [RxCachedThreadScheduler-10] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.232 [RxCachedThreadScheduler-11] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.233 [RxCachedThreadScheduler-12] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.233 [RxCachedThreadScheduler-13] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.233 [RxCachedThreadScheduler-14] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.233 [RxCachedThreadScheduler-15] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.233 [RxCachedThreadScheduler-16] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.234 [RxCachedThreadScheduler-17] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.234 [RxCachedThreadScheduler-18] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.234 [RxCachedThreadScheduler-19] DEBUG - Product with id PROD-003 ready to return...
+01:51:47.234 [RxCachedThreadScheduler-20] DEBUG - Product with id PROD-003 ready to return...
+----
+
+This log shows clearly what is the biggest benefit of non-blocking HTTP requests processing. We use a single event-loop
+running in `nioEventLoopGroup-1-2` thread. It receives HTTP request and instead of blocking for 600 milliseconds (latency of
+`PROD-003` product) it delegates operation to IO thread pool and is ready to handle next request. The default IO thread
+pool uses cached thread pool, so in this case it spawns 20 threads to handle the operation and they will wait 60 seconds
+to handle another job.
+
+== Conclusion
+
+Part 1 ends here. You have seen Micronaut's non-blocking processing in action, and what is even more important - now you
+know that switching from blocking model to a non-blocking one does not require a huge mind shift. In the part 2 we will
+implement recommendations-service side and integrate it with product-service endpoint using Micronaut's reactive HTTP client.
+
+I hope you have learned something interesting today. If you are interested in Micronaut, please leave a comment below and let
+me know what kind of topics interest you the most. Stay tuned, and until the next time!
