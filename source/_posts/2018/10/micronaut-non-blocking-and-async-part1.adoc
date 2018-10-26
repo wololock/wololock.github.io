@@ -494,3 +494,5 @@ implement recommendations-service side and integrate it with product-service end
 
 I hope you have learned something interesting today. If you are interested in Micronaut, please leave a comment below and let
 me know what kind of topics interest you the most. Stay tuned, and until the next time!
+
+NOTE: Continue reading here - https://e.printstacktrace.blog/2018/10/micronaut-non-blocking-and-async-part2/[Non-blocking and async Micronaut - quick start (part 2)]
