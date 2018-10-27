@@ -11,6 +11,7 @@ categories:
     - How to
 cover: /img/hexo-github-bg.jpg
 og_image: /images/og/hexo-github-deployer.jpg
+eyeCatchImage: /images/og/hexo-github-deployer.jpg
 ---
 
 I have found https://hexo.io[Hexo] a great tool for building a blog and apply many well-known software development

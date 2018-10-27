@@ -1,6 +1,7 @@
 extends partial/base
 
 include partial/post-meta
+include partial/post-related
 
 block description
     meta(name="description", content=truncate(strip_html(page.content), {length: 255}))
@@ -37,6 +38,8 @@ block content
                         - })
 
                     include partial/post-footer
+
+                    +post_related(popular_posts_json({ maxCount: 3, isImage: true, isExcerpt: true }, page))
 
                 nav(role="pagination", class="pagination")
                     if page.prev
