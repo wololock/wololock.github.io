@@ -5,7 +5,8 @@ mixin post_related(related)
              - related.json.forEach(function(post) {
                 div.col-lg-4
                     a(href=url_for(post.path))
-                        img.img-responsive(src=post.img)
+                        if post.img
+                            img.img-responsive(src=post.img)
                         h3!=post.title
                     p!=truncate(strip_html(post.excerpt), { length: 200 })
              - })

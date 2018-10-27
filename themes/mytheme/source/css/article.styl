@@ -63,33 +63,37 @@ article
 
   footer.post-footer
     position relative
-    margin 4rem 0 0 0
-    padding 3rem 0 4rem 0
-    border-top #ebf2f6 1px solid
+    margin 8rem 0 3rem 0
+    padding 80px 0px 20px 0px
+    border-top #ebf2f6 5px solid
+    background #fafafa
+    text-align center
+
+    .img-circle
+      position absolute
+      top 0
+      left 50%
+      width 120px
+      margin -60px 0 0 -60px
+      box-shadow #ccc 0 5px 5px
+      border 1px solid #fafafa
 
     h4
-      font-size 1.8rem
-      margin 0
+      color #777a77
+      font-size 2.8rem
+      margin 0 0 10px 0
+      display inline-block
+      padding 5px 20px
     p
       margin 1rem 0
-      font-size 1.4rem
-      line-height 1.6em
+      font-size 1.6rem
+      line-height 1.7em
 
-    .author
-      
-    .share
-      a
-        font-size 1.8rem
-        display inline-block
-        margin 1.4rem 1.6rem 1.6rem 0
-        color #BBC7CC
-        text-decoration none
-        transition color ease 0.3s
 
     ul.social-links
       list-style none
       margin 0
-      padding 0
+      padding 10px 0
 
       li
         list-style none
@@ -103,18 +107,6 @@ article
 
       li:first-child
         margin-left 0
-
-  @media only screen and (max-width: 767px)
-    .author
-      text-align center
-    
-    .share
-      text-align center
-      margin-top 30px
-
-      h4
-        border-top 1px #ebf2f6 solid
-        padding 20px 0
 
   section.related-posts
     border-bottom 1px solid #eee
