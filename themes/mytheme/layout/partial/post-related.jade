@@ -1,0 +1,11 @@
+mixin post_related(related)
+    section.related-posts
+        h2="You may also like"
+        div.row
+             - related.json.forEach(function(post) {
+                div.col-lg-4
+                    a(href=url_for(post.path))
+                        img.img-responsive(src=post.img)
+                        h3!=post.title
+                    p!=truncate(strip_html(post.excerpt), { length: 200 })
+             - })

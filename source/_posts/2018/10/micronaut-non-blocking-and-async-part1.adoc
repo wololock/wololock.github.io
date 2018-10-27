@@ -12,6 +12,7 @@ categories:
     - How to
 cover: /img/micronaut-bg.jpg
 og_image: /images/og/micronaut-nonblocking-part1.jpg
+eyeCatchImage: /images/og/micronaut-nonblocking-part1.jpg
 ---
 
 If you haven't heard about http://micronaut.io/[Micronaut] you have been probably just woken up from deep hibernation. No&nbsp;worries, I'm joking :)

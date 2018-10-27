@@ -10,6 +10,7 @@ categories:
     - How to
 cover: /img/graalvm-bg.jpg
 og_image: /images/og/graalvm-groovy.jpg
+eyeCatchImage: /images/og/graalvm-groovy.jpg
 ---
 
 https://www.graalvm.org/[GraalVM] became one of the most popular topics in the JVM ecosystem. It promises the
