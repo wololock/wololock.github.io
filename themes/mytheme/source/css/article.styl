@@ -61,35 +61,67 @@ article
         &.left
           float left
 
+  .post-tags
+    font-size 1.4rem
+    font-family "Open Sans", "DejaVu Sans", sans
+    font-weight 700
+    text-align center
+    padding 3rem 0
+
+    a
+      background color-orange
+      padding 5px 10px
+      color #fafafa
+      text-transform lowercase
+      display inline-block
+      margin 5px
+      border-radius 20px
+      box-shadow #eee 4px 2px 0px
+
+      &:hover, &:active
+        text-decoration none
+        border-bottom none
+        background brand-primary
+        transition ease 0.5s
+        color #fff
+
+
   footer.post-footer
     position relative
-    margin 4rem 0 0 0
-    padding 3rem 0 4rem 0
-    border-top #ebf2f6 1px solid
-
-    h4
-      font-size 1.8rem
-      margin 0
-    p
-      margin 1rem 0
-      font-size 1.4rem
-      line-height 1.6em
+    margin 8rem 0 3rem 0
+    text-align center
 
     .author
-      
-    .share
-      a
-        font-size 1.8rem
-        display inline-block
-        margin 1.4rem 1.6rem 1.6rem 0
-        color #BBC7CC
-        text-decoration none
-        transition color ease 0.3s
+      padding 80px 0px 20px 0px
+      border-top #ebf2f6 5px solid
+      background #fcfcfc
+
+    .img-circle
+      position absolute
+      top 0
+      left 50%
+      width 120px
+      margin -60px 0 0 -60px
+      box-shadow #ccc 0 5px 5px
+      border 1px solid #fafafa
+
+    h4
+      color #777a77
+      font-size 2.8rem
+      margin 0 0 10px 0
+      display inline-block
+      padding 5px 20px
+    p
+      margin 1rem 0
+      font-size 1.8rem
+      line-height 1.7em
+      color #666
+
 
     ul.social-links
       list-style none
       margin 0
-      padding 0
+      padding 10px 0
 
       li
         list-style none
@@ -99,22 +131,10 @@ article
         a
           margin 0
           color color-social-link
-          font-size 2.4rem
+          font-size 3rem
 
       li:first-child
         margin-left 0
-
-  @media only screen and (max-width: 767px)
-    .author
-      text-align center
-    
-    .share
-      text-align center
-      margin-top 30px
-
-      h4
-        border-top 1px #ebf2f6 solid
-        padding 20px 0
 
   section.related-posts
     border-bottom 1px solid #eee
@@ -127,14 +147,14 @@ article
         color brand-primary
 
     h2
-      color #ddd
+      color #aaa
       text-align center
-      margin 35px 0
+      margin 5rem 0
     h3
       margin 0
       padding 20px 0
       font-size 1.8rem
-      line-height 2.9rem
+      line-height 2.2rem
     p
       font-size 1.4rem
       line-height 2.3rem

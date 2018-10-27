@@ -7,7 +7,7 @@ block description
     meta(name="description", content=truncate(strip_html(page.content), {length: 255}))
 
 block site_title
-    = page.title + " | " + config.title
+    = page.title
 
 block header
     header.header-section
@@ -31,11 +31,6 @@ block content
             .col-lg-10.col-lg-offset-1.col-md-10.col-md-offset-1
                 article(role="main", class="blog-post")
                     != page.content
-
-                    section.post-tags
-                        - page.tags.each(function(tag) {
-                            a.tag.post-meta(href=url_for(tag.path))= tag.name
-                        - })
 
                     include partial/post-footer
 
