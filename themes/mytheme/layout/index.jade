@@ -16,10 +16,10 @@ block content
                 ul.pager.main-pager
                     if page.prev
                         li.previous
-                            a(href=url_for(page.prev === 1 ? "/" : ("/" + config.pagination_dir + "/" + page.prev)))= __('prev')
+                            a.btn.btn-default(href=url_for(page.prev === 1 ? "/" : ("/" + config.pagination_dir + "/" + page.prev)))!= '&larr; Previous page'
                     if page.next
                         li.next
-                            a(href=url_for("/" + config.pagination_dir + "/" + page.next))= __('next')
+                            a.btn.btn-default(href=url_for("/" + config.pagination_dir + "/" + page.next))!= 'Next page &rarr;'
 
 
 

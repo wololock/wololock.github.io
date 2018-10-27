@@ -61,12 +61,37 @@ article
         &.left
           float left
 
+  .post-tags
+    font-size 1.4rem
+    font-family "Open Sans", "DejaVu Sans", sans
+    font-weight 700
+    text-align center
+    padding 3rem 0
+
+    a
+      background color-orange
+      padding 5px 10px
+      color #fafafa
+      text-transform lowercase
+      display inline-block
+      margin 5px
+      border-radius 20px
+      box-shadow #eee 4px 2px 0px
+
+      &:hover, &:active
+        text-decoration none
+        border-bottom none
+        background brand-primary
+        transition ease 0.5s
+        color #fff
+
+
   footer.post-footer
     position relative
     margin 8rem 0 3rem 0
     padding 80px 0px 20px 0px
     border-top #ebf2f6 5px solid
-    background #fafafa
+    background #fcfcfc
     text-align center
 
     .img-circle
@@ -86,8 +111,9 @@ article
       padding 5px 20px
     p
       margin 1rem 0
-      font-size 1.6rem
+      font-size 1.8rem
       line-height 1.7em
+      color #666
 
 
     ul.social-links
@@ -103,7 +129,7 @@ article
         a
           margin 0
           color color-social-link
-          font-size 2.4rem
+          font-size 3rem
 
       li:first-child
         margin-left 0
@@ -119,14 +145,14 @@ article
         color brand-primary
 
     h2
-      color #ddd
+      color #aaa
       text-align center
-      margin 35px 0
+      margin 5rem 0
     h3
       margin 0
       padding 20px 0
       font-size 1.8rem
-      line-height 2.9rem
+      line-height 2.2rem
     p
       font-size 1.4rem
       line-height 2.3rem

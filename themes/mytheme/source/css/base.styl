@@ -242,18 +242,6 @@ hr.small
   border-bottom-right-radius 5px
   border-bottom-left-radius 5px
 
-.post-tags, .post-categories
-  font-size 15px
-  margin-top 30px
-  margin-bottom 30px
-  a
-    border-bottom 1px dotted #ABABAB
-    text-transform uppercase
-    margin-right 10px
-    &:hover, &:visited, &:active
-      text-decoration none
-      border-bottom none
-
 .archive-before-pagination
   height 30px
 
@@ -383,7 +371,7 @@ footer.site-footer
 form .row:first-child .floating-label-form-group
   border-top 1px solid gray-light
 
-.btn
+.btn, .pager>li>a.btn
   font-family 'Open Sans', sans-serif
   font-size 1.3rem
   color #9EABB3
@@ -394,38 +382,18 @@ form .row:first-child .floating-label-form-group
   text-decoration none
   border-radius 30px
   transition border ease 0.3s
-
-.btn-lg
-  font-size 16px
-  padding 25px 35px
-
-.btn
   &:hover, &:focus
     border-color #9EABB3
     background none
     color #9EABB3
 
+.btn-lg
+  font-size 16px
+  padding 25px 35px
+
+
 .pager
   margin 20px 0 0
-  li
-    > a, > span
-      @extend .sans-serif
-      text-transform uppercase
-      font-size 14px
-      font-weight 800
-      letter-spacing 1px
-      padding 15px 25px
-      background-color white
-      border-radius 0
-    > a:hover, > a:focus
-      color white
-      background-color brand-primary
-      border 1px solid brand-primary
-  .disabled
-    > a, > a:hover, > a:focus, > span
-      color gray
-      background-color gray-dark
-      cursor not-allowed
 
 .archive-list
   li
