@@ -104,3 +104,9 @@ archive_generator:
   yearly: false
   monthly: false
   daily: false
+
+# More detailed settings
+popularPosts:
+  # (optional) Cache options (Improve generation speed.)
+  cache:
+    path: cache/hexo-popular-related-posts-ga-cached.json
