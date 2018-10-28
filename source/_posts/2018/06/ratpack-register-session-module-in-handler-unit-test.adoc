@@ -6,7 +6,9 @@ tags:
     - ratpack
     - groovy
     - spock
-    - unit tests
+    - unit-test
+    - session
+    - guice
 categories:
     - Ratpack Cookbook
 cover: /images/ratpack-cookbook-bg.jpg

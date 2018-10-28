@@ -6,6 +6,7 @@ tags:
     - groovy
     - jmh
     - java
+    - java-8
     - benchmark
 categories:
     - Programming tips

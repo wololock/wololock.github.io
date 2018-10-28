@@ -4,6 +4,8 @@ date: 2018-09-03 11:28:05
 updated: 2018-09-03 11:28:05
 tags:
     - groovy
+    - dynamic-types
+    - coercion
 categories:
     - Programming tips
 og_image: /images/og/groovy-dynamic-types.jpg

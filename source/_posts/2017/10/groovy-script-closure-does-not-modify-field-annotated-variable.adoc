@@ -8,6 +8,7 @@ tags:
     - groovy-2.4
     - metaprogramming
     - stackoverflow
+    - closure
 categories:
     - Tales from debugger
 cover: /img/post-debugger.jpg

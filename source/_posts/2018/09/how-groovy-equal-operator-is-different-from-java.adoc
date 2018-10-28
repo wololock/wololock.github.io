@@ -4,6 +4,8 @@ date: 2018-09-22 09:53:42
 updated: 2018-09-29 11:13:21
 tags:
     - groovy
+    - equals
+    - operator
     - java
 categories:
     - Programming tips

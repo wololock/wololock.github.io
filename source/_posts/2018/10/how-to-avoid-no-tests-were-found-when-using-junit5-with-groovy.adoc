@@ -5,7 +5,10 @@ updated: 2018-10-24 09:00:48
 tags:
     - groovy
     - junit
-    - unit test
+    - junit5
+    - unit-test
+    - gradle
+    - ide
 categories:
     - How to
 cover: /img/groovy-junit5-bg.jpg

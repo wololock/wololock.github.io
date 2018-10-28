@@ -5,7 +5,8 @@ updated: 2018-10-03 23:28:49
 tags:
     - groovy
     - graalvm
-    - java
+    - native-image
+    - openjdk
 categories:
     - How to
 cover: /img/graalvm-bg.jpg
