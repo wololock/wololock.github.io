@@ -5,6 +5,9 @@ updated: 2017-09-09 10:19:29
 tags:
     - java
     - java-stream
+    - java-8
+    - split
+    - partition
 categories: 
     - How to 
 cover: /img/post-bg-1.jpg

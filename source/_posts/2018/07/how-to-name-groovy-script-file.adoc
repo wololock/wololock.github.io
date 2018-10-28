@@ -4,7 +4,8 @@ date: 2018-07-10 12:05:19
 updated: 2018-07-10 12:05:19
 tags:
     - groovy
-    - java
+    - script
+    - class
 categories:
     - Programming tips
 og_image: /images/og/groovy-script-how-to-name.jpg
