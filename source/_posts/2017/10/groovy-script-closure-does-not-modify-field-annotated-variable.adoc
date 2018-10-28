@@ -11,6 +11,8 @@ tags:
 categories:
     - Tales from debugger
 cover: /img/post-debugger.jpg
+og_image: /images/og/groovy-field-variable.jpg
+eyeCatchImage: /images/og/groovy-field-variable.jpg
 ---
 
 Recently I have answered a few questions on Stack Overflow related to Groovy scripts and how they work in combination with 

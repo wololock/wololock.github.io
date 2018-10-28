@@ -12,8 +12,8 @@ tags:
 categories:
     - Programming tips
 cover: /images/java-type-inference-bg.jpg
-og_image: /images/og/java-generic-type-inference-jsr335.jpg
-eyeCatchImage: /images/og/java-generic-type-inference-jsr335.jpg
+og_image: /images/og/java-generics-type-inference.jpg
+eyeCatchImage: /images/og/java-generics-type-inference.jpg
 ---
 
 Yesterday I have found this interesting question on Stack Overflow asked by https://twitter.com/czaszo[Opal]. He faced

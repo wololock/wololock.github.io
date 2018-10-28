@@ -4,9 +4,13 @@ date: 2018-05-26 17:19:14
 updated: 2018-05-26 17:19:14
 tags:
     - haskell
-    - functional programming
+    - functional-programming
+    - factorial
+    - puzzle
 categories:
     - Programming tips
+og_image: /images/og/haskell-factorial-digits.jpg
+eyeCatchImage: /images/og/haskell-factorial-digits.jpg
 ---
 
 Some time ago I was interviewed to one of the Java-based projects and I was asked to solve this pretty interesting puzzle. The question

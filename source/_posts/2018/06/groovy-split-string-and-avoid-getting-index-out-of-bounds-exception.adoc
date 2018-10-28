@@ -6,6 +6,8 @@ tags:
     - groovy
 categories:
     - Programming tips
+og_image: /images/og/groovy-split-string.jpg
+eyeCatchImage: /images/og/groovy-split-string.jpg
 ---
 
 If you use Groovy for scripting or other similar tasks you probably faced a situation where you 

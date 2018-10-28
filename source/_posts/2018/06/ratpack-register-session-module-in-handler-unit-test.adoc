@@ -9,6 +9,9 @@ tags:
     - unit tests
 categories:
     - Ratpack Cookbook
+cover: /images/ratpack-cookbook-bg.jpg
+og_image: /images/og/ratpack-session-module.jpg
+eyeCatchImage: /images/og/ratpack-session-module.jpg
 ---
 
 Unit testing Ratpack handlers has many benefits. In the previous post we have learned how to +++{% post_link ratpack-mocking-Session-object-in-GroovyRequestFixture-test mock Session object %}+++

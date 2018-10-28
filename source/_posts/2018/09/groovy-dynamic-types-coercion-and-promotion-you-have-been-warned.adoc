@@ -6,8 +6,8 @@ tags:
     - groovy
 categories:
     - Programming tips
-og_image: /images/og/groovy-dynamic-type-coercion-image.jpg
-eyeCatchImage: /images/og/groovy-dynamic-type-coercion-image.jpg
+og_image: /images/og/groovy-dynamic-types.jpg
+eyeCatchImage: /images/og/groovy-dynamic-types.jpg
 ---
 
 http://groovy-lang.org/[Groovy] is a very powerful language on a JVM platform and with this great power
