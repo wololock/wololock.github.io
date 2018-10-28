@@ -9,6 +9,9 @@ tags:
     - unit tests
 categories:
     - Ratpack Cookbook
+cover: /images/ratpack-cookbook-bg.jpg
+og_image: /images/og/ratpack-mocking-session.jpg
+eyeCatchImage: /images/og/ratpack-mocking-session.jpg
 ---
 
 https://ratpack.io[Ratpack] allows you unit test handlers using https://ratpack.io/manual/1.5.4/api/ratpack/groovy/test/handling/GroovyRequestFixture.html[`GroovyRequestFixture`] class.

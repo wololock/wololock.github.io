@@ -7,8 +7,8 @@ tags:
     - java
 categories:
     - Programming tips
-og_image: /images/og/groovy-script-filename.jpg
-eyeCatchImage: /images/og/groovy-script-filename.jpg
+og_image: /images/og/groovy-script-how-to-name.jpg
+eyeCatchImage: /images/og/groovy-script-how-to-name.jpg
 ---
 
 Some time ago I have found a very interesting question on Stack Overflow about https://stackoverflow.com/questions/51238868/forbidden-characters-in-groovy-script-filenames[forbidden characters
