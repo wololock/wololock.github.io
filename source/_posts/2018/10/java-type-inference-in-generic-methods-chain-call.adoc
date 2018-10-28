@@ -1,0 +1,192 @@
+---
+title: 'Java 8 type inference in generic methods chain call - what might go wrong?'
+date: 2018-10-28 06:50:57
+updated: 2018-10-28 06:50:57
+tags:
+    - java
+    - java-8
+    - java-generics
+    - type-inference
+    - jsr335
+    - jep101
+categories:
+    - Programming tips
+cover: /images/java-type-inference-bg.jpg
+og_image: /images/og/micronaut-nonblocking-part1.jpg
+eyeCatchImage: /images/og/micronaut-nonblocking-part1.jpg
+---
+
+Yesterday I have found this interesting question on Stack Overflow asked by https://twitter.com/czaszo[Opal]. He faced
+some https://stackoverflow.com/q/53008601/2194470[unexpected compilation errors] when dealing with Java generics and
+Vavr library. It turned out the root cause of the issue there was not the library, but Java compiler itself. This was
+pretty interesting use case and it motivated me to investigate it even further. This blog post reveals untold truth about
+Java generics type inference. Are you ready? :)
+
+++++
+<!-- more -->
+++++
+
+== An example
+
+Let's define a simple `Some<T>` generic class:
+
+[source,java]
+----
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
+public final class Some<T> {
+
+    private final T value;
+
+    private Some(final T t) {
+        this.value = t;
+    }
+
+    static <T> Some<T> of(final Supplier<T> supplier) {
+        return new Some<>(supplier.get());
+    }
+
+    public Some<T> peek(final Consumer<T> consumer) {
+        consumer.accept(value);
+        return this;
+    }
+
+    public T get() {
+        return value;
+    }
+}
+----
+
+`Some<T>` represents some value provided by a supplier function. There is not much we can do we this object - its
+class provides only two additional methods, `peek(Consumer<T> consumer)` and `get()`. But that's enough for this demo.
+
+There is one useful thing we would like to take advantage of - `peek()` method returns `Some<T>` which in this case
+is the reference to the caller object. This is very handy and it allows us to create a chain of methods. Let's try it out
+and create `Some<List<? extends CharSequence>>` object:
+
+.Example 1
+[source,java]
+----
+final class SomeExample {
+
+    public static void main(String[] args) {
+        Some<List<? extends CharSequence>> some =
+                Some.of(() -> Arrays.asList("a", "b", "c"));
+
+        System.out.println(some.get());
+    }
+}
+----
+
+So far so good - this simple example compiles and produces `[a, b, c]` in the console log when executed. Let's modify
+the code a bit and use `peek()` method instead `System.out.println(some.get())`:
+
+.Example 2
+[source,java]
+----
+final class SomeExample {
+
+    public static void main(String[] args) {
+        Some<List<? extends CharSequence>> some =
+                Some.of(() -> Arrays.asList("a", "b", "c")).peek(System.out::println);
+    }
+}
+----
+
+And now something unexpected happens. Suddenly, compiler started complaining about incompatible types:
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/java-type-inference-error.png]
+image::/images/java-type-inference-error.png[]
+--
+
+At some point it makes sense, because Java generics are invariantfootnote:[https://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.10]
+- Java Language Specification in chapter **4.10. Subtyping** says clearly:
+
+> Subtyping does not extend through parameterized types: `T` <: `S` does not imply that `C<T>` <: `C<S>`.
+
+So why does the example without `peek()` method invocation worked?
+
+== Generalized Target-Type Inference
+
+In the first example we have took an advantage of the feature introduced in Java 8 with JSR-335footnote:[http://cr.openjdk.java.net/~dlsmith/jsr335-final/spec/G.html]
+- Generalized Target-Type Inference, proposed as JEP-101footnote:[https://openjdk.java.net/jeps/101]. It added a whole
+new chapter to the language specification - **18. Type Inference**footnote:[https://docs.oracle.com/javase/specs/jls/se8/html/jls-18.html].
+It made Java compiler context aware when it comes to type inference, so it can deduct the expected type from the left side of the expression and
+subtypefootnote:[http://cr.openjdk.java.net/~dlsmith/jsr335-final/spec/G.html#18.2.3_Subtyping_Constraints_.5BNew.5D]
+if needed.
+
+It explains why Java compiler is satisfied by reducing expression on the right side to type `Some<List<? extends CharSequence>>`
+while assigning value to a `some` variable:
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/java-poly-expressions-in-action.png]
+image::/images/java-poly-expressions-in-action.png[]
+--
+
+It shows that even if:
+
+* `Arrays.asList("a", "b", "c")` returns `List<String>`,
+* `Some.of\(() -> Arrays.asList("a", "b", "c"))` returns `Some<List<String>>`,
+
+then assigning it to a type like `Some<List<? extends CharSequence>>` changes the invocation context and in this context
+`Some.of()` returns type defined on the left side of the assignment.
+
+== Limitations
+
+Java 8 type inference system has some limitations. One of them is type inference in chain methods call. JEP-101 mentions
+this problem, and our second example proves this limitation exists:
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/java-type-inference-chain-error.png]
+image::/images/java-type-inference-chain-error.png[]
+--
+
+When we start chaining methods, compiler delays type inference until the expression on the right side gets evaluated. Last
+method in the chain receives `Some<List<String>>` from the first method and it passes it to variable assignment. This is
+why we see compiler error in this case.
+
+== Solutions
+
+There are two solutions (or workarounds) to this limitation.
+
+1) We can specify explicitly generic type:
+
+[source,java]
+----
+final class SomeExample {
+
+    public static void main(String[] args) {
+        Some<List<? extends CharSequence>> some =
+                Some.<List<? extends CharSequence>>of(() -> Arrays.asList("a", "b", "c")).peek(System.out::println);
+    }
+}
+----
+
+In this case we instruct compiler that we expect `Some.of()` to return this specific type and it gets passed to `peek()` method
+which returns previously specified type back.
+
+2) We can break the chain and split assignment from the rest chain calls
+
+[source,java]
+----
+final class SomeExample {
+
+    public static void main(String[] args) {
+        Some<List<? extends CharSequence>> some = Some.of(() -> Arrays.asList("a", "b", "c"));
+        some.peek(System.out::println);
+    }
+}
+----
+
+== Conclusion
+
+And that's it. I hope you have learned something useful from this blog post. Don't hesitate to leave a comment in the
+comments section below - please let me know if you are looking for more articles like this one. See you next time!
