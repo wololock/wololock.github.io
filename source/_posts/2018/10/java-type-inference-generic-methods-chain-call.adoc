@@ -114,7 +114,7 @@ So why does the example without `peek()` method invocation worked?
 
 In the first example we have took an advantage of the feature introduced in Java 8 with JSR-335footnote:[http://cr.openjdk.java.net/~dlsmith/jsr335-final/spec/G.html]
 - Generalized Target-Type Inference, proposed as JEP-101footnote:[https://openjdk.java.net/jeps/101]. It added a whole
-new chapter to the language specification - **18. Type Inference**footnote:[https://docs.oracle.com/javase/specs/jls/se8/html/jls-18.html].
+new chapter to the language specification - **Chapter 18. Type Inference**footnote:[https://docs.oracle.com/javase/specs/jls/se8/html/jls-18.html].
 It made Java compiler context aware when it comes to type inference, so it can deduct the expected type from the left side of the expression and
 subtypefootnote:[http://cr.openjdk.java.net/~dlsmith/jsr335-final/spec/G.html#18.2.3_Subtyping_Constraints_.5BNew.5D]
 if needed.
