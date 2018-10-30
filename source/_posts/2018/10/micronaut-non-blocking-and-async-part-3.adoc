@@ -1,0 +1,343 @@
+---
+title: Non-blocking and async Micronaut - quick start (part 3)
+date: 2018-10-30 10:53:18
+updated: 2018-10-30 10:53:18
+tags:
+    - micronaut
+    - java
+    - non-blocking
+    - async
+    - reactive-programming
+    - rxjava
+categories:
+    - Micronaut Cookbook
+cover: /img/micronaut-bg.jpg
+og_image: /images/og/micronaut-nonblocking-part3.jpg
+eyeCatchImage: /images/og/micronaut-nonblocking-part3.jpg
+---
+
+Welcome to the part 3 of _"Non-blocking and async http://micronaut.io[Micronaut]"_ article. In the +++{% post_link micronaut-non-blocking-and-async-part-2 previous post %}+++
+we have created connection between two services using HTTP protocol and we have run some experiments with handling
+10,000 requests. Today we are going to extend this example by setting some timeouts to see what happens.
+
+++++
+<!-- more -->
+++++
+
+NOTE: Source code of the application described in this blog post can be found here https://github.com/wololock/micronaut-nonblocking-async-demo
+
+== The motivation
+
+Returning 4 recommendations from our mock recommendations-service takes approximately 1250&nbsp;milliseconds. This is
+actually a huge amount of time. Let's assume that we can't do anything to decrease latency on requests to product-service,
+yet we have to return any result in less than 300&nbsp;milliseconds to make any usage of recommendations-service.
+
+== The solution
+
+In the previous post we didn't introduce any timeouts in the part responsible for communication between services.
+Let's fix it now by adding 250 milliseconds timeout to the client call:
+
+[source,java]
+----
+package com.github.wololock.micronaut.recommendation;
+
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Get;
+import io.reactivex.Maybe;
+import io.reactivex.Observable;
+import io.reactivex.Single;
+import com.github.wololock.micronaut.products.Product;
+import com.github.wololock.micronaut.products.ProductClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+@Controller("/recommendations")
+final class RecommendationController {
+
+    private static final Logger log = LoggerFactory.getLogger(RecommendationController.class);
+
+    private static final List<String> ids = Arrays.asList("PROD-001", "PROD-002", "PROD-003", "PROD-004");
+
+    private final ProductClient productClient;
+
+    public RecommendationController(ProductClient productClient) {
+        this.productClient = productClient;
+    }
+
+    @Get
+    public Single<List<Product>> getRecommendations() {
+        log.debug("RecommendationController.getRecommendations() called...");
+
+        return Observable.fromIterable(ids)
+                .flatMap(id -> productClient.getProduct(id)
+                        .timeout(250, TimeUnit.MILLISECONDS, Maybe.empty()) //<1>
+                        .toObservable()
+                )
+                .toList();
+    }
+}
+----
+<1> 250 milliseconds timeout that returns `Maybe.empty()` when occurs.
+
+We use `Maybe.timeout(timeout, unit, fallback)` footnote:[http://reactivex.io/RxJava/javadoc/io/reactivex/Maybe.html#timeout-long-java.util.concurrent.TimeUnit-io.reactivex.MaybeSource-]
+to specify a timeout policy - if client does not return a response in 250 milliseconds we simply drop the connection
+and return a fallback object. Here is what the request to `localhost:8080/recommendations` returns now:
+
+[source,http]
+----
+HTTP/1.1 200 OK
+Date: Tue, 30 Oct 2018 11:18:33 GMT
+connection: keep-alive
+content-length: 119
+content-type: application/json
+
+[
+    {
+        "id": "PROD-001",
+        "name": "Micronaut in Action",
+        "price": 29.99
+    },
+    {
+        "id": "PROD-002",
+        "name": "Netty in Action",
+        "price": 31.22
+    }
+]
+----
+
+We get only two products in return and this is expected, because only these two have a latency that is smaller than
+250 milliseconds.
+
+Let's execute 10 concurrent requests using https://github.com/JoeDog/siege[siege]:
+
+[source,bash]
+----
+siege -c 10 -r 1 http://localhost:8080/recommendations
+----
+
+[source,text]
+----
+** SIEGE 4.0.4
+** Preparing 10 concurrent users for battle.
+The server is now under siege...
+HTTP/1.1 200     0.25 secs:     119 bytes ==> GET  /recommendations
+HTTP/1.1 200     0.25 secs:     119 bytes ==> GET  /recommendations
+HTTP/1.1 200     0.25 secs:     119 bytes ==> GET  /recommendations
+HTTP/1.1 200     0.25 secs:     119 bytes ==> GET  /recommendations
+HTTP/1.1 200     0.25 secs:     119 bytes ==> GET  /recommendations
+HTTP/1.1 200     0.25 secs:     119 bytes ==> GET  /recommendations
+HTTP/1.1 200     0.25 secs:     119 bytes ==> GET  /recommendations
+HTTP/1.1 200     0.26 secs:     119 bytes ==> GET  /recommendations
+HTTP/1.1 200     0.26 secs:     119 bytes ==> GET  /recommendations
+HTTP/1.1 200     0.26 secs:     119 bytes ==> GET  /recommendations
+
+Transactions:		          10 hits
+Availability:		      100.00 %
+Elapsed time:		        0.26 secs
+Data transferred:	        0.00 MB
+Response time:		        0.25 secs
+Transaction rate:	       38.46 trans/sec
+Throughput:		        0.00 MB/sec
+Concurrency:		        9.73
+Successful transactions:          10
+Failed transactions:	           0
+Longest transaction:	        0.26
+Shortest transaction:	        0.25
+----
+
+== Are we done?
+
+We might think that everything is fine and we are ready to deploy to production. Before that let's run
+https://httpd.apache.org/docs/2.4/programs/ab.html[Apache HTTP Bench] just to make sure we are ready to go:
+
+[source,bash]
+----
+ab -c 500 -n 2000 http://localhost:8080/recommendations
+----
+
+500 concurrent requests, 2,000 in total. The result:
+
+[source,plain]
+----
+Server Software:
+Server Hostname:        localhost
+Server Port:            8080
+
+Document Path:          /recommendations
+Document Length:        119 bytes
+
+Concurrency Level:      500
+Time taken for tests:   5.312 seconds
+Complete requests:      2000
+Failed requests:        1570
+   (Connect: 0, Receive: 0, Length: 1570, Exceptions: 0)
+Non-2xx responses:      146
+Total transferred:      339669 bytes
+HTML transferred:       83586 bytes
+Requests per second:    376.49 [#/sec] (mean)
+Time per request:       1328.058 [ms] (mean)
+Time per request:       2.656 [ms] (mean, across all concurrent requests)
+Transfer rate:          62.44 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0  544 514.3   1005    1068
+Processing:   255  546 200.3    545    1236
+Waiting:      251  546 200.3    545    1236
+Total:        281 1090 455.2   1290    1772
+
+Percentage of the requests served within a certain time (ms)
+  50%   1290
+  66%   1400
+  75%   1467
+  80%   1501
+  90%   1652
+  95%   1733
+  98%   1755
+  99%   1764
+ 100%   1772 (longest request)
+----
+
+Apache Bench revealed that we have a huge problem with handling 500 concurrent requests - median 1290 milliseconds when
+we drop connection after 250 ms timeout is not something we would expect here. It also shows that 1570 from 2000 requests
+were marked as failed based on the content length - it means that some requests returned a response with two products, some
+with just a single product, and there were most probably some requests with empty result.
+
+Let's run one more experiment, but this time with 200 concurrent requests and let's take a look at the result `ab` produced:
+
+[source,plain]
+----
+Server Software:
+Server Hostname:        localhost
+Server Port:            8080
+
+Document Path:          /recommendations
+Document Length:        119 bytes
+
+Concurrency Level:      200
+Time taken for tests:   3.073 seconds
+Complete requests:      2000
+Failed requests:        280
+   (Connect: 0, Receive: 0, Length: 280, Exceptions: 0)
+Total transferred:      477760 bytes
+HTML transferred:       222040 bytes
+Requests per second:    650.91 [#/sec] (mean)
+Time per request:       307.261 [ms] (mean)
+Time per request:       1.536 [ms] (mean, across all concurrent requests)
+Transfer rate:          151.85 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   2.3      0      15
+Processing:   251  269  20.4    261     349
+Waiting:      251  269  20.4    261     349
+Total:        251  270  21.1    262     352
+
+Percentage of the requests served within a certain time (ms)
+  50%    262
+  66%    271
+  75%    277
+  80%    281
+  90%    304
+  95%    319
+  98%    335
+  99%    344
+ 100%    352 (longest request)
+----
+
+A smaller concurrent connections number produced much better result - median 262 ms and only 280 failed requests (based
+on the content length). Why such a huge difference? Well, we need to be aware of one important thing. Even if we drop
+client connection after 250 ms timeout, the server is still processing all requests executed to product-service. It means
+that when server receives 500 concurrent requests to `localhost:8080/recommendations` it processes 1,000 requests that
+are never returned back to the client. It total it gives us 4,000 orphan requests, which allocate resources, consume them
+and return back to the even-loop, but never get back to the caller.
+
+== Any solution?
+
+There is no simple solution to this kind of problems. It shows the importance of a proper application monitoring. If we
+only monitor client requests success rate we would notice, that PROD-003 and PROD-004 products never return to the client.
+Maybe it is a good reason to drop recommending these products? Let's see what happens if we recommend only first two products?
+
+For 500 concurrent requests we get:
+
+[source,plain]
+----
+Concurrency Level:      500
+Time taken for tests:   1.667 seconds
+Complete requests:      2000
+Failed requests:        948
+   (Connect: 0, Receive: 0, Length: 948, Exceptions: 0)
+Total transferred:      403820 bytes
+HTML transferred:       149371 bytes
+Requests per second:    1200.07 [#/sec] (mean)
+Time per request:       416.641 [ms] (mean)
+Time per request:       0.833 [ms] (mean, across all concurrent requests)
+Transfer rate:          236.63 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    3   5.0      0      19
+Processing:   212  328  44.3    320     416
+Waiting:      193  328  44.3    320     416
+Total:        212  331  44.3    326     416
+
+Percentage of the requests served within a certain time (ms)
+  50%    326
+  66%    347
+  75%    357
+  80%    372
+  90%    399
+  95%    409
+  98%    413
+  99%    415
+ 100%    416 (longest request)
+
+----
+
+For 200 concurrent requests we get:
+
+[source,plain]
+----
+Concurrency Level:      200
+Time taken for tests:   2.613 seconds
+Complete requests:      2000
+Failed requests:        0
+Total transferred:      494000 bytes
+HTML transferred:       238000 bytes
+Requests per second:    765.26 [#/sec] (mean)
+Time per request:       261.349 [ms] (mean)
+Time per request:       1.307 [ms] (mean, across all concurrent requests)
+Transfer rate:          184.59 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   2.3      0      15
+Processing:   191  231  27.9    225     279
+Waiting:      191  231  28.0    225     279
+Total:        191  231  28.6    225     282
+
+Percentage of the requests served within a certain time (ms)
+  50%    225
+  66%    252
+  75%    262
+  80%    265
+  90%    270
+  95%    274
+  98%    279
+  99%    280
+ 100%    282 (longest request)
+----
+
+It's still far from the best results, however 200 concurrent requests produce almost ideal results. With 500 we still see
+that application has some difficulties and hits timeouts for PROD-002 in some cases. But this is not a bulletproof benchmark
+and we are only experimenting to see the order of magnitude.
+
+== Conclusion
+
+And that's it, we finally reached the end of 3 part article on quick start to non-blocking and async processing in Micronaut.
+I hope you have enjoyed it and you've learned something useful during this journey. If you are looking for more - let's
+stay in touch. More Micronaut articles are coming soon!
