@@ -1,5 +1,5 @@
 header.header-section
-    .intro-header(style='background-image: url(' + theme.index_cover + ');')
+    .intro-header(style='background-image: url(' + (config.category.header[page.category] || theme.index_cover) + ');')
         .container
             .row
                 .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
