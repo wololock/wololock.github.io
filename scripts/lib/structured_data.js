@@ -29,8 +29,14 @@ function structured_data(page, config) {
         'name': config.author
     };
     data['publisher'] = {
-        '@type': 'Person',
-        'name': config.author
+        '@type': 'Organization',
+        'name': config.title,
+        'logo': {
+            '@type': 'ImageObject',
+            'url': config.url + '/images/site-logo.jpg',
+            'height': 60,
+            'width': 600
+        }
     };
     data['description'] = util.stripHTML(page.excerpt);
     if (page.tags !== undefined) {
