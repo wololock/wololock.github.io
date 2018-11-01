@@ -9,6 +9,9 @@ block description
 block site_title
     = page.title
 
+block structured_data
+    != structured_data(page, config)
+
 block header
     header.header-section
         .intro-header(style='background-image: url(' + (page.cover || theme.index_cover) + ');')
