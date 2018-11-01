@@ -28,6 +28,10 @@ function structured_data(page, config) {
         '@type': 'Person',
         'name': config.author
     };
+    data['publisher'] = {
+        '@type': 'Person',
+        'name': config.author
+    };
     data['description'] = util.stripHTML(page.excerpt);
     if (page.tags !== undefined) {
         data['keywords'] = page.tags.map(function(tag) { return tag.name }).join(',');
