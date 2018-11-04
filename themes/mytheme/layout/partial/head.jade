@@ -2,9 +2,7 @@ meta(charset="utf-8")
 meta(http-equiv="X-UA-Compatible", content="IE=edge")
 meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
 meta(name="author", content=config.author)
-
-//if theme.favicon
-//    link(rel="icon", href=url_for(theme.favicon))
+meta(name="robots", content="all")
 
 title
    block site_title
@@ -12,6 +10,15 @@ title
 block description
     meta(name="description", content=config.description)
 
+if page.tags !== undefined && page.tags.length > 0
+    meta(name="keywords", content=page.tags.map(function(tag){ return tag.name }).join(","))
+
+link(rel="dns-prefetch", href="//cdnjs.cloudflare.com")
+link(rel="dns-prefetch", href="//disqus.com")
+link(rel="dns-prefetch", href="//c.disquscdn.com")
+
+
+| !{ autoCanonical(config, page) }
 link(rel="alternate", type="application/rss+xml", title=config.title, href=url_for("/atom.xml"))
 
 link(rel="stylesheet", href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css")
