@@ -1,7 +1,7 @@
 ---
 title: Tail-recursive methods in Groovy
 date: 2018-11-12 10:53:17
-updated: 2018-12-11 10:53:17
+updated: 2018-12-11 15:04:17
 tags:
     - groovy
     - jmh
@@ -52,9 +52,9 @@ class Groovy {
 ----
 
 The beauty of this example is that it is concise and straightforward. However, it comes with a cost - every
-recursive call adds a new frame to the call stack, and we can hit memory limit quickly. JVM crashes with
-`StackOverflowError` when it happens. For instance, calculating factorial of number 7,800 hits the memory
-limit on my laptop:
+recursive call adds a new frame to the call stack, and we can hit stack size limit quickly. JVM crashes with
+`StackOverflowError` when it happens. For instance, calculating factorial of number 7,800 hits the stack
+size limit (the default 1024k for OpenJDK 1.8.0_162).
 
 [.text-center]
 --
@@ -63,9 +63,9 @@ limit on my laptop:
 image::/images/groovy-factorial-crash.png[]
 --
 
-TIP: The limitation of a recursive method call depends on available memory and current resources
-usage (e.g., an application that handles multiple connections in parallel may crash for much
-smaller numbers for the same total amount of memory).
+TIP: The limitation of a recursive method call depends on stack size (JVM's `-Xss` option) and its current
+usage load (e.g., an application that executes multiple recursive functions in parallel may crash for much
+smaller numbers for the same stack size). The default stack size for OpenJDS 1.8.0_162 is `1024k`.
 
 == Applying tail recursion
 
@@ -108,7 +108,7 @@ previous example:
 image::/images/groovy-factorial-tail-recursion-crash.png[]
 --
 
-As you can see, we are still affected by out of memory problems for larger numbers. It happens because the
+As you can see, we are still affected by hitting stack size limit problems for larger numbers. It happens because the
 compiler does not optimize tail-recursive calls, and probably never willfootnote:[https://softwareengineering.stackexchange.com/questions/272061/why-doesnt-java-have-optimization-for-tail-recursion-at-all].
 
 == Groovy's `@TailRecursive`
