@@ -1,7 +1,7 @@
 ---
 title: Tail-recursive methods in Groovy
 date: 2018-11-12 10:53:17
-updated: 2018-12-11 15:04:17
+updated: 2018-12-18 10:15:17
 tags:
     - groovy
     - jmh
@@ -65,7 +65,7 @@ image::/images/groovy-factorial-crash.png[]
 
 TIP: The limitation of a recursive method call depends on stack size (JVM's `-Xss` option) and its current
 usage load (e.g., an application that executes multiple recursive functions in parallel may crash for much
-smaller numbers for the same stack size). The default stack size for OpenJDS 1.8.0_162 is `1024k`.
+smaller numbers for the same stack size). The default stack size for OpenJDK 1.8.0_162 is `1024k`.
 
 == Applying tail recursion
 
