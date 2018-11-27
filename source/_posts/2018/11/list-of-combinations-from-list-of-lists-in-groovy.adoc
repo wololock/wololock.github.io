@@ -1,0 +1,128 @@
+---
+title: List of combinations from a list of lists in Groovy
+date: 2018-11-27 22:56:23
+updated: 2018-11-27 22:56:23
+tags:
+    - groovy
+    - combinations
+    - tail-recursion
+    - tail-call
+    - recursion
+    - haskell
+categories:
+    - Groovy Cookbook
+cover: /images/groovy-cookbook.jpg
+og_image: /images/og/groovy-combinations.jpg
+eyeCatchImage: /images/og/groovy-combinations.jpg
+---
+
+Groovy has many useful functions built-in, and one of them is `Iterable.combinations()` that takes aggregated collections and finds all combinations of items.
+However, if we take a look its source code, we will find out that it was implemented using very imperative approach (nested for-loops + some if-statement).
+In this blog post I will show you how to implement the same function using Groovy and +++{% post_link tail-recursive-methods-in-groovy tail-recursion algorithm %}+++. Enjoy!
+
+++++
+<!-- more -->
+++++
+
+== An example
+
+Before we jump into a recursive algorithm implementation, let's take a look at some examples in Groovy Shell.
+
+.Some examples of built-in `combinations()` function executed in groovysh
+[source,bash]
+----
+groovy:000> [[]].combinations()
+===> []
+groovy:000> [['a']].combinations()
+===> [[a]]
+groovy:000> [['a',1],['b',2],[3,4,5]].combinations()
+===> [[a, b, 3], [1, b, 3], [a, 2, 3], [1, 2, 3], [a, b, 4], [1, b, 4], [a, 2, 4], [1, 2, 4], [a, b, 5], [1, b, 5], [a, 2, 5], [1, 2, 5]]
+----
+
+== Tail-recursive algorithm
+
+Without further ado, let's implement a recursive function that takes advantage of a tail call.
+Our algorithm can be described in just a few steps:
+
+1. If the input collection is empty, return accumulated result (stop condition).
+2. Take the head of the input collection and create n new variants of each list collected in the accumulator by appending elements taken from the head list.
+3. Call the function recursively with the tail of the input collection and re-evaluated accumulator.
+
+We know the algorithm, let's write some code.
+
+.Tail-recursive implementation of `combinations(list)` function
+[source,groovy]
+----
+import groovy.transform.CompileStatic
+import groovy.transform.TailRecursive
+
+/**
+ * Generates combinations of elements.
+ *
+ * Example:
+ * combinations([['a',1], ['b',2], [10,20]]) == [['a','b',10],['a','b',20],['a',2,10],['a',2,20],[1,'b',10],[1,'b',20],[1,2,10],[1,2,20]]
+ *
+ */
+@TailRecursive
+@CompileStatic
+<T> List<List<T>> combinations(final List<List<T>> xss, final List<List<T>> result = [[]]) {
+    return !xss ? result : combinations(xss.tail(), process(xss.head(), result))
+}
+
+/**
+ * Generates a new accumulator by creating `n` new variants for each
+ * accumulated list by appending elements taken from head list (`xs`).
+ *
+ * Example:
+ * acc = [[]], xs = [1,2,3] => [[1],[2],[3]]
+ * acc = [[1],[2],[3]], xs = [4,5] => [[1,4],[1,5],[2,4],[2,5],[3,4],[3,5]]
+ * acc = [[1,4],[1,5],[2,4],[2,5],[3,4],[3,5]], xs = ['a','b'] => [[1,4,'a'],[1,4,'b'],[1,5,'a'],[1,5,'b], ..., [3,5,'a'],[3,5,'b']]
+ * ...
+ */
+@CompileStatic
+<T> List<List<T>> process(final List<T> xs, final List<List<T>> acc) {
+    return acc.inject([]) { yss, ys -> yss + xs.collect { x -> ys + x } }
+}
+
+
+// Let's see if implemented function meets expectations
+def values = [[1,2,3],[4,5],[6,7,8,9]]
+def expected = [[1,4,6],[1,4,7],[1,4,8],[1,4,9],[1,5,6],[1,5,7],[1,5,8],[1,5,9],[2,4,6],[2,4,7],[2,4,8],[2,4,9],[2,5,6],[2,5,7],[2,5,8],[2,5,9],[3,4,6],[3,4,7],[3,4,8],[3,4,9],[3,5,6],[3,5,7],[3,5,8],[3,5,9]]
+assert combinations(values) == expected
+
+// Let's see if combinations(list) produces the same output as list.combinations()
+def list = [['a',1], ['b',2], [10,20]]
+assert (list.combinations()) as Set == (combinations(list) as Set)
+----
+
+I made this exemplary code quite verbose, but you can see that after removing the verbosity it could be a one-liner.
+
+== Bonus: Haskell implementation
+
+The recursive algorithm we have implemented using Groovy asks for an example in a functional language. Let's see what could the implementation of combinations function look like in Haskell.
+
+.Haskell implementation of combinations function
+[source,haskell]
+----
+combinations :: [[a]] -> [[a]]
+combinations []       = [[]]
+combinations (xs:xss) = [x : xs' | x <- xs, xs' <- combinations xss]
+----
+
+It's even more concise and more straightforward - just as expected.
+
+.Exemplary usage of combinations function in ghci
+[source,bash]
+----
+*Prelude> combinations [[1,2],[3,4],[5,6]]
+[[1,3,5],[1,3,6],[1,4,5],[1,4,6],[2,3,5],[2,3,6],[2,4,5],[2,4,6]]
+*Prelude> combinations [['a','b'], ['c'], ['d','e','f']]
+["acd","ace","acf","bcd","bce","bcf"]
+*Prelude> combinations []
+[[]]
+----
+
+TIP: If you like learning new programming languages or exploring and mastering the one you already know by
+solving exciting puzzles, there is an excellent opportunity to do so - **Advent Of Code 2018** https://adventofcode.com/[starts on Saturday, December 1st]. It is 25 days of programming simple solutions to quite challenging problems. You can't miss it!
+
+
