@@ -1,0 +1,56 @@
+---
+title: Don't waste your time - Advent Of Code 2018 is running!
+date: 2018-12-02 17:23:11
+updated: 2018-12-02 17:23:11
+categories:
+    - Software developer career boost
+tags:
+    - aoc2018
+    - advent-of-code
+    - programming
+    - haskell
+    - learning
+    - career
+    - progress
+cover: /images/advent-of-code-cover.jpg
+og_image: /images/og/advent-of-code-2018.jpg
+eyeCatchImage: /images/og/advent-of-code-2018.jpg
+---
+
+The https://adventofcode.com/2018[4th edition of Advent Of Code] just started!
+In this short blog post, I would like to share with you some of my thoughts about it and why I participate in this event for the second time in the row.
+
+++++
+<!-- more -->
+++++
+
+== Advent Of Code 2017
+
+The last edition of Advent Of Code was the first one I took part in.
+It was quite a challenging and exciting experience - I have found it as an excellent alternative to everyday programming tasks I do as a software engineer.
+It was so addictive at some point that I decided to wake up before 6:00 AM to crush the new puzzle right after it got published.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/aoc2017.jpg]
+image::/images/aoc2017.jpg[]
+--
+
+== Advent Of Code 2018
+
+Yesterday the 4th edition of https://adventofcode.com[Advent Of Code] has started.
+I have to say I was waiting for this day impatiently.
+This year, however, I took a different strategy - I use this year's edition as an opportunity to sharpen https://github.com/wololock/AoC2018[my functional programming skills with Haskell].
+Last year I did it differently.
+I've focused only on solving the puzzles with the language I use on my daily basis - Java.
+It still gave me a lot of fun, and I could experiment with the algorithms I usually don't have a chance to implement in the projects I work on.
+But it felt like I lost an excellent opportunity to play around with other programming languages.
+This year I've decided to take Haskell and apply the concepts I've learned while working with "Programming in Haskell, 2nd edition" book.
+
+== Conclusion
+
+I want to encourage you to give the Advent Of Code 2018 a chance if you haven't already.
+It's fun to solve those non-trivial puzzles, and it does not require allocating a huge amount of your time.
+You can start anytime you want - it's not about competing with others, it's a great learning experience instead.
+Pick your strategy (learning a new programming language or sharpening the one you already know) and have fun!
