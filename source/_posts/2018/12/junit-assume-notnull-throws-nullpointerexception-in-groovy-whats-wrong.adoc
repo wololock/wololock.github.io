@@ -1,0 +1,238 @@
+---
+title: >-
+  JUnit Assume.assumeNotNull(obj) throws NullPointerException in Groovy - what's
+  wrong?
+date: 2018-12-21 00:49:07
+updated: 2018-12-21 00:49:07
+tags:
+    - groovy
+    - junit
+    - testing
+    - dynamic-typing
+    - junit-4
+categories:
+    - Groovy Cookbook
+cover: /images/groovy-cookbook.jpg
+og_image: /images/og/groovy-junit-assume-notnull-npe.jpg
+eyeCatchImage: /images/og/groovy-junit-assume-notnull-npe.jpg
+---
+
+Ignoring some of the unit tests when given conditions are not satisfied is a handy feature of a JUnit framework.
+I guess you have used many times constructions like `Assume.assumeTrue(expr)` or `Assume.assumeNotNull(expr)` in your test code.
+Today I would like to show you one pretty interesting corner case when the usage of `Assume.assumeNotNull(expr)` throws NPE in the unit test written in Groovy.
+
+++++
+<!-- more -->
+++++
+
+Let's start with a simple example. Below you can find a JUnit test written in Groovy.
+
+.src/test/groovy/GroovyAssumeNotNull.groovy
+[source,groovy]
+----
+import org.junit.Assume
+import org.junit.Test
+
+class GroovyAssumeNotNull {
+
+    @Test
+    void testAssumeNotNull() {
+        def name = System.getProperty("something", null)
+
+        Assume.assumeNotNull(name)
+
+        assert name.length() > 10
+    }
+}
+----
+
+The idea behind this test is straightforward - if property `something` does not exist we expect this test case to be ignored.
+Otherwise, we check if the value stored in this property is longer than 10 characters.
+Let's run the test and see what happens.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/groovy-junit-assume-notnull-npe.png]
+image::/images/groovy-junit-assume-notnull-npe.png[]
+--
+
+Seeing `NullPointerException` in this test is very unexpected.
+It's a bit confusing because the same test written in plain Java behaves as expected.
+
+.src/test/java/JavaAssumeNotNull.java
+[source,java]
+----
+import org.junit.Assert;
+import org.junit.Assume;
+import org.junit.Test;
+
+public class JavaAssumeNotNull {
+
+    @Test
+    public void testAssumeNotNull() {
+        String name = System.getProperty("something");
+
+        Assume.assumeNotNull(name);
+
+        Assert.assertTrue(name.length() > 10);
+    }
+}
+----
+
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/java-junit-assume-notnull.png]
+image::/images/java-junit-assume-notnull.png[]
+--
+
+The main question is - what's going on?
+
+== Wrapping `null` variables with arrays
+
+To understand in details what's happening in this situation we need to take a few steps back.
+It's important to check what does the `Assume.assumeNotNull(expr)` method looks like.
+
+.The implementation of `assumeNotNull` method
+[source,java]
+----
+public static void assumeNotNull(Object... objects) {
+    assumeThat(Arrays.asList(objects), CoreMatchers.everyItem(CoreMatchers.notNullValue()));
+}
+----
+
+We can see that this method defines parameters as varargs. There are 3 different values (or states) we can expect here:
+
+- non-empty array
+- an empty array
+- a null value
+
+Let's take a quick look at this simple Java example that explains in which conditions specific values occur:
+
+.Five different use cases of invoking method with varargs parameters
+[source,java]
+----
+import java.util.Arrays;
+
+public class VarargsWrappingExample {
+
+    public static void main(String[] args) {
+        String name1 = "John";
+        String name2 = null;
+
+        foo(name1);
+        foo(name2);
+        foo((String) null);
+        foo((String[]) null);
+        foo(null);
+    }
+
+    static void foo(String... args) {
+        System.out.println("args = " + Arrays.toString(args));
+    }
+}
+----
+
+And here is the output:
+
+[source,text]
+----
+args = [John]
+args = [null]
+args = [null]
+args = null
+args = null
+----
+
+We can sum it up with the following observation:
+
+- if we pass a non-array value with its type information to the method that accepts varargs, the value gets wrapped with the array of this specific type,
+- if we pass a value of array type - no additional wrapping with the array is needed
+- if we pass a `null` value without type information, varargs is represented as `null`.
+
+Now, what happens inside `Assume.assumeNotNull(expr)`  method is the following: it expects a non-empty array as an input, then it transforms this array into a list, and it verifies that all elements of this list are not `null` values.
+Otherwise, it ignores the test.
+It works as expected when the `null` value gets wrapped with an array because we get a list with just one element - the `null` value.
+
+> +++<h4>15.12.4.2. Evaluate Arguments</h4>+++
+>
+> The process of evaluating the argument list differs, depending on whether the method being invoked is a fixed arity method or a variable arity method (https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.4.1[§8.4.1]).
+>
+> If the method being invoked is a variable arity method `m`, it necessarily has `n > 0` formal parameters. The final formal parameter of m necessarily has type `T[]` for some `T`, and m is necessarily being invoked with `k ≥ 0` actual argument expressions.
+>
+> If `m` is being invoked with `k ≠ n` actual argument expressions, or, if `m` is being invoked with `k = n` actual argument expressions and the type of the k'th argument expression is not assignment compatible with `T[]`, then the argument list (`e1`, ..., `en-1`, `en`, ..., `ek`) is evaluated as if it were written as (`e1`, ..., `en-1`, `new |T[]| { en, ..., ek }`), where `|T[]|` denotes the erasure (https://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.6[§4.6]) of `T[]`.
+>
+> +++<hr/>+++
+>
+> Source: https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.12.4.2[Java Language Specification, Chapter 15: Expressions]
+
+When we finally understand how does the Java varargs wrapping mechanism works, let's try to understand the Groovy use case.
+In contrast to Java's static compilation, Groovy is a dynamically typed language by default.
+It means that *the decision about the variable type is made in the runtime*.
+And it makes a quite straightforward decision - the method expects an array of objects, a `null` value is passed, and for Groovy this is direct information that you consciously assigned `null` to an array.
+This is the price of the dynamic type system, where the context of specific usage matters.
+
+
+== The solution
+
+There are at least two ways you can make a Groovy example ignore the test in the same way as the Java example does.
+
+==== 1. Wrap the variable with array and make the type explicit
+
+[source,groovy]
+----
+import org.junit.Assume
+import org.junit.Test
+
+class GroovyAssumeNotNull {
+
+    @Test
+    void testAssumeNotNull() {
+        def name = System.getProperty("something", null)
+
+        Assume.assumeNotNull([name] as Object[])
+
+        assert name.length() > 10
+    }
+}
+----
+
+In this case, we decide for Groovy that the non-array variable has to be wrapped with an array of the given type.
+
+==== 2. Use static compilation
+
+[source,groovy]
+----
+import groovy.transform.CompileStatic
+import org.junit.Assume
+import org.junit.Test
+
+@CompileStatic
+class GroovyAssumeNotNull {
+
+    @Test
+    void testAssumeNotNull() {
+        def name = System.getProperty("something", null)
+
+        Assume.assumeNotNull(name)
+
+        assert name.length() > 10
+    }
+}
+----
+
+If we don't use any of Groovy's dynamic features, we can consider using static compilation with `@CompileStatic` annotation.
+
+== Conclusion
+
+I hope you have learned something useful from this blog post.
+If there is any specific Groovy related topic you would like to read about, please let me know in the comments section below.
+Also, don't hesitate to share, comment and thumbs up this article, so I can see it was worth spending the time on writing these words on Friday 00:47 AM :-)
+See you next time!
+
+
+
+
+
