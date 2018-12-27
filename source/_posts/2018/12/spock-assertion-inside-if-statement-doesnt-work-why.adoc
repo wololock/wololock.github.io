@@ -1,0 +1,410 @@
+---
+title: Spock assertion inside if-statement doesn't work - why?
+date: 2018-12-27 19:52:37
+updated: 2018-12-27 19:52:37
+categories:
+    - Tales from debugger
+tags:
+    - spock
+    - groovy
+    - java
+    - unit-testing
+    - testing
+cover: /img/post-debugger.jpg
+og_image: /images/og/spock-then-assertion-if.jpg
+eyeCatchImage: /images/og/spock-then-assertion-if.jpg
+---
+
+http://spockframework.org/[Spock Framework] is one of my favorite tools in the Groovy ecosystem toolbox.
+It makes writing automated tests a few times more pleasant thanks to its opinionated syntax.
+From time to time I see some corner cases where Spock behaves unexpectedly.
+Today I would like to show you one of these corner cases and explains what happens under the hood.
+
+++++
+<!-- more -->
+++++
+
+== The basics
+
+Spock uses a given-when-then structure known from https://en.wikipedia.org/wiki/Behavior-driven_development[Behavior-driven development].
+Its tidy syntax comes with some imposed requirements and limitations, like the one mentioned in the Spock's documentation:footnote:[http://spockframework.org/spock/docs/1.2/spock_primer.html#_when_and_then_blocks]
+
+> The `when` and `then` blocks always occur together.
+> They describe a stimulus and the expected response.
+> Whereas `when` blocks may contain arbitrary code, `then` blocks are restricted to _conditions_, _exception conditions_, _interactions_, and _variable definitions_.
+> A feature method may contain multiple pairs of `when`-`then` blocks.
+
+It states clearly what 4 kinds of statements we can use inside `then` block.
+Let's take a closer look at all of them.
+
+=== 1. Conditions
+
+.An example of the condition in the then block
+[source,groovy]
+----
+then:
+expected == result
+----
+
+This is a simple expression that compares some `result` with `expected` value, which was defined most probably in the `given` or `setup` block.
+
+=== 2. Exception conditions
+
+.An example of an exception condition in the then block
+[source,groovy]
+----
+then:
+thrown IllegalArgumentException
+----
+
+In this example we define expectation - an exception of a specific type has to be thrown.
+
+=== 3. Interactions
+
+.An example of interaction expectation in the then block
+[source,groovy]
+----
+then:
+1 * foo.bar() >> "Hello!"
+----
+
+In this example, we say that we expect that `foo.bar()` method gets called exactly one time, and it returns `"Hello"` value.
+
+=== 4. Variable definitions
+
+.An example of variable definition in the then block
+[source,groovy]
+----
+then:
+def expected = 10
+result == expected
+----
+
+So here's the last available statement type - variable definition.
+As you can see you can define any variable inside the `then` block, however, this is not a good practice.
+The `then` block should be as small and smooth as possible, and this variable definition adds nothing else than noise.
+In some specific use cases, it might make more sense to do so, but it's usually a better choice to consider `given` or `setup` blocks for variable definitions.
+
+== Using if-statement in the `then` block
+
+Now when we have recapped basic concepts of Spock's `then` block structure, let's take a look at some unusual example.
+Below you can find a simple Spock unit test that contains 3 methods.
+The expectation is that all of them fail because of unsatisfied assertion.
+
+.All of these test methods should fail
+[source,groovy]
+----
+import groovy.transform.CompileStatic
+import spock.lang.Specification
+
+@CompileStatic
+class SpockThenSpecialUseCase extends Specification {
+
+    def "(1) should fail on expected == result comparison"() {
+        given:
+        def expected = "Hello, John!"
+
+        when:
+        def result = "Hello, Joe!"
+
+        then:
+        expected == result
+    }
+
+    def "(2) should fail on expected == result comparison"() {
+        given:
+        def expected = "Hello, John!"
+
+        when:
+        def result = "Hello, Joe!"
+
+        then:
+        if (expected) {
+            expected == result
+        }
+    }
+
+    def "(3) should fail on expected == result comparison"() {
+        given:
+        def expected = "Hello, John!"
+
+        when:
+        def result = "Hello, Joe!"
+
+        then:
+        if (expected) {
+            assert expected == result
+        }
+    }
+}
+----
+
+When we run this test we will see the following result:
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/spock-then-if-assertion.png}]
+image::/images/spock-then-if-assertion.png[]
+--
+
+The second test case didn't fail as expected.
+The answer is clear and straightforward - if-statement does not fit to any of 4 statements we have described in the previous section.
+
+== Looking for an answer
+
+I'm pretty sure this simple answer does not satisfy your pursuit to better understanding what happens under the hood.
+Let's dig one level down and see what the decompiled bytecode of this class looks like.
+
+.Spock test decompiled from `.class` file to Java
+[source,java]
+----
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+import groovy.lang.GroovyObject;
+import org.codehaus.groovy.runtime.ScriptBytecodeAdapter;
+import org.codehaus.groovy.runtime.typehandling.DefaultTypeTransformation;
+import org.spockframework.runtime.ErrorCollector;
+import org.spockframework.runtime.SpockRuntime;
+import org.spockframework.runtime.ValueRecorder;
+import org.spockframework.runtime.model.BlockKind;
+import org.spockframework.runtime.model.BlockMetadata;
+import org.spockframework.runtime.model.FeatureMetadata;
+import org.spockframework.runtime.model.SpecMetadata;
+import spock.lang.Specification;
+
+@SpecMetadata(
+    filename = "SpockThenSpecialUseCase.groovy",
+    line = 4
+)
+public class SpockThenSpecialUseCase extends Specification implements GroovyObject {
+    public SpockThenSpecialUseCase() {
+    }
+
+    @FeatureMetadata(
+        line = 7,
+        name = "(1) should fail on expected == result comparison",
+        ordinal = 0,
+        blocks = {@BlockMetadata(
+    kind = BlockKind.SETUP,
+    texts = {}
+), @BlockMetadata(
+    kind = BlockKind.WHEN,
+    texts = {}
+), @BlockMetadata(
+    kind = BlockKind.THEN,
+    texts = {}
+)},
+        parameterNames = {}
+    )
+    public void $spock_feature_0_0() { //<1>
+        ErrorCollector $spock_errorCollector = new ErrorCollector(false);
+        ValueRecorder $spock_valueRecorder = new ValueRecorder();
+
+        Object var10000;
+        try {
+            String expected = "Hello, John!";
+            String result = "Hello, Joe!";
+
+            try {
+                SpockRuntime.verifyCondition($spock_errorCollector, $spock_valueRecorder.reset(), "expected == result", Integer.valueOf(15), Integer.valueOf(9), (Object)null, $spock_valueRecorder.record($spock_valueRecorder.startRecordingValue(Integer.valueOf(2)), ScriptBytecodeAdapter.compareEqual($spock_valueRecorder.record($spock_valueRecorder.startRecordingValue(Integer.valueOf(0)), expected), $spock_valueRecorder.record($spock_valueRecorder.startRecordingValue(Integer.valueOf(1)), result))));
+                var10000 = null;
+            } catch (Throwable var14) {
+                SpockRuntime.conditionFailedWithException($spock_errorCollector, $spock_valueRecorder, "expected == result", Integer.valueOf(15), Integer.valueOf(9), (Object)null, var14);
+                var10000 = null;
+            } finally {
+                ;
+            }
+
+            ScriptBytecodeAdapter.invokeMethod0(SpockThenSpecialUseCase.class, ((SpockThenSpecialUseCase)this).getSpecificationContext().getMockController(), (String)"leaveScope");
+        } finally {
+            $spock_errorCollector.validateCollectedErrors();
+            var10000 = null;
+        }
+
+    }
+
+    @FeatureMetadata(
+        line = 18,
+        name = "(2) should fail on expected == result comparison",
+        ordinal = 1,
+        blocks = {@BlockMetadata(
+    kind = BlockKind.SETUP,
+    texts = {}
+), @BlockMetadata(
+    kind = BlockKind.WHEN,
+    texts = {}
+), @BlockMetadata(
+    kind = BlockKind.THEN,
+    texts = {}
+)},
+        parameterNames = {}
+    )
+    public void $spock_feature_0_1() { //<2>
+        String expected = "Hello, John!";
+        String result = "Hello, Joe!";
+        if (DefaultTypeTransformation.booleanUnbox(expected)) {
+            ScriptBytecodeAdapter.compareEqual(expected, result);
+        }
+
+        ScriptBytecodeAdapter.invokeMethod0(SpockThenSpecialUseCase.class, ((SpockThenSpecialUseCase)this).getSpecificationContext().getMockController(), (String)"leaveScope");
+    }
+
+    @FeatureMetadata(
+        line = 31,
+        name = "(3) should fail on expected == result comparison",
+        ordinal = 2,
+        blocks = {@BlockMetadata(
+    kind = BlockKind.SETUP,
+    texts = {}
+), @BlockMetadata(
+    kind = BlockKind.WHEN,
+    texts = {}
+), @BlockMetadata(
+    kind = BlockKind.THEN,
+    texts = {}
+)},
+        parameterNames = {}
+    )
+    public void $spock_feature_0_2() { //<3>
+        ErrorCollector $spock_errorCollector = new ErrorCollector(false);
+        ValueRecorder $spock_valueRecorder = new ValueRecorder();
+
+        Object var10000;
+        try {
+            String expected = "Hello, John!";
+            String result = "Hello, Joe!";
+            if (DefaultTypeTransformation.booleanUnbox(expected)) {
+                try {
+                    SpockRuntime.verifyCondition($spock_errorCollector, $spock_valueRecorder.reset(), "expected == result", Integer.valueOf(40), Integer.valueOf(20), (Object)null, $spock_valueRecorder.record($spock_valueRecorder.startRecordingValue(Integer.valueOf(2)), ScriptBytecodeAdapter.compareEqual($spock_valueRecorder.record($spock_valueRecorder.startRecordingValue(Integer.valueOf(0)), expected), $spock_valueRecorder.record($spock_valueRecorder.startRecordingValue(Integer.valueOf(1)), result))));
+                    var10000 = null;
+                } catch (Throwable var14) {
+                    SpockRuntime.conditionFailedWithException($spock_errorCollector, $spock_valueRecorder, "expected == result", Integer.valueOf(40), Integer.valueOf(20), (Object)null, var14);
+                    var10000 = null;
+                } finally {
+                    ;
+                }
+            }
+
+            ScriptBytecodeAdapter.invokeMethod0(SpockThenSpecialUseCase.class, ((SpockThenSpecialUseCase)this).getSpecificationContext().getMockController(), (String)"leaveScope");
+        } finally {
+            $spock_errorCollector.validateCollectedErrors();
+            var10000 = null;
+        }
+
+    }
+}
+----
+
+The Java code doesn't look as smooth as Groovy one, but we can quickly spot the most interesting parts.
+The method pass:[<em class="conum" data-value="1"></em>] shows what does the decompiled bytecode representation looks like.
+We can see that the following Spock part:
+
+[source,groovy]
+----
+then:
+expected == result
+----
+
+gets replaced by something like this (method call formatted for better readability):
+
+[source,java]
+----
+SpockRuntime.verifyCondition(
+    $spock_errorCollector,
+    $spock_valueRecorder.reset(),
+    "expected == result",
+    Integer.valueOf(15),
+    Integer.valueOf(9),
+    (Object)null,
+    $spock_valueRecorder.record(
+        $spock_valueRecorder.startRecordingValue(Integer.valueOf(2)),
+        ScriptBytecodeAdapter.compareEqual(
+            $spock_valueRecorder.record($spock_valueRecorder.startRecordingValue(Integer.valueOf(0)), expected),
+            $spock_valueRecorder.record($spock_valueRecorder.startRecordingValue(Integer.valueOf(1)), result)
+        )
+    )
+);
+----
+
+Spock uses its custom compiler which modifies abstract syntax tree (AST) of your unit test.
+It checks if the `then` (and any other) block meets requirements and rewrites it.
+There are two methods we could start investigation from to get a better understanding of what Spock does under the hood:
+
+* https://github.com/spockframework/spock/blob/spock-1.2/spock-core/src/main/java/org/spockframework/compiler/SpecRewriter.java#L322-L338[`org.spockframework.compiler.SpecRewriter.visitThenBlock()`]
+* https://github.com/spockframework/spock/blob/spock-1.2/spock-core/src/main/java/org/spockframework/compiler/DeepBlockRewriter.java#L141-L164[`org.spockframework.compiler.DeepBlockRewriter.handleImplicitCondition()`]
+
+Now, let's take a quick look at the pass:[<em class="conum" data-value="2"></em>] test case that used if-statement inside the `then` block and passed:
+
+[source,java]
+----
+public void $spock_feature_0_1() {
+    String expected = "Hello, John!";
+    String result = "Hello, Joe!";
+    if (DefaultTypeTransformation.booleanUnbox(expected)) {
+        ScriptBytecodeAdapter.compareEqual(expected, result);
+    }
+
+    ScriptBytecodeAdapter.invokeMethod0(SpockThenSpecialUseCase.class, ((SpockThenSpecialUseCase)this).getSpecificationContext().getMockController(), (String)"leaveScope");
+}
+----
+
+It looks like not a single line of code got modified the AST.
+It happened because Spock's compiler didn't find a valid statement for a `then` block and thus it didn't have to rewrite anything.
+
+A different situation takes place in the example pass:[<em class="conum" data-value="3"></em>].
+Here we have called `assert` explicitly, and it was an explicit instruction for Spock's compiler to modify AST.
+The if-statement is still here, but the following part:
+
+[source,groovy]
+----
+then:
+if (expected) {
+    assert expected == result
+}
+----
+
+was compiled to a following code (decompiled Java representation):
+
+[source,java]
+----
+if (DefaultTypeTransformation.booleanUnbox(expected)) {
+    try {
+        SpockRuntime.verifyCondition(
+            $spock_errorCollector,
+            $spock_valueRecorder.reset(),
+            "expected == result",
+            Integer.valueOf(40),
+            Integer.valueOf(20),
+            (Object)null,
+            $spock_valueRecorder.record(
+                $spock_valueRecorder.startRecordingValue(Integer.valueOf(2)),
+                ScriptBytecodeAdapter.compareEqual(
+                    $spock_valueRecorder.record($spock_valueRecorder.startRecordingValue(Integer.valueOf(0)), expected),
+                    $spock_valueRecorder.record($spock_valueRecorder.startRecordingValue(Integer.valueOf(1)), result)
+                )
+            )
+        );
+        var10000 = null;
+    } catch (Throwable var14) {
+        SpockRuntime.conditionFailedWithException($spock_errorCollector, $spock_valueRecorder, "expected == result", Integer.valueOf(40), Integer.valueOf(20), (Object)null, var14);
+        var10000 = null;
+    } finally {
+        ;
+    }
+}
+----
+
+As we can see Spock understands explicit `assert` instruction and passes its condition to&nbsp;a&nbsp; `SpockRuntime.verifyCondition()` method as shown above.
+
+== Conclusion
+
+I hope you find this article interesting.
+Don't hesitate to leave a comment in the section below.
+Maybe you have experienced some unexpected Spock behavior - please share your story with the rest of us.
+Take care and see you next time!
+
+
