@@ -14,6 +14,7 @@ if page.tags !== undefined && page.tags.length > 0
     meta(name="keywords", content=page.tags.map(function(tag){ return tag.name }).join(","))
 
 link(rel="dns-prefetch", href="//cdnjs.cloudflare.com")
+link(rel="dns-prefetch", href="//maxcdn.bootstrapcdn.com")
 link(rel="dns-prefetch", href="//disqus.com")
 link(rel="dns-prefetch", href="//c.disquscdn.com")
 
@@ -21,11 +22,11 @@ link(rel="dns-prefetch", href="//c.disquscdn.com")
 | !{ autoCanonical(config, page) }
 link(rel="alternate", type="application/rss+xml", title=config.title, href=url_for("/atom.xml"))
 
-link(rel="stylesheet", href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css")
-link(rel="stylesheet", href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css")
+link(rel="stylesheet", href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css")
+link(rel="stylesheet", href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
 
 if theme.highlight.enable
-    link(rel="stylesheet", href="//cdn.bootcss.com/highlight.js/9.13.1/styles/androidstudio.min.css")
+    link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css")
 
 link(rel="stylesheet", href=url_for("/css/main.css?v=" + config.version.css))
 link(rel="stylesheet", href=url_for("/css/conum.css"))
