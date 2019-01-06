@@ -6,11 +6,11 @@ navbar-links:
 avatar: /hexo.png
 favicon: /hexo.png
 
-index_cover: /img/index-header.jpg
+index_cover: /img/post-bg-1.jpg
 
 header:
-  title: "Wololock's blog"
-  motto: Learning &bull; Programming &bull; Freelancing &bull; Java &bull; Groovy  &bull; Other stuff
+  title: Szymon Stępniak
+  motto: I walk through e.printStackTrace() so you don't have to
 
 rss: /atom.xml
 googlefonts:
@@ -25,6 +25,16 @@ highlight:
   style_path: "/css/highlight.css"
 
 footer:
+  rss:
+    link: https://feeds.feedburner.com/Eprintstacktracenet
+    title: RSS
+    icon: fa-rss
+    enable: true
+  twitter:
+    link: https://twitter.com/wololock
+    title: Twitter
+    icon: fa-twitter
+    enable: true
   github:
     link: https://github.com/wololock
     title: GitHub
@@ -35,11 +45,6 @@ footer:
     title: StackOverflow
     icon: fa-stack-overflow
     enable: false
-  twitter:
-    link: https://twitter.com/wololock
-    title: Twitter
-    icon: fa-twitter
-    enable: true
   mail:
     link: 'mailto:szymon.stepniak@gmail.com'
     title: Email me
