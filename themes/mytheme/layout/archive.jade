@@ -22,17 +22,24 @@ block content
     .container
         .row
             .col-lg-10.col-lg-offset-1.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0
+                - var archive = site.posts.sort('date').reverse().reduce(function(acc,post) {
+                -   var year = full_date(post.date, 'YYYY');
+                -   if (acc[year] === undefined) { acc[year] = [] }
+                -   acc[year].push({date: post.date, path: post.path, title: post.title});
+                -   return acc
+                - }, {});
+
+                - var years = Object.keys(archive).sort().reverse();
+
                 ul.archive-list
-                    - var prev_year = 0;
-                    - site.posts.sort('date').reverse().each(function(post) {
-                    - var current_year = full_date(post.date, 'YYYY')-0;
-                    if current_year !== prev_year
-                        h2= current_year
-                    - prev_year=current_year;
+                    - years.forEach(function(year) {
+                    h2=year
+                        span.small=archive[year].length
+
+                    - var posts = archive[year];
+                    - posts.forEach(function(post) {
                     li.col-lg-offset-1.col-md-offset-1
-                        span.post-meta= full_date(post.date, 'MMM D')
-                        a.post-title(href=url_for(post.path))= post.title
-                    - })
-
-
-
+                        span.post-meta=full_date(post.date, 'MMM D')
+                        a.post-title(href=url_for(post.path))=post.title
+                    - });
+                    - });

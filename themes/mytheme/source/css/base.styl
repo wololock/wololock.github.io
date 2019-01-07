@@ -462,9 +462,10 @@ form .row:first-child .floating-label-form-group
 .archive-list
   li
     list-style none
-    padding 5px 0
+    padding 6px 0
     overflow hidden
-    margin 0 0 8px 12px
+    margin 0 0 0 12px
+    border-bottom 2px dashed #f5f5f5
 
     span.post-meta
       color #808080
@@ -483,14 +484,37 @@ form .row:first-child .floating-label-form-group
   h2
     font-size 64pt
     color #eaeaea
+    position relative
+    display inline-block
+    border-bottom 5px solid #adadad
+
+    span.small
+      position absolute
+      right -40px
+      bottom 10px
+      border-radius 50%
+      width 35px
+      height 35px
+      line-height 25px
+      color #fff
+      font-weight 700
+      text-align center
+      display inline-block
+      background color-orange
+      font-size 1.5rem
+      padding 5px
 
   @media only screen and (max-width: 767px)
     padding 0 5px
     margin 0
 
     h2
-      margin 0
+      display block
+      margin 0 auto
       text-align center
+
+      span.small
+        right 20px
 
     li
       padding 0
