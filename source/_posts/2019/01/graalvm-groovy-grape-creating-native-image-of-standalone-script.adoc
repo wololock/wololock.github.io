@@ -1,0 +1,338 @@
+---
+title: GraalVM with Groovy and Grape - creating native image of a standalone script
+date: 2019-01-16 15:14:42
+updated: 2019-01-16 15:14:42
+tags:
+    - groovy
+    - graalvm
+    - grape
+    - native-image
+categories:
+    - Groovy Cookbook
+cover: /images/graalvm-groovy-bg.jpg
+og_image: /images/og/graalvm-groovy-grape.jpg
+eyeCatchImage: /images/og/graalvm-groovy-grape.jpg
+---
+
+https://www.graalvm.org/[GraalVM] 1.0.0-RC11 was released yesterday, and I thought it would be an excellent excuse to play
+around with it a while. I decided to create a simple Groovy script that uses http://docs.groovy-lang.org/latest/html/documentation/grape.html[Grape dependency management]
+system to load an external library and create a standalone native image from it.
+I thought it wouldn't be possible, but luckily - I was wrong.
+
+++++
+<!-- more -->
+++++
+
+== Prerequisites
+
+Let's start with defining runtime environment.
+
+- *GraalVM* 1.0.0-RC11 (the most recent version available while writing this blog post)
+- *Groovy* 2.5.2
+
+NOTE: I use a great command line tool called https://sdkman.io/[SDKMAN!] to install both, GraalVM JDK and Groovy library.
+It allows me to install GraalVM with the following command: `sdk install java 1.0.0-rc-11-grl` and then I can switch to this
+Java version for current shell session with `sdk use java 1.0.0-rc-11-grl`.
+
+== The code
+
+In this article, I will use a reasonably simple Groovy script. This script expects a single command line
+argument - a website URL, and it displays to the console the information about how many links given
+website contains. Nothing fancy, but you probably see how we could extend this example to do something
+more useful.
+
+.src/CountLinks.groovy
+[source,groovy]
+----
+#!groovy
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+
+@Grab(group='org.jsoup', module='jsoup', version='1.11.3')
+
+final String url = args[0]
+
+final Document doc = Jsoup.connect(url).get()
+final int links = doc.select("a").size()
+println "Website ${url} contains ${links} links."
+----
+
+We can run it and see how much time it took to produce the output.
+
+[source,bash]
+----
+> time groovy CountLinks.groovy https://e.printstacktrace.blog
+Website https://e.printstacktrace.blog contains 95 links.
+groovy CountLinks.groovy https://e.printstacktrace.blog  6,29s user 0,26s system 390% cpu 1,677 total
+----
+
+It took around *1.7 seconds* to produce the result. Quite long, especially for a script that does not do
+much work.  We can assume that network communication consumed around 200 milliseconds,
+according to `curl` results.
+
+[source,bash]
+----
+> time curl -o /tmp/output "https://e.printstacktrace.blog"
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 23256    0 23256    0     0  23256      0 --:--:-- --:--:-- --:--:--  118k
+curl -o /tmp/output "https://e.printstacktrace.blog"  0,02s user 0,01s system 10% cpu 0,206 total
+----
+
+It looks like that starting JVM and running Grape dependency manager takes around 1.5 seconds in this case.
+Let's try to improve the performance by executing our script as a Java compiled class.
+
+== Compiling script to Java bytecode
+
+We need to explain one important thing. Grape dependency manager has some limitationsfootnote:[https://github.com/oracle/graal/blob/master/substratevm/LIMITATIONS.md], and it does not work without
+Groovy class loader. There is a configuration annotation called `@GrabConfig(systemClassLoader = true)`, but it does not
+have any effect when we compile the script to a Java bytecode class file. A script containing this annotation
+generates the same bytecode as the one that misses it. If this annotation had any effect when running compiled
+bytecode as a Java program, then we could use `-Djava.system.class.loader` to specify the Groovy class loader.
+
+Here is the full Java command (with configured classpath) and the error Grape library throws because of the invalid class loader:
+
+[source,bash]
+----
+> java -Djava.system.class.loader=groovy.lang.GroovyClassLoader -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/2.5.2/groovy-2.5.2.jar:$HOME/.m2/repository/org/apache/ivy/ivy/2.4.0/ivy-2.4.0.jar" CountLinks https://e.printstacktrace.blog
+
+Exception in thread "main" java.lang.ExceptionInInitializerError
+Caused by: java.lang.RuntimeException: No suitable ClassLoader found for grab
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	...
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.invoke(StaticMetaMethodSite.java:46)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.callStatic(StaticMetaMethodSite.java:102)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:55)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:197)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
+	at CountLinks.<clinit>(CountLinks.groovy)
+----
+
+However, there is workaround we can apply. We can turn off Grape dependency manager with `-Dgroovy.grape.enabled=false`
+option and we can add Jsoup library JAR file to the classpath manually instead. Let's give it a shot and see what happens.
+
+[source,bash]
+----
+java -Dgroovy.grape.enable=false -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/2.5.2/groovy-2.5.2.jar:$HOME/.groovy/grapes/org.jsoup/jsoup/jars/jsoup-1.11.3.jar" CountLinks https://e.printstacktrace.blog
+
+Website https://e.printstacktrace.blog contains 95 links.
+----
+
+In this case, we only added `groovy-all-2.5.2.jar` and `jsoup-1.11.3.jar` to execute the script successfully. Measuring
+execution time of the compiled Java program without Grape dependency manager shown that it takes around *1 second* in
+average to produce the same output as it was before. We still suffer from JVM boot time, but we can improve in this
+area as well. It's time to create GraalVM native image.
+
+== Creating GraalVM native image
+
+Let's use the existing CountLinks.class file to create a GraalVM native image from it. We need two JSON files
+containing reflection configuration for GraalVM. The first one https://gist.github.com/wololock/e99d748e724bf5ae6ce930c1b8cb9a90[can be found here], and it contains a configuration
+of all dynamically generated runtime methods for Groovy 2.5.2. The second one contains only Groovy
+script class we created.
+
+.src/countlinks.json
+[source,json]
+----
+[
+  {
+    "name": "CountLinks",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  }
+]
+----
+
+.Creating native image
+[source,bash]
+----
+> native-image -Dgroovy.grape.enable=false \
+    --enable-url-protocols=https \
+    --allow-incomplete-classpath \
+    -H:+AllowVMInspection \
+    -H:+ReportUnsupportedElementsAtRuntime \
+    -H:ReflectionConfigurationFiles=dgm.json,countlinks.json \
+    --no-server \
+    -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/2.5.2/groovy-2.5.2.jar:$HOME/.groovy/grapes/org.jsoup/jsoup/jars/jsoup-1.11.3.jar" \
+    CountLinks
+
+[countlinks:305]    classlist:   2,110.17 ms
+[countlinks:305]        (cap):     998.28 ms
+[countlinks:305]        setup:   2,746.31 ms
+[countlinks:305]   (typeflow):  47,883.31 ms
+[countlinks:305]    (objects): 107,634.87 ms
+[countlinks:305]   (features):   1,475.31 ms
+[countlinks:305]     analysis: 158,631.80 ms
+[countlinks:305]     universe:   1,639.31 ms
+[countlinks:305]      (parse):   5,070.39 ms
+[countlinks:305]     (inline):   4,234.00 ms
+[countlinks:305]    (compile):  34,543.96 ms
+[countlinks:305]      compile:  46,402.57 ms
+[countlinks:305]        image:  10,556.78 ms
+[countlinks:305]        write:   1,365.01 ms
+[countlinks:305]      [total]: 223,632.13 ms
+----
+
+The native image generation succeeds. Let's run it.
+
+[source,bash]
+----
+> ./countlinks https://e.printstacktrace.blog
+
+Exception in thread "main" groovy.lang.MissingMethodException: No signature of method: static org.codehaus.groovy.runtime.InvokerHelper.runScript() is applicable for argument types: (Class, [Ljava.lang.String;) values: [class CountLinks, [https://e.printstacktrace.blog]]
+	at groovy.lang.MetaClassImpl.invokeStaticMissingMethod(MetaClassImpl.java:1528)
+	at groovy.lang.MetaClassImpl.invokeStaticMethod(MetaClassImpl.java:1514)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaClassSite.call(StaticMetaClassSite.java:52)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:136)
+	at CountLinks.main(CountLinks.groovy)
+----
+
+No luck. GraalVM throws this exception because at the current stage of the developmentfootnote:[https://github.com/oracle/graal/issues/708] it is not possible to invoke
+any Groovy script class that is not statically compiled. Let's fix it. We use compiler configuration script
+file named `compiler.groovy`. It adds static compilation and type checking.
+
+.src/compiler.groovy
+[source,groovy]
+----
+withConfig(configuration) {
+    ast(groovy.transform.CompileStatic)
+    ast(groovy.transform.TypeChecked)
+}
+----
+
+Let's recompile the code using compiler configuration script.
+
+
+[source,bash]
+----
+> groovyc --configscript=compiler.groovy CountLinks.groovy
+
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+CountLinks.groovy: 7: [Static type checking] - The variable [args] is undeclared.
+ @ line 7, column 20.
+   final String url = args[0]
+                      ^
+
+1 error
+----
+
+Bad luck. The error thrown by the static type checking says that there is no args variable available.
+We need to modify our initial script to make args variable available.
+
+.src/CountLinks.groovy
+[source,groovy]
+----
+#!groovy
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+
+@Grab(group='org.jsoup', module='jsoup', version='1.11.3')
+
+final String[] args = getProperty("args") as String[]
+final String url = args[0]
+
+final Document doc = Jsoup.connect(url).get()
+final int links = doc.select("a").size()
+println "Website ${url} contains ${links} links."
+----
+
+Before we create a native image, let's run this statically compiled Groovy script as a Java program to see
+if it makes any difference comparing to the previous example. It is not a bulletproof benchmark, but it
+looks like the new bytecode executes in around 830 milliseconds.
+
+[source,bash]
+----
+> time java -Dgroovy.grape.enable=false -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/2.5.2/groovy-2.5.2.jar:$HOME/.groovy/grapes/org.jsoup/jsoup/jars/jsoup-1.11.3.jar" CountLinks https://e.printstacktrace.blog
+Website https://e.printstacktrace.blog contains 95 links.
+java -Dgroovy.grape.enable=false -cp  CountLinks   2,59s user 0,13s system 330% cpu 0,823 total
+----
+
+Let's recreate the native image.
+
+[source,bash]
+----
+> native-image -Dgroovy.grape.enable=false \
+    --enable-url-protocols=https \
+    --allow-incomplete-classpath \
+    -H:+AllowVMInspection \
+    -H:+ReportUnsupportedElementsAtRuntime \
+    -H:ReflectionConfigurationFiles=dgm.json,countlinks.json \
+    --no-server \
+    -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/2.5.2/groovy-2.5.2.jar:$HOME/.groovy/grapes/org.jsoup/jsoup/jars/jsoup-1.11.3.jar" \
+    CountLinks
+
+[countlinks:17259]    classlist:   1,989.96 ms
+[countlinks:17259]        (cap):     989.83 ms
+[countlinks:17259]        setup:   2,380.31 ms
+[countlinks:17259]   (typeflow):  42,717.13 ms
+[countlinks:17259]    (objects): 105,959.35 ms
+[countlinks:17259]   (features):   1,133.75 ms
+[countlinks:17259]     analysis: 151,461.35 ms
+[countlinks:17259]     universe:   1,489.67 ms
+[countlinks:17259]      (parse):   4,564.73 ms
+[countlinks:17259]     (inline):   4,501.88 ms
+[countlinks:17259]    (compile):  33,623.14 ms
+[countlinks:17259]      compile:  45,452.90 ms
+[countlinks:17259]        image:   9,294.79 ms
+[countlinks:17259]        write:     743.83 ms
+[countlinks:17259]      [total]: 212,978.90 ms
+----
+
+And let's run it.
+
+[source,text]
+----
+> time ./countlinks https://e.printstacktrace.blog
+
+WARNING: The sunec native library, required by the SunEC provider, could not be loaded. This library is usually shipped as part of the JDK and can be found under <JAVA_HOME>/jre/lib/<platform>/libsunec.so. It is loaded at run time via System.loadLibrary("sunec"), the first time services from SunEC are accessed. To use this provider's services the java.library.path system property needs to be set accordingly to point to a location that contains libsunec.so. Note that if java.library.path is not set it defaults to the current working directory.
+Exception in thread "main" org.codehaus.groovy.runtime.InvokerInvocationException: java.lang.UnsatisfiedLinkError: sun.security.ec.ECDSASignature.verifySignedDigest([B[B[B[B)Z [symbol: Java_sun_security_ec_ECDSASignature_verifySignedDigest or Java_sun_security_ec_ECDSASignature_verifySignedDigest___3B_3B_3B_3B]
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:111)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:326)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1235)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokePogoMethod(InvokerHelper.java:1018)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokeMethod(InvokerHelper.java:1001)
+	at org.codehaus.groovy.runtime.InvokerHelper.runScript(InvokerHelper.java:423)
+	at CountLinks.main(CountLinks.groovy)
+Caused by: java.lang.UnsatisfiedLinkError: sun.security.ec.ECDSASignature.verifySignedDigest([B[B[B[B)Z [symbol: Java_sun_security_ec_ECDSASignature_verifySignedDigest or Java_sun_security_ec_ECDSASignature_verifySignedDigest___3B_3B_3B_3B]
+	at com.oracle.svm.jni.access.JNINativeLinkage.getOrFindEntryPoint(JNINativeLinkage.java:145)
+	at com.oracle.svm.jni.JNIGeneratedMethodSupport.nativeCallAddress(JNIGeneratedMethodSupport.java:54)
+----
+
+Another error. We already used to it, right? :) This time the error we see is entirely expected. GraalVM does
+not support HTTPS protocol by defaultfootnote:[https://github.com/oracle/graal/blob/master/substratevm/URL-PROTOCOLS.md#https-support], that is why we had to add `--enable-url-protocols=https`.  However, the
+image we have built does not include required native library. It tries to load it, but it uses the current
+working directory, and it fails. The solution is simple - we need to add `-Djava.library.path` in the command
+line, and we are good to go.
+
+[source,bash]
+----
+> time ./countlinks -Djava.library.path=$JAVA_HOME/jre/lib/amd64 https://e.printstacktrace.blog
+Website https://e.printstacktrace.blog contains 95 links.
+./countlinks -Djava.library.path=$JAVA_HOME/jre/lib/amd64   0,02s user 0,01s system 18% cpu 0,196 total
+----
+
+Finally! *It worked!* Running the program several times shows that the average execution time is around *200 ms*
+(the best time recorded: *151 ms*). Our program is still affected by network latency, but this is something we
+cannot do anything with. However, we reduced the total execution time from *1.7 s* to *0.2 s*, using almost the same script
+(we only have to apply the changes required by static compilation).
+
+== Conclusion
+
+Groovy and Grape dependency management is a powerful pair of tools. And even if we can't use Grape directly in the
+Java program, or we can't invoke dynamic Groovy script in the GraalVM, we can still use almost the same bytecode and
+generate a standalone native image to remove the cost of the JVM boot and Grape dependency check.
+
+Of course, these benefits don't come without a cost. The size of the generated native image is 50 MB, while the total
+size of the Groovy script and the two JAR dependencies it uses is around 5,6 MB. Also, the Groovy script you may want
+to compile to the native image might require some reworking to make it compatible with static compilation. So for some
+of the scripts, this might be not possible to do.
+
+I hope you've enjoyed reading this article and you've learned something useful from it. Please share your thoughts in
+the comments section below. I would love to hear your opinion.
