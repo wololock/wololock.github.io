@@ -133,6 +133,8 @@ containing reflection configuration for GraalVM. The first one https://gist.gith
 of all dynamically generated runtime methods for Groovy 2.5.2. The second one contains only Groovy
 script class we created.
 
+TIP: You can also generate `dgm.json` file on your own https://gist.github.com/wololock/ac83a8196a8252fbbaacf4ac84e10b36[using the following Groovy script].
+
 .src/countlinks.json
 [source,json]
 ----
