@@ -324,7 +324,7 @@ cannot do anything with. However, we reduced the total execution time from *1.7 
 (we only have to apply the changes required by static compilation).
 
 ++++
-<script id="asciicast-JeDenCHUQ6hS6no3T1YJCWBVL" src="https://asciinema.org/a/JeDenCHUQ6hS6no3T1YJCWBVL.js" async></script>
+<script id="asciicast-Q4kI1S3hKDfTvGBOdgkAIAv0q" src="https://asciinema.org/a/Q4kI1S3hKDfTvGBOdgkAIAv0q.js" async></script>
 ++++
 
 == Conclusion
