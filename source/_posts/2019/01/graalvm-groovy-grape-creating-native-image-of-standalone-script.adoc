@@ -1,7 +1,7 @@
 ---
 title: GraalVM with Groovy and Grape - creating native image of a standalone script
 date: 2019-01-16 15:14:42
-updated: 2019-01-16 15:14:42
+updated: 2019-01-19 10:34:02
 tags:
     - groovy
     - graalvm
@@ -22,6 +22,8 @@ I thought it wouldn't be possible, but luckily - I was wrong.
 ++++
 <!-- more -->
 ++++
+
+NOTE: The source code of the examples explained below can be found here https://github.com/wololock/graalvm-groovy-examples/tree/master/grape-script-example[wololock/graalvm-groovy-examples]
 
 == Prerequisites
 
