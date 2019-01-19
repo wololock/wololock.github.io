@@ -84,6 +84,10 @@ It's time to build the Docker image.
 docker build -t countlinks .
 ----
 
+++++
+<script id="asciicast-222451" src="https://asciinema.org/a/222451.js" async></script>
+++++
+
 After approximately 3-4 minutes our Docker image is created and ready to use.
 You can find it with `docker images` command. Keep in mind that the created image is almost 2.2 GB
 because our base Docker image is based on Oracle Linux official docker image.

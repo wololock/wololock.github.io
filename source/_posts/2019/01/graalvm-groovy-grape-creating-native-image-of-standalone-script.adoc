@@ -344,3 +344,5 @@ of the scripts, this might be not possible to do.
 
 I hope you've enjoyed reading this article and you've learned something useful from it. Please share your thoughts in
 the comments section below. I would love to hear your opinion.
+
+NOTE: Continue reading - +++{% post_link graalvm-native-image-inside-docker-container-does-it-make-sense GraalVM native image inside docker container - does it make sense? %}+++
