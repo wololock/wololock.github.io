@@ -1,0 +1,172 @@
+---
+title: GraalVM native image inside docker container - does it make sense?
+date: 2019-01-19 13:19:22
+updated: 2019-01-19 13:19:22
+tags:
+    - graalvm
+    - groovy
+    - docker
+    - java
+    - grape
+    - native-image
+categories:
+    - Groovy Cookbook
+cover: /images/graalvm-docker-groovy.jpg
+og_image: /images/og/graalvm-docker-groovy.jpg
+eyeCatchImage: /images/og/graalvm-docker-groovy.jpg
+---
+
+We have learned how to create https://www.graalvm.org/[GraalVM] native image from standalone Groovy script
++++{% post_link graalvm-groovy-grape-creating-native-image-of-standalone-script in the previous blog post %}+++.
+Today we continue the experiments, and this time we are going to create a https://www.docker.com/why-docker[Docker] image to see what are
+the benefits and drawbacks of this solution.
+
+++++
+<!-- more -->
+++++
+
+== Introduction
+
+In the previous blog post, we have created a standalone Groovy script that uses Jsoup library as a dependency.
+This script connects to the given URL and counts how many links the specified website contains.
+We saw a significant improvement in execution time - from *1.7 s* (using Groovy command line processor)
+to *0.2 s* (using GraalVM native image). However, building the final native image required installing
+GraalVM on our local system. Also, we may need to compile OS-specific executable every time we want to
+run the program on a different platform or operating system. This is where we start thinking about
+containerization, and today we are going to dockerize a Groovy script to play around with it.
+
+== Dockerfile
+
+Let's start with defining a Dockerfilefootnote:[https://docs.docker.com/engine/reference/builder/].
+We use official https://github.com/oracle/docker-images/blob/master/GraalVM/CE/1.0.0-rc11/Dockerfile[GraalVM docker base image]. Inside the image, we
+install SDKMAN! and Groovy 2.5.2, then we compile the script and create a native executable with GraalVM.
+Finally, we create an entry point which exposes executable and accepts parameters.
+
+.Dockerfile
+[source,dockerfile]
+----
+FROM oracle/graalvm-ce:1.0.0-rc11 <1>
+
+ADD . /app/ <2>
+
+ENV GROOVY_HOME=/root/.sdkman/candidates/groovy/2.5.2 <3>
+
+RUN yum install -y zip unzip <4>
+RUN curl -s "https://get.sdkman.io" | bash <5>
+RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && \ <6>
+    echo \"sdkman_auto_answer=true\" > $SDKMAN_DIR/etc/config && \ <7>
+    sdk install groovy 2.5.2 && \ <8>
+    groovy -version && \
+    cd /app/ && \
+    groovyc --configscript=config/compiler.groovy CountLinks.groovy && \
+    sh ./compile-native-image.sh"
+
+ENTRYPOINT bash -c "cd /app && ./countlinks.sh $0"
+----
+<1> The official Oracle GraalVM 1.0.0-RC11 base image
+<2> We copy all files from current directory to `/app` directory inside the image
+<3> We set up required `GROOVY_HOME` env variable
+<4> We install `zip` and `unzip` (required by SDKMAN!)
+<5> We install SDKMAN!
+<6> We init SDKMAN! after successful installation
+<7> We set auto answer to `true` so SDKMAN! does not ask as if we want to install Groovy
+<8> We install Groovy 2.5.2
+
+NOTE: All files used in this blog post can be found in https://github.com/wololock/graalvm-groovy-examples/tree/master/grape-script-example[wololock/graalvm-groovy-examples] Git repository.
+
+== Building the Docker image
+
+It's time to build the Docker image.
+
+.Building Docker image with `countlinks` tag
+[source,bash]
+----
+docker build -t countlinks .
+----
+
+After approximately 3-4 minutes our Docker image is created and ready to use.
+You can find it with `docker images` command. Keep in mind that the created image is almost 2.2 GB
+because our base Docker image is based on Oracle Linux official docker image.
+
+== Running the container
+
+Let's run our program inside the container.
+
+[source,bash]
+----
+time docker run --rm --read-only countlinks https://e.printstacktrace.blog <1>
+Website https://e.printstacktrace.blog contains 96 links.
+
+real	0m0,810s <2>
+user	0m0,027s
+sys	0m0,021s
+----
+<1> `--rm` option removes the container when it exists, `--read-only` mounts the file system with the read-only mode (we don't need write permission in this case)
+
+
+The first thing we notice is that the execution time increased from *0.2 s* to somewhere around *0.8 s*.
+It means that our program executed as a Docker container runs 4 times slower. Why?
+
+The thing is that creating and starting a new container comes with a cost. It takes around *600 ms* on my
+computer. For instance, if I run `echo` command inside the newly created Alpine container (4 MB image),
+it takes almost 600 ms to complete.
+
+[source,bash]
+----
+time docker run --rm --read-only --entrypoint "echo" alpine
+
+real	0m0,631s
+user	0m0,030s
+sys	0m0,024s
+----
+
+== Executing command inside a running container
+
+There is an alternative approach, however. Instead of creating and starting a new container each time we
+want to run a program, we can start a container, keep it running and attach and execute a command when
+needed. Let's give it a try. Firstly, we run a container that executes `tail -f /var/log/yum.log`
+command to keep it running. We need to override entry point to do so and add `-d` option to detach
+from the container. We also use `--name` parameter to specify the name of this container so that we
+can use it instead of container ID. Next, we use `docker exec` to execute another command inside the
+running container.
+
+[source,bash]
+----
+docker run -d --name countlinks --rm --read-only --entrypoint "tail" countlinks -f /var/log/yum.log
+b75eef8c3a3aa696d87e284fc59600261baaf126c1fd2efc196f4df5ff9a4ee0 <1>
+
+time docker exec countlinks cd /app && time ./countlinks.sh https://e.printstacktrace.blog
+
+real	0m0,100s <2>
+user	0m0,024s
+sys	0m0,014s
+Website https://e.printstacktrace.blog contains 96 links.
+
+real	0m0,209s <3>
+user	0m0,021s
+sys	0m0,008s
+----
+<1> Container ID returned when detaching from the container.
+<2> Time consumed by attaching `docker exec` to the running container
+<3> Time consumed by running the command inside the container
+
+In this case, we use `time` command twice. The first one counts the time of attaching to the running
+container, while the second one counts the time of the inner command execution. We see that it
+produces a much better result - attaching to the container takes around 110 ms. So the total execution
+time takes approximately *300 ms average*. It is still slower comparing to the result we get when running
+native executable outside the container, but in most cases, 110 ms is an acceptable cost.
+
+== Conclusion
+
+So is it worth dockerizing GraalVM native images? It depends. If our goal is to produce an executable that
+completes in a blink of an eye, and where every millisecond counts - running the command inside a container
+won't be the best choice. However, if this is not our case, we can benefit from dockerizing the native
+image. It allows us building the executable without having GraalVM or Groovy installed on the
+computer - it only requires Docker on board. It also makes the distribution of the executable
+easier - the image once created and pushed to the repository can be reused easily.
+
+And last but not least - dockerizing native executable means that we benefit from ahead-of-time compilation
+and much lower memory footprint. However, we always have to be careful when it comes to running any
+Java program inside the container - things like available resources (CPU, memory), secure access or
+networking may cause some issues. You just have to consider all pros and cons when choosing one
+option over another.
