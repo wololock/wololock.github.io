@@ -1,0 +1,29 @@
+extends partial/base
+
+include partial/post-related
+
+block description
+    meta(name="description", content=page.title)
+
+block site_title
+    = page.title
+
+block content
+    .container.page-404
+        .row
+            .col-lg-10.col-lg-offset-1.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0
+                .row
+                    .col-xs-11.col-xs-offset-1!= page.content
+
+                section.suggested-posts
+                    h3="...however"
+                    p="You might be interested in reading one of the following articles instead:"
+                    div.row
+                        - site.posts.shuffle().slice(0,3).forEach(function(post) {
+                        div.col-lg-4.suggestion
+                            a(href=url_for(post.path))
+                                if post.eyeCatchImage
+                                    img.img-responsive(src=post.eyeCatchImage)
+                                h3!=post.title
+                            p!=truncate(strip_html(post.excerpt), {length: 200})
+                        - })
