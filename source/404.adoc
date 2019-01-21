@@ -1,9 +1,11 @@
 ---
-layout: page
+layout: 404
 title: 404 Page Not Found
 ---
 
-= 404 Not Found
+= Oops! :-(
 
-Requested page cannot be found
+I'm sorry, but I can't find the page you are looking for.
+
+
 
