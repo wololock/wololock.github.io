@@ -2,10 +2,3 @@
 layout: 404
 title: 404 Page Not Found
 ---
-
-= Oops! :-(
-
-I'm sorry, but I can't find the page you are looking for.
-
-
-
