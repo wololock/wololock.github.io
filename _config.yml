@@ -5,7 +5,7 @@
 # Site
 title: e.printStackTrace(); // Blog
 #subtitle: Lorem ipsum
-description: Welcome to my personal blog about programming, Java, Groovy, best practices, clean code and everything else!
+description: Blog about programming, created by Upwork's Top Rated freelancer, 10+ years experienced Java/Groovy developer. Contact me if you are looking for an experienced and high quality consultant.
 author: Szymon Stepniak
 bio: Groovista, Upwork's Top Rated freelancer, Toruń Java User Group founder, open&nbsp;source contributor, Stack Overflow addict, bedroom guitar player. I walk through e.printStackTrace() so you don't have to.
 photo: https://www.gravatar.com/avatar/b22c1842c6e8f7f2b9b3ed8c0d4efb4d?s=200
@@ -17,7 +17,7 @@ timezone: Europe/Warsaw
 url: https://e.printstacktrace.blog
 root: /
 #permalink: :year/:month/:day/:title/
-permalink: :year/:month/:title/
+permalink: :title/
 permalink_defaults:
 
 rss: http://feeds.feedburner.com/Eprintstacktracenet
@@ -37,7 +37,7 @@ new_post_name: :year/:month/:title.adoc # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
-filename_case: 0
+filename_case: 1
 render_drafts: false
 post_asset_folder: false
 relative_link: false
