@@ -1,0 +1,675 @@
+---
+title: Ratpack on GraalVM - how to start?
+date: 2019-02-15 03:10:39
+updated: 2019-02-15 03:10:39
+tags:
+    - ratpack
+    - graalvm
+    - java
+    - native-image
+    - non-blocking
+categories:
+    - Ratpack Cookbook
+cover: /images/ratpack-cookbook-bg.jpg
+og_image: /images/og/ratpack-graalvm-how-to-start.jpg
+eyeCatchImage: /images/og/ratpack-graalvm-how-to-start.jpg
+---
+
+The journey inside the exciting world of https://www.graalvm.org/[GraalVM] continues.
+Today I would like to share with you  results of running https://ratpack.io/[Ratpack] on GraalVM experiment.
+You will learn how to build native binary of a simple "Hello, World!" Ratpack application.
+We will also run some diagnostics to see if running GraalVM executable produces better results than running JAR on a regular Oracle JDK.
+
+
+++++
+<!-- more -->
+++++
+
+NOTE: The source code of _ratpack-graalvm-demo_ application can be found here https://github.com/wololock/ratpack-graalvm-demo[wololock/ratpack-graalvm-demo]
+
+== Prerequisites
+
+Below you can find information about the GraalVM and Ratpack versions I used in the experiment:
+
+- *GraalVM* 1.0.0-RC13 (the most recent version available while writing this blog post)
+- *Ratpack* 1.6.0
+
+TIP: Don't know how to install GraalVM on your machine? With SDKMAN! installing GraalVM is as easy as executing the following command in the console `sdk install java 1.0.0-rc-13-grl`.
+
+== Hello World application
+
+We start the experiments with the simplest possible application - a good old Hello World app.
+
+.src/main/java/com/github/wololock/RatpackGraalDemoApp.java
+[source,java]
+----
+package com.github.wololock;
+
+import ratpack.server.RatpackServer;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static ratpack.jackson.Jackson.json;
+
+final class RatpackGraalDemoApp {
+
+    public static void main(String[] args) throws Exception {
+        final Map<String, String> message = new HashMap<>();
+        message.put("message", "Hello, World!");
+
+        RatpackServer.start(server ->
+                server.serverConfig(config -> config.sysProps().development(false))
+                        .handlers(chain -> chain.get(ctx -> ctx.render(json(message))))
+        );
+    }
+}
+
+----
+
+When we send an HTTP request to to `localhost:5050` we will get the following response:
+
+.HTTP response of `(GET) localhost:5050` request
+[source,http]
+----
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-type: application/json
+transfer-encoding: chunked
+
+{
+    "message": "Hello, World!"
+}
+----
+
+== Preparing for GraalVM
+
+NOTE: I strongly recommend reading https://medium.com/graalvm/instant-netty-startup-using-graalvm-native-image-generation-ed6f14ff7692[_"Instant Netty Startup using GraalVM Native Image Generation"_] article by https://twitter.com/cstancu[Codrut Stancu].
+It explains in details how to prepare Netty-based application for GraalVM native binary compilation.
+
+We need to do some additional work to prepare our _"Hello World"_ application for GraalVM.
+
+
+=== 1. Reflection configuration
+
+We will start with preparing a configuration file for classes used via Java reflection mechanism.
+GraalVM uses https://github.com/oracle/graal/tree/master/substratevm[Substrate VM] - a framework that allows aggressive ahead-of-time optimizations.
+Classes, methods or fields accessed via reflection have to be known at the compile time to make AOT compilation possible.
+Substrate VM resolves most of the basic reflection calls like `Class.forName(...)`, but in more complex scenarios it requires additional information to be provided.
+
+.reflections.json
+[source,json]
+----
+[
+  {
+    "name": "io.netty.channel.socket.nio.NioServerSocketChannel",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "com.github.benmanes.caffeine.cache.SSMS",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": ["com.github.benmanes.caffeine.cache.Caffeine", "com.github.benmanes.caffeine.cache.CacheLoader", "boolean"]
+      }
+    ]
+  },
+  {
+    "name": "com.github.benmanes.caffeine.cache.PSMS",
+    "methods": [
+      {
+        "name": "<init>"
+      }
+    ]
+  }
+]
+----
+
+In case of our demo app we need to provide information about these 3 classes.
+`SSMS` and `PSMS` are Caffeine caching library generated classes that are used to initialize paths handler internal cache.
+
+=== 2. Dynamic proxies configuration
+
+To make dependency injection via Guice possible, we need to https://github.com/oracle/graal/blob/master/substratevm/DYNAMIC_PROXY.md#manual-configuration[generate dynamic proxies] at the compile time.
+It requires defining a list of interfaces those dynamic proxies implement.
+In our case we only have to configure `java.lang.reflect.TypeVariable` interface.
+
+.proxies.json
+[source,json]
+----
+[
+  ["java.lang.reflect.TypeVariable"]
+]
+----
+
+=== 3. Unsafe memory access configuration
+
+Using `sun.misc.Unsafe` in Substrate VM generates https://github.com/oracle/graal/blob/master/substratevm/LIMITATIONS.md#unsafe-memory-access[another limitations].
+Codrut in his _"Instant Netty Startup using GraalVM Native Image Generation"_ article explained which `sun.misc.Unsafe` usages https://medium.com/graalvm/instant-netty-startup-using-graalvm-native-image-generation-ed6f14ff7692#020c[require additional configuration] in Netty-based application.
+It applies to our demo application as well + we need to configure Caffeine's `com.github.benmanes.caffeine.cache.UnsafeRefArrayAccess` class.
+Let's add the following static classes to the main application class.
+
+[source,java]
+----
+package com.github.wololock;
+
+import com.oracle.svm.core.annotate.Alias;
+import com.oracle.svm.core.annotate.RecomputeFieldValue;
+import com.oracle.svm.core.annotate.TargetClass;
+import ratpack.server.RatpackServer;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static ratpack.jackson.Jackson.json;
+
+final class RatpackGraalDemoApp {
+
+    public static void main(String[] args) throws Exception {
+        final Map<String, String> message = new HashMap<>();
+        message.put("message", "Hello, World!");
+
+        RatpackServer.start(server ->
+                server.serverConfig(config -> config.sysProps().development(false))
+                        .handlers(chain -> chain.get(ctx -> ctx.render(json(message))))
+        );
+    }
+
+    @TargetClass(className = "io.netty.util.internal.PlatformDependent0")
+    static final class Target_io_netty_util_internal_PlatformDependent0 {
+        @Alias
+        @RecomputeFieldValue(kind = RecomputeFieldValue.Kind.FieldOffset, declClassName = "java.nio.Buffer", name = "address")
+        private static long ADDRESS_FIELD_OFFSET;
+    }
+
+    @TargetClass(className = "io.netty.util.internal.CleanerJava6")
+    static final class Target_io_netty_util_internal_CleanerJava6 {
+        @Alias
+        @RecomputeFieldValue(kind = RecomputeFieldValue.Kind.FieldOffset, declClassName = "java.nio.DirectByteBuffer", name = "cleaner")
+        private static long CLEANER_FIELD_OFFSET;
+    }
+
+    @TargetClass(className = "io.netty.util.internal.shaded.org.jctools.util.UnsafeRefArrayAccess")
+    static final class Target_io_netty_util_internal_shaded_org_jctools_util_UnsafeRefArrayAccess {
+        @Alias
+        @RecomputeFieldValue(kind = RecomputeFieldValue.Kind.ArrayIndexShift, declClass = Object[].class)
+        public static int REF_ELEMENT_SHIFT;
+    }
+
+    @TargetClass(className = "com.github.benmanes.caffeine.cache.UnsafeRefArrayAccess")
+    static final class Target_com_github_benmanes_caffeine_cache_UnsafeRefArrayAccess {
+        @Alias
+        @RecomputeFieldValue(kind = RecomputeFieldValue.Kind.ArrayIndexShift, declClass = Object[].class)
+        public static int REF_ELEMENT_SHIFT;
+    }
+}
+----
+
+Of course it also means that we need to add Substrate SDK to the `build.gradle`.
+
+[source,groovy]
+----
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "io.ratpack:ratpack-gradle:1.6.0"
+        classpath "com.github.jengelman.gradle.plugins:shadow:1.2.4"
+    }
+}
+
+apply plugin: "io.ratpack.ratpack-java"
+apply plugin: "com.github.johnrengelman.shadow"
+apply plugin: "idea"
+
+repositories {
+    jcenter()
+}
+
+mainClassName = 'com.github.wololock.RatpackGraalDemoApp'
+
+dependencies {
+    runtime 'org.slf4j:slf4j-simple:1.7.25'
+
+    compile 'com.oracle.substratevm:svm:1.0.0-rc12' //<1>
+
+    testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+}
+----
+<1> Substrate SDK dependency.
+
+== Building native binary
+
+We are ready to compile native binary. We use `native-image` command with the following parameters:
+
+.build-native-image.sh
+[source,bash]
+----
+native-image --no-server \
+    -jar build/libs/ratpack-graalvm-demo-all.jar \
+    -H:Name=ratpack-graalvm-demo \
+    -H:EnableURLProtocols=http \
+    -H:+AllowVMInspection \
+    -H:+ReportUnsupportedElementsAtRuntime \
+    -H:ReflectionConfigurationFiles=reflections.json \
+    -H:DynamicProxyConfigurationFiles=proxies.json \
+    --allow-incomplete-classpath \
+    --delay-class-initialization-to-runtime=io.netty.handler.codec.http.HttpObjectEncoder,io.netty.handler.ssl.ReferenceCountedOpenSslEngine,io.netty.handler.ssl.ReferenceCountedOpenSslClientContext,io.netty.handler.ssl.ReferenceCountedOpenSslServerContext,io.netty.handler.ssl.JdkNpnApplicationProtocolNegotiator,io.netty.handler.ssl.JettyNpnSslEngine,io.netty.handler.ssl.ConscryptAlpnSslEngine,io.netty.util.internal.logging.Log4JLogger \
+    -Dratpack.epoll.disable=true //<1>
+----
+
+As you can see in pass:[<em class="conum" data-value="1"></em>] we disabled Epoll transport to use NIO instead.
+The reason for that is because https://github.com/oracle/graal/blob/master/substratevm/LIMITATIONS.md#java-native-interface-jni[JNI support is limited] and at least at the moment all tries to run Ratpack with Epoll transport on Linux ends with the following exception:
+
+[source,bash]
+----
+[main] INFO ratpack.server.RatpackServer - Starting server...
+Exception in thread "main" ratpack.api.UncheckedException: java.lang.reflect.InvocationTargetException
+	at ratpack.util.Exceptions.uncheck(Exceptions.java:54)
+	at ratpack.util.internal.TransportDetector$NativeTransportImpl.eventLoopGroup(TransportDetector.java:229)
+	at ratpack.util.internal.TransportDetector$NativeTransport.eventLoopGroup(TransportDetector.java:133)
+	at ratpack.util.internal.TransportDetector.eventLoopGroup(TransportDetector.java:65)
+	at ratpack.exec.internal.DefaultExecController.<init>(DefaultExecController.java:61)
+	at ratpack.server.internal.DefaultRatpackServer.start(DefaultRatpackServer.java:126)
+	at ratpack.server.RatpackServer.start(RatpackServer.java:93)
+	at com.github.wololock.RatpackGraalDemoApp.main(RatpackGraalDemoApp.java:12)
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at ratpack.util.internal.TransportDetector$NativeTransportImpl.eventLoopGroup(TransportDetector.java:227)
+	... 6 more
+Caused by: java.lang.UnsatisfiedLinkError: io.netty.channel.epoll.Native.epollCreate()I [symbol: Java_io_netty_channel_epoll_Native_epollCreate or Java_io_netty_channel_epoll_Native_epollCreate__]
+	at com.oracle.svm.jni.access.JNINativeLinkage.getOrFindEntryPoint(JNINativeLinkage.java:145)
+	at com.oracle.svm.jni.JNIGeneratedMethodSupport.nativeCallAddress(JNIGeneratedMethodSupport.java:54)
+	at io.netty.channel.epoll.Native.epollCreate(Native.java)
+	at io.netty.channel.epoll.Native.newEpollCreate(Native.java:107)
+	at io.netty.channel.epoll.EpollEventLoop.<init>(EpollEventLoop.java:100)
+	at io.netty.channel.epoll.EpollEventLoopGroup.newChild(EpollEventLoopGroup.java:135)
+	at io.netty.channel.epoll.EpollEventLoopGroup.newChild(EpollEventLoopGroup.java:35)
+	at io.netty.util.concurrent.MultithreadEventExecutorGroup.<init>(MultithreadEventExecutorGroup.java:84)
+	at io.netty.util.concurrent.MultithreadEventExecutorGroup.<init>(MultithreadEventExecutorGroup.java:58)
+	at io.netty.util.concurrent.MultithreadEventExecutorGroup.<init>(MultithreadEventExecutorGroup.java:47)
+	at io.netty.channel.MultithreadEventLoopGroup.<init>(MultithreadEventLoopGroup.java:59)
+	at io.netty.channel.epoll.EpollEventLoopGroup.<init>(EpollEventLoopGroup.java:104)
+	at io.netty.channel.epoll.EpollEventLoopGroup.<init>(EpollEventLoopGroup.java:91)
+	at io.netty.channel.epoll.EpollEventLoopGroup.<init>(EpollEventLoopGroup.java:68)
+----
+
+I will be exploring Epoll support and will post an update when get the working example of Ratpack application with Epoll transport on GraalVM.
+
+== Running the application
+
+At this point we have `ratpack-graalvm-demo` binary file compiled and ready to use.
+
+[source,bash]
+----
+ratpack-graalvm-demo [master] % ls -lah ratpack-graalvm-demo
+-rwxrwxr-x. 1 wololock wololock 24M 02-15 04:25 ratpack-graalvm-demo
+----
+
+As you can see a single `ratpack-graalvm-demo` file is 24 MB size.
+Let's run it and execute HTTP request to see if it works.
+
+[source,bash]
+----
+ratpack-graalvm-demo [master] % ./ratpack-graalvm-demo
+[main] INFO ratpack.server.RatpackServer - Starting server...
+[main] INFO ratpack.server.RatpackServer - Building registry...
+[main] INFO ratpack.server.RatpackServer - Ratpack started for http://localhost:5050
+----
+
+The first thing you will notice is that the server is ready almost instantly.
+Ratpack application run on a regular JVM starts quickly (in about 550-600 milliseconds), but this one starts in a blink of an eye.
+
+Let's actually try to measure startup time of regular Java and GraalVM Ratpack application.
+I will add `System.exit(0)` in the end of the `main` method so the application shut down right after it becomes ready to handle HTTP connections.
+
+++++
+<script id="asciicast-227675" src="https://asciinema.org/a/227675.js" async></script>
+++++
+
+The difference is *HUGE*!
+Let's compare best results - GraalVM's best *10* milliseconds result versus Oracle JDK's best *581* milliseconds result.
+It makes the difference.
+
+== Benchmark
+
+Application startup time is one thing.
+It's time to run more important comparison test.
+Let's compare the throughput of both, GraalVM and Oracle JDK runtime environments.
+
+We will start with small amount of requests, so the Oracle JDK won't have enough time to warmup properly.
+In this test we use https://httpd.apache.org/docs/2.4/programs/ab.html[Apache Bench] tool and we execute 200 concurrent requests with total of 1000 requests.
+Let's start with GraalVM.
+
+[source,text]
+----
+~ % ab -c 200 -n 1000 http://localhost:5050/
+This is ApacheBench, Version 2.3 <$Revision: 1826891 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Completed 600 requests
+Completed 700 requests
+Completed 800 requests
+Completed 900 requests
+Completed 1000 requests
+Finished 1000 requests
+
+
+Server Software:
+Server Hostname:        localhost
+Server Port:            5050
+
+Document Path:          /
+Document Length:        27 bytes
+
+Concurrency Level:      200
+Time taken for tests:   0.090 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      117000 bytes
+HTML transferred:       27000 bytes
+Requests per second:    11153.00 [#/sec] (mean)
+Time per request:       17.932 [ms] (mean)
+Time per request:       0.090 [ms] (mean, across all concurrent requests)
+Transfer rate:          1274.32 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    4   1.2      4       6
+Processing:     1    7   4.8      5      22
+Waiting:        1    6   4.7      4      19
+Total:          6   11   4.2      9      23
+
+Percentage of the requests served within a certain time (ms)
+  50%      9
+  66%      9
+  75%     10
+  80%     12
+  90%     20
+  95%     22
+  98%     22
+  99%     22
+ 100%     23 (longest request)
+----
+
+That was fast. Now let's see regular Oracle JDK in action.
+
+NOTE: I start demo application with the following command `java -jar build/libs/ratpack-graalvm-demo-all.jar -Dratpack.epoll.disable=true`
+
+[source,text]
+----
+ab -c 200 -n 1000 http://localhost:5050/
+This is ApacheBench, Version 2.3 <$Revision: 1826891 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Completed 600 requests
+Completed 700 requests
+Completed 800 requests
+Completed 900 requests
+Completed 1000 requests
+Finished 1000 requests
+
+
+Server Software:
+Server Hostname:        localhost
+Server Port:            5050
+
+Document Path:          /
+Document Length:        27 bytes
+
+Concurrency Level:      200
+Time taken for tests:   0.335 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      117000 bytes
+HTML transferred:       27000 bytes
+Requests per second:    2985.77 [#/sec] (mean)
+Time per request:       66.984 [ms] (mean)
+Time per request:       0.335 [ms] (mean, across all concurrent requests)
+Transfer rate:          341.15 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   1.8      0       7
+Processing:     5   29  13.3     25      98
+Waiting:        5   29  13.3     25      94
+Total:          5   30  13.7     25      98
+
+Percentage of the requests served within a certain time (ms)
+  50%     25
+  66%     31
+  75%     36
+  80%     39
+  90%     47
+  95%     56
+  98%     70
+  99%     83
+ 100%     98 (longest request)
+----
+
+The difference between the cold Oracle JDK and GraalVM is huge:
+
+* *17.93* ms vs. *66.98* ms mean time per request in GraalVM' favour.
+* *11153* vs. *2985* requests per second in GraalVM's favour.
+
+But let's be fair - Oracle JDK shows its full potential when JIT jumps in and runs its optimizations.
+In the next round we will let him warmup correctly and then we can compare the results.
+We will run 800 concurrent requests with total 500,000 requests and we do it twice - the first run will be for warmup purpose and we will take the second result into account only.
+Let's start with GraalVM.
+
+[source,text]
+----
+ab -c 800 -n 500000 http://localhost:5050/
+This is ApacheBench, Version 2.3 <$Revision: 1826891 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+Completed 50000 requests
+Completed 100000 requests
+Completed 150000 requests
+Completed 200000 requests
+Completed 250000 requests
+Completed 300000 requests
+Completed 350000 requests
+Completed 400000 requests
+Completed 450000 requests
+Completed 500000 requests
+Finished 500000 requests
+
+
+Server Software:
+Server Hostname:        localhost
+Server Port:            5050
+
+Document Path:          /
+Document Length:        27 bytes
+
+Concurrency Level:      800
+Time taken for tests:   40.725 seconds
+Complete requests:      500000
+Failed requests:        0
+Total transferred:      58500000 bytes
+HTML transferred:       13500000 bytes
+Requests per second:    12277.48 [#/sec] (mean)
+Time per request:       65.160 [ms] (mean)
+Time per request:       0.081 [ms] (mean, across all concurrent requests)
+Transfer rate:          1402.80 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   37 110.8     25    3130
+Processing:     3   28   9.4     27     117
+Waiting:        0   18   8.3     17      90
+Total:         18   65 112.0     55    3156
+
+Percentage of the requests served within a certain time (ms)
+  50%     55
+  66%     61
+  75%     63
+  80%     64
+  90%     68
+  95%     72
+  98%     84
+  99%   1072
+ 100%   3156 (longest request)
+----
+
+Now let's do the same with Oracle JDK.
+
+[source,text]
+----
+ab -c 800 -n 500000 http://localhost:5050/
+This is ApacheBench, Version 2.3 <$Revision: 1826891 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+Completed 50000 requests
+Completed 100000 requests
+Completed 150000 requests
+Completed 200000 requests
+Completed 250000 requests
+Completed 300000 requests
+Completed 350000 requests
+Completed 400000 requests
+Completed 450000 requests
+Completed 500000 requests
+Finished 500000 requests
+
+
+Server Software:
+Server Hostname:        localhost
+Server Port:            5050
+
+Document Path:          /
+Document Length:        27 bytes
+
+Concurrency Level:      800
+Time taken for tests:   35.889 seconds
+Complete requests:      500000
+Failed requests:        0
+Total transferred:      58500000 bytes
+HTML transferred:       13500000 bytes
+Requests per second:    13931.95 [#/sec] (mean)
+Time per request:       57.422 [ms] (mean)
+Time per request:       0.072 [ms] (mean, across all concurrent requests)
+Transfer rate:          1591.83 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   28   8.1     27    1034
+Processing:     2   30   7.7     30     249
+Waiting:        0   17   6.9     16     242
+Total:          6   57   5.3     57    1065
+
+Percentage of the requests served within a certain time (ms)
+  50%     57
+  66%     58
+  75%     59
+  80%     60
+  90%     62
+  95%     64
+  98%     66
+  99%     68
+ 100%   1065 (longest request)
+----
+
+It looks like if we give Oracle JDK enough time to warm up, it runs a little bit more efficient than the GraalVM application.
+Take a look at these two charts to see tha main difference.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/ratpack-graalvm-rps-benchmark.png]
+image::/images/ratpack-graalvm-rps-benchmark.png[]
+--
+
+If we compare RPS between cold Oracle JDK and GraalVM there is no doubt that GraalVM does better.
+But if we only give a regular Oracle JDK a chance to warm up, it turns out that it can actually handle almost 1700 more requests.
+This is a significant difference.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/ratpack-graalvm-latency-benchmark.png]
+image::/images/ratpack-graalvm-latency-benchmark.png[]
+--
+
+Latency benchmark also reveals an interesting details.
+GraalVM wins when we compare it to cold Oracle JDK and we let both application handle a fairly small traffic (200 requests with total of 1000).
+But if we increase the number of concurrent requests to 800 and we need to handle the total of 500,000 requests, warmed up Oracle JDK works much better.
+While GraalVM slows down to the ~65ms per request when we increase the traffic, Oracle JDK speeds up to ~57ms per request.
+
+There are also two things worth mentioning. I've tried to execute more concurrent requests, but it turned out that GraalVM stars
+throwing `IOException` when I increased the number of concurrent requests to 1,000.
+
+[source,text]
+----
+[main] INFO ratpack.server.RatpackServer - Starting server...
+[main] INFO ratpack.server.RatpackServer - Building registry...
+[main] INFO ratpack.server.RatpackServer - Ratpack started for http://localhost:5050
+[ratpack-compute-2-1] WARN io.netty.channel.DefaultChannelPipeline - An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+java.io.IOException: Accept failed
+	at com.oracle.svm.core.posix.PosixJavaNIOSubstitutions$Util_sun_nio_ch_ServerSocketChannelImpl.accept0(PosixJavaNIOSubstitutions.java:1261)
+	at sun.nio.ch.ServerSocketChannelImpl.accept0(ServerSocketChannelImpl.java:1188)
+	at sun.nio.ch.ServerSocketChannelImpl.accept(ServerSocketChannelImpl.java:422)
+	at sun.nio.ch.ServerSocketChannelImpl.accept(ServerSocketChannelImpl.java:250)
+	at io.netty.util.internal.SocketUtils$5.run(SocketUtils.java:110)
+	at io.netty.util.internal.SocketUtils$5.run(SocketUtils.java:107)
+	at java.security.AccessController.doPrivileged(AccessController.java:82)
+	at io.netty.util.internal.SocketUtils.accept(SocketUtils.java:107)
+	at io.netty.channel.socket.nio.NioServerSocketChannel.doReadMessages(NioServerSocketChannel.java:143)
+	at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:75)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:656)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysPlain(NioEventLoop.java:556)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:510)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:470)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:909)
+	at ratpack.exec.internal.DefaultExecController$ExecControllerBindingThreadFactory.lambda$newThread$0(DefaultExecController.java:137)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+	at com.oracle.svm.core.thread.JavaThreads.threadStartRoutine(JavaThreads.java:481)
+	at com.oracle.svm.core.posix.thread.PosixJavaThreads.pthreadStartRoutine(PosixJavaThreads.java:193)
+----
+
+Oracle JDK at the same time was able to handle 1,000 concurrent requests without any issue.
+
+And the last thing - memory consumption. GraalVM does much better when it comes to memory consumption right after the startup - the demo application
+consumes around 30 MB after startup on GraalVM and about 90 MB when run on Oracle JDK. However, when application starts handling firsts requests,
+memory consumptions jumps significantly - GraalVM consumes around 300 MB, while Oracle JDK consumes around 150 MB only.
+
+== Conclusion
+
+I must admit that the final benchmark results surprised me a bit. But also made me happy at the same time. This demo application
+is not a rock-solid proof - if we used much larger and much more complicated Ratpack application we could get completely different results.
+However, it proved that in some use cases Ratpack application does not need GraalVM to run fast. GraalVM may offer much faster startup,
+but fine tuned and properly warmed up JDK may perform much better in terms of metrics like RPS or latency in milliseconds.
+
+I hope you learned something new from this blog post.
+I'm really happy I have finally run Ratpack example on GraalVM.
+It took me hours to make it running and I almost gave up, but I couldn't accept the failure. The final result makes me happy even more.
+It's 06:03 AM. Time to go sleep. See you soon!
+
+
+
