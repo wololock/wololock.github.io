@@ -17,9 +17,8 @@ eyeCatchImage: /images/og/ratpack-graalvm-how-to-start.jpg
 
 The journey inside the exciting world of https://www.graalvm.org/[GraalVM] continues.
 Today I would like to share with you  results of running https://ratpack.io/[Ratpack] on GraalVM experiment.
-You will learn how to build native binary of a simple "Hello, World!" Ratpack application.
-We will also run some diagnostics to see if running GraalVM executable produces better results than running JAR on a regular Oracle JDK.
-
+You are going to learn how to build a native binary of a simple "Hello, World!" Ratpack application.
+In the end we are going to run some benchmarks to see if running GraalVM executable produces better results than running JAR on a regular Oracle JDK.
 
 ++++
 <!-- more -->
@@ -31,14 +30,14 @@ NOTE: The source code of _ratpack-graalvm-demo_ application can be found here ht
 
 Below you can find information about the GraalVM and Ratpack versions I used in the experiment:
 
-- *GraalVM* 1.0.0-RC13 (the most recent version available while writing this blog post)
+- *GraalVM* 1.0.0-RC12 (the most recent version available while writing this blog post)
 - *Ratpack* 1.6.0
 
 TIP: Don't know how to install GraalVM on your machine? With SDKMAN! installing GraalVM is as easy as executing the following command in the console `sdk install java 1.0.0-rc-13-grl`.
 
 == Hello World application
 
-We start the experiments with the simplest possible application - a good old Hello World app.
+We start the experiments with the most straightforward possible application - a good old Hello World app.
 
 .src/main/java/com/github/wololock/RatpackGraalDemoApp.java
 [source,java]
@@ -67,7 +66,7 @@ final class RatpackGraalDemoApp {
 
 ----
 
-When we send an HTTP request to to `localhost:5050` we will get the following response:
+When we send an HTTP request to the `localhost:5050` we get the following response:
 
 .HTTP response of `(GET) localhost:5050` request
 [source,http]
@@ -92,7 +91,7 @@ We need to do some additional work to prepare our _"Hello World"_ application fo
 
 === 1. Reflection configuration
 
-We will start with preparing a configuration file for classes used via Java reflection mechanism.
+We start with preparing a configuration file for classes used via Java reflection mechanism.
 GraalVM uses https://github.com/oracle/graal/tree/master/substratevm[Substrate VM] - a framework that allows aggressive ahead-of-time optimizations.
 Classes, methods or fields accessed via reflection have to be known at the compile time to make AOT compilation possible.
 Substrate VM resolves most of the basic reflection calls like `Class.forName(...)`, but in more complex scenarios it requires additional information to be provided.
@@ -130,14 +129,14 @@ Substrate VM resolves most of the basic reflection calls like `Class.forName(...
 ]
 ----
 
-In case of our demo app we need to provide information about these 3 classes.
+In the case of our demo app we need to provide information about these 3 classes.
 `SSMS` and `PSMS` are Caffeine caching library generated classes that are used to initialize paths handler internal cache.
 
 === 2. Dynamic proxies configuration
 
 To make dependency injection via Guice possible, we need to https://github.com/oracle/graal/blob/master/substratevm/DYNAMIC_PROXY.md#manual-configuration[generate dynamic proxies] at the compile time.
-It requires defining a list of interfaces those dynamic proxies implement.
-In our case we only have to configure `java.lang.reflect.TypeVariable` interface.
+It requires defining a list of interfaces that dynamic proxies implement.
+In our case, we only have to configure `java.lang.reflect.TypeVariable` interface.
 
 .proxies.json
 [source,json]
@@ -149,7 +148,7 @@ In our case we only have to configure `java.lang.reflect.TypeVariable` interface
 
 === 3. Unsafe memory access configuration
 
-Using `sun.misc.Unsafe` in Substrate VM generates https://github.com/oracle/graal/blob/master/substratevm/LIMITATIONS.md#unsafe-memory-access[another limitations].
+Using `sun.misc.Unsafe` in Substrate VM generates https://github.com/oracle/graal/blob/master/substratevm/LIMITATIONS.md#unsafe-memory-access[other limitations].
 Codrut in his _"Instant Netty Startup using GraalVM Native Image Generation"_ article explained which `sun.misc.Unsafe` usages https://medium.com/graalvm/instant-netty-startup-using-graalvm-native-image-generation-ed6f14ff7692#020c[require additional configuration] in Netty-based application.
 It applies to our demo application as well + we need to configure Caffeine's `com.github.benmanes.caffeine.cache.UnsafeRefArrayAccess` class.
 Let's add the following static classes to the main application class.
@@ -210,7 +209,7 @@ final class RatpackGraalDemoApp {
 }
 ----
 
-Of course it also means that we need to add Substrate SDK to the `build.gradle`.
+Of course, it also means that we need to add Substrate SDK to the `build.gradle`.
 
 [source,groovy]
 ----
@@ -242,11 +241,11 @@ dependencies {
     testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
 }
 ----
-<1> Substrate SDK dependency.
+<1> Substrate VM SDK dependency.
 
 == Building native binary
 
-We are ready to compile native binary. We use `native-image` command with the following parameters:
+We are finally ready to compile native binary. We use the `native-image` command with the following parameters:
 
 .build-native-image.sh
 [source,bash]
@@ -304,7 +303,7 @@ I will be exploring Epoll support and will post an update when get the working e
 
 == Running the application
 
-At this point we have `ratpack-graalvm-demo` binary file compiled and ready to use.
+At this point, we have `ratpack-graalvm-demo` binary file compiled and ready to use.
 
 [source,bash]
 ----
@@ -326,8 +325,8 @@ ratpack-graalvm-demo [master] % ./ratpack-graalvm-demo
 The first thing you will notice is that the server is ready almost instantly.
 Ratpack application run on a regular JVM starts quickly (in about 550-600 milliseconds), but this one starts in a blink of an eye.
 
-Let's actually try to measure startup time of regular Java and GraalVM Ratpack application.
-I will add `System.exit(0)` in the end of the `main` method so the application shut down right after it becomes ready to handle HTTP connections.
+Let's try to measure startup time of regular Java and GraalVM Ratpack application.
+I'm going to add `System.exit(0)` at the end of the `main` method, so the application shuts down right after it becomes ready to handle HTTP connections.
 
 ++++
 <script id="asciicast-227675" src="https://asciinema.org/a/227675.js" async></script>
@@ -340,12 +339,12 @@ It makes the difference.
 == Benchmark
 
 Application startup time is one thing.
-It's time to run more important comparison test.
+It's time to run a more critical comparison test.
 Let's compare the throughput of both, GraalVM and Oracle JDK runtime environments.
 
-We will start with small amount of requests, so the Oracle JDK won't have enough time to warmup properly.
-In this test we use https://httpd.apache.org/docs/2.4/programs/ab.html[Apache Bench] tool and we execute 200 concurrent requests with total of 1000 requests.
-Let's start with GraalVM.
+We will start with a small number of requests so that the Oracle JDK won’t have enough time to warm up properly.
+In this test, we use https://httpd.apache.org/docs/2.4/programs/ab.html[Apache Bench] tool, and we execute 200 concurrent requests with a total of 1000 requests.
+Let’s start with GraalVM.
 
 [source,text]
 ----
@@ -467,14 +466,14 @@ Percentage of the requests served within a certain time (ms)
  100%     98 (longest request)
 ----
 
-The difference between the cold Oracle JDK and GraalVM is huge:
+The difference between the cold Oracle JDK and GraalVM is enormous:
 
 * *17.93* ms vs. *66.98* ms mean time per request in GraalVM' favour.
 * *11153* vs. *2985* requests per second in GraalVM's favour.
 
-But let's be fair - Oracle JDK shows its full potential when JIT jumps in and runs its optimizations.
-In the next round we will let him warmup correctly and then we can compare the results.
-We will run 800 concurrent requests with total 500,000 requests and we do it twice - the first run will be for warmup purpose and we will take the second result into account only.
+However, let’s be fair - Oracle JDK shows its full potential when JIT jumps in and runs its optimizations.
+In the next round, we will let it warm up correctly and then we can compare the results.
+We will run 800 concurrent requests with a total of 500,000 requests, and we are going to do it twice - the first run is used to warm up the JVM so that we take only the second result into account.
 Let's start with GraalVM.
 
 [source,text]
@@ -596,7 +595,7 @@ Percentage of the requests served within a certain time (ms)
 ----
 
 It looks like if we give Oracle JDK enough time to warm up, it runs a little bit more efficient than the GraalVM application.
-Take a look at these two charts to see tha main difference.
+Take a look at these two charts to see the main difference.
 
 [.text-center]
 --
@@ -605,9 +604,9 @@ Take a look at these two charts to see tha main difference.
 image::/images/ratpack-graalvm-rps-benchmark.png[]
 --
 
-If we compare RPS between cold Oracle JDK and GraalVM there is no doubt that GraalVM does better.
-But if we only give a regular Oracle JDK a chance to warm up, it turns out that it can actually handle almost 1700 more requests.
-This is a significant difference.
+If we compare RPS between cold Oracle JDK and GraalVM, there is no doubt that GraalVM does better.
+However, if we only give a regular Oracle JDK a chance to warm up, it turns out that it can handle almost 1700 more requests.
+It's a significant difference.
 
 [.text-center]
 --
@@ -616,12 +615,12 @@ This is a significant difference.
 image::/images/ratpack-graalvm-latency-benchmark.png[]
 --
 
-Latency benchmark also reveals an interesting details.
-GraalVM wins when we compare it to cold Oracle JDK and we let both application handle a fairly small traffic (200 requests with total of 1000).
-But if we increase the number of concurrent requests to 800 and we need to handle the total of 500,000 requests, warmed up Oracle JDK works much better.
+Latency benchmark also reveals interesting details.
+GraalVM wins when we compare it to cold Oracle JDK, and we let both applications handle reasonably small traffic (200 requests with a total of 1000).
+When we increase the number of concurrent requests to 800, and we need to handle the total of 500,000 requests, warmed up Oracle JDK works much better.
 While GraalVM slows down to the ~65ms per request when we increase the traffic, Oracle JDK speeds up to ~57ms per request.
 
-There are also two things worth mentioning. I've tried to execute more concurrent requests, but it turned out that GraalVM stars
+There are also two things worth mentioning. I've tried to execute more concurrent requests, but it turned out that GraalVM starts
 throwing `IOException` when I increased the number of concurrent requests to 1,000.
 
 [source,text]
@@ -655,21 +654,22 @@ java.io.IOException: Accept failed
 
 Oracle JDK at the same time was able to handle 1,000 concurrent requests without any issue.
 
-And the last thing - memory consumption. GraalVM does much better when it comes to memory consumption right after the startup - the demo application
-consumes around 30 MB after startup on GraalVM and about 90 MB when run on Oracle JDK. However, when application starts handling firsts requests,
-memory consumptions jumps significantly - GraalVM consumes around 300 MB, while Oracle JDK consumes around 150 MB only.
+And the last thing - memory consumption.
+GraalVM does much better when it comes to memory consumption right after the startup - the demo application consumes around 30 MB after startup on GraalVM and about 90 MB when running on Oracle JDK.
+However, when the application starts handling firsts requests, memory consumptions jumps significantly - GraalVM consumes around 300 MB, while Oracle JDK consumes around 150 MB only.
+
 
 == Conclusion
 
-I must admit that the final benchmark results surprised me a bit. But also made me happy at the same time. This demo application
-is not a rock-solid proof - if we used much larger and much more complicated Ratpack application we could get completely different results.
-However, it proved that in some use cases Ratpack application does not need GraalVM to run fast. GraalVM may offer much faster startup,
-but fine tuned and properly warmed up JDK may perform much better in terms of metrics like RPS or latency in milliseconds.
+I must admit that the final benchmark results surprised me a bit. It also made me happy at the same time.
+This demo application is not a rock-solid proof - if we used much larger and much more complicated Ratpack application, we could get completely different results.
+It proved that in some use cases Ratpack application does not need GraalVM to run fast.
+GraalVM may offer much faster startup, but fine-tuned and adequately warmed up JDK may perform much better in terms of metrics like RPS or latency in milliseconds.
 
 I hope you learned something new from this blog post.
-I'm really happy I have finally run Ratpack example on GraalVM.
-It took me hours to make it running and I almost gave up, but I couldn't accept the failure. The final result makes me happy even more.
-It's 06:03 AM. Time to go sleep. See you soon!
+I’m pleased I have finally run the Ratpack example on GraalVM.
+It took me hours to make it running, and I almost gave up, but I couldn't accept the failure.
+The final result makes me happy even more. It’s 06:03 AM. Time to go to sleep. See you soon!
 
 
 
