@@ -671,5 +671,8 @@ I’m pleased I have finally run the Ratpack example on GraalVM.
 It took me hours to make it running, and I almost gave up, but I couldn't accept the failure.
 The final result makes me happy even more. It’s 06:03 AM. Time to go to sleep. See you soon!
 
-
-
+++++
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aOszDmbSsyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+++++
