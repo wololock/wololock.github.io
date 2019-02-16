@@ -661,10 +661,15 @@ However, when the application starts handling firsts requests, memory consumptio
 
 == Conclusion
 
-I must admit that the final benchmark results surprised me a bit. It also made me happy at the same time.
+I must admit that the final benchmark results surprised me a bit.
 This demo application is not a rock-solid proof - if we used much larger and much more complicated Ratpack application, we could get completely different results.
 It proved that in some use cases Ratpack application does not need GraalVM to run fast.
 GraalVM may offer much faster startup, but fine-tuned and adequately warmed up JDK may perform much better in terms of metrics like RPS or latency in milliseconds.
+
+Summary:
+
+* GraalVM runs much faster compared to cold JDK. This is a good news for things like FaaS or running non-daemon like programs - you don't have to wait until JIT does it job to optimize runtime environment.
+* GraalVM seems to allocate much more memory while running the demo program. It starts with much smaller memory footprint at the beginning, but when the benchmark is over, Oracle JDK consumed around 170 MB while GraalVM was consuming ~300 MB of the memory.
 
 I hope you learned something new from this blog post.
 I’m pleased I have finally run the Ratpack example on GraalVM.
