@@ -45,6 +45,11 @@ footer:
     title: StackOverflow
     icon: fa-stack-overflow
     enable: false
+  youtube:
+    link: https://www.youtube.com/channel/UCEf8e5YAYnowq-2deW4tpsw/featured
+    title: YouTube
+    icon: fa-youtube
+    enable: true
   mail:
     link: 'mailto:szymon.stepniak@gmail.com'
     title: Email me
