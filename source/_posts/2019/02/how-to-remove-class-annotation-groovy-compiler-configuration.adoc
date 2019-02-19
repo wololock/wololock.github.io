@@ -1,0 +1,217 @@
+---
+title: How to remove any class annotation with Groovy compiler configuration script?
+date: 2019-02-19 19:14:38
+updated: 2019-02-19 19:14:38
+tags:
+    - groovy
+    - compiler-configuration
+    - compile-static
+    - annotation
+    - ast
+categories:
+    - Groovy Cookbook
+cover: /images/groovy-cookbook.jpg
+og_image: /images/og/groovy-compiler-configuration.jpg
+eyeCatchImage: /images/og/groovy-compiler-configuration.jpg
+---
+
+One of the most interesting Groovy features is its ability to configure advanced compilerfootnote:[http://docs.groovy-lang.org/latest/html/documentation/tools-groovyc.html] options using DSL script.
+It becomes handy when you want to apply some global modifications to all Groovy classes.
+(For instance, you want to add `@CompileStatic` annotation to all classes, without applying changes to the source code).
+In most cases, you want to add something to the existing source code, e.g., classes imports or useful annotations, but what if we want to remove one annotation or another?
+
+++++
+<!-- more -->
+++++
+
+NOTE: Kudos to https://twitter.com/sbglasius[Søren Glasius] who bring the question about removing annotations at the compile time to the *Groovy Community Slack*!footnote:[https://groovycommunity.com/]
+
+== Introduction
+
+Let's start by defining a simple example.
+Imagine you work with a Groovy code base, and all classes are annotated with the `@CompileStatic` annotation.
+It's an excellent practice to favor *static compilation* over the dynamic one if we don't use Groovy's dynamic language capabilities.
+However, let's say that at some point we need to compile the same source code with a static compilation disabled.
+There are various ways to do it.
+We could temporarily remove all annotations from the code, but it doesn't sound like a good solution.
+Instead, let's use compiler configuration script to do it for us (without making a single change to the source code).
+
+== An example
+
+We use a simple `Person` class to illustrate the use case.
+
+.Person.groovy
+[source,groovy]
+----
+import groovy.transform.CompileStatic
+
+@CompileStatic
+class Person {
+    private String firstName
+    private String lastName
+
+    String introduceYourself() {
+        "${firstName} ${lastName}"
+    }
+
+    String greet(Person person) {
+        "${introduceYourself()} greets ${person.introduceYourself()}"
+    }
+
+    static void main(String[] args) {
+        def joe = new Person(firstName: "Joe", lastName: "Doe")
+        def mark = new Person(firstName: "Mark", lastName: "Smith")
+
+        println joe.greet(mark)
+    }
+}
+----
+
+As you can see this class uses static compilation, so when we compile it, we get a bytecode that is an equivalent of the following Java code.
+
+.Decompiled Person.class file
+[source,java]
+----
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+import groovy.lang.GroovyObject;
+import groovy.lang.MetaClass;
+import org.codehaus.groovy.runtime.DefaultGroovyMethods;
+import org.codehaus.groovy.runtime.GStringImpl;
+import org.codehaus.groovy.runtime.ScriptBytecodeAdapter;
+import org.codehaus.groovy.runtime.typehandling.ShortTypeHandling;
+
+public class Person implements GroovyObject {
+    private String firstName;
+    private String lastName;
+
+    public Person() {
+        MetaClass var1 = this.$getStaticMetaClass();
+        this.metaClass = var1;
+    }
+
+    public String introduceYourself() {
+        return (String)ShortTypeHandling.castToString(new GStringImpl(new Object[]{this.firstName, this.lastName}, new String[]{"", " ", ""}));
+    }
+
+    public String greet(Person person) {
+        return (String)ShortTypeHandling.castToString(new GStringImpl(new Object[]{this.introduceYourself(), person.introduceYourself()}, new String[]{"", " greets ", ""}));
+    }
+
+    public static void main(String... args) {
+        Person var1 = new Person();
+        String var2 = "Joe";
+        ScriptBytecodeAdapter.setGroovyObjectProperty(var2, Person.class, var1, (String)"firstName");
+        String var3 = "Doe";
+        ScriptBytecodeAdapter.setGroovyObjectProperty(var3, Person.class, var1, (String)"lastName");
+        Person var5 = new Person();
+        String var6 = "Mark";
+        ScriptBytecodeAdapter.setGroovyObjectProperty(var6, Person.class, var5, (String)"firstName");
+        String var7 = "Smith";
+        ScriptBytecodeAdapter.setGroovyObjectProperty(var7, Person.class, var5, (String)"lastName");
+        DefaultGroovyMethods.println(Person.class, var1.greet(var5));
+        Object var10000 = null;
+    }
+}
+----
+
+NOTE: I use Groovy 2.5.6 version in this example. Depending on Groovy version, the output bytecode represented as a Java code may look differently.
+
+== Using compiler configuration script
+
+A Groovy compiler allows us to use the *compiler configuration script* to add some useful features.
+For instance, if we would like to add `@CompileStatic` annotation to all classes, we would create a `config.groovy` script like the one below.
+
+.config.groovy
+[source,groovy]
+----
+withConfig(configuration) {
+    ast(groovy.transform.CompileStatic)
+}
+----
+
+Now, all we have to do is to use `--configscript` switch to enable our custom compiler configuration.
+
+[source,bash]
+----
+groovyc --configscript config.groovy Person.groovy
+----
+
+OK, so we know how to add an annotation - let's see how we can remove one from all Groovy classes.
+We need to create an AST transformation customizer, but instead of creating a new class that extends `org.codehaus.groovy.control.customizers.ASTTransformationCustomizer` class we are going to use `inline` directive that allows us using a closure directly in the configuration script instead.
+
+[source,groovy]
+----
+withConfig(configuration) {
+    inline(phase:'CONVERSION') { source, context, classNode -> //<1>
+        source.ast.unit.classes.each { clazz -> //<2>
+            clazz.annotations.removeAll { antn -> antn.classNode.name  == 'CompileStatic' } //<3>
+        }
+    }
+}
+----
+
+In this compiler configuration, pass:[<em class="conum" data-value="1"></em>] we attach our customizer to the `CompilePhase.CONVERSION` phasefootnote:[http://docs.groovy-lang.org/latest/html/api/org/codehaus/groovy/control/CompilePhase.html]  - the phase that is responsible for creating an abstract syntax tree (AST).
+pass:[<em class="conum" data-value="2"></em>] We take the compilation unit (`source.ast.unit`) to access all Groovy classes from our source code.
+pass:[<em class="conum" data-value="3"></em>] Then for each class node, we remove `@CompileStatic` annotation.
+Thanks to this we have a chance to modify the source unit before it gets analyzed and compiled.
+If we take a compiled class file and we decompile it, we get bytecode represented as the following Java code equivalent.
+
+.Decompiled Person.class file (the one compiled without static compilation)
+[source,java]
+----
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+import groovy.lang.GroovyObject;
+import groovy.lang.MetaClass;
+import org.codehaus.groovy.runtime.BytecodeInterface8;
+import org.codehaus.groovy.runtime.GStringImpl;
+import org.codehaus.groovy.runtime.ScriptBytecodeAdapter;
+import org.codehaus.groovy.runtime.callsite.CallSite;
+import org.codehaus.groovy.runtime.typehandling.ShortTypeHandling;
+
+public class Person implements GroovyObject {
+    private String firstName;
+    private String lastName;
+
+    public Person() {
+        CallSite[] var1 = $getCallSiteArray();
+        super();
+        MetaClass var2 = this.$getStaticMetaClass();
+        this.metaClass = var2;
+    }
+
+    public String introduceYourself() {
+        CallSite[] var1 = $getCallSiteArray();
+        return (String)ShortTypeHandling.castToString(new GStringImpl(new Object[]{this.firstName, this.lastName}, new String[]{"", " ", ""}));
+    }
+
+    public String greet(Person person) {
+        CallSite[] var2 = $getCallSiteArray();
+        return !__$stMC && !BytecodeInterface8.disabledStandardMetaClass() ? (String)ShortTypeHandling.castToString(new GStringImpl(new Object[]{this.introduceYourself(), var2[2].call(person)}, new String[]{"", " greets ", ""})) : (String)ShortTypeHandling.castToString(new GStringImpl(new Object[]{var2[0].callCurrent(this), var2[1].call(person)}, new String[]{"", " greets ", ""}));
+    }
+
+    public static void main(String... args) {
+        CallSite[] var1 = $getCallSiteArray();
+        Object joe = var1[3].callConstructor(Person.class, ScriptBytecodeAdapter.createMap(new Object[]{"firstName", "Joe", "lastName", "Doe"}));
+        Object mark = var1[4].callConstructor(Person.class, ScriptBytecodeAdapter.createMap(new Object[]{"firstName", "Mark", "lastName", "Smith"}));
+        var1[5].callStatic(Person.class, var1[6].call(joe, mark));
+    }
+}
+----
+
+You see the difference.
+Compiling the same Groovy class produced the same bytecode as if we remove `@CompileStatic` annotation from the source file.
+
+== Conclusion
+
+I hope you have learned something useful from this blog post.
+A Groovy compiler configuration script gives you a lot of options to customize compiler behavior.
+If you want to learn more about it, check the official Groovy documentationfootnote:[http://groovy-lang.org/dsls.html#_customizer_builder] for more examples.
+See you next time!
