@@ -256,3 +256,9 @@ I hope you have learned something useful from this blog post.
 A Groovy compiler configuration script gives you a lot of different options to customize a compiler behavior.
 If you want to learn more about it, check the official Groovy documentationfootnote:[http://groovy-lang.org/dsls.html#_customizer_builder] for more examples.
 See you next time!
+
+++++
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7TJwpuNsDS8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+++++
