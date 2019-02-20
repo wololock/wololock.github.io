@@ -1,7 +1,7 @@
 ---
 title: How to remove any class annotation with Groovy compiler configuration script?
 date: 2019-02-19 19:14:38
-updated: 2019-02-19 19:14:38
+updated: 2019-02-20 14:08:23
 tags:
     - groovy
     - compiler-configuration
@@ -145,9 +145,13 @@ We need to create an AST transformation customizer, but instead of creating a ne
 
 [source,groovy]
 ----
+import org.codehaus.groovy.ast.ClassNode
+import org.codehaus.groovy.classgen.GeneratorContext
+import org.codehaus.groovy.control.SourceUnit
+
 withConfig(configuration) {
-    inline(phase:'CONVERSION') { source, context, classNode -> //<1>
-        source.ast.unit.classes.each { clazz -> //<2>
+    inline(phase:'CONVERSION') { SourceUnit source, GeneratorContext context, ClassNode classNode -> //<1>
+        context.compileUnit.classes.each { clazz -> //<2>
             clazz.annotations.removeAll { antn -> antn.classNode.name  == 'CompileStatic' } //<3>
         }
     }
@@ -155,7 +159,7 @@ withConfig(configuration) {
 ----
 
 In this compiler configuration, pass:[<em class="conum" data-value="1"></em>] we attach our customizer to the `CompilePhase.CONVERSION` phasefootnote:[http://docs.groovy-lang.org/latest/html/api/org/codehaus/groovy/control/CompilePhase.html]  - the phase that is responsible for creating an abstract syntax tree (AST).
-pass:[<em class="conum" data-value="2"></em>] We take the compilation unit (`source.ast.unit`) to access all Groovy classes from our source code.
+pass:[<em class="conum" data-value="2"></em>] We take the compilation unit to access all Groovy classes from our source code.
 pass:[<em class="conum" data-value="3"></em>] Then for each class node, we remove `@CompileStatic` annotation.
 Thanks to this we have a chance to modify the source unit before it gets analyzed and compiled.
 If we take a compiled class file and we decompile it, we get a bytecode represented as the following Java code equivalent.
@@ -208,6 +212,43 @@ public class Person implements GroovyObject {
 
 You see the difference.
 Compiling the same Groovy class produced the same bytecode as if we remove `@CompileStatic` annotation from the source file.
+
+== Imported annotation vs. fully qualified name
+
+There is one corner case worth explaining.
+You have seen in the previous example that we can access annotation name through the `ClassNode` field of `AnnotatedNode` class.
+We silently assumed that all annotations use imports and simple names like `@CompileStatic that`.
+However, that is not always true, and you may find yourself in a situation where the same annotation is added using the qualified name `@groovy.transform.CompileStatic`.
+It affects our compiler script significantly because this annotation cannot be found using its simple name - `classNode.name` in this case returns `groovy.transform.CompileStatic`.
+
+How to deal with that?
+We could define a predicate that searches for both names, a simple and qualified one.
+
+.Predicate that gets satisifed by simple and qualified `@CompileStatic` annotation name
+[source,groovy]
+----
+{ antn -> antn.classNode.name in ['CompileStatic', 'groovy.transform.CompileStatic'] }
+----
+
+Alternatively, we could _"unqualify"_ all annotation names using `tokenize()` and capturing the last segment - just in case one of the classes is annotated using qualified annotation name.
+
+.Groovy compiler script that supports qualified and simple annotation names
+[source,groovy]
+----
+import org.codehaus.groovy.ast.ClassNode
+import org.codehaus.groovy.classgen.GeneratorContext
+import org.codehaus.groovy.control.SourceUnit
+
+withConfig(configuration) {
+    inline(phase:'CONVERSION') { SourceUnit source, GeneratorContext context, ClassNode classNode ->
+        context.compileUnit.classes.each { ClassNode clazz ->
+            clazz.annotations.removeAll { antn -> antn.classNode.name.tokenize(/./).last() == 'CompileStatic' }
+        }
+    }
+}
+----
+
+Choose whatever works for you better.
 
 == Conclusion
 
