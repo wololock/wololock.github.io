@@ -24,7 +24,7 @@ In most cases, you want to add something to the existing source code, e.g., clas
 <!-- more -->
 ++++
 
-NOTE: Kudos to https://twitter.com/sbglasius[Søren Glasius] who bring the question about removing annotations at the compile time to the *Groovy Community Slack*!footnote:[https://groovycommunity.com/]
+NOTE: Kudos to https://twitter.com/sbglasius[Søren Glasius] who brought the question about removing annotations at the compile time to the *Groovy Community Slack*!footnote:[https://groovycommunity.com/]
 
 == Introduction
 
@@ -34,7 +34,7 @@ It's an excellent practice to favor *static compilation* over the dynamic one if
 However, let's say that at some point we need to compile the same source code with a static compilation disabled.
 There are various ways to do it.
 We could temporarily remove all annotations from the code, but it doesn't sound like a good solution.
-Instead, let's use compiler configuration script to do it for us (without making a single change to the source code).
+Instead, let's use a compiler configuration script to do it for us (without making a single change to the source code).
 
 == An example
 
@@ -158,7 +158,7 @@ In this compiler configuration, pass:[<em class="conum" data-value="1"></em>] we
 pass:[<em class="conum" data-value="2"></em>] We take the compilation unit (`source.ast.unit`) to access all Groovy classes from our source code.
 pass:[<em class="conum" data-value="3"></em>] Then for each class node, we remove `@CompileStatic` annotation.
 Thanks to this we have a chance to modify the source unit before it gets analyzed and compiled.
-If we take a compiled class file and we decompile it, we get bytecode represented as the following Java code equivalent.
+If we take a compiled class file and we decompile it, we get a bytecode represented as the following Java code equivalent.
 
 .Decompiled Person.class file (the one compiled without static compilation)
 [source,java]
@@ -212,6 +212,6 @@ Compiling the same Groovy class produced the same bytecode as if we remove `@Com
 == Conclusion
 
 I hope you have learned something useful from this blog post.
-A Groovy compiler configuration script gives you a lot of options to customize compiler behavior.
+A Groovy compiler configuration script gives you a lot of different options to customize a compiler behavior.
 If you want to learn more about it, check the official Groovy documentationfootnote:[http://groovy-lang.org/dsls.html#_customizer_builder] for more examples.
 See you next time!
