@@ -1,0 +1,92 @@
+---
+title: Release It! 2nd edition - book review
+date: 2019-03-03 00:17:25
+updated: 2019-03-03 00:17:25
+tags:
+    - book
+    - review
+    - devops
+    - deploy
+    - production
+    - release
+categories:
+    - Programmer's Bookshelf
+cover: /images/release-it-bg.jpg
+og_image: /images/og/release-it.jpg
+eyeCatchImage: /images/og/release-it.jpg
+---
+
+We are software developers.
+Our daily duty is to write programs.
+We spend a lot of time and effort into doing the right things and doing them right.
+At some point, the production launch day comes and depending on our level of confidence - we are calm and ready for the first wave of unpredictable users, or deadly terrified.
+
+++++
+<!-- more -->
+++++
+
+== Introduction
+
+How to build a level of confidence that helps us releasing new versions of the system and preventing heart attacks?
+There is no simple answer, but there are reliable tools, techniques, and patterns every software developer should consider using.
+The book called https://pragprog.com/book/mnee2/release-it-second-edition[_"Release It! 2nd edition: Design and Deploy Production-Ready Software"_] by https://twitter.com/mtnygard[Michael T. Nygard] covers most of them.
+
+== What's inside?
+
+In the *first chapter* _(Living in Production)_ the author explains what does it mean that the system is production-ready and how everything that happens before the production deployment is just a prelude.
+He gives several short examples that illustrate how big mistake people make when they believe that any lab-sterile testing can mimic real, and often crazy, users.
+The *second chapter* is a case study - a thriller starring an unexpected exception as a villain, and a huge airline company as a victim.
+This chapter made me love this book.
+Micheal Nygard is a great storyteller, and this chapter is the best proof.
+He guides the reader step by step, explaining the way he analyzed and solved that problem.
+*Chapter three* _(Stabilize Your System)_ focuses on defining what stability of the system means. It asks a few questions that can be summarized with "Let's think what may go wrong" sentence.
+*Chapter four* _(Stability Antipatterns)_ provides a list of possible failures, their root causes, and anti-solutions people quite often apply to solve them.
+In the *next chapter* _(Stability Patterns)_ the author focuses on the simplest and most reliable solutions like timeouts, circuit breakers or backpressure to name just a few.
+
+*Chapter six* opens the second part of the book called _"Design for Production"_ and it starts with the second case study, which shows how massive marketing campaign incorporated with the broken e-commerce system may cause damage.
+The *seventh chapter* _(Foundations)_ introduces production-ready design layers.
+They are (from bottom to top): Foundation, Instances, Interconnect, Control Plane, and Operations.
+In this chapter the author focuses on the first layer - he briefly explains the networking basics, physical hosts, VMs and containers.
+The *next chapter* _(Processes on Machines)_ uncovers the layer called "Instances".
+It provides the definitions of services, instances, executables, etc.
+It also focuses on the code (including the configuration as a code approach) and logging.
+In the *ninth chapter*, we are introduced to the instances' interconnection strategies.
+It starts with a simple (and error-prone) DNS-only approach and ends up with ready-to-scale service discovery solution example.
+*Chapter ten* _(Control Plane)_ treats of automation, monitoring, distributed log collection, provisioning, and possible platforms that may help to achieve the desired level of control.
+It does not suggest any silver-bullet solution - it explains the possibilities and tells what should we focus on instead.
+*Chapter eleven* is a comprehensive tour on OWASP top 10 security vulnerabilities.
+
+*Chapter twelve* opens the 3rd part of the book called _"Deliver Your System"_ and it starts with yet another case study.
+*Chapter thirteen* _(Design For Deployment)_ explains the importance of smaller and more frequent deployments towards making significant changes possible with a series of small and predictable steps.
+The *next chapter* _(Handling Versions)_ focuses on different ways of handling API versioning.
+It explains the importance of supporting backward compatible changes only and shows how to make consumer-producer integration less painful.
+
+*Chapter fifteen* _(Trampled by Your Own Customers)_ opens the last part of the book called _"Solve Systematic Problems"_.
+It starts with a case study - a history of a redesigned e-commerce system which was crashed by 250k active sessions in 30 minutes after the first launch.
+The *next chapter* _(Adaption)_ teaches us how to adapt to the changing environment and grow over time through planning releases cycle.
+The *last chapter seventeen* _(Chaos Engineering)_ gives a brief introduction to the idea of chaos engineering.
+It accepts that systems are fragile and failures show up sooner than later.
+And the more control over them we have, the better.
+Building resilient systems require breaking them regularly and in a controlled way.
+
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/release-it-img1.jpg]
+image::/images/release-it-img1.jpg[]
+--
+
+== Conclusion
+
+_"Release It!"_ is a great book *every* software developer, architect, designer or even QA engineer should read.
+It focuses on *principles* and *guidance* so it may feel like it misses some level of details.
+However, if it focused more on the specific tools instead of principles, it would quickly become outdated.
+You won't regret spending time with the book - it is 336 pages of useful and never outdating knowledge.
+Highly recommended!
+
+
+
+
+
+
