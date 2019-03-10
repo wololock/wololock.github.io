@@ -1,0 +1,26 @@
+#!/bin/bash
+
+IMAGE=`docker images | grep -i "wololock-github-io" | awk '{print $1}'`
+
+if [ -z $IMAGE ]; then
+    docker build -t wololock-github-io .
+fi
+
+if [ "$1" = "stop" ]; then
+    docker rm -f wololock-github-io
+    exit 0
+fi
+
+if [ "$1" = "init" ]; then
+    docker run --rm --name wololock-github-io -v `pwd`:/blog wololock-github-io "hexo clean && rm -rf node_modules && npm install"
+    exit 0
+fi
+
+if [ "$1" = "server" ]; then
+    docker run --rm -d --name wololock-github-io -p 4000:4000 -v `pwd`:/blog wololock-github-io "hexo server"
+    exit 0
+fi
+
+OPTION="$@"
+
+docker run --rm  --name wololock-github-io -p 4000:4000 -v `pwd`:/blog wololock-github-io "hexo $OPTION"
