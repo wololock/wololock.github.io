@@ -9,3 +9,4 @@ public/
 *.iml
 package-lock.json
 cache/
+_multiconfig.yml
