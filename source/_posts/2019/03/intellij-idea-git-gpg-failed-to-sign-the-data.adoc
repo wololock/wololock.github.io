@@ -1,0 +1,156 @@
+---
+title: IntelliJ IDEA and Git's "gpg failed to sign the data"
+date: 2019-03-10 15:24:29
+updated: 2019-03-10 15:24:29
+tags:
+    - git
+    - gpg
+    - intellij-idea
+    - github
+categories:
+    - How to
+cover: /images/github-gpg-bg.jpg
+og_image: /images/og/github-gpg.jpg
+eyeCatchImage: /images/og/github-gpg.jpg
+---
+
+Today I've decided to improve my Github account settings a bit. I thought that it would be nice to add GPG key to it
+and sign all commits pushed from my computer. Everything worked great until I tried to commit the first change directly
+from IntelliJ IDEA.
+
+++++
+<!-- more -->
+++++
+
+== Introduction
+
+Why even bother with signing commits with GPG key? The most important reason is quite simple - it proves that you
+are the author of a given commit. Or to be more precise - the key that was used to sign this commit matches the key
+associated with your account. Github honors signing commits with this pretty lovely badge added to the commit history log.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/github-gpg-signing.png]
+image::/images/github-gpg-signing.png[]
+--
+
+Signing git commits make even more sense if you use tools like https://keybase.io/wololock[Keybase.io] to chat and share files in a secure (encrypted) fashion.
+
+== How to sign Git commits?
+
+First of all, you need to have a GPG key. Github's help pagefootnote:[https://help.github.com/en/articles/managing-commit-signature-verification] explains in details how to generate a key, as well as
+how to associate it with your account. I encourage you to read it - it won't take more than 5 minutes of your time.
+
+Next, you need to configure your Git client to use the key. Depending on your preferences, you might want to set
+up GPG signing globally, or you can do it locally for a single repository. In my case, I decided to set up signing
+commits at the global level with the following two commands:
+
+[source,bash]
+----
+$ git config --global commit.gpgsign true
+$ git config --global user.signingkey YOURKEYHERE
+----
+
+If you use Git from the command line, that is all you have to do. You can create the first commit and push it
+to Github to see _"Verified"_ badge next to your commit history log entry.
+
+== Getting into troubles with IntelliJ IDEA
+
+I assume you also use your IDE's built-in Git client. I use IntelliJ IDEA daily, and I use its Git client a
+lot. When I tried to create the first commit after enabling GPG signing, IDEA's client stopped working,
+and it started failing with the following error:
+
+[source,plain]
+----
+gpg failed to sign the data fatal: failed to write commit object
+----
+
+I started googling to see what the problem is. It quickly turned out that this is not the IDEA's problem, but rather
+Git and GnuPG issue. It fails to sign the commit if Git command is executed without TTY, so GPG cannot prompt
+to ask you for a password. I've quickly found a solution that suggested creating an alias that executes
+gpg with `--batch --no-tty` options.  I created a script:
+
+./usr/local/bin/gpg-no-tty
+[source,bash]
+----
+#!/bin/bash
+/usr/bin/gpg --batch --no-tty "$@"
+----
+
+Then I added the following block to my `.gitconfig` file.
+
+..gitconfig
+[source,bash]
+----
+[gpg]
+program = gpg-no-tty
+----
+
+The solutions I've found promised that in this case IDEA will use `gpg-agent` that can store the password in the keyring and automatically sign the commit. Well, it didn't work for me. At least not right away.
+
+== Fedora Linux 29 use case
+
+I use Fedora Linux, and it seemed to be a critical factor in this story. A had to went through a few more articles,
+and I've finally found the answer. When I applied the solution that uses `--batch --no-tty` for the first time,
+it didn't make any effect. However, it turned out that gpg-agent works with gpg 2.x. When I run `gpg --version`
+I saw the following:
+
+[source,bash]
+----
+$ gpg --version
+gpg (GnuPG) 1.4.23
+Copyright (C) 2015 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Home: ~/.gnupg
+Obsługiwane algorytmy:
+Asymetryczne: RSA, RSA-E, RSA-S, ELG-E, DSA
+Symetryczne: IDEA, 3DES, CAST5, BLOWFISH, AES, AES192, AES256,
+             TWOFISH, CAMELLIA128, CAMELLIA192, CAMELLIA256
+Skrótów: MD5, SHA1, RIPEMD160, SHA256, SHA384, SHA512, SHA224
+Kompresji: Nieskompresowany, ZIP, ZLIB, BZIP2
+----
+
+Fedora Linux 29 ships GPG version 2 as `gpg2` shell command.
+
+[source,bash]
+----
+$ gpg2 --version
+gpg (GnuPG) 2.2.13
+libgcrypt 1.8.4
+Copyright (C) 2019 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Home: /home/wololock/.gnupg
+Obsługiwane algorytmy:
+Asymetryczne: RSA, ELG, DSA, ECDH, ECDSA, EDDSA
+Symetryczne: IDEA, 3DES, CAST5, BLOWFISH, AES, AES192, AES256,
+             TWOFISH, CAMELLIA128, CAMELLIA192, CAMELLIA256
+Skrótów: SHA1, RIPEMD160, SHA256, SHA384, SHA512, SHA224
+Kompresji: Nieskompresowany, ZIP, ZLIB, BZIP2
+----
+
+
+When I replaced the initial script with `gpg2` - it worked. When I created the first commit from IntelliJ IDEA,
+gpg-agent prompted for the password and I was able to store it in the keyring.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/github-gpg-idea.png]
+image::/images/github-gpg-idea.png[]
+--
+
+== Conclusion
+
+If you are interested in enabling GPG signing of your Git commits, consider checking https://github.com/pstadler/keybase-gpg-github[this step-by-step guide],
+where you can find even more information about the setup process. Happy hacking!
+
+
+
+
