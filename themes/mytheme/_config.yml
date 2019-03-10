@@ -60,6 +60,11 @@ footer:
     title: LinkedIn
     icon: fa-linkedin
     enable: false
+  keybase:
+    link: https://keybase.io/wololock
+    title: Keybase
+    icon: fa-user-secret
+    enable: true
 
 google_analytics: UA-42400890-5
 
