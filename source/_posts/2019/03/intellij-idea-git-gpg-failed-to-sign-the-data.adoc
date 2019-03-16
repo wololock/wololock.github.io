@@ -1,7 +1,7 @@
 ---
 title: IntelliJ IDEA and Git's "gpg failed to sign the data"
 date: 2019-03-10 15:24:29
-updated: 2019-03-10 15:24:29
+updated: 2019-03-16 12:44:31
 tags:
     - git
     - gpg
@@ -16,7 +16,7 @@ eyeCatchImage: /images/og/github-gpg.jpg
 
 Today I've decided to improve my Github account settings a bit. I thought that it would be nice to add GPG key to it
 and sign all commits pushed from my computer. Everything worked great until I tried to commit the first change directly
-from IntelliJ IDEA.
+from my IntelliJ IDEA.
 
 ++++
 <!-- more -->
@@ -91,10 +91,10 @@ The solutions I've found promised that in this case IDEA will use `gpg-agent` th
 
 == Fedora Linux 29 use case
 
-I use Fedora Linux, and it seemed to be a critical factor in this story. A had to went through a few more articles,
+I use Fedora Linux, and it seemed to be a critical factor in this story. I had to went through a few more articles,
 and I've finally found the answer. When I applied the solution that uses `--batch --no-tty` for the first time,
-it didn't make any effect. However, it turned out that gpg-agent works with gpg 2.x. When I run `gpg --version`
-I saw the following:
+it didn't take any effect. However, it turned out that `gpg-agent` works with GPG 2.x. When I run `gpg --version`
+I noticed the following:
 
 [source,bash]
 ----
@@ -114,7 +114,8 @@ Skrótów: MD5, SHA1, RIPEMD160, SHA256, SHA384, SHA512, SHA224
 Kompresji: Nieskompresowany, ZIP, ZLIB, BZIP2
 ----
 
-Fedora Linux 29 ships GPG version 2 as `gpg2` shell command.
+It revealed that `gpg` in my system points to version `1.4.23`. Would it mean that there is no GPG 2.x in Fedora Linux?
+Nope, not really. GPG 2.x is available for Fedora Linux, but as a `gpg2` shell command.
 
 [source,bash]
 ----
@@ -136,8 +137,18 @@ Kompresji: Nieskompresowany, ZIP, ZLIB, BZIP2
 ----
 
 
-When I replaced the initial script with `gpg2` - it worked. When I created the first commit from IntelliJ IDEA,
-gpg-agent prompted for the password and I was able to store it in the keyring.
+When I replaced the initial script with `gpg2` - it worked as expected.
+
+.The final version of /usr/local/bin/gpg-no-tty
+[source,bash]
+----
+#!/bin/bash
+/usr/bin/gpg2 --batch --no-tty "$@"
+----
+
+I was able to create the first commit from IntelliJ IDEA.
+The `gpg-agent` prompted for the password and I was able to store it in the keyring.
+
 
 [.text-center]
 --
