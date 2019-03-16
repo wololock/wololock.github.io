@@ -157,6 +157,64 @@ The `gpg-agent` prompted for the password and I was able to store it in the keyr
 image::/images/github-gpg-idea.png[]
 --
 
+== UPDATE: `--batch --no-tty` not needed with GPG2
+
+I just make some experiments and it seems like using intermediate script that adds `--batch --no-tty` switches is no needed
+when you use `gpg2` with `gpg-agent`. _(At least in my case)_. My current setup is the following. I have changed the default gpg program to `gpg2` in my
+`~/.gitconfig` file:
+
+.Make sure the following two lines are added at the end of your `~/.gitconfig file
+[source,bash]
+----
+[gpg]
+program = gpg2
+----
+
+Here is my `gpg-agent` version.
+
+[source,bash]
+----
+$ gpg-agent --version
+gpg-agent (GnuPG) 2.2.13
+libgcrypt 1.8.4
+Copyright (C) 2019 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+----
+
+Make sure that `gpg-agent` daemon is running. You can start it with the following command:
+
+[source,bash]
+----
+$ gpg-agent --daemon
+----
+
+When you create a first signed commit via command line or from IntelliJ IDEA (I've checked both cases after removing remembered password
+from the keyring), `gpg-agent` will prompt and ask you for a password that can be stored in the keyring.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/github-gpg-idea.png]
+image::/images/github-gpg-idea.png[]
+--
+
+
+[NOTE]
+====
+If you removed remembered GPG key password from the keyring and you want to test if `gpg-agent` prompts again for the password correctly,
+remember to shut down the daemon and restart it.
+
+[source,bash]
+----
+$ gpgconf --kill gpg-agent
+
+$ gpg-agent --daemon
+----
+====
+
+
 == Conclusion
 
 If you are interested in enabling GPG signing of your Git commits, consider checking https://github.com/pstadler/keybase-gpg-github[this step-by-step guide],
