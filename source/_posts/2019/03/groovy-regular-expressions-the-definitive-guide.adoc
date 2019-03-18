@@ -1,7 +1,7 @@
 ---
 title: Groovy regular expressions - the definitive guide
-date: 2019-03-17 20:13:27
-updated: 2019-03-17 20:13:27
+date: 2019-03-18 12:46:39
+updated: 2019-03-18 12:46:39
 categories:
     - Groovy Cookbook
 tags:
@@ -12,8 +12,8 @@ tags:
     - java
     - benchmark
 cover: /images/groovy-regexp-jmh-bg.jpg
-og_image: /images/groovy-regexp-jmh.jpg
-eyeCatchImage: /images/groovy-regexp-jmh.jpg
+og_image: /images/og/groovy-regexp-jmh.jpg
+eyeCatchImage: /images/og/groovy-regexp-jmh.jpg
 ---
 
 I've never enjoyed working with regular expressions in Java. It was always very error-prone. You had to remember
