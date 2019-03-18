@@ -1,0 +1,543 @@
+---
+title: Groovy regular expressions - the definitive guide
+date: 2019-03-17 20:13:27
+updated: 2019-03-17 20:13:27
+categories:
+    - Groovy Cookbook
+tags:
+    - groovy
+    - regexp
+    - regular-expressions
+    - jmh
+    - java
+    - benchmark
+cover: /images/groovy-regexp-jmh-bg.jpg
+og_image: /images/groovy-regexp-jmh.jpg
+eyeCatchImage: /images/groovy-regexp-jmh.jpg
+---
+
+I've never enjoyed working with regular expressions in Java. It was always very error-prone. You had to remember
+to escape backslashes, and a very simple _match elements_ check required writing at least 5 lines of code. Booooring.
+However, Groovy solved most of these issues, and today we are going to take a closer look at features like _pattern operator_,
+_find operator_ or _exact match operator_. We will focus on learning the new syntax, as well as measuring and comparing
+its performance. Let's begin!
+
+++++
+<!-- more -->
+++++
+
+== The _pattern_ operator (`~string`)
+
+Groovy makes initializing `java.util.regex.Pattern` class simple thanks to _pattern operator_. It means that you can
+_glue_ `~` in front of the string literal (for instance `~"([Gg])roovy"` or `~/([Gg])roovy/`) and it will produce
+an object of type `java.util.regex.Pattern` instead of `java.lang.String` (or `groovy.lang.GString`).
+
+[source,groovy]
+----
+import java.util.regex.Pattern
+
+def pattern = ~/([Gg])roovy/
+
+assert pattern.class == Pattern
+----
+
+You can think of this operator as an equivalent of a good old `Pattern.compile(str)` method call.
+
+[source,groovy]
+----
+import java.util.regex.Pattern
+
+def pattern = Pattern.compile(/([Gg])roovy/)
+
+assert pattern.class == Pattern
+----
+
+
+[NOTE]
+====
+The _slashy_ form of a Groovy string has a huge advantage over double (or single) quoted string - you don't have
+to escape backslashes.
+
+[source,groovy]
+----
+assert /Version \d+\.\d+\.\d+/ == 'Version \\d+\\.\\d+\\.\\d+'
+----
+====
+
+== The _find_ operator (`=~`)
+
+When we have `java.util.regex.Pattern` object created, the next step is to create an instance of `java.util.regex.Matcher`
+class. Groovy offers so called _find operator_ `=~` which simplifies this operation to something like this: `text =~ pattern`.
+
+Let's consider the example that matches all words that end with `-er`.
+
+[source,groovy]
+----
+def matcher = "My code is groovier and better when I use Groovy there" =~ /\S+er\b/ //<1>
+
+assert matcher.find() //<2>
+
+assert matcher.size() == 2 //<3>
+
+assert matcher[0..-1] == ["groovier", "better"] //<4>
+----
+<1> matches the text with the pattern (the pattern can be represented as `java.util.regex.Pattern` or `java.lang.String`)
+<2> checks if *any* element matches the pattern `/\S+er\b/`
+<3> returns a number of matching elements
+<4> returns a list of all matching elements
+
+Matcher object can be also used in the context of the _boolean expression_ (for instance, as an if-statement condition expression).
+In this case Groovy invokes `matcher.find()` implicitly.
+
+.Using matcher in context of _boolean_ expression
+[source,groovy]
+----
+if ("My code is groovier and better when I use Groovy there" =~ /\S+er\b/) {
+    println "At least one element matches the pattern"
+}
+----
+
+NOTE: Remember that: when `java.util.regex.Matcher` is used in the _boolean expression_ context, it verifies if *any element
+matches the pattern*.
+
+Groovy also allows us to use multiple assignment from _find_ operator to variables. We could rewrite the previous example
+to something even more elegant.
+
+.Using multiple assignment with _find_ operator
+[source,groovy]
+----
+def (first,second) = "My code is groovier and better when I use Groovy there" =~ /\S+er\b/
+
+assert first == "groovier"
+
+assert second == "better"
+----
+
+However, there is one limitation we have to be aware of. If we try to assign more variables then the number of matching
+elements, we will get `java.lang.IndexOutOfBoundsException`. For instance, if we change our code so it expects three matching
+elements instead of two, we will get:
+
+[source,text]
+----
+java.lang.IndexOutOfBoundsException: index is out of range -2..1 (index = 2)
+----
+
+== The _exact match_ operator (`==~`)
+
+Groovy also offers the _exact match_ operator `==~`. It does not return `java.util.regex.Matcher`, but a `boolean` value instead.
+You can think of it as an alias to `java.util.regex.Matcher.matches()` method that checks if *the entire text matches
+the pattern*. If we use the pattern and the text from the previous example, we can expect that `==~` returns `false` in this case.
+
+[source,groovy]
+----
+assert !("My code is groovier and better when I use Groovy there" ==~ /\S+er\b/)
+----
+
+However, if we change the pattern to the one that checks if the text starts with _"My code "_ and ends with _" there"_,
+then we can match the entire text with the pattern.
+
+[source,groovy]
+----
+assert "My code is groovier and better when I use Groovy there" ==~ /^My code .* there$/
+----
+
+== Using matcher as a `switch` case
+
+Groovy allows you to use `java.util.regex.Matcher` as a case in the `switch` statement. Consider the following example.
+
+.Using matcher object as a switch case
+[source,groovy]
+----
+def input = "test"
+
+switch (input) {
+    case ~/\d{3}/:
+        println "The number has 3 digits"
+        break
+
+    case ~/\w{4}/:
+        println "The word has 4 letters"
+        break
+
+    default:
+        println "Unrecognized..."
+}
+----
+
+In this case the program will print `The word has 4 letters` to the console.
+
+
+== Replacing matching elements
+
+We can do even more with regular expressions. Groovy enhances `java.lang.String` class with the methods like:
+
+* `String.replaceFirst(Pattern pattern, Closure closure)`
+* `String.replaceAll(Pattern pattern, Closure closure)`
+
+What is so interesting in those methods? Both accept a closure as a second parameter, and a closure combined with multiple
+assignment can be very powerful in this case. Let's consider the following use case. Let's say we want to implement a function
+that takes a string that represents a version literal like `v3.4.23`, and we want to _"bump"_ the minor part so the next
+generated version is `v3.5.0`.
+
+We could do it in a single line, but let's use four lines for the better readability.
+
+[source,groovy]
+----
+def version = "v3.4.23"
+
+def pattern = ~/^v(\d{1,3})\.(\d{1,3})\.\d{1,4}$/
+
+def newVersion = version.replaceFirst(pattern) { _,major,minor -> "v${major}.${(minor as int) + 1}.0"}
+
+assert newVersion == "v3.5.0"
+----
+
+== Performance
+
+I think the most of us agree that Groovy syntax for handling regular expressions operations is much cleaner and more
+concise. We can express complex expectations using more declarative and accurate syntax. However, what is the performance
+cost? Let's not speculate, but let's measure it instead. We will use JMH and we will measure the performance of the
+dynamically as well as statically compiled Groovy code. All measurements use https://en.wikipedia.org/wiki/Microsecond[microsecond]
+unit of time.
+
+TIP: *1 μs* is equal to *0.001 ms* (millisecond) and *0.000001 s* (second).
+
+[NOTE]
+====
+All benchmark tests used in this blog post can be found in the following Github repository https://github.com/wololock/groovy-regexp-examples
+
+You can run benchmarks on your own computer with the following command:
+
+[source,bash]
+----
+$ ./gradlew jmh
+----
+
+I run all benchmark tests on a Lenovo ThinkPad T440p laptop with *Intel(R) Core(TM) i7-4900MQ CPU @ 2.80GHz* and *16 GBs RAM*.
+I used *JDK 1.8.0_201* _(Java HotSpot(TM) 64-Bit Server VM, 25.201-b09)_.
+
+Below you can find JMH settings used for each benchmark test case:
+
+[source,text]
+----
+# JMH version: 1.21
+# VM version: JDK 1.8.0_201, Java HotSpot(TM) 64-Bit Server VM, 25.201-b09
+# VM invoker: /home/wololock/.sdkman/candidates/java/8.0.201-oracle/jre/bin/java
+# VM options: <none>
+# Warmup: 1 iterations, 23 s each
+# Measurement: 42 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+----
+====
+
+
+=== Pattern operator - 0.22875 μs (avg)
+
+https://github.com/wololock/groovy-regexp-examples/blob/master/src/jmh/groovy/bench/A1_Create_Pattern_Bench.groovy[In this test]
+we measure a performance of creating `java.util.regex.Pattern` object using _pattern operator_ and we compare it
+to the `Pattern.compile(str)` method.
+
+[source,groovy]
+----
+def pattern1 = ~"([Gg])roovy"
+// versus
+def pattern2 = Pattern.compile("([Gg])roovy")
+----
+
+
+Here are the results for *Groovy 2.5.6*:
+
+[source,text]
+----
+A1_Create_Pattern_Bench.pattern_compile_dynamic             avgt   42    0,233 ±  0,001  us/op
+A1_Create_Pattern_Bench.pattern_compile_static              avgt   42    0,225 ±  0,001  us/op
+A1_Create_Pattern_Bench.pattern_operator_dynamic            avgt   42    0,229 ±  0,001  us/op
+A1_Create_Pattern_Bench.pattern_operator_sstatic            avgt   42    0,228 ±  0,001  us/op
+----
+
+And here are the results for *Groovy 3.0.0-alpha-4*:
+
+[source,text]
+----
+A1_Create_Pattern_Bench.pattern_compile_dynamic             avgt   42    0,232 ±  0,001  us/op
+A1_Create_Pattern_Bench.pattern_compile_static              avgt   42    0,227 ±  0,001  us/op
+A1_Create_Pattern_Bench.pattern_operator_dynamic            avgt   42    0,229 ±  0,001  us/op
+A1_Create_Pattern_Bench.pattern_operator_sstatic            avgt   42    0,224 ±  0,001  us/op
+----
+
+Here are results as graph:
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/groovy-regexp-jmh-pattern-operatror.png]
+image::/images/groovy-regexp-jmh-pattern-operatror.png[]
+--
+
+Conclusion - there is no difference if we use _pattern operator_ or if we call `Pattern.compile(str)` method explicitly.
+Switching from dynamic to static compilation does not introduce a huge difference.
+
+=== Find operator (short string) - 5.11275 μs (avg)
+
+https://github.com/wololock/groovy-regexp-examples/blob/master/src/jmh/groovy/bench/A2_Create_Matcher_Bench.groovy[In the next test]
+we measure a performance of using a _find operator_ and retrieving all matching elements. We use pretty simple regular expression -
+we want to match all words that end with `-er`. To give you a better sense of the performance, we also compare results with an
+alternative approach that does not use regular expressions. The pattern in this test is precompiled, so we focus only on
+creating a `java.util.regex.Matcher` object and using it to find matching elements.
+
+[source,groovy]
+----
+def text = "My code is groovier and better when I use Groovy there" //<1>
+
+def matcher = text =~ pattern //<2>
+
+assert matcher.class.equals(Matcher)
+
+assert matcher[0..-1].equals(['groovier', 'better']) //<3>
+
+//versus
+
+def matcher1 = pattern.matcher(text) //<4>
+
+assert matcher1.class.equals(Matcher)
+
+assert matcher1[0..-1].equals(['groovier', 'better'])
+
+//versus
+
+def result = shortText.tokenize().findAll { it.endsWith("er") } //<5>
+
+assert result.equals(['groovier', 'better'])
+----
+<1> input string (short one)
+<2> matcher created using the _find operator_
+<3> retrieving all matching elements
+<4> matcher created using the `Pattern.matcher(str)` method call
+<5> an alternative approach that does not use regular expressions
+
+
+Results for *Groovy 2.5.6*:
+
+[source,text]
+----
+A2_Create_Matcher_Bench.short_text_find_operator_dynamic    avgt   42    4,761 ±  0,008  us/op
+A2_Create_Matcher_Bench.short_text_find_operator_static     avgt   42    5,264 ±  0,006  us/op
+A2_Create_Matcher_Bench.short_text_pattern_matches_dynamic  avgt   42    5,168 ±  0,006  us/op
+A2_Create_Matcher_Bench.short_text_pattern_matches_static   avgt   42    5,258 ±  0,007  us/op
+A2_Create_Matcher_Bench.short_text_tokenize_dynamic         avgt   42    1,066 ±  0,002  us/op
+A2_Create_Matcher_Bench.short_text_tokenize_static          avgt   42    0,963 ±  0,001  us/op
+----
+
+Results for *Groovy 3.0.0-alpha-4*:
+
+[source,text]
+----
+A2_Create_Matcher_Bench.short_text_find_operator_dynamic    avgt   42    5,548 ±  0,005  us/op
+A2_Create_Matcher_Bench.short_text_find_operator_static     avgt   42    4,652 ±  0,003  us/op
+A2_Create_Matcher_Bench.short_text_pattern_matches_dynamic  avgt   42    5,240 ±  0,005  us/op
+A2_Create_Matcher_Bench.short_text_pattern_matches_static   avgt   42    4,804 ±  0,006  us/op
+A2_Create_Matcher_Bench.short_text_tokenize_dynamic         avgt   42    1,082 ±  0,001  us/op
+A2_Create_Matcher_Bench.short_text_tokenize_static          avgt   42    0,964 ±  0,001  us/op
+----
+
+Here is the graph:
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/groovy-regexp-jmh-find-operatror.png]
+image::/images/groovy-regexp-jmh-find-operatror.png[]
+--
+
+Conclusions:
+
+* Using `tokenize` + `findAll` + `str.endsWith("er")` *is the fastest way* to find all matching elements.
+* Groovy 2.5.6 performs *0.787 μs faster* than Groovy 3.0.0-alpha-4 in case of using _find operator_ without static compilation.
+* Static compilation made the _find operator_ and `pattern.matches(str)` calls a little bit slower in Groovy 2.5.6.
+
+It is also worth mentioning that the difference between the fastest and the slowest matcher usage is less than 1 μs.
+
+
+=== Find operator (longer text) - 291.23525 μs (avg)
+
+Let's use the _find operator_ with a different context. Instead of testing its performance using pretty short text, let's
+use a https://github.com/wololock/groovy-regexp-examples/blob/master/src/jmh/groovy/bench/A2_Create_Matcher_Bench.groovy#L18-L39[longer one instead]
+(2232 characters long). We test the same use cases as before, only the input string changes. Here are the results.
+
+Results for *Groovy 2.5.6*:
+
+[source,text]
+----
+A2_Create_Matcher_Bench.long_text_find_operator_dynamic     avgt   42  283,605 ±  0,322  us/op
+A2_Create_Matcher_Bench.long_text_find_operator_static      avgt   42  271,025 ±  0,202  us/op
+A2_Create_Matcher_Bench.long_text_pattern_matches_dynamic   avgt   42  273,443 ±  0,254  us/op
+A2_Create_Matcher_Bench.long_text_pattern_matches_static    avgt   42  336,868 ±  0,458  us/op
+A2_Create_Matcher_Bench.long_text_tokenize_dynamic          avgt   42   22,775 ±  0,058  us/op
+A2_Create_Matcher_Bench.long_text_tokenize_static           avgt   42   20,497 ±  0,207  us/op
+----
+
+Results for *Groovy 3.0.0-alpha-4*:
+[source,text]
+----
+A2_Create_Matcher_Bench.long_text_find_operator_dynamic     avgt   42  271,472 ±  0,429  us/op
+A2_Create_Matcher_Bench.long_text_find_operator_static      avgt   42  300,051 ±  0,339  us/op
+A2_Create_Matcher_Bench.long_text_pattern_matches_dynamic   avgt   42  259,320 ±  0,283  us/op
+A2_Create_Matcher_Bench.long_text_pattern_matches_static    avgt   42  348,165 ±  0,562  us/op
+A2_Create_Matcher_Bench.long_text_tokenize_dynamic          avgt   42   22,807 ±  0,041  us/op
+A2_Create_Matcher_Bench.long_text_tokenize_static           avgt   42   20,460 ±  0,035  us/op
+----
+
+Here is the graph:
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/groovy-regexp-jmh-find-operatror-long.png]
+image::/images/groovy-regexp-jmh-find-operatror-long.png[]
+--
+
+Conclusions:
+
+* Non-regexp solution is still *the fastest*. _(The difference is even more significant in this case)._
+* `pattern.matches(str)` and matching elements retrieval *performs much better* in non-static compilation in both, Groovy 2.5.6 and Groovy 3.0.0-alpha-4.
+* Groovy 2.5.6 does *a little bit better* than Groovy 3.0.0-alpha-4 in the static _find operator_ use case.
+
+=== Match operator - 0.17125 μs (avg)
+
+https://github.com/wololock/groovy-regexp-examples/blob/master/src/jmh/groovy/bench/A3_Match_Operator_Bench.groovy[In the next test]
+we want to measure a performance of the _exact match_ operator. We will use it in a pretty common use case - we have a pattern
+that matches pretty short strings containing some digits and uppercase letters. Pattern is precompiled, so we measure only
+a performance of `==~` operator compared to `matcher.matches()`. Here is what the test looks like:
+
+
+[source,groovy]
+----
+def input = "1605-FACD-0000-EXIT"
+
+def pattern = ~/^\d{4}-[A-Z]{4}-0000-EXIT$/ //<1>
+
+assert input ==~ pattern //<2>
+
+// versus
+
+assert pattern.matcher(input).matches() //<3>
+----
+<1> simple regexp for matching short string in a specific format
+<2> _exact match_ operator use case
+<3> regular `matcher.matches()` use case
+
+Results for *Groovy 2.5.6*:
+
+[source,text]
+----
+A3_Match_Operator_Bench.match_operator_dynamic              avgt   42    0,211 ±  0,001  us/op
+A3_Match_Operator_Bench.match_operator_static               avgt   42    0,213 ±  0,001  us/op
+A3_Match_Operator_Bench.matcher_matches_dynamic             avgt   42    0,138 ±  0,001  us/op
+A3_Match_Operator_Bench.matcher_matches_static              avgt   42    0,123 ±  0,001  us/op
+----
+
+Results for *Groovy 3.0.0-alpha-4*:
+
+[source,text]
+----
+A3_Match_Operator_Bench.match_operator_dynamic              avgt   42    0,211 ±  0,001  us/op
+A3_Match_Operator_Bench.match_operator_static               avgt   42    0,214 ±  0,001  us/op
+A3_Match_Operator_Bench.matcher_matches_dynamic             avgt   42    0,136 ±  0,001  us/op
+A3_Match_Operator_Bench.matcher_matches_static              avgt   42    0,126 ±  0,001  us/op
+----
+
+Here is the graph:
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/groovy-regexp-jmh-match-operatror.png]
+image::/images/groovy-regexp-jmh-match-operatror.png[]
+--
+
+Conclusions:
+
+* The _exact match_ operator is *~0.1 μs* slower than `matcher.matches()`.
+* There is literally *no difference* between dynamic or static compilation in both cases.
+
+=== Bonus: `String.replaceFirst(regexp)` - 0.81325 μs (avg)
+
+https://github.com/wololock/groovy-regexp-examples/blob/master/src/jmh/groovy/bench/A4_Regexp_Replace_Bench.groovy[In the last test]
+let's measure a performance of Groovy's `String.replaceFirst(regexp,closure)` method. The one that makes replacing parts of
+the text much easier. We will compare the performance of this method with the good old imperative style of achieving the same
+goal. Here is the script we are going to benchmark:
+
+[source,groovy]
+----
+def version = "v3.4.23"
+
+def expected = "v3.5.0"
+
+def pattern = ~/^v(\d{1,3})\.(\d{1,3})\.\d{1,4}$/
+
+def newVersion = version.replaceFirst(pattern) { _,major,minor -> "v${major}.${(minor as int) + 1}.0"}
+
+assert newVersion.equals(expected)
+
+//versus
+
+def matcher = pattern.matcher(version)
+if (!matcher.matches()) {
+    throw new IllegalStateException("Pattern didn't match!")
+}
+
+def major = matcher.group(1)
+def minor = matcher.group(2)
+
+def newVersion2 = "v${major}.${(minor as int) + 1}.0".toString()
+
+assert newVersion2.equals(expected)
+----
+
+Results for *Groovy 2.5.6*:
+
+[source,text]
+----
+A4_Regexp_Replace_Bench.matcher_matches_use_case_dynamic    avgt   42    0,503 ±  0,001  us/op
+A4_Regexp_Replace_Bench.matcher_matches_use_case_static     avgt   42    0,472 ±  0,001  us/op
+A4_Regexp_Replace_Bench.string_replace_first_dynamic        avgt   42    0,828 ±  0,002  us/op
+A4_Regexp_Replace_Bench.string_replace_first_static         avgt   42    0,799 ±  0,001  us/op
+----
+
+Results for *Groovy 3.0.0-alpha-4*:
+
+[source,text]
+----
+A4_Regexp_Replace_Bench.matcher_matches_use_case_dynamic    avgt   42    0,516 ±  0,001  us/op
+A4_Regexp_Replace_Bench.matcher_matches_use_case_static     avgt   42    0,472 ±  0,001  us/op
+A4_Regexp_Replace_Bench.string_replace_first_dynamic        avgt   42    0,813 ±  0,001  us/op
+A4_Regexp_Replace_Bench.string_replace_first_static         avgt   42    0,813 ±  0,002  us/op
+----
+
+Here is the graph:
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/groovy-regexp-jmh-string-replace.png]
+image::/images/groovy-regexp-jmh-string-replace.png[]
+--
+
+Conclusions:
+
+* The one-liner `String.replaceFirst(regexp,closure)` is only *~0.3 μs slower* compared to the imperative multiline approach.
+* There is literally *no difference* between dynamic or static compilation in both cases.
+
+== Summary
+
+Groovy makes working with regular expressions much easier compared to the Java way. It removes a lot of verbosity
+at the low and acceptable cost.
+
+
+[IMPORTANT]
+====
+*ATTENTION*: keep in mind that all benchmarks results are tighlty coupled to the examples they were used with. Consider
+benchmarking your own usage scenario before picking one solution over another. *Context always matters.*
+====
