@@ -204,7 +204,7 @@ TIP: *1 μs* is equal to *0.001 ms* (millisecond) and *0.000001 s* (second).
 
 [NOTE]
 ====
-All benchmark tests used in this blog post can be found in the following Github repository https://github.com/wololock/groovy-regexp-examples
+All benchmark tests used in this blog post can be found in the https://github.com/wololock/groovy-regexp-examples[following Github repository].
 
 You can run benchmarks on your own computer with the following command:
 
