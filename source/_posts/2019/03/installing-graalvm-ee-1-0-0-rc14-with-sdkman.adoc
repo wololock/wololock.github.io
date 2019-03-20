@@ -1,0 +1,117 @@
+---
+title: Installing GraalVM EE 1.0.0-RC14 with SDKMAN!
+date: 2019-03-20 10:15:56
+updated: 2019-03-20 10:15:56
+tags:
+    - graalvm
+    - graalvm-ee
+    - java
+    - sdkman
+categories:
+    - How to
+cover: /images/graalvm-ee-sdkman-bg.jpg
+og_image: /images/og/graalvm-ee-sdkman.jpg
+eyeCatchImage: /images/og/graalvm-ee-sdkman.jpg
+---
+
+I love https://sdkman.io/[*_SDKMAN!_*]. It made using multiple different Java distributions in a single operating system much more
+comfortable. You can install Java across different versions (from 6 to 13.EA) and different vendors (OpenJDK,
+Oracle, Zulu, Corretto or GraalVM CE to name a few). Switching between those versions is as simple as executing
+a single `sdk use java {version}` command and you are ready to use whatever Java you want. However, not all
+Java versions are available by default, but luckily, _SDKMAN!_ has a simple solution to this problem.
+
+++++
+<!-- more -->
+++++
+
+== Installing GraalVM EE 1.0.0-RC14
+
+I run some experiments with https://www.graalvm.org/[GraalVM] and the only version I can install directly with
+_SDKMAN!_ is GraalVM Community Edition. However, there is also GraalVM Enterprise Edition which provides some
+additional features, like improved performance. The main reason GraalVM EE is not available in _SDKMAN!_ is
+that it is distributed over OTN (Oracle Technology Network) only, so you need to accept OTN license agreementfootnote:[https://www.oracle.com/technetwork/licenses/early-adopter-license-2299792.html]
+and log in to start the file download. OK, so I downloaded *graalvm-ee-1.0.0-rc14-linux-amd64.tar.gz* file
+successfully. What's next?
+
+Let's start with the extracting files from the downloaded archive.
+
+[source,bash]
+----
+$ tar -xvf graalvm-ee-1.0.0-rc14-linux-amd64.tar.gz
+----
+
+After extracting all files, we can install local Java distribution with the following command.
+
+[source,bash]
+----
+$ sdk install java graal-ee-rc14 /path/to/graalvm-ee-1.0.0-rc14
+----
+
+In the above example, *graal-ee-rc14* is a version used by _SDKMAN!_ we want to associate with the Java
+installation located in */path/to/graalvm-ee-1.0.0-rc14*.
+
+NOTE: _SDKMAN!_ limits version to 15 characters.
+
+When you execute `sdk list java` command, you will see local GraalVM EE added to SDKMAN's Java distributions list.
+
+[source,bash]
+----
+$ sdk list java
+
+================================================================================
+Available Java Versions
+================================================================================
+   + graal-ee-rc14     * 8.0.202-amzn
+     13.ea.11-open       8.0.202.j9-adpt
+     12.0.0-open         8.0.202.hs-adpt
+     11.0.2-sapmchn      8.0.202-zulufx
+     11.0.2-zulu     > * 8.0.201-oracle
+   * 11.0.2-open         7.0.211-zulu
+     11.0.2-amzn         6.0.119-zulu
+     11.0.2.j9-adpt    * 1.0.0-rc-14-grl
+     11.0.2.hs-adpt    * 1.0.0-rc-13-grl
+     11.0.2-zulufx       1.0.0-rc-12-grl
+     10.0.2-zulu         1.0.0-rc-11-grl
+     10.0.2-open         1.0.0-rc-10-grl
+     9.0.7-zulu          1.0.0-rc-9-grl
+     9.0.4-open          1.0.0-rc-8-grl
+   * 8.0.202-zulu
+
+================================================================================
++ - local version
+* - installed
+> - currently in use
+================================================================================
+----
+
+The last thing to do to use GraalVM EE is to switch to a proper Java version, and you are ready to go.
+
+[source,bash]
+----
+$ sdk use java graal-ee-rc14
+
+Using java version graal-ee-rc14 in this shell.
+
+$ java -version
+
+java version "1.8.0_202"
+Java(TM) SE Runtime Environment (build 1.8.0_202-b08)
+Java HotSpot(TM) GraalVM EE 1.0.0-rc14 (build 25.202-b08-jvmci-0.56, mixed mode)
+----
+
+
+NOTE: If you don't know where to keep extracted GraalVM EE sources, there is one workaround that allows keeping
+all Java distributions together. Instead of extracting _graalvm-ee-1.0.0-rc14-linux-amd64.tar.gz_ at some random
+location, extract it directly to `~/.sdkman/candidates/java/graal-ee-rc14` directory. After doing so, you
+don't have to execute `sdk install java ...` command, because your GraalVM EE is already
+available on `sdk list java` distributions list.
+
+++++
+<script id="asciicast-235036" src="https://asciinema.org/a/235036.js" async></script>
+++++
+
+== Conclusion
+
+I hope you have learned something useful from this short blog post. _SDKMAN!_ is a powerful tool that makes developer's
+life easier. I use it to manage in a convenient way all my Java, Groovy, or Gradle installations. If you haven't used
+it so far, I strongly recommend giving _SDKMAN!_ a chance.
