@@ -37,12 +37,13 @@ a.category
   text-decoration none
   font-weight 700
   font-size 1.4rem
-  transition ease 0.5s
+  transition ease-in 0.3s
   margin-right 10px
 
   &:hover,&:focus
-    background none
+    background #19407c
     color #fff
+    //font-size 1.5rem
 
 h1, h2, h3, h4, h5, h6
   @extend .sans-serif
@@ -181,10 +182,10 @@ hr.small
   @extend .background-cover
   margin-bottom 30px
   .site-heading, .post-heading, .page-heading
-    padding 100px 0 50px
+    padding 140px 0 20px
     color white
     @media only screen and (min-width: 768px)
-      padding 250px 0 60px 0
+      padding 250px 0 100px 0
     &.archives
       color brand-primary
       margin-top 60px
@@ -211,6 +212,7 @@ hr.small
   .post-heading
     h1
       font-size 35px
+      margin 10px 0 0 0
     .subheading, .meta
       line-height 1.1
       display block
@@ -292,11 +294,15 @@ div.post-meta
   @media only screen and (max-width: 767px)
     float none
 
+
   .post-heading &
     color #fafafa
-    font-size 1.6rem
+    font-size 1.4rem
     float none
     font-weight 400
+
+    @media only screen and (min-width: 768px)
+      font-size 1.6rem
 
     a
       color inherit
@@ -334,6 +340,10 @@ footer.site-footer
     margin-top 0
     font-size 2rem
     font-weight 500
+
+    @media only screen and (max-width: 767px)
+      font-size 1.8rem
+      font-weight 700
 
   h4.marked
     background color-orange
@@ -380,6 +390,11 @@ footer.site-footer
         padding 0
         display inline-block
         font-size 3rem
+        &:last-child
+          margin-right 0
+
+        @media only screen and (max-width: 767px)
+          font-size 2.3rem
 
   a
     color #BBC7CC
