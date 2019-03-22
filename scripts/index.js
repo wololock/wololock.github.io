@@ -18,4 +18,22 @@ Array.prototype.shuffle = function() {
         this[j] = temp;
     }
     return this;
+};
+
+hexo.extend.helper.register("paginated_url", paginated_url);
+
+function paginated_url(path, pagedir, page) {
+    let basePath = path.replace("index.html", "");
+
+    const pageIdx = basePath.indexOf(pagedir);
+
+    if (pageIdx >= 0) {
+        basePath = basePath.substring(0, pageIdx);
+    }
+
+    if (page > 1) {
+        return basePath + "/" + pagedir + "/" + page;
+    }
+
+    return basePath;
 }
