@@ -195,6 +195,15 @@ hr.small
       height 96px
       border 3px solid #fafafa
 
+    .page-subheading
+      .number
+        display inline-block
+        padding 0 5px
+        background color-orange
+        color color-black
+        sans-serif()
+        font-weight 900
+
     text-align center
     h1
       margin-top 0
@@ -245,6 +254,8 @@ hr.small
         font-size 30px
         margin-top 10px
         margin-bottom 10px
+        @media only screen and (max-width: 767px)
+          word-break break-word
         &.archive
           font-size 22px
       > .post-subtitle
