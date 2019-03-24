@@ -1,0 +1,16 @@
+extends partial/base
+
+include partial/post-related
+
+block description
+    meta(name="description", content=page.title)
+
+block site_title
+    = page.title
+
+block content
+    .container.page-404
+        .row
+            .col-lg-10.col-lg-offset-1.col-md-10.col-xs-12
+                h1=page.title
+                div!=page.content

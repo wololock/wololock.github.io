@@ -150,14 +150,31 @@ hr.small
       -o-transform translate3d(0, 100%, 0)
       transform translate3d(0, 100%, 0)
 
+
+.layout-clean
+  .navbar-custom
+    @media only screen and (min-width: 768px)
+      .navbar-brand
+        color color-gray
+
+      .nav
+        li
+          a
+            color color-gray
+
 .page-404
   margin-top 80px
+  @media only screen and (max-width: 767px)
+    margin-top 40px
 
   h1
     font-size 7rem
     font-weight 500
     background color-orange
     display inline-block
+
+    @media only screen and (max-width: 767px)
+      font-size 5rem
 
   .suggested-posts
     margin-top 150px
