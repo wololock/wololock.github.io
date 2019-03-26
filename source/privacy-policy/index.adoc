@@ -25,7 +25,7 @@ uses a minimum amount of cookies from third-party services. The full list of tho
 
 === 1. Google Analytics
 
-As almost every other website, this "Blog" uses *Google Analyticsfootnote:[https://analytics.google.com/analytics/web/]*, a service provided by Google, Inc. for
+Like almost every other website, this "Blog" uses *Google Analyticsfootnote:[https://analytics.google.com/analytics/web/]*, a service provided by Google, Inc. for
 a web traffic tracking. Learn more about https://www.google.com/policies/privacy/[Google Analytics Privacy Politics].
 
 NOTE: Google allows you to *opt-out from sending usage data* to Google Analytics by https://tools.google.com/dlpage/gaoptout?hl=en[installing the following plugin]
@@ -35,7 +35,7 @@ to your favorite web browser.
 
 This "Blog" uses *Cloudflarefootnote:[https://www.cloudflare.com/]* to secure and speed up serving the "Blog" content.
 Cloudflare acts as a&nbsp;proxy server between your web browser and Github Pages server. For this purpose, Cloudflare stores
-some information in `_cfduid` cookie.
+some information in the `_cfduid` cookie.
 Learn more about https://support.cloudflare.com/hc/en-us/articles/200170156-What-does-the-Cloudflare-cfduid-cookie-do-[what does this cookie do]
 and https://support.cloudflare.com/hc/en-us/articles/360024915491[its privacy].
 
@@ -49,14 +49,14 @@ and https://help.disqus.com/terms-and-policies/disqus-privacy-policy[Privacy pol
 
 Some of the "Blog" posts are also delivered with embedded *YouTube* (owned by Google, Inc.) videos. YouTube also collect
 some information in web cookies to capture video display statistics, improve user experience and protect from abusive practices.
-These information are directly associated with your Google account. To prevent the data from being associated with your account,
+This information is directly associated with your Google account. To prevent the data from being associated with your account,
 please consider logging off before playing the video. You can learn more about https://policies.google.com/privacy[Google's Privacy Policy].
 
 === 5. Amazon Associates
 
 Some of the "Blog" posts contain *Amazon Associatesfootnote:[https://affiliate-program.amazon.com/]* affiliation links generated with Amazon OneLinkfootnote:[https://affiliate-program.amazon.com/help/node/topic/202164400].
 Affiliation links are used only to earn a small commission from books recommendations. Blog posts with affiliation links
-(and only those) use _oneTag_ JavaScript code provided by Amazon Associates program. When this script gets loaded, it stores
+(and only those) use _oneTag_ JavaScript code provided by the Amazon Associates program. When this script gets loaded, it stores
 two cookies in your web browser - `ad-id` and `ad-private`. These cookies exist only on pages with affiliation links (book reviews blog posts).
 
 
@@ -67,13 +67,12 @@ No. This "Blog" is hosted on *Github Pagesfootnote:[https://pages.github.com/]* 
 
 == Encryption (HTTPS)
 
-This "Blog" uses encrypted transfer protocol (HTTPS over TLS) with the *ECC CA-2* certificate provides by CloudFlare, Inc.
+This "Blog" uses an encrypted transfer protocol (HTTPS over TLS) with the *ECC CA-2* certificate provides by CloudFlare, Inc.
 The encryption protects the communication to *e.printstacktrace.blog* from access by unauthorized third parties.
 
 == Do you collect any ads-related data?
 
-No, *e.printstacktrace.blog* does not collect any ads-related data. There are no ads on this "Blog". And&nbsp;they will
-never appear.
+No, *e.printstacktrace.blog* does not collect any ads-related data. There are no ads on this "Blog". And&nbsp;I&nbsp;don't plan to add any.
 
 == Who can I contact if I have any questions?
 
