@@ -4,7 +4,7 @@ date: 2019-03-24 12:14:58
 layout: clean
 ---
 
-Last update: *March 23rd, 2019*
+Last update: *March 26rd, 2019*
 
 *e.printstacktrace.blog* (also hereinafter referred to as the "Blog") does not share any personal information with
 third-parties nor does it store information collected about your visit to this blog for use other than to analyze
@@ -51,6 +51,14 @@ Some of the "Blog" posts are also delivered with embedded *YouTube* (owned by Go
 some information in web cookies to capture video display statistics, improve user experience and protect from abusive practices.
 These information are directly associated with your Google account. To prevent the data from being associated with your account,
 please consider logging off before playing the video. You can learn more about https://policies.google.com/privacy[Google's Privacy Policy].
+
+=== 5. Amazon Associates
+
+Some of the "Blog" posts contain *Amazon Associatesfootnote:[https://affiliate-program.amazon.com/]* affiliation links generated with Amazon OneLinkfootnote:[https://affiliate-program.amazon.com/help/node/topic/202164400].
+Affiliation links are used only to earn a small commission from books recommendations. Blog posts with affiliation links
+(and only those) use _oneTag_ JavaScript code provided by Amazon Associates program. When this script gets loaded, it stores
+two cookies in your web browser - `ad-id` and `ad-private`. These cookies exist only on pages with affiliation links (book reviews blog posts).
+
 
 == Do you collect any server logs?
 
