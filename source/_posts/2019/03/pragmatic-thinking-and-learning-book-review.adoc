@@ -1,0 +1,152 @@
+---
+title: Pragmatic Thinking and Learning - book review
+date: 2019-03-26 17:50:06
+updated: 2019-03-26 17:50:06
+tags:
+    - book
+    - review
+    - learning
+    - pragmatic
+    - mind-mapping
+    - reading
+    - brain
+categories:
+    - Programmer's Bookshelf
+cover: /images/pragmatic-thinking-and-learning-01.jpg
+og_image: /images/og/pragmatic-thinking-and-learning.jpg
+eyeCatchImage: /images/og/pragmatic-thinking-and-learning.jpg
+affiliates: true
+---
+
+There are books you read once, and you don't plan to read them back again any time soon. However, some books
+are so influential and valuable that when you decide to study them the second time, you realize that it was
+the right choice, and you could make this call a few years earlier. Today I would like to show you a book
+that belongs to this second group — no doubts about that.
+
+++++
+<!-- more -->
+++++
+
+NOTE: The two links Amazon.com in the following blog posts are *affiliate links*. If you decide to
+purchase a book through those links, I will earn a small commission, without affecting the regular price.
+This way you can support the work I do on this blog. Thanks for your understanding!
+
+== Introduction
+
+I bought my paperback copy of https://amzn.to/2UaLwkT[_"Pragmatic Thinking and Learning"_] book six years ago (March 27th, 2013),
+and it has blown my mind during the first read. It was written by https://twitter.com/PragmaticAndy[Andy Hunt] and was
+published by the https://pragprog.com/[Pragmatic Bookshelf]
+in 2008. It introduced me to the entirely new ways of learning, practicing and crafting technical skills, the
+existence of I was unaware. Like most of the people, I was blindly following unpractical learning techniques we
+all have learned in the school. I was consuming the content without studying and experiencing it.
+_"Pragmatic Thinking and Learning"_ has changed me profoundly. I started questioning the traditional learning techniques,
+and I started benefiting from more pragmatic and practical ways of learning.
+
+It was one of the most influential books I read back in 2013. Six years later, in early 2019, I've decided to
+study this book again. It's funny how many important lessons I have already forgotten. I quickly realized
+that getting back to this book was one of the best decisions I could make.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/pragmatic-thinking-and-learning-03.jpg]
+image::/images/pragmatic-thinking-and-learning-03.jpg[]
+--
+
+== What's inside?
+
+*Chapter one* _(Introduction)_ explains the importance of developing communication, learning and thinking skills.
+Software developers (and any knowledge workers) have to learn continuously to make good use of their abilities.
+This chapter also briefly describes the content of all the following chapters.
+*Chapter two* _(Journey from Novice to Expert)_ uses _The Five Dreyfus Model Stages_ to explain the differences
+between novices and experts. Those stages are:
+
+* *Novice* _(a person who requires explicit and context-free recipes to follow)_
+* *Advanced Beginner* _(a person who wants to process fast information and is not interested in the bigger picture)_
+* *Competent* _(a person who can troubleshoot and start solving problems he/she hasn't faced before)_
+* *Proficient* _(a person who needs to understand the big picture and can self-correct their previous poor task performance)_
+* *Expert* _(a person who works from intuition, not from reason)_
+
+The following sections of this chapter explain how to use this model effectively to success and level-up.
+It also reveals that the Dreyfus Model applies to all your skills - you can be Novice in some areas,
+while you are _Proficient_ or _Expert_ in a few others.
+
+*Chapter three* _(This Is Your Brain)_ focuses on our central processing unit - the brain. It describes two
+different processing modes: a linear mode (called _L-mode_) and non-linear mode (called _R-mode_, from _rich mode_).
+It explains how the brain works, how it memorizes the information, and how it works in the write-only mode all
+the time (each read is a read-write operation). Learning more about your brain allows you to use it more effectively.
+Especially the non-linear processing mode is critical in becoming an expert in a specific field.
+It also provides positive information - our brain is neuroplastic, so we can learn how to rewire it.
+_(An example from page 70 with a blind man blown my mind)._
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/pragmatic-thinking-and-learning-02.jpg]
+image::/images/pragmatic-thinking-and-learning-02.jpg[]
+--
+
+*Chapter four* _(Get in Your Right Mind)_ teaches us how to engage a non-linear processing mode to the linear one flow.
+It gives tons of examples and exercises on how to take advantage of the _R-mode_ and how to harvest from it even more.
+*Chapter five* _(Debug Your Mind)_ starts with explaining a bunch of cognitive biases that affect our perception
+and decision making. Some of them are influenced by the generation we have born in, or by our personality tendencies.
+They are also affected by so-called _"lizard logic"_ - the primitive reactions that were very useful 50,000 years ago.
+The chapter ends with a few ideas and guidance on how to turn on the debug mode to understand better the source of our
+reactions to prevent (or at least limit) the destructive ones.
+
+*Chapter six* _(Learn Deliberately)_ introduces a *Pragmatic Investment Plan* - an approach that helps to learn more
+effectively. It explains various learning techniques and helps to find ones that work best in our case. It describes
+the *SQ3R* reading technique, mind mapping visualizing methodfootnote:[https://en.wikipedia.org/wiki/Mind_map],
+or _"Learn By Teaching"_ approach, to name a few.
+
+
+TIP: _"Teaching clarifies your understanding and reveals many of your underlying assumptions."_
+
+*Chapter seven* _(Gain Experience)_ explains how important it is to explore _("play with")_ the learning material
+before studying the facts. This exploration and experience are essential to building mental models in our brain.
+Those models make the learning process more effective.
+*Chapter eight* _(Manage Focus)_ gives several practical advice on how to increase the level of attention,
+manage our knowledge portfolio, and optimize the process of loading information in the current context.
+It covers some tips and tricks that help to stay in the "zone".
+*The final chapter* _(Beyond Expertise)_ summarizes the book and recommends to _start with a plan_, _accept errors_
+(inaction is the real enemy), _recognize that developing new habits take time_, _believe in own capabilities_,
+_and always take small next steps._
+
+== What are my main takeaways from this book?
+
+I enjoyed reading _"Pragmatic Thinking and Learning"_, but apart from that it encouraged me to do the following things:
+
+* I started using the *SQ3R* books studying technique _(survey, question, read, recite, review)_ to all books I read.
+I already used a few other books studying techniques, but the SQ3R sounds like an approach that makes the
+learning process more effective.
+* I created my *Pragmatic Investment Plan* in the three key areas for my professional career. I started by
+_"reverse-engineering"_ myself and applying the Dreyfus Model stages to several skills I want to work out.
+I created a concrete plan using _S.M.A.R.T._ objectives. I also researched and experimented with different ways
+of absorbing the knowledge and crafting experience to progress.
+* I decided to give the *mind mapping* a try. A few years ago I tried it, but I failed. This time I want to
+use hand-drawn mind maps with the one crucial thing in mind - *the documenting* is more important than documentation.
+* According to the minimal user interface rule I removed a few distractions from my work environment.
+_(I already practice "no notifications" principles for a couple of years)._
+* I started exploring and playing around with the new things before getting deep into the details and facts.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/pragmatic-thinking-and-learning-04.jpg]
+image::/images/pragmatic-thinking-and-learning-04.jpg[]
+--
+
+== You may ask yourself - should I read it?
+
+It depends. If you have already read a few positions from the bibliography, you might not benefit much from reading
+the book, because you already know the things it covers. However, if you find yourself in a position where you feel
+stuck in the learning progression, and a portion of practical advises could give you a real shot of motivation,
+this book is definitely for you. When I started studying this book for the second time, I felt like I need some
+_"code review"_ of methods and techniques I use for learning and becoming a more experienced programmer.
+This book offered me the guidance I needed most at the moment.
+
+I hope you enjoyed reading this blog post and you have found valuable information in it. Don't hesitate to leave a comment
+below if you have any question related to the book. I tried to express my feelings and opinions about it most
+accurately, but I accept that I might miss something important. Let me know, and I will do my best to help
+you find the answers you are looking for. Or maybe you have also read the https://amzn.to/2UaLwkT[_"Pragmatic Thinking and Learning"_]
+book and you have a different opinion? Please share it with us. I'd love to hear it from you.
