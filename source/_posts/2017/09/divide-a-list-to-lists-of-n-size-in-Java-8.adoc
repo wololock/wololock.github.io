@@ -32,7 +32,7 @@ any 3rd party library. Let's start!
 
 _Partitioning_ (also known as _chunking_) is an operation that transforms a collection of elements into a collection
 of chunks of a given size. For instance, let's say we have a list of *7* elements (incrementing numbers from *1* to *7*)
-and we want to partition it into a list of chunks of size *2*.
+and we want to split it into a list of chunks of size *2*.
 
 [source,java]
 ----
