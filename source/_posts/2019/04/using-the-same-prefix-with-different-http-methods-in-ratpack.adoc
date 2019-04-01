@@ -5,7 +5,7 @@ updated: 2019-04-01 10:12:52
 tags:
     - ratpack
     - groovy
-    - java
+    - rest
     - netty
     - http
     - curl
