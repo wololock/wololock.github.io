@@ -1,0 +1,204 @@
+---
+title: Using the same prefix with different HTTP methods in Ratpack
+date: 2019-04-01 10:12:52
+updated: 2019-04-01 10:12:52
+tags:
+    - ratpack
+    - groovy
+    - java
+    - netty
+    - http
+    - curl
+categories:
+    - Ratpack Cookbook
+cover: /images/ratpack-cookbook-bg.jpg
+og_image: /images/og/ratpack-prefix-http-methods.jpg
+eyeCatchImage: /images/og/ratpack-prefix-http-methods.jpg
+---
+
+https://ratpack.io/[Ratpack] is an excellent tool for building RESTfulfootnote:[https://en.wikipedia.org/wiki/Representational_state_transfer]
+applications. However, to benefit most of it, we need to know the tool a little bit better. It applies to Ratpack
+handler's mechanism - it is much different compared to what we have learned by using many popular MVC frameworks.
+In today's blog post I would like to show you a relatively simple example that confused many newcomers.
+
+++++
+<!-- more -->
+++++
+
+== An example
+
+Let's consider the following example. We have a simple API with the `/users` endpoint. This endpoint handles `GET`
+and `POST` requests. Sounds familiar, right? Here is how we might try to implement it in Ratpack.
+
+NOTE: In this example, we use Ratpack's excellent https://ratpack.io/manual/current/quick-start.html#using_a_groovy_script[integration with Groovy]. Instead of creating an application with
+Gradle or Maven, we create a single Groovy script file with Ratpack Grape item, and we are ready to go. Just a few lines of code
+and we have a working REST application.
+
+.Ratpack application as a Groovy script called `ratpack.groovy`
+[source,groovy]
+----
+@Grab('io.ratpack:ratpack-groovy:1.6.0')
+
+import static ratpack.groovy.Groovy.ratpack
+
+ratpack {
+    handlers {
+        prefix("users") {
+            get {
+                response.send("A list of users...")
+            }
+
+            post {
+                response.send("Create a new user...")
+            }
+        }
+    }
+}
+----
+
+Let's run the application.
+
+[source,bash]
+----
+$ groovy ratpack.groovy
+----
+
+We are ready to send some HTTP requests with curl.
+
+[source,bash]
+----
+$ curl -i -X GET http://localhost:5050/users
+HTTP/1.1 200 OK
+content-type: text/plain;charset=UTF-8
+content-length: 18
+
+A list of users...%
+
+$ curl -i -X POST http://localhost:5050/users
+HTTP/1.1 405 Method Not Allowed
+content-type: text/plain;charset=UTF-8
+content-length: 16
+
+Client error 405%
+----
+
+Something went wrong. The `GET` request gets handled correctly, but when we send the `POST` request, it gets
+HTTP *405 Method Not Allowed*. Why is that?
+
+The problem is that the `prefix` method creates a handler (or handlers) that handle requests based on the
+relative path - it matches all requests starting with a given prefix. In this case, sending requests with the
+same URI path, but with different HTTP method does not make any difference for our application. Both kinds
+of requests match the same relative URI path, so Ratpack delegates them to the first handler in the queue.
+It happens that the first handler is the one that processes `GET` requests - it accepts any `GET` request
+but returns 405 HTTP status if an incorrect method was set.
+
+This is where `byMethod` helper method comes with help. It creates a chain of handlers that accept the
+same relative path but handle different HTTP methods. Let's use it inside the `prefix` method and see how it works.
+
+.A first approach to use `byMethod` helper method.
+[source,groovy]
+----
+@Grab('io.ratpack:ratpack-groovy:1.6.0')
+
+import static ratpack.groovy.Groovy.ratpack
+
+ratpack {
+    handlers {
+        prefix("users") {
+            byMethod {
+                get {
+                    response.send("A list of users...")
+                }
+
+                post {
+                    response.send("Create a new user...")
+                }
+            }
+        }
+    }
+}
+----
+
+Now we can run the updated application and test the `GET` request.
+
+[source,bash]
+----
+$ curl -i -X POST http://localhost:5050/users
+HTTP/1.1 500 Internal Server Error
+content-type: text/plain;charset=UTF-8
+content-length: 5388
+
+groovy.lang.MissingMethodException: No signature of method: ratpack.byMethod() is applicable for argument types: (ratpack$_run_closure1$_closure2$_closure3$_closure4) values: [ratpack$_run_closure1$_closure2$_closure3$_closure4@28289a28]
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.unwrap(ScriptBytecodeAdapter.java:70)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:76)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:51)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:156)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:168)
+	at ratpack$_run_closure1$_closure2$_closure3.doCall(ratpack.groovy:8)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+
+----
+
+Oops. Something went wrong. The `MissingMethodException` seems like trying to tell us, that there is no option to use `byMethod` inside the `prefix` method. Does it mean that we can create separate handlers for different HTTP methods under the same prefix?
+
+== The solution
+
+The answer is - yes, we can. The problem with the above solution is simple - a closure created for the `prefix`
+method does not have access to the context object (it delegates to `ratpack.handling.Chain` instead).
+The `byMethod` method is exposed by the `ratpack.handling.Context` thus we need something that delegates to it.
+Luckily, there is a method that delegates to the context object, and that can be used in our example.
+It's `path` helper method that creates a chain of handlers that match the same relative path.
+Let's take a look at the final example.
+
+.The final application code with `prefix` and `byMethod` methods combination.
+[source,groovy]
+----
+@Grab('io.ratpack:ratpack-groovy:1.6.0')
+
+import static ratpack.groovy.Groovy.ratpack
+
+ratpack {
+    handlers {
+        prefix("users") {
+            path {
+                byMethod {
+                    get {
+                        response.send("A list of users...")
+                    }
+
+                    post {
+                        response.send("Create a new user...")
+                    }
+                }
+            }
+        }
+    }
+}
+----
+
+Let's execute `GET` and `POST` requests to see if it works as we expect.
+
+[source,bash]
+----
+$ curl -i -X GET http://localhost:5050/users
+HTTP/1.1 200 OK
+content-type: text/plain;charset=UTF-8
+content-length: 18
+
+A list of users...%
+
+$ curl -i -X POST http://localhost:5050/users
+HTTP/1.1 200 OK
+content-type: text/plain;charset=UTF-8
+content-length: 20
+
+Create a new user...%
+----
+
+Cowabunga! It works like a charm.
+
+== Conclusion
+
+I hope you have learned something new from this blog post. The reason I wrote it is that I couldn't find any
+example in the documentation that covered an example of combining `prefix` and `byMethod` methods.
+However, it is a quite common use case, and people get confused by it.
