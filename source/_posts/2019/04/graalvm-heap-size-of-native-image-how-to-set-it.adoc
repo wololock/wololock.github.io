@@ -46,16 +46,18 @@ NOTE: In the following example I also use `-XX:+PrintGC`, `-XX:+PrintGCTimeStamp
 For testing purpose, I'm going to execute *200* parallel requests, repeated *100* times, so our application
 will have to handle *20,000* requests in total. I use `siege` footnote:[https://github.com/JoeDog/siege] tool to
 execute those requests. Firstly, let's do this test with the application executed without specifying the heap size.
-However, what is the *default maximum heap size*? We can find it out with the following command.
+However, what is the *default maximum heap size*? You can find it out using GraalVM polyglot launcher for instance:
 
 .Finding the default maximum heap size
 [source,bash]
 ----
-$ native-image --verbose --expert-options -J-XX:+PrintFlagsFinal | grep MaxHeapSize
-    uintx MaxHeapSize                              := 13195280384                         {product}
+$ polyglot --native --help:vm | grep HeapSize
+  --vm.XX:MaximumHeapSizePercent=80            The maximum heap size as percent of physical memory.
+  --vm.Xmx<value>                              Sets the maximum size of the heap, in bytes. Default: MaximumHeapSizePercent * physical memory.
+
 ----
 
-As you can see, in my case this is something around *12.29 GB*. Let's run the application.
+As you can see, it's set to *80%* of the physical memory. In my case it is something around *12.29 GB*. Let's run the application.
 
 .Running Ratpack application with the default max heap size
 [source,bash]
