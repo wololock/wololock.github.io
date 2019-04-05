@@ -18,7 +18,7 @@ eyeCatchImage: /images/og/groovy-regexp-jmh.jpg
 
 I've never enjoyed working with regular expressions in Java. It was always very error-prone. You had to remember
 to escape backslashes, and a very simple _match elements_ check required writing at least 5 lines of code. Booooring.
-However, Groovy solved most of these issues, and today we are going to take a closer look at features like _pattern operator_,
+However, Groovy link:++http://docs.groovy-lang.org/latest/html/documentation/#_regular_expression_operators++[solved most of these issues], and today we are going to take a closer look at features like _pattern operator_,
 _find operator_ or _exact match operator_. We will focus on learning the new syntax, as well as measuring and comparing
 its performance. Let's begin!
 
