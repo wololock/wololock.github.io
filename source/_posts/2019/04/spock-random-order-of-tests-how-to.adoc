@@ -5,9 +5,9 @@ updated: 2019-04-06 10:52:11
 tags:
     - groovy
     - spock
-    - gradle
     - unit-test
     - random
+    - junit
 categories:
     - Groovy Cookbook
 cover: /images/spock-random-tests-bg.jpg
@@ -81,70 +81,80 @@ class RandomSpockSpec extends Specification {
 
 When we execute this specification, we get all numbers printed in the ascending order.
 
-.The output of test's execution
-[source,plain]
-----
-[10:54:13.469] number 1
-[10:54:13.512] number 2
-[10:54:13.512] number 3
-[10:54:13.513] number 4
-[10:54:13.513] number 5
-----
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/spock-random-tests-01.jpg]
+image::/images/spock-random-tests-01.jpg[]
+--
 
 NOTE: You can find the source code of this example in the https://github.com/wololock/spock-random-order-demo[following repository].
 
 == Forcing random order
 
-There is no simple switch to change Spock's default behavior of ordering features execution. However, we can
-extend the default runner class - `Sputnik`. We are going to override the `run(RunNotifier notifier)` method so
-that we can replace the default features execution number of each feature with the random number.
-Here is our extended `Sputnik` class called `RandomOrder`:
+Now let's try to randomize the execution order. One way to do it is to use Spock's extensions - an http://spockframework.org/spock/docs/1.1/extensions.html#_annotation_driven_local_extensions[annotation-driven local extensions] in this case.
+Let's create a new annotation called `@RandomizedOrder` with the following content.
 
-.src/test/groovy/com/github/wololock/RandomOrder.groovy
+.src/test/groovy/com/github/wololock/RandomizedOrder.groovy
 [source,groovy]
 ----
 package com.github.wololock
 
-import org.junit.runner.notification.RunNotifier
-import org.junit.runners.model.InitializationError
-import org.spockframework.runtime.RunContext
-import org.spockframework.runtime.Sputnik
+import org.spockframework.runtime.extension.ExtensionAnnotation
+
+import java.lang.annotation.ElementType
+import java.lang.annotation.Retention
+import java.lang.annotation.RetentionPolicy
+import java.lang.annotation.Target
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+@ExtensionAnnotation(RandomizedOrderExtension)
+@interface RandomizedOrder {}
+----
+
+After creating annotation interface, we can create the extension class. This class implements `visitSpecAnnotation`
+interceptor method that gets executed right before specification executes any feature.
+
+.src/test/groovy/com/github/wololock/RandomizedOrderExtension.groovy
+[source,groovy]
+----
+package com.github.wololock
+
+import org.spockframework.runtime.extension.AbstractAnnotationDrivenExtension
 import org.spockframework.runtime.model.SpecInfo
 
-class RandomOrder extends Sputnik {
-    RandomOrder(Class clazz) throws InitializationError {
-        super(clazz)
-    }
+final class RandomizedOrderExtension extends AbstractAnnotationDrivenExtension<RandomizedOrder> {
 
     @Override
-    void run(RunNotifier notifier) {
-        super.runExtensionsIfNecessary()
-        super.generateSpecDescriptionIfNecessary()
+    void visitSpecAnnotation(RandomizedOrder annotation, SpecInfo spec) {
+        final List<Integer> order = (0..(spec.features.size())) as ArrayList //<1>
 
-        final SpecInfo spec = super.getSpec()
-        final List<Integer> order = (0..(spec.features.size())) as ArrayList
-
-        Collections.shuffle(order)
+        Collections.shuffle(order) //<2>
 
         spec.features.each { feature ->
-            feature.executionOrder = order.pop()
+            feature.executionOrder = order.pop() //<3>
         }
-
-        RunContext.get().createSpecRunner(spec, notifier).run()
     }
 }
 ----
+<1> A list of all possible orders (0..n).
+<2> Here we shuffle the list to get its random permutation.
+<3> For each feature method iterated in the declaration order we assign a unique order popped from the shuffled list.
 
-The only thing that left to do is to add `@RunWith(RandomOrder)` annotation over our specification class.
+This way we override the default execution order of each feature. By default, every feature uses execution order
+set based on the declaration order. _(The first method gets `executionOrder == 0`, the second one gets `executionOrder == 1` and so on.)_
 
+The last thing we need to do is to add `@RandomizedOrder` annotation to our specification class.
+
+.`@RandomizedOrder` annotationed specification class
 [source,groovy]
 ----
 package com.github.wololock
 
-import org.junit.runner.RunWith
 import spock.lang.Specification
 
-@RunWith(RandomOrder)
+@RandomizedOrder
 class RandomSpockSpec extends Specification {
 
     def "test 1"() {
@@ -155,56 +165,48 @@ class RandomSpockSpec extends Specification {
         println "[${new Date().format("HH:mm:ss.SSS")}] number ${number}"
     }
 
-    // same body as in the previous example
+    def "test 2"() {
+        when:
+        def number = 2
+
+        then:
+        println "[${new Date().format("HH:mm:ss.SSS")}] number ${number}"
+    }
+
+    def "test 3"() {
+        when:
+        def number = 3
+
+        then:
+        println "[${new Date().format("HH:mm:ss.SSS")}] number ${number}"
+    }
+
+    def "test 4"() {
+        when:
+        def number = 4
+
+        then:
+        println "[${new Date().format("HH:mm:ss.SSS")}] number ${number}"
+    }
+
+    def "test 5"() {
+        when:
+        def number = 5
+
+        then:
+        println "[${new Date().format("HH:mm:ss.SSS")}] number ${number}"
+    }
 }
 ----
 
-Let's execute the test and see the result. In this example, we use Gradle to execute the test.
-
-[source,bash]
-----
-$ ./gradlew --no-daemon -Dtest.single=RandomSpockSpec test --rerun-tasks
-----
-
-Here is the test result report in the HTML format.
+We are ready to run the test now. Let's see if the execution order has changed.
 
 [.text-center]
 --
 [.img-responsive.img-thumbnail]
-[link=/images/spock-random-tests.jpg]
-image::/images/spock-random-tests.jpg[]
+[link=/images/spock-random-tests-02.jpg]
+image::/images/spock-random-tests-02.jpg[]
 --
 
-== The downsides
-
-If you decide to randomize your Spock features execution with the following approach, you need to be aware of one
-significant downside. You need to keep in mind that in this example we have overridden the `Sputnik.run()` method.
-Any time you upgrade Spock Framework version, you will have to check if the new version of Spock did not modify
-this method's implementation, and if so, you need to reflect those changes on your side as well. However,
-Spock upgrades are not released often, so it shouldn't be a huge problem. If the random execution order is
-something you desire - go for it!
-
-== IntelliJ IDEA display order
-
-There is one thing worth mentioning regarding IntelliJ IDEA. Even though it executes features in the random order,
-it displays the list of methods in the declaration order. It also collects the output from every single feature
-and displays the final output in the same order as the list of methods. Take a look at the following screenshot:
-
-[.text-center]
---
-[.img-responsive.img-thumbnail]
-[link=/images/spock-random-idea.jpg]
-image::/images/spock-random-idea.jpg[]
---
-
-We can verify that the order was not alphabetical based on the timestamps added at the beginning of every console log line.
-
-You can also watch the following video where I show Spock's features random order in action.
-
-++++
-<div class="row"><div class="col-md-10 col-md-offset-1"><div class="video-container">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Y8cuESttcG4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div></div></div>
-++++
-
-
+*It worked!* We can see that in the above example the execution order was: Test 4, Test 3, Test 5, Test&nbsp;1, and Test 2.
+And what's even more important - the solution is simple and clean.
