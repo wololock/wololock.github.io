@@ -130,14 +130,14 @@ final class RandomizedOrderExtension extends AbstractAnnotationDrivenExtension<R
 
     private static final long seed = System.getProperty(SPOCK_RANDOM_ORDER_SEED)?.toLong() ?: System.nanoTime()
 
-    private static final Random random = new Random(seed) //<1>
-
     static {
         println "Random seed used: ${seed}\nYou can re-run the test with predefined seed by passing -D${SPOCK_RANDOM_ORDER_SEED}=${seed}\n\n"
     }
 
     @Override
     void visitSpecAnnotation(RandomizedOrder annotation, SpecInfo spec) {
+        final Random random = new Random(seed) //<1>
+
         final List<Integer> order = (0..(spec.features.size())) as ArrayList //<2>
 
         Collections.shuffle(order, random) //<3>
