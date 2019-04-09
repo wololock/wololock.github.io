@@ -1,7 +1,7 @@
 ---
 title: Spock random order of tests - how to?
 date: 2019-04-06 10:52:11
-updated: 2019-04-06 10:52:11
+updated: 2019-04-09 08:58:20
 tags:
     - groovy
     - spock
@@ -126,21 +126,34 @@ import org.spockframework.runtime.model.SpecInfo
 
 final class RandomizedOrderExtension extends AbstractAnnotationDrivenExtension<RandomizedOrder> {
 
+    public static final String SPOCK_RANDOM_ORDER_SEED = "spock.random.order.seed"
+
+    private static final long seed = System.getProperty(SPOCK_RANDOM_ORDER_SEED)?.toLong() ?: System.nanoTime()
+
+    private static final Random random = new Random(seed) //<1>
+
+    static {
+        println "Random seed used: ${seed}\nYou can re-run the test with predefined seed by passing -D${SPOCK_RANDOM_ORDER_SEED}=${seed}\n\n"
+    }
+
     @Override
     void visitSpecAnnotation(RandomizedOrder annotation, SpecInfo spec) {
-        final List<Integer> order = (0..(spec.features.size())) as ArrayList //<1>
+        final List<Integer> order = (0..(spec.features.size())) as ArrayList //<2>
 
-        Collections.shuffle(order) //<2>
+        Collections.shuffle(order, random) //<3>
 
         spec.features.each { feature ->
-            feature.executionOrder = order.pop() //<3>
+            feature.executionOrder = order.pop() //<4>
         }
     }
 }
 ----
-<1> A list of all possible orders (0..n).
-<2> Here we shuffle the list to get its random permutation.
-<3> For each feature method iterated in the declaration order we assign a unique order popped from the shuffled list.
+<1> We want to be able to reproduce issues, so we support `-Dspock.random.order.seed` parameter which allows us
+to provide a predefined seed value. For instance, running the test with the parameter `-Dspock.random.order.seed=42`
+will always produce the same methods orders permutation.
+<2> A list of all possible orders (0..n).
+<3> Here we shuffle the list to get its random permutation.
+<4> For each feature method iterated in the declaration order we assign a unique order popped from the shuffled list.
 
 This way we override the default execution order of each feature. By default, every feature uses execution order
 set based on the declaration order. _(The first method gets `executionOrder == 0`, the second one gets `executionOrder == 1` and so on.)_
@@ -204,8 +217,8 @@ We are ready to run the test now. Let's see if the execution order has changed.
 [.text-center]
 --
 [.img-responsive.img-thumbnail]
-[link=/images/spock-random-tests-02.jpg]
-image::/images/spock-random-tests-02.jpg[]
+[link=/images/spock-random-tests-02.jpg?v=1]
+image::/images/spock-random-tests-02.jpg?v=1[]
 --
 
 *It worked!* We can see that in the above example the execution order was: Test 4, Test 3, Test 5, Test&nbsp;1, and Test 2.
