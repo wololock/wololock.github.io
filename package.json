@@ -26,6 +26,12 @@
     "hexo-renderer-jade": "^0.4.1",
     "hexo-renderer-stylus": "^0.3.3",
     "hexo-server": "^0.2.0",
-    "hexo-util": "0.6.3"
-  }
+    "hexo-util": "0.6.3",
+    "snyk": "^1.150.0"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
