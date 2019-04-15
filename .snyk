@@ -6,3 +6,18 @@ patch:
   'npm:uglify-js:20150824':
     - hexo-renderer-jade > jade > transformers > uglify-js:
         patched: '2019-04-15T11:09:59.152Z'
+  'npm:hawk:20160119':
+    - hexo-related-popular-posts > ga-analytics > googleapis > request > hawk:
+        patched: '2019-04-15T11:33:43.146Z'
+  'npm:http-signature:20150122':
+    - hexo-related-popular-posts > ga-analytics > googleapis > request > http-signature:
+        patched: '2019-04-15T11:33:43.146Z'
+  'npm:request:20160119':
+    - hexo-related-popular-posts > ga-analytics > googleapis > request:
+        patched: '2019-04-15T11:33:43.146Z'
+  'npm:tunnel-agent:20170305':
+    - hexo-related-popular-posts > ga-analytics > googleapis > request > tunnel-agent:
+        patched: '2019-04-15T11:33:43.146Z'
+  'npm:uglify-js:20151024':
+    - hexo-renderer-jade > jade > transformers > uglify-js:
+        patched: '2019-04-15T11:33:43.146Z'
