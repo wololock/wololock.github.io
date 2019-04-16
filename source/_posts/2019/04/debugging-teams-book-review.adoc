@@ -14,8 +14,8 @@ tags:
 categories:
     - Programmer's Bookshelf
 cover: /images/debugging-teams-bg.jpg
-og_image: /images/og/debugging-teams.jpg
-eyeCatchImage: /images/og/debugging-teams.jpg
+og_image: /images/og/debugging-teams2.jpg
+eyeCatchImage: /images/og/debugging-teams2.jpg
 ---
 
 _"Geniuses still make mistakes and having brilliant ideas and elite programming skills don't guarantee that your
