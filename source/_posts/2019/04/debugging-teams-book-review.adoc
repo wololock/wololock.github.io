@@ -1,0 +1,122 @@
+---
+title: Debugging Teams - book review
+date: 2019-04-16 15:19:41
+updated: 2019-04-16 15:19:41
+tags:
+    - book
+    - review
+    - reading
+    - team
+    - oreilly
+    - safari-online
+    - leadership
+    - communication
+categories:
+    - Programmer's Bookshelf
+cover: /images/debugging-teams-bg.jpg
+og_image: /images/og/debugging-teams.jpg
+eyeCatchImage: /images/og/debugging-teams.jpg
+---
+
+_"Geniuses still make mistakes and having brilliant ideas and elite programming skills don't guarantee that your
+software will be a hit. What's going to make or break your career is how well you collaborate with others"_,
+say https://twitter.com/therealfitz[Brian Fitzpatrick] and https://twitter.com/sussman[Ben Collins-Sussman] in
+their book _"Debugging Teams. Better productivity through collaboration"_. It shows that crafting the ability to
+collaborate is equally important as learning new programming languages and mastering the ones we already know.
+Let's take a quick look at how this book can help us to become a better team player and a better team leader.
+
+++++
+<!-- more -->
+++++
+
+== What's inside?
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/debugging-teams-01.jpg]
+image::/images/debugging-teams-01.jpg[]
+--
+
+*Chapter one* _(The Myth of the Genius Programmer)_ focuses on software development as a team sport discipline. It
+debunks a myth of a so-called *Genius Programmer*, and it explains the role of great teams and their leaders in collective
+achievements. It also introduces three principles of social skills: Humility, Respect, and Trust. It explains how to
+use these principles in practice to achieve the following:
+
+* lose your ego
+* learn to deal out and handle criticism
+* fail fast, iterate, and recover
+* leave time for learning and improving
+* learn patience
+* be open to influence
+
+*Chapter two* _(Building an Awesome Team Culture)_ focuses on building a solid and healthy team culture.
+It explains that team culture is _"a set of shared experiences, values and goals that are unique to every
+engineering team."_ A _"strong culture,"_ by definition, is open to any changes that improve it, yet is resistant
+to any radical change that harms it. It explains how to initialize the culture development process, how to maintain
+it and improve it cooperatively with other team members. We can also learn about communication patterns of successful
+cultures. These principles apply to synchronous and asynchronous communication, and they explain the importance of
+making all information visible to everyone.
+
+There is also a section related to mission statements as something opposite to the overhyped marketing-speak statements.
+Authors prove that preparing an accurate mission statement for the team helps to find all differences and agree on
+the product's development direction.
+
+The last part of this chapter focuses on efficient communication inside the team. It covers topics like running
+productive meetings, working in geographically distributed teams, or making the day-to-day discussions and communication simple.
+
+*Chapter three* _(Every Boat Needs a Captain)_ focuses on the role of a leader in the team. It compares bad managers
+versus servant leaders and shows the impact both types make on the team and organization growth. Authors also share
+a huge list of antipatterns and leadership patterns worth following. They explain the role of a great leader,
+his/her duties, challenges,  or impact, to name a few. This chapter also describes how to work with different people
+and their unique motivations and abilities.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/debugging-teams-02.jpg]
+image::/images/debugging-teams-02.jpg[]
+--
+
+*Chapter four* _(Dealing with Poisonous People)_ explains the importance of preventing poisonous people from destroying
+the team culture you and your team members built. It describes a few different destructive behaviors that put your
+team's integrity in risk. People with a huge ego, behaving immaturely, unrespectful to other's people time - these
+are a few of the signals and patterns you should watch for. This chapter also gives you a few principles and tricks
+on how to fix harmful behavior - we have to assume that some people may not be aware that their behavior is wrong.
+
+*Chapter five* _(The Art of Organizational Manipulation)_ describes the difference between an ideal organization
+(unafraid to take the risk, everyone behaves like an adult, extra responsibility pursued) and a typical workplace
+with micromanagement, fear of failure, political games, managers that have to take part in every conversation, and
+infamous command and control management model. It explains how to influence a positive change starting from your
+team up to the organization level.
+
+The *final chapter* _(Users Are People, Too)_ shows how to apply all previous principles and techniques at the
+customer communication level. The development teams don't build products for their own - they build software for
+the end users. It's important to understand that the organization growth is correlated with the benefits that
+user get from using our software. (It shows the importance of measuring a real usage, not the number of users.)
+Being patient, helpful, communicating with HRT principles creates trust and engagement.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/debugging-teams-03.jpg]
+image::/images/debugging-teams-03.jpg[]
+--
+
+== What have I learned?
+
+This short review does not cover every detail of this book. It's not that long, but it contains a lot of useful
+information, presented in a very easy-to-consume and anecdotal style. It confirmed that:
+
+* building strong and healthy teams is not a simple job,
+* collective effort in software development can produce better results than single person excellent performance,
+* dealing with people is hard and applying HRT principles helps to build strong relationships,
+* debugging teams is a process that never ends.
+
+== Where can I get this book from?
+
+You can read "Debugging Teams" on https://www.oreilly.com/library/view/debugging-teams/9781491932049/[Safari Online platform].
+You can also download the PDF format for free https://conferences.oreilly.com/fluent/fl-ca/public/content/debugging-teams[directly from O'Reilly website].
+
+
+
