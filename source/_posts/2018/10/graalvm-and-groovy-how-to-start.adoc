@@ -1,18 +1,26 @@
 ---
 title: GraalVM and Groovy - how to start?
 date: 2018-10-03 23:28:49
-updated: 2018-10-03 23:28:49
+updated: 2019-05-11 12:22:03
 tags:
     - groovy
     - graalvm
     - native-image
-    - openjdk
+    - java
 categories:
-    - How to
-cover: /img/graalvm-bg.jpg
-og_image: /images/og/graalvm-groovy-how-to-start.jpg
-eyeCatchImage: /images/og/graalvm-groovy-how-to-start.jpg
+    - Groovy Cookbook
+cover: /images/graalvm-groovy-revisited.jpg
+og_image: /images/og/graalvm-groovy-how-to-start2.jpg
+eyeCatchImage: /images/og/graalvm-groovy-how-to-start2.jpg
 ---
+:original-post-url: https://github.com/wololock/wololock.github.io/blob/1f5b876860d0f9d6eaa53a891e19b939013ea9f0/source/_posts/2018/10/graalvm-and-groovy-how-to-start.adoc
+:footnote-static-compilation: As explained by Condrut Stancu in the following Github issue comment https://github.com/oracle/graal/issues/346#issuecomment-383015796
+:graalvm-native-image-url: https://www.graalvm.org/docs/reference-manual/aot-compilation/
+:graalvm-reflections-limitations: You can read more about it here https://github.com/oracle/graal/blob/master/substratevm/LIMITATIONS.md#reflection
+:graalvm-reflections-configuration: The manual reflection configuration is described here https://github.com/oracle/graal/blob/master/substratevm/REFLECTION.md#manual-configuration
+:graalvm-executable-bug-url: https://github.com/oracle/graal/issues/1260
+:graalvm-limitations-url: https://github.com/oracle/graal/blob/master/substratevm/LIMITATIONS.md
+:graalvm-groovy-examples-url: https://github.com/wololock/graalvm-groovy-examples
 
 https://www.graalvm.org/[GraalVM] became one of the most popular topics in the JVM ecosystem. It promises the
 highest possible speed of running JVM-based programs (when compiled to native images), hand in hand
@@ -33,12 +41,58 @@ face when you start playing around with your own examples.
 
 We will be using following tools:
 
-* **GraalVM** 1.0.0-RC7 _(the latest version while writing this blog post)_
-* **Groovy** 2.5.2
+* **GraalVM** 19.0.0 _(the latest version while writing this blog post)_
+* **Groovy** 2.5.7
 
 TIP: The easiest way to install GraalVM and Groovy is to use https://sdkman.io/[SDKMAN!] command line tool.
 
-== Let's code
+Let's make sure we are using correct GraalVM Java distribution.
+
+.Checking Java version
+[source,bash]
+----
+$ java -version
+openjdk version "1.8.0_212"
+OpenJDK Runtime Environment (build 1.8.0_212-20190420092731.buildslave.jdk8u-src-tar--b03)
+OpenJDK GraalVM CE 19.0.0 (build 25.212-b03-jvmci-19-b01, mixed mode)
+----
+
+Starting from 19.0.0 version, GraalVM does not contain `native-image` tool as a default part of the distribution,
+so we need to install it using GraalVM Component Updater.
+
+.Installing `native-image` using `gu` (a tool shipped with GraalVM distribution)
+[source,bash]
+----
+$ gu install native-image
+
+Downloading: Component catalog from www.graalvm.org
+Processing component archive: Native Image
+Downloading: Component native-image: Native Image  from github.com
+Installing new component: Native Image licence files (org.graalvm.native-image, version 19.0.0)
+----
+
+Let's check if we use a proper version of Groovy.
+
+.Checking Groovy version
+[source,bash]
+----
+$ groovy -version
+Groovy Version: 2.5.7 JVM: 1.8.0_212 Vendor: Oracle Corporation OS: Linux
+----
+
+Let's also check if `GROOVY_HOME` variable is set correctly. (If you installed Groovy using SDKMAN!, the environment variable
+should be set correctly.)
+
+.Checking if `GROOVY_HOME` environment variable is set
+[source,bash]
+----
+$ env | grep GROOVY_HOME
+GROOVY_HOME=/home/wololock/.sdkman/candidates/groovy/current
+----
+
+We are all set and ready to code!
+
+== An example
 
 For the purpose of this experiment we are going to use a simple Groovy program that sums and multiplies numbers:
 
@@ -58,19 +112,18 @@ class RandomNumber {
 }
 ----
 
-GraalVM prefers static compilationfootnote:[https://github.com/oracle/graal/issues/346#issuecomment-383015796]
-and that is why we are going to create compiler configuration file like:
+GraalVM prefers static compilationfootnote:[{footnote-static-compilation}], thus
+we need to switch Groovy from dynamic to a static compilation. We can simply put `@groovy.transform.CompileStatic` annotation
+over the class definition in `RandomNumber.groovy` file, or we can create a compiler configuration file that adds this annotation
+to all classes.
 
-.compiler.groovy
+.Compiler configuration file `compiler.groovy`
 [source,groovy]
 ----
 withConfig(configuration) {
     ast(groovy.transform.CompileStatic)
-    ast(groovy.transform.TypeChecked)
 }
 ----
-
-NOTE: Alternatively you could annotate the class with `@groovy.transform.CompileStatic` and `@groovy.transform.TypeChecked`.
 
 We are ready to compile our code with `groovyc` compiler:
 
@@ -80,32 +133,51 @@ We are ready to compile our code with `groovyc` compiler:
 groovyc --configscript compiler.groovy RandomNumber.groovy
 ----
 
-Code compiled. Let's make sure we are using a correct GraalVM JDK:
-
-.Checking Java version
-[source,bash]
-----
-java -version
-
-openjdk version "1.8.0_172"
-OpenJDK Runtime Environment (build 1.8.0_172-20180625212755.graaluser.jdk8u-src-tar-g-b11)
-GraalVM 1.0.0-rc7 (build 25.71-b01-internal-jvmci-0.48, mixed mode)
-----
-
-Everything is ready. Let's run the code using GraalVM JDK:
+The code compiled. We can now test if our Groovy script runs as a Java program.
 
 .Running Java program with GraalVM
 [source,bash]
 ----
-java -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/2.5.2/groovy-2.5.2.jar" RandomNumber
-The random number is: 876
-The doubled sum of numbers between 0 and 876 is 768252
+$ java -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" RandomNumber
+The random number is: 313
+The doubled sum of numbers between 0 and 313 is 98282
 ----
 
-NOTE: Running Groovy compiled code as a Java program requires adding `org.codehaus.groovy:groovy:2.5.2:jar` to the classpath.
-In this example I am using JAR file from my local Maven repository.
+It run smoothly! You have probably noticed a small lag - the result was not printed instantly to the console. We can run
+the program again, but this time with the `time` command added to measure execution time.
+
+.Measuring Java program execution time
+[source,bash]
+----
+$ time java -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" RandomNumber
+The random number is: 859
+The doubled sum of numbers between 0 and 859 is 738740
+
+real	0m0,306s
+user	0m0,692s
+sys	0m0,073s
+----
+
+It took *306 ms* to complete. Is it slow or fast? It depends. If we compare it to the same program, but executed inside
+Groovy interpreter command line tool, the Java program is approximately *2.5 times faster*.
+
+[source,bash]
+----
+$ time groovy RandomNumber.groovy
+The random number is: 711
+The doubled sum of numbers between 0 and 711 is 506232
+
+real	0m0,885s
+user	0m2,060s
+sys	0m0,183s
+----
+
+Let's see if GraalVM's native image can do better than that.
 
 == Creating native image
+
+One of the most interesting features of GraalVM is its {graalvm-native-image-url}[ability to create standalone native binary file] from given Java
+bytecode (either Java `.class` or `.jar` files).
 
 Running our example inside the JVM was nice, but GraalVM offers much more. We can create standalone native image
 that will consume much less memory and will execute in a blink of an eye. Let's give it a try:
@@ -113,66 +185,142 @@ that will consume much less memory and will execute in a blink of an eye. Let's 
 .Building native image with GraalVM
 [source,bash]
 ----
-native-image -H:+ReportUnsupportedElementsAtRuntime \
-        -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/2.5.2/groovy-2.5.2.jar" \
-        --no-server \
-        RandomNumber
+$ native-image --allow-incomplete-classpath \//<1>
+    --report-unsupported-elements-at-runtime \//<2>
+    --initialize-at-build-time \//<3>
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \//<4>
+    --no-fallback \//<5>
+    --no-server \//<6>
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \//<7>
+    RandomNumber//<8>
 ----
 
-Running the command will produce a following output:
+As you can see there are many parameters passed to the `native-image` command. We use pass:[<em class="conum" data-value="1"></em>]
+to allow image building with an incomplete classpath. If we didn't allow that, native image compilation would fail with
+the error like the one below.
 
+.Compilation error thrown when `--allow-incomplete-classpath` parameter is missing
+[source,text]
+----
+Error: com.oracle.graal.pointsto.constraints.UnresolvedElementException: Discovered unresolved method during parsing: org.codehaus.groovy.control.XStreamUtils.serialize(java.lang.String, java.lang.Object). To diagnose the issue you can use the --allow-incomplete-classpath option. The missing method is then reported at run time when it is accessed the first time.
+----
+
+The second parameter pass:[<em class="conum" data-value="2"></em>] makes usages of unsupported methods and fields to be
+reported at a runtime (when they are accessed the first time) instead of the build time. It is also critical to our case.
+Without this parameter set, compilation fails with the following error.
+
+.Compilation error thrown when `--report-unsupported-elements-at-runtime` parameter is missing
+[source,text]
+----
+Error: Unsupported features in 5 methods
+Detailed message:
+Error: com.oracle.svm.hosted.substitute.DeletedElementException: Unsupported method java.lang.ClassLoader.defineClass(String, byte[], int, int) is reachable: The declaring class of this element has been substituted, but this element is not present in the substitution class
+...
+Error: com.oracle.svm.hosted.substitute.DeletedElementException: Unsupported method java.lang.ClassLoader.defineClass(String, byte[], int, int, ProtectionDomain) is reachable: The declaring class of this element has been substituted, but this element is not present in the substitution class
+...
+Error: com.oracle.svm.hosted.substitute.DeletedElementException: Unsupported method java.lang.ClassLoader.findLoadedClass(String) is reachable: The declaring class of this element has been substituted, but this element is not present in the substitution class
+...
+Error: com.oracle.svm.hosted.substitute.DeletedElementException: Unsupported method java.lang.ClassLoader.findLoadedClass(String) is reachable: The declaring class of this element has been substituted, but this element is not present in the substitution class
+...
+Error: com.oracle.svm.hosted.substitute.DeletedElementException: Unsupported method java.lang.ClassLoader.loadClass(String, boolean) is reachable: The declaring class of this element has been substituted, but this element is not present in the substitution class
+To diagnose the issue, you can add the option --report-unsupported-elements-at-runtime. The unsupported element is then reported at run time when it is accessed the first time.
+----
+
+Options pass:[<em class="conum" data-value="3"></em>] and pass:[<em class="conum" data-value="4"></em>] specify that
+all packages and classes are initialized during the native image generation, except for the two: `org.codehaus.groovy.control.XStreamUtils`
+and `groovy.grape.GrapeIvy`.
+
+With `--no-fallback` option pass:[<em class="conum" data-value="5"></em>] we want to force the native image compiler that
+we expect the native image is either generated correctly, or the compilation fails. Without this option set, the compiler
+falls back to the regular JDK execution in case of an error faced during the compilation. When it happens, we see the following
+message in the console log.
+
+.Fallback strategy in case of an error during image compilation
+[source,text]
+----
+Warning: Image 'randomnumber' is a fallback image that requires a JDK for execution (use --no-fallback to suppress fallback image generation).
+----
+
+The `--no-server` option pass:[<em class="conum" data-value="6"></em>] informs the compiler that we don't want to use
+image-build server. We also set pass:[<em class="conum" data-value="7"></em>] the same classpath we set when running
+Groovy as a Java program. And the last line pass:[<em class="conum" data-value="8"></em>] contains the name of the
+`RandomNumber.class` file.
+
+The compilation takes approximately 60 seconds and this is the output we should expect.
+
+.The expected native image compilation console output
 [source,bash]
 ----
-[randomnumber:13187]    classlist:   2,144.27 ms
-[randomnumber:13187]        (cap):     662.01 ms
-[randomnumber:13187]        setup:   1,245.07 ms
-[randomnumber:13187]   (typeflow):   7,048.82 ms
-[randomnumber:13187]    (objects):   6,547.35 ms
-[randomnumber:13187]   (features):     119.57 ms
-[randomnumber:13187]     analysis:  15,433.33 ms
-[randomnumber:13187]     universe:     564.07 ms
-[randomnumber:13187]      (parse):   1,903.46 ms
-[randomnumber:13187]     (inline):   2,529.37 ms
-[randomnumber:13187]    (compile):  11,180.52 ms
-[randomnumber:13187]      compile:  19,392.95 ms
-[randomnumber:13187]        image:   1,872.31 ms
-[randomnumber:13187]        write:     373.53 ms
-[randomnumber:13187]      [total]:  42,717.44 ms
+$ native-image --allow-incomplete-classpath \
+    --report-unsupported-elements-at-runtime \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    --no-fallback \
+    --no-server \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+[randomnumber:30836]    classlist:   2,543.84 ms
+[randomnumber:30836]        (cap):     842.60 ms
+[randomnumber:30836]        setup:   2,037.49 ms
+[randomnumber:30836]   (typeflow):  10,398.18 ms
+[randomnumber:30836]    (objects):  12,716.21 ms
+[randomnumber:30836]   (features):     502.37 ms
+[randomnumber:30836]     analysis:  24,049.68 ms
+[randomnumber:30836]     (clinit):     309.26 ms
+[randomnumber:30836]     universe:     952.52 ms
+[randomnumber:30836]      (parse):   2,359.79 ms
+[randomnumber:30836]     (inline):   3,216.99 ms
+[randomnumber:30836]    (compile):  17,702.26 ms
+[randomnumber:30836]      compile:  24,547.04 ms
+[randomnumber:30836]        image:   2,308.60 ms
+[randomnumber:30836]        write:     352.50 ms
+[randomnumber:30836]      [total]:  56,941.42 ms
 ----
 
-Let's run the program then:
+== Running standalone native image
 
+The compilation succeeds and we can see `randomnumber` executable file in the current folder.
+
+.The current folder with `randomnumber` executable file
 [source,bash]
 ----
-./randomnumber
+$ ls -lah randomnumber
+-rwxrwxr-x 1 wololock wololock 21M 05-11 13:13 randomnumber
 ----
 
+Let's run it and see the result.
+
+.Running executable file for the first time
 [source,bash]
 ----
-The random number is: 139
+$ ./randomnumber
+The random number is: 397
 Exception in thread "main" groovy.lang.MissingMethodException: No signature of method: RandomNumber$_main_closure1.doCall() is applicable for argument types: (Integer) values: [0]
 Possible solutions: findAll(), findAll(), isCase(java.lang.Object), isCase(java.lang.Object)
-	at java.lang.Throwable.<init>(Throwable.java:250)
-	at java.lang.Exception.<init>(Exception.java:54)
-	at java.lang.RuntimeException.<init>(RuntimeException.java:51)
-	at groovy.lang.GroovyRuntimeException.<init>(GroovyRuntimeException.java:33)
-	at groovy.lang.MissingMethodException.<init>(MissingMethodException.java:49)
-	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:256)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:255)
 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
-	at groovy.lang.Closure.call(Closure.java:421)
-	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6613)
-	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6513)
-	at RandomNumber.main(RandomNumber.groovy:8)
-	at com.oracle.svm.core.JavaMainWrapper.run(JavaMainWrapper.java:163)
+	at groovy.lang.Closure.call(Closure.java:405)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6648)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6548)
+	at RandomNumber.main(RandomNumber.groovy:7)
 ----
 
-Something went wrong. The first print `The random number is: 139` was shown in the console, but executing sum operation
-with a closure failed with the exception. The reason of this is because GraalVM uses https://www.graalvm.org/docs/reference-manual/aot-compilation/[AOT (ahead of time) compilation],
-which comes with some limitations (e.g. when it comes to Java reflection). The good news is that GraalVM allows us
-to configure manually which classes are loaded via reflection, so GraalVM will be ready to do so. Let's create a file
-called `reflection.json` with the following content:
+Something is broken. The first line `The random number is: 397` gets printed correctly, but it fails when trying to
+invoke `RandomNumber$_main_closure1.doCall(int)`. How is that?
 
-.reflection.json
+This method represents the closure we pass to the `(0..random).sum()` method. The problem is that the process of the `doCall(int)`
+method lookup uses reflection. And even though the native image supports runtime reflectionfootnote:[{graalvm-reflections-limitations}], in some cases it is not able
+do determine it correctly, thus it requires additional configuration provided by the user.
+
+== Reflection configuration
+
+The manual reflection configuration for GraalVM native image is fairly simplefootnote:[{graalvm-reflections-configuration}].
+All we have to do is to create a JSON configuration file and add `-H:ReflectionConfigurationFiles=...` to the command line.
+We can either configure class that will be used reflectively using helper options like `allDeclaredMethods`, or we
+can manually provide a list of methods (and their parameters) we expect to get invoked using reflection. To keep this example
+simple, we will use the first approach.
+
+.Our exemplary `reflection.json` file
 [source,json]
 ----
 [
@@ -186,81 +334,154 @@ called `reflection.json` with the following content:
 ]
 ----
 
-TIP: More about manual reflection configuration can be found https://github.com/oracle/graal/blob/master/substratevm/REFLECTION.md#manual-configuration[here].
+Let's recompile the native image using reflection configuration.
 
-Let's run `native-image` again, but this time with `-H:ReflectionConfigurationFiles=reflection.json` parameter added:
+.Recompiling native image using reflection configuration
+[source,bash,subs="quotes,attributes"]
+----
+$ native-image --allow-incomplete-classpath \
+    --report-unsupported-elements-at-runtime \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    --no-fallback \
+    --no-server \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    **-H:ReflectionConfigurationFiles=reflections.json** \
+    RandomNumber
+[randomnumber:14904]    classlist:   2,465.48 ms
+[randomnumber:14904]        (cap):     847.33 ms
+[randomnumber:14904]        setup:   1,956.50 ms
+[randomnumber:14904]   (typeflow):  10,908.61 ms
+[randomnumber:14904]    (objects):  14,070.69 ms
+[randomnumber:14904]   (features):     389.80 ms
+[randomnumber:14904]     analysis:  26,006.96 ms
+[randomnumber:14904]     (clinit):     368.34 ms
+[randomnumber:14904]     universe:   1,018.86 ms
+[randomnumber:14904]      (parse):   2,536.26 ms
+[randomnumber:14904]     (inline):   3,122.56 ms
+[randomnumber:14904]    (compile):  18,851.47 ms
+[randomnumber:14904]      compile:  25,996.75 ms
+[randomnumber:14904]        image:   2,547.31 ms
+[randomnumber:14904]        write:     375.97 ms
+[randomnumber:14904]      [total]:  60,535.87 ms
+----
 
-.Building native image with GraalVM
+We can run the program again to see if it works.
+
 [source,bash]
 ----
-native-image -H:+ReportUnsupportedElementsAtRuntime \
-        -H:ReflectionConfigurationFiles=reflection.json \
-        -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/2.5.2/groovy-2.5.2.jar" \
-        --no-server \
-        RandomNumber
-----
-
-When we run `./randomnumber` now, we will something like this in the console:
-
-[source,bash]
-----
-The random number is: 673
-java.lang.ClassNotFoundException: org.codehaus.groovy.runtime.dgm$519
-	at java.lang.Throwable.<init>(Throwable.java:287)
-	at java.lang.Exception.<init>(Exception.java:84)
-	at java.lang.ReflectiveOperationException.<init>(ReflectiveOperationException.java:75)
-	at java.lang.ClassNotFoundException.<init>(ClassNotFoundException.java:82)
+$ ./randomnumber
+The random number is: 869
+java.lang.ClassNotFoundException: org.codehaus.groovy.runtime.dgm$521
 	at com.oracle.svm.core.hub.ClassForNameSupport.forName(ClassForNameSupport.java:51)
-	at com.oracle.svm.core.jdk.Target_java_lang_ClassLoader.loadClass(Target_java_lang_ClassLoader.java:126)
+	at java.lang.ClassLoader.loadClass(Target_java_lang_ClassLoader.java:131)
 	at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.createProxy(GeneratedMetaMethod.java:101)
 	at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.proxy(GeneratedMetaMethod.java:93)
 	at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.isValidMethod(GeneratedMetaMethod.java:78)
-	at groovy.lang.MetaClassImpl.chooseMethodInternal(MetaClassImpl.java:3232)
-	at groovy.lang.MetaClassImpl.chooseMethod(MetaClassImpl.java:3194)
-	at groovy.lang.MetaClassImpl.getNormalMethodWithCaching(MetaClassImpl.java:1402)
-	at groovy.lang.MetaClassImpl.getMethodWithCaching(MetaClassImpl.java:1317)
-	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1087)
+	at groovy.lang.MetaClassImpl.chooseMethodInternal(MetaClassImpl.java:3226)
+	at groovy.lang.MetaClassImpl.chooseMethod(MetaClassImpl.java:3188)
+	at groovy.lang.MetaClassImpl.getNormalMethodWithCaching(MetaClassImpl.java:1399)
+	at groovy.lang.MetaClassImpl.getMethodWithCaching(MetaClassImpl.java:1314)
+	at groovy.lang.MetaClassImpl.getMetaMethod(MetaClassImpl.java:1229)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
-	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6620)
-	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6513)
-	at RandomNumber.main(RandomNumber.groovy:8)
-	at com.oracle.svm.core.JavaMainWrapper.run(JavaMainWrapper.java:163)
-Exception in thread "main" groovy.lang.GroovyRuntimeException: Failed to create DGM method proxy : java.lang.ClassNotFoundException: org.codehaus.groovy.runtime.dgm$519
-	at java.lang.Throwable.<init>(Throwable.java:287)
-	at java.lang.Exception.<init>(Exception.java:84)
-	at java.lang.RuntimeException.<init>(RuntimeException.java:80)
-	at groovy.lang.GroovyRuntimeException.<init>(GroovyRuntimeException.java:46)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6655)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6548)
+	at RandomNumber.main(RandomNumber.groovy:7)
+Exception in thread "main" groovy.lang.GroovyRuntimeException: Failed to create DGM method proxy : java.lang.ClassNotFoundException: org.codehaus.groovy.runtime.dgm$521
 	at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.createProxy(GeneratedMetaMethod.java:106)
 	at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.proxy(GeneratedMetaMethod.java:93)
 	at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.isValidMethod(GeneratedMetaMethod.java:78)
-	at groovy.lang.MetaClassImpl.chooseMethodInternal(MetaClassImpl.java:3232)
-	at groovy.lang.MetaClassImpl.chooseMethod(MetaClassImpl.java:3194)
-	at groovy.lang.MetaClassImpl.getNormalMethodWithCaching(MetaClassImpl.java:1402)
-	at groovy.lang.MetaClassImpl.getMethodWithCaching(MetaClassImpl.java:1317)
-	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1087)
+	at groovy.lang.MetaClassImpl.chooseMethodInternal(MetaClassImpl.java:3226)
+	at groovy.lang.MetaClassImpl.chooseMethod(MetaClassImpl.java:3188)
+	at groovy.lang.MetaClassImpl.getNormalMethodWithCaching(MetaClassImpl.java:1399)
+	at groovy.lang.MetaClassImpl.getMethodWithCaching(MetaClassImpl.java:1314)
+	at groovy.lang.MetaClassImpl.getMetaMethod(MetaClassImpl.java:1229)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
-	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6620)
-	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6513)
-	at RandomNumber.main(RandomNumber.groovy:8)
-	at com.oracle.svm.core.JavaMainWrapper.run(JavaMainWrapper.java:163)
-Caused by: java.lang.ClassNotFoundException: org.codehaus.groovy.runtime.dgm$519
-	at java.lang.Throwable.<init>(Throwable.java:287)
-	at java.lang.Exception.<init>(Exception.java:84)
-	at java.lang.ReflectiveOperationException.<init>(ReflectiveOperationException.java:75)
-	at java.lang.ClassNotFoundException.<init>(ClassNotFoundException.java:82)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6655)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6548)
+	at RandomNumber.main(RandomNumber.groovy:7)
+Caused by: java.lang.ClassNotFoundException: org.codehaus.groovy.runtime.dgm$521
 	at com.oracle.svm.core.hub.ClassForNameSupport.forName(ClassForNameSupport.java:51)
-	at com.oracle.svm.core.jdk.Target_java_lang_ClassLoader.loadClass(Target_java_lang_ClassLoader.java:126)
+	at java.lang.ClassLoader.loadClass(Target_java_lang_ClassLoader.java:131)
 	at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.createProxy(GeneratedMetaMethod.java:101)
 	... 12 more
 ----
 
-This time class `org.codehaus.groovy.runtime.dgm$519` cannot be found. These `dgm$...` classes are Groovy classes
-representing generate meta methods. Let's add it to the `reflection.json` and repeat the last two steps. It will
-fail one more time - this time class `org.codehaus.groovy.runtime.dgm$1172` cannot be found. Let's add it and repeat.
-Final `reflection.json` file should look like this:
+Failed again. This time it couldn't find a class `org.codehaus.groovy.runtime.dgm$521`. This is one of the classes that
+represent Groovy dynamic methods - methods that extend e.g. JDK classes with the new methods. This class is also
+accessed through reflection, let's add to our `reflection.json` configuration file.
 
-.reflection.json
-[source,json]
+.Updated `reflections.json` file
+[source,json,subs="quotes"]
+----
+[
+  {
+    "name": "RandomNumber$_main_closure1",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  **{
+    "name": "org.codehaus.groovy.runtime.dgm$521",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  }**
+]
+----
+
+Let's recompile the native image using the same command as before. When the compilation is done, let's see if it works.
+
+[source,bash]
+----
+$ ./randomnumber
+The random number is: 853
+java.lang.ClassNotFoundException: org.codehaus.groovy.runtime.dgm$1180
+	at com.oracle.svm.core.hub.ClassForNameSupport.forName(ClassForNameSupport.java:51)
+	at java.lang.ClassLoader.loadClass(Target_java_lang_ClassLoader.java:131)
+	at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.createProxy(GeneratedMetaMethod.java:101)
+	at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.proxy(GeneratedMetaMethod.java:93)
+	at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.isValidMethod(GeneratedMetaMethod.java:78)
+	at groovy.lang.MetaClassImpl.chooseMethodInternal(MetaClassImpl.java:3226)
+	at groovy.lang.MetaClassImpl.chooseMethod(MetaClassImpl.java:3188)
+	at groovy.lang.MetaClassImpl.getNormalMethodWithCaching(MetaClassImpl.java:1399)
+	at groovy.lang.MetaClassImpl.getMethodWithCaching(MetaClassImpl.java:1314)
+	at groovy.lang.MetaClassImpl.getMetaMethod(MetaClassImpl.java:1229)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6655)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6548)
+	at RandomNumber.main(RandomNumber.groovy:7)
+Exception in thread "main" groovy.lang.GroovyRuntimeException: Failed to create DGM method proxy : java.lang.ClassNotFoundException: org.codehaus.groovy.runtime.dgm$1180
+	at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.createProxy(GeneratedMetaMethod.java:106)
+	at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.proxy(GeneratedMetaMethod.java:93)
+	at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.isValidMethod(GeneratedMetaMethod.java:78)
+	at groovy.lang.MetaClassImpl.chooseMethodInternal(MetaClassImpl.java:3226)
+	at groovy.lang.MetaClassImpl.chooseMethod(MetaClassImpl.java:3188)
+	at groovy.lang.MetaClassImpl.getNormalMethodWithCaching(MetaClassImpl.java:1399)
+	at groovy.lang.MetaClassImpl.getMethodWithCaching(MetaClassImpl.java:1314)
+	at groovy.lang.MetaClassImpl.getMetaMethod(MetaClassImpl.java:1229)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1082)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6655)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6548)
+	at RandomNumber.main(RandomNumber.groovy:7)
+Caused by: java.lang.ClassNotFoundException: org.codehaus.groovy.runtime.dgm$1180
+	at com.oracle.svm.core.hub.ClassForNameSupport.forName(ClassForNameSupport.java:51)
+	at java.lang.ClassLoader.loadClass(Target_java_lang_ClassLoader.java:131)
+	at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.createProxy(GeneratedMetaMethod.java:101)
+	... 12 more
+----
+
+Failed again. This time the class `org.codehaus.groovy.runtime.dgm$1180` cannot be found. Let's add it to the `reflections.json`
+configuration file.
+
+.Another update to `reflections.json` file
+[source,json,subs="quotes"]
 ----
 [
   {
@@ -271,165 +492,209 @@ Final `reflection.json` file should look like this:
     "allPublicMethods": true
   },
   {
-    "name": "org.codehaus.groovy.runtime.dgm$519",
+    "name": "org.codehaus.groovy.runtime.dgm$521",
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
     "allDeclaredMethods": true,
     "allPublicMethods": true
   },
-  {
-    "name": "org.codehaus.groovy.runtime.dgm$1172",
+  **{
+    "name": "org.codehaus.groovy.runtime.dgm$1180",
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
     "allDeclaredMethods": true,
     "allPublicMethods": true
-  }
+  }**
 ]
 ----
 
-And now when we try to run `./randomnumber` we will see the following output:
+After updating the configuration file, let's recompile the image using the same command as before. When it's done, it's time
+to run the program.
 
+.Working native image
 [source,bash]
 ----
-The random number is: 161
-The doubled sum of numbers between 0 and 161 is 26082
+$ ./randomnumber
+The random number is: 859
+The doubled sum of numbers between 0 and 859 is 738740
 ----
 
-It worked, finally! In this case we only had to add these 3 classes to reflection configuration. When you run
-your own example you may have to add even more before your program executes as expected.
+*It worked!* You also noticed that the reaction time is much better compared to the previous attempts (running Groovy code
+as a Java program). Let's measure native image execution time.
 
-== Let's compare execution times
-
-After building and running standalone executable it is a good time to make a short comparison. We are not going
-to do a detailed benchmark - we just want to test the cold start of the program in 3 different variants.
-
-
-**1:** Running `RandomNumber.groovy` with a `groovy` command line (**1,03s**):
-
-[source,bash]
-----
-time groovy RandomNumber
-
-The random number is: 546
-The doubled sum of numbers between 0 and 546 is 298662
-
-groovy RandomNumber  1,03s user 0,06s system 192% cpu 0,567 total
-----
-
-**2:** Running compiled Groovy code with GraalVM JVM (**0,50s**):
-
-[source,bash]
-----
-time java -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/2.5.2/groovy-2.5.2.jar" RandomNumber
-
-The random number is: 437
-The doubled sum of numbers between 0 and 437 is 191406
-
-java -cp  RandomNumber  0,50s user 0,04s system 194% cpu 0,274 total
-----
-
-**3:** Running standalone native image (**0,00s**):
-
+.The native image execution time
 [source,bash]
 ----
 time ./randomnumber
+The random number is: 580
+The doubled sum of numbers between 0 and 580 is 336980
 
-The random number is: 675
-The doubled sum of numbers between 0 and 675 is 456300
-
-./randomnumber  0,00s user 0,00s system 92% cpu 0,007 total
+real	0m0,008s
+user	0m0,005s
+sys	0m0,003s
 ----
 
-That's amazing! I wouldn't thought that Java program can execute in a blink of an eye. And here you can
-see what does it look like in action:
+This is really nice - *8 ms*. And here is how does it look like compared to the previous results.
 
-++++
-<script src="https://asciinema.org/a/uSh0zfA1JJede8J4R4lQy4FdK.js" id="asciicast-uSh0zfA1JJede8J4R4lQy4FdK" async></script>
-++++
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/graalvm-groovy-execution-time.png]
+image::/images/graalvm-groovy-execution-time.png[]
+--
 
-== Limitations
+As you can see, GraalVM's native image outperforms the two previous attempts.
 
-I must say that not everything look so bright. You have to be aware of many limitations you will face when
-you start building Groovy native images with GraalVM:
+== Automated reflection configuration
 
-1. Building native images from dynamic Groovy scripts does not work at the momentfootnote:[https://github.com/oracle/graal/issues/708].
-2. Dynamic runtime metaprogramming may not work at all in GraalVM (some parts may be fixed by configuring classes for AOT reflection).
-3. Closures require manual configuration for reflection and you will face some issues when trying to cast a closure to some other type
-(e.g. when you use a closure in place of a functional interface).
-4. http://docs.groovy-lang.org/latest/html/documentation/grape.html[Grape], one of the most valuable Groovy scripts feature
-won't work as standalone native image, because it requires Groovy command line tool and its class loader that understand what
-does `@Grab` annotation mean.
-5. And last but not least - Groovy native image for this example weight 24 MB, which is quite a lot comparing
-to what this application does.
+I guess we both agree, that this manual reflection configuration was pretty annoying. We added a class to a configuration,
+then we recompiled the native image just to get another exception with a different missing class. In case of a such simple program
+we had to add three classes to the reflection configuration. We can imagine how ineffective would it be in case of a much more
+complex example.
 
-=== An example
+Luckily, there is a solution to this problem. GraalVM's JDK is distributed with `native-image-agent` - a Java agent that can
+be used to run our program with GraalVM's JDK that introspects the code usage. It can detect all reflection for us (and not only that).
 
-Before we close this article, let's take a look at example that does not work with GraalVM. Let's refactor above
-example to use Java 8 Stream API and closures in place of lambda expressions:
+Let's give it a try. Firstly, we need to run our compiled Groovy code as a Java program with the `native-image-agent` enabled.
 
-.RandomNumber.groovy
-[source,groovy]
+.Running as a Java program with the agent enabled
+[source,bash]
 ----
-import groovy.transform.CompileStatic
-import groovy.transform.TypeChecked
-
-import java.util.stream.IntStream
-
-@CompileStatic
-@TypeChecked
-class RandomNumber {
-    static void main(String[] args) {
-        def random = new Random().nextInt(1000)
-
-        println "The random number is: $random"
-
-        Long sum = IntStream.rangeClosed(0, random)
-                    .boxed()
-                    .map { it * 2 }
-                    .mapToLong { it -> (long) it }
-                    .sum()
-
-        println "The doubled sum of numbers between 0 and $random is $sum"
-    }
-}
+$ java -agentlib:native-image-agent=config-output-dir=conf/ \//<1>
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" RandomNumber
 ----
 
-It compiles, GraalVM JDK runs it on JVM, native image builds. But when we try to run it we will see following output:
+The program executes like it did before, but know it created 4 configuration files in the folder we specified with pass:[<em class="conum" data-value="1"></em>]
+parameter (in this case I used `conf/` folder). Here are the files that got created.
+
+.Automatically generated configuration files for the native image builder
+[source,bash,subs="quotes"]
+----
+$ tree conf
+**conf**
+├── jni-config.json
+├── proxy-config.json
+├── reflect-config.json
+└── resource-config.json
+
+0 directories, 4 files
+----
+
+If you open `conf/reflect-config.json` file you will see that it contains tons of classes configured for the reflective access.
+(In my case this file is 579 lines long.)
+
+[WARNING]
+====
+Before you continue, you need to modify `conf/reflect-config.json` file a bit. There is a {graalvm-executable-bug-url}[know bug] in *GraalVM 19.0.0*
+that causes problems when the class `java.lang.reflect.Executable` is added to the reflection configuration. _(It will be fixed in the next release,
+so if you use a newer version, you might skip this part.)_ The good thing is that you can simply remove it from
+`conf/reflect-config.json` file and you are OK. Search for:
+
+[source,json]
+----
+{
+  "name":"java.lang.reflect.Executable",
+  "allDeclaredMethods":true,
+  "methods":[
+    {"name":"getAnnotation","parameterTypes":["java.lang.Class"] },
+    {"name":"getDeclaredAnnotations","parameterTypes":[] },
+    {"name":"getDeclaringClass","parameterTypes":[] },
+    {"name":"getModifiers","parameterTypes":[] },
+    {"name":"getName","parameterTypes":[] },
+    {"name":"getTypeParameters","parameterTypes":[] },
+    {"name":"isSynthetic","parameterTypes":[] }
+  ]
+},
+----
+
+and simply remove it.
+====
+
+The last thing we have to do is to remove `-H:ReflectionConfigurationFiles` parameters and use the `-H:ConfigurationFileDirectories`
+parameter instead. It loads not only reflection configuration files, but also remaining three configurations for proxies, JNI, and resources.
+
+.Using automatically generated reflection configuration file
+[source,bash,subs="quotes"]
+----
+$ native-image --allow-incomplete-classpath \
+    --report-unsupported-elements-at-runtime \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    --no-fallback \
+    --no-server \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    **-H:ConfigurationFileDirectories=conf/** \
+    RandomNumber
+----
+
+It compiles in 70 seconds.
 
 [source,bash]
 ----
-The random number is: 226
-Exception in thread "main" org.codehaus.groovy.runtime.typehandling.GroovyCastException: Cannot cast object 'RandomNumber$_main_closure1@7fcfe0745d78' with class 'RandomNumber$_main_closure1' to class 'java.util.function.Function'
-	at java.lang.Throwable.<init>(Throwable.java:265)
-	at java.lang.Exception.<init>(Exception.java:66)
-	at java.lang.RuntimeException.<init>(RuntimeException.java:62)
-	at java.lang.ClassCastException.<init>(ClassCastException.java:58)
-	at org.codehaus.groovy.runtime.typehandling.GroovyCastException.<init>(GroovyCastException.java:40)
-	at org.codehaus.groovy.runtime.typehandling.DefaultTypeTransformation.continueCastOnSAM(DefaultTypeTransformation.java:414)
-	at org.codehaus.groovy.runtime.typehandling.DefaultTypeTransformation.continueCastOnNumber(DefaultTypeTransformation.java:328)
-	at org.codehaus.groovy.runtime.typehandling.DefaultTypeTransformation.castToType(DefaultTypeTransformation.java:242)
-	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.castToType(ScriptBytecodeAdapter.java:617)
-	at RandomNumber.main(RandomNumber.groovy:15)
-	at com.oracle.svm.core.JavaMainWrapper.run(JavaMainWrapper.java:163)
+[randomnumber:6854]    classlist:   2,495.24 ms
+[randomnumber:6854]        (cap):     924.98 ms
+[randomnumber:6854]        setup:   2,170.19 ms
+[randomnumber:6854]   (typeflow):  12,968.96 ms
+[randomnumber:6854]    (objects):  17,112.64 ms
+[randomnumber:6854]   (features):     568.95 ms
+[randomnumber:6854]     analysis:  31,241.39 ms
+[randomnumber:6854]     (clinit):     447.44 ms
+[randomnumber:6854]     universe:   1,339.22 ms
+[randomnumber:6854]      (parse):   2,724.16 ms
+[randomnumber:6854]     (inline):   4,752.75 ms
+[randomnumber:6854]    (compile):  20,960.41 ms
+[randomnumber:6854]      compile:  29,926.05 ms
+[randomnumber:6854]        image:   2,818.74 ms
+[randomnumber:6854]        write:     373.36 ms
+[randomnumber:6854]      [total]:  70,552.29 ms
 ----
 
-As you can see closure we used for `map` operation cannot be cast to `java.util.function.Function` and program
-terminates. This is a huge problem for many Groovy programs - we tend to use closure in place of other types
-and we expect correct coercion to happen. I'm guessing this example requires some effort and finding which
-classes should be configured manually for reflection. I will share an update when I find solution to that problem.
+And see if it works with those automatically generated configuration files.
+
+[source,bash]
+----
+$ ./randomnumber
+The random number is: 347
+The doubled sum of numbers between 0 and 347 is 120756
+----
+
+Cowabunga! No problems this time! icon:smile-o[]
+
+== Limitations
+
+Even though we compiled the native image successfully, we need to be aware of a few significant limitations. Groovy is not
+a first class citizen for GraalVM's ahead-of-time compilation by design, and that is why you can't expect that your
+Groovy program will compile to the native image successfully. Below is the list of the major limitations that cannot be avoided.
+
+* GraalVM's SubstrateVM does not support *dynamic class loading*, *dynamic class generation*, and *bytecode InvokeDynamic*. This
+limitation makes dynamic Groovy scripts and classes almost 99% incompatible with building native images. That is why we
+had to turn on static compilation in the example described above.
+
+NOTE: Here you can read more about {graalvm-limitations-url}[SubstrateVM limitations].
+
+* Metaprogramming features don't work in the native image.
+
+* Coercing closures to other specific types (e.g. functional interfaces used with Java 8 Stream API) does not work.
 
 == Conclusion
 
-I hope you have learned something useful from this blog post. I will continue exploring the world of GraalVM
-in cooperation with different technologies. I'm looking forward for learning and experimenting with more
-real-life and useful examples. I strongly encourage you to keep an eye on GraalVM - it is one of the hottest JVM topics
-these days for a good reason. And if you are looking for a project that is experimenting actively with GraalVM,
-take a look at http://micronaut.io/[Micronaut] framework - people from https://objectcomputing.com/[OCI] did
-a great job in this area and they documented their efforts in an official Micronaut user guide.
+I hope you have learned something interesting from this blog post. If you are interested in learning more about
+Groovy and GraalVM, checkout my other blog posts you can find in the section below.
+
+You can also check my {graalvm-groovy-examples-url}[wololock/graalvm-groovy-examples] GitHub repository, where I collect
+some of the demos and examples I create during my experiments. Feel free to test it, experiment on your side and contribute
+to the project. GraalVM is fascinating and quite challenging piece of technology. The more we experiment with it and learn
+how to use it most effectively, the more we can help other people adopting it.
 
 == Useful resources
 
-* https://github.com/graemerocher/micronaut-graal-experiments
-* https://medium.com/graalvm/instant-netty-startup-using-graalvm-native-image-generation-ed6f14ff7692
-* http://guides.micronaut.io/micronaut-creating-first-graal-app/guide/index.html
-* https://blog.frankel.ch/first-impressions-graalvm/
+Here you can find a list of blog posts I found useful when I was working on this article.
+
+* https://github.com/graemerocher/micronaut-graal-experiments[_Micronaut Graal Experiments_] by https://twitter.com/graemerocher[Graeme Rocher]
+* https://medium.com/graalvm/instant-netty-startup-using-graalvm-native-image-generation-ed6f14ff7692[_Instant Netty Startup using GraalVM Native Image Generation_] by https://twitter.com/cstancu[Codruț Stancu]
+* https://blog.frankel.ch/first-impressions-graalvm/[_My first impressions about Graal VM_] by https://twitter.com/nicolas_frankel[Nicolas Frankel]
+* https://melix.github.io/blog/2019/03/simple-http-server-graal.html[_A simple native HTTP server with GraalVM_] by https://twitter.com/CedricChampeau[Cédric Champeau]
+
+
+NOTE: This post was updated after *GraalVM* CE 19.0.0 was released on May 9th 2019. The&nbsp;source of the original
+blog post published on October 28th 2018 is still in the Github repository history and {original-post-url}[can be found here].
