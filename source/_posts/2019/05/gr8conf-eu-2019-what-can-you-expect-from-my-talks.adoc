@@ -1,0 +1,54 @@
+---
+title: GR8Conf EU 2019 - what can you expect from my talks?
+date: 2019-05-14 08:40:36
+updated: 2019-05-14 08:40:36
+tags:
+    - gr8conf
+    - conference
+    - groovy
+    - ratpack
+    - graalvm
+    - video
+categories:
+    - Conferences
+cover: /images/gr8conf-video-bg.jpg
+og_image: /images/og/gr8conf-video.jpg
+eyeCatchImage: /images/og/gr8conf-video.jpg
+---
+:gr8conf-url: https://gr8conf.eu
+
+{gr8conf-url}[GR8Conf EU 2019] starts precisely in 13 days (on May 27th).
+Each year Copenhagen becomes a heart of Groovy vibrant community for 3 days.
+The conference offers both talks and workshops, focused on Groovy related topics such as upcoming Groovy 3 release, building DSLs, using Micronaut in the cloud-native environment, or testing applications with Spock and Geb, to name a few.
+And that's not even a quarter of great stuff you can expect from it.
+This year you can also attend one of my three talks I'm going to deliver.
+
+++++
+<!-- more -->
+++++
+
+== The invitation
+
+If you wonder if it is worth dedicating your time to attend one of my presentations, here is a short video I recorded yesterday.
+I explain what the goals of each talk are, what you can expect from them, and what kind of things you can learn during the presentation.
+
+++++
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eFX02DssGLc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+++++
+
+Here is the schedule.
+
+NOTE: Be aware, that date, time and/or room might change, so please double-check the agenda a day before.
+
+*"Practical quickstart to non-blocking I/O with Ratpack"* +
+Monday, May 27th, 10:40-11:30, room `AUD-2`
+
+*"GraalVM and Groovy"* +
+Tuesday, May 28th, 13:15-13:40, room `AUD-2`
+
+*"Running developer's blog directly from an IDE"* +
+Tuesday, May 28th, 14:05-14:55, room `AUD-1`
+
+See you in Copenhagen! icon:smile-o[]
