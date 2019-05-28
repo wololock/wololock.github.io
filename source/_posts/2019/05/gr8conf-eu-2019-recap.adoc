@@ -1,0 +1,46 @@
+---
+title: GR8Conf EU 2019 Recap
+date: 2019-05-28 14:15:02
+updated: 2019-05-28 14:15:02
+tags:
+    - gr8conf
+    - groovy
+    - conference
+    - copenhagen
+categories:
+    - Conferences
+---
+
+This is blog post about https://gr8conf.eu[GR8Conf EU 2019].
+
+++++
+<!-- more -->
+++++
+
+== Introduction
+
+Lorem ipsum dolor sit amet.
+
+== Source code example
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/micronaut-jprofiler.png]
+image::/images/micronaut-jprofiler.png[]
+--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
