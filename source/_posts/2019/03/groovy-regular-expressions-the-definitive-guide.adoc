@@ -1,7 +1,7 @@
 ---
-title: Groovy regular expressions - the definitive guide
+title: Groovy Regular Expressions - The Definitive Guide
 date: 2019-03-18 12:46:39
-updated: 2019-03-18 12:46:39
+updated: 2019-06-05 11:23:45
 categories:
     - Groovy Cookbook
 tags:
