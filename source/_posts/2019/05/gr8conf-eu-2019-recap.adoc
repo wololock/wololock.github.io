@@ -1,7 +1,7 @@
 ---
 title: GR8Conf EU 2019 Recap
-date: 2019-05-28 14:15:02
-updated: 2019-05-28 14:15:02
+date: 2019-06-06 12:03:44
+updated: 2019-06-06 12:03:44
 tags:
     - gr8conf
     - groovy
