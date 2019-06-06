@@ -7,40 +7,185 @@ tags:
     - groovy
     - conference
     - copenhagen
+    - grails
+    - micronaut
+    - ratpack
 categories:
     - Conferences
+cover: /images/gr8conf.jpg
+og_image: /images/og/gr8conf.jpg
+eyeCatchImage: /images/og/gr8conf.jpg
 ---
+:gr8conf-2019: https://2019.gr8conf.eu/
+:gr8conf-about: https://gr8conf.eu/about
+:venue: https://en.itu.dk/
+:soren: https://twitter.com/sbglasius
+:mcarducci: https://twitter.com/MichaelCarducci
+:ratpack-talk-url: https://github.com/wololock/ratpack-gr8conf-demo
+:graalvm-talk-url: https://github.com/wololock/groovy-and-graalvm
+:blogging-talk-url: https://github.com/wololock/blogging-from-ide
+:merdmann: https://twitter.com/marcinerdmann
 
-This is blog post about https://gr8conf.eu[GR8Conf EU 2019].
+It's been a week since {gr8conf-2019}[GR8Conf EU 2019] is over, so it is the right time to write some recap of this outstanding event.
+It was my first time at GR8Conf, both as a speaker and an attendee. I spent an awesome six days in the beautiful city of Copenhagen,
+and I brought a lot of good memories back home. I want to share them with you in this short blog post. Enjoy reading!
 
 ++++
 <!-- more -->
 ++++
 
-== Introduction
+== What is GR8Conf?
 
-Lorem ipsum dolor sit amet.
+**GR8Conf** is a conference that focuses on Groovy related topics - Groovy programming language, frameworks (Grails, Micronaut, Ratpack),
+build tools (Gradle), testing libraries (Spock, Geb), or DevOps tools (Jenkins) to name a few. It all started in 2009 in Copenhagen, Denmark,
+and it is continued year after year up to this day. This year's edition was the 11th European edition of GR8Conf. You can read more {gr8conf-about}[about its history here].
 
-== Source code example
+== GR8Conf EU 2019
 
-[.text-center]
---
-[.img-responsive.img-thumbnail]
-[link=/images/micronaut-jprofiler.png]
-image::/images/micronaut-jprofiler.png[]
---
+The 2019's edition was a three-day conference - a mix of 50 minutes long lectures and 3 hours long workshops, spread among 3-4 tracks.
+_(The second day had 4 tracks, while others had "only" 3.)_
+
+== Day 1
+
+It all started on Monday. I arrived at the venue, {venue}[the IT-University of Copenhagen], somewhere around 30 minutes before
+the opening to get some coffee and make a short tour around. I have to admit that it is one of the best venues for
+conferences I have ever seen. Big dual-screen, good sound, very comfortable seats, much space in the main hallway to
+grab something to drink, talk to people, and relax. Also, everything is pretty close to each other. Top level!
+
+++++
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/gr8conf?src=hash&amp;ref_src=twsrc%5Etfw">#gr8conf</a> booting process started... ⏳ <a href="https://twitter.com/hashtag/allthingsgroovy?src=hash&amp;ref_src=twsrc%5Etfw">#allthingsgroovy</a> <a href="https://twitter.com/hashtag/groovylang?src=hash&amp;ref_src=twsrc%5Etfw">#groovylang</a> <a href="https://twitter.com/hashtag/conference?src=hash&amp;ref_src=twsrc%5Etfw">#conference</a> <a href="https://t.co/NVCEafviVO">pic.twitter.com/NVCEafviVO</a></p>&mdash; Szymon Stepniak 🧔🏻 (@wololock) <a href="https://twitter.com/wololock/status/1132898540236300288?ref_src=twsrc%5Etfw">May 27, 2019</a></blockquote>
+++++
+
+{soren}[Søren] has opened the conference, and {mcarducci}[Michael Carducci] showed up on the stage to give a keynote speech. It was both entertaining
+and learning experience — a great mix of some magic tricks and topics around security.
+
+++++
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/gr8conf?src=hash&amp;ref_src=twsrc%5Etfw">#gr8conf</a> keeps growing thanks to the crew, attendees, and sponsors. <a href="https://twitter.com/hashtag/gradle?src=hash&amp;ref_src=twsrc%5Etfw">#gradle</a> is happy to be a partner in this year’s edition <a href="https://t.co/P5oYhP6Ir1">pic.twitter.com/P5oYhP6Ir1</a></p>&mdash; Andres Almiray (@aalmiray) <a href="https://twitter.com/aalmiray/status/1132903552471523328?ref_src=twsrc%5Etfw">May 27, 2019</a></blockquote>
+++++
+
+Right after the keynote, I have delivered my {ratpack-talk-url}[live coding session on non-blocking I/O with Ratpack]. I was a little
+bit nervous — live coding demo is one of the hardest types of presentations, where everything might go wrong.
+Luckily enough, I knew my material well, and I have already done this presentation a few times before.
+Everything went smooth — I gave a glitch-free presentation, showing how to build a Ratpack application from scratch,
+explaining how (and where) to apply non-blocking HTTP requests processing, and how to improve fault tolerance by applying
+circuit breaker pattern. You can get the source code and some additional materials here.
 
 
+++++
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Learning non blocking <a href="https://twitter.com/hashtag/ratpack?src=hash&amp;ref_src=twsrc%5Etfw">#ratpack</a> from <a href="https://twitter.com/wololock?ref_src=twsrc%5Etfw">@wololock</a> at <a href="https://twitter.com/hashtag/gr8conf?src=hash&amp;ref_src=twsrc%5Etfw">#gr8conf</a><br>Is not magic but very close<br><br>Ratpack will be one of my next TODO <a href="https://t.co/Ite6rdCSKe">pic.twitter.com/Ite6rdCSKe</a></p>&mdash; Jorge Eψ=Ĥψ (@jagedn) <a href="https://twitter.com/jagedn/status/1132936630430519296?ref_src=twsrc%5Etfw">May 27, 2019</a></blockquote>
+++++
+
+I have attended a few more presentations that day, but it wasn't easy to decide which track to choose, because many exciting talks occurred in the parallel. Also, it was quite tough to leave the hallway discussions with old friends as well as with the new ones.
+
+== Hackergarten on tour
+
+The first day closed with the Hackergarten. It was 3-4 hours hackathon-like event where people were contributing
+together to the bunch of different open source projects. The great thing about it was that you could sit down with
+the active contributors or projects leaders and enjoy coding stuff together. I was surprised (in a purely positive way)
+how many people decided to join Hackergarten and make some open source contribution. If you ever have a chance to
+participate in one of Hackergartens - don't miss it!
+
+++++
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/Hackergarten?src=hash&amp;ref_src=twsrc%5Etfw">#Hackergarten</a> at <a href="https://twitter.com/hashtag/Gr8Conf?src=hash&amp;ref_src=twsrc%5Etfw">#Gr8Conf</a> is doing well <a href="https://twitter.com/hashtag/AllThingsGroovy?src=hash&amp;ref_src=twsrc%5Etfw">#AllThingsGroovy</a> <a href="https://twitter.com/hashtag/groovylang?src=hash&amp;ref_src=twsrc%5Etfw">#groovylang</a> <a href="https://t.co/8FYSbGlsgD">pic.twitter.com/8FYSbGlsgD</a></p>&mdash; Szymon Stepniak 🧔🏻 (@wololock) <a href="https://twitter.com/wololock/status/1133054529396776960?ref_src=twsrc%5Etfw">May 27, 2019</a></blockquote>
+++++
+
+== Day 2
+
+The second day offered the additional track filled with interesting talks. I have missed a few I wanted to see live
+(e.g., {merdmann}[Marcin's] Geb 3.0 update talk), but that's the hidden cost of unexpected situations that happen
+when you mix the conference with the family vacation trip. Anyway, I look forward to watching all the missed talks
+on videos when they finally appear.
+
+I gave two talks on day 2. The first one was the 25-minutes {graalvm-talk-url}["Groovy and GraalVM"] live-demo-like slides summarizing
+the current state of generating standalone native images from Groovy programs. I walked the audience through a relatively
+simple use case, showing all hidden pitfalls, and explaining how to solve them. Right after this presentation, I did my
+last talk called {blogging-talk-url}["Running developer's blog directly from an IDE"]. Somehow I managed to finish this talk about 12 minutes
+before the time. However, I was lucky to have an engaged audience who have many interesting questions which filled the gap.
+Thank you!
 
 
+++++
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/wololock?ref_src=twsrc%5Etfw">@wololock</a> starting with his talk on running <a href="https://twitter.com/hashtag/groovylang?src=hash&amp;ref_src=twsrc%5Etfw">#groovylang</a> on <a href="https://twitter.com/hashtag/graalvm?src=hash&amp;ref_src=twsrc%5Etfw">#graalvm</a> <a href="https://twitter.com/hashtag/gr8conf?src=hash&amp;ref_src=twsrc%5Etfw">#gr8conf</a> <a href="https://t.co/tQoKB1Xli8">pic.twitter.com/tQoKB1Xli8</a></p>&mdash; Naresha (@naresha_k) <a href="https://twitter.com/naresha_k/status/1133331480283885573?ref_src=twsrc%5Etfw">May 28, 2019</a></blockquote>
+++++
 
+== Meet & Greet
 
+Tuesday closed with the Meet & Greet after-party. Delicious food, GR8Beer (a few different types of beer brewed by GR8Conf crew)
+and friendly atmosphere - the day couldn't end in a better way. Michael Carducci entertained us with some of his magic tricks -
+it was amazing to see him in action from very close and get tricked. Well done, Michael! icon:smile-o[]
 
+++++
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Gr8beers at <a href="https://twitter.com/hashtag/gr8conf?src=hash&amp;ref_src=twsrc%5Etfw">#gr8conf</a> and playing with this 360 camera. <a href="https://twitter.com/hashtag/micronautfw?src=hash&amp;ref_src=twsrc%5Etfw">#micronautfw</a> <a href="https://twitter.com/hashtag/groovylang?src=hash&amp;ref_src=twsrc%5Etfw">#groovylang</a> <a href="https://t.co/gD8fR8cXwm">pic.twitter.com/gD8fR8cXwm</a></p>&mdash; Ryan Vanderwerf (@RyanVanderwerf) <a href="https://twitter.com/RyanVanderwerf/status/1133425209384558592?ref_src=twsrc%5Etfw">May 28, 2019</a></blockquote>
+++++
 
+== Day 3
 
+The last day started with Paul King's keynote on Groovy 2.5, 3.0, and plans for 4.0 version. The rest of the day was at the
+same top level if it comes to talks quality. I also participated in the "Boosting the Groovy Community" discussion panel,
+where we could share ideas on how to make the community even groovier. The good thing about it is that at least some of
+these ideas will be turned into action soon. The rest of the day went fast. Again I had to sacrifice one interesting talk to
+attend the other one or hang out at the hallway. At 15:45 local time, GR8Conf EU 2019 was over, and it became a part of history.
 
+++++
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Groovy ecosystem! <a href="https://twitter.com/hashtag/gr8conf?src=hash&amp;ref_src=twsrc%5Etfw">#gr8conf</a> How to improve, grow and be more successful! <a href="https://twitter.com/hashtag/sharingKnowledge?src=hash&amp;ref_src=twsrc%5Etfw">#sharingKnowledge</a> <a href="https://twitter.com/hashtag/developer?src=hash&amp;ref_src=twsrc%5Etfw">#developer</a> <a href="https://t.co/I7GX3lm3CY">pic.twitter.com/I7GX3lm3CY</a></p>&mdash; ixchelruiz (@ixchelruiz) <a href="https://twitter.com/ixchelruiz/status/1133645285077463040?ref_src=twsrc%5Etfw">May 29, 2019</a></blockquote>
+++++
 
+== Should I give GR8Conf EU 2020 a chance?
 
+I don't know how about you, but if I have to attend only a single conference next year, it is going to be GR8Conf EU. 100%. For various reasons.
 
+First of all, if you are interested in the Groovy programming language or any of the Groovy-based technologies,
+there is no better place to be. You can meet in person **core contributors** of Groovy, Grails, Micronaut, Geb,
+Spock, Codenarc, Testcontainers, Ratpack, and many, many others. You can learn a lot directly from people who have
+the best hands-on experience in those technologies.
 
+Secondly - **the community**. GR8Conf is not a crowded event where almost everyone is a stranger to others. I'm not skilled in networking, and I would even say that I'm terrible at it. That is why I feel like an outsider in most conferences. GR8Conf was different, however. I knew only 2 people in person, but it didn't block me from having a great time with the people I just met in Copenhagen. Every single person I met was kind and friendly. I spent hours talking about different things, and I enjoyed every minute of it. I would say that GR8Conf, in this case, has much more from the friendly community meetup, instead of a large conference.
 
+The 3rd reason is **the content**. I learned something new from every talk I had a pleasure to attend. I don't go to many
+conferences these days, because they are usually full of advocate- or/and marketing-oriented talks. I prefer much more talks
+prepared by practitioners - people who experienced tons of different weird use cases, and they are willing to share
+them with others. Almost every presentation I saw at GR8Conf was like that. It didn't have to be perfectly crafted -
+it was about valuable lessons speakers trying to share with us. Kudos for that!
+
+++++
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/gr8conf?src=hash&amp;ref_src=twsrc%5Etfw">#gr8conf</a> EU 2019 is over. Many thanks to all good people who made this beautiful event possible - organizers, sponsors, attendees, and speakers who traveled from all around the world. You made Copenhagen a capitol of <a href="https://twitter.com/ApacheGroovy?ref_src=twsrc%5Etfw">@ApacheGroovy</a> for the last 3 days. It was a pleasure (1/2) <a href="https://t.co/CJWK6k3Mfa">pic.twitter.com/CJWK6k3Mfa</a></p>&mdash; Szymon Stepniak 🧔🏻 (@wololock) <a href="https://twitter.com/wololock/status/1133750876773003264?ref_src=twsrc%5Etfw">May 29, 2019</a></blockquote>
+++++
+
+And the last but not least - **a generally great experience**. Three-Day long conferences are usually pretty exhausting.
+They sometimes suffer from logistic and technical issues. I don't know how it was in the previous years, but GR8Conf EU 2019
+was free from such problems. I wasn't tired at any time at the conference. I enjoyed every moment of it.
+I met many positive and friendly people who made my time at the conference very pleasant. Also, the organizers
+did a great job making the whole experience as smooth as possible. They paid attention to every small detail -
+this is how you make your attendees happy.
+
+These are the reasons why I can't wait for the 2020's edition. Many good things will happen in the upcoming year in
+the Groovy ecosystem - I guess those things will inspire people to prepare excellent talks and share their experience.
+I will be there, no doubt about that. If you use anything from the Groovy ecosystem and you are interested in all
+those GR8 things, you should definitely consider attending GR8Conf EU next year. I won't regret it I can guarantee!
+
+== Thank you!
+
+I would like to thank all the people who were involved in making GR8Conf EU 2019 possible. It's hard to name you all,
+and I would like to avoid missing anyone. Big thanks to **organizers** for doing an indisputably great job.
+Big thanks to **all sponsors** who invest in the community growth by supporting such events. Big thanks to **all attendees**
+- you are the spirit of the conference and the main ingredient of its excellent atmosphere. Big thanks to **all speakers**
+for delivering high-quality talks, workshops, and driving inspiring discussions between each session. Kudos to all of you! icon:thumbs-up[]
+
+And big thanks to you - a person who reads this blog post up to this paragraph. I hope this short recap helped you understand the phenomenon of GR8Conf better. If you attended GR8Conf EU 2019, please share your thoughts and memories in the comments section below. Many good people volunteer to make this wonderful community meeting year after year. They deserve getting some kudos from us, the attendees, and speakers.
+
+See you all next year at the latest!
+
+++++
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Goodbye, Copenhagen 🇩🇰 Hope to see you again next year! <a href="https://twitter.com/hashtag/Copenhagen?src=hash&amp;ref_src=twsrc%5Etfw">#Copenhagen</a> <a href="https://twitter.com/hashtag/Denmark?src=hash&amp;ref_src=twsrc%5Etfw">#Denmark</a> <a href="https://twitter.com/hashtag/gr8conf?src=hash&amp;ref_src=twsrc%5Etfw">#gr8conf</a> <a href="https://twitter.com/hashtag/AllThingsGroovy?src=hash&amp;ref_src=twsrc%5Etfw">#AllThingsGroovy</a> <a href="https://t.co/4JvL7v3LKd">pic.twitter.com/4JvL7v3LKd</a></p>&mdash; Szymon Stepniak 🧔🏻 (@wololock) <a href="https://twitter.com/wololock/status/1134111032895561734?ref_src=twsrc%5Etfw">May 30, 2019</a></blockquote>
+++++
+
++++<br>+++
+
+++++
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZbTXrCrjNRw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<br>
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+++++
