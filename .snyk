@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.13.3
+version: v1.13.5
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -9,3 +9,18 @@ patch:
   SNYK-JS-AXIOS-174505:
     - hexo-browsersync > browser-sync > localtunnel > axios:
         patched: '2019-05-06T08:10:34.627Z'
+  'npm:hawk:20160119':
+    - hexo-related-popular-posts > ga-analytics > googleapis > request > hawk:
+        patched: '2019-06-08T08:10:22.648Z'
+  'npm:http-signature:20150122':
+    - hexo-related-popular-posts > ga-analytics > googleapis > request > http-signature:
+        patched: '2019-06-08T08:10:22.648Z'
+  'npm:request:20160119':
+    - hexo-related-popular-posts > ga-analytics > googleapis > request:
+        patched: '2019-06-08T08:10:22.648Z'
+  'npm:tunnel-agent:20170305':
+    - hexo-related-popular-posts > ga-analytics > googleapis > request > tunnel-agent:
+        patched: '2019-06-08T08:10:22.648Z'
+  'npm:uglify-js:20151024':
+    - hexo-renderer-jade > jade > transformers > uglify-js:
+        patched: '2019-06-08T08:10:22.648Z'
