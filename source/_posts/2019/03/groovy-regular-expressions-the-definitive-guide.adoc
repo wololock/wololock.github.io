@@ -14,6 +14,7 @@ tags:
 cover: /images/groovy-regexp-jmh-bg.jpg
 og_image: /images/og/groovy-regexp-jmh.jpg
 eyeCatchImage: /images/og/groovy-regexp-jmh.jpg
+affiliates: true
 ---
 
 I've never enjoyed working with regular expressions in Java. It was always very error-prone. You had to remember
@@ -462,7 +463,11 @@ Conclusions:
 * The _exact match_ operator is *~0.1 μs* slower than `matcher.matches()`.
 * There is literally *no difference* between dynamic or static compilation in both cases.
 
-=== Bonus: `String.replaceFirst(regexp)` - 0.81325 μs (avg)
+
+include::source/_parts/groovy-in-action.adoc[]
+
+
+== Bonus: `String.replaceFirst(regexp)` - 0.81325 μs (avg)
 
 https://github.com/wololock/groovy-regexp-examples/blob/master/src/jmh/groovy/bench/A4_Regexp_Replace_Bench.groovy[In the last test]
 let's measure a performance of Groovy's `String.replaceFirst(regexp,closure)` method. The one that makes replacing parts of

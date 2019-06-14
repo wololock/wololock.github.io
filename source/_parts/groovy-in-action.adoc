@@ -1,0 +1,41 @@
+[.text-box-2]
+=== Looking for a good [.mark]#Groovy# book?
+====
+:groovy-in-action-link: https://amzn.to/2Xcum7X
+:dierk-twitter: https://twitter.com/mittie
+:paul-twitter: https://twitter.com/paulk_asert
+
+Would you like to learn more about Groovy programming language? Maybe you are looking for a book recommendation?
+I can definitely recommend reading **"Groovy In Action, 2nd edition"** written by {dierk-twitter}[Dierk König], {paul-twitter}[Paul King], and
+associates. This is a book **882 pages** long that explains Groovy in details. It starts with explaining basic concepts of the language,
+datatypes, control structures and closures. It explains Groovy's dynamic programming features, run-time and compile-time
+metaprogramming, AST transformations, and benefits from using Groovy as a statically compiled language.
+
+It also covers things around the Groovy library - builders, GDK (Groovy Development Kit) enhancements, tools for
+accessing the database, working with XML and JSON, as well as interacting with various Web Services types (REST-based APIs,
+XML-RPC, or SOAP). And much, much more.
+
+If you are looking for **a comprehensive guide** to the Groovy programming language and its rich ecosystem, this book is the right
+choice for you. I keep this book close to my desk so I can grab it and find interesting part during my daily work.
+
+[.text-center]
+**icon:hand-o-right[] {groovy-in-action-link}[Buy "Groovy In Action, 2nd edition"] icon:hand-o-left[]**
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+image::/images/groovy-in-action-01.jpg[]
+
+[.img-responsive.img-thumbnail]
+image::/images/groovy-in-action-02.jpg[]
+
+[.img-responsive.img-thumbnail]
+image::/images/groovy-in-action-03.jpg[]
+--
+
+[.smaller]
+icon:info-circle[role=color-blue] The above link is an Amazon's **affiliate link**. If you decide to purchase a book through this link, I will
+earn a small commision (without affecting the regular price of the book). This way you can [.mark]**support the effort** I put
+in writing the blog posts and sharing my passion to programming. Thanks for your understanding! icon:thumbs-o-up[]
+
+====
