@@ -22,7 +22,7 @@
     "hexo-generator-seo-friendly-sitemap": "0.0.25",
     "hexo-generator-tag": "^0.2.0",
     "hexo-reading-time": "^1.0.3",
-    "hexo-related-popular-posts": "^3.0.3",
+    "hexo-related-popular-posts": "^3.0.6",
     "hexo-renderer-jade": "^0.4.1",
     "hexo-renderer-stylus": "^0.3.3",
     "hexo-server": "^0.2.0",
