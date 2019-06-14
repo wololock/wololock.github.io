@@ -2,10 +2,3 @@
 version: v1.13.3
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
-patch:
-  'npm:uglify-js:20150824':
-    - hexo-renderer-jade > jade > transformers > uglify-js:
-        patched: '2019-04-15T11:09:59.152Z'
-  SNYK-JS-AXIOS-174505:
-    - hexo-browsersync > browser-sync > localtunnel > axios:
-        patched: '2019-05-06T08:10:34.627Z'
