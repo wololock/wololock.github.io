@@ -467,7 +467,7 @@ Conclusions:
 include::source/_parts/groovy-in-action.adoc[]
 
 
-== Bonus: `String.replaceFirst(regexp)` - 0.81325 μs (avg)
+== `String.replaceFirst()` - 0.81325 μs (avg)
 
 https://github.com/wololock/groovy-regexp-examples/blob/master/src/jmh/groovy/bench/A4_Regexp_Replace_Bench.groovy[In the last test]
 let's measure a performance of Groovy's `String.replaceFirst(regexp,closure)` method. The one that makes replacing parts of

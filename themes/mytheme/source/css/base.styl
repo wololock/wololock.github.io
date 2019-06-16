@@ -55,7 +55,6 @@ h1, h2, h3, h4, h5, h6
   @extend .sans-serif
   font-weight 800
   margin 50px 0 25px 0
-  text-align left
 
 p
   a
@@ -723,8 +722,11 @@ ul.checklist
   li
     list-style none
 
-//.paragraph
-//  text-align justify
+.paragraph
+  text-align justify
+
+  &.text-center
+    text-align center
 
 .posts-list
   > article
@@ -792,3 +794,7 @@ ul.checklist
 
 .twitter-tweet
   margin 0 auto
+
+.listingblock
+  >.title
+    word-break break-word
