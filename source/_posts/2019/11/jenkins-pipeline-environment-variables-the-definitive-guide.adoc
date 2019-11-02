@@ -1,0 +1,301 @@
+---
+title: Jenkins Pipeline Environment Variables - The Definitive Guide
+date: 2019-11-02 18:27:57
+updated: 2019-11-02 18:27:57
+categories:
+    - Jenkins Pipeline Cookbook
+tags:
+    - jenkins
+    - jenkins-pipeline
+    - cicd
+    - continuous-integration
+    - groovy
+cover: /images/jenkins-bg.jpg
+og_image: /images/og/jenkins-pipeline-env-variables.jpg
+eyeCatchImage: /images/og/jenkins-pipeline-env-variables.jpg
+---
+:sectanchors:
+:toc: macro
+:toc-title: You can jump directly to...
+:groovy-truth-strings: Read more about "The Groovy Truth" here - https://groovy-lang.org/semantics.html#_strings
+:jenkins-sh-step: https://jenkins.io/doc/pipeline/steps/workflow-durable-task-step/#sh-shell-script
+
+Welcome to the first blog post of the *"Jenkins Pipeline Cookbook"* series.
+Today we are focus on working with Jenkins Pipeline environment variables effectively.
+You will learn how to define env variables, how to updated them, and how to use them in boolean expressions correctly.
+
+++++
+<!-- more -->
+++++
+
+toc::[]
+
+== List environment variables
+
+Let’s start by listing all available environment variables.
+Two different ways allow you to do so.
+
+=== Using `env-vars.html`
+
+You can open `${YOUR_JENKINS_HOST}/env-vars.html` page on your Jenkins master server to get a list of all environment variables listed on an HTML page.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-env-vars.png]
+image::/images/jenkins-env-vars.png[]
+--
+
+=== Using shell command
+
+Alternatively, you can list all environment variables by executing the `printenv` shell command.
+
+[source,groovy]
+.Jenkinsfile
+----
+pipeline {
+    agent any
+
+    stages {
+        stage("Env Variables") {
+            steps {
+                sh "printenv"
+            }
+        }
+    }
+}
+----
+
+NOTE: It might be useful to use `printenv | sort` command combination to get a sorted list of env variables.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-printenv.png]
+image::/images/jenkins-printenv.png[]
+--
+
+== Reading environment variables
+
+You can access environment variables in pipeline steps through the `env` object, e.g., `env.BUILD_NUMBER` will return the current build number.
+You can also use a shorthand version `BUILD_NUMBER`, but in this variant may be confusing to some users - it misses the context that the `BUILD_NUMBER` comes from the environment variable.
+
+
+[source,groovy]
+.Jenkinsfile
+----
+pipeline {
+    agent any
+
+    stages {
+        stage("Env Variables") {
+            steps {
+                echo "The build number is ${env.BUILD_NUMBER}"
+                echo "You can also use \${BUILD_NUMBER} -> ${BUILD_NUMBER}"
+                sh 'echo "I can access $BUILD_NUMBER in shell command as well."'
+            }
+        }
+    }
+}
+----
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-read-env-var.png]
+image::/images/jenkins-read-env-var.png[]
+--
+
+== Setting environment variables
+
+The environment variables can be set declaratively using `environment { }` block, imperatively using `env.VARIABLE_NAME`, or using `withEnv(["VARIABLE_NAME=value"]) {}` block.
+
+[source,groovy]
+.Jenkinsfile
+----
+pipeline {
+    agent any
+
+    environment {
+        FOO = "bar"
+    }
+
+    stages {
+        stage("Env Variables") {
+            environment {
+                NAME = "Alan"
+            }
+
+            steps {
+                echo "FOO = ${env.FOO}"
+                echo "NAME = ${env.NAME}"
+
+                script {
+                    env.TEST_VARIABLE = "some test value"
+                }
+
+                echo "TEST_VARIABLE = ${env.TEST_VARIABLE}"
+
+                withEnv(["ANOTHER_ENV_VAR=here is some value"]) {
+                    echo "ANOTHER_ENV_VAR = ${env.ANOTHER_ENV_VAR}"
+                }
+            }
+        }
+    }
+}
+----
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-set-env-var.png]
+image::/images/jenkins-set-env-var.png[]
+--
+
+== Overriding environment variables
+
+Jenkins Pipeline supports overriding environment variables.
+There are a few rules you need to be aware of.
+
+* The `withEnv(["env=value]) { }` block can override any environment variable.
+* The variables set using `environment {}` block cannot be overridden using imperative `env.VAR = "value"` assignment.
+* The imperative `env.VAR = "value"` assignment can override only environment variables created using imperative assignment.
+
+Here is an exemplary Jenkinsfile that shows all three different use cases.
+
+[source,groovy]
+.Jenkinsfile
+----
+pipeline {
+    agent any
+
+    environment {
+        FOO = "bar"
+        NAME = "Joe"
+    }
+
+    stages {
+        stage("Env Variables") {
+            environment {
+                NAME = "Alan" // overrides pipeline level NAME env variable
+                BUILD_NUMBER = "2" // overrides the default BUILD_NUMBER
+            }
+
+            steps {
+                echo "FOO = ${env.FOO}" // prints "FOO = bar"
+                echo "NAME = ${env.NAME}" // prints "NAME = Alan"
+                echo "BUILD_NUMBER =  ${env.BUILD_NUMBER}" // prints "BUILD_NUMBER = 2"
+
+                script {
+                    env.SOMETHING = "1" // creates env.SOMETHING variable
+                }
+            }
+        }
+
+        stage("Override Variables") {
+            steps {
+                script {
+                    env.FOO = "IT DOES NOT WORK!" // it can't override env.FOO declared at the pipeline (or stage) level
+                    env.SOMETHING = "2" // it can override env variable created imperatively
+                }
+
+                echo "FOO = ${env.FOO}" // prints "FOO = bar"
+                echo "SOMETHING = ${env.SOMETHING}" // prints "SOMETHING = 2"
+
+                withEnv(["FOO=foobar"]) { // it can override any env variable
+                    echo "FOO = ${env.FOO}" // prints "FOO = foobar"
+                }
+
+                withEnv(["BUILD_NUMBER=1"]) {
+                    echo "BUILD_NUMBER = ${env.BUILD_NUMBER}" // prints "BUILD_NUMBER = 1"
+                }
+            }
+        }
+    }
+}
+----
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-override-env-var.png]
+image::/images/jenkins-override-env-var.png[]
+--
+
+== Storing `Boolean` values in environment variables
+
+There is one popular misconception when it comes to using environment variables.
+Every value that gets stored as an environment variable gets converted to a `String`.
+When you store boolean's `false` value, it gets converted to `"false"`.
+If you want to use that value in the boolean expression correctly, you need to call `"false".toBoolean()` method.footnote:[{groovy-truth-strings}]
+
+[source,groovy]
+.Jenkinsfile
+----
+pipeline {
+    agent any
+
+    environment {
+        IS_BOOLEAN = false
+    }
+
+    stages {
+        stage("Env Variables") {
+            steps {
+                script {
+                    if (env.IS_BOOLEAN) {
+                        echo "You can see this message, because \"false\" String evaluates to Boolean.TRUE value"
+                    }
+
+                    if (env.IS_BOOLEAN.toBoolean() == false) {
+                        echo "You can see this message, because \"false\".toBoolean() returns Boolean.FALSE value"
+                    }
+                }
+            }
+        }
+    }
+}
+----
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-string-env-var.png]
+image::/images/jenkins-string-env-var.png[]
+--
+
+== Capturing `sh` command output in the env variable
+
+You can also capture output of a shell command as an environment variable.
+Keep in mind that you need to use `sh(script: 'cmd', returnStdout:true)` format to force `sh` stepfootnote:[{jenkins-sh-step}] to return an output so it can be captured and stored in a variable.
+
+[source,groovy]
+.Jenkinsile
+----
+pipeline {
+    agent any
+
+    environment {
+        LS = "${sh(script:'ls -lah', returnStdout: true)}"
+    }
+
+    stages {
+        stage("Env Variables") {
+            steps {
+                echo "LS = ${env.LS}"
+            }
+        }
+    }
+}
+----
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-sh-in-env-var.png]
+image::/images/jenkins-sh-in-env-var.png[]
+--
+
+
+
+

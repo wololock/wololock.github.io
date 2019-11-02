@@ -11,7 +11,7 @@ const opts = {
         icons: 'font',
         idprefix: '',
         idseparator: '-',
-        sectids: false,
+        sectids: true,
         'source-highlighter': 'highlight.js',
         'listing-caption': 'Listing'
     }
