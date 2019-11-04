@@ -54,3 +54,18 @@ patch:
         patched: '2019-07-04T08:10:45.208Z'
     - hexo-renderer-jade > pug > pug-code-gen > pug-attrs > constantinople > babel-types > lodash:
         patched: '2019-07-04T08:10:45.208Z'
+  'npm:hawk:20160119':
+    - hexo-related-popular-posts > ga-analytics > googleapis > request > hawk:
+        patched: '2019-11-04T19:58:58.173Z'
+  'npm:http-signature:20150122':
+    - hexo-related-popular-posts > ga-analytics > googleapis > request > http-signature:
+        patched: '2019-11-04T19:58:58.173Z'
+  'npm:request:20160119':
+    - hexo-related-popular-posts > ga-analytics > googleapis > request:
+        patched: '2019-11-04T19:58:58.173Z'
+  'npm:tunnel-agent:20170305':
+    - hexo-related-popular-posts > ga-analytics > googleapis > request > tunnel-agent:
+        patched: '2019-11-04T19:58:58.173Z'
+  'npm:uglify-js:20151024':
+    - hexo-renderer-jade > jade > transformers > uglify-js:
+        patched: '2019-11-04T19:58:58.173Z'
