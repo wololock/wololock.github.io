@@ -1,7 +1,7 @@
 ---
 title: GraalVM native image inside docker container - does it make sense?
 date: 2019-01-19 13:19:22
-updated: 2019-01-19 13:19:22
+updated: 2019-11-05 21:57:46
 tags:
     - graalvm
     - groovy
@@ -15,6 +15,10 @@ cover: /images/graalvm-docker-groovy.jpg
 og_image: /images/og/graalvm-docker-groovy.jpg
 eyeCatchImage: /images/og/graalvm-docker-groovy.jpg
 ---
+:graalvm-dockerfile-url: https://github.com/oracle/docker-images/blob/master/GraalVM/CE/19/Dockerfile
+:groovy-version: 2.5.8
+:graalvm-version: 19.2.1
+:repository-url: https://github.com/wololock/graalvm-groovy-examples/tree/master/grape-script-example
 
 We have learned how to create https://www.graalvm.org/[GraalVM] native image from standalone Groovy script
 +++{% post_link graalvm-groovy-grape-creating-native-image-of-standalone-script in the previous blog post %}+++.
@@ -35,44 +39,49 @@ GraalVM on our local system. Also, we may need to compile OS-specific executable
 run the program on a different platform or operating system. This is where we start thinking about
 containerization, and today we are going to dockerize a Groovy script to play around with it.
 
+NOTE: This blog post originally described using GraalVM `1.0.0-RC11`. You are reading updated
+version that was tested to work with GraalVM `19.2.1`.
+
 == Dockerfile
 
 Let's start with defining a Dockerfilefootnote:[https://docs.docker.com/engine/reference/builder/].
-We use official https://github.com/oracle/docker-images/blob/master/GraalVM/CE/1.0.0-rc11/Dockerfile[GraalVM docker base image]. Inside the image, we
-install SDKMAN! and Groovy 2.5.2, then we compile the script and create a native executable with GraalVM.
+We use official {graalvm-dockerfile-url}[GraalVM docker base image]. Inside the image, we
+install SDKMAN! and Groovy {groovy-version}, then we compile the script and create a native executable with GraalVM.
 Finally, we create an entry point which exposes executable and accepts parameters.
 
 .Dockerfile
 [source,dockerfile]
 ----
-FROM oracle/graalvm-ce:1.0.0-rc11 <1>
+FROM oracle/graalvm-ce:19.2.1 <1>
 
 ADD . /app/ <2>
 
-ENV GROOVY_HOME=/root/.sdkman/candidates/groovy/2.5.2 <3>
+ENV GROOVY_VERSION="2.5.8"
+ENV GROOVY_HOME=/root/.sdkman/candidates/groovy/$GROOVY_VERSION <3>
 
 RUN yum install -y zip unzip <4>
-RUN curl -s "https://get.sdkman.io" | bash <5>
-RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && \ <6>
-    echo \"sdkman_auto_answer=true\" > $SDKMAN_DIR/etc/config && \ <7>
-    sdk install groovy 2.5.2 && \ <8>
+RUN gu install native-image <5>
+RUN curl -s "https://get.sdkman.io" | bash <6>
+RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && \ <7>
+    echo \"sdkman_auto_answer=true\" > $SDKMAN_DIR/etc/config && \ <8>
+    sdk install groovy $GROOVY_VERSION && \ <9>
     groovy -version && \
     cd /app/ && \
-    groovyc --configscript=config/compiler.groovy CountLinks.groovy && \
     sh ./compile-native-image.sh"
 
 ENTRYPOINT bash -c "cd /app && ./countlinks.sh $0"
 ----
-<1> The official Oracle GraalVM 1.0.0-RC11 base image
-<2> We copy all files from current directory to `/app` directory inside the image
-<3> We set up required `GROOVY_HOME` env variable
+<1> The official Oracle GraalVM {graalvm-version} base image.
+<2> We copy all files from current directory to `/app` directory inside the image/
+<3> We set up required `GROOVY_HOME` env variable.
 <4> We install `zip` and `unzip` (required by SDKMAN!)
-<5> We install SDKMAN!
-<6> We init SDKMAN! after successful installation
-<7> We set auto answer to `true` so SDKMAN! does not ask as if we want to install Groovy
-<8> We install Groovy 2.5.2
+<5> We install `native-image` using GraalVM Updater.
+<6> We install SDKMAN!
+<7> We init SDKMAN! after successful installation
+<8> We set auto answer to `true` so SDKMAN! does not ask as if we want to install Groovy
+<9> We install Groovy {groovy-version}
 
-NOTE: All files used in this blog post can be found in https://github.com/wololock/graalvm-groovy-examples/tree/master/grape-script-example[wololock/graalvm-groovy-examples] Git repository.
+NOTE: All files used in this blog post can be found in {repository-url}[wololock/graalvm-groovy-examples] Git repository.
 
 == Building the Docker image
 
