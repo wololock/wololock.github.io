@@ -1,0 +1,476 @@
+---
+title: Using SDKMAN! as a docker image for Jenkins Pipeline - a step by step guide
+date: 2019-11-06 19:34:01
+updated: 2019-11-06 19:34:01
+tags:
+    - jenkins
+    - jenkins-pipeline
+    - docker
+    - sdkman
+    - groovy
+    - cicd
+    - devops
+    - maven
+    - java
+categories:
+    - Jenkins Pipeline Cookbook
+cover: /images/jenkins-bg.jpg
+og_image: /images/og/jenkins-pipeline-docker-sdkman.jpg
+eyeCatchImage: /images/og/jenkins-pipeline-docker-sdkman.jpg
+---
+:corretto-url: https://aws.amazon.com/corretto/
+:arg-doc-url: https://docs.docker.com/engine/reference/builder/#arg
+:docker-pipeline: https://wiki.jenkins.io/display/JENKINS/Docker+Pipeline+Plugin
+:docker-entrypoint: https://docs.docker.com/engine/reference/builder/#entrypoint
+:jenkins-issue-1: https://issues.jenkins-ci.org/browse/JENKINS-45616
+:jenkins-issue-2: https://issues.jenkins-ci.org/browse/JENKINS-41339
+:sdkman-url: https://sdkman.io/
+
+A few days ago, I was struggling with some Docker images I use in my Jenkins CI environment.
+I run some Jenkins Pipelines, and I like to define build environment as code using custom Docker images.
+Everything was fine until I had to consider running different Java or Maven versions.
+I decided to use one of my favorite command-line tools - {sdkman-url}[SDKMAN!], to build a highly configurable build environment.
+
+++++
+<!-- more -->
+++++
+
+Let's get directly into the details, and let's start with defining a simple `Dockerfile` that installs SDKMAN! and expected Java and Maven versions.
+
+== Dockerfile
+
+[source,dockerfile]
+.Dockerfile
+----
+FROM debian:stretch-slim <1>
+
+# Defining default Java and Maven version <2>
+ARG JAVA_VERSION="11.0.5-amzn"
+ARG MAVEN_VERSION="3.6.2"
+
+# Defining default non-root user UID, GID, and name <3>
+ARG USER_UID="1000"
+ARG USER_GID="1000"
+ARG USER_NAME="jenkins"
+
+# Creating default non-user <4>
+RUN groupadd -g $USER_GID $USER_NAME && \
+	useradd -m -g $USER_GID -u $USER_UID $USER_NAME
+
+# Installing basic packages <5>
+RUN apt-get update && \
+	apt-get install -y zip unzip curl && \
+	rm -rf /var/lib/apt/lists/* && \
+	rm -rf /tmp/*
+
+# Switching to non-root user to install SDKMAN! <6>
+USER $USER_UID:$USER_GID
+
+# Downloading SDKMAN! <7>
+RUN curl -s "https://get.sdkman.io" | bash
+
+# Installing Java and Maven, removing some unnecessary SDKMAN files <8>
+RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && \
+    yes | sdk install java $JAVA_VERSION && \
+    yes | sdk install maven $MAVEN_VERSION && \
+    rm -rf $HOME/.sdkman/archives/* && \
+    rm -rf $HOME/.sdkman/tmp/*"
+----
+
+pass:[<em class="conum" data-value="1"></em>] I use `debian:stretch-slim` in this example - a small 55 MB base docker image.
+It's not the smallest available docker image, but it will work fine in our experiment.
+In our example, we will be using {corretto-url}[Amazon Corretto JDK 11.0.5] - a distribution of OpenJDK from Amazon.com.
+We also want to install Maven 3.6.2 so we can run some `mvn clean install` command in the Jenkins Pipeline. We
+define both pass:[<em class="conum" data-value="2"></em>]  using `ARG` instructionfootnote:[{arg-doc-url}] so we can
+easily override default versions from the command line.
+
+[source,bash]
+----
+$ docker build --build-arg JAVA_VERSION=8.0.232-amzn ...
+----
+
+We are going to run the docker container as a non-root user. We define pass:[<em class="conum" data-value="3"></em>]
+default `USER_UID`, `USER_GID` and `USER_NAME` using `ARG` instruction, and we create pass:[<em class="conum" data-value="4"></em>]
+the user, his group and home directory. SDKMAN! requires tools like `curl`, `zip` and `unzip` - we need to install them pass:[<em class="conum" data-value="5"></em>].
+
+Before we install SDKMAN!, we are switching to our non-root user pass:[<em class="conum" data-value="6"></em>] and we
+are ready to install SDKMAN! using `curl` pass:[<em class="conum" data-value="7"></em>]. Th last step we need to do is
+to run `sdkman-init.sh` script and install expected Java and Maven pass:[<em class="conum" data-value="8"></em>].
+
+That's our Dockerfile. Let's build `sdkman:local` Docker image.
+
+[source,bash]
+----
+$ docker build -t sdkman:local .
+----
+
+Let's run the container in the interactive mode (`-it`) and attach a `bash` process:
+
+[source,bash,subs="quotes"]
+----
+*$ docker run -it --rm  -u $(id -u) sdkman:local bash*
+jenkins@1c06914cb5ce:/*$ java -version*
+openjdk version "11.0.5" 2019-10-15 LTS
+OpenJDK Runtime Environment Corretto-11.0.5.10.1 (build 11.0.5+10-LTS)
+OpenJDK 64-Bit Server VM Corretto-11.0.5.10.1 (build 11.0.5+10-LTS, mixed mode)
+jenkins@1c06914cb5ce:/*$ mvn -version*
+Apache Maven 3.6.2 (40f52333136460af0dc0d7232c0dc0bcf0d9e117; 2019-08-27T15:06:16Z)
+Maven home: /home/jenkins/.sdkman/candidates/maven/current
+Java version: 11.0.5, vendor: Amazon.com Inc., runtime: /home/jenkins/.sdkman/candidates/java/11.0.5-amzn
+Default locale: en_US, platform encoding: ANSI_X3.4-1968
+OS name: "linux", version: "5.3.8-200.fc30.x86_64", arch: "amd64", family: "unix"
+----
+
+It works like a charm! It's time to set up a Jenkins Pipeline.
+
+== Jenkins Pipeline
+
+Let's start by defining a simple Jenkins Pipeline.
+
+[source,groovy]
+.Jenkinsfile
+----
+pipeline {
+    agent {
+        docker {
+            image "sdkman:local" //<1>
+        }
+    }
+    stages {
+        stage("Build") {
+            steps {
+                sh "java -version" //<2>
+                sh "mvn -version" //<3>
+            }
+        }
+    }
+}
+----
+
+We start slowly. Firstly, we configure a docker agent that will start a container from our `sdkman:local` docker image pass:[<em class="conum" data-value="1"></em>].
+Secondly, we define a single `Build` stage and we want to verify if running Java pass:[<em class="conum" data-value="2"></em>]
+and Maven pass:[<em class="conum" data-value="3"></em>] are working. We run the pipeline and we see:
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-pipeline-sdkman-fail.png]
+image::/images/jenkins-pipeline-sdkman-fail.png[]
+--
+
+The pipeline cannot found `java`? What? We just tested it with `docker run ... bash` and it worked!
+We look at the console log, we see that Jenkins docker agent spawned the right container. What's the problem then?
+
+[source,text]
+----
+Started by user Szymon Stepniak
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /home/wololock/.jenkins/workspace/pipeline-with-sdkman
+[Pipeline] {
+[Pipeline] sh
++ docker inspect -f . sdkman:local
+.
+[Pipeline] withDockerContainer
+Jenkins does not seem to be running inside a container
+$ docker run -t -d -u 1000:1000 -w /home/wololock/.jenkins/workspace/pipeline-with-sdkman -v /home/wololock/.jenkins/workspace/pipeline-with-sdkman:/home/wololock/.jenkins/workspace/pipeline-with-sdkman:rw,z -v /home/wololock/.jenkins/workspace/pipeline-with-sdkman@tmp:/home/wololock/.jenkins/workspace/pipeline-with-sdkman@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** sdkman:local cat
+$ docker top 064e63fd3795df643c4a7f676421b15ade9ae126f10efc6d3383509f7213c04b -eo pid,comm
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] sh
++ java -version
+/home/wololock/.jenkins/workspace/pipeline-with-sdkman@tmp/durable-ff41de0e/script.sh: 1: /home/wololock/.jenkins/workspace/pipeline-with-sdkman@tmp/durable-ff41de0e/script.sh: java: not found
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+$ docker stop --time=1 064e63fd3795df643c4a7f676421b15ade9ae126f10efc6d3383509f7213c04b
+$ docker rm -f 064e63fd3795df643c4a7f676421b15ade9ae126f10efc6d3383509f7213c04b
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 127
+Finished: FAILURE
+----
+
+What we missed? Could it be the entrypointfootnote:[{docker-entrypoint}]? In our `docker run ... bash` test we have executed
+Bash shell and the `.bashrc` script was executed, which added SDKMAN! candidates to the `PATH` environment variable.
+Let's try to run `java -version` directly from the docker container and let's see what happens:
+
+[source,bash,subs="quotes"]
+----
+*$ docker run --rm -u $(id -u) sdkman:local java -version*
+container_linux.go:247: starting container process caused "exec: \"java\": executable file not found in $PATH"
+/usr/bin/docker-current: Error response from daemon: oci runtime error: container_linux.go:247: starting container process caused "exec: \"java\": executable file not found in $PATH".
+----
+
+OK, this is something. It looks like executing `java -version` without starting Bash shell makes `java` command
+missing in the `PATH` env variable. Let's try to fix it by adding a simple `ENTRYPOINT` to our Dockerfile. For simplicity,
+we will use a command instead of a script file.
+
+[source,dockerfile]
+.Dockerfile
+----
+FROM debian:stretch-slim
+
+# Defining default Java and Maven version
+ARG JAVA_VERSION="11.0.5-amzn"
+ARG MAVEN_VERSION="3.6.2"
+
+# Defining default non-root user UID, GID, and name
+ARG USER_UID="1000"
+ARG USER_GID="1000"
+ARG USER_NAME="jenkins"
+
+# Creating default non-user
+RUN groupadd -g $USER_GID $USER_NAME && \
+	useradd -m -g $USER_GID -u $USER_UID $USER_NAME
+
+# Installing basic packages
+RUN apt-get update && \
+	apt-get install -y zip unzip curl && \
+	rm -rf /var/lib/apt/lists/* && \
+	rm -rf /tmp/*
+
+# Switching to non-root user to install SDKMAN!
+USER $USER_UID:$USER_GID
+
+# Downloading SDKMAN!
+RUN curl -s "https://get.sdkman.io" | bash
+
+# Installing Java and Maven, removing some unnecessary SDKMAN files
+RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && \
+    yes | sdk install java $JAVA_VERSION && \
+    yes | sdk install maven $MAVEN_VERSION && \
+    rm -rf $HOME/.sdkman/archives/* && \
+    rm -rf $HOME/.sdkman/tmp/*"
+
+ENTRYPOINT bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && $0 $@" <1>
+----
+
+In this example, we make sure that `sdkman-init.sh` script gets executed before any command triggered on the container.
+We can rebuild the docker image and try to run `java -version` again.
+
+[source,bash,subs="quotes"]
+----
+*$ docker build -t sdkman:local .*
+Sending build context to Docker daemon 3.584 kB
+Step 1/12 : FROM debian:stretch-slim
+ ---> c2f145c34384
+Step 2/12 : ARG JAVA_VERSION="11.0.5-amzn"
+ ---> Using cache
+ ---> 6a3e406a9502
+Step 3/12 : ARG MAVEN_VERSION="3.6.2"
+ ---> Using cache
+ ---> 15764ee0855a
+Step 4/12 : ARG USER_UID="1000"
+ ---> Using cache
+ ---> a69f8849b91e
+Step 5/12 : ARG USER_GID="1000"
+ ---> Using cache
+ ---> e58afc8d231f
+Step 6/12 : ARG USER_NAME="jenkins"
+ ---> Using cache
+ ---> 4b12ba6ffbb2
+Step 7/12 : RUN groupadd -g $USER_GID $USER_NAME && 	useradd -m -g $USER_GID -u $USER_UID $USER_NAME
+ ---> Using cache
+ ---> 4de53350c4bf
+Step 8/12 : RUN apt-get update && 	apt-get install -y zip unzip curl && 	rm -rf /var/lib/apt/lists/\* && 	rm -rf /tmp/\*
+ ---> Using cache
+ ---> a3aaaeb15bda
+Step 9/12 : USER $USER_UID:$USER_GID
+ ---> Using cache
+ ---> b39d53a9c785
+Step 10/12 : RUN curl -s "https://get.sdkman.io" | bash
+ ---> Using cache
+ ---> 205c93608b5e
+Step 11/12 : RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh &&     yes | sdk install java $JAVA_VERSION &&     yes | sdk install maven $MAVEN_VERSION &&     rm -rf $HOME/.sdkman/archives/\* &&     rm -rf $HOME/.sdkman/tmp/\*"
+ ---> Using cache
+ ---> 1b4af7eec712
+Step 12/12 : ENTRYPOINT bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && $0 $@"
+ ---> Using cache
+ ---> 1d38b0879ab0
+Successfully built 1d38b0879ab0
+
+**$ docker run --rm -u $(id -u) sdkman:local java -version**
+openjdk version "11.0.5" 2019-10-15 LTS
+OpenJDK Runtime Environment Corretto-11.0.5.10.1 (build 11.0.5+10-LTS)
+OpenJDK 64-Bit Server VM Corretto-11.0.5.10.1 (build 11.0.5+10-LTS, mixed mode)
+----
+
+Now, this is what we expect! We can run `java` and `mvn` commands without running Bash shell. We should be ready to go with the Jenkins Pipeline.
+Let's restart it and see what happens.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-pipeline-sdkman-fail-again.png]
+image::/images/jenkins-pipeline-sdkman-fail-again.png[]
+--
+
+The same `java: not found` error...
+
+== How to fix `java: not found` error in Jenkins Pipeline?
+
+Why does the Jenkins Pipeline `sh` step fail to execute `java` command in our pipeline?
+The main reason why `java` cannot be found is that the `PATH` environment variable seems to be missing SDKMAN! candidates.
+Here is what the `PATH` of the `sdkman:local` docker container looks like:
+
+[source,bash,subs="quotes"]
+----
+**$ docker run --rm -u $(id -u) sdkman:local printenv | grep PATH**
+PATH=/home/jenkins/.sdkman/candidates/maven/current/bin:/home/jenkins/.sdkman/candidates/java/current/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+----
+
+And here is what the `PATH` variable looks like when we call `printenv` using `sh` pipeline step:
+
+[source,bash]
+----
+[Pipeline] sh
++ printenv
++ grep PATH
+CLASSPATH=
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+----
+
+There are at least two known issuesfootnote:[{jenkins-issue-1}]footnote:[{jenkins-issue-2}] that seem to make updating
+`PATH` environment variable impossible.
+
+But what if I tell you that there is a solution to that problem? There are some workarounds, but their main problem is that
+they require specifying additional `PATH` env variable like `PATH+EXTRA` which means that you need to explicitly prepare
+yourself for missing `PATH` locations. I would accept it if there was no other option, but ideally no such workarounds
+should be necessary. And I have found a way how to do it.
+
+== Override `PATH` in your Dockerfile
+
+There is at least one way how you can override `PATH` variable used by the docker container started in the Jenkins Pipeline.
+You can do it using `ENV` instruction in your Dockerfile. We can construct `JAVA_HOME` and `MAVEN_HOME` environment variables
+(we know exactly where SDKMAN! installed both candidates), and then we can use it to override `PATH` variable. Here is what the
+final Dockerfile looks like:
+
+[source,dockerfile]
+.Dockerfile
+----
+FROM debian:stretch-slim
+
+# Defining default Java and Maven version
+ARG JAVA_VERSION="11.0.5-amzn"
+ARG MAVEN_VERSION="3.6.2"
+
+# Defining default non-root user UID, GID, and name
+ARG USER_UID="1000"
+ARG USER_GID="1000"
+ARG USER_NAME="jenkins"
+
+# Creating default non-user
+RUN groupadd -g $USER_GID $USER_NAME && \
+	useradd -m -g $USER_GID -u $USER_UID $USER_NAME
+
+# Installing basic packages
+RUN apt-get update && \
+	apt-get install -y zip unzip curl && \
+	rm -rf /var/lib/apt/lists/* && \
+	rm -rf /tmp/*
+
+# Switching to non-root user to install SDKMAN!
+USER $USER_UID:$USER_GID
+
+# Downloading SDKMAN!
+RUN curl -s "https://get.sdkman.io" | bash
+
+# Installing Java and Maven, removing some unnecessary SDKMAN files
+RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && \
+    yes | sdk install java $JAVA_VERSION && \
+    yes | sdk install maven $MAVEN_VERSION && \
+    rm -rf $HOME/.sdkman/archives/* && \
+    rm -rf $HOME/.sdkman/tmp/*"
+
+# ENTRYPOINT bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && $0 $@" <1>
+
+ENV MAVEN_HOME="/home/jenkins/.sdkman/candidates/maven/current" <2>
+ENV JAVA_HOME="/home/jenkins/.sdkman/candidates/java/current" <3>
+ENV PATH="$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH" <4>
+----
+<1> We can remove `ENTRYPOINT` at the moment.
+<2> Here we define `MAVEN_HOME` using known Maven location.
+<3> Here we define `JAVA_HOME` using known Java location.
+<4> And last but not least - we override `PATH` using `$MAVEN_HOME/bin` and `$JAVA_HOME/bin`.
+
+It's time to rebuild the docker image.
+
+[source,bash]
+----
+$ docker build -t sdkman:local .
+----
+
+Let's check if `java -version` command works.
+
+[source,bash,subs="quotes"]
+----
+*$ docker run --rm -u $(id -u) sdkman:local java -version*
+openjdk version "11.0.5" 2019-10-15 LTS
+OpenJDK Runtime Environment Corretto-11.0.5.10.1 (build 11.0.5+10-LTS)
+OpenJDK 64-Bit Server VM Corretto-11.0.5.10.1 (build 11.0.5+10-LTS, mixed mode)
+----
+
+It works! And now it is the time for the final test. Let's restart the pipeline.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-pipeline-sdkman-success.png]
+image::/images/jenkins-pipeline-sdkman-success.png[]
+--
+
+== Why even bother with the SDKMAN?
+
+At this point, you may wonder why you should even consider using SDKMAN! instead of e.g. official Maven Docker image?
+As always - it depends. If you use a single Java/Maven/Gradle/"you name it" version in all your pipelines, then using
+one of the official docker images will do the trick for you. However, if you find yourself in a position where you need to
+run your e.g. Maven builds with different JDKs and different Maven versions, using the official Maven Docker image may
+become problematic. If you build your Dockerfile from the official Maven image, you are limited to a specific Java version,
+as well as a specific Maven version. When you want to use two different Maven versions with two different JDKs, you end up
+with 4 Dockerfiles - each one extends from different `maven` docker images.
+
+SDKMAN! solves that problem nicely. You can build a single Dockerfile, configure all your custom things in a single place,
+and you can use `ARG` instructions to build different versions from the same Dockerfile. Consider the following example.
+
+[source,bash,subs="quotes"]
+----
+**$ docker build -q --build-arg JAVA_VERSION=11.0.5-amzn --build-arg MAVEN_VERSION=3.5.4 -t sdkman:mvn-3.5.4-jdk-11.0.5-amzn .**
+sha256:fc6006992d79314758b0726f226cc5e87355708b9b7348e89599594b2b881d7c
+
+**$ docker build -q --build-arg JAVA_VERSION=11.0.5-amzn --build-arg MAVEN_VERSION=3.6.2 -t sdkman:mvn-3.6.2-jdk-11.0.5-amzn .**
+sha256:1e1699b478f404c66ed9cf75d122cd941f49e74de3c6e14d25520edfd8fd204b
+
+**$ docker build -q --build-arg JAVA_VERSION=13.0.1-zulu --build-arg MAVEN_VERSION=3.5.4 -t sdkman:mvn-3.5.4-jdk-13.0.1-zulu .**
+sha256:e804b0e7a71bc630d9c590c0e6c714155a7fbc46353b626720f7e53e8e7808c0
+
+**$ docker build -q --build-arg JAVA_VERSION=13.0.1-zulu --build-arg MAVEN_VERSION=3.6.2 -t sdkman:mvn-3.6.2-jdk-13.0.1-zulu .**
+sha256:d08fbd4ef3f889b0739d83d71e1d1f9da9bbf09b5d50d9418b661db6d8be80c7
+
+**$ docker run --rm -u $(id -u) sdkman:mvn-3.5.4-jdk-11.0.5-amzn mvn -version**
+Apache Maven 3.5.4 (1edded0938998edf8bf061f1ceb3cfdeccf443fe; 2018-06-17T18:33:14Z)
+Maven home: /home/jenkins/.sdkman/candidates/maven/current
+Java version: 11.0.5, vendor: Amazon.com Inc., runtime: /home/jenkins/.sdkman/candidates/java/11.0.5-amzn
+Default locale: en_US, platform encoding: ANSI_X3.4-1968
+OS name: "linux", version: "5.3.8-200.fc30.x86_64", arch: "amd64", family: "unix"
+
+**$ docker run --rm -u $(id -u) sdkman:mvn-3.6.2-jdk-13.0.1-zulu mvn -version**
+Apache Maven 3.6.2 (40f52333136460af0dc0d7232c0dc0bcf0d9e117; 2019-08-27T15:06:16Z)
+Maven home: /home/jenkins/.sdkman/candidates/maven/current
+Java version: 13.0.1, vendor: Azul Systems, Inc., runtime: /home/jenkins/.sdkman/candidates/java/13.0.1-zulu
+Default locale: en_US, platform encoding: ANSI_X3.4-1968
+OS name: "linux", version: "5.3.8-200.fc30.x86_64", arch: "amd64", family: "unix"
+----
+
+In this example, we have built four different docker images from the same Dockerfile. It makes the maintenance of all variants
+much more straightforward - when something requires fixing, we change a single Dockerfile and rebuild all tags.
+
+== That's all, folks!
+
+I hope you liked this blog post, and you have learned something useful today. Please let me know in the comments section
+down below if you are interested in Jenkins Pipeline related topics. Expect more blog posts like this one shortly!
+See you all next time!
