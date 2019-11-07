@@ -1,7 +1,7 @@
 ---
 title: GraalVM and Groovy - how to start?
 date: 2018-10-03 23:28:49
-updated: 2019-05-11 12:22:03
+updated: 2019-11-07 19:37:16
 tags:
     - groovy
     - graalvm
@@ -21,6 +21,8 @@ eyeCatchImage: /images/og/graalvm-groovy-how-to-start2.jpg
 :graalvm-executable-bug-url: https://github.com/oracle/graal/issues/1260
 :graalvm-limitations-url: https://github.com/oracle/graal/blob/master/substratevm/LIMITATIONS.md
 :graalvm-groovy-examples-url: https://github.com/wololock/graalvm-groovy-examples
+:graalvm-version: 19.2.1
+:groovy-version: 2.5.8
 
 https://www.graalvm.org/[GraalVM] became one of the most popular topics in the JVM ecosystem. It promises the
 highest possible speed of running JVM-based programs (when compiled to native images), hand in hand
@@ -41,8 +43,8 @@ face when you start playing around with your own examples.
 
 We will be using following tools:
 
-* **GraalVM** 19.0.0 _(the latest version while writing this blog post)_
-* **Groovy** 2.5.7
+* **GraalVM** `{graalvm-version}` _(updated: 2019-11-07T19:37:33+0100)_
+* **Groovy** `{groovy-version}`
 
 TIP: The easiest way to install GraalVM and Groovy is to use https://sdkman.io/[SDKMAN!] command line tool.
 
@@ -52,9 +54,9 @@ Let's make sure we are using correct GraalVM Java distribution.
 [source,bash]
 ----
 $ java -version
-openjdk version "1.8.0_212"
-OpenJDK Runtime Environment (build 1.8.0_212-20190420092731.buildslave.jdk8u-src-tar--b03)
-OpenJDK GraalVM CE 19.0.0 (build 25.212-b03-jvmci-19-b01, mixed mode)
+openjdk version "1.8.0_232"
+OpenJDK Runtime Environment (build 1.8.0_232-20191008104205.buildslave.jdk8u-src-tar--b07)
+OpenJDK 64-Bit GraalVM CE 19.2.1 (build 25.232-b07-jvmci-19.2-b03, mixed mode)
 ----
 
 Starting from 19.0.0 version, GraalVM does not contain `native-image` tool as a default part of the distribution,
@@ -68,7 +70,7 @@ $ gu install native-image
 Downloading: Component catalog from www.graalvm.org
 Processing component archive: Native Image
 Downloading: Component native-image: Native Image  from github.com
-Installing new component: Native Image licence files (org.graalvm.native-image, version 19.0.0)
+Installing new component: Native Image (org.graalvm.native-image, version 19.2.1)
 ----
 
 Let's check if we use a proper version of Groovy.
@@ -77,7 +79,7 @@ Let's check if we use a proper version of Groovy.
 [source,bash]
 ----
 $ groovy -version
-Groovy Version: 2.5.7 JVM: 1.8.0_212 Vendor: Oracle Corporation OS: Linux
+Groovy Version: 2.5.8 JVM: 1.8.0_232 Vendor: Oracle Corporation OS: Linux
 ----
 
 Let's also check if `GROOVY_HOME` variable is set correctly. (If you installed Groovy using SDKMAN!, the environment variable
@@ -96,8 +98,8 @@ We are all set and ready to code!
 
 For the purpose of this experiment we are going to use a simple Groovy program that sums and multiplies numbers:
 
-.RandomNumber.groovy
 [source,groovy]
+.RandomNumber.groovy
 ----
 class RandomNumber {
     static void main(String[] args) {
@@ -117,8 +119,8 @@ we need to switch Groovy from dynamic to a static compilation. We can simply put
 over the class definition in `RandomNumber.groovy` file, or we can create a compiler configuration file that adds this annotation
 to all classes.
 
-.Compiler configuration file `compiler.groovy`
 [source,groovy]
+.Compiler configuration file `compiler.groovy`
 ----
 withConfig(configuration) {
     ast(groovy.transform.CompileStatic)
@@ -136,9 +138,9 @@ groovyc --configscript compiler.groovy RandomNumber.groovy
 The code compiled. We can now test if our Groovy script runs as a Java program.
 
 .Running Java program with GraalVM
-[source,bash]
+[source,bash,subs="attributes"]
 ----
-$ java -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" RandomNumber
+$ java -cp ".:$GROOVY_HOME/lib/groovy-{groovy-version}.jar" RandomNumber
 The random number is: 313
 The doubled sum of numbers between 0 and 313 is 98282
 ----
@@ -147,9 +149,9 @@ It run smoothly! You have probably noticed a small lag - the result was not prin
 the program again, but this time with the `time` command added to measure execution time.
 
 .Measuring Java program execution time
-[source,bash]
+[source,bash,subs="attributes"]
 ----
-$ time java -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" RandomNumber
+$ time java -cp ".:$GROOVY_HOME/lib/groovy-{groovy-version}.jar" RandomNumber
 The random number is: 859
 The doubled sum of numbers between 0 and 859 is 738740
 
@@ -183,16 +185,16 @@ Running our example inside the JVM was nice, but GraalVM offers much more. We ca
 that will consume much less memory and will execute in a blink of an eye. Let's give it a try:
 
 .Building native image with GraalVM
-[source,bash]
+[source,bash,subs="verbatim,attributes"]
 ----
-$ native-image --allow-incomplete-classpath \//<1>
-    --report-unsupported-elements-at-runtime \//<2>
-    --initialize-at-build-time \//<3>
-    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \//<4>
-    --no-fallback \//<5>
-    --no-server \//<6>
-    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \//<7>
-    RandomNumber//<8>
+$ native-image --allow-incomplete-classpath \ <1>
+    --report-unsupported-elements-at-runtime \ <2>
+    --initialize-at-build-time \ <3>
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \ <4>
+    --no-fallback \ <5>
+    --no-server \ <6>
+    -cp ".:$GROOVY_HOME/lib/groovy-{groovy-version}.jar" \ <7>
+    RandomNumber <8>
 ----
 
 As you can see there are many parameters passed to the `native-image` command. We use pass:[<em class="conum" data-value="1"></em>]
@@ -249,7 +251,7 @@ Groovy as a Java program. And the last line pass:[<em class="conum" data-value="
 The compilation takes approximately 60 seconds and this is the output we should expect.
 
 .The expected native image compilation console output
-[source,bash]
+[source,bash,subs="verbatim,attributes"]
 ----
 $ native-image --allow-incomplete-classpath \
     --report-unsupported-elements-at-runtime \
@@ -257,7 +259,7 @@ $ native-image --allow-incomplete-classpath \
     --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
     --no-fallback \
     --no-server \
-    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    -cp ".:$GROOVY_HOME/lib/groovy-{groovy-version}.jar" \
     RandomNumber
 [randomnumber:30836]    classlist:   2,543.84 ms
 [randomnumber:30836]        (cap):     842.60 ms
@@ -320,7 +322,7 @@ We can either configure class that will be used reflectively using helper option
 can manually provide a list of methods (and their parameters) we expect to get invoked using reflection. To keep this example
 simple, we will use the first approach.
 
-.Our exemplary `reflection.json` file
+.Our exemplary `reflections.json` file
 [source,json]
 ----
 [
@@ -558,10 +560,10 @@ be used to run our program with GraalVM's JDK that introspects the code usage. I
 Let's give it a try. Firstly, we need to run our compiled Groovy code as a Java program with the `native-image-agent` enabled.
 
 .Running as a Java program with the agent enabled
-[source,bash]
+[source,bash,subs="verbatim,attributes"]
 ----
 $ java -agentlib:native-image-agent=config-output-dir=conf/ \//<1>
-    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" RandomNumber
+    -cp ".:$GROOVY_HOME/lib/groovy-{groovy-version}.jar" RandomNumber
 ----
 
 The program executes like it did before, but know it created 4 configuration files in the folder we specified with pass:[<em class="conum" data-value="1"></em>]
@@ -582,33 +584,6 @@ $ tree conf
 
 If you open `conf/reflect-config.json` file you will see that it contains tons of classes configured for the reflective access.
 (In my case this file is 579 lines long.)
-
-[WARNING]
-====
-Before you continue, you need to modify `conf/reflect-config.json` file a bit. There is a {graalvm-executable-bug-url}[know bug] in *GraalVM 19.0.0*
-that causes problems when the class `java.lang.reflect.Executable` is added to the reflection configuration. _(It will be fixed in the next release,
-so if you use a newer version, you might skip this part.)_ The good thing is that you can simply remove it from
-`conf/reflect-config.json` file and you are OK. Search for:
-
-[source,json]
-----
-{
-  "name":"java.lang.reflect.Executable",
-  "allDeclaredMethods":true,
-  "methods":[
-    {"name":"getAnnotation","parameterTypes":["java.lang.Class"] },
-    {"name":"getDeclaredAnnotations","parameterTypes":[] },
-    {"name":"getDeclaringClass","parameterTypes":[] },
-    {"name":"getModifiers","parameterTypes":[] },
-    {"name":"getName","parameterTypes":[] },
-    {"name":"getTypeParameters","parameterTypes":[] },
-    {"name":"isSynthetic","parameterTypes":[] }
-  ]
-},
-----
-
-and simply remove it.
-====
 
 The last thing we have to do is to remove `-H:ReflectionConfigurationFiles` parameters and use the `-H:ConfigurationFileDirectories`
 parameter instead. It loads not only reflection configuration files, but also remaining three configurations for proxies, JNI, and resources.
@@ -686,15 +661,25 @@ some of the demos and examples I create during my experiments. Feel free to test
 to the project. GraalVM is fascinating and quite challenging piece of technology. The more we experiment with it and learn
 how to use it most effectively, the more we can help other people adopting it.
 
+++++
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BjO_vBzaB4c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+++++
+
 == Useful resources
 
 Here you can find a list of blog posts I found useful when I was working on this article.
 
+* https://github.com/wololock/groovy-and-graalvm[_Source code from my "GraalVM adn Groovy" presentation from GR8Conf EU 2019_]
 * https://github.com/graemerocher/micronaut-graal-experiments[_Micronaut Graal Experiments_] by https://twitter.com/graemerocher[Graeme Rocher]
 * https://medium.com/graalvm/instant-netty-startup-using-graalvm-native-image-generation-ed6f14ff7692[_Instant Netty Startup using GraalVM Native Image Generation_] by https://twitter.com/cstancu[Codruț Stancu]
 * https://blog.frankel.ch/first-impressions-graalvm/[_My first impressions about Graal VM_] by https://twitter.com/nicolas_frankel[Nicolas Frankel]
 * https://melix.github.io/blog/2019/03/simple-http-server-graal.html[_A simple native HTTP server with GraalVM_] by https://twitter.com/CedricChampeau[Cédric Champeau]
 
+== Updates
 
-NOTE: This post was updated after *GraalVM* CE 19.0.0 was released on May 9th 2019. The&nbsp;source of the original
-blog post published on October 28th 2018 is still in the Github repository history and {original-post-url}[can be found here].
+This blog gets updated whenever new version of GraalVM or Groovy gets released. Below you can find a list of all updates.
+
+* [.mark]*2019-11-07*: Updated blog post to *GraalVM* `19.2.1` and *Groovy* `2.5.8`
+* [.mark]*2019-05-11*: Updated blog post to *GraalVM* `19.0.0`
