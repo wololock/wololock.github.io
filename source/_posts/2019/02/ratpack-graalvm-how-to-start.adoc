@@ -1,7 +1,7 @@
 ---
 title: Ratpack on GraalVM - how to start?
 date: 2019-02-15 03:10:39
-updated: 2019-02-15 03:10:39
+updated: 2019-11-09 21:02:09
 tags:
     - ratpack
     - graalvm
