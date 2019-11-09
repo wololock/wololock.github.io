@@ -14,9 +14,20 @@ cover: /images/ratpack-cookbook-bg.jpg
 og_image: /images/og/ratpack-graalvm-how-to-start.jpg
 eyeCatchImage: /images/og/ratpack-graalvm-how-to-start.jpg
 ---
+:graalvm-url: https://www.graalvm.org/
+:graalvm-version: 19.2.1
+:graalvm-sdkman: 19.2.1.-grl
+:ratpack-url: https://ratpack.io/
+:ratpack-version: 1.7.5
+:graalvm-dynamic-proxies: https://github.com/oracle/graal/blob/master/substratevm/DYNAMIC_PROXY.md#manual-configuration
+:graalmv-unsafe-access: https://github.com/oracle/graal/blob/master/substratevm/LIMITATIONS.md#unsafe-memory-access
+:instant-netty-startup-post: https://medium.com/graalvm/instant-netty-startup-using-graalvm-native-image-generation-ed6f14ff7692
+:svm-url: https://mvnrepository.com/artifact/com.oracle.substratevm/svm
+:unsafe-ref-array-access-url: https://github.com/ben-manes/caffeine/blob/v2.6.2/caffeine/src/main/java/com/github/benmanes/caffeine/cache/MpscGrowableArrayQueue.java#L594
 
-The journey inside the exciting world of https://www.graalvm.org/[GraalVM] continues.
-Today I would like to share with you  results of running https://ratpack.io/[Ratpack] on GraalVM experiment.
+
+The journey inside the exciting world of {graalvm-url}[GraalVM] continues.
+Today I would like to share with you  results of running {ratpack-url}[Ratpack] on GraalVM experiment.
 You are going to learn how to build a native binary of a simple "Hello, World!" Ratpack application.
 In the end we are going to run some benchmarks to see if running GraalVM executable produces better results than running JAR on a regular Oracle JDK.
 
@@ -30,10 +41,10 @@ NOTE: The source code of _ratpack-graalvm-demo_ application can be found here ht
 
 Below you can find information about the GraalVM and Ratpack versions I used in the experiment:
 
-- *GraalVM* 1.0.0-RC12 (the most recent version available while writing this blog post)
-- *Ratpack* 1.6.0
+- *GraalVM* {graalvm-version} (the most recent version available while writing this blog post)
+- *Ratpack* {ratpack-version}
 
-TIP: Don't know how to install GraalVM on your machine? With SDKMAN! installing GraalVM is as easy as executing the following command in the console `sdk install java 1.0.0-rc-13-grl`.
+TIP: Don't know how to install GraalVM on your machine? With SDKMAN! installing GraalVM is as easy as executing the following command in the console `sdk install java {graalvm-sdkman}`.
 
 == Hello World application
 
@@ -66,6 +77,8 @@ final class RatpackGraalDemoApp {
 
 ----
 
+NOTE: You can bootstrap Ratpack app using Lazybones - `lazybones create ratpack your-app-name`.
+
 When we send an HTTP request to the `localhost:5050` we get the following response:
 
 .HTTP response of `(GET) localhost:5050` request
@@ -83,8 +96,10 @@ transfer-encoding: chunked
 
 == Preparing for GraalVM
 
-NOTE: I strongly recommend reading https://medium.com/graalvm/instant-netty-startup-using-graalvm-native-image-generation-ed6f14ff7692[_"Instant Netty Startup using GraalVM Native Image Generation"_] article by https://twitter.com/cstancu[Codrut Stancu].
-It explains in details how to prepare Netty-based application for GraalVM native binary compilation.
+NOTE: GraalVM specific configuration got simplified enormously starting from Ratpack `1.7.0` release. This is the first version that
+used Netty `4.1.37`. Netty started providing `native-image.properties` and `reflection.json` files with version `4.1.36`
+which means that Netty-based applications does not have to configure Netty components for the GraalVM native image generation.
+This is a huge step forward.
 
 We need to do some additional work to prepare our _"Hello World"_ application for GraalVM.
 
@@ -93,22 +108,14 @@ We need to do some additional work to prepare our _"Hello World"_ application fo
 
 We start with preparing a configuration file for classes used via Java reflection mechanism.
 GraalVM uses https://github.com/oracle/graal/tree/master/substratevm[Substrate VM] - a framework that allows aggressive ahead-of-time optimizations.
-Classes, methods or fields accessed via reflection have to be known at the compile time to make AOT compilation possible.
+All classes, methods or fields accessed via reflection have to be known at the compile time to make AOT compilation possible.
 Substrate VM resolves most of the basic reflection calls like `Class.forName(...)`, but in more complex scenarios it requires additional information to be provided.
+In Ratpack basic "Hello World" application case we need to configure reflection access to the following two Caffeine Cache classes.
 
 .reflections.json
 [source,json]
 ----
 [
-  {
-    "name": "io.netty.channel.socket.nio.NioServerSocketChannel",
-    "methods": [
-      {
-        "name": "<init>",
-        "parameterTypes": []
-      }
-    ]
-  },
   {
     "name": "com.github.benmanes.caffeine.cache.SSMS",
     "methods": [
@@ -134,7 +141,7 @@ In the case of our demo app we need to provide information about these 3 classes
 
 === 2. Dynamic proxies configuration
 
-To make dependency injection via Guice possible, we need to https://github.com/oracle/graal/blob/master/substratevm/DYNAMIC_PROXY.md#manual-configuration[generate dynamic proxies] at the compile time.
+To make dependency injection via Guice possible, we need to {graalvm-dynamic-proxies}[generate dynamic proxies] at the compile time.
 It requires defining a list of interfaces that dynamic proxies implement.
 In our case, we only have to configure `java.lang.reflect.TypeVariable` interface.
 
@@ -148,10 +155,19 @@ In our case, we only have to configure `java.lang.reflect.TypeVariable` interfac
 
 === 3. Unsafe memory access configuration
 
-Using `sun.misc.Unsafe` in Substrate VM generates https://github.com/oracle/graal/blob/master/substratevm/LIMITATIONS.md#unsafe-memory-access[other limitations].
-Codrut in his _"Instant Netty Startup using GraalVM Native Image Generation"_ article explained which `sun.misc.Unsafe` usages https://medium.com/graalvm/instant-netty-startup-using-graalvm-native-image-generation-ed6f14ff7692#020c[require additional configuration] in Netty-based application.
-It applies to our demo application as well + we need to configure Caffeine's `com.github.benmanes.caffeine.cache.UnsafeRefArrayAccess` class.
-Let's add the following static classes to the main application class.
+Using `sun.misc.Unsafe` in Substrate VM generates {graalmv-unsafe-access}[other limitations].
+As Codrut Stancu explains in the {instant-netty-startup-post}[_"Instant Netty Startup using GraalVM Native Image Generation"_] article:
+
+> "Unsafe memory access through the `sun.misc.Unsafe` API is allowed in native executables, but field offset, array base offset,
+array index scale, and array index shift values need to be re-computed. These values are usually computed in the static initializer
+of a class and stored in static final fields. Static initializers are executed during build time, i.e., when the `native-image` tool runs.
+This means that the static fields store the field offsets computed by the JVM. However, Substrate VM uses a different object layout than
+the JVM, so using the values directly would access wrong memory locations. That leads to undefined behavior at run time. If you are lucky,
+your application crashes with a segmentation fault, if you are unlucky it just computes the wrong result.
+
+In case of the simple "Hello World" Ratpack web application, there is one such class - `com.github.benmanes.caffeine.cache.UnsafeRefArrayAccess` footnote:[{unsafe-ref-array-access-url}].
+We can instruct Substrate VM to recompute `UnsafeRefArrayAccess.REF_ELEMENT_SHIFT` field by adding the following static class
+to our main application class.
 
 [source,java]
 ----
@@ -179,27 +195,6 @@ final class RatpackGraalDemoApp {
         );
     }
 
-    @TargetClass(className = "io.netty.util.internal.PlatformDependent0")
-    static final class Target_io_netty_util_internal_PlatformDependent0 {
-        @Alias
-        @RecomputeFieldValue(kind = RecomputeFieldValue.Kind.FieldOffset, declClassName = "java.nio.Buffer", name = "address")
-        private static long ADDRESS_FIELD_OFFSET;
-    }
-
-    @TargetClass(className = "io.netty.util.internal.CleanerJava6")
-    static final class Target_io_netty_util_internal_CleanerJava6 {
-        @Alias
-        @RecomputeFieldValue(kind = RecomputeFieldValue.Kind.FieldOffset, declClassName = "java.nio.DirectByteBuffer", name = "cleaner")
-        private static long CLEANER_FIELD_OFFSET;
-    }
-
-    @TargetClass(className = "io.netty.util.internal.shaded.org.jctools.util.UnsafeRefArrayAccess")
-    static final class Target_io_netty_util_internal_shaded_org_jctools_util_UnsafeRefArrayAccess {
-        @Alias
-        @RecomputeFieldValue(kind = RecomputeFieldValue.Kind.ArrayIndexShift, declClass = Object[].class)
-        public static int REF_ELEMENT_SHIFT;
-    }
-
     @TargetClass(className = "com.github.benmanes.caffeine.cache.UnsafeRefArrayAccess")
     static final class Target_com_github_benmanes_caffeine_cache_UnsafeRefArrayAccess {
         @Alias
@@ -209,17 +204,17 @@ final class RatpackGraalDemoApp {
 }
 ----
 
-Of course, it also means that we need to add Substrate SDK to the `build.gradle`.
+In this case we are using {svm-url}[Substrate VM SDK] library which is added to our `build.gradle` file:
 
-[source,groovy]
+[source,groovy,subs="verbatim,attributes"]
 ----
 buildscript {
     repositories {
         jcenter()
     }
     dependencies {
-        classpath "io.ratpack:ratpack-gradle:1.6.0"
-        classpath "com.github.jengelman.gradle.plugins:shadow:1.2.4"
+        classpath "io.ratpack:ratpack-gradle:{ratpack-version}"
+        classpath "com.github.jengelman.gradle.plugins:shadow:5.1.0"
     }
 }
 
@@ -236,7 +231,7 @@ mainClassName = 'com.github.wololock.RatpackGraalDemoApp'
 dependencies {
     runtime 'org.slf4j:slf4j-simple:1.7.25'
 
-    compile 'com.oracle.substratevm:svm:1.0.0-rc12' //<1>
+    compile 'com.oracle.substratevm:svm:{graalvm-version}' //<1>
 
     testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
 }
@@ -253,13 +248,14 @@ We are finally ready to compile native binary. We use the `native-image` command
 native-image --no-server \
     -jar build/libs/ratpack-graalvm-demo-all.jar \
     -H:Name=ratpack-graalvm-demo \
-    -H:EnableURLProtocols=http \
-    -H:+AllowVMInspection \
-    -H:+ReportUnsupportedElementsAtRuntime \
     -H:ReflectionConfigurationFiles=reflections.json \
     -H:DynamicProxyConfigurationFiles=proxies.json \
+    --no-fallback \
+    --enable-url-protocols=http \
+    --report-unsupported-elements-at-runtime \
     --allow-incomplete-classpath \
-    --delay-class-initialization-to-runtime=io.netty.handler.codec.http.HttpObjectEncoder,io.netty.handler.ssl.ReferenceCountedOpenSslEngine,io.netty.handler.ssl.ReferenceCountedOpenSslClientContext,io.netty.handler.ssl.ReferenceCountedOpenSslServerContext,io.netty.handler.ssl.JdkNpnApplicationProtocolNegotiator,io.netty.handler.ssl.JettyNpnSslEngine,io.netty.handler.ssl.ConscryptAlpnSslEngine,io.netty.util.internal.logging.Log4JLogger \
+    --initialize-at-run-time=io.netty.handler.codec.http.HttpObjectEncoder,io.netty.handler.ssl.ReferenceCountedOpenSslEngine,io.netty.handler.ssl.ReferenceCountedOpenSslClientContext,io.netty.handler.ssl.ReferenceCountedOpenSslServerContext,io.netty.handler.ssl.JdkNpnApplicationProtocolNegotiator,io.netty.handler.ssl.JettyNpnSslEngine,io.netty.handler.ssl.ConscryptAlpnSslEngine,io.netty.util.internal.logging.Log4JLogger,io.netty.internal.tcnative.CertificateVerifier,io.netty.internal.tcnative.SSL \
+    --initialize-at-build-time \
     -Dratpack.epoll.disable=true //<1>
 ----
 
@@ -681,3 +677,9 @@ The final result makes me happy even more. It’s 06:03 AM. Time to go to sleep.
 <iframe width="560" height="315" src="https://www.youtube.com/embed/aOszDmbSsyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 ++++
+
+== Updates
+
+This blog gets updated whenever new version of GraalVM or Groovy gets released. Below you can find a list of all updates.
+
+* [.mark]*2019-11-07*: Updated blog post to *GraalVM* `19.2.1` and *Ratpack* `1.7.5`
