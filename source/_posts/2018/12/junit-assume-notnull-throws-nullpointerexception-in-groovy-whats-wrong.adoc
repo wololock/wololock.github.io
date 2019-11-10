@@ -179,7 +179,7 @@ This is the price of the dynamic type system, where the context of specific usag
 
 There are at least two ways you can make a Groovy example ignore the test in the same way as the Java example does.
 
-==== 1. Wrap the variable with array and make the type explicit
+=== 1. Wrap the variable with array and make the type explicit
 
 [source,groovy]
 ----
@@ -201,7 +201,7 @@ class GroovyAssumeNotNull {
 
 In this case, we decide for Groovy that the non-array variable has to be wrapped with an array of the given type.
 
-==== 2. Use static compilation
+=== 2. Use static compilation
 
 [source,groovy]
 ----
