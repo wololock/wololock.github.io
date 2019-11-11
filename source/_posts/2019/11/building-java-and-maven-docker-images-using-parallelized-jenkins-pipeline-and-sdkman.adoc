@@ -1,0 +1,240 @@
+---
+title: Building Java and Maven docker images using parallelized Jenkins Pipeline and SDKMAN!
+date: 2019-11-11 22:28:10
+updated: 2019-11-11 22:28:10
+tags:
+    - jenkins
+    - jenkins-pipeline
+    - docker
+    - sdkman
+    - groovy
+    - cicd
+    - devops
+    - maven
+    - java
+categories:
+    - Jenkins Pipeline Cookbook
+cover: /images/jenkins-bg.jpg
+og_image: /images/og/jenkins-pipeline-build-docker-images.jpg
+eyeCatchImage: /images/og/jenkins-pipeline-build-docker-images.jpg
+---
+:repository-url: https://github.com/wololock/sdkman-docker-pipeline-example
+:last-article: pass:[{% post_link using-sdkman-as-a-docker-image-for-jenkins-pipeline-a-step-by-step-guide "the last article" %}]
+:sdkman-url: https://sdkman.io
+:jenkins-pipeline-url: https://jenkins.io/doc/book/pipeline/getting-started/
+:docker-maven: https://hub.docker.com/_/maven
+
+In {last-article}, I have shown you how you can build a docker image for Jenkins Pipeline using {sdkman-url}[SDKMAN!] command-line tool.
+Today I will show you how you can build multiple different docker images using parallelized {jenkins-pipeline-url}[Jenkins Pipeline].
+
+++++
+<!-- more -->
+++++
+
+== Why Maven and Java?
+
+Before we move forward, let me explain why I use Maven and Java docker image in this example.
+There is {docker-maven}[an official Maven docker hub repository] where you can download a specific Maven base image based on a particular Java version.
+It makes sense because you cannot use Maven without Java.
+However, this might become a bottleneck if you want to create your custom image (e.g., you need to install some additional tools that are missing in the official Maven image), and support different Maven versions at the same time.
+That is why we want to use a single `Dockerfile` to build, let's say, three images with different Java inside - Amazon Correto 11, Azul Zulu 13, and GraalVM CE 19.2.1.
+
+== Dockerfile
+
+Here is the `Dockerfile` we have prepared in the previous blog post.
+
+.Dockerfile
+[source,dockerfile]
+----
+FROM debian:stretch-slim
+
+# Defining default Java and Maven version
+ARG JAVA_VERSION="11.0.5-amzn"
+ARG MAVEN_VERSION="3.6.2"
+
+# Defining default non-root user UID, GID, and name
+ARG USER_UID="1000"
+ARG USER_GID="1000"
+ARG USER_NAME="jenkins"
+
+# Creating default non-user
+RUN groupadd -g $USER_GID $USER_NAME && \
+	useradd -m -g $USER_GID -u $USER_UID $USER_NAME
+
+# Installing basic packages
+RUN apt-get update && \
+	apt-get install -y zip unzip curl && \
+	rm -rf /var/lib/apt/lists/* && \
+	rm -rf /tmp/*
+
+# Switching to non-root user to install SDKMAN!
+USER $USER_UID:$USER_GID
+
+# Downloading SDKMAN!
+RUN curl -s "https://get.sdkman.io" | bash
+
+# Installing Java and Maven, removing some unnecessary SDKMAN files
+RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && \
+    yes | sdk install java $JAVA_VERSION && \
+    yes | sdk install maven $MAVEN_VERSION && \
+    rm -rf $HOME/.sdkman/archives/* && \
+    rm -rf $HOME/.sdkman/tmp/*"
+
+ENTRYPOINT bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && $0 $@"
+----
+
+We specify `JAVA_VERSION`  and `MAVEN_VERSION` using `ARG` for one important reason - we want to allow overriding those values using `--build-arg` command-line parameter.
+
+== Jenkins Pipeline
+
+We are going to build three docker images containing different Java distribution.
+We could hardcode all different variants inside the Jenkins Pipeline code, but it could make the maintenance more problematic.
+It would be much better if we decouple the Jenkins Pipeline logic from the version variants we want to built ultimately.
+We could use YAML to declare all the images we want to build in the pipeline.
+
+.versions.yml
+[source,yaml]
+----
+images:
+  "3.6-amazoncorretto-11":
+    java: 11.0.5-amzn
+    maven: 3.6.2
+    tags:
+      - 3.6.2-amazoncorretto-11.0.5
+      - 3.6-amazoncorretto-11
+
+  "3.6-zulu-13":
+    java: 13.0.1-zulu
+    maven: 3.6.2
+    tags:
+      - 3.6.2-zulu-13.0.1
+      - 3.6-zulu-13
+      - latest
+
+  "3.6-graalvm-19":
+    java: 19.2.1-grl
+    maven: 3.6.2
+    tags:
+      - 3.6.2-graalvm-19.2.1
+      - 3.6-graalvm-19
+----
+
+The format for this file is straightforward.
+We define a Java version, Maven version, and a list of docker tags we want to use for each specific variant.
+
+Having docker image variants decoupled from the pipeline, we can now implement a simple Jenkins Pipeline that will build those images in parallel.
+
+.Jenkinsfile
+[source,groovy]
+----
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = "mymaven" //<1>
+    }
+
+    stages {
+        stage("Build docker images") {
+            steps {
+                script {
+                    def versions = readYaml file: "versions.yml" //<2>
+
+                    def stages = versions.images.collectEntries { label, props -> //<3>
+                        [(label): {
+                            stage(label) {
+                                sh """docker build \
+                                --build-arg JAVA_VERSION=${props.java} \
+                                --build-arg MAVEN_VERSION=${props.maven} \
+                                ${props.tags.collect { tag -> "-t ${env.IMAGE_NAME}:${tag}" }.join(" ") } \
+                                .
+                            """
+                            }
+                        }]
+                    }
+
+                    parallel stages //<4>
+                }
+            }
+        }
+    }
+}
+----
+
+This pipeline has only a single stage that executes three nested stages in parallel.
+Each parallelized stage is responsible for building and tagging one specific variant of `mymaven` docker image pass:[<em class="conum" data-value="1"></em>].
+We use `readYaml` pipeline utility step to read images configuration from the `versions.yml` file pass:[<em class="conum" data-value="2"></em>].
+Then we construct the stage for every image pass:[<em class="conum" data-value="3"></em>] to run in parallel pass:[<em class="conum" data-value="4"></em>].
+
+When we execute this pipeline, we get something like this.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/sdkman-docker-pipeline.png]
+image::/images/sdkman-docker-pipeline.png[]
+--
+
+Every parallel stage has built a different docker image variant.
+
+[source,bash]
+----
+# 3.6-amazoncorretto-11 stage:
++ docker build --build-arg JAVA_VERSION=11.0.5-amzn --build-arg MAVEN_VERSION=3.6.2 -t mymaven:3.6.2-amazoncorretto-11.0.5 -t mymaven:3.6-amazoncorretto-11 .
+
+# 3.6-graalvm-19 stage:
++ docker build --build-arg JAVA_VERSION=19.2.1-grl --build-arg MAVEN_VERSION=3.6.2 -t mymaven:3.6.2-graalvm-19.2.1 -t mymaven:3.6-graalvm-19 .
+
+# 3.6-zulu-13 stage:
++ docker build --build-arg JAVA_VERSION=13.0.1-zulu --build-arg MAVEN_VERSION=3.6.2 -t mymaven:3.6.2-zulu-13.0.1 -t mymaven:3.6-zulu-13 -t mymaven:latest .
+----
+
+We can list existing `mymaven` docker images.
+
+[source,bash]
+----
+$ docker images | grep mymaven
+mymaven            3.6-graalvm-19                32a1ea1dc8ee        38 minutes ago      1.01 GB
+mymaven            3.6.2-graalvm-19.2.1          32a1ea1dc8ee        38 minutes ago      1.01 GB
+mymaven            3.6-zulu-13                   8553ca3e7556        41 minutes ago      439 MB
+mymaven            3.6.2-zulu-13.0.1             8553ca3e7556        41 minutes ago      439 MB
+mymaven            latest                        8553ca3e7556        41 minutes ago      439 MB
+mymaven            3.6-amazoncorretto-11         1d38b0879ab0        5 days ago          407 MB
+mymaven            3.6.2-amazoncorretto-11.0.5   1d38b0879ab0        5 days ago          407 MB
+----
+
+And as the final step, we can execute `mvn -version` from each docker image to verify that everything worked.
+
+[source,bash,subs="verbatim,attributes,quotes"]
+----
+**$ docker run --rm -u $(id -u) [.mark]#mymaven:3.6-amazoncorretto-11# mvn -version**
+Apache Maven 3.6.2 (40f52333136460af0dc0d7232c0dc0bcf0d9e117; 2019-08-27T15:06:16Z)
+Maven home: /home/jenkins/.sdkman/candidates/maven/current
+Java version: 11.0.5, vendor: Amazon.com Inc., runtime: /home/jenkins/.sdkman/candidates/java/11.0.5-amzn
+Default locale: en_US, platform encoding: ANSI_X3.4-1968
+OS name: "linux", version: "5.3.8-200.fc30.x86_64", arch: "amd64", family: "unix"
+
+**$ docker run --rm -u $(id -u) [.mark]#mymaven:3.6-graalvm-19# mvn -version**
+Apache Maven 3.6.2 (40f52333136460af0dc0d7232c0dc0bcf0d9e117; 2019-08-27T15:06:16Z)
+Maven home: /home/jenkins/.sdkman/candidates/maven/current
+Java version: 1.8.0_232, vendor: Oracle Corporation, runtime: /home/jenkins/.sdkman/candidates/java/19.2.1-grl/jre
+Default locale: en_US, platform encoding: ANSI_X3.4-1968
+OS name: "linux", version: "5.3.8-200.fc30.x86_64", arch: "amd64", family: "unix"
+
+**$ docker run --rm -u $(id -u) [.mark]#mymaven:3.6-zulu-13# mvn -version**
+Apache Maven 3.6.2 (40f52333136460af0dc0d7232c0dc0bcf0d9e117; 2019-08-27T15:06:16Z)
+Maven home: /home/jenkins/.sdkman/candidates/maven/current
+Java version: 13.0.1, vendor: Azul Systems, Inc., runtime: /home/jenkins/.sdkman/candidates/java/13.0.1-zulu
+Default locale: en_US, platform encoding: ANSI_X3.4-1968
+OS name: "linux", version: "5.3.8-200.fc30.x86_64", arch: "amd64", family: "unix"
+----
+
+NOTE: You can download the source code presented in this blog post from the following Github repository - {repository-url}.
+
+== Conclusion
+
+That's all for today.
+The pipeline I have shown you could be extended to run some parallelized smoke tests, and publish generated docker images to some remote hub.
+But this is maybe a subject for another story.
+Let me know what do you think about this blog post in the comments section down below.
+See you next time!
