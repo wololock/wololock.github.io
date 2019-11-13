@@ -1,7 +1,7 @@
 ---
 title: Building Java and Maven docker images using parallelized Jenkins Pipeline and SDKMAN!
 date: 2019-11-11 22:28:10
-updated: 2019-11-12 11:48:13
+updated: 2019-11-13 09:54:22
 tags:
     - jenkins
     - jenkins-pipeline
@@ -37,7 +37,7 @@ Before we move forward, let me explain why I use Maven and Java docker image in 
 There is {docker-maven}[an official Maven docker hub repository] where you can download a specific Maven base image based on a particular Java version.
 It makes sense because you cannot use Maven without Java.
 However, this might become a bottleneck if you want to create your custom image (e.g., you need to install some additional tools that are missing in the official Maven image), and support different Maven versions at the same time.
-That is why we want to use a single `Dockerfile` to build, let's say, three images with different Java inside - Amazon Correto 11, Azul Zulu 13, and GraalVM CE 19.2.1.
+That is why we want to use a single `Dockerfile` to build, let's say, three images with different Java inside — Amazon Corretto 11, Azul Zulu 13, and GraalVM CE 19.2.1.
 
 == Dockerfile
 
@@ -83,13 +83,13 @@ RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && \
 ENTRYPOINT bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && $0 $@"
 ----
 
-We specify `JAVA_VERSION`  and `MAVEN_VERSION` using `ARG` for one important reason - we want to allow overriding those values using `--build-arg` command-line parameter.
+We specify `JAVA_VERSION`  and `MAVEN_VERSION` using `ARG` for one important reason — we want to allow overriding those values using `--build-arg` command-line parameter.
 
 == Jenkins Pipeline
 
 We are going to build three docker images containing different Java distribution.
 We could hardcode all different variants inside the Jenkins Pipeline code, but it could make the maintenance more problematic.
-It would be much better if we decouple the Jenkins Pipeline logic from the version variants we want to built ultimately.
+It would be much better if we decouple the Jenkins Pipeline logic from the version variants we want to build ultimately.
 We could use YAML to declare all the images we want to build in the pipeline.
 
 .versions.yml
@@ -234,7 +234,7 @@ Default locale: en_US, platform encoding: ANSI_X3.4-1968
 OS name: "linux", version: "5.3.8-200.fc30.x86_64", arch: "amd64", family: "unix"
 ----
 
-NOTE: You can download the source code presented in this blog post from the following Github repository - {repository-url}.
+NOTE: You can download the source code presented in this blog post from the following Github repository — {repository-url}.
 
 == Conclusion
 
