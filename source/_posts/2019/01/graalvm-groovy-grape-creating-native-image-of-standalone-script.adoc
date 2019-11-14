@@ -13,33 +13,43 @@ cover: /images/graalvm-groovy-bg.jpg
 og_image: /images/og/graalvm-groovy-grape.jpg
 eyeCatchImage: /images/og/graalvm-groovy-grape.jpg
 ---
+:graalvm-url: https://www.graalvm.org/
+:graalvm-version: 19.2.1
+:grape-url: http://docs.groovy-lang.org/latest/html/documentation/grape.html
+:groovy-version: 2.5.8
+:sdkman-url: https://sdkman.io/
+:repository-url: https://github.com/wololock/graalvm-groovy-examples/tree/master/grape-script-example
+:groovy-url: http://groovy-lang.org/
+:previous-blog-post: pass:[{% post_link graalvm-and-groovy-how-to-start previous blog posts %}]
+:substrate-limitations: footnote:[https://github.com/oracle/graal/blob/master/substratevm/LIMITATIONS.md]
 
-https://www.graalvm.org/[GraalVM] 1.0.0-RC11 was released yesterday, and I thought it would be an excellent excuse to play
-around with it a while. I decided to create a simple Groovy script that uses http://docs.groovy-lang.org/latest/html/documentation/grape.html[Grape dependency management]
-system to load an external library and create a standalone native image from it.
-I thought it wouldn't be possible, but luckily - I was wrong.
+The {groovy-url}[Apache Groovy] programming language has extraordinary scripting capabilities.
+When you combine it with the {grape-url}[Grape dependency management system], it turns out that the sky is the limit.
+In one of the {previous-blog-post}, I explained how you can start compiling Groovy code to the native binary files, using GraalVM's `native-image` compiler.
+This time I tried to do the same with the Groovy script that uses Grape to provide an external library to the classpath.
+I thought it won't be possible, but luckily - I was wrong. icon:smile-o[]
 
 ++++
 <!-- more -->
 ++++
 
-NOTE: The source code of the examples explained below can be found here https://github.com/wololock/graalvm-groovy-examples/tree/master/grape-script-example[wololock/graalvm-groovy-examples]
+NOTE: The source code of the examples explained below can be found here {repository-url}[wololock/graalvm-groovy-examples]
 
 == Prerequisites
 
 Let's start with defining runtime environment.
 
-- *GraalVM* 1.0.0-RC11 (the most recent version available while writing this blog post)
-- *Groovy* 2.5.2
+- *GraalVM* `{graalvm-version}`
+- *Groovy* `{groovy-version}`
 
-NOTE: I use a great command line tool called https://sdkman.io/[SDKMAN!] to install both, GraalVM JDK and Groovy library.
-It allows me to install GraalVM with the following command: `sdk install java 1.0.0-rc-11-grl` and then I can switch to this
-Java version for current shell session with `sdk use java 1.0.0-rc-11-grl`.
+NOTE: I use a great command line tool called {sdkman-url}[SDKMAN!] to install both, GraalVM JDK and Groovy library.
+It allows me to install GraalVM with the following command: `sdk install java {graalvm-version}-grl` and then I can switch to this
+Java version for current shell session with `sdk use java {graalvm-version}-grl`.
 
 == The code
 
-In this article, I will use a reasonably simple Groovy script. This script expects a single command line
-argument - a website URL, and it displays to the console the information about how many links given
+In this article, I will use a reasonably simple Groovy script. It expects a single command line
+argument — a website URL, and it displays to the console the information about how many links given
 website contains. Nothing fancy, but you probably see how we could extend this example to do something
 more useful.
 
@@ -63,18 +73,18 @@ We can run it and see how much time it took to produce the output.
 
 [source,bash]
 ----
-> time groovy CountLinks.groovy https://e.printstacktrace.blog
+$ time groovy CountLinks.groovy https://e.printstacktrace.blog
 Website https://e.printstacktrace.blog contains 95 links.
 groovy CountLinks.groovy https://e.printstacktrace.blog  6,29s user 0,26s system 390% cpu 1,677 total
 ----
 
 It took around *1.7 seconds* to produce the result. Quite long, especially for a script that does not do
-much work.  We can assume that network communication consumed around 200 milliseconds,
+much of a work.  We can assume that network communication consumed around 200 milliseconds,
 according to `curl` results.
 
 [source,bash]
 ----
-> time curl -o /tmp/output "https://e.printstacktrace.blog"
+$ time curl -o /tmp/output "https://e.printstacktrace.blog"
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100 23256    0 23256    0     0  23256      0 --:--:-- --:--:-- --:--:--  118k
@@ -84,9 +94,9 @@ curl -o /tmp/output "https://e.printstacktrace.blog"  0,02s user 0,01s system 10
 It looks like that starting JVM and running Grape dependency manager takes around 1.5 seconds in this case.
 Let's try to improve the performance by executing our script as a Java compiled class.
 
-== Compiling script to Java bytecode
+== Compiling script to the Java bytecode
 
-We need to explain one important thing. Grape dependency manager has some limitationsfootnote:[https://github.com/oracle/graal/blob/master/substratevm/LIMITATIONS.md], and it does not work without
+We need to explain one important thing. Grape dependency manager has some limitations{substrate-limitations}, and it does not work without
 Groovy class loader. There is a configuration annotation called `@GrabConfig(systemClassLoader = true)`, but it does not
 have any effect when we compile the script to a Java bytecode class file. A script containing this annotation
 generates the same bytecode as the one that misses it. If this annotation had any effect when running compiled
@@ -94,9 +104,9 @@ bytecode as a Java program, then we could use `-Djava.system.class.loader` to sp
 
 Here is the full Java command (with configured classpath) and the error Grape library throws because of the invalid class loader:
 
-[source,bash]
+[source,bash,subs="verbatim,attributes"]
 ----
-> java -Djava.system.class.loader=groovy.lang.GroovyClassLoader -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/2.5.2/groovy-2.5.2.jar:$HOME/.m2/repository/org/apache/ivy/ivy/2.4.0/ivy-2.4.0.jar" CountLinks https://e.printstacktrace.blog
+$ java -Djava.system.class.loader=groovy.lang.GroovyClassLoader -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/{groovy-version}/groovy-{groovy-version}.jar:$HOME/.m2/repository/org/apache/ivy/ivy/2.4.0/ivy-2.4.0.jar" CountLinks https://e.printstacktrace.blog
 
 Exception in thread "main" java.lang.ExceptionInInitializerError
 Caused by: java.lang.RuntimeException: No suitable ClassLoader found for grab
@@ -113,29 +123,31 @@ Caused by: java.lang.RuntimeException: No suitable ClassLoader found for grab
 	at CountLinks.<clinit>(CountLinks.groovy)
 ----
 
-However, there is workaround we can apply. We can turn off Grape dependency manager with `-Dgroovy.grape.enabled=false`
-option and we can add Jsoup library JAR file to the classpath manually instead. Let's give it a shot and see what happens.
+However, there is a workaround we can apply. We can turn off Grape's dependency manager with `-Dgroovy.grape.enabled=false`
+option, and we can add Jsoup library JAR file to the classpath manually instead. Let's give it a shot and see what happens.
 
-[source,bash]
+[source,bash,subs="verbatim,attributes"]
 ----
-java -Dgroovy.grape.enable=false -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/2.5.2/groovy-2.5.2.jar:$HOME/.groovy/grapes/org.jsoup/jsoup/jars/jsoup-1.11.3.jar" CountLinks https://e.printstacktrace.blog
+$ java -Dgroovy.grape.enable=false -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/{groovy-version}groovy-{groovy-version}.jar:$HOME/.groovy/grapes/org.jsoup/jsoup/jars/jsoup-1.11.3.jar" CountLinks https://e.printstacktrace.blog
 
 Website https://e.printstacktrace.blog contains 95 links.
 ----
 
-In this case, we only added `groovy-all-2.5.2.jar` and `jsoup-1.11.3.jar` to execute the script successfully. Measuring
+In this case, we only added `groovy-all-{groovy-version}.jar` and `jsoup-1.11.3.jar` to execute the script successfully. Measuring
 execution time of the compiled Java program without Grape dependency manager shown that it takes around *1 second* in
 average to produce the same output as it was before. We still suffer from JVM boot time, but we can improve in this
 area as well. It's time to create GraalVM native image.
 
 == Creating GraalVM native image
 
-Let's use the existing CountLinks.class file to create a GraalVM native image from it. We need two JSON files
+Let's use the existing `CountLinks.class` file to create a GraalVM native image from it. We need two JSON files
 containing reflection configuration for GraalVM. The first one https://gist.github.com/wololock/e99d748e724bf5ae6ce930c1b8cb9a90[can be found here], and it contains a configuration
-of all dynamically generated runtime methods for Groovy 2.5.2. The second one contains only Groovy
+of all dynamically generated runtime methods for Groovy {groovy-version}. The second one contains only Groovy
 script class we created.
 
 TIP: You can also generate `dgm.json` file on your own https://gist.github.com/wololock/ac83a8196a8252fbbaacf4ac84e10b36[using the following Groovy script].
+
+NOTE: I would recommend using `native-image-agent` as explained in the previous blog post. It makes generating reflections JSON as easy as running a simple Java application.
 
 .src/countlinks.json
 [source,json]
@@ -152,16 +164,18 @@ TIP: You can also generate `dgm.json` file on your own https://gist.github.com/w
 ----
 
 .Creating native image
-[source,bash]
+[source,bash,subs="verbatim,attributes"]
 ----
-> native-image -Dgroovy.grape.enable=false \
-    --enable-url-protocols=https \
-    --allow-incomplete-classpath \
-    -H:+AllowVMInspection \
-    -H:+ReportUnsupportedElementsAtRuntime \
-    -H:ReflectionConfigurationFiles=dgm.json,countlinks.json \
+$ native-image -Dgroovy.grape.enable=false \
     --no-server \
-    -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/2.5.2/groovy-2.5.2.jar:$HOME/.groovy/grapes/org.jsoup/jsoup/jars/jsoup-1.11.3.jar" \
+    --allow-incomplete-classpath \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    -H:ConfigurationFileDirectories=out/conf/ \
+    --enable-url-protocols=http,https \
+    -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/{groovy-version}/groovy-{groovy-version}.jar:$HOME/.groovy/grapes/org.jsoup/jsoup/jars/jsoup-1.11.3.jar" \
     CountLinks
 
 [countlinks:305]    classlist:   2,110.17 ms
@@ -185,7 +199,7 @@ The native image generation succeeds. Let's run it.
 
 [source,bash]
 ----
-> ./countlinks https://e.printstacktrace.blog
+$ ./countlinks https://e.printstacktrace.blog
 
 Exception in thread "main" groovy.lang.MissingMethodException: No signature of method: static org.codehaus.groovy.runtime.InvokerHelper.runScript() is applicable for argument types: (Class, [Ljava.lang.String;) values: [class CountLinks, [https://e.printstacktrace.blog]]
 	at groovy.lang.MetaClassImpl.invokeStaticMissingMethod(MetaClassImpl.java:1528)
@@ -215,7 +229,7 @@ Let's recompile the code using compiler configuration script.
 
 [source,bash]
 ----
-> groovyc --configscript=compiler.groovy CountLinks.groovy
+$ groovyc --configscript=compiler.groovy CountLinks.groovy
 
 org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
 CountLinks.groovy: 7: [Static type checking] - The variable [args] is undeclared.
@@ -250,25 +264,27 @@ Before we create a native image, let's run this statically compiled Groovy scrip
 if it makes any difference comparing to the previous example. It is not a bulletproof benchmark, but it
 looks like the new bytecode executes in around 830 milliseconds.
 
-[source,bash]
+[source,bash,subs="verbatim,attributes"]
 ----
-> time java -Dgroovy.grape.enable=false -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/2.5.2/groovy-2.5.2.jar:$HOME/.groovy/grapes/org.jsoup/jsoup/jars/jsoup-1.11.3.jar" CountLinks https://e.printstacktrace.blog
+$ time java -Dgroovy.grape.enable=false -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/{groovy-version}/groovy-{groovy-version}.jar:$HOME/.groovy/grapes/org.jsoup/jsoup/jars/jsoup-1.11.3.jar" CountLinks https://e.printstacktrace.blog
 Website https://e.printstacktrace.blog contains 95 links.
 java -Dgroovy.grape.enable=false -cp  CountLinks   2,59s user 0,13s system 330% cpu 0,823 total
 ----
 
 Let's recreate the native image.
 
-[source,bash]
+[source,bash,subs="verbatim,attributes"]
 ----
-> native-image -Dgroovy.grape.enable=false \
-    --enable-url-protocols=https \
-    --allow-incomplete-classpath \
-    -H:+AllowVMInspection \
-    -H:+ReportUnsupportedElementsAtRuntime \
-    -H:ReflectionConfigurationFiles=dgm.json,countlinks.json \
+$ native-image -Dgroovy.grape.enable=false \
     --no-server \
-    -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/2.5.2/groovy-2.5.2.jar:$HOME/.groovy/grapes/org.jsoup/jsoup/jars/jsoup-1.11.3.jar" \
+    --allow-incomplete-classpath \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    -H:ConfigurationFileDirectories=out/conf/ \
+    --enable-url-protocols=http,https \
+    -cp ".:$HOME/.m2/repository/org/codehaus/groovy/groovy/{groovy-version}/groovy-{groovy-version}.jar:$HOME/.groovy/grapes/org.jsoup/jsoup/jars/jsoup-1.11.3.jar" \
     CountLinks
 
 [countlinks:17259]    classlist:   1,989.96 ms
@@ -292,7 +308,7 @@ And let's run it.
 
 [source,text]
 ----
-> time ./countlinks https://e.printstacktrace.blog
+$ time ./countlinks https://e.printstacktrace.blog
 
 WARNING: The sunec native library, required by the SunEC provider, could not be loaded. This library is usually shipped as part of the JDK and can be found under <JAVA_HOME>/jre/lib/<platform>/libsunec.so. It is loaded at run time via System.loadLibrary("sunec"), the first time services from SunEC are accessed. To use this provider's services the java.library.path system property needs to be set accordingly to point to a location that contains libsunec.so. Note that if java.library.path is not set it defaults to the current working directory.
 Exception in thread "main" org.codehaus.groovy.runtime.InvokerInvocationException: java.lang.UnsatisfiedLinkError: sun.security.ec.ECDSASignature.verifySignedDigest([B[B[B[B)Z [symbol: Java_sun_security_ec_ECDSASignature_verifySignedDigest or Java_sun_security_ec_ECDSASignature_verifySignedDigest___3B_3B_3B_3B]
@@ -317,7 +333,7 @@ line, and we are good to go.
 
 [source,bash]
 ----
-> time ./countlinks -Djava.library.path=$JAVA_HOME/jre/lib/amd64 https://e.printstacktrace.blog
+$ time ./countlinks -Djava.library.path=$JAVA_HOME/jre/lib/amd64 https://e.printstacktrace.blog
 Website https://e.printstacktrace.blog contains 95 links.
 ./countlinks -Djava.library.path=$JAVA_HOME/jre/lib/amd64   0,02s user 0,01s system 18% cpu 0,196 total
 ----
@@ -338,11 +354,11 @@ Java program, or we can't invoke dynamic Groovy script in the GraalVM, we can st
 generate a standalone native image to remove the cost of the JVM boot and Grape dependency check.
 
 Of course, these benefits don't come without a cost. The size of the generated native image is 50 MB, while the total
-size of the Groovy script and the two JAR dependencies it uses is around 5,6 MB. Also, the Groovy script you may want
+size of the Groovy script, and the two JAR dependencies it uses is around 5,6 MB. Also, the Groovy script you may want
 to compile to the native image might require some reworking to make it compatible with static compilation. So for some
 of the scripts, this might be not possible to do.
 
-I hope you've enjoyed reading this article and you've learned something useful from it. Please share your thoughts in
+I hope you've enjoyed reading this article, and you've learned something useful from it. Please share your thoughts in
 the comments section below. I would love to hear your opinion.
 
 NOTE: Continue reading - +++{% post_link graalvm-native-image-inside-docker-container-does-it-make-sense GraalVM native image inside docker container - does it make sense? %}+++
