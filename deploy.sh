@@ -13,4 +13,4 @@ cd ../
 
 # Run deployment
 hexo clean
-hexo --silent deploy >/dev/null
+hexo deploy
