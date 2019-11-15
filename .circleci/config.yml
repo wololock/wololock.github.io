@@ -1,9 +1,6 @@
-version: 2
+version: 2.1
 jobs:
   build:
-    branches:
-      ignore:
-        - master
     docker:
       - image: circleci/node:10
     steps:
@@ -28,12 +25,25 @@ jobs:
       - run:
           name: Generate blog
           command: hexo generate
+      - add_ssh_keys:
+          fingerprints:
+            - "1d:0c:ea:28:8a:4f:f0:5d:98:e1:ca:93:0f:38:d6:ab"
       - deploy:
           name: Deploy website
           command: |
-            if [ "${CIRCLE_BRANCH}" == "circleci" ]; then
+            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
               git config --global user.name "Circle CI"
               git config --global user.email "bot@circleci.com"
-              sed -i'' "s~git@github.com:wololock/wololock.github.io.git~https://${GH_TOKEN}:x-oauth-basic@github.com/wololock/wololock.github.io.git~" _config.yml
               sh deploy.sh
             fi
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore:
+                - master
+                - gh-pages

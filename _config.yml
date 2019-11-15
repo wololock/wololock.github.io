@@ -31,6 +31,9 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+  - ".circleci/*"
+include:
+  - ".circleci/config.yml"
 
 # Writing
 new_post_name: :year/:month/:title.adoc # File name of new posts
@@ -91,6 +94,7 @@ deploy:
   type: git
   repo: git@github.com:wololock/wololock.github.io.git
   branch: master
+  ignore_hidden: false
 
 all_minifier: true
 
