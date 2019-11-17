@@ -60,7 +60,7 @@ Now when you know, what was the reason to migrate to CircleCI, let's take a clos
 To set up CircleCI, you need to create a file `.circleci/config.yml` in your root folder.
 Here is what my configuration looks like.
 
-..circleci/config.yml
+..circleci/config.yml (https://github.com/wololock/wololock.github.io/blob/develop/.circleci/config.yml[source])
 [source,yaml]
 ----
 {% raw %}version: 2.1
@@ -219,7 +219,7 @@ To stop building the `master` branch, we need to put the configuration file into
 Let's start by creating a simple configuration that ignores the `master` branch.
 Here is the `source/.circleci/config.yml` file we want to put into the branch.
 
-.source/.circleci/config.yml
+.source/.circleci/config.yml (https://github.com/wololock/wololock.github.io/blob/develop/source/.circleci/config.yml[source])
 [source,yaml]
 ----
 include::source/.circleci/config.yml[]
@@ -231,7 +231,7 @@ Without extra configuration, Hexo would skip generating files from the hidden di
 Also, we need to turn off rendering YAML files to JSON files.
 Add the following two options to your `_config.yml` file.
 
-._config.yml
+._config.yml (https://github.com/wololock/wololock.github.io/blob/develop/_config.yml#L33-L36[source])
 [source,yaml]
 ----
 skip_render:
@@ -244,7 +244,7 @@ There is one last thing we need to do.
 Hexo's Git deployer ignores hidden files by default.
 We need to change that, so the `.circleci/config.yml` file can be deployed to GitHub.
 
-._config.yml
+._config.yml (https://github.com/wololock/wololock.github.io/blob/develop/_config.yml#L93-L97[source])
 [source,yaml,subs="quotes"]
 ----
 deploy:
