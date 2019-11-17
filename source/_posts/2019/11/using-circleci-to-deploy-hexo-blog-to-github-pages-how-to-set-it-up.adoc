@@ -1,0 +1,273 @@
+---
+title: Using CircleCI to deploy Hexo blog to GitHub Pages - how to set it up?
+date: 2019-11-17 12:25:50
+updated: 2019-11-17 12:25:50
+tags:
+    - hexo
+    - circleci
+    - travisci
+    - github
+    - blogging
+    - cicd
+categories:
+    - How to
+cover: /images/circleci-bg.jpg
+og_image: /images/og/circleci-hexo-githubpages.jpg
+eyeCatchImage: /images/og/circleci-hexo-githubpages.jpg
+---
+:travisci-url: https://travis-ci.org/wololock/wololock.github.io/builds
+:circleci: https://circleci.com/
+
+I was using Travis CI to execute {travisci-url}[271 builds] and deployments of this blog.
+Last Friday, I decided to experiment with {circleci}[CircleCI] and see if this could be a viable alternative to my current solution.
+In this blog post, I will explain why I decided to switch, and how to set up CircleCI to deploy Hexo blog to the GitHub Pages without much hustle.
+
+++++
+<!-- more -->
+++++
+
+== Why moving away from Travis CI?
+
+Travis CI is a great continuous integration server for any open source project.
+It's *easy* to set up and use.
+It integrates with many *popular building tools* in a few steps.
+And the dashboard UI is *clean* and *simple*.
+
+However, I have found two major reasons to start considering alternative solutions.
+Firstly, the overall build and deployment times regularly kept increasing.
+The recent builds took 3 minutes 30 seconds, on average.
+The main reason for that was the time needed to set up a NodeJS build environment.
+The same `hexo deploy` command executed from my local dev environment required less than 40 seconds to complete.
+
+Secondly, Travis CI *does not support SSH keys* for public projects.
+The only way to push changes back to the GitHub repository is such a circumstance was to use one of the Personal Access Tokens.
+The token grants write permission to not only your Hexo blog repository but to all repositories your GitHub account has access to.
+Travis CI encrypts environment variables for security reasons.
+However, if someone hijacks your token (in one way or another), you are in trouble.
+
+== Why CircleCI?
+
+I made some experiments, and it turned out that CircleCI could solve both problems.
+The build and deploy pipeline runs more than two times faster (1 minute and 30 seconds on average).
+CircleCI supports SSH keys I could use to grant write permissions to a single GitHub repository.
+
+== How to set up CircleCI to deploy Hexo blog?
+
+Now when you know, what was the reason to migrate to CircleCI, let's take a closer look at how to set the pipeline.
+
+=== Configuration
+
+To set up CircleCI, you need to create a file `.circleci/config.yml` in your root folder.
+Here is what my configuration looks like.
+
+..circleci/config.yml
+[source,yaml]
+----
+{% raw %}version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run:
+          name: Install Hexo CLI
+          command: |
+            sudo npm install hexo-cli -g
+            npm install hexo --save
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install NPM packages
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Generate blog
+          command: hexo generate
+      - persist_to_workspace:
+          root: public
+          paths:
+            - "*"
+  deploy:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - attach_workspace:
+          at: public
+      - run:
+          name: Install Hexo CLI
+          command: |
+            sudo npm install hexo-cli -g
+            npm install hexo --save
+      - add_ssh_keys:
+          fingerprints:
+            - "1d:0c:ea:28:8a:4f:f0:5d:98:e1:ca:93:0f:38:d6:ab"
+      - deploy:
+          name: Deploy website
+          command: |
+            git config --global user.name "Circle CI"
+            git config --global user.email "bot@circleci.com"
+            sh deploy.sh
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore:
+                - master
+                - gh-pages
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: develop
+{% endraw %}
+----
+
+
+There are two jobs I defined in the pipeline — the build job, and the deploy job.
+The first one gets executed on every commit.
+It installs all required dependencies in the container and generates the Hexo blog from the source code.
+It also uses the `persist_to_workspace` step.
+We use it to attach persisted workspace in the "deploy" job.
+
+The second job performs the deployment.
+It gets executed only from the `develop` branch, and it requires the "Build" job to succeed first.
+Here we also use a fingerprint of the SSH key used to authenticate with the GitHub repository.
+
+== What SSH key to use?
+
+Don't use your personal SSH key.
+Generate a new one with an `ssh-keygen` tool instead.
+
+NOTE: Be careful when you generate a new key.
+It will ask you where to save the key file - do not override the default `~/.ssh/id_rsa` one.
+This is your personal key, and you don't want to lose that one.
+Also, use an empty passphrase, so there is no prompt for the password needed.
+
+[source,bash]
+----
+$ ssh-keygen -t rsa -m PEM -C "bot@circleci.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/wololock/.ssh/id_rsa): /tmp/this-key-is-not-used-anywhere-lol
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /tmp/this-key-is-not-used-anywhere-lol.
+Your public key has been saved in /tmp/this-key-is-not-used-anywhere-lol.pub.
+The key fingerprint is:
+SHA256:3K/RQpfR0sdJ4hv78JL/VSB10up0tuzTZnpvRodVtV0 bot@circleci.com
+The key's randomart image is:
++---[RSA 3072]----+
+|             .ooE|
+|            .+o+B|
+|            +o++=|
+|       . .   =*o+|
+|        S o o*.=o|
+|         . +  Bo+|
+|          o oo.++|
+|           +  ooO|
+|          .   .O*|
++----[SHA256]-----+
+----
+
+Setting up CircleCI SSH permissions
+Go to your CircleCI project settings.
+You will find the "SSH Permissions" page under the "Permissions" label on the left side.
+Click on the "Add SSH Key" button.
+For the hostname, use `github.com` and paste your newly generated private key.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/circleci-new-ssh-key.jpg]
+image::/images/circleci-new-ssh-key.jpg[]
+--
+
+After adding the key, you will see its fingerprint on the SSH keys list.
+
+== Setting up GitHub deployment key
+
+Go to your GitHub project's settings page, and then go to "Deploy keys" section.
+Click on the "Add deploy key" button located in the top right corner.
+Use something like "CircleCI Deployer" in the title field, and paste your public key to the text area.
+Also, don't forget to check the "Allow write access" checkbox.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/circleci-github-deploy-key.jpg]
+image::/images/circleci-github-deploy-key.jpg[]
+--
+
+== How to skip `master` or `gh-pages` branches?
+
+We are not done yet.
+If you run the CircleCI pipeline, you will see that the changes pushed back to the `master` branch executed the build, and it failed.
+You need to know that the branch that stores the generated blog does not contain any CircleCI configuration file.
+To stop building the `master` branch, we need to put the configuration file into that branch as well.
+
+Let's start by creating a simple configuration that ignores the `master` branch.
+Here is the `source/.circleci/config.yml` file we want to put into the branch.
+
+.source/.circleci/config.yml
+[source,yaml]
+----
+include::source/.circleci/config.yml[]
+----
+
+We are almost there.
+As the last step, we need to update Hexo's configuration file.
+Without extra configuration, Hexo would skip generating files from the hidden directories.
+Also, we need to turn off rendering YAML files to JSON files.
+Add the following two options to your `_config.yml` file.
+
+._config.yml
+[source,yaml]
+----
+skip_render:
+  - ".circleci/*"
+include:
+  - ".circleci/config.yml"
+----
+
+There is one last thing we need to do.
+Hexo's Git deployer ignores hidden files by default.
+We need to change that, so the `.circleci/config.yml` file can be deployed to GitHub.
+
+._config.yml
+[source,yaml,subs="quotes"]
+----
+deploy:
+  type: git
+  repo: git@github.com:wololock/wololock.github.io.git
+  branch: master
+  *ignore_hidden: false*
+----
+
+And that's it.
+We can commit changes and add our GitHub repository as a project in the CircleCI.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/circleci-workflow.jpg]
+image::/images/circleci-workflow.jpg[]
+--
+
+== Conclusion
+
+That's all for today.
+I hope you have learned something useful from this blog post.
+Here is my question to you: what continuous integration server would you use to deploy a generated static site, and why?
+Please leave a comment down below.
+See you next time!
