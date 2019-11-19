@@ -1,7 +1,7 @@
 ---
 title: Non-blocking and async Micronaut - quick start (part 1)
 date: 2018-10-25 02:33:37
-updated: 2018-10-25 02:33:37
+updated: 2019-11-19 12:21:07
 tags:
     - micronaut
     - java
@@ -9,28 +9,32 @@ tags:
     - async
     - reactive-programming
     - rxjava
+    - netty
 categories:
     - Micronaut Cookbook
 cover: /img/micronaut-bg.jpg
 og_image: /images/og/micronaut-nonblocking-part1.jpg
 eyeCatchImage: /images/og/micronaut-nonblocking-part1.jpg
 ---
+:micronaut-url: https://micronaut.io/
+:micronaut-docs: https://docs.micronaut.io/latest/guide/index.html
+:netty-url: https://netty.io/
 
-If you haven't heard about http://micronaut.io/[Micronaut] you have been probably just woken up from deep hibernation. No&nbsp;worries, I'm joking :)
-Anyway, Micronaut 1.0 GA https://twitter.com/micronautfw/status/1054754150292967424[was released yesterday] and it is
-the right time to play around with it a bit. In this article I would like to show you how easy it is to handle HTTP requests
-in a non-blocking manner, using just a single computation thread. Interested? Let's start!
+{micronaut-url}[Micronaut] framework inventors says it is designed for building modern microservice applications.
+It supports reactive and non-blocking HTTP requests processing thanks to a powerful network application framework - {netty-url}[Netty].
+In this blog post I will give you a quick and practical introduction to a asynchronous HTTP requests processing using a simple demo application.
+No more talking, it's time to make our hands dirty with some Micronaut application code! icon:smile-o[]
 
 ++++
 <!-- more -->
 ++++
 
 WARNING: This is not a introduction to Micronaut. If you are not familiar with the framework, consider reading official
-https://docs.micronaut.io/latest/guide/index.html[User Guide] first.
+{micronaut-docs}[User Guide] first.
 
 == Introduction
 
-In this article I would like to show you a very simple example that simulates communication between two remote services:
+In this article, we are going to build a demo application that mimics communication between two remote services, that for simplicity are part of the same application:
 
 * *product-service* exposes a single endpoint `(GET) /product/{id}` which returns specific product information. We will
 simulate high latency (fixed on different products) - the idea is that this service might communicate with `n` different
@@ -44,111 +48,126 @@ NOTE: This example was inspired by demo I made for my https://github.com/wololoc
 
 
 
-Micronaut is shipped with handy command line tool `mn`:
+Micronaut is shipped with a handy command line tool `mn`:
 
-[source,bash]
+[source,text,subs="quotes"]
 ----
-% mn --help
-Usage: mn [-hnvVx] [COMMAND]
+$ mn --version
+[.color-purple]#|# Micronaut Version: 1.2.6
+[.color-purple]#|# JVM Version: 1.8.0_201
+
+$ mn --help
+Resolving dependencies..
+[.underline]**Usage:** *mn* &#91;[.color-yellow]##-hnvVx##&#93; [COMMAND]
 Micronaut CLI command line interface for generating projects and services.
 Commonly used commands are:
-  create-app NAME
-  create-cli-app NAME
-  create-federation NAME --services SERVICE_NAME[,SERVICE_NAME]...
-  create-function NAME
+  *create-app* [.color-yellow]##NAME##
+  *create-cli-app* [.color-yellow]##NAME##
+  *create-federation* [.color-yellow]##NAME --services SERVICE_NAME[,SERVICE_NAME]...##
+  *create-function* [.color-yellow]##NAME##
 
-Options:
-  -h, --help           Show this help message and exit.
-  -n, --plain-output   Use plain text instead of ANSI colors and styles.
-  -v, --verbose        Create verbose output.
-  -V, --version        Print version information and exit.
-  -x, --stacktrace     Show full stack trace when exceptions occur.
+[.underline]**Options:**
+  [.color-yellow]##-h, --help##           Show this help message and exit.
+  [.color-yellow]##-n, --plain-output##   Use plain text instead of ANSI colors and styles.
+  [.color-yellow]##-v, --verbose##        Create verbose output.
+  [.color-yellow]##-V, --version##        Print version information and exit.
+  [.color-yellow]##-x, --stacktrace##     Show full stack trace when exceptions occur.
 
-Commands:
-  create-app         Creates an application
-  create-cli-app     Creates a command line application
-  create-federation  Creates a federation of services
-  create-function    Creates a serverless function application
-  create-profile     Creates a profile
-  help               Prints help information for a specific command
-  list-profiles      Lists the available profiles
-  profile-info       Display information about a given profile
+[.underline]**Commands:**
+  *create-app*         Creates an application
+  *create-cli-app*     Creates a command line application
+  *create-federation*  Creates a federation of services
+  *create-function*    Creates a serverless function application
+  *create-profile*     Creates a profile
+  *help*               Prints help information for a specific command
+  *list-profiles*      Lists the available profiles
+  *profile-info*       Display information about a given profile
+
 ----
 
 NOTE: You can install Micronaut CLI using https://sdkman.io/sdks#micronaut[SDKMAN!] - `sdk install micronaut`
 
 Now we are able to create Micronaut application skeleton:
 
-[source,bash]
+[source,text,subs="quotes"]
 ----
-mn create-app micronaut-nonblocking-async-demo
+$ mn create-app micronaut-nonblocking-async-demo --lang=java --features=spock
+[.color-purple]#|# Generating Java project...
+[.color-purple]#|# Application created at /tmp/micronaut-nonblocking-async-demo
 ----
 
-It creates a new application using Gradle build tool (switching to Maven is possible if needed). After applying a few
-small changes our final `build.gradle` file looks like this:
+It creates a new application using Gradle build tool (switching to Maven is possible if needed).
+We want to use Java (`--lang=java`) and Spock testing framework (`--features=spock`) instead of JUnit.
+After applying a few  small changes our final `build.gradle` file looks like this:
 
 .build.gradle
 [source,groovy]
 ----
 plugins {
-    id "io.spring.dependency-management" version "1.0.6.RELEASE"
-    id "com.github.johnrengelman.shadow" version "4.0.0"
-    id "net.ltgt.apt-eclipse" version "0.18"
-    id "net.ltgt.apt-idea" version "0.18"
+    id "com.github.johnrengelman.shadow" version "5.0.0"
+    id "application"
+    id "net.ltgt.apt-eclipse" version "0.21"
+    id "groovy"
+    id "jacoco"
 }
 
-apply plugin: "application"
-apply plugin: "java"
-apply plugin: "groovy"
-apply plugin: "jacoco"
-
-version "0.1"
-group "com.github.wololock.micronaut"
+version "0.2.0"
+group "micronaut.nonblocking.async.demo"
 
 repositories {
-    mavenLocal()
     mavenCentral()
     maven { url "https://jcenter.bintray.com" }
 }
 
-dependencyManagement {
-    imports {
-        mavenBom 'io.micronaut:micronaut-bom:1.0.0'
-    }
+configurations {
+    // for dependencies that are needed for development only
+    developmentOnly
 }
 
 dependencies {
+    annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-validation"
-    compile "io.micronaut:micronaut-inject"
-    compile "io.micronaut:micronaut-validation"
-    compile "io.micronaut:micronaut-runtime"
-    compile "io.micronaut:micronaut-http-client"
-    compile "io.micronaut:micronaut-http-server-netty"
-    compileOnly "io.micronaut:micronaut-inject-java"
-    runtime "ch.qos.logback:logback-classic:1.2.3"
-    testCompile "io.micronaut:micronaut-inject-java"
-    testCompile("org.spockframework:spock-core:1.1-groovy-2.4")
+    implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
+    implementation "io.micronaut:micronaut-http-client"
+    implementation "io.micronaut:micronaut-inject"
+    implementation "io.micronaut:micronaut-validation"
+    implementation "io.micronaut:micronaut-runtime"
+    implementation "io.micronaut:micronaut-http-server-netty"
+    runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
+    testAnnotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
+    testAnnotationProcessor "io.micronaut:micronaut-inject-java"
+    testImplementation platform("io.micronaut:micronaut-bom:$micronautVersion")
+    testImplementation "org.junit.jupiter:junit-jupiter-api"
+    testImplementation "io.micronaut.test:micronaut-test-junit5"
+    testImplementation("org.spockframework:spock-core") {
+        exclude group: "org.codehaus.groovy", module: "groovy-all"
+    }
+    testImplementation "io.micronaut:micronaut-inject-groovy"
+    testImplementation "io.micronaut.test:micronaut-test-spock"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.5.0"
+}
+
+test.classpath += configurations.developmentOnly
+
+mainClassName = "micronaut.nonblocking.async.demo.Application"
+// use JUnit 5 platform
+test {
+    useJUnitPlatform()
 }
 
 shadowJar {
     mergeServiceFiles()
 }
 
-run.jvmArgs('-noverify', '-XX:TieredStopAtLevel=1')
-
-mainClassName = "com.github.wololock.micronaut.Application"
-compileJava.options.compilerArgs += '-parameters'
-compileTestJava.options.compilerArgs += '-parameters'
-
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled true
-    }
+run.classpath += configurations.developmentOnly
+run.jvmArgs('-noverify', '-XX:TieredStopAtLevel=1', '-Dcom.sun.management.jmxremote')
+tasks.withType(JavaCompile){
+    options.encoding = "UTF-8"
+    options.compilerArgs.add('-parameters')
 }
 
-check.dependsOn jacocoTestReport
 ----
 
 == Implementing product-service
@@ -308,7 +327,7 @@ Now it is time to run our service and see it in action:
 
 [source,bash]
 ----
-gradle run
+$ gradle run
 ----
 
 After about a second we will information that our server application is running:
@@ -320,9 +339,9 @@ After about a second we will information that our server application is running:
 
 Let's execute two requests. I will use https://httpie.org/[HTTPie] in below examples:
 
-[source,bash]
+[source,http,subs="quotes"]
 ----
-% http localhost:8080/product/PROD-001
+*$ http localhost:8080/product/PROD-001*
 
 HTTP/1.1 200 OK
 Date: Thu, 25 Oct 2018 01:34:15 GMT
@@ -339,9 +358,9 @@ content-type: application/json
 
 Product with id `PROD-001` returned successfully. Now let's take a look what does the response for non-existing product looks like:
 
-[source,bash]
+[source,http,subs="quotes"]
 ----
-% http localhost:8080/product/PROD-008
+*$ http localhost:8080/product/PROD-008*
 
 HTTP/1.1 404 Not Found
 Date: Thu, 25 Oct 2018 01:35:11 GMT
@@ -395,7 +414,7 @@ to 20 concurrent requests with just a single thread dedicated to handling reques
 
 [source,bash]
 ----
-% siege -c 20 -r 1 http://localhost:8080/product/PROD-003
+$ siege -c 20 -r 1 http://localhost:8080/product/PROD-003
 
 ** SIEGE 4.0.4
 ** Preparing 20 concurrent users for battle.
@@ -497,4 +516,4 @@ implement recommendations-service side and integrate it with product-service end
 I hope you have learned something interesting today. If you are interested in Micronaut, please leave a comment below and let
 me know what kind of topics interest you the most. Stay tuned, and until the next time!
 
-NOTE: Continue reading here - https://e.printstacktrace.blog/2018/10/micronaut-non-blocking-and-async-part-2/[Non-blocking and async Micronaut - quick start (part 2)]
+NOTE: Continue reading here - https://e.printstacktrace.blog/2018/10/micronaut-non-blocking-and-async-part-2/[Non-blocking and async Micronaut — quick start (part 2)]
