@@ -1,7 +1,7 @@
 ---
 title: GraalVM and Groovy - how to start?
 date: 2018-10-03 23:28:49
-updated: 2019-11-07 19:37:16
+updated: 2019-11-22 22:14:49
 tags:
     - groovy
     - graalvm
@@ -47,6 +47,24 @@ We will be using following tools:
 * **Groovy** `{groovy-version}`
 
 TIP: The easiest way to install GraalVM and Groovy is to use https://sdkman.io/[SDKMAN!] command line tool.
+
+[IMPORTANT]
+====
+The `native-image` from *GraalVM* `19.3.0` does not compile this specific Groovy code and fails with the `undefined reference to `JVM_GetMethodTypeAnnotations'`
+and `undefined reference to `JVM_GetMethodParameters'`.
+[source,text]
+----
+/opt/graalvm-ce-java8-19.3.0/jre/lib/libjava.a(Executable.o): In function `Java_java_lang_reflect_Executable_getTypeAnnotationBytes0':
+/opt/jprt/T/P1/225159.buildslave/s/jdk/src/share/native/java/lang/reflect/Executable.c:39: undefined reference to `JVM_GetMethodTypeAnnotations'
+/opt/graalvm-ce-java8-19.3.0/jre/lib/libjava.a(Executable.o): In function `Java_java_lang_reflect_Executable_getParameters0':
+/opt/jprt/T/P1/225159.buildslave/s/jdk/src/share/native/java/lang/reflect/Executable.c:33: undefined reference to `JVM_GetMethodParameters'
+collect2: error: ld returned 1 exit status
+----
+
+It is most probably related to the changes introduced in 19.3.0 to the `native-image` compilerfootnote:[https://www.graalvm.org/docs/release-notes/19_3/#native-image].
+
+The issue was reported here - https://github.com/oracle/graal/issues/1875
+====
 
 Let's make sure we are using correct GraalVM Java distribution.
 
@@ -681,5 +699,6 @@ Here you can find a list of blog posts I found useful when I was working on this
 
 This blog gets updated whenever new version of GraalVM or Groovy gets released. Below you can find a list of all updates.
 
-* [.mark]*2019-11-07*: Updated blog post to *GraalVM* `19.2.1` and *Groovy* `2.5.8`
-* [.mark]*2019-05-11*: Updated blog post to *GraalVM* `19.0.0`
+* [.mark]*2019-11-22*: Added information about problems with *GraalVM* `19.3.0` native image compiler.
+* [.mark]*2019-11-07*: Updated blog post to *GraalVM* `19.2.1` and *Groovy* `2.5.8`.
+* [.mark]*2019-05-11*: Updated blog post to *GraalVM* `19.0.0`.
