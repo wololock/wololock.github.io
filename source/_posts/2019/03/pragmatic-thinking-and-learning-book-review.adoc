@@ -17,6 +17,7 @@ og_image: /images/og/pragmatic-thinking-and-learning.jpg
 eyeCatchImage: /images/og/pragmatic-thinking-and-learning.jpg
 affiliates: true
 ---
+:book-url: https://amzn.to/2UaLwkT
 
 There are books you read once, and you don't plan to read them back again any time soon. However, some books
 are so influential and valuable that when you decide to study them the second time, you realize that it was
@@ -33,7 +34,7 @@ This way you can support the work I do on this blog. Thanks for your understandi
 
 == Introduction
 
-I bought my paperback copy of https://amzn.to/2UaLwkT[_"Pragmatic Thinking and Learning"_, role="ga-track"] book six years ago (March 27th, 2013),
+I bought my paperback copy of {book-url}[_"Pragmatic Thinking and Learning"_, role="ga-track"] book six years ago (March 27th, 2013),
 and it has blown my mind during the first read. It was written by https://twitter.com/PragmaticAndy[Andy Hunt] and was
 published by the https://pragprog.com/[Pragmatic Bookshelf]
 in 2008. It introduced me to the entirely new ways of learning, practicing and crafting technical skills, the
@@ -148,5 +149,5 @@ This book offered me the guidance I needed most at the moment.
 I hope you enjoyed reading this blog post and you have found valuable information in it. Don't hesitate to leave a comment
 below if you have any question related to the book. I tried to express my feelings and opinions about it most
 accurately, but I accept that I might miss something important. Let me know, and I will do my best to help
-you find the answers you are looking for. Or maybe you have also read the https://amzn.to/2UaLwkT[_"Pragmatic Thinking and Learning"_, role="ga-track"]
+you find the answers you are looking for. Or maybe you have also read the {book-url}[_"Pragmatic Thinking and Learning"_, role="ga-track"]
 book and you have a different opinion? Please share it with us. I'd love to hear it from you.

@@ -15,7 +15,7 @@ eyeCatchImage: /images/og/groovy-quicksort.jpg
 ---
 :cracking-coding-interview-url: https://www.goodreads.com/book/show/25707092-cracking-the-coding-interview
 
-I started reading {cracking-coding-interview-url}[_"Cracking the Coding Interview, 6th Edition"_, role="ga-track"] book recently and it inspired me to experiment a bit.
+I started reading {cracking-coding-interview-url}["_&quot;Cracking the Coding Interview, 6th Edition&quot;_", role="ga-track"] book recently and it inspired me to experiment a bit.
 It's been a while since I implemented the quicksort algorithm the last time, and I did that in Haskell.
 I remember some old and imperative implementations in Java, but I never tried to implement it in Groovy.
 Let's give it a try! icon:smile-o[]
