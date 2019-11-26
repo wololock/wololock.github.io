@@ -13,8 +13,10 @@ cover: /images/deep-work-book-review-img2.jpg
 og_image: /images/og/deep-work-book-review.jpg
 eyeCatchImage: /images/og/deep-work-book-review.jpg
 ---
+:book-url: https://www.goodreads.com/book/show/25744928-deep-work
+:cal-newport-url: http://calnewport.com/about/
 
-This is the second blog post in _"Programmer's Bookshelf"_ category, and today I would like to share with you my opinion on the _"Deep Work"_ book by Cal Newport.
+This is the second blog post in _"Programmer's Bookshelf"_ category, and today I would like to share with you my opinion on the {book-url}[_"Deep Work"_, role="ga-track"] book by Cal Newport.
 It's not about programming, but it's still beneficial to any software developer out there.
 
 ++++
@@ -23,7 +25,7 @@ It's not about programming, but it's still beneficial to any software developer 
 
 == Introduction
 
-After first 2 or 3 hours of reading http://calnewport.com/about/[Cal Newport] "Deep Work" I was under the impression that this book is a manifesto against modern world Internet-oriented society. It argues with the tendency of being always online reachable, continuously exposed to gigabytes of poor quality information, and chasing all possible updates, only because we might miss something important. "Deep Work" encourages to take a few steps back, slow down and think what the most important goals in our life are. In the introductory chapter Cal Newport explains: "This book is best described as an attempt to formalize and explain my attraction to depth over shallowness, and to detail the types of strategies that have helped me act on this attraction.". It's important to understand that it is not a silver-bullet or apply-without-questioning kind of book. It's author's view on the deep work, and he explains it from the specific perspective - a computer science professor at Georgetown University.
+After first 2 or 3 hours of reading {cal-newport-url}[Cal Newport] "Deep Work" I was under the impression that this book is a manifesto against modern world Internet-oriented society. It argues with the tendency of being always online reachable, continuously exposed to gigabytes of poor quality information, and chasing all possible updates, only because we might miss something important. "Deep Work" encourages to take a few steps back, slow down and think what the most important goals in our life are. In the introductory chapter Cal Newport explains: "This book is best described as an attempt to formalize and explain my attraction to depth over shallowness, and to detail the types of strategies that have helped me act on this attraction.". It's important to understand that it is not a silver-bullet or apply-without-questioning kind of book. It's author's view on the deep work, and he explains it from the specific perspective - a computer science professor at Georgetown University.
 
 [.text-center]
 --

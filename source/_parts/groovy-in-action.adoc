@@ -19,7 +19,7 @@ If you are looking for **a comprehensive guide** to the Groovy programming langu
 choice for you. I keep this book close to my desk so I can grab it and find interesting part during my daily work.
 
 [.text-center]
-**icon:hand-o-right[] {groovy-in-action-link}[Buy "Groovy In Action, 2nd edition"] icon:hand-o-left[]**
+**icon:hand-o-right[] {groovy-in-action-link}[Buy "Groovy In Action, 2nd edition", role="ga-track"] icon:hand-o-left[]**
 
 [.text-center]
 --

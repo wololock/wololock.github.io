@@ -13,7 +13,8 @@ const opts = {
         idseparator: '-',
         sectids: true,
         'source-highlighter': 'highlight.js',
-        'listing-caption': 'Listing'
+        'listing-caption': 'Listing',
+        linkattrs: true
     }
 };
 

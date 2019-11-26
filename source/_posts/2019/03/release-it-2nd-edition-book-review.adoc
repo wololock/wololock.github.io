@@ -15,6 +15,7 @@ cover: /images/release-it-bg.jpg
 og_image: /images/og/release-it.jpg
 eyeCatchImage: /images/og/release-it.jpg
 ---
+:book-url: https://pragprog.com/book/mnee2/release-it-second-edition
 
 We are software developers.
 Our daily duty is to write programs.
@@ -29,7 +30,7 @@ At some point, the production launch day comes and depending on our level of con
 
 How to build a level of confidence that helps us releasing new versions of the system and preventing heart attacks?
 There is no simple answer, but there are reliable tools, techniques, and patterns every software developer should consider using.
-The book called https://pragprog.com/book/mnee2/release-it-second-edition[_"Release It! 2nd edition: Design and Deploy Production-Ready Software"_] by https://twitter.com/mtnygard[Michael T. Nygard] covers most of them.
+The book called {book-url}[_"Release It! 2nd edition: Design and Deploy Production-Ready Software"_, role="ga-track"] by https://twitter.com/mtnygard[Michael T. Nygard] covers most of them.
 
 == What's inside?
 
