@@ -11,6 +11,71 @@ highlight-aqua = #66cccc
 highlight-blue = #6699cc
 highlight-purple = #cc99cc
 
+.post-tags
+  font-size 1.2rem
+  font-family "Open Sans", "DejaVu Sans", sans
+  font-weight 700
+
+  ul.tags
+    list-style none
+    margin 7px 0
+    padding 0
+
+    li
+      list-style none
+      padding 0
+      margin 5px 15px 5px 0
+
+      &::after
+        content none !important
+
+  a
+    background color-gray
+    border-radius 3px 0 0 3px
+    padding 5px 10px 5px 22px
+    color #fafafa !important
+    text-transform lowercase
+    display inline-block
+    position relative
+    line-height 1.5rem
+
+    &:hover, &:active
+      text-decoration none
+      border-bottom none
+      background color-orange
+      transition ease 0.2s
+      color #333 !important
+
+      &::after
+        border-left-color color-orange
+        transition ease 0.2s
+
+
+    &::before
+      background #ccc
+      border-radius 10px
+      box-shadow inset 0 1px rgba(0, 0, 0, 0.7)
+      content ''
+      height 6px
+      left 10px
+      position absolute
+      width 6px
+      top 10px
+
+    &::after
+      background transparent
+      border-bottom 13px solid transparent
+      border-left 10px solid color-gray
+      border-top 13px solid transparent
+      content ''
+      position absolute
+      right -9px
+      top: -1px
+
+
+
+
+
 article
   .container
     .row
@@ -61,34 +126,9 @@ article
         &.left
           float left
 
-  .post-tags
-    font-size 1.4rem
-    font-family "Open Sans", "DejaVu Sans", sans
-    font-weight 700
-    text-align center
-    padding 3rem 0
-
-    a
-      background color-orange
-      padding 5px 10px
-      color #fafafa
-      text-transform lowercase
-      display inline-block
-      margin 5px
-      border-radius 20px
-      box-shadow #eee 4px 2px 0px
-
-      &:hover, &:active
-        text-decoration none
-        border-bottom none
-        background brand-primary
-        transition ease 0.5s
-        color #fff
-
-
   footer.post-footer
     position relative
-    margin 8rem 0 3rem 0
+    margin 13rem 0 3rem 0
     text-align center
 
     .author

@@ -1,4 +1,4 @@
-mixin post_meta(post)
+mixin post_meta(post,showTags)
     div.post-meta
         ul
             li
@@ -6,5 +6,13 @@ mixin post_meta(post)
             li= readingTime(post.content, 'minutes read', 200)
             li
                 a(href=config.url + url_for(post.path) + "#disqus_thread")="0 Comments"
+
+        if showTags
+            section.post-tags
+                ul.tags
+                    - post.tags.each(function(tag){
+                    li
+                        a.tag.post-meta(href=url_for(tag.path))=tag.name
+                    - })
 
 

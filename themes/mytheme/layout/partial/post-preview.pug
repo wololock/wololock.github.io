@@ -12,6 +12,6 @@ mixin post_preview(post)
                 if post.subtitle
                     h3.post-subtitle!= post.subtitle
         section.post-excerpt!= post.excerpt
-        +post_meta(post)
+        +post_meta(post, false)
         p.post-read-more
             a.btn.btn-default(href=url_for(post.path) + '#more')="Read more →"
