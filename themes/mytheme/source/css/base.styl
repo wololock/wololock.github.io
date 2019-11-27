@@ -36,6 +36,15 @@ td.content > div > p:first-child
 .color-purple
   color #9370db
 
+.color-gold
+  color #cda400
+
+.color-silver
+  color #8c9298
+
+.color-bronze
+  color #c38b5f
+
 .underline
   text-decoration underline
 
@@ -91,6 +100,9 @@ hr.small
   z-index 3
   @extend .sans-serif
 
+  .navbar-right
+    padding-right 20px
+
   .navbar-brand
     font-weight 1000
     font-size 0.85em
@@ -124,7 +136,7 @@ hr.small
       li
         a
           color white
-          padding 20px
+          padding 20px 10px
           &:hover, &:focus
             color white-faded
   @media only screen and (min-width: 1170px)
@@ -746,6 +758,9 @@ ul.checklist
 
 .smaller
   font-size 0.8em
+
+.smallest
+  font-size 0.5em
 
 .text-box-2
   background #f7f7f7
