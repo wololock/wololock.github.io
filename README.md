@@ -9,6 +9,8 @@
 
 This repository contains a source code of my blog [https://e.printstacktrace.blog](https://e.printstacktrace.blog)
 
+![](https://i.imgur.com/SmwJVRyl.png)
+
 ## Running local blog using Docker
 
 You can start Hexo server using Docker container with the following command:
@@ -37,8 +39,6 @@ INFO  Config based on 2 files
 INFO  Start processing
 INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.
 ```
-
-![](https://i.imgur.com/SmwJVRyl.png)
 
 
 
