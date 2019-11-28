@@ -55,7 +55,7 @@ jobs:
     steps:
       - run:
           name: Install BLC
-          command: sudo npm install -g blc
+          command: sudo npm install -g broken-link-checker
       - run:
           name: Check broken internal links
           command: blc https://e.printstacktrace.blog -roe
