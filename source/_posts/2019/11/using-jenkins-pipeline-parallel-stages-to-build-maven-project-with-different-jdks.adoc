@@ -1,0 +1,175 @@
+---
+title: Using Jenkins Pipeline parallel stages to build Maven project with different JDKs
+date: 2019-11-28 21:53:10
+updated: 2019-11-28 21:53:10
+tags:
+- java
+- maven
+- jenkins
+- jenkins-pipeline
+- cicd
+- sdkman
+- docker
+categories:
+- Jenkins Pipeline Cookbook
+cover: /images/jenkins-bg2.jpg
+og_image: /images/og/jenkins-pipeline-maven-parallel.jpg
+eyeCatchImage: /images/og/jenkins-pipeline-maven-parallel.jpg
+---
+:last-article: pass:[{% post_link building-java-and-maven-docker-images-using-parallelized-jenkins-pipeline-and-sdkman "the latest blog posts" %}]
+:repository-url: https://github.com/wololock/simple-java-maven-app
+:jenkins-pipeline-agent-url: https://jenkins.io/doc/book/pipeline/syntax/#agent
+
+In one of {last-article}, I have shown you how you can build a Docker image with Java and Maven installed with the SDKMAN! command-line tool.
+Today I would like to continue the topic and show you, how you can compile your project using two different Java versions in parallel.
+
+++++
+<!-- more -->
+++++
+
+== Using `dockerfile` agent
+
+NOTE: Sample Maven application used in this article can be found here - https://github.com/wololock/simple-java-maven-app.
+
+To keep the example simple, I'm going to use Jenkins Pipeline's `dockerfile` {jenkins-pipeline-agent-url}[agent].
+It executes given pipeline stage (or stages) in a docker container that gets started from a docker image created using local Dockerfile.
+
+.Dockerfile.build (https://github.com/wololock/simple-java-maven-app/blob/master/Dockerfile.build[source])
+[source,dockerfile]
+----
+FROM debian:stretch-slim
+
+# Defining default Java and Maven version
+ARG JAVA_VERSION="8.0.232-open"
+ARG MAVEN_VERSION="3.6.3"
+
+# Defining default non-root user UID, GID, and name
+ARG USER_UID="1000"
+ARG USER_GID="1000"
+ARG USER_NAME="jenkins"
+
+# Creating default non-user
+RUN groupadd -g $USER_GID $USER_NAME && \
+   useradd -m -g $USER_GID -u $USER_UID $USER_NAME
+
+# Installing basic packages
+RUN apt-get update && \
+   apt-get install -y zip unzip curl && \
+   rm -rf /var/lib/apt/lists/* && \
+   rm -rf /tmp/*
+
+# Switching to non-root user to install SDKMAN!
+USER $USER_UID:$USER_GID
+
+# Downloading SDKMAN!
+RUN curl -s "https://get.sdkman.io" | bash
+
+# Installing Java and Maven, removing some unnecessary SDKMAN files
+RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && \
+    yes | sdk install java $JAVA_VERSION && \
+    yes | sdk install maven $MAVEN_VERSION && \
+    rm -rf $HOME/.sdkman/archives/* && \
+    rm -rf $HOME/.sdkman/tmp/*"
+
+ENV MAVEN_HOME="/home/jenkins/.sdkman/candidates/maven/current"
+ENV JAVA_HOME="/home/jenkins/.sdkman/candidates/java/current"
+ENV PATH="$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH"
+----
+
+The Jenkins Pipeline contains two stages - *Build*, and *Install*.
+The *Build* stage has two parallel stages inside.
+The first one compiles the Maven project using OpenJDK 8, while the second one uses OpenJDK 11.
+Keep in mind that this is just an illustration.
+You could use the same approach to compile your project using e.g., two different Maven versions, or different JDK vendors.
+
+== A pipeline with the parallel Java 8 and Java 11
+
+You have seen the Dockerfile we are going to use to create the build environment docker image.
+Here is the pipeline's `Jenkinsfile`.
+
+.Jenkinsfile (https://github.com/wololock/simple-java-maven-app/blob/master/Jenkinsfile[source])
+[source,groovy]
+----
+
+pipeline {
+    environment {
+        DOCKERFILE = "Dockerfile.build"
+    }
+
+    stages {
+        stage("Build") {
+            environment {
+                MVN_COMMAND = "mvn clean package"
+                TEST_REPORTS = "target/surefire-reports/*.xml"
+            }
+
+            parallel {
+                stage("openjdk-8.0.232") {
+                    agent {
+                        dockerfile { //<1>
+                            filename DOCKERFILE //<2>
+                            additionalBuildArgs "--build-arg JAVA_VERSION=8.0.232-open -t maven:8.0.232-open" //<3>
+                        }
+                    }
+                    steps {
+                        sh "${MVN_COMMAND} -P jdk8" //<4>
+                    }
+                    post {
+                        always {
+                            junit TEST_REPORTS
+                        }
+                    }
+                }
+
+                stage("openjdk-11.0.5") {
+                    agent {
+                        dockerfile {
+                            filename DOCKERFILE
+                            additionalBuildArgs "--build-arg JAVA_VERSION=11.0.5-open -t maven:11.0.5-open"
+                        }
+                    }
+                    steps {
+                        sh "${MVN_COMMAND} -P jdk11"
+                    }
+                    post {
+                        always {
+                            junit TEST_REPORTS
+                        }
+                    }
+                }
+            }
+        }
+
+        stage("Install") {
+            agent {
+                dockerfile {
+                    filename DOCKERFILE
+                    additionalBuildArgs "--build-arg JAVA_VERSION=8.0.232-open"
+                    args '-v $HOME/.m2/repository:/home/jenkins/.m2/repository:rw,z' //<5>
+                }
+            }
+            steps {
+                sh "mvn -DskipTests install -P jdk8"
+            }
+        }
+    }
+}
+----
+
+In this example, I used the Declarative Pipeline script.
+Each parallel stage inside the *Build* stage uses pass:[<em class="conum" data-value="1"></em>] the `dockerfile` {jenkins-pipeline-agent-url}[agent].
+The Dockerfile name is specified pass:[<em class="conum" data-value="2"></em>] using environment variable `DOCKERFILE` which stores the `Dockerfile.build` name.
+We also pass the additional build arguments pass:[<em class="conum" data-value="3"></em>] - a `JAVA_VERSION` one especially.
+In the pass:[<em class="conum" data-value="4"></em>] Maven build command we add a specific profile like `jdk8` and `jdk11` to configure the Maven compiler plugin accordingly to the Java version.
+
+The *Install* stage we use OpenJDK 8 only.
+This stage also uses the `dockerfile` agent, but this time pass:[<em class="conum" data-value="5"></em>] we mount `~/.m2/repository` from the docker host to the container, so the installed artifact will be persisted on the Jenkins node.
+
+== Executing the pipeline
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-pipeline-maven-parallel.png]
+image::/images/jenkins-pipeline-maven-parallel.png[]
+--
