@@ -6,5 +6,7 @@ header.header-section
                     .page-heading
                         h1!= page.category
                         hr.small
-                        span.page-subheading!="All posts in category '" + page.category + "'"
+                        span.page-subheading
+                            span.number=site.categories.findOne({name: page.category}).posts.length
+                            span!=" posts in the category"
         span.img-desc
