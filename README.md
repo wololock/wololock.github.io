@@ -9,7 +9,36 @@
 
 This repository contains a source code of my blog [https://e.printstacktrace.blog](https://e.printstacktrace.blog)
 
+## Running local blog using Docker
 
+You can start Hexo server using Docker container with the following command:
+
+```
+$ ./hexo.sh server --config _config.yml,_config.local.yml
+```
+
+It will check if the docker image `eprinstacktraceblog:local` exists, and if not, it will generate one.
+
+```
+$ docker images eprintstacktraceblog:local   
+REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
+eprintstacktraceblog   local               eb7311f8fca5        2 minutes ago       268 MB
+```
+
+```
+$ ./hexo.sh server --config _config.yml,_config.local.yml
+INFO  Config based on 2 files
+[Browsersync] Access URLs:
+ ----------------------------------
+          UI: http://localhost:3001
+ ----------------------------------
+ UI External: http://localhost:3001
+ ----------------------------------
+INFO  Start processing
+INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.
+```
+
+![](https://i.imgur.com/SmwJVRyl.png)
 
 
 
