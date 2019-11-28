@@ -144,7 +144,7 @@ When we run this test we will see the following result:
 [.text-center]
 --
 [.img-responsive.img-thumbnail]
-[link=/images/spock-then-if-assertion.png}]
+[link=/images/spock-then-if-assertion.png]
 image::/images/spock-then-if-assertion.png[]
 --
 
