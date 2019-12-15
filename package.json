@@ -3,13 +3,13 @@
   "version": "1.2.0",
   "private": true,
   "hexo": {
-    "version": "4.0.0"
+    "version": "4.1.1"
   },
   "dependencies": {
     "asciidoctor.js": "^1.5.9",
     "cheerio": "^0.22.0",
     "entities": "^1.1.2",
-    "hexo": "^4.0.0",
+    "hexo": "^4.1.1",
     "hexo-all-minifier": "^0.5.3",
     "hexo-auto-canonical": "^0.1.1",
     "hexo-browsersync": "^0.3.0",
@@ -26,8 +26,8 @@
     "hexo-renderer-pug": "^1.0.0",
     "hexo-renderer-stylus": "^1.1.0",
     "hexo-server": "^1.0.0",
-    "hexo-util": "^1.6.0",
-    "snyk": "^1.251.2"
+    "hexo-util": "^1.7.0",
+    "snyk": "^1.260.0"
   },
   "scripts": {
     "snyk-protect": "snyk protect",

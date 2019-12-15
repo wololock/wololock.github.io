@@ -20,6 +20,9 @@ root: /
 permalink: :title/
 permalink_defaults:
 
+pretty_urls:
+  trailing_index: false
+
 rss: http://feeds.feedburner.com/Eprintstacktracenet
 
 # Directory
