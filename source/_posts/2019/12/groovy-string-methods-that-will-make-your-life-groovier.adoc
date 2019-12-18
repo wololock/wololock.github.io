@@ -131,7 +131,7 @@ groovy:000> ('z'..'a').toList()
 ===> [z, y, x, w, v, u, t, s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a]
 ----
 
-Here you can see that `o' translates to `l`, `h` translates to `s`, and so on.
+Here you can see that `o` translates to `l`, `h` translates to `s`, and so on.
 
 Of course, you can use more fancy translations, like:
 
