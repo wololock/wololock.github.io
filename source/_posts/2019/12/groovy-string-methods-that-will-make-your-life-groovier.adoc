@@ -1,0 +1,182 @@
+---
+title: Three Groovy String methods that will make your life Groovier!
+date: 2019-12-18 22:19:20
+updated: 2019-12-18 22:19:20
+tags:
+    - groovy
+    - string
+categories:
+    - Groovy Cookbook
+cover: /images/groovy-cookbook.jpg
+og_image: /images/og/groovy-string-methods.jpg
+eyeCatchImage: /images/og/groovy-string-methods.jpg
+---
+:toc: macro
+:groovy-tr-url: http://docs.groovy-lang.org/latest/html/api/org/codehaus/groovy/runtime/StringGroovyMethods.html#tr(java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence)
+:groovy-community-url: https://groovycommunity.com/
+
+Groovy String API offers many useful methods to make working with strings much more pleasant.
+Today I would like to show you three, not so very popular, yet convenient methods.
+Let's jump straight into it! icon:smile-o[]
+
+++++
+<!-- more -->
+++++
+
+toc::[]
+
+== Number #1: `padLeft`, `padRight`, and `center`
+
+How many times you tried to format some console text using `printf`, and you have to google _" printf pad to right"_, etc.?
+I think I did that countless times in the past.
+Until I've found those three useful String methods in the Groovy SDK: `padLeft`, `padRight`, and `center`.
+
+The first two are quite self-descriptive - they add padding on the left/right side, relative to the actual string length.
+So, for instance, when we call `"abc" .padRight(10)`, seven spaces will be added after the last character in the string.
+The `center` method, on the other hand, places the string in the middle and adds equal paddings on both sides.
+For instance, `"abc".center(7,"-")` will produce a string like `--abc--`
+
+Just look at the following example.
+
+.script.groovy
+[source,groovy]
+----
+println " HEADER ".center(50, "-")
+println "Number:".padRight(20)      + "20"
+println "Name:".padRight(20)        + "John Doe"
+println "Address:".padRight(20)     + "34 Some Street, London"
+println "Subscriber:".padRight(20)  + "YES"
+println "Expired:".padRight(20)     + "NO"
+----
+
+And here is the output in the console when running this simple Groovy script.
+
+[source,bash]
+----
+$ groovy script.groovy
+--------------------- HEADER ---------------------
+Number:             20
+Name:               John Doe
+Address:            34 Some Street, London
+Subscriber:         YES
+Expired:            NO
+----
+
+
+== Number #2: `-` and `*` operators
+
+Using `+` operator to concatenate two strings is nothing special.
+Groovy, however, adds support for `-` (subtraction) and `*` (multiplication) operators as well.
+
+The use case for `-` operator is simple.
+It creates a new string with the removed first occurrence of the right side string (if any).
+If the right side string occurs multiple times on the left side string, only the first one gets removed.
+
+Here are some examples from the `groovysh`:
+
+[source,bash]
+----
+groovy:000> text = "lorem ipsum dolor sit amet"
+===> lorem ipsum dolor sit amet
+groovy:000> text - "dolor sit "
+===> lorem ipsum amet
+groovy:000> text - "abc"
+===> lorem ipsum dolor sit amet
+----
+
+The minus operator may be much more useful when combined with the range operator.
+Let's assume we have a string, and we need to create a new one by removing some range from the input string.
+
+[source,bash]
+----
+groovy:000> text = "lorem ipsum dolor sit amet"
+===> lorem ipsum dolor sit amet
+groovy:000> text - text[3..12]
+===> lorolor sit amet
+----
+
+Clean and simple.
+
+== Number #3: String translation with the `tr` method
+
+Groovy's {groovy-tr-url}[text translation] method seems to be unknown to many programmers.
+Some of you might think that it is just an equivalent of good old `String.replaceAll()` method.
+Nothing could be further from the truth.
+Let's look at a few examples.
+
+[source,bash]
+----
+groovy:000> "John Doe".tr("a-z", "*")
+===> J*** D**
+----
+
+Pfff, easy.
+Fair enough.
+What about this?
+
+[source,bash]
+----
+groovy:000> "John Doe".tr("a-z", "z-a")
+===> Jlsm Dlv
+----
+
+OK, so what happened here?
+In this second case, Groovy translated lower case letters from `a` to `z` to their representatives (letters at the same index position) from the range from `z` to `a`.
+
+[source,bash]
+----
+groovy:000> ('a'..'z').toList()
+===> [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z]
+groovy:000> ('z'..'a').toList()
+===> [z, y, x, w, v, u, t, s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a]
+----
+
+Here you can see that `o' translates to `l`, `h` translates to `s`, and so on.
+
+Of course, you can use more fancy translations, like:
+
+[source,bash]
+----
+groovy:000> "Lorem ipsum dolor sit amet".tr("a-zA-Z", "@-:a-[")
+===> [[[<\ `[[[\ =[][[ [`[ @\<[
+----
+
+In this case replacement `@-:a-[` translates to combination of two ranges: `@-:`, and `a-[` which generates a list of the following characters:
+
+[source,bash]
+----
+groovy:000> ('@'..':').toList() + ('a'..'[').toList()
+===> [@, ?, >, =, <, ;, :, a, `, _, ^, ], \, []
+----
+
+As you can see, the `tr` method does not invent anything new.
+You could achieve something similar with regular expressions but less simply.
+
+
+== Bonus: `String.count(charSequence)`
+
+One more cool method I discovered quite recently thanks to one question posted on the {groovy-community-url}[Groovy Community Slack].
+Groovy String API has one handy yet straightforward method - `count(charSequence)`.
+This method allows you to quickly discover how many occurrences of the given characters sequence exist in the input string.
+You can count single letters, as well as substrings, in a pretty efficient way.
+
+[source,bash]
+----
+groovy:000> "Lorem ipsum dolor sit amet".count("o")
+===> 3
+groovy:000> "Lorem ipsum dolor sit amet".count("or")
+===> 2
+groovy:000> "Lorem ipsum dolor sit amet".count("abc")
+===> 0
+----
+
+Those small things make your life [.mark]#Groovier#! icon:smile-o[]
+
+== Conclusion
+
+This ranking only scratched the surface of useful Groovy string methods.
+I hope you have learned something new from this blog post, but I also encourage you to share feedback.
+What is your favorite string related method, that makes your life Groovy? icon:smile-o[]
+Let's create the Readers Choice Ranking containing other useful methods that were missing in today's blog post.
+I can't wait to see your suggestions!
+
