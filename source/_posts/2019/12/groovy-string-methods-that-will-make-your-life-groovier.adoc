@@ -97,6 +97,29 @@ groovy:000> text - text[3..12]
 
 Clean and simple.
 
+The multiplication operator `\*` provides a way to repeat strings or characters without much hustle.
+Let's say you are building a command line tool and you want to draw some ASCII art shapes.
+You can use a combination of `*` and `+` operators to draw a rectangle with a single line of Groovy code.
+
+[source,bash]
+----
+groovy:000> "\n╔" + "═" * 50 + "╗" + ("\n║" + "·" * 50 + "║") * 10 + "\n╚" + "═" * 50 + "╝"
+===>
+╔══════════════════════════════════════════════════╗
+║··················································║
+║··················································║
+║··················································║
+║··················································║
+║··················································║
+║··················································║
+║··················································║
+║··················································║
+║··················································║
+║··················································║
+╚══════════════════════════════════════════════════╝
+
+----
+
 == Number #3: String translation with the `tr` method
 
 Groovy's {groovy-tr-url}[text translation] method seems to be unknown to many programmers.
