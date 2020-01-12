@@ -12,7 +12,6 @@ jobs:
           name: Install Hexo CLI
           command: |
             sudo npm install hexo-cli -g
-            npm install hexo --save
       - restore_cache:
           key: node-cache-{{ checksum "package.json" }}
       - run:
@@ -38,7 +37,7 @@ jobs:
           name: Install Hexo CLI
           command: |
             sudo npm install hexo-cli -g
-            npm install hexo --save
+            npm install hexo
       - restore_cache:
           key: node-cache-{{ checksum "package.json" }}
       - attach_workspace:

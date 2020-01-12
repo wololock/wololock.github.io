@@ -9,7 +9,7 @@
     "asciidoctor.js": "^1.5.9",
     "cheerio": "^0.22.0",
     "entities": "^1.1.2",
-    "hexo": "^4.1.1",
+    "hexo": "4.1.1",
     "hexo-all-minifier": "^0.5.3",
     "hexo-auto-canonical": "^0.1.1",
     "hexo-browsersync": "^0.3.0",
