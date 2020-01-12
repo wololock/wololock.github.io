@@ -1,0 +1,160 @@
+---
+title: The blog development report - year 2019
+date: 2020-01-12 11:01:25
+updated: 2020-01-12 11:01:25
+tags:
+    - 2019
+    - summary
+    - blog
+    - google-analytics
+    - report
+categories:
+    - Blog Reports
+cover: /images/2019-summary-bg.jpg
+og_image: /images/og/2019-summary.jpg
+eyeCatchImage: /images/og/2019-summary.jpg
+---
+:youtube-url: https://www.youtube.com/channel/UCEf8e5YAYnowq-2deW4tpsw/featured
+
+2019 was a fantastic year for my blog.
+I didn't manage to write articles every month, but it didn't stop the growth.
+Today I would like to share with you some numbers.
+And the reason is simple - you've made those numbers possible, so I think you deserve to get some "behind the scenes" facts.
+
+++++
+<!-- more -->
+++++
+
+== 113,802 unique visitors
+
+Let's start with the number of unique visitors.
+In 2019, the blog was visited by *113,802* unique visitors.
+The month with the lowest number of visitors was February - *2,581* unique visitors.
+The month with the highest number of visitors was December - *17,443* unique visitors.
+
+The blog has a very high bounce rate of *91,61%*, which means that only *8,39%* of visitors continue browsing the blog after opening the first page.
+This number does not surprise me - a vast majority of people find the blog using a search engine, and they visit it to find a specific solution to their problem.
+They find what they looked for, and they get back to their business.
+However, I would like to lower the bounce rate in 2020 to something like 80-85%.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/2019-unique-visitors.png]
+image::/images/2019-unique-visitors.png[]
+--
+
+== Organic Search produced 91,8% traffic
+
+There is no surprise here.
+The Google search engine is responsible for *91,8%* traffic on the blog.
+The second top channel is direct traffic with *4,5%* efficiency.
+The third top channel is the Social Media traffic with just *1,6%* efficiency.
+
+There is one interesting observation.
+The most engaging traffic comes from referrals - the bounce rate, in this case, is *78,04%*.
+The least engaging channel is, of course, Organic Search with *92,22%* bounce rate.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/2019-acquisition-summary.png]
+image::/images/2019-acquisition-summary.png[]
+--
+
+== Partitioning lists in Java 8 wins
+
+Now let's take a look at the most popular blog posts in 2019.
+Here is the TOP 3:
+
+* +++{% post_link divide-a-list-to-lists-of-n-size-in-Java-8 "Divide a list to lists of n size in Java 8" %}+++ - *42,078* pageviews
+* +++{% post_link groovy-regular-expressions-the-definitive-guide "Groovy Regular Expressions - The Definitive Guide" %}+++ - *37,119* pageviews
+* +++{% post_link how-to-avoid-no-tests-were-found-when-using-junit5-with-groovy "How to avoid \"No tests were found\" when using JUnit 5 with Groovy?" %}+++ - *11,556* pageviews
+
+There is one honorable mention - +++{% post_link jenkins-pipeline-environment-variables-the-definitive-guide "Jenkins Pipeline Environment Variables - The Definitive Guide" %}+++ which generated *5,334* pageviews, but this blog post was published on November 2nd, so it is one of the candidates for the 2020 TOP 3 ranking winner.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/2019-pageviews-summary.png]
+image::/images/2019-pageviews-summary.png[]
+--
+
+== The top search keyword - `groovy regex`
+
+And here is a summary from the Search Console.
+At the beginning of 2019, the blog was not ranked high in the Google index.
+It started changing in the middle of the year, and I started seeing more and more traffic coming from Google.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/2019-google-search-summary.png]
+image::/images/2019-google-search-summary.png[]
+--
+
+And here are the TOP 10 search keywords for my blog:
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/2019-top-search-keywords.png]
+image::/images/2019-top-search-keywords.png[]
+--
+
+== Top country - United States
+
+Almost *20%* of the traffic comes from the United States.
+The second country in that ranking is India with almost *9%* score.
+The third place belongs to Germany with *6.5%* score.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/2019-geo-summary.png]
+image::/images/2019-geo-summary.png[]
+--
+
+And here is the TOP 10:
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/2019-top-10-countries.png]
+image::/images/2019-top-10-countries.png[]
+--
+
+== Internet Explorer used by 1,19% of users
+
+And last but not least - the web browser ranking.
+Google Chrome wins with almost *80%* score.
+Firefox is used by *12%* of readers, which means that the first two browsers are used by *~92%* of readers.
+Here is the full ranking.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/2019-webbrowser-summary.png]
+image::/images/2019-webbrowser-summary.png[]
+--
+
+
+== What's coming in 2020?
+
+Don't expect any revolution.
+I want to keep blogging about the things I'm genuinely interested in.
+I want to blog more often, but the quality of the content is more important to me than the quantity.
+There is one thing I can guarantee you - the blog remains ad-free.
+I love the User Experience I've built here, and I don't want to change that.
+There will be some alternative (and optional) ways to support my work, but ads are not in this category.
+
+My goal for 2020 is to put more content on my small {youtube-url}[YouTube channel].
+I recorded a few new videos already, so you should see a video posted every week.
+_(Consider subscribing if you're not doing it already. icon:smile-o[])_
+
+And that's it for today.
+I wish you a fruitful year 2020!
+Define your own rules and live according to them, and everything will go smoothly.
+Take care, and see you in the next blog post!
+
+PS: If there is something that surprised you most regarding the 2019 performance of this blog, please let me know in the comments section down below.
