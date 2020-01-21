@@ -1,0 +1,429 @@
+---
+title: Jenkins Scripted Pipeline vs. Declarative Pipeline - the 4 practical differences
+date: 2020-01-22 01:31:55
+updated: 2020-01-22 01:31:55
+tags:
+    - jenkins
+    - jenkins-pipeline
+    - groovy
+    - pipeline
+    - cicd
+categories:
+- Jenkins Pipeline Cookbook
+cover: /images/jenkins-bg2.jpg
+og_image: /images/og/jenkins-declarative-vs-scripted-pipeline.jpg
+eyeCatchImage: /images/og/jenkins-declarative-vs-scripted-pipeline.jpg
+---
+:toc: macro
+:jenkins-scripted-pipeline-doc: https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline
+:jenkins-declarative-pipeline-doc: https://jenkins.io/doc/book/pipeline/syntax/#declarative-pipeline
+
+If you read this blog post, there is a high chance you're looking for information about practical differences between scripted and declarative pipeline, correct?
+You couldn't find a better place then.
+I'm going to show you the four most practical differences between those two.
+Stay with me for a few minutes and enjoy the ride!
+
+++++
+<!-- more -->
+++++
+
+toc::[]
+
+== The introduction
+
+But let's start with the following question - why are there two pipeline types in the first place?
+The scripted pipeline was the first implementation of the pipeline as a code in Jenkins.
+Even though it uses the underlying pipeline subsystem, it was designed more or less as *a general-purpose DSL built with Groovy*.footnote:[{jenkins-scripted-pipeline-doc}]
+It means that it does not come with a fixed structure, and it is up to you how you will define your pipeline logic.
+The declarative pipeline, on the other hand, is more opinionated, and its structure is well-defined.footnote:[{jenkins-declarative-pipeline-doc}]
+It may look a bit limiting, but in practice, you can achieve the same things using the scripted or declarative pipeline. So which one to choose?
+
+If you ask me this question and expect an answer different from _"it depends,"_ I would say use the declarative pipeline. And here's why.
+
+=== 1. Pipeline code validation at startup
+
+Let's consider the following pipeline code.
+
+.Jenkinsfile
+[source,groovy]
+----
+pipeline {
+    agent any
+
+    stages {
+        stage("Build") {
+            steps {
+                echo "Some code compilation here..."
+            }
+        }
+
+        stage("Test") {
+            steps {
+                echo "Some tests execution here..."
+                echo 1
+            }
+        }
+    }
+}
+----
+
+If we try to execute the following pipeline, the validation will quickly fail the build.
+The *echo* step can be triggered only with the `String` parameter, so we get the error like.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-declarative-pipeline-validation.png]
+image::/images/jenkins-declarative-pipeline-validation.png[]
+--
+
+Notice that the pipeline didn't execute any stage and just failed.
+This might save us a lot of time - imagine executing the *Build* stage for a couple of minutes, just to get the information that the *echo* step expects to get `java.lang.String` instead of `java.lang.Integer`.
+
+Now let's take a look at the scripted pipeline equivalent of that example.
+
+.Jenkinsfile
+[source,groovy]
+----
+node {
+    stage("Build") {
+        echo "Some code compilation here..."
+    }
+
+    stage("Test") {
+        echo "Some tests execution here..."
+        echo 1
+    }
+}
+----
+
+This pipeline executes the same stages, and the same steps.
+There is one significant difference however.
+Let's execute it and see what result it produces.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-scripted-pipeline-echo-error.png]
+image::/images/jenkins-scripted-pipeline-echo-error.png[]
+--
+
+It failed as expected.
+But this time the *Build* stage was executed, as well as the first step from the *Test* stage.
+As you can see, there was no validation of the pipeline code.
+The declarative pipeline in this case handles such use case much better.
+
+=== 2. Restart from stage
+
+Another cool feature that only declarative pipeline has is "Restart from stage" one.
+Let's fix the pipeline from the previous example and see if we can restart the *Test* stage only.
+
+.Jenkinsfile
+[source,groovy]
+----
+pipeline {
+    agent any
+
+    stages {
+        stage("Build") {
+            steps {
+                echo "Some code compilation here..."
+            }
+        }
+
+        stage("Test") {
+            steps {
+                echo "Some tests execution here..."
+            }
+        }
+    }
+}
+----
+
+Let's execute it.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-declarative-pipeline-restart-stage.png]
+image::/images/jenkins-declarative-pipeline-restart-stage.png[]
+--
+
+Here you can see that the *Test* stage is selected.
+There is an option called "Restart Test" right above the steps list on the right side.
+Let's click on it and see the result.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-declarative-pipeline-restarted.png]
+image::/images/jenkins-declarative-pipeline-restarted.png[]
+--
+
+As you can see, Jenkins skipped the *Build* stage (it used the workspace from the previous build) and started the next pipeline execution from the *Test* stage.
+It might be useful when you execute some external tests and they fail because of some issues with the remote environment.
+You can fix the problem with the test environment and re-run the stage again, without the need to rebuild all artifacts.
+(The code of the app hasn't change in such case.)
+
+Now, let's look at the scripted pipeline example.
+
+.Jenkinsfile
+[source,groovy]
+----
+node {
+    stage("Build") {
+        echo "Some code compilation here..."
+    }
+
+    stage("Test") {
+        echo "Some tests execution here..."
+    }
+}
+----
+
+Let's execute it.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-scripted-pipeline-no-restart-option.png]
+image::/images/jenkins-scripted-pipeline-no-restart-option.png[]
+--
+
+No restart option as you can see.
+The declarative pipeline vs. scripted pipeline - 2:0.
+
+=== 3. Declarative pipeline `options` block
+
+The third feature is supported by both pipeline types, however the declarative pipeline handles it a bit better in my opinion.
+Let's say we have the following features to add to the previous pipeline.
+
+* The timestamps in console log.
+* The ANSI color output.
+* The 1-minute timeout for the *Build* stage, and 2 minutes timeout for the *Test* stage.
+
+Here is what does the declarative pipeline look like.
+
+.Jenkinsfile
+[source,groovy]
+----
+pipeline {
+    agent any
+
+    options {
+        timestamps()
+        ansiColor("xterm")
+    }
+
+    stages {
+        stage("Build") {
+            options {
+                timeout(time: 1, unit: "MINUTES")
+            }
+            steps {
+                sh 'printf "\\e[31mSome code compilation here...\\e[0m\\n"'
+            }
+        }
+
+        stage("Test") {
+            options {
+                timeout(time: 2, unit: "MINUTES")
+            }
+            steps {
+                sh 'printf "\\e[31mSome tests execution here...\\e[0m\\n"'
+            }
+        }
+    }
+}
+----
+
+Let's run it.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-declarative-pipeline-options.png]
+image::/images/jenkins-declarative-pipeline-options.png[]
+--
+
+Here is the console log.
+
+[source,bash]
+----
+Started by user Szymon Stepniak
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /home/wololock/.jenkins/workspace/pipeline-sandbox
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] ansiColor
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] timeout
+15:10:04  Timeout set to expire in 1 min 0 sec
+[Pipeline] {
+[Pipeline] sh
+15:10:04  + printf '\e[31mSome code compilation here...\e[0m\n'
+15:10:04  Some code compilation here...
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] timeout
+15:10:04  Timeout set to expire in 2 min 0 sec
+[Pipeline] {
+[Pipeline] sh
+15:10:05  + printf '\e[31mSome tests execution here...\e[0m\n'
+15:10:05  Some tests execution here...
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // ansiColor
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
+----
+
+In the declarative pipeline, options are separated from the pipeline script logic.
+The scripted pipeline also supports `timestamps`, `ansiColor` and `timeout` options, but it requires a different code.
+Here is the same pipeline expressed using the scripted pipeline.
+
+.Jenkinsfile
+[source,groovy]
+----
+node {
+    timestamps {
+        ansiColor("xterm") {
+            stage("Build") {
+                timeout(time: 1, unit: "MINUTES") {
+                    sh 'printf "\\e[31mSome code compilation here...\\e[0m\\n"'
+                }
+            }
+            stage("Test") {
+                timeout(time: 2, unit: "MINUTES") {
+                    sh 'printf "\\e[31mSome tests execution here...\\e[0m\\n"'
+                }
+            }
+        }
+    }
+}
+----
+
+I guess you see the problem.
+Here we used only `timestamps` and `ansiColor` Jenkins plugins.
+Imagine adding one or two more plugins.
+Declarative vs. scripted, 3:0.
+
+=== 4. Skipping stages with `when` block.
+
+The last thing I would like to mention in this blog post is the `when` block that the declarative pipeline supports.
+Let's improve the previous example and add a following condition:
+
+* Execute *Test* stage only if `env.FOO` equals `bar`.
+
+Here is what the declarative pipeline code looks like.
+
+.Jenkinsfile
+[source,groovy]
+----
+pipeline {
+    agent any
+
+    options {
+        timestamps()
+        ansiColor("xterm")
+    }
+
+    stages {
+        stage("Build") {
+            options {
+                timeout(time: 1, unit: "MINUTES")
+            }
+            steps {
+                sh 'printf "\\e[31mSome code compilation here...\\e[0m\\n"'
+            }
+        }
+
+        stage("Test") {
+            when {
+                environment name: "FOO", value: "bar"
+            }
+            options {
+                timeout(time: 2, unit: "MINUTES")
+            }
+            steps {
+                sh 'printf "\\e[31mSome tests execution here...\\e[0m\\n"'
+            }
+        }
+    }
+}
+----
+
+And let's execute it.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-declarative-pipeline-when.png]
+image::/images/jenkins-declarative-pipeline-when.png[]
+--
+
+The *Test* stage was skipped as expected.
+Now let's try to do the same thing in the scripted pipeline example.
+
+.Jenkinsfile
+[source,groovy]
+----
+node {
+    timestamps {
+        ansiColor("xterm") {
+            stage("Build") {
+                timeout(time: 1, unit: "MINUTES") {
+                    sh 'printf "\\e[31mSome code compilation here...\\e[0m\\n"'
+                }
+            }
+            if (env.FOO == "bar") {
+                stage("Test") {
+                    timeout(time: 2, unit: "MINUTES") {
+                        sh 'printf "\\e[31mSome tests execution here...\\e[0m\\n"'
+                    }
+                }
+            }
+        }
+    }
+}
+----
+
+As you can see, we had to use if-condition to check if `env.FOO` equals `bar`, and only then add the *Test* stage.
+(It's not a real skipping in this case unfortunately.)
+Let's run it and see what is the result.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/jenkins-scripted-pipeline-stage-skip.png]
+image::/images/jenkins-scripted-pipeline-stage-skip.png[]
+--
+
+This is not the same result.
+In the scripted pipeline use case, the *Test* stage is not even rendered.
+This might introduce some unnecessary confusion, the declarative pipeline handles it much better in my opinion.
+Declarative vs. scripted, 4:0.
+
+== Conclusion
+
+Here are my top 4 differences between the declarative and scripted Jenkins pipeline.
+These are not the only differences, and I guess your list may look a little different.
+What is your choice?
+Do you prefer the declarative pipeline, or the scripted one?
+Please share your thoughts in the section down below.
