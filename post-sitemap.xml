@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>https://e.printstacktrace.blog</loc>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/jenkins-scripted-pipeline-vs-declarative-pipeline-the-4-practical-differences/</loc>
+        <lastmod>2020-01-22T00:31:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/the-blog-development-report-year-2019/</loc>
+        <lastmod>2020-01-12T10:01:25.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/groovy-string-methods-that-will-make-your-life-groovier/</loc>
+        <lastmod>2019-12-18T21:19:20.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/using-jenkins-pipeline-parallel-stages-to-build-maven-project-with-different-jdks/</loc>
+        <lastmod>2019-11-28T20:53:10.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/quicksort-in-groovy-can-it-be-as-fast-as-implemented-in-java/</loc>
+        <lastmod>2019-11-24T14:11:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/graalvm-and-groovy-how-to-start/</loc>
+        <lastmod>2019-11-22T21:14:49.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/micronaut-non-blocking-and-async-part1/</loc>
+        <lastmod>2019-11-19T11:21:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/using-circleci-to-deploy-hexo-blog-to-github-pages-how-to-set-it-up/</loc>
+        <lastmod>2019-11-17T11:25:50.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/building-java-and-maven-docker-images-using-parallelized-jenkins-pipeline-and-sdkman/</loc>
+        <lastmod>2019-11-13T08:54:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/ratpack-graalvm-how-to-start/</loc>
+        <lastmod>2019-11-09T20:02:09.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/using-sdkman-as-a-docker-image-for-jenkins-pipeline-a-step-by-step-guide/</loc>
+        <lastmod>2019-11-06T18:34:01.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/graalvm-native-image-inside-docker-container-does-it-make-sense/</loc>
+        <lastmod>2019-11-05T20:57:46.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/jenkins-pipeline-environment-variables-the-definitive-guide/</loc>
+        <lastmod>2019-11-02T17:27:57.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/groovy-trampoline-closure-a-step-into-recursive-closures/</loc>
+        <lastmod>2019-06-25T11:54:04.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/gr8conf-eu-2019-recap/</loc>
+        <lastmod>2019-06-06T10:03:44.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/groovy-regular-expressions-the-definitive-guide/</loc>
+        <lastmod>2019-06-05T09:23:45.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/gr8conf-eu-2019-what-can-you-expect-from-my-talks/</loc>
+        <lastmod>2019-05-14T06:40:36.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/debugging-teams-book-review/</loc>
+        <lastmod>2019-04-16T13:19:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/spock-random-order-of-tests-how-to/</loc>
+        <lastmod>2019-04-09T06:58:20.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/graalvm-heap-size-of-native-image-how-to-set-it/</loc>
+        <lastmod>2019-04-02T13:38:38.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/using-the-same-prefix-with-different-http-methods-in-ratpack/</loc>
+        <lastmod>2019-04-01T08:12:52.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/divide-a-list-to-lists-of-n-size-in-Java-8/</loc>
+        <lastmod>2019-03-29T00:44:13.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/pragmatic-thinking-and-learning-book-review/</loc>
+        <lastmod>2019-03-26T16:50:06.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/installing-graalvm-ee-1-0-0-rc14-with-sdkman/</loc>
+        <lastmod>2019-03-20T09:15:56.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/intellij-idea-git-gpg-failed-to-sign-the-data/</loc>
+        <lastmod>2019-03-16T11:44:31.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/release-it-2nd-edition-book-review/</loc>
+        <lastmod>2019-03-02T23:17:25.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/how-to-remove-class-annotation-groovy-compiler-configuration/</loc>
+        <lastmod>2019-02-20T13:08:23.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/graalvm-groovy-grape-creating-native-image-of-standalone-script/</loc>
+        <lastmod>2019-01-19T09:34:02.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/deep-work-book-review/</loc>
+        <lastmod>2018-12-31T15:08:27.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/programming-groovy-2-book-review/</loc>
+        <lastmod>2018-12-29T15:05:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/spock-assertion-inside-if-statement-doesnt-work-why/</loc>
+        <lastmod>2018-12-27T18:52:37.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/junit-assume-notnull-throws-nullpointerexception-in-groovy-whats-wrong/</loc>
+        <lastmod>2018-12-20T23:49:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tail-recursive-methods-in-groovy/</loc>
+        <lastmod>2018-12-18T09:15:17.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/dont-waste-your-time-advent-of-code-2018-is-running/</loc>
+        <lastmod>2018-12-02T16:23:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/list-of-combinations-from-list-of-lists-in-groovy/</loc>
+        <lastmod>2018-11-27T21:56:23.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/micronaut-non-blocking-and-async-part-3/</loc>
+        <lastmod>2018-10-30T09:53:18.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/java-type-inference-generic-methods-chain-call/</loc>
+        <lastmod>2018-10-28T05:50:57.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/micronaut-non-blocking-and-async-part-2/</loc>
+        <lastmod>2018-10-26T11:40:42.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/how-to-avoid-no-tests-were-found-when-using-junit5-with-groovy/</loc>
+        <lastmod>2018-10-24T07:00:48.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/what-is-the-most-efficient-way-to-iterate-collection-in-groovy-jmh/</loc>
+        <lastmod>2018-10-02T17:55:52.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/how-groovy-equal-operator-is-different-from-java/</loc>
+        <lastmod>2018-09-29T09:13:21.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/hexo-git-deployer-removes-commits-history-lets-do-something-about-that/</loc>
+        <lastmod>2018-09-24T21:18:31.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/groovy-static-propertymissing-and-methodmissing-methods-limitations-and-possible-issues/</loc>
+        <lastmod>2018-09-08T21:22:19.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/groovy-dynamic-types-coercion-and-promotion-you-have-been-warned/</loc>
+        <lastmod>2018-09-03T09:28:05.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/365-consecutive-days-on-stack-overflow/</loc>
+        <lastmod>2018-07-18T07:25:33.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/how-to-name-groovy-script-file/</loc>
+        <lastmod>2018-07-10T10:05:19.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/groovy-split-string-and-avoid-getting-index-out-of-bounds-exception/</loc>
+        <lastmod>2018-06-30T20:48:16.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/ratpack-register-session-module-in-handler-unit-test/</loc>
+        <lastmod>2018-06-26T20:55:38.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/ratpack-mocking-Session-object-in-GroovyRequestFixture-test/</loc>
+        <lastmod>2018-06-24T09:59:57.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/count-frequency-of-a-digit-in-a-factorial-of-number-using-Haskell/</loc>
+        <lastmod>2018-05-26T15:19:14.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/groovy-script-closure-does-not-modify-field-annotated-variable/</loc>
+        <lastmod>2017-10-08T07:39:12.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/why-grails-package-exexutes-config-groovy/</loc>
+        <lastmod>2017-09-30T05:18:20.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+</urlset>
+<!-- XML Sitemap generated by Hexo SEO Friendly Sitemap Generator -->

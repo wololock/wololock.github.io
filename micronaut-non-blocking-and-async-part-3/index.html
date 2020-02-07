@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="author" content="Szymon Stepniak"><meta name="robots" content="all"><title>Non-blocking and async Micronaut - quick start (part 3)</title><meta name="description" content="Welcome to the part 3 of &quot;Non-blocking and async Micronaut&quot; article. In the previous post we have created connection between two services using HTTP protocol and we have run some experiments with handling 10,000 requests. Today we are going to extend t..."><meta name="keywords" content="java,micronaut,non-blocking,async,reactive-programming,rxjava"><link rel="shortcut icon" type="image/png" href="/favicon.png"><link rel="dns-prefetch" href="//cdnjs.cloudflare.com"><link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com"><link rel="dns-prefetch" href="//disqus.com"><link rel="dns-prefetch" href="//c.disquscdn.com"><link rel="canonical" href="https://e.printstacktrace.blog/micronaut-non-blocking-and-async-part-3/"><link rel="alternate" type="application/rss+xml" title="e.printStackTrace(); // Blog" href="/atom.xml"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"><link rel="stylesheet" href="/css/main.css?v=38"><link rel="stylesheet" href="/css/conum.css?v=38"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Droid+Sans+Mono:400,700"><meta name="description" content="Welcome to the part 3 of &quot;Non-blocking and async Micronaut&quot; article. In the previous post we have created connection between two services using HTTP protocol and we have run some experiments with hand"><meta property="og:type" content="article"><meta property="og:title" content="Non-blocking and async Micronaut - quick start (part 3)"><meta property="og:url" content="https:&#x2F;&#x2F;e.printstacktrace.blog&#x2F;micronaut-non-blocking-and-async-part-3&#x2F;"><meta property="og:site_name" content="e.printStackTrace(); &#x2F;&#x2F; Blog"><meta property="og:description" content="Welcome to the part 3 of &quot;Non-blocking and async Micronaut&quot; article. In the previous post we have created connection between two services using HTTP protocol and we have run some experiments with hand"><meta property="og:locale" content="en_US"><meta property="og:image" content="https:&#x2F;&#x2F;e.printstacktrace.blog&#x2F;images&#x2F;og&#x2F;micronaut-nonblocking-part3.jpg"><meta property="article:published_time" content="2018-10-30T09:53:18.000Z"><meta property="article:modified_time" content="2018-10-30T09:53:18.000Z"><meta property="article:author" content="Szymon Stepniak"><meta property="article:tag" content="java"><meta property="article:tag" content="micronaut"><meta property="article:tag" content="non-blocking"><meta property="article:tag" content="async"><meta property="article:tag" content="reactive-programming"><meta property="article:tag" content="rxjava"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https:&#x2F;&#x2F;e.printstacktrace.blog&#x2F;images&#x2F;og&#x2F;micronaut-nonblocking-part3.jpg"><meta name="twitter:creator" content="@wololock"><script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://e.printstacktrace.blog/micronaut-non-blocking-and-async-part-3/"},"headline":"Non-blocking and async Micronaut - quick start (part 3)","image":{"@type":"ImageObject","url":"https://e.printstacktrace.blog/images/og/micronaut-nonblocking-part3.jpg"},"datePublished":"2018-10-30T09:53:18.000Z","dateModified":"2018-10-30T09:53:18.000Z","author":{"@type":"Person","name":"Szymon Stepniak"},"publisher":{"@type":"Organization","name":"e.printStackTrace(); // Blog","logo":{"@type":"ImageObject","url":"https://e.printstacktrace.blog/images/site-logo.jpg","height":60,"width":600}},"description":"Welcome to the part 3 of \"Non-blocking and async Micronaut\" article. In the previous post we have created connection between two services using HTTP protocol and we have run some experiments with handling 10,000 requests. Today we are going to extend this example by setting some timeouts to see what happens.","keywords":"java,micronaut,non-blocking,async,reactive-programming,rxjava"}</script><meta name="generator" content="Hexo 4.1.1"></head><body class="layout-post"><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class="container-fluid"><div class="navbar-header"><button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/"><span>e.printStackTrace(); // Blog</span></a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-right"><li><a href="/archives">Archive</a></li><li><a href="https://github.com/wololock/wololock.github.io" target="_blank" rel="noopener">Github</a></li><li><a href="https://twitter.com/wololock" target="_blank" rel="noopener"><img src="https://badgen.net/twitter/follow/wololock"></a></li><li><a href="https://circleci.com/gh/wololock/wololock.github.io/tree/develop" target="_blank" rel="noopener"><img src="https://badgen.net/circleci/github/wololock/wololock.github.io/develop?icon=circleci&amp;label"></a></li></ul></div></div></nav><header class="header-section"><div class="intro-header" style="background-image:url(/img/micronaut-bg.jpg)"><div class="container"><div class="row"><div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1"><div class="post-heading"><a class="category" href="/categories/micronaut-cookbook/">Micronaut Cookbook</a><h1>Non-blocking and async Micronaut - quick start (part 3)</h1><div class="post-meta"><ul><li><time datetime="2018-10-30T09:53:18.000Z" itemprop="datePublished">Oct 30, 2018</time></li><li>8 minutes read</li><li><a href="https://e.printstacktrace.blog/micronaut-non-blocking-and-async-part-3/#disqus_thread">0 Comments</a></li></ul><section class="post-tags"><ul class="tags"><li><a class="tag post-meta" href="/tags/java/">java</a></li><li><a class="tag post-meta" href="/tags/micronaut/">micronaut</a></li><li><a class="tag post-meta" href="/tags/non-blocking/">non-blocking</a></li><li><a class="tag post-meta" href="/tags/async/">async</a></li><li><a class="tag post-meta" href="/tags/reactive-programming/">reactive-programming</a></li><li><a class="tag post-meta" href="/tags/rxjava/">rxjava</a></li></ul></section></div></div></div></div></div></div></header><div class="container"><div class="row"><div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1"><article class="blog-post" role="main"><div class="paragraph"><p>Welcome to the part 3 of <em>"Non-blocking and async <a href="http://micronaut.io" target="_blank" rel="noopener">Micronaut</a>"</em> article. In the <a href="/micronaut-non-blocking-and-async-part-2/" title="previous post">previous post</a> we have created connection between two services using HTTP protocol and we have run some experiments with handling 10,000 requests. Today we are going to extend this example by setting some timeouts to see what happens.</p></div><a id="more"></a><div class="admonitionblock note"><table><tr><td class="icon"><i class="fa icon-note" title="Note"></i></td><td class="content">Source code of the application described in this blog post can be found here <a href="https://github.com/wololock/micronaut-nonblocking-async-demo" target="_blank" rel="noopener" class="bare">https://github.com/wololock/micronaut-nonblocking-async-demo</a></td></tr></table></div><div class="sect1"><h2 id="the-motivation">The motivation</h2><div class="sectionbody"><div class="paragraph"><p>Returning 4 recommendations from our mock recommendations-service takes approximately 1250&nbsp;milliseconds. This is actually a huge amount of time. Let&#8217;s assume that we can&#8217;t do anything to decrease latency on requests to product-service, yet we have to return any result in less than 300&nbsp;milliseconds to make any usage of recommendations-service.</p></div></div></div><div class="sect1"><h2 id="the-solution">The solution</h2><div class="sectionbody"><div class="paragraph"><p>In the previous post we didn&#8217;t introduce any timeouts in the part responsible for communication between services. Let&#8217;s fix it now by adding 250 milliseconds timeout to the client call:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package com.github.wololock.micronaut.recommendation;
+
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Get;
+import io.reactivex.Maybe;
+import io.reactivex.Observable;
+import io.reactivex.Single;
+import com.github.wololock.micronaut.products.Product;
+import com.github.wololock.micronaut.products.ProductClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+@Controller("/recommendations")
+final class RecommendationController {
+
+    private static final Logger log = LoggerFactory.getLogger(RecommendationController.class);
+
+    private static final List&lt;String&gt; ids = Arrays.asList("PROD-001", "PROD-002", "PROD-003", "PROD-004");
+
+    private final ProductClient productClient;
+
+    public RecommendationController(ProductClient productClient) {
+        this.productClient = productClient;
+    }
+
+    @Get
+    public Single&lt;List&lt;Product&gt;&gt; getRecommendations() {
+        log.debug("RecommendationController.getRecommendations() called...");
+
+        return Observable.fromIterable(ids)
+                .flatMap(id -&gt; productClient.getProduct(id)
+                        .timeout(250, TimeUnit.MILLISECONDS, Maybe.empty()) <i class="conum" data-value="1"></i><b>(1)</b>
+                        .toObservable()
+                )
+                .toList();
+    }
+}</code></pre></div></div><div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>250 milliseconds timeout that returns <code>Maybe.empty()</code> when occurs.</td></tr></table></div><div class="paragraph"><p>We use <code>Maybe.timeout(timeout, unit, fallback)</code> <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> to specify a timeout policy - if client does not return a response in 250 milliseconds we simply drop the connection and return a fallback object. Here is what the request to <code>localhost:8080/recommendations</code> returns now:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Date: Tue, 30 Oct 2018 11:18:33 GMT
+connection: keep-alive
+content-length: 119
+content-type: application/json
+
+[
+    {
+        "id": "PROD-001",
+        "name": "Micronaut in Action",
+        "price": 29.99
+    },
+    {
+        "id": "PROD-002",
+        "name": "Netty in Action",
+        "price": 31.22
+    }
+]</code></pre></div></div><div class="paragraph"><p>We get only two products in return and this is expected, because only these two have a latency that is smaller than 250 milliseconds.</p></div><div class="paragraph"><p>Let&#8217;s execute 10 concurrent requests using <a href="https://github.com/JoeDog/siege" target="_blank" rel="noopener">siege</a>:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">siege -c 10 -r 1 http://localhost:8080/recommendations</code></pre></div></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">** SIEGE 4.0.4
+** Preparing 10 concurrent users for battle.
+The server is now under siege...
+HTTP/1.1 200     0.25 secs:     119 bytes ==&gt; GET  /recommendations
+HTTP/1.1 200     0.25 secs:     119 bytes ==&gt; GET  /recommendations
+HTTP/1.1 200     0.25 secs:     119 bytes ==&gt; GET  /recommendations
+HTTP/1.1 200     0.25 secs:     119 bytes ==&gt; GET  /recommendations
+HTTP/1.1 200     0.25 secs:     119 bytes ==&gt; GET  /recommendations
+HTTP/1.1 200     0.25 secs:     119 bytes ==&gt; GET  /recommendations
+HTTP/1.1 200     0.25 secs:     119 bytes ==&gt; GET  /recommendations
+HTTP/1.1 200     0.26 secs:     119 bytes ==&gt; GET  /recommendations
+HTTP/1.1 200     0.26 secs:     119 bytes ==&gt; GET  /recommendations
+HTTP/1.1 200     0.26 secs:     119 bytes ==&gt; GET  /recommendations
+
+Transactions:		          10 hits
+Availability:		      100.00 %
+Elapsed time:		        0.26 secs
+Data transferred:	        0.00 MB
+Response time:		        0.25 secs
+Transaction rate:	       38.46 trans/sec
+Throughput:		        0.00 MB/sec
+Concurrency:		        9.73
+Successful transactions:          10
+Failed transactions:	           0
+Longest transaction:	        0.26
+Shortest transaction:	        0.25</code></pre></div></div></div></div><div class="sect1"><h2 id="are-we-done">Are we done?</h2><div class="sectionbody"><div class="paragraph"><p>We might think that everything is fine and we are ready to deploy to production. Before that let&#8217;s run <a href="https://httpd.apache.org/docs/2.4/programs/ab.html" target="_blank" rel="noopener">Apache HTTP Bench</a> just to make sure we are ready to go:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ab -c 500 -n 2000 http://localhost:8080/recommendations</code></pre></div></div><div class="paragraph"><p>500 concurrent requests, 2,000 in total. The result:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-plain hljs" data-lang="plain">Server Software:
+Server Hostname:        localhost
+Server Port:            8080
+
+Document Path:          /recommendations
+Document Length:        119 bytes
+
+Concurrency Level:      500
+Time taken for tests:   5.312 seconds
+Complete requests:      2000
+Failed requests:        1570
+   (Connect: 0, Receive: 0, Length: 1570, Exceptions: 0)
+Non-2xx responses:      146
+Total transferred:      339669 bytes
+HTML transferred:       83586 bytes
+Requests per second:    376.49 [#/sec] (mean)
+Time per request:       1328.058 [ms] (mean)
+Time per request:       2.656 [ms] (mean, across all concurrent requests)
+Transfer rate:          62.44 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0  544 514.3   1005    1068
+Processing:   255  546 200.3    545    1236
+Waiting:      251  546 200.3    545    1236
+Total:        281 1090 455.2   1290    1772
+
+Percentage of the requests served within a certain time (ms)
+  50%   1290
+  66%   1400
+  75%   1467
+  80%   1501
+  90%   1652
+  95%   1733
+  98%   1755
+  99%   1764
+ 100%   1772 (longest request)</code></pre></div></div><div class="paragraph"><p>Apache Bench revealed that we have a huge problem with handling 500 concurrent requests - median 1290 milliseconds when we drop connection after 250 ms timeout is not something we would expect here. It also shows that 1570 from 2000 requests were marked as failed based on the content length - it means that some requests returned a response with two products, some with just a single product, and there were most probably some requests with empty result.</p></div><div class="paragraph"><p>Let&#8217;s run one more experiment, but this time with 200 concurrent requests and let&#8217;s take a look at the result <code>ab</code> produced:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-plain hljs" data-lang="plain">Server Software:
+Server Hostname:        localhost
+Server Port:            8080
+
+Document Path:          /recommendations
+Document Length:        119 bytes
+
+Concurrency Level:      200
+Time taken for tests:   3.073 seconds
+Complete requests:      2000
+Failed requests:        280
+   (Connect: 0, Receive: 0, Length: 280, Exceptions: 0)
+Total transferred:      477760 bytes
+HTML transferred:       222040 bytes
+Requests per second:    650.91 [#/sec] (mean)
+Time per request:       307.261 [ms] (mean)
+Time per request:       1.536 [ms] (mean, across all concurrent requests)
+Transfer rate:          151.85 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   2.3      0      15
+Processing:   251  269  20.4    261     349
+Waiting:      251  269  20.4    261     349
+Total:        251  270  21.1    262     352
+
+Percentage of the requests served within a certain time (ms)
+  50%    262
+  66%    271
+  75%    277
+  80%    281
+  90%    304
+  95%    319
+  98%    335
+  99%    344
+ 100%    352 (longest request)</code></pre></div></div><div class="paragraph"><p>A smaller concurrent connections number produced much better result - median 262 ms and only 280 failed requests (based on the content length). Why such a huge difference? Well, we need to be aware of one important thing. Even if we drop client connection after 250 ms timeout, the server is still processing all requests executed to product-service. It means that when server receives 500 concurrent requests to <code>localhost:8080/recommendations</code> it processes 1,000 requests that are never returned back to the client. It total it gives us 4,000 orphan requests, which allocate resources, consume them and return back to the even-loop, but never get back to the caller.</p></div></div></div><div class="sect1"><h2 id="any-solution">Any solution?</h2><div class="sectionbody"><div class="paragraph"><p>There is no simple solution to this kind of problems. It shows the importance of a proper application monitoring. If we only monitor client requests success rate we would notice, that PROD-003 and PROD-004 products never return to the client. Maybe it is a good reason to drop recommending these products? Let&#8217;s see what happens if we recommend only first two products?</p></div><div class="paragraph"><p>For 500 concurrent requests we get:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-plain hljs" data-lang="plain">Concurrency Level:      500
+Time taken for tests:   1.667 seconds
+Complete requests:      2000
+Failed requests:        948
+   (Connect: 0, Receive: 0, Length: 948, Exceptions: 0)
+Total transferred:      403820 bytes
+HTML transferred:       149371 bytes
+Requests per second:    1200.07 [#/sec] (mean)
+Time per request:       416.641 [ms] (mean)
+Time per request:       0.833 [ms] (mean, across all concurrent requests)
+Transfer rate:          236.63 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    3   5.0      0      19
+Processing:   212  328  44.3    320     416
+Waiting:      193  328  44.3    320     416
+Total:        212  331  44.3    326     416
+
+Percentage of the requests served within a certain time (ms)
+  50%    326
+  66%    347
+  75%    357
+  80%    372
+  90%    399
+  95%    409
+  98%    413
+  99%    415
+ 100%    416 (longest request)</code></pre></div></div><div class="paragraph"><p>For 200 concurrent requests we get:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-plain hljs" data-lang="plain">Concurrency Level:      200
+Time taken for tests:   2.613 seconds
+Complete requests:      2000
+Failed requests:        0
+Total transferred:      494000 bytes
+HTML transferred:       238000 bytes
+Requests per second:    765.26 [#/sec] (mean)
+Time per request:       261.349 [ms] (mean)
+Time per request:       1.307 [ms] (mean, across all concurrent requests)
+Transfer rate:          184.59 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   2.3      0      15
+Processing:   191  231  27.9    225     279
+Waiting:      191  231  28.0    225     279
+Total:        191  231  28.6    225     282
+
+Percentage of the requests served within a certain time (ms)
+  50%    225
+  66%    252
+  75%    262
+  80%    265
+  90%    270
+  95%    274
+  98%    279
+  99%    280
+ 100%    282 (longest request)</code></pre></div></div><div class="paragraph"><p>It&#8217;s still far from the best results, however 200 concurrent requests produce almost ideal results. With 500 we still see that application has some difficulties and hits timeouts for PROD-002 in some cases. But this is not a bulletproof benchmark and we are only experimenting to see the order of magnitude.</p></div></div></div><div class="sect1"><h2 id="conclusion">Conclusion</h2><div class="sectionbody"><div class="paragraph"><p>And that&#8217;s it, we finally reached the end of 3 part article on quick start to non-blocking and async processing in Micronaut. I hope you have enjoyed it and you&#8217;ve learned something useful during this journey. If you are looking for more - let&#8217;s stay in touch. More Micronaut articles are coming soon!</p></div></div></div><div id="footnotes"><hr><div class="footnote" id="_footnotedef_1"><a href="#_footnoteref_1">1</a>. <a href="http://reactivex.io/RxJava/javadoc/io/reactivex/Maybe.html#timeout-long-java.util.concurrent.TimeUnit-io.reactivex.MaybeSource-" target="_blank" rel="noopener" class="bare">http://reactivex.io/RxJava/javadoc/io/reactivex/Maybe.html#timeout-long-java.util.concurrent.TimeUnit-io.reactivex.MaybeSource-</a></div></div><footer class="post-footer"><img class="img-responsive img-circle" src="https://www.gravatar.com/avatar/b22c1842c6e8f7f2b9b3ed8c0d4efb4d?s=200"><div class="row author"><div class="col-lg-8 col-lg-offset-2 col-xs-10 col-xs-offset-1"><h4>Szymon Stepniak</h4><p>Groovista, Upwork's Top Rated freelancer, Toruń Java User Group founder, open&nbsp;source contributor, Stack Overflow addict, bedroom guitar player. I walk through e.printStackTrace() so you don't have to.</p><ul class="social-links"><li><a href="https://feeds.feedburner.com/Eprintstacktracenet" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-rss"></span></a></li><li><a href="https://twitter.com/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-twitter"></span></a></li><li><a href="https://github.com/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-github"></span></a></li><li><a href="https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-stack-overflow"></span></a></li><li><a href="https://www.youtube.com/channel/UCEf8e5YAYnowq-2deW4tpsw/featured" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-youtube"></span></a></li><li><a href="mailto:szymon.stepniak@gmail.com" onclick="return window.open(this.href),!1"><span class="fa fa-envelope"></span></a></li><li><a href="https://www.linkedin.com/in/szymon-stępniak-9a0b1630" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-linkedin"></span></a></li><li><a href="https://keybase.io/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-user-secret"></span></a></li></ul></div></div></footer><section class="related-posts"><h2>You may also like</h2><div class="row"><div class="col-lg-4"><a href="/micronaut-non-blocking-and-async-part-2/"><img class="img-responsive" src="/images/og/micronaut-nonblocking-part2.jpg"><h3>Non-blocking and async Micronaut - quick start (part 2)</h3></a><p>Welcome to the part 2 of "Non-blocking and async Micronaut" article. In the previous part we have explained the idea behind this demo and we have implemented product-service - a simple endpoint tha...</p></div><div class="col-lg-4"><a href="/micronaut-non-blocking-and-async-part1/"><img class="img-responsive" src="/images/og/micronaut-nonblocking-part1.jpg"><h3>Non-blocking and async Micronaut - quick start (part 1)</h3></a><p>Micronaut framework inventors says it is designed for building modern microservice applications. It supports reactive and non-blocking HTTP requests processing thanks to a powerful network applicat...</p></div><div class="col-lg-4"><a href="/ratpack-graalvm-how-to-start/"><img class="img-responsive" src="/images/og/ratpack-graalvm-how-to-start.jpg"><h3>Ratpack on GraalVM - how to start?</h3></a><p>The journey inside the exciting world of GraalVM continues. Today I would like to share with you results of running Ratpack on GraalVM experiment. You are going to learn how to build a native binar...</p></div></div></section></article><nav class="pagination" role="pagination"><a class="pull-left btn" href="/tail-recursive-methods-in-groovy/">← Next post</a><a class="pull-right btn" href="/java-type-inference-generic-methods-chain-call/">Previous post →</a></nav><div class="disqus-comments"><div class="comments"><div id="disqus_thread"></div></div></div><script>var url_parts=window.location.href.split("?"),disqus_url=url_parts[0];!function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="//eprintstacktrace.disqus.com/embed.js",(document.head||d.body).appendChild(t)}()</script></div></div></div><script async id="dsq-count-scr" src="//eprintstacktrace.disqus.com/count.js"></script><footer class="site-footer"><div class="container-fluid"><div class="row"><div class="col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1"><div class="row"><div class="col-lg-4"><h4>e.printstacktrace.blog © 2020</h4><p><em>"I walk through e.printStackTrace() so you don't have to"</em></p><p><a href="/privacy-policy/">Privacy policy</a></p><p><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener"><img src="https://badgen.net/badge/license/CC%20BY-NC-SA%204.0/gray"></a></p><p><a href="https://github.com/wololock/wololock.github.io/commits/develop" target="_blank" rel="noopener"><img src="https://badgen.net/github/last-commit/wololock/wololock.github.io?color=blue"></a></p></div><div class="col-lg-4"><h4 class="marked">Recent video on YouTube</h4><section class="recent-posts"><a href="https://www.youtube.com/watch?v=Dfx_VZuJ0Ps" target="_blank" rel="noopener"><img src="https://i3.ytimg.com/vi/Dfx_VZuJ0Ps/mqdefault.jpg" alt=""></a></section><h4 class="marked">Recent articles</h4><section class="recent-posts"><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/jenkins-scripted-pipeline-vs-declarative-pipeline-the-4-practical-differences/">Jenkins Scripted Pipeline vs. Declarative Pipeline - the 4 practical differences</a></li><li class="post-list-item"><a class="post-list-link" href="/the-blog-development-report-year-2019/">The blog development report - year 2019</a></li><li class="post-list-item"><a class="post-list-link" href="/groovy-string-methods-that-will-make-your-life-groovier/">Three Groovy String methods that will make your life Groovier!</a></li><li class="post-list-item"><a class="post-list-link" href="/using-jenkins-pipeline-parallel-stages-to-build-maven-project-with-different-jdks/">Using Jenkins Pipeline parallel stages to build Maven project with different JDKs</a></li><li class="post-list-item"><a class="post-list-link" href="/quicksort-in-groovy-can-it-be-as-fast-as-implemented-in-java/">Quicksort in Groovy - can it be as fast as implemented in Java?</a></li><li class="post-list-item"><a class="post-list-link" href="/using-circleci-to-deploy-hexo-blog-to-github-pages-how-to-set-it-up/">Using CircleCI to deploy Hexo blog to GitHub Pages - how to set it up?</a></li></ul></section></div><div class="col-lg-4"><h4 class="marked">Stay connected</h4><div class="social-links"><ul><li><a href="https://feeds.feedburner.com/Eprintstacktracenet" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-rss"></span></a></li><li><a href="https://twitter.com/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-twitter"></span></a></li><li><a href="https://github.com/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-github"></span></a></li><li><a href="https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-stack-overflow"></span></a></li><li><a href="https://www.youtube.com/channel/UCEf8e5YAYnowq-2deW4tpsw/featured" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-youtube"></span></a></li><li><a href="mailto:szymon.stepniak@gmail.com" onclick="return window.open(this.href),!1"><span class="fa fa-envelope"></span></a></li><li><a href="https://www.linkedin.com/in/szymon-stępniak-9a0b1630" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-linkedin"></span></a></li><li><a href="https://keybase.io/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-user-secret"></span></a></li></ul></div><h4 class="marked">Most popular tags</h4><section class="tagcloud"><a href="/tags/benchmark/" style="font-size:12pt;color:#777">benchmark</a> <a href="/tags/book/" style="font-size:16pt;color:#858585">book</a> <a href="/tags/cicd/" style="font-size:20pt;color:#929292">cicd</a> <a href="/tags/devops/" style="font-size:8pt;color:#6a6a6a">devops</a> <a href="/tags/docker/" style="font-size:12pt;color:#777">docker</a> <a href="/tags/github/" style="font-size:8pt;color:#6a6a6a">github</a> <a href="/tags/graalvm/" style="font-size:24pt;color:#9f9f9f">graalvm</a> <a href="/tags/groovy/" style="font-size:32pt;color:#bababa">groovy</a> <a href="/tags/haskell/" style="font-size:8pt;color:#6a6a6a">haskell</a> <a href="/tags/java/" style="font-size:28pt;color:#adadad">java</a> <a href="/tags/jenkins/" style="font-size:16pt;color:#858585">jenkins</a> <a href="/tags/jenkins-pipeline/" style="font-size:16pt;color:#858585">jenkins-pipeline</a> <a href="/tags/jmh/" style="font-size:16pt;color:#858585">jmh</a> <a href="/tags/learning/" style="font-size:8pt;color:#6a6a6a">learning</a> <a href="/tags/maven/" style="font-size:8pt;color:#6a6a6a">maven</a> <a href="/tags/micronaut/" style="font-size:12pt;color:#777">micronaut</a> <a href="/tags/native-image/" style="font-size:12pt;color:#777">native-image</a> <a href="/tags/non-blocking/" style="font-size:12pt;color:#777">non-blocking</a> <a href="/tags/ratpack/" style="font-size:24pt;color:#9f9f9f">ratpack</a> <a href="/tags/reading/" style="font-size:8pt;color:#6a6a6a">reading</a> <a href="/tags/review/" style="font-size:16pt;color:#858585">review</a> <a href="/tags/sdkman/" style="font-size:12pt;color:#777">sdkman</a> <a href="/tags/spock/" style="font-size:12pt;color:#777">spock</a> <a href="/tags/stackoverflow/" style="font-size:8pt;color:#6a6a6a">stackoverflow</a> <a href="/tags/unit-test/" style="font-size:12pt;color:#777">unit-test</a></section></div></div></div></div></div><section class="poweredby"><ul class="text-center"><li><span>Published with </span><a href="https://hexo.io" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><img src="/img/logo-hexo.png"></a></li><li><span>Hosted on </span><a href="https://github.com/wololock/wololock.github.io" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><img src="/img/logo-github.png"></a></li><li><span>Deployed with </span><a href="https://circleci.com/gh/wololock/wololock.github.io" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><img src="/img/logo-circleci.png"></a></li></ul></section></footer><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><script id="cookiebanner" src="//cdnjs.cloudflare.com/ajax/libs/cookie-banner/1.2.2/cookiebanner.min.js" data-moreinfo="/privacy-policy/" data-message="This blog uses cookies to enhance your experience. By continuing to visit it you agree to its use of cookies." data-link="#ffad33" data-font-family="Lora,serif" data-font-size="1.6rem" data-bg="#444"></script><script src="/js/main.js?v=5"></script><script src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad()</script><script>"localhost"!==window.location.hostname&&"127.0.0.1"!==window.location.hostname&&(!function(e,a,t,n,o,c,g){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),g=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",g.parentNode.insertBefore(c,g)}(window,document,"script",0,"ga"),ga("create","UA-42400890-5","auto"),ga("send","pageview"),jQuery("a.ga-track").click(function(e){var a=jQuery(e.target).text();return ga("send","event","links","click",a),!0}))</script></body></html>

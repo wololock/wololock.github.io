@@ -1,0 +1,76 @@
+==================================================================
+https://keybase.io/wololock
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://e.printstacktrace.blog
+  * I am wololock (https://keybase.io/wololock) on keybase.
+  * I have a public key with fingerprint 30BA 1AAD 71C2 08A2 4C74  5902 FBF5 76F4 BFA5 573B
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01011b0df1a85af1bdc36c9f88918305dd91b1ca9d190f6d234b9fbf4afece6731af0a",
+      "fingerprint": "30ba1aad71c208a24c745902fbf576f4bfa5573b",
+      "host": "keybase.io",
+      "key_id": "fbf576f4bfa5573b",
+      "kid": "01016a0b0ef6d9cb19b2d5a2199f0f0929948cc20b5d7dddcf48736467fd82b5580b0a",
+      "uid": "33b1d009894840e1b0cf6e85e9b31919",
+      "username": "wololock"
+    },
+    "service": {
+      "hostname": "e.printstacktrace.blog",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1552203460,
+  "expire_in": 157680000,
+  "prev": "6449c312927e7bfcb67c184a411ec81188f95e93d40f9a2459161dc2133dce38",
+  "seqno": 14,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.1.0
+Comment: https://keybase.io/crypto
+
+yMN7AnicbZJtUFRVHMZZeQkIB4UgDEm8SNG0wj33be9dwMpqzAF2izA+hO6ce+65
+uyvrLuwuCyxDkSaNMsMkaVJEyTplg+EUEBEyEi+lZYMGBgwoL9ZMo2NhsTW8DE1n
+GZu+dO+HO+fM8/zO83/uGVofHBSpWfnT4+/7sDBTc7nfVxZU9PqFoSpKdiiVlL6K
+KsZrH2xTsMttKrYqlJ6iAQ2ATCsqgCIPVSAriBWQpIqiBESW5hVFAjJAUFKARKuC
+wrCcLKmyykEVIyzoWABVGlJaSrXazdhZ4rTa3QTL0jIEECo6gBhahAyHdBwv0Qxx
+8jpB5WQV8ryOlYnR4nAFHCScDF043eoge2RhWov3P/r/cguQlmlMQklIBpLMKDxk
+gCSptEpLjCRxIiKHy7yiUxQFqZyoYwVO0KmKyMg8LxJvIHfZGo5lZaDQtCQSF0dj
+0ghSBSzyWJJZIAEpIHRhpx0ewERd7rCRFxVT1VqK7HqsCAeKDUxyT4HT15pwuSEq
+djshwumyzWEmlBKnw+1ADhvRWNzuEpc+wHBXlqxhsWy6hzPJVrtCGiUOD3a6rA47
+pQdEidzWAB/wPMPQLCfQWgpXlFid2GQNKEhXIk2ewDnYQ5ACx0mIBYzE6LBOVpEs
+6BAQOcgBgJEIgCiqEhmSVThalchv4iUgAAUxgGUVhFmRCgxYancQNkdyQjNhuqxm
+O3SXOTFVPdBfFBKkiQwKC10XuGpBkREb/r2AifMbglou1sS0vQd9cXerxmd7cW5I
+U9n6h2c2H5sPvVJTcP+JiOzhxai2yephE306cTnhnZhfnmrsm86r2O17om68Ms32
+ho5KSdRGwpzs+J3vJhn3dIwNT/36WLbvg5Spx1c7vPPHOuI1Ta9VQ88lznhGA1Mf
+Ce/JmPn0wdrDOfULDl9mUnjKAh/85cY8fSx6snyprVN7o3xg++RCrevWy+NjaS9m
+nG+JMU50xh4pbeq8WH85/2y/P9Q7ON9UxHwzmJW66D3+kv/CqiHc8n2MN/o29Cpp
+K6fbnzUN1TszruWMytGF3a8eNMZZrjbQ1duSYy81d+4wawZL9VNv70175cRtjd4/
+9pyldymp13AVZg3Uf7tv1N/9szdh8eO/lf3BhrqG5YGGAyM9CUMzL2jcNyIaZ0bO
+PHQkfm7v9bMftTuKt3arPTctP9Vv39E8+HRwV328J+x8yA8oYuu2XeWtwvWoXb47
+/j7tlomR9++m1uSdrN3sHWlo1R/NL3grOSJlcTl537pomzG6cTq39vf1s+dWjh5/
+9LvMr/w9lkN/NG5Z2v21/lTWwJ7fJkfLd95nvFYgTodY0jd14LrkK5+cyjsYnT+b
+K+//ca75ixBstrW3Lmk7W4oPzZ0zRKyGfdZlSNzUWNGXt7HbV3jrec8dw5Rw8vMH
+bAPPvDkx0Tr519RYp74r6rCl8WYhwjVx/wDU58Z5
+=32s4
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/wololock
+
+==================================================================
+
