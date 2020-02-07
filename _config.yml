@@ -125,3 +125,7 @@ category:
     'Programming tips': /images/java-type-inference-bg.jpg
     'Ratpack Cookbook': /images/ratpack-cookbook-bg.jpg
     'Tales from debugger': /img/post-debugger.jpg
+
+video:
+  id: Dfx_VZuJ0Ps
+  size: mqdefault

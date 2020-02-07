@@ -19,6 +19,12 @@ footer.site-footer
                                 img(src="https://badgen.net/github/last-commit/wololock/wololock.github.io?color=blue")
 
                     .col-lg-4
+                        if config.video.id
+                            h4.marked!="Recent video on YouTube"
+                            section.recent-posts
+                                a(href="https://www.youtube.com/watch?v="+config.video.id)
+                                    img(src="https://i3.ytimg.com/vi/" + config.video.id + "/" + config.video.size + ".jpg", alt="")
+
                         h4.marked!="Recent articles"
                         section.recent-posts
                             != list_posts({limit: 5})
