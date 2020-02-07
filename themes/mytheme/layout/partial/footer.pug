@@ -23,7 +23,7 @@ footer.site-footer
                             h4.marked!="Recent video on YouTube"
                             section.recent-posts
                                 a(href="https://www.youtube.com/watch?v="+config.video.id)
-                                    img(src="https://i3.ytimg.com/vi/" + config.video.id + "/" + config.video.size + ".jpg", alt="")
+                                    img(src="https://i3.ytimg.com/vi/" + config.video.id + "/" + config.video.size + ".jpg", alt=config.video.title, class="img-thumbnail img-noborder")
 
                         h4.marked!="Recent articles"
                         section.recent-posts

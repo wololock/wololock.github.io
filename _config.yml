@@ -103,7 +103,7 @@ all_minifier: true
 
 # Update versions after updating resources to prevent reading from cache
 version:
-  css: 38
+  css: 39
   js: 5
 
 archive_generator:
@@ -129,3 +129,4 @@ category:
 video:
   id: Dfx_VZuJ0Ps
   size: mqdefault
+  title: Declarative Pipeline vs. Scripted Pipeline - you asked questions, and I answer them!
