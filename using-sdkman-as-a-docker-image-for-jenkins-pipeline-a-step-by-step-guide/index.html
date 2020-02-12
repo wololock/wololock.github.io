@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="author" content="Szymon Stepniak"><meta name="robots" content="all"><title>Using SDKMAN! as a docker image for Jenkins Pipeline - a step by step guide</title><meta name="description" content="A few days ago, I was struggling with some Docker images I use in my Jenkins CI environment. I run some Jenkins Pipelines, and I like to define build environment as code using custom Docker images. Everything was fine until I had to consider running di..."><meta name="keywords" content="groovy,java,docker,sdkman,devops,jenkins,jenkins-pipeline,cicd,maven"><link rel="shortcut icon" type="image/png" href="/favicon.png"><link rel="dns-prefetch" href="//cdnjs.cloudflare.com"><link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com"><link rel="dns-prefetch" href="//disqus.com"><link rel="dns-prefetch" href="//c.disquscdn.com"><link rel="canonical" href="https://e.printstacktrace.blog/using-sdkman-as-a-docker-image-for-jenkins-pipeline-a-step-by-step-guide/"><link rel="alternate" type="application/rss+xml" title="e.printStackTrace(); // Blog" href="/atom.xml"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"><link rel="stylesheet" href="/css/main.css?v=39"><link rel="stylesheet" href="/css/conum.css?v=39"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Droid+Sans+Mono:400,700"><meta name="description" content="A few days ago, I was struggling with some Docker images I use in my Jenkins CI environment. I run some Jenkins Pipelines, and I like to define build environment as code using custom Docker images. Ev"><meta property="og:type" content="article"><meta property="og:title" content="Using SDKMAN! as a docker image for Jenkins Pipeline - a step by step guide"><meta property="og:url" content="https:&#x2F;&#x2F;e.printstacktrace.blog&#x2F;using-sdkman-as-a-docker-image-for-jenkins-pipeline-a-step-by-step-guide&#x2F;"><meta property="og:site_name" content="e.printStackTrace(); &#x2F;&#x2F; Blog"><meta property="og:description" content="A few days ago, I was struggling with some Docker images I use in my Jenkins CI environment. I run some Jenkins Pipelines, and I like to define build environment as code using custom Docker images. Ev"><meta property="og:locale" content="en_US"><meta property="og:image" content="https:&#x2F;&#x2F;e.printstacktrace.blog&#x2F;images&#x2F;og&#x2F;jenkins-pipeline-docker-sdkman.jpg"><meta property="article:published_time" content="2019-11-06T18:34:01.000Z"><meta property="article:modified_time" content="2019-11-06T18:34:01.000Z"><meta property="article:author" content="Szymon Stepniak"><meta property="article:tag" content="groovy"><meta property="article:tag" content="java"><meta property="article:tag" content="docker"><meta property="article:tag" content="sdkman"><meta property="article:tag" content="devops"><meta property="article:tag" content="jenkins"><meta property="article:tag" content="jenkins-pipeline"><meta property="article:tag" content="cicd"><meta property="article:tag" content="maven"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https:&#x2F;&#x2F;e.printstacktrace.blog&#x2F;images&#x2F;og&#x2F;jenkins-pipeline-docker-sdkman.jpg"><meta name="twitter:creator" content="@wololock"><script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://e.printstacktrace.blog/using-sdkman-as-a-docker-image-for-jenkins-pipeline-a-step-by-step-guide/"},"headline":"Using SDKMAN! as a docker image for Jenkins Pipeline - a step by step guide","image":{"@type":"ImageObject","url":"https://e.printstacktrace.blog/images/og/jenkins-pipeline-docker-sdkman.jpg"},"datePublished":"2019-11-06T18:34:01.000Z","dateModified":"2019-11-06T18:34:01.000Z","author":{"@type":"Person","name":"Szymon Stepniak"},"publisher":{"@type":"Organization","name":"e.printStackTrace(); // Blog","logo":{"@type":"ImageObject","url":"https://e.printstacktrace.blog/images/site-logo.jpg","height":60,"width":600}},"description":"A few days ago, I was struggling with some Docker images I use in my Jenkins CI environment. I run some Jenkins Pipelines, and I like to define build environment as code using custom Docker images. Everything was fine until I had to consider running different Java or Maven versions. I decided to use one of my favorite command-line tools - SDKMAN!, to build a highly configurable build environment.","keywords":"groovy,java,docker,sdkman,devops,jenkins,jenkins-pipeline,cicd,maven"}</script><meta name="generator" content="Hexo 4.1.1"></head><body class="layout-post"><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class="container-fluid"><div class="navbar-header"><button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/"><span>e.printStackTrace(); // Blog</span></a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-right"><li><a href="/archives">Archive</a></li><li><a href="https://github.com/wololock/wololock.github.io" target="_blank" rel="noopener">Github</a></li><li><a href="https://twitter.com/wololock" target="_blank" rel="noopener"><img src="https://badgen.net/twitter/follow/wololock"></a></li><li><a href="https://circleci.com/gh/wololock/wololock.github.io/tree/develop" target="_blank" rel="noopener"><img src="https://badgen.net/circleci/github/wololock/wololock.github.io/develop?icon=circleci&amp;label"></a></li></ul></div></div></nav><header class="header-section"><div class="intro-header" style="background-image:url(/images/jenkins-bg.jpg)"><div class="container"><div class="row"><div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1"><div class="post-heading"><a class="category" href="/categories/jenkins-pipeline-cookbook/">Jenkins Pipeline Cookbook</a><h1>Using SDKMAN! as a docker image for Jenkins Pipeline - a step by step guide</h1><div class="post-meta"><ul><li><time datetime="2019-11-06T18:34:01.000Z" itemprop="datePublished">Nov 6, 2019</time></li><li>14 minutes read</li><li><a href="https://e.printstacktrace.blog/using-sdkman-as-a-docker-image-for-jenkins-pipeline-a-step-by-step-guide/#disqus_thread">0 Comments</a></li></ul><section class="post-tags"><ul class="tags"><li><a class="tag post-meta" href="/tags/groovy/">groovy</a></li><li><a class="tag post-meta" href="/tags/java/">java</a></li><li><a class="tag post-meta" href="/tags/docker/">docker</a></li><li><a class="tag post-meta" href="/tags/sdkman/">sdkman</a></li><li><a class="tag post-meta" href="/tags/devops/">devops</a></li><li><a class="tag post-meta" href="/tags/jenkins/">jenkins</a></li><li><a class="tag post-meta" href="/tags/jenkins-pipeline/">jenkins-pipeline</a></li><li><a class="tag post-meta" href="/tags/cicd/">cicd</a></li><li><a class="tag post-meta" href="/tags/maven/">maven</a></li></ul></section></div></div></div></div></div></div></header><div class="container"><div class="row"><div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1"><article class="blog-post" role="main"><div class="paragraph"><p>A few days ago, I was struggling with some Docker images I use in my Jenkins CI environment. I run some Jenkins Pipelines, and I like to define build environment as code using custom Docker images. Everything was fine until I had to consider running different Java or Maven versions. I decided to use one of my favorite command-line tools - <a href="https://sdkman.io/" target="_blank" rel="noopener">SDKMAN!</a>, to build a highly configurable build environment.</p></div><a id="more"></a><div class="paragraph"><p>Let&#8217;s get directly into the details, and let&#8217;s start with defining a simple <code>Dockerfile</code> that installs SDKMAN! and expected Java and Maven versions.</p></div><div class="sect1"><h2 id="dockerfile">Dockerfile</h2><div class="sectionbody"><div class="listingblock"><div class="title">Listing 1. Dockerfile</div><div class="content"><pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile">FROM debian:stretch-slim <i class="conum" data-value="1"></i><b>(1)</b>
+
+# Defining default Java and Maven version <i class="conum" data-value="2"></i><b>(2)</b>
+ARG JAVA_VERSION="11.0.5-amzn"
+ARG MAVEN_VERSION="3.6.2"
+
+# Defining default non-root user UID, GID, and name <i class="conum" data-value="3"></i><b>(3)</b>
+ARG USER_UID="1000"
+ARG USER_GID="1000"
+ARG USER_NAME="jenkins"
+
+# Creating default non-user <i class="conum" data-value="4"></i><b>(4)</b>
+RUN groupadd -g $USER_GID $USER_NAME &amp;&amp; \
+	useradd -m -g $USER_GID -u $USER_UID $USER_NAME
+
+# Installing basic packages <i class="conum" data-value="5"></i><b>(5)</b>
+RUN apt-get update &amp;&amp; \
+	apt-get install -y zip unzip curl &amp;&amp; \
+	rm -rf /var/lib/apt/lists/* &amp;&amp; \
+	rm -rf /tmp/*
+
+# Switching to non-root user to install SDKMAN! <i class="conum" data-value="6"></i><b>(6)</b>
+USER $USER_UID:$USER_GID
+
+# Downloading SDKMAN! <i class="conum" data-value="7"></i><b>(7)</b>
+RUN curl -s "https://get.sdkman.io" | bash
+
+# Installing Java and Maven, removing some unnecessary SDKMAN files <i class="conum" data-value="8"></i><b>(8)</b>
+RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh &amp;&amp; \
+    yes | sdk install java $JAVA_VERSION &amp;&amp; \
+    yes | sdk install maven $MAVEN_VERSION &amp;&amp; \
+    rm -rf $HOME/.sdkman/archives/* &amp;&amp; \
+    rm -rf $HOME/.sdkman/tmp/*"</code></pre></div></div><div class="paragraph"><p><em class="conum" data-value="1"></em> I use <code>debian:stretch-slim</code> in this example - a small 55 MB base docker image. It&#8217;s not the smallest available docker image, but it will work fine in our experiment. In our example, we will be using <a href="https://aws.amazon.com/corretto/" target="_blank" rel="noopener">Amazon Corretto JDK 11.0.5</a> - a distribution of OpenJDK from Amazon.com. We also want to install Maven 3.6.2 so we can run some <code>mvn clean install</code> command in the Jenkins Pipeline. We define both <em class="conum" data-value="2"></em> using <code>ARG</code> instruction<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> so we can easily override default versions from the command line.</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ docker build --build-arg JAVA_VERSION=8.0.232-amzn ...</code></pre></div></div><div class="paragraph"><p>We are going to run the docker container as a non-root user. We define <em class="conum" data-value="3"></em> default <code>USER_UID</code>, <code>USER_GID</code> and <code>USER_NAME</code> using <code>ARG</code> instruction, and we create <em class="conum" data-value="4"></em> the user, his group and home directory. SDKMAN! requires tools like <code>curl</code>, <code>zip</code> and <code>unzip</code> - we need to install them <em class="conum" data-value="5"></em>.</p></div><div class="paragraph"><p>Before we install SDKMAN!, we are switching to our non-root user <em class="conum" data-value="6"></em> and we are ready to install SDKMAN! using <code>curl</code> <em class="conum" data-value="7"></em>. Th last step we need to do is to run <code>sdkman-init.sh</code> script and install expected Java and Maven <em class="conum" data-value="8"></em>.</p></div><div class="paragraph"><p>That&#8217;s our Dockerfile. Let&#8217;s build <code>sdkman:local</code> Docker image.</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ docker build -t sdkman:local .</code></pre></div></div><div class="paragraph"><p>Let&#8217;s run the container in the interactive mode (<code>-it</code>) and attach a <code>bash</code> process:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><strong>$ docker run -it --rm  -u $(id -u) sdkman:local bash</strong>
+jenkins@1c06914cb5ce:/<strong>$ java -version</strong>
+openjdk version "11.0.5" 2019-10-15 LTS
+OpenJDK Runtime Environment Corretto-11.0.5.10.1 (build 11.0.5+10-LTS)
+OpenJDK 64-Bit Server VM Corretto-11.0.5.10.1 (build 11.0.5+10-LTS, mixed mode)
+jenkins@1c06914cb5ce:/<strong>$ mvn -version</strong>
+Apache Maven 3.6.2 (40f52333136460af0dc0d7232c0dc0bcf0d9e117; 2019-08-27T15:06:16Z)
+Maven home: /home/jenkins/.sdkman/candidates/maven/current
+Java version: 11.0.5, vendor: Amazon.com Inc., runtime: /home/jenkins/.sdkman/candidates/java/11.0.5-amzn
+Default locale: en_US, platform encoding: ANSI_X3.4-1968
+OS name: "linux", version: "5.3.8-200.fc30.x86_64", arch: "amd64", family: "unix"</code></pre></div></div><div class="paragraph"><p>It works like a charm! It&#8217;s time to set up a Jenkins Pipeline.</p></div></div></div><div class="sect1"><h2 id="jenkins-pipeline">Jenkins Pipeline</h2><div class="sectionbody"><div class="paragraph"><p>Let&#8217;s start by defining a simple Jenkins Pipeline.</p></div><div class="listingblock"><div class="title">Listing 2. Jenkinsfile</div><div class="content"><pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">pipeline {
+    agent {
+        docker {
+            image "sdkman:local" <i class="conum" data-value="1"></i><b>(1)</b>
+        }
+    }
+    stages {
+        stage("Build") {
+            steps {
+                sh "java -version" <i class="conum" data-value="2"></i><b>(2)</b>
+                sh "mvn -version" <i class="conum" data-value="3"></i><b>(3)</b>
+            }
+        }
+    }
+}</code></pre></div></div><div class="paragraph"><p>We start slowly. Firstly, we configure a docker agent that will start a container from our <code>sdkman:local</code> docker image <em class="conum" data-value="1"></em>. Secondly, we define a single <code>Build</code> stage and we want to verify if running Java <em class="conum" data-value="2"></em> and Maven <em class="conum" data-value="3"></em> are working. We run the pipeline and we see:</p></div><div class="openblock text-center"><div class="content"><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="/images/jenkins-pipeline-sdkman-fail.png"><img src="/images/jenkins-pipeline-sdkman-fail.png" alt="jenkins pipeline sdkman fail"></a></div></div></div></div><div class="paragraph"><p>The pipeline cannot found <code>java</code>? What? We just tested it with <code>docker run &#8230;&#8203; bash</code> and it worked! We look at the console log, we see that Jenkins docker agent spawned the right container. What&#8217;s the problem then?</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Started by user Szymon Stepniak
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /home/wololock/.jenkins/workspace/pipeline-with-sdkman
+[Pipeline] {
+[Pipeline] sh
++ docker inspect -f . sdkman:local
+.
+[Pipeline] withDockerContainer
+Jenkins does not seem to be running inside a container
+$ docker run -t -d -u 1000:1000 -w /home/wololock/.jenkins/workspace/pipeline-with-sdkman -v /home/wololock/.jenkins/workspace/pipeline-with-sdkman:/home/wololock/.jenkins/workspace/pipeline-with-sdkman:rw,z -v /home/wololock/.jenkins/workspace/pipeline-with-sdkman@tmp:/home/wololock/.jenkins/workspace/pipeline-with-sdkman@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** sdkman:local cat
+$ docker top 064e63fd3795df643c4a7f676421b15ade9ae126f10efc6d3383509f7213c04b -eo pid,comm
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] sh
++ java -version
+/home/wololock/.jenkins/workspace/pipeline-with-sdkman@tmp/durable-ff41de0e/script.sh: 1: /home/wololock/.jenkins/workspace/pipeline-with-sdkman@tmp/durable-ff41de0e/script.sh: java: not found
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+$ docker stop --time=1 064e63fd3795df643c4a7f676421b15ade9ae126f10efc6d3383509f7213c04b
+$ docker rm -f 064e63fd3795df643c4a7f676421b15ade9ae126f10efc6d3383509f7213c04b
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 127
+Finished: FAILURE</code></pre></div></div><div class="paragraph"><p>What we missed? Could it be the entrypoint<sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup>? In our <code>docker run &#8230;&#8203; bash</code> test we have executed Bash shell and the <code>.bashrc</code> script was executed, which added SDKMAN! candidates to the <code>PATH</code> environment variable. Let&#8217;s try to run <code>java -version</code> directly from the docker container and let&#8217;s see what happens:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><strong>$ docker run --rm -u $(id -u) sdkman:local java -version</strong>
+container_linux.go:247: starting container process caused "exec: \"java\": executable file not found in $PATH"
+/usr/bin/docker-current: Error response from daemon: oci runtime error: container_linux.go:247: starting container process caused "exec: \"java\": executable file not found in $PATH".</code></pre></div></div><div class="paragraph"><p>OK, this is something. It looks like executing <code>java -version</code> without starting Bash shell makes <code>java</code> command missing in the <code>PATH</code> env variable. Let&#8217;s try to fix it by adding a simple <code>ENTRYPOINT</code> to our Dockerfile. For simplicity, we will use a command instead of a script file.</p></div><div class="listingblock"><div class="title">Listing 3. Dockerfile</div><div class="content"><pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile">FROM debian:stretch-slim
+
+# Defining default Java and Maven version
+ARG JAVA_VERSION="11.0.5-amzn"
+ARG MAVEN_VERSION="3.6.2"
+
+# Defining default non-root user UID, GID, and name
+ARG USER_UID="1000"
+ARG USER_GID="1000"
+ARG USER_NAME="jenkins"
+
+# Creating default non-user
+RUN groupadd -g $USER_GID $USER_NAME &amp;&amp; \
+	useradd -m -g $USER_GID -u $USER_UID $USER_NAME
+
+# Installing basic packages
+RUN apt-get update &amp;&amp; \
+	apt-get install -y zip unzip curl &amp;&amp; \
+	rm -rf /var/lib/apt/lists/* &amp;&amp; \
+	rm -rf /tmp/*
+
+# Switching to non-root user to install SDKMAN!
+USER $USER_UID:$USER_GID
+
+# Downloading SDKMAN!
+RUN curl -s "https://get.sdkman.io" | bash
+
+# Installing Java and Maven, removing some unnecessary SDKMAN files
+RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh &amp;&amp; \
+    yes | sdk install java $JAVA_VERSION &amp;&amp; \
+    yes | sdk install maven $MAVEN_VERSION &amp;&amp; \
+    rm -rf $HOME/.sdkman/archives/* &amp;&amp; \
+    rm -rf $HOME/.sdkman/tmp/*"
+
+ENTRYPOINT bash -c "source $HOME/.sdkman/bin/sdkman-init.sh &amp;&amp; $0 $@" <i class="conum" data-value="1"></i><b>(1)</b></code></pre></div></div><div class="paragraph"><p>In this example, we make sure that <code>sdkman-init.sh</code> script gets executed before any command triggered on the container. We can rebuild the docker image and try to run <code>java -version</code> again.</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><strong>$ docker build -t sdkman:local .</strong>
+Sending build context to Docker daemon 3.584 kB
+Step 1/12 : FROM debian:stretch-slim
+ ---> c2f145c34384
+Step 2/12 : ARG JAVA_VERSION="11.0.5-amzn"
+ ---> Using cache
+ ---> 6a3e406a9502
+Step 3/12 : ARG MAVEN_VERSION="3.6.2"
+ ---> Using cache
+ ---> 15764ee0855a
+Step 4/12 : ARG USER_UID="1000"
+ ---> Using cache
+ ---> a69f8849b91e
+Step 5/12 : ARG USER_GID="1000"
+ ---> Using cache
+ ---> e58afc8d231f
+Step 6/12 : ARG USER_NAME="jenkins"
+ ---> Using cache
+ ---> 4b12ba6ffbb2
+Step 7/12 : RUN groupadd -g $USER_GID $USER_NAME && 	useradd -m -g $USER_GID -u $USER_UID $USER_NAME
+ ---> Using cache
+ ---> 4de53350c4bf
+Step 8/12 : RUN apt-get update && 	apt-get install -y zip unzip curl && 	rm -rf /var/lib/apt/lists/\* && 	rm -rf /tmp/\*
+ ---> Using cache
+ ---> a3aaaeb15bda
+Step 9/12 : USER $USER_UID:$USER_GID
+ ---> Using cache
+ ---> b39d53a9c785
+Step 10/12 : RUN curl -s "https://get.sdkman.io" | bash
+ ---> Using cache
+ ---> 205c93608b5e
+Step 11/12 : RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh &&     yes | sdk install java $JAVA_VERSION &&     yes | sdk install maven $MAVEN_VERSION &&     rm -rf $HOME/.sdkman/archives/\* &&     rm -rf $HOME/.sdkman/tmp/\*"
+ ---> Using cache
+ ---> 1b4af7eec712
+Step 12/12 : ENTRYPOINT bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && $0 $@"
+ ---> Using cache
+ ---> 1d38b0879ab0
+Successfully built 1d38b0879ab0
+
+<strong>$ docker run --rm -u $(id -u) sdkman:local java -version</strong>
+openjdk version "11.0.5" 2019-10-15 LTS
+OpenJDK Runtime Environment Corretto-11.0.5.10.1 (build 11.0.5+10-LTS)
+OpenJDK 64-Bit Server VM Corretto-11.0.5.10.1 (build 11.0.5+10-LTS, mixed mode)</code></pre></div></div><div class="paragraph"><p>Now, this is what we expect! We can run <code>java</code> and <code>mvn</code> commands without running Bash shell. We should be ready to go with the Jenkins Pipeline. Let&#8217;s restart it and see what happens.</p></div><div class="openblock text-center"><div class="content"><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="/images/jenkins-pipeline-sdkman-fail-again.png"><img src="/images/jenkins-pipeline-sdkman-fail-again.png" alt="jenkins pipeline sdkman fail again"></a></div></div></div></div><div class="paragraph"><p>The same <code>java: not found</code> error&#8230;&#8203;</p></div></div></div><div class="sect1"><h2 id="how-to-fix-java-not-found-error-in-jenkins-pipeline">How to fix <code>java: not found</code> error in Jenkins Pipeline?</h2><div class="sectionbody"><div class="paragraph"><p>Why does the Jenkins Pipeline <code>sh</code> step fail to execute <code>java</code> command in our pipeline? The main reason why <code>java</code> cannot be found is that the <code>PATH</code> environment variable seems to be missing SDKMAN! candidates. Here is what the <code>PATH</code> of the <code>sdkman:local</code> docker container looks like:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><strong>$ docker run --rm -u $(id -u) sdkman:local printenv | grep PATH</strong>
+PATH=/home/jenkins/.sdkman/candidates/maven/current/bin:/home/jenkins/.sdkman/candidates/java/current/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</code></pre></div></div><div class="paragraph"><p>And here is what the <code>PATH</code> variable looks like when we call <code>printenv</code> using <code>sh</code> pipeline step:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[Pipeline] sh
++ printenv
++ grep PATH
+CLASSPATH=
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</code></pre></div></div><div class="paragraph"><p>There are at least two known issues<sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnotedef_3" title="View footnote.">3</a>]</sup><sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnotedef_4" title="View footnote.">4</a>]</sup> that seem to make updating <code>PATH</code> environment variable impossible.</p></div><div class="paragraph"><p>But what if I tell you that there is a solution to that problem? There are some workarounds, but their main problem is that they require specifying additional <code>PATH</code> env variable like <code>PATH+EXTRA</code> which means that you need to explicitly prepare yourself for missing <code>PATH</code> locations. I would accept it if there was no other option, but ideally no such workarounds should be necessary. And I have found a way how to do it.</p></div></div></div><div class="sect1"><h2 id="override-path-in-your-dockerfile">Override <code>PATH</code> in your Dockerfile</h2><div class="sectionbody"><div class="paragraph"><p>There is at least one way how you can override <code>PATH</code> variable used by the docker container started in the Jenkins Pipeline. You can do it using <code>ENV</code> instruction in your Dockerfile. We can construct <code>JAVA_HOME</code> and <code>MAVEN_HOME</code> environment variables (we know exactly where SDKMAN! installed both candidates), and then we can use it to override <code>PATH</code> variable. Here is what the final Dockerfile looks like:</p></div><div class="listingblock"><div class="title">Listing 4. Dockerfile</div><div class="content"><pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile">FROM debian:stretch-slim
+
+# Defining default Java and Maven version
+ARG JAVA_VERSION="11.0.5-amzn"
+ARG MAVEN_VERSION="3.6.2"
+
+# Defining default non-root user UID, GID, and name
+ARG USER_UID="1000"
+ARG USER_GID="1000"
+ARG USER_NAME="jenkins"
+
+# Creating default non-user
+RUN groupadd -g $USER_GID $USER_NAME &amp;&amp; \
+	useradd -m -g $USER_GID -u $USER_UID $USER_NAME
+
+# Installing basic packages
+RUN apt-get update &amp;&amp; \
+	apt-get install -y zip unzip curl &amp;&amp; \
+	rm -rf /var/lib/apt/lists/* &amp;&amp; \
+	rm -rf /tmp/*
+
+# Switching to non-root user to install SDKMAN!
+USER $USER_UID:$USER_GID
+
+# Downloading SDKMAN!
+RUN curl -s "https://get.sdkman.io" | bash
+
+# Installing Java and Maven, removing some unnecessary SDKMAN files
+RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh &amp;&amp; \
+    yes | sdk install java $JAVA_VERSION &amp;&amp; \
+    yes | sdk install maven $MAVEN_VERSION &amp;&amp; \
+    rm -rf $HOME/.sdkman/archives/* &amp;&amp; \
+    rm -rf $HOME/.sdkman/tmp/*"
+
+# ENTRYPOINT bash -c "source $HOME/.sdkman/bin/sdkman-init.sh &amp;&amp; $0 $@" <i class="conum" data-value="1"></i><b>(1)</b>
+
+ENV MAVEN_HOME="/home/jenkins/.sdkman/candidates/maven/current" <i class="conum" data-value="2"></i><b>(2)</b>
+ENV JAVA_HOME="/home/jenkins/.sdkman/candidates/java/current" <i class="conum" data-value="3"></i><b>(3)</b>
+ENV PATH="$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH" <i class="conum" data-value="4"></i><b>(4)</b></code></pre></div></div><div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>We can remove <code>ENTRYPOINT</code> at the moment.</td></tr><tr><td><i class="conum" data-value="2"></i><b>2</b></td><td>Here we define <code>MAVEN_HOME</code> using known Maven location.</td></tr><tr><td><i class="conum" data-value="3"></i><b>3</b></td><td>Here we define <code>JAVA_HOME</code> using known Java location.</td></tr><tr><td><i class="conum" data-value="4"></i><b>4</b></td><td>And last but not least - we override <code>PATH</code> using <code>$MAVEN_HOME/bin</code> and <code>$JAVA_HOME/bin</code>.</td></tr></table></div><div class="paragraph"><p>It&#8217;s time to rebuild the docker image.</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ docker build -t sdkman:local .</code></pre></div></div><div class="paragraph"><p>Let&#8217;s check if <code>java -version</code> command works.</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><strong>$ docker run --rm -u $(id -u) sdkman:local java -version</strong>
+openjdk version "11.0.5" 2019-10-15 LTS
+OpenJDK Runtime Environment Corretto-11.0.5.10.1 (build 11.0.5+10-LTS)
+OpenJDK 64-Bit Server VM Corretto-11.0.5.10.1 (build 11.0.5+10-LTS, mixed mode)</code></pre></div></div><div class="paragraph"><p>It works! And now it is the time for the final test. Let&#8217;s restart the pipeline.</p></div><div class="openblock text-center"><div class="content"><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="/images/jenkins-pipeline-sdkman-success.png"><img src="/images/jenkins-pipeline-sdkman-success.png" alt="jenkins pipeline sdkman success"></a></div></div></div></div></div></div><div class="sect1"><h2 id="why-even-bother-with-the-sdkman">Why even bother with the SDKMAN?</h2><div class="sectionbody"><div class="paragraph"><p>At this point, you may wonder why you should even consider using SDKMAN! instead of e.g. official Maven Docker image? As always - it depends. If you use a single Java/Maven/Gradle/"you name it" version in all your pipelines, then using one of the official docker images will do the trick for you. However, if you find yourself in a position where you need to run your e.g. Maven builds with different JDKs and different Maven versions, using the official Maven Docker image may become problematic. If you build your Dockerfile from the official Maven image, you are limited to a specific Java version, as well as a specific Maven version. When you want to use two different Maven versions with two different JDKs, you end up with 4 Dockerfiles - each one extends from different <code>maven</code> docker images.</p></div><div class="paragraph"><p>SDKMAN! solves that problem nicely. You can build a single Dockerfile, configure all your custom things in a single place, and you can use <code>ARG</code> instructions to build different versions from the same Dockerfile. Consider the following example.</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><strong>$ docker build -q --build-arg JAVA_VERSION=11.0.5-amzn --build-arg MAVEN_VERSION=3.5.4 -t sdkman:mvn-3.5.4-jdk-11.0.5-amzn .</strong>
+sha256:fc6006992d79314758b0726f226cc5e87355708b9b7348e89599594b2b881d7c
+
+<strong>$ docker build -q --build-arg JAVA_VERSION=11.0.5-amzn --build-arg MAVEN_VERSION=3.6.2 -t sdkman:mvn-3.6.2-jdk-11.0.5-amzn .</strong>
+sha256:1e1699b478f404c66ed9cf75d122cd941f49e74de3c6e14d25520edfd8fd204b
+
+<strong>$ docker build -q --build-arg JAVA_VERSION=13.0.1-zulu --build-arg MAVEN_VERSION=3.5.4 -t sdkman:mvn-3.5.4-jdk-13.0.1-zulu .</strong>
+sha256:e804b0e7a71bc630d9c590c0e6c714155a7fbc46353b626720f7e53e8e7808c0
+
+<strong>$ docker build -q --build-arg JAVA_VERSION=13.0.1-zulu --build-arg MAVEN_VERSION=3.6.2 -t sdkman:mvn-3.6.2-jdk-13.0.1-zulu .</strong>
+sha256:d08fbd4ef3f889b0739d83d71e1d1f9da9bbf09b5d50d9418b661db6d8be80c7
+
+<strong>$ docker run --rm -u $(id -u) sdkman:mvn-3.5.4-jdk-11.0.5-amzn mvn -version</strong>
+Apache Maven 3.5.4 (1edded0938998edf8bf061f1ceb3cfdeccf443fe; 2018-06-17T18:33:14Z)
+Maven home: /home/jenkins/.sdkman/candidates/maven/current
+Java version: 11.0.5, vendor: Amazon.com Inc., runtime: /home/jenkins/.sdkman/candidates/java/11.0.5-amzn
+Default locale: en_US, platform encoding: ANSI_X3.4-1968
+OS name: "linux", version: "5.3.8-200.fc30.x86_64", arch: "amd64", family: "unix"
+
+<strong>$ docker run --rm -u $(id -u) sdkman:mvn-3.6.2-jdk-13.0.1-zulu mvn -version</strong>
+Apache Maven 3.6.2 (40f52333136460af0dc0d7232c0dc0bcf0d9e117; 2019-08-27T15:06:16Z)
+Maven home: /home/jenkins/.sdkman/candidates/maven/current
+Java version: 13.0.1, vendor: Azul Systems, Inc., runtime: /home/jenkins/.sdkman/candidates/java/13.0.1-zulu
+Default locale: en_US, platform encoding: ANSI_X3.4-1968
+OS name: "linux", version: "5.3.8-200.fc30.x86_64", arch: "amd64", family: "unix"</code></pre></div></div><div class="paragraph"><p>In this example, we have built four different docker images from the same Dockerfile. It makes the maintenance of all variants much more straightforward - when something requires fixing, we change a single Dockerfile and rebuild all tags.</p></div></div></div><div class="sect1"><h2 id="thats-all-folks">That&#8217;s all, folks!</h2><div class="sectionbody"><div class="paragraph"><p>I hope you liked this blog post, and you have learned something useful today. Please let me know in the comments section down below if you are interested in Jenkins Pipeline related topics. Expect more blog posts like this one shortly! See you all next time!</p></div></div></div><div id="footnotes"><hr><div class="footnote" id="_footnotedef_1"><a href="#_footnoteref_1">1</a>. <a href="https://docs.docker.com/engine/reference/builder/#arg" target="_blank" rel="noopener" class="bare">https://docs.docker.com/engine/reference/builder/#arg</a></div><div class="footnote" id="_footnotedef_2"><a href="#_footnoteref_2">2</a>. <a href="https://docs.docker.com/engine/reference/builder/#entrypoint" target="_blank" rel="noopener" class="bare">https://docs.docker.com/engine/reference/builder/#entrypoint</a></div><div class="footnote" id="_footnotedef_3"><a href="#_footnoteref_3">3</a>. <a href="https://issues.jenkins-ci.org/browse/JENKINS-45616" target="_blank" rel="noopener" class="bare">https://issues.jenkins-ci.org/browse/JENKINS-45616</a></div><div class="footnote" id="_footnotedef_4"><a href="#_footnoteref_4">4</a>. <a href="https://issues.jenkins-ci.org/browse/JENKINS-41339" target="_blank" rel="noopener" class="bare">https://issues.jenkins-ci.org/browse/JENKINS-41339</a></div></div><footer class="post-footer"><img class="img-responsive img-circle" src="https://www.gravatar.com/avatar/b22c1842c6e8f7f2b9b3ed8c0d4efb4d?s=200"><div class="row author"><div class="col-lg-8 col-lg-offset-2 col-xs-10 col-xs-offset-1"><h4>Szymon Stepniak</h4><p>Groovista, Upwork's Top Rated freelancer, Toruń Java User Group founder, open&nbsp;source contributor, Stack Overflow addict, bedroom guitar player. I walk through e.printStackTrace() so you don't have to.</p><ul class="social-links"><li><a href="https://feeds.feedburner.com/Eprintstacktracenet" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-rss"></span></a></li><li><a href="https://twitter.com/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-twitter"></span></a></li><li><a href="https://github.com/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-github"></span></a></li><li><a href="https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-stack-overflow"></span></a></li><li><a href="https://www.youtube.com/channel/UCEf8e5YAYnowq-2deW4tpsw/featured" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-youtube"></span></a></li><li><a href="mailto:szymon.stepniak@gmail.com" onclick="return window.open(this.href),!1"><span class="fa fa-envelope"></span></a></li><li><a href="https://www.linkedin.com/in/szymon-stępniak-9a0b1630" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-linkedin"></span></a></li><li><a href="https://keybase.io/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-user-secret"></span></a></li></ul></div></div></footer><section class="related-posts"><h2>You may also like</h2><div class="row"><div class="col-lg-4"><a href="/building-java-and-maven-docker-images-using-parallelized-jenkins-pipeline-and-sdkman/"><img class="img-responsive" src="/images/og/jenkins-pipeline-build-docker-images.jpg"><h3>Building Java and Maven docker images using parallelized Jenkins Pipeline and SDKMAN!</h3></a><p>In the last article, I have shown you how you can build a docker image for Jenkins Pipeline using SDKMAN! command-line tool. Today I will show you how you can build multiple different docker images...</p></div><div class="col-lg-4"><a href="/using-jenkins-pipeline-parallel-stages-to-build-maven-project-with-different-jdks/"><img class="img-responsive" src="/images/og/jenkins-pipeline-maven-parallel.jpg"><h3>Using Jenkins Pipeline parallel stages to build Maven project with different JDKs</h3></a><p>In one of the latest blog posts, I have shown you how you can build a Docker image with Java and Maven installed with the SDKMAN! command-line tool. Today I would like to continue the topic and sho...</p></div><div class="col-lg-4"><a href="/jenkins-pipeline-environment-variables-the-definitive-guide/"><img class="img-responsive" src="/images/og/jenkins-pipeline-env-variables.jpg"><h3>Jenkins Pipeline Environment Variables - The Definitive Guide</h3></a><p>Welcome to the first blog post of the "Jenkins Pipeline Cookbook" series. Today we are focus on working with Jenkins Pipeline environment variables effectively. You will learn how to define env var...</p></div></div></section></article><nav class="pagination" role="pagination"><a class="pull-left btn" href="/building-java-and-maven-docker-images-using-parallelized-jenkins-pipeline-and-sdkman/">← Next post</a><a class="pull-right btn" href="/jenkins-pipeline-environment-variables-the-definitive-guide/">Previous post →</a></nav><div class="disqus-comments"><div class="comments"><div id="disqus_thread"></div></div></div><script>var url_parts=window.location.href.split("?"),disqus_url=url_parts[0];!function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="//eprintstacktrace.disqus.com/embed.js",(document.head||d.body).appendChild(t)}()</script></div></div></div><script async id="dsq-count-scr" src="//eprintstacktrace.disqus.com/count.js"></script><footer class="site-footer"><div class="container-fluid"><div class="row"><div class="col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1"><div class="row"><div class="col-lg-4"><h4>e.printstacktrace.blog © 2020</h4><p><em>"I walk through e.printStackTrace() so you don't have to"</em></p><p><a href="/privacy-policy/">Privacy policy</a></p><p><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener"><img src="https://badgen.net/badge/license/CC%20BY-NC-SA%204.0/gray"></a></p><p><a href="https://github.com/wololock/wololock.github.io/commits/develop" target="_blank" rel="noopener"><img src="https://badgen.net/github/last-commit/wololock/wololock.github.io?color=blue"></a></p></div><div class="col-lg-4"><h4 class="marked">Recent video on YouTube</h4><section class="recent-posts"><a href="https://www.youtube.com/watch?v=TjLDHIa-HVE" target="_blank" rel="noopener"><img class="img-thumbnail img-noborder" src="https://i3.ytimg.com/vi/TjLDHIa-HVE/mqdefault.jpg" alt="Groovy 3.0 Quick Review - the most anticipated Groovy version is finally here!"></a></section><h4 class="marked">Recent articles</h4><section class="recent-posts"><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/groovy-3-string-gdk-improvements-takeright-takebetween-and-a-few-others/">Groovy 3 String GDK improvements - takeRight, takeBetween, and a few others</a></li><li class="post-list-item"><a class="post-list-link" href="/jenkins-scripted-pipeline-vs-declarative-pipeline-the-4-practical-differences/">Jenkins Scripted Pipeline vs. Declarative Pipeline - the 4 practical differences</a></li><li class="post-list-item"><a class="post-list-link" href="/the-blog-development-report-year-2019/">The blog development report - year 2019</a></li><li class="post-list-item"><a class="post-list-link" href="/groovy-string-methods-that-will-make-your-life-groovier/">Three Groovy String methods that will make your life Groovier!</a></li><li class="post-list-item"><a class="post-list-link" href="/using-jenkins-pipeline-parallel-stages-to-build-maven-project-with-different-jdks/">Using Jenkins Pipeline parallel stages to build Maven project with different JDKs</a></li><li class="post-list-item"><a class="post-list-link" href="/quicksort-in-groovy-can-it-be-as-fast-as-implemented-in-java/">Quicksort in Groovy - can it be as fast as implemented in Java?</a></li></ul></section></div><div class="col-lg-4"><h4 class="marked">Stay connected</h4><div class="social-links"><ul><li><a href="https://feeds.feedburner.com/Eprintstacktracenet" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-rss"></span></a></li><li><a href="https://twitter.com/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-twitter"></span></a></li><li><a href="https://github.com/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-github"></span></a></li><li><a href="https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-stack-overflow"></span></a></li><li><a href="https://www.youtube.com/channel/UCEf8e5YAYnowq-2deW4tpsw/featured" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-youtube"></span></a></li><li><a href="mailto:szymon.stepniak@gmail.com" onclick="return window.open(this.href),!1"><span class="fa fa-envelope"></span></a></li><li><a href="https://www.linkedin.com/in/szymon-stępniak-9a0b1630" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-linkedin"></span></a></li><li><a href="https://keybase.io/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-user-secret"></span></a></li></ul></div><h4 class="marked">Most popular tags</h4><section class="tagcloud"><a href="/tags/benchmark/" style="font-size:12pt;color:#777">benchmark</a> <a href="/tags/book/" style="font-size:16pt;color:#858585">book</a> <a href="/tags/cicd/" style="font-size:20pt;color:#929292">cicd</a> <a href="/tags/devops/" style="font-size:8pt;color:#6a6a6a">devops</a> <a href="/tags/docker/" style="font-size:12pt;color:#777">docker</a> <a href="/tags/github/" style="font-size:8pt;color:#6a6a6a">github</a> <a href="/tags/graalvm/" style="font-size:24pt;color:#9f9f9f">graalvm</a> <a href="/tags/groovy/" style="font-size:32pt;color:#bababa">groovy</a> <a href="/tags/haskell/" style="font-size:8pt;color:#6a6a6a">haskell</a> <a href="/tags/java/" style="font-size:28pt;color:#adadad">java</a> <a href="/tags/jenkins/" style="font-size:16pt;color:#858585">jenkins</a> <a href="/tags/jenkins-pipeline/" style="font-size:16pt;color:#858585">jenkins-pipeline</a> <a href="/tags/jmh/" style="font-size:16pt;color:#858585">jmh</a> <a href="/tags/learning/" style="font-size:8pt;color:#6a6a6a">learning</a> <a href="/tags/micronaut/" style="font-size:12pt;color:#777">micronaut</a> <a href="/tags/native-image/" style="font-size:12pt;color:#777">native-image</a> <a href="/tags/non-blocking/" style="font-size:12pt;color:#777">non-blocking</a> <a href="/tags/ratpack/" style="font-size:24pt;color:#9f9f9f">ratpack</a> <a href="/tags/reading/" style="font-size:8pt;color:#6a6a6a">reading</a> <a href="/tags/recursion/" style="font-size:8pt;color:#6a6a6a">recursion</a> <a href="/tags/review/" style="font-size:16pt;color:#858585">review</a> <a href="/tags/sdkman/" style="font-size:12pt;color:#777">sdkman</a> <a href="/tags/spock/" style="font-size:12pt;color:#777">spock</a> <a href="/tags/stackoverflow/" style="font-size:8pt;color:#6a6a6a">stackoverflow</a> <a href="/tags/unit-test/" style="font-size:12pt;color:#777">unit-test</a></section></div></div></div></div></div><section class="poweredby"><ul class="text-center"><li><span>Published with </span><a href="https://hexo.io" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><img src="/img/logo-hexo.png"></a></li><li><span>Hosted on </span><a href="https://github.com/wololock/wololock.github.io" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><img src="/img/logo-github.png"></a></li><li><span>Deployed with </span><a href="https://circleci.com/gh/wololock/wololock.github.io" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><img src="/img/logo-circleci.png"></a></li></ul></section></footer><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><script id="cookiebanner" src="//cdnjs.cloudflare.com/ajax/libs/cookie-banner/1.2.2/cookiebanner.min.js" data-moreinfo="/privacy-policy/" data-message="This blog uses cookies to enhance your experience. By continuing to visit it you agree to its use of cookies." data-link="#ffad33" data-font-family="Lora,serif" data-font-size="1.6rem" data-bg="#444"></script><script src="/js/main.js?v=5"></script><script src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad()</script><script>"localhost"!==window.location.hostname&&"127.0.0.1"!==window.location.hostname&&(!function(e,a,t,n,o,c,g){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),g=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",g.parentNode.insertBefore(c,g)}(window,document,"script",0,"ga"),ga("create","UA-42400890-5","auto"),ga("send","pageview"),jQuery("a.ga-track").click(function(e){var a=jQuery(e.target).text();return ga("send","event","links","click",a),!0}))</script></body></html>

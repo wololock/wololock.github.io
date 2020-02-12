@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="author" content="Szymon Stepniak"><meta name="robots" content="all"><title>Ratpack: register SessionModule in handler unit test</title><meta name="description" content="Unit testing Ratpack handlers has many benefits. In the previous post we have learned how to mock Session object to use it with GroovyRequestFixture. Today instead of mocking we will register SessionModule and then we will use a real session object.Let..."><meta name="keywords" content="groovy,ratpack,spock,unit-test,session,guice"><link rel="shortcut icon" type="image/png" href="/favicon.png"><link rel="dns-prefetch" href="//cdnjs.cloudflare.com"><link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com"><link rel="dns-prefetch" href="//disqus.com"><link rel="dns-prefetch" href="//c.disquscdn.com"><link rel="canonical" href="https://e.printstacktrace.blog/ratpack-register-session-module-in-handler-unit-test/"><link rel="alternate" type="application/rss+xml" title="e.printStackTrace(); // Blog" href="/atom.xml"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/androidstudio.min.css"><link rel="stylesheet" href="/css/main.css?v=39"><link rel="stylesheet" href="/css/conum.css?v=39"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Droid+Sans+Mono:400,700"><meta name="description" content="Unit testing Ratpack handlers has many benefits. In the previous post we have learned how to mock Session object to use it with GroovyRequestFixture. Today instead of mocking we will register SessionM"><meta property="og:type" content="article"><meta property="og:title" content="Ratpack: register SessionModule in handler unit test"><meta property="og:url" content="https:&#x2F;&#x2F;e.printstacktrace.blog&#x2F;ratpack-register-session-module-in-handler-unit-test&#x2F;"><meta property="og:site_name" content="e.printStackTrace(); &#x2F;&#x2F; Blog"><meta property="og:description" content="Unit testing Ratpack handlers has many benefits. In the previous post we have learned how to mock Session object to use it with GroovyRequestFixture. Today instead of mocking we will register SessionM"><meta property="og:locale" content="en_US"><meta property="og:image" content="https:&#x2F;&#x2F;e.printstacktrace.blog&#x2F;images&#x2F;og&#x2F;ratpack-session-module.jpg"><meta property="article:published_time" content="2018-06-26T20:55:38.000Z"><meta property="article:modified_time" content="2018-06-26T20:55:38.000Z"><meta property="article:author" content="Szymon Stepniak"><meta property="article:tag" content="groovy"><meta property="article:tag" content="ratpack"><meta property="article:tag" content="spock"><meta property="article:tag" content="unit-test"><meta property="article:tag" content="session"><meta property="article:tag" content="guice"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https:&#x2F;&#x2F;e.printstacktrace.blog&#x2F;images&#x2F;og&#x2F;ratpack-session-module.jpg"><meta name="twitter:creator" content="@wololock"><script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://e.printstacktrace.blog/ratpack-register-session-module-in-handler-unit-test/"},"headline":"Ratpack: register SessionModule in handler unit test","image":{"@type":"ImageObject","url":"https://e.printstacktrace.blog/images/og/ratpack-session-module.jpg"},"datePublished":"2018-06-26T20:55:38.000Z","dateModified":"2018-06-26T20:55:38.000Z","author":{"@type":"Person","name":"Szymon Stepniak"},"publisher":{"@type":"Organization","name":"e.printStackTrace(); // Blog","logo":{"@type":"ImageObject","url":"https://e.printstacktrace.blog/images/site-logo.jpg","height":60,"width":600}},"description":"Unit testing Ratpack handlers has many benefits. In the previous post we have learned how to mock Session object to use it with GroovyRequestFixture. Today instead of mocking we will register SessionModule and then we will use a real session object.","keywords":"groovy,ratpack,spock,unit-test,session,guice"}</script><meta name="generator" content="Hexo 4.1.1"></head><body class="layout-post"><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class="container-fluid"><div class="navbar-header"><button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/"><span>e.printStackTrace(); // Blog</span></a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-right"><li><a href="/archives">Archive</a></li><li><a href="https://github.com/wololock/wololock.github.io" target="_blank" rel="noopener">Github</a></li><li><a href="https://twitter.com/wololock" target="_blank" rel="noopener"><img src="https://badgen.net/twitter/follow/wololock"></a></li><li><a href="https://circleci.com/gh/wololock/wololock.github.io/tree/develop" target="_blank" rel="noopener"><img src="https://badgen.net/circleci/github/wololock/wololock.github.io/develop?icon=circleci&amp;label"></a></li></ul></div></div></nav><header class="header-section"><div class="intro-header" style="background-image:url(/images/ratpack-cookbook-bg.jpg)"><div class="container"><div class="row"><div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1"><div class="post-heading"><a class="category" href="/categories/ratpack-cookbook/">Ratpack Cookbook</a><h1>Ratpack: register SessionModule in handler unit test</h1><div class="post-meta"><ul><li><time datetime="2018-06-26T20:55:38.000Z" itemprop="datePublished">Jun 26, 2018</time></li><li>7 minutes read</li><li><a href="https://e.printstacktrace.blog/ratpack-register-session-module-in-handler-unit-test/#disqus_thread">0 Comments</a></li></ul><section class="post-tags"><ul class="tags"><li><a class="tag post-meta" href="/tags/groovy/">groovy</a></li><li><a class="tag post-meta" href="/tags/ratpack/">ratpack</a></li><li><a class="tag post-meta" href="/tags/spock/">spock</a></li><li><a class="tag post-meta" href="/tags/unit-test/">unit-test</a></li><li><a class="tag post-meta" href="/tags/session/">session</a></li><li><a class="tag post-meta" href="/tags/guice/">guice</a></li></ul></section></div></div></div></div></div></div></header><div class="container"><div class="row"><div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1"><article class="blog-post" role="main"><div class="paragraph"><p>Unit testing Ratpack handlers has many benefits. In the previous post we have learned how to <a href="/ratpack-mocking-Session-object-in-GroovyRequestFixture-test/" title="mock Session object">mock Session object</a> to use it with <a href="https://ratpack.io/manual/1.5.4/api/ratpack/groovy/test/handling/GroovyRequestFixture.html" target="_blank" rel="noopener"><code>GroovyRequestFixture</code></a>. Today instead of mocking we will register <code>SessionModule</code> and then we will use a real session object.</p></div><a id="more"></a><div class="paragraph"><p>Let&#8217;s say we have a handler that uses a session object and we want to unit test this handler using <code>GroovyRequestFixture</code> to avoid booting up the application. Our handler under test class looks like this:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">class HandlerUnderTest implements Handler {
+
+    @Override
+    void handle(Context ctx) throws Exception {
+        ctx.get(Session).get('foo').map { Optional&lt;String&gt; o -&gt;
+            o.orElse(null)
+        }.flatMap { value -&gt;
+            Promise.value(value)
+        }.then { foo -&gt;
+            ctx.render(json([foo: foo]))
+        }
+    }
+}</code></pre></div></div><div class="paragraph"><p>Nothing fancy - we retrieve value with key <code>foo</code> from session object and we return a simple JSON object like:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"foo": "here is foo value"}</code></pre></div></div><div class="paragraph"><p><code>GroovyRequestFixture</code> class has a method called <code>handle(chainAction, closure)</code> that expects two parameters:</p></div><div class="ulist"><ul><li><p><code>Action&lt;? super Chain&gt; chainAction</code>, a handler chain builder class that allows us to create a chain containing our handler under test class,</p></li><li><p><code>Closure&lt;?&gt; closure</code>, a closure with request fixture specification.</p></li></ul></div><div class="paragraph"><p>Let&#8217;s begin with defining <code>GroovyChainAction</code> object that implements <code>Action&lt;Chain&gt;</code> that we can use later on.</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">import ratpack.exec.Promise
+import ratpack.groovy.handling.GroovyChainAction
+import ratpack.handling.Context
+import ratpack.handling.Handler
+import ratpack.session.Session
+import spock.lang.Specification
+import spock.lang.Subject
+
+import static ratpack.jackson.Jackson.json
+
+class RetrieveFooValueFromSessionSpec extends Specification {
+
+    @Subject
+    final GroovyChainAction handlerChainAction = new GroovyChainAction() {
+        @Override
+        void execute() throws Exception {
+            get(new HandlerUnderTest())
+        }
+    }
+
+    static class HandlerUnderTest implements Handler {
+
+        @Override
+        void handle(Context ctx) throws Exception {
+            ctx.get(Session).get('foo').map { Optional&lt;String&gt; o -&gt;
+                o.orElse(null)
+            }.flatMap { value -&gt;
+                Promise.value(value)
+            }.then { foo -&gt;
+                ctx.render(json([foo: foo]))
+            }
+        }
+    }
+}</code></pre></div></div><div class="paragraph"><p>The definition of <code>handlerChainAction</code> object says that there is a handler for <code>GET</code> request sent without any path and this handler is our <code>HandlerUnderTest</code>. No single test case so far, let&#8217;s add one:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">import ratpack.exec.Promise
+import ratpack.groovy.handling.GroovyChainAction
+import ratpack.groovy.test.handling.GroovyRequestFixture
+import ratpack.handling.Context
+import ratpack.handling.Handler
+import ratpack.http.Status
+import ratpack.jackson.internal.DefaultJsonRender
+import ratpack.session.Session
+import spock.lang.Specification
+import spock.lang.Subject
+
+import static ratpack.jackson.Jackson.json
+
+class RetrieveFooValueFromSessionSpec extends Specification {
+
+    @Subject
+    final GroovyChainAction handlerChainAction = new GroovyChainAction() {
+        @Override
+        void execute() throws Exception {
+            get(new HandlerUnderTest())
+        }
+    }
+
+    def "should retrieve value for foo key from Session"() {
+        given:
+        def result = GroovyRequestFixture.handle(handlerChainAction) {
+            method 'GET'
+        }
+
+        expect:
+        result.status == Status.OK
+
+        and:
+        result.rendered(DefaultJsonRender).object == [foo: 'Foo value is 42']
+    }
+
+    static class HandlerUnderTest implements Handler {
+
+        @Override
+        void handle(Context ctx) throws Exception {
+            ctx.get(Session).get('foo').map { Optional&lt;String&gt; o -&gt;
+                o.orElse(null)
+            }.flatMap { value -&gt;
+                Promise.value(value)
+            }.then { foo -&gt;
+                ctx.render(json([foo: foo]))
+            }
+        }
+    }
+}</code></pre></div></div><div class="paragraph"><p>Now our specification class contains first test case scenario - in this test we expect that calling <code>GET</code> request on predefined <code>handlerChainAction</code> returns a map object like:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">[foo: 'Foo value is 42']</code></pre></div></div><div class="paragraph"><p>Let&#8217;s see what happens if we run this test:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">ratpack.test.handling.UnexpectedHandlerException: ratpack.registry.NotInRegistryException: No object for type 'ratpack.session.Session' in registry
+
+    at ratpack.test.handling.internal.DefaultHandlingResult.rendered(DefaultHandlingResult.java:263)
+    at RetrieveFooValueFromSessionSpec.should retrieve value for foo key from Session(RetrieveFooValueFromSessionSpec.groovy:34)
+Caused by: ratpack.registry.NotInRegistryException: No object for type 'ratpack.session.Session' in registry
+    at ratpack.registry.Registry.get(Registry.java:136)
+    at ratpack.handling.internal.DefaultContext.get(DefaultContext.java:375)
+    at ratpack.registry.Registry.get(Registry.java:120)
+    at RetrieveFooValueFromSessionSpec$HandlerUnderTest.handle(RetrieveFooValueFromSessionSpec.groovy:41)
+    at ratpack.handling.internal.DefaultContext.next(DefaultContext.java:157)
+    ....</code></pre></div></div><div class="paragraph"><p>This exception is pretty straightforward - there is no session object available in the registry. In this test specification we want to avoid mocking session object and use the real one provided with <code>SessionModule</code> instead. To make it happened we need to register <code>SessionModule</code> using Guice registry. Luckily <code>GroovyChainAction</code> class has a method called <code>register(Registry registry)</code> that allows us to override existing registry. Here we will use <code>Guice.registry(Action&lt;? super BindingsSpec&gt; bindings)</code> method that returns <code>Function&lt;Registry, Registry&gt;</code>:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">static final Function&lt;Registry, Registry&gt; guiceRegistry = Guice.registry { bindings -&gt;
+    bindings.module(new SessionModule())
+}</code></pre></div></div><div class="paragraph"><p>This <code>guiceRegistry</code> function will return a Guice registry with <code>SessionModule</code> bind correctly. The next step is to call this <code>GroovyChainAction.register(guiceRegistry.apply(registry))</code> method inside <code>execute()</code> method we override for this test. The updated specification class looks like this:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">import ratpack.exec.Promise
+import ratpack.func.Function
+import ratpack.groovy.handling.GroovyChainAction
+import ratpack.groovy.test.handling.GroovyRequestFixture
+import ratpack.guice.Guice
+import ratpack.handling.Context
+import ratpack.handling.Handler
+import ratpack.http.Status
+import ratpack.jackson.internal.DefaultJsonRender
+import ratpack.registry.Registry
+import ratpack.session.Session
+import ratpack.session.SessionModule
+import spock.lang.Specification
+import spock.lang.Subject
+
+import static ratpack.jackson.Jackson.json
+
+class RetrieveFooValueFromSessionSpec extends Specification {
+
+    static final Function&lt;Registry, Registry&gt; guiceRegistry = Guice.registry { bindings -&gt;
+        bindings.module(new SessionModule())
+    }
+
+    @Subject
+    final GroovyChainAction handlerChainAction = new GroovyChainAction() {
+        @Override
+        void execute() throws Exception {
+            register(guiceRegistry.apply(registry))
+
+            get(new HandlerUnderTest())
+        }
+    }
+
+    def "should retrieve value for foo key from Session"() {
+        given:
+        def result = GroovyRequestFixture.handle(handlerChainAction) {
+            method 'GET'
+        }
+
+        expect:
+        result.status == Status.OK
+
+        and:
+        result.rendered(DefaultJsonRender).object == [foo: 'Foo value is 42']
+    }
+
+    static class HandlerUnderTest implements Handler {
+
+        @Override
+        void handle(Context ctx) throws Exception {
+            ctx.get(Session).get('foo').map { Optional&lt;String&gt; o -&gt;
+                o.orElse(null)
+            }.flatMap { value -&gt;
+                Promise.value(value)
+            }.then { foo -&gt;
+                ctx.render(json([foo: foo]))
+            }
+        }
+    }
+}</code></pre></div></div><div class="paragraph"><p>Let&#8217;s run the test and see what happens:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">Condition not satisfied:
+
+result.rendered(DefaultJsonRender).object == [foo: 'Foo value is 42']
+|      |                           |      |
+|      |                           |      false
+|      |                           [foo:null]
+|      ratpack.jackson.internal.DefaultJsonRender@9f6e406
+ratpack.test.handling.internal.DefaultHandlingResult@400d912a
+
+Expected :foo: Foo value is 42
+
+Actual   :foo: null</code></pre></div></div><div class="paragraph"><p>Great! <code>SessionModule</code> gets bind correctly, there is no <code>No object for type 'ratpack.session.Session' in registry</code> exception anymore. To finalize this specification we need to satisfy the expectation. For purpose of this test we will add <code>all()</code> handler to the <code>GroovyChainAction</code> and in this handler we will initialize value in session for key <code>foo</code>.</p></div><div class="quoteblock"><blockquote><h4>The <code>all()</code> handler</h4><div class="paragraph"><p>This handler is useful in some scenarios - when it&#8217;s added at the top of the chain it inspects every incoming request. It&#8217;s important to remember that if we want to keep chain continuing we have to call <code>next()</code> method that instructs Ratpack that this handler does not terminate request processing and it has to continue. Otherwise request handling ends up inside <code>all()</code> handler.</p></div></blockquote></div><div class="paragraph"><p>The simplest <code>all()</code> handler that sets value for session key`foo` may look like this:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">all { Session session -&gt;
+    session.set('foo', 'Foo value is 42').then {
+        next()
+    }
+}</code></pre></div></div><div class="paragraph"><p>It&#8217;s important to call <code>next()</code> inside <code>then()</code> operation to let Ratpack&#8217;s execution model does its job. Otherwise the next handler may start processing before session object stores value for <code>foo</code> key.</p></div><div class="paragraph"><p>And here is what the full working specification looks like:</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">import ratpack.exec.Promise
+import ratpack.func.Function
+import ratpack.groovy.handling.GroovyChainAction
+import ratpack.groovy.test.handling.GroovyRequestFixture
+import ratpack.guice.Guice
+import ratpack.handling.Context
+import ratpack.handling.Handler
+import ratpack.http.Status
+import ratpack.jackson.internal.DefaultJsonRender
+import ratpack.registry.Registry
+import ratpack.session.Session
+import ratpack.session.SessionModule
+import spock.lang.Specification
+import spock.lang.Subject
+
+import static ratpack.jackson.Jackson.json
+
+class RetrieveFooValueFromSessionSpec extends Specification {
+
+    static final Function&lt;Registry, Registry&gt; guiceRegistry = Guice.registry { bindings -&gt;
+        bindings.module(new SessionModule())
+    }
+
+    @Subject
+    final GroovyChainAction handlerChainAction = new GroovyChainAction() {
+        @Override
+        void execute() throws Exception {
+            register(guiceRegistry.apply(registry))
+
+            all { Session session -&gt;
+                session.set('foo', 'Foo value is 42').then {
+                    next()
+                }
+            }
+
+            get(new HandlerUnderTest())
+        }
+    }
+
+    def "should retrieve value for foo key from Session"() {
+        given:
+        def result = GroovyRequestFixture.handle(handlerChainAction) {
+            method 'GET'
+        }
+
+        expect:
+        result.status == Status.OK
+
+        and:
+        result.rendered(DefaultJsonRender).object == [foo: 'Foo value is 42']
+    }
+
+    static class HandlerUnderTest implements Handler {
+
+        @Override
+        void handle(Context ctx) throws Exception {
+            ctx.get(Session).get('foo').map { Optional&lt;String&gt; o -&gt;
+                o.orElse(null)
+            }.flatMap { value -&gt;
+                Promise.value(value)
+            }.then { foo -&gt;
+                ctx.render(json([foo: foo]))
+            }
+        }
+    }
+}</code></pre></div></div><div class="paragraph"><p>This final specification passes as we expect:</p></div><div class="paragraph"><p><img src="/images/ratpack-session-test-passed.png" class="img-thumbnail"></p></div><footer class="post-footer"><img class="img-responsive img-circle" src="https://www.gravatar.com/avatar/b22c1842c6e8f7f2b9b3ed8c0d4efb4d?s=200"><div class="row author"><div class="col-lg-8 col-lg-offset-2 col-xs-10 col-xs-offset-1"><h4>Szymon Stepniak</h4><p>Groovista, Upwork's Top Rated freelancer, Toruń Java User Group founder, open&nbsp;source contributor, Stack Overflow addict, bedroom guitar player. I walk through e.printStackTrace() so you don't have to.</p><ul class="social-links"><li><a href="https://feeds.feedburner.com/Eprintstacktracenet" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-rss"></span></a></li><li><a href="https://twitter.com/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-twitter"></span></a></li><li><a href="https://github.com/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-github"></span></a></li><li><a href="https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-stack-overflow"></span></a></li><li><a href="https://www.youtube.com/channel/UCEf8e5YAYnowq-2deW4tpsw/featured" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-youtube"></span></a></li><li><a href="mailto:szymon.stepniak@gmail.com" onclick="return window.open(this.href),!1"><span class="fa fa-envelope"></span></a></li><li><a href="https://www.linkedin.com/in/szymon-stępniak-9a0b1630" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-linkedin"></span></a></li><li><a href="https://keybase.io/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-user-secret"></span></a></li></ul></div></div></footer><section class="related-posts"><h2>You may also like</h2><div class="row"><div class="col-lg-4"><a href="/ratpack-mocking-Session-object-in-GroovyRequestFixture-test/"><img class="img-responsive" src="/images/og/ratpack-mocking-session.jpg"><h3>Ratpack: mocking Session object in GroovyRequestFixture test</h3></a><p>Ratpack allows you unit test handlers using GroovyRequestFixture class. The good thing about this approach is that it does not require running the whole application and you can quickly test if the ...</p></div><div class="col-lg-4"><a href="/spock-random-order-of-tests-how-to/"><img class="img-responsive" src="/images/og/spock-random-tests.jpg"><h3>Spock random order of tests - how to?</h3></a><p>Spock Framework executes test methods (features) in a single class (specification) in the declaration order. There is nothing wrong in this default behavior - we should write tests with their isola...</p></div><div class="col-lg-4"><a href="/how-to-avoid-no-tests-were-found-when-using-junit5-with-groovy/"><img class="img-responsive" src="/images/og/groovy-junit5.jpg"><h3>How to avoid "No tests were found" when using JUnit 5 with Groovy?</h3></a><p>In this short blog post I would like to explain how to avoid popular mistake when you write your first JUnit 5 test case in Groovy.</p></div></div></section></article><nav class="pagination" role="pagination"><a class="pull-left btn" href="/groovy-split-string-and-avoid-getting-index-out-of-bounds-exception/">← Next post</a><a class="pull-right btn" href="/ratpack-mocking-Session-object-in-GroovyRequestFixture-test/">Previous post →</a></nav><div class="disqus-comments"><div class="comments"><div id="disqus_thread"></div></div></div><script>var url_parts=window.location.href.split("?"),disqus_url=url_parts[0];!function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="//eprintstacktrace.disqus.com/embed.js",(document.head||d.body).appendChild(t)}()</script></div></div></div><script async id="dsq-count-scr" src="//eprintstacktrace.disqus.com/count.js"></script><footer class="site-footer"><div class="container-fluid"><div class="row"><div class="col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1"><div class="row"><div class="col-lg-4"><h4>e.printstacktrace.blog © 2020</h4><p><em>"I walk through e.printStackTrace() so you don't have to"</em></p><p><a href="/privacy-policy/">Privacy policy</a></p><p><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener"><img src="https://badgen.net/badge/license/CC%20BY-NC-SA%204.0/gray"></a></p><p><a href="https://github.com/wololock/wololock.github.io/commits/develop" target="_blank" rel="noopener"><img src="https://badgen.net/github/last-commit/wololock/wololock.github.io?color=blue"></a></p></div><div class="col-lg-4"><h4 class="marked">Recent video on YouTube</h4><section class="recent-posts"><a href="https://www.youtube.com/watch?v=TjLDHIa-HVE" target="_blank" rel="noopener"><img class="img-thumbnail img-noborder" src="https://i3.ytimg.com/vi/TjLDHIa-HVE/mqdefault.jpg" alt="Groovy 3.0 Quick Review - the most anticipated Groovy version is finally here!"></a></section><h4 class="marked">Recent articles</h4><section class="recent-posts"><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/groovy-3-string-gdk-improvements-takeright-takebetween-and-a-few-others/">Groovy 3 String GDK improvements - takeRight, takeBetween, and a few others</a></li><li class="post-list-item"><a class="post-list-link" href="/jenkins-scripted-pipeline-vs-declarative-pipeline-the-4-practical-differences/">Jenkins Scripted Pipeline vs. Declarative Pipeline - the 4 practical differences</a></li><li class="post-list-item"><a class="post-list-link" href="/the-blog-development-report-year-2019/">The blog development report - year 2019</a></li><li class="post-list-item"><a class="post-list-link" href="/groovy-string-methods-that-will-make-your-life-groovier/">Three Groovy String methods that will make your life Groovier!</a></li><li class="post-list-item"><a class="post-list-link" href="/using-jenkins-pipeline-parallel-stages-to-build-maven-project-with-different-jdks/">Using Jenkins Pipeline parallel stages to build Maven project with different JDKs</a></li><li class="post-list-item"><a class="post-list-link" href="/quicksort-in-groovy-can-it-be-as-fast-as-implemented-in-java/">Quicksort in Groovy - can it be as fast as implemented in Java?</a></li></ul></section></div><div class="col-lg-4"><h4 class="marked">Stay connected</h4><div class="social-links"><ul><li><a href="https://feeds.feedburner.com/Eprintstacktracenet" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-rss"></span></a></li><li><a href="https://twitter.com/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-twitter"></span></a></li><li><a href="https://github.com/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-github"></span></a></li><li><a href="https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-stack-overflow"></span></a></li><li><a href="https://www.youtube.com/channel/UCEf8e5YAYnowq-2deW4tpsw/featured" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-youtube"></span></a></li><li><a href="mailto:szymon.stepniak@gmail.com" onclick="return window.open(this.href),!1"><span class="fa fa-envelope"></span></a></li><li><a href="https://www.linkedin.com/in/szymon-stępniak-9a0b1630" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-linkedin"></span></a></li><li><a href="https://keybase.io/wololock" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><span class="fa fa-user-secret"></span></a></li></ul></div><h4 class="marked">Most popular tags</h4><section class="tagcloud"><a href="/tags/benchmark/" style="font-size:12pt;color:#777">benchmark</a> <a href="/tags/book/" style="font-size:16pt;color:#858585">book</a> <a href="/tags/cicd/" style="font-size:20pt;color:#929292">cicd</a> <a href="/tags/devops/" style="font-size:8pt;color:#6a6a6a">devops</a> <a href="/tags/docker/" style="font-size:12pt;color:#777">docker</a> <a href="/tags/github/" style="font-size:8pt;color:#6a6a6a">github</a> <a href="/tags/graalvm/" style="font-size:24pt;color:#9f9f9f">graalvm</a> <a href="/tags/groovy/" style="font-size:32pt;color:#bababa">groovy</a> <a href="/tags/haskell/" style="font-size:8pt;color:#6a6a6a">haskell</a> <a href="/tags/java/" style="font-size:28pt;color:#adadad">java</a> <a href="/tags/jenkins/" style="font-size:16pt;color:#858585">jenkins</a> <a href="/tags/jenkins-pipeline/" style="font-size:16pt;color:#858585">jenkins-pipeline</a> <a href="/tags/jmh/" style="font-size:16pt;color:#858585">jmh</a> <a href="/tags/learning/" style="font-size:8pt;color:#6a6a6a">learning</a> <a href="/tags/micronaut/" style="font-size:12pt;color:#777">micronaut</a> <a href="/tags/native-image/" style="font-size:12pt;color:#777">native-image</a> <a href="/tags/non-blocking/" style="font-size:12pt;color:#777">non-blocking</a> <a href="/tags/ratpack/" style="font-size:24pt;color:#9f9f9f">ratpack</a> <a href="/tags/reading/" style="font-size:8pt;color:#6a6a6a">reading</a> <a href="/tags/recursion/" style="font-size:8pt;color:#6a6a6a">recursion</a> <a href="/tags/review/" style="font-size:16pt;color:#858585">review</a> <a href="/tags/sdkman/" style="font-size:12pt;color:#777">sdkman</a> <a href="/tags/spock/" style="font-size:12pt;color:#777">spock</a> <a href="/tags/stackoverflow/" style="font-size:8pt;color:#6a6a6a">stackoverflow</a> <a href="/tags/unit-test/" style="font-size:12pt;color:#777">unit-test</a></section></div></div></div></div></div><section class="poweredby"><ul class="text-center"><li><span>Published with </span><a href="https://hexo.io" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><img src="/img/logo-hexo.png"></a></li><li><span>Hosted on </span><a href="https://github.com/wololock/wololock.github.io" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><img src="/img/logo-github.png"></a></li><li><span>Deployed with </span><a href="https://circleci.com/gh/wololock/wololock.github.io" target="_blank" rel="noopener" onclick="return window.open(this.href),!1"><img src="/img/logo-circleci.png"></a></li></ul></section></footer><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><script id="cookiebanner" src="//cdnjs.cloudflare.com/ajax/libs/cookie-banner/1.2.2/cookiebanner.min.js" data-moreinfo="/privacy-policy/" data-message="This blog uses cookies to enhance your experience. By continuing to visit it you agree to its use of cookies." data-link="#ffad33" data-font-family="Lora,serif" data-font-size="1.6rem" data-bg="#444"></script><script src="/js/main.js?v=5"></script><script src="/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad()</script><script>"localhost"!==window.location.hostname&&"127.0.0.1"!==window.location.hostname&&(!function(e,a,t,n,o,c,g){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),g=a.getElementsByTagName(t)[0],c.async=1,c.src="//www.google-analytics.com/analytics.js",g.parentNode.insertBefore(c,g)}(window,document,"script",0,"ga"),ga("create","UA-42400890-5","auto"),ga("send","pageview"),jQuery("a.ga-track").click(function(e){var a=jQuery(e.target).text();return ga("send","event","links","click",a),!0}))</script></body></html>
