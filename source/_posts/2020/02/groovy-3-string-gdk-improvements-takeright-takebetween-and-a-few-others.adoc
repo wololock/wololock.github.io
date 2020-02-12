@@ -63,11 +63,11 @@ It is similar to `takeAfter`, but here it extracts the text that exists before t
 [source,groovy]
 ----
 final String text = "Groovy"
-assert text.takeAfter("G") == ""
-assert text.takeAfter("g") == ""
-assert text.takeAfter("ovy") == "Gro"
-assert text.takeAfter("o") == "Gr"
-assert text.takeAfter("Groovy") == ""
+assert text.takeBefore("G") == ""
+assert text.takeBefore("g") == ""
+assert text.takeBefore("ovy") == "Gro"
+assert text.takeBefore("o") == "Gr"
+assert text.takeBefore("Groovy") == ""
 ----
 
 == `String.takeBetween(from,to)`
