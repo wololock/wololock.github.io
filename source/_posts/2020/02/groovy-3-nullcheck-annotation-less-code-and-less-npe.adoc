@@ -1,0 +1,148 @@
+---
+title: 'Groovy 3 @NullCheck annotation - less code and less NPE'
+date: 2020-02-14 14:34:38
+updated: 2020-02-14 14:34:38
+tags:
+    - groovy
+    - groovy-3
+    - annotation
+categories:
+    - Groovy Cookbook
+cover: /images/groovy-cookbook.jpg
+og_image: /images/og/groovy-null-check.jpg
+eyeCatchImage: /images/og/groovy-null-check.jpg
+---
+
+Groovy 3 helps you write less, but more secure code.
+Today I want to show you one of the features added in the latest release - `@NullCheck` annotation.
+
+++++
+<!-- more -->
+++++
+
+== What is `@NullCheck`?
+
+The `@groovy.transform.NullCheck` belongs to the category of annotations that trigger specific AST transformations at the compilation time.
+This specific annotation can be added to class, constructor, or method.
+When it is present, it adds if-statement that checks if a variable (or variables) is not `null`, and throws `IllegalArgumentException` otherwise.
+
+Here is Groovy =<2.5 class example that does all `null` checks manually.
+
+.Groovy 2.5 solution.
+[source,groovy]
+----
+import groovy.transform.CompileStatic
+
+@CompileStatic
+class Foo {
+    private final String str
+
+    Foo(final String str) {
+        if (str == null) { //<1>
+            throw new IllegalArgumentException("str cannot be null")
+        }
+
+        this.str = str
+    }
+
+    String bar(final BigDecimal value) {
+        if (value == null) { //<2>
+            throw new IllegalArgumentException("value cannot be null")
+        }
+
+        return str.toUpperCase() + " = " + value.toString()
+    }
+}
+
+assert new Foo("test").bar(BigDecimal.TEN) == "TEST = 10"
+
+new Foo("test").bar(null) //<3>
+----
+<1> Explicit null check in the constructor.
+<2> Explicit null check in the method body.
+<3> Calling `bar(null)` to get `IllegalArgumentException`.
+
+When you run such a Groovy script, you will see `IllegalArgumentException` as expected.
+
+[source,bash]
+----
+$ groovy test.groovy
+Caught: java.lang.IllegalArgumentException: value cannot be null
+java.lang.IllegalArgumentException: value cannot be null
+	at Foo.bar(test.groovy:17)
+	at Foo$bar.call(Unknown Source)
+	at test.run(test.groovy:26)
+----
+
+When using Groovy 3 (and higher) and `@NullCheck` annotation we can get replace all explicit checks with a single annotation.
+The AST transformation that runs at the compile-time produces the same bytecode as in the explicit Groovy 2.5 use case.
+
+.Groovy 3+ solution.
+[source,groovy]
+----
+import groovy.transform.CompileStatic
+import groovy.transform.NullCheck
+
+@CompileStatic
+@NullCheck //<1>
+class Foo {
+    private final String str
+
+    Foo(final String str) {
+        this.str = str
+    }
+
+    String bar(final BigDecimal value) {
+        return str.toUpperCase() + " = " + value.toString()
+    }
+}
+
+assert new Foo("test").bar(BigDecimal.TEN) == "TEST = 10"
+
+new Foo(null).bar(BigDecimal.ONE) //<2>
+----
+<1> `@NullCheck` at the class level affects all constructors and methods.
+<2> This time we call a constructor with a `null` argument to get `IllegalArgumentException`.
+
+Running the following example in the command line produces the expected result.
+
+[source,bash]
+----
+$ groovy test.groovy
+Caught: java.lang.IllegalArgumentException: str cannot be null
+java.lang.IllegalArgumentException: str cannot be null
+	at Foo.<init>(test.groovy)
+	at test.run(test.groovy:20)
+----
+
+== Limitations
+
+So far I have noticed one minor limitation - the `@NullCheck` annotation doesn't work when combined with `@Canonical` or `@Immutable` annotations.
+If supported, it would allow us to skip constructor definition and simplify the code to something like this.
+
+[source,groovy]
+----
+import groovy.transform.CompileStatic
+import groovy.transform.NullCheck
+import groovy.transform.Immutable
+
+@CompileStatic
+@NullCheck
+@Immutable
+class Foo {
+    final String str
+
+    String bar(final BigDecimal value) {
+        return str.toUpperCase() + " = " + value.toString()
+    }
+}
+
+assert new Foo("test").bar(BigDecimal.TEN) == "TEST = 10"
+
+new Foo(null).bar(BigDecimal.ONE) //<1>
+----
+
+In this case, we will get `NullPointerException` thrown by `str.toUpperCase()`, because there was no null-check in the generated constructor. pass:[<em class="conum" data-value="1"></em>]
+
+But I'm optimistic, and I think this limitation may get solved in one of the future Groovy updates.
+I definitely add `@NullCheck` to the `@CompileStatic` annotations arsenal I use on a daily basis. icon:smile-o[]
