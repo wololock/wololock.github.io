@@ -103,7 +103,7 @@ all_minifier: true
 
 # Update versions after updating resources to prevent reading from cache
 version:
-  css: 39
+  css: 40
   js: 5
 
 archive_generator:
