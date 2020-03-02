@@ -7,6 +7,5 @@ public/
 .deploy*/
 .idea/
 *.iml
-package-lock.json
 cache/
 _multiconfig.yml
