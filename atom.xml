@@ -37,9 +37,9 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
     
-      <category term="annotation" scheme="https://e.printstacktrace.blog/tags/annotation/"/>
-    
       <category term="groovy-3" scheme="https://e.printstacktrace.blog/tags/groovy-3/"/>
+    
+      <category term="annotation" scheme="https://e.printstacktrace.blog/tags/annotation/"/>
     
   </entry>
   
@@ -417,17 +417,17 @@
       <category term="Conferences" scheme="https://e.printstacktrace.blog/categories/conferences/"/>
     
     
-      <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
-    
       <category term="grails" scheme="https://e.printstacktrace.blog/tags/grails/"/>
     
-      <category term="ratpack" scheme="https://e.printstacktrace.blog/tags/ratpack/"/>
+      <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
     
-      <category term="micronaut" scheme="https://e.printstacktrace.blog/tags/micronaut/"/>
+      <category term="ratpack" scheme="https://e.printstacktrace.blog/tags/ratpack/"/>
     
       <category term="gr8conf" scheme="https://e.printstacktrace.blog/tags/gr8conf/"/>
     
       <category term="conference" scheme="https://e.printstacktrace.blog/tags/conference/"/>
+    
+      <category term="micronaut" scheme="https://e.printstacktrace.blog/tags/micronaut/"/>
     
       <category term="copenhagen" scheme="https://e.printstacktrace.blog/tags/copenhagen/"/>
     
