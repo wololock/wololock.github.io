@@ -14,8 +14,9 @@ categories:
 cover: /images/release-it-bg.jpg
 og_image: /images/og/release-it.jpg
 eyeCatchImage: /images/og/release-it.jpg
+affiliates: true
 ---
-:book-url: https://pragprog.com/book/mnee2/release-it-second-edition
+:book-url: https://amzn.to/2vnj9pk
 
 We are software developers.
 Our daily duty is to write programs.

@@ -13,8 +13,9 @@ tags:
 cover: /images/programming-groovy-bg.jpg
 og_image: /images/og/programming-groovy.jpg
 eyeCatchImage: /images/og/programming-groovy.jpg
+affiliates: true
 ---
-:book-url: https://pragprog.com/book/vslg2/programming-groovy-2
+:book-url: https://amzn.to/2IKCPXg
 
 When I get the paperback copy of the {book-url}[_"Programming Groovy 2"_, role="ga-track"] book back in the June 2017, I was wondering if I can find something new or exciting in the book that was written in July 2013.
 It took me almost 1,5 year before I have finally put the book on my desk and started reading and playing around with the examples.

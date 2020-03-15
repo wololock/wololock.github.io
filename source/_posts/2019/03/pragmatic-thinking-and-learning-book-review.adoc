@@ -17,7 +17,7 @@ og_image: /images/og/pragmatic-thinking-and-learning.jpg
 eyeCatchImage: /images/og/pragmatic-thinking-and-learning.jpg
 affiliates: true
 ---
-:book-url: https://amzn.to/2UaLwkT
+:book-url: https://amzn.to/2wajzj9
 
 There are books you read once, and you don't plan to read them back again any time soon. However, some books
 are so influential and valuable that when you decide to study them the second time, you realize that it was

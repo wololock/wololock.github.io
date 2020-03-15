@@ -1,7 +1,7 @@
 [.text-box-2]
 === Looking for a good [.mark]#Groovy# book?
 ====
-:groovy-in-action-link: https://amzn.to/2Xcum7X
+:groovy-in-action-link: https://amzn.to/33oB4Zw
 :dierk-twitter: https://twitter.com/mittie
 :paul-twitter: https://twitter.com/paulk_asert
 

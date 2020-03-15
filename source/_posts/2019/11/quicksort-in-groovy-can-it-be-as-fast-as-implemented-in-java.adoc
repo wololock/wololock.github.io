@@ -12,8 +12,9 @@ categories:
 - Groovy Cookbook
 og_image: /images/og/groovy-quicksort.jpg
 eyeCatchImage: /images/og/groovy-quicksort.jpg
+affiliates: true
 ---
-:cracking-coding-interview-url: https://www.goodreads.com/book/show/25707092-cracking-the-coding-interview
+:cracking-coding-interview-url: https://amzn.to/2vZIxC3
 
 I started reading {cracking-coding-interview-url}["_&quot;Cracking the Coding Interview, 6th Edition&quot;_", role="ga-track"] book recently and it inspired me to experiment a bit.
 It's been a while since I implemented the quicksort algorithm the last time, and I did that in Haskell.
