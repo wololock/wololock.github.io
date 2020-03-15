@@ -26,8 +26,8 @@
     "hexo-renderer-pug": "^1.0.0",
     "hexo-renderer-stylus": "^1.1.0",
     "hexo-server": "^1.0.0",
-    "hexo-util": "^1.8.1",
-    "snyk": "^1.297.3"
+    "hexo-util": "^1.9.0",
+    "snyk": "^1.299.0"
   },
   "scripts": {
     "snyk-protect": "snyk protect",
