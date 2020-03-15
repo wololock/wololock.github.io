@@ -127,7 +127,6 @@ category:
     'Tales from debugger': /img/post-debugger.jpg
 
 video:
-  id: f1WkgEe-YbQ
+  id: FSn_38gDvzM
   size: mqdefault
-  title: Groovy 3 YamlSlurper and YamlBuilder examples - tutorial
-
+  title: Processing JSON in a command-line using jq - a quick introduction
