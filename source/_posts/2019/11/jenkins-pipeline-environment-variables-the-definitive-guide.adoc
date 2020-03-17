@@ -13,12 +13,14 @@ tags:
 cover: /images/jenkins-bg.jpg
 og_image: /images/og/jenkins-pipeline-env-variables.jpg
 eyeCatchImage: /images/og/jenkins-pipeline-env-variables.jpg
+affiliates: true
 ---
 :sectanchors:
 :toc: macro
 :toc-title: You can jump directly to...
 :groovy-truth-strings: Read more about "The Groovy Truth" here - https://groovy-lang.org/semantics.html#_strings
 :jenkins-sh-step: https://jenkins.io/doc/pipeline/steps/workflow-durable-task-step/#sh-shell-script
+:jenkins-2-book-url: https://amzn.to/3b3diVl
 
 Welcome to the first blog post of the *"Jenkins Pipeline Cookbook"* series.
 Today we are focus on working with Jenkins Pipeline environment variables effectively.
@@ -29,6 +31,9 @@ You will learn how to define env variables, how to updated them, and how to use 
 ++++
 
 toc::[]
+
+NOTE: If you want to learn more about *Jenkins* and CI/CD pipelines, check out {jenkins-2-book-url}["_&quot;Continuous Delivery with Docker and Jenkins&quot;_", role="ga-track"] book by Rafal Leszko.
+This book will guide you through the process of setting up continuous delivery pipelines using Jenkins and Docker. Highly recommended!
 
 == List environment variables
 
@@ -295,7 +300,5 @@ pipeline {
 [link=/images/jenkins-sh-in-env-var.png]
 image::/images/jenkins-sh-in-env-var.png[]
 --
-
-
 
 
