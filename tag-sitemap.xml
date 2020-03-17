@@ -276,14 +276,14 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/recursion/</loc>
+        <loc>https://e.printstacktrace.blog/tags/jmh/</loc>
         <lastmod>2019-06-25T11:54:04.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/jmh/</loc>
+        <loc>https://e.printstacktrace.blog/tags/recursion/</loc>
         <lastmod>2019-06-25T11:54:04.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -479,7 +479,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/split/</loc>
+        <loc>https://e.printstacktrace.blog/tags/java-stream/</loc>
         <lastmod>2019-03-29T00:44:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -493,7 +493,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/java-stream/</loc>
+        <loc>https://e.printstacktrace.blog/tags/split/</loc>
         <lastmod>2019-03-29T00:44:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -682,6 +682,13 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/tags/haskell/</loc>
+        <lastmod>2018-12-02T16:23:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/tags/advent-of-code/</loc>
         <lastmod>2018-12-02T16:23:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -690,13 +697,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/tags/aoc2018/</loc>
-        <lastmod>2018-12-02T16:23:11.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/tags/haskell/</loc>
         <lastmod>2018-12-02T16:23:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
