@@ -13,10 +13,12 @@ categories:
 cover: /images/jenkins-bg2.jpg
 og_image: /images/og/jenkins-declarative-vs-scripted-pipeline.jpg
 eyeCatchImage: /images/og/jenkins-declarative-vs-scripted-pipeline.jpg
+affiliates: true
 ---
 :toc: macro
 :jenkins-scripted-pipeline-doc: https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline
 :jenkins-declarative-pipeline-doc: https://jenkins.io/doc/book/pipeline/syntax/#declarative-pipeline
+:jenkins-2-book-url: https://amzn.to/3b3diVl
 
 If you read this blog post, there is a high chance you're looking for information about practical differences between scripted and declarative pipeline, correct?
 You couldn't find a better place then.
@@ -28,6 +30,10 @@ Stay with me for a few minutes and enjoy the ride!
 ++++
 
 toc::[]
+
+NOTE: If you want to learn more about *Jenkins* and CI/CD pipelines, check out {jenkins-2-book-url}["_&quot;Continuous Delivery with Docker and Jenkins&quot;_", role="ga-track"] book by Rafal Leszko.
+This book will guide you through the process of setting up continuous delivery pipelines using Jenkins and Docker. Highly recommended!
+
 
 == The introduction
 
