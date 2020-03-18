@@ -127,6 +127,6 @@ category:
     'Tales from debugger': /img/post-debugger.jpg
 
 video:
-  id: FSn_38gDvzM
+  id: 2tts0NX5_40
   size: mqdefault
-  title: Processing JSON in a command-line using jq - a quick introduction
+  title: GitHub CLI - a new way to manage your repository from the command line
