@@ -386,9 +386,9 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
     
-      <category term="recursion" scheme="https://e.printstacktrace.blog/tags/recursion/"/>
-    
       <category term="jmh" scheme="https://e.printstacktrace.blog/tags/jmh/"/>
+    
+      <category term="recursion" scheme="https://e.printstacktrace.blog/tags/recursion/"/>
     
       <category term="benchmark" scheme="https://e.printstacktrace.blog/tags/benchmark/"/>
     
@@ -553,9 +553,9 @@
       <category term="How to" scheme="https://e.printstacktrace.blog/categories/how-to/"/>
     
     
-      <category term="ratpack" scheme="https://e.printstacktrace.blog/tags/ratpack/"/>
-    
       <category term="java" scheme="https://e.printstacktrace.blog/tags/java/"/>
+    
+      <category term="ratpack" scheme="https://e.printstacktrace.blog/tags/ratpack/"/>
     
       <category term="graalvm" scheme="https://e.printstacktrace.blog/tags/graalvm/"/>
     
