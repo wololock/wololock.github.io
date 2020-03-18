@@ -103,7 +103,7 @@ all_minifier: true
 
 # Update versions after updating resources to prevent reading from cache
 version:
-  css: 40
+  css: 41
   js: 5
 
 archive_generator:
@@ -130,3 +130,10 @@ video:
   id: 2tts0NX5_40
   size: mqdefault
   title: GitHub CLI - a new way to manage your repository from the command line
+
+stackoverflow:
+  profile: https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile
+  reputation: 25,298
+  gold: 9
+  silver: 54
+  bronze: 86

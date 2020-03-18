@@ -5,6 +5,9 @@ footer.post-footer
     .row.author
         .col-lg-8.col-lg-offset-2.col-xs-10.col-xs-offset-1
             h4=config.author
+            p
+                include stack-overflow
+
             p!=config.bio
             ul.social-links
                 each value, key in theme["footer"]
