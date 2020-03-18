@@ -108,14 +108,14 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/docker/</loc>
+        <loc>https://e.printstacktrace.blog/tags/java/</loc>
         <lastmod>2019-11-28T20:53:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/java/</loc>
+        <loc>https://e.printstacktrace.blog/tags/docker/</loc>
         <lastmod>2019-11-28T20:53:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -276,14 +276,14 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/recursion/</loc>
+        <loc>https://e.printstacktrace.blog/tags/jmh/</loc>
         <lastmod>2019-06-25T11:54:04.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/jmh/</loc>
+        <loc>https://e.printstacktrace.blog/tags/recursion/</loc>
         <lastmod>2019-06-25T11:54:04.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -479,14 +479,14 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/java-8/</loc>
+        <loc>https://e.printstacktrace.blog/tags/java-stream/</loc>
         <lastmod>2019-03-29T00:44:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/java-stream/</loc>
+        <loc>https://e.printstacktrace.blog/tags/java-8/</loc>
         <lastmod>2019-03-29T00:44:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
