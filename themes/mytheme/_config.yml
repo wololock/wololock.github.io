@@ -1,7 +1,6 @@
 navbar-links:
     Archive: /archives
-    Github: https://github.com/wololock/wololock.github.io
-#    About: /about/
+    YouTube: https://www.youtube.com/channel/UCEf8e5YAYnowq-2deW4tpsw
 
 avatar: /hexo.png
 favicon: /hexo.png
