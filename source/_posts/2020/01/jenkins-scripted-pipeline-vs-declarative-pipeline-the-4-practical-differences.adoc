@@ -31,10 +31,6 @@ Stay with me for a few minutes and enjoy the ride!
 
 toc::[]
 
-NOTE: If you want to learn more about *Jenkins* and CI/CD pipelines, check out {jenkins-2-book-url}["_&quot;Continuous Delivery with Docker and Jenkins&quot;_", role="ga-track"] book by Rafal Leszko.
-This book will guide you through the process of setting up continuous delivery pipelines using Jenkins and Docker. Highly recommended!
-
-
 == The introduction
 
 But let's start with the following question - why are there two pipeline types in the first place?
@@ -425,6 +421,9 @@ This is not the same result.
 In the scripted pipeline use case, the *Test* stage is not even rendered.
 This might introduce some unnecessary confusion, the declarative pipeline handles it much better in my opinion.
 Declarative vs. scripted, 4:0.
+
+NOTE: If you want to learn more about *Jenkins* and CI/CD pipelines, check out {jenkins-2-book-url}["_&quot;Continuous Delivery with Docker and Jenkins&quot;_", role="ga-track"] book by Rafal Leszko.
+This book will guide you through the process of setting up continuous delivery pipelines using Jenkins and Docker. Highly recommended!
 
 == Conclusion
 

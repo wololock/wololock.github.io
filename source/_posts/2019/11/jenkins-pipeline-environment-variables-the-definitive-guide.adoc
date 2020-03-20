@@ -32,9 +32,6 @@ You will learn how to define env variables, how to updated them, and how to use 
 
 toc::[]
 
-NOTE: If you want to learn more about *Jenkins* and CI/CD pipelines, check out {jenkins-2-book-url}["_&quot;Continuous Delivery with Docker and Jenkins&quot;_", role="ga-track"] book by Rafal Leszko.
-This book will guide you through the process of setting up continuous delivery pipelines using Jenkins and Docker. Highly recommended!
-
 == List environment variables
 
 Let’s start by listing all available environment variables.
@@ -301,4 +298,5 @@ pipeline {
 image::/images/jenkins-sh-in-env-var.png[]
 --
 
-
+NOTE: If you want to learn more about *Jenkins* and CI/CD pipelines, check out {jenkins-2-book-url}["_&quot;Continuous Delivery with Docker and Jenkins&quot;_", role="ga-track"] book by Rafal Leszko.
+This book will guide you through the process of setting up continuous delivery pipelines using Jenkins and Docker. Highly recommended!
