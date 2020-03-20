@@ -138,3 +138,11 @@ stackoverflow:
   gold: 9
   silver: 54
   bronze: 86
+
+alias:
+  youtube/:
+    title: Subscribe to my YouTube channel! A new video published every week!
+    description: e.printstacktrace.blog YouTube channel is all about programming and learning. Watch a new video every week!
+    image: /images/og/youtube.jpg
+    url: https://www.youtube.com/channel/UCEf8e5YAYnowq-2deW4tpsw
+

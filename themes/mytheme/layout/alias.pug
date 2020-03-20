@@ -1,0 +1,13 @@
+doctype
+html(lang=config.language)
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="description", content=page.description)
+        title=page.title
+        link(rel="canonical", href=page.url)
+        meta(http-equiv="refresh", content="0; url="+page.url)
+
+        != open_graph({ image: page.image || null, twitter_id: 'wololock', twitter_card: 'summary_large_image' })
+
+        include partial/google_analytics

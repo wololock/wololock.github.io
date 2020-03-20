@@ -6,6 +6,8 @@ hexo.extend.renderer.register('ad', 'html', asciidoc, true)
 hexo.extend.renderer.register('adoc', 'html', asciidoc, true)
 hexo.extend.renderer.register('asciidoc', 'html', asciidoc, true)
 
+hexo.extend.generator.register('alias', require('./lib/alias'));
+
 hexo.extend.helper.register('structured_data', require('./lib/structured_data.js'));
 
 Array.prototype.shuffle = function() {
