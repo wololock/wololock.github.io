@@ -146,3 +146,7 @@ alias:
     image: /images/og/youtube.jpg
     url: https://www.youtube.com/channel/UCEf8e5YAYnowq-2deW4tpsw
 
+  buy-me-a-coffee/:
+    title: Support my work and buy me a coffee!
+    url: http://bit.ly/support-eprintstacktrace-yt-channel
+
