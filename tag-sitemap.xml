@@ -402,7 +402,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/spock/</loc>
+        <loc>https://e.printstacktrace.blog/tags/junit/</loc>
         <lastmod>2019-04-09T06:58:20.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -416,7 +416,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/junit/</loc>
+        <loc>https://e.printstacktrace.blog/tags/spock/</loc>
         <lastmod>2019-04-09T06:58:20.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -486,14 +486,14 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/split/</loc>
+        <loc>https://e.printstacktrace.blog/tags/java-8/</loc>
         <lastmod>2019-03-29T00:44:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/java-8/</loc>
+        <loc>https://e.printstacktrace.blog/tags/split/</loc>
         <lastmod>2019-03-29T00:44:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -682,6 +682,13 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/tags/haskell/</loc>
+        <lastmod>2018-12-02T16:23:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/tags/advent-of-code/</loc>
         <lastmod>2018-12-02T16:23:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -690,13 +697,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/tags/aoc2018/</loc>
-        <lastmod>2018-12-02T16:23:11.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/tags/haskell/</loc>
         <lastmod>2018-12-02T16:23:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

@@ -281,9 +281,9 @@
     
       <category term="sdkman" scheme="https://e.printstacktrace.blog/tags/sdkman/"/>
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
-    
       <category term="devops" scheme="https://e.printstacktrace.blog/tags/devops/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/tags/maven/"/>
     
@@ -320,9 +320,9 @@
     
       <category term="sdkman" scheme="https://e.printstacktrace.blog/tags/sdkman/"/>
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
-    
       <category term="devops" scheme="https://e.printstacktrace.blog/tags/devops/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/tags/maven/"/>
     
@@ -417,9 +417,9 @@
       <category term="Conferences" scheme="https://e.printstacktrace.blog/categories/conferences/"/>
     
     
-      <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
-    
       <category term="grails" scheme="https://e.printstacktrace.blog/tags/grails/"/>
+    
+      <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
     
       <category term="ratpack" scheme="https://e.printstacktrace.blog/tags/ratpack/"/>
     
@@ -524,11 +524,11 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
     
-      <category term="junit" scheme="https://e.printstacktrace.blog/tags/junit/"/>
+      <category term="spock" scheme="https://e.printstacktrace.blog/tags/spock/"/>
     
       <category term="unit-test" scheme="https://e.printstacktrace.blog/tags/unit-test/"/>
     
-      <category term="spock" scheme="https://e.printstacktrace.blog/tags/spock/"/>
+      <category term="junit" scheme="https://e.printstacktrace.blog/tags/junit/"/>
     
       <category term="random" scheme="https://e.printstacktrace.blog/tags/random/"/>
     
@@ -553,9 +553,9 @@
       <category term="How to" scheme="https://e.printstacktrace.blog/categories/how-to/"/>
     
     
-      <category term="java" scheme="https://e.printstacktrace.blog/tags/java/"/>
-    
       <category term="ratpack" scheme="https://e.printstacktrace.blog/tags/ratpack/"/>
+    
+      <category term="java" scheme="https://e.printstacktrace.blog/tags/java/"/>
     
       <category term="graalvm" scheme="https://e.printstacktrace.blog/tags/graalvm/"/>
     
