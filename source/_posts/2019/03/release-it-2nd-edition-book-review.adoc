@@ -9,6 +9,7 @@ tags:
     - deploy
     - production
     - release
+    - affiliate
 categories:
     - Programmer's Bookshelf
 cover: /images/release-it-bg.jpg
@@ -17,6 +18,9 @@ eyeCatchImage: /images/og/release-it.jpg
 affiliates: true
 ---
 :book-url: https://amzn.to/2vnj9pk
+:amazon-uk: https://www.amazon.co.uk/gp/product/1680502395?ie=UTF8&tag=eprintstack07-21&camp=1634&linkCode=xm2&creativeASIN=1680502395
+:amazon-de: https://www.amazon.de/gp/product/1680502395?ie=UTF8&tag=eprintstac0c4-21&camp=1638&linkCode=xm2&creativeASIN=1680502395
+:amazon-us: https://www.amazon.com/gp/product/1680502395?ie=UTF8&tag=eprintstacktr-20&camp=1789&linkCode=xm2&creativeASIN=1680502395
 
 We are software developers.
 Our daily duty is to write programs.
@@ -87,7 +91,20 @@ However, if it focused more on the specific tools instead of principles, it woul
 You won't regret spending time with the book - it is 336 pages of useful and never outdating knowledge.
 Highly recommended!
 
+[.get-the-book]
+== Get the book
+====
+*Paperback*
 
+image:/images/flags/us.png[United States, title="United States"] Amazon.com: {amazon-us}["Release It! Design and Deploy Production-Ready Software"]
+
+image:/images/flags/gb.png[United Kingdom, title="United Kingdom"] Amazon.co.uk: {amazon-uk}["Release It! Design and Deploy Production-Ready Software"]
+
+image:/images/flags/de.png[Germany, title="Germany"] Amazon.de: {amazon-de}["Release It! Design and Deploy Production-Ready Software (Eng.)"]
+
+___
+[.small]#NOTE: Above links are affiliate links. If you decide to buy a book using my affiliate link, I will get a small percentage from your purchase. The&nbsp;affiliate link does not affect the final price of the product. Using it costs you nothing.#
+====
 
 
 

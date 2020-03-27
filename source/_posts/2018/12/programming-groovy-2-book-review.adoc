@@ -10,12 +10,16 @@ tags:
     - review
     - programming
     - reading
+    - affiliate
 cover: /images/programming-groovy-bg.jpg
 og_image: /images/og/programming-groovy.jpg
 eyeCatchImage: /images/og/programming-groovy.jpg
 affiliates: true
 ---
 :book-url: https://amzn.to/2IKCPXg
+:amazon-uk: https://www.amazon.co.uk/gp/product/1937785300?ie=UTF8&tag=eprintstack07-21&camp=1634&linkCode=xm2&creativeASIN=1937785300
+:amazon-de: https://www.amazon.de/gp/product/1937785300?ie=UTF8&tag=eprintstac0c4-21&camp=1638&linkCode=xm2&creativeASIN=1937785300
+:amazon-us: https://www.amazon.com/gp/product/1937785300?ie=UTF8&tag=eprintstacktr-20&camp=1789&linkCode=xm2&creativeASIN=1937785300
 
 When I get the paperback copy of the {book-url}[_"Programming Groovy 2"_, role="ga-track"] book back in the June 2017, I was wondering if I can find something new or exciting in the book that was written in July 2013.
 It took me almost 1,5 year before I have finally put the book on my desk and started reading and playing around with the examples.
@@ -98,3 +102,18 @@ Venkat is not only a great teacher but also one of the kindest person I have eve
 [link=/images/programming-groovy-img3.jpg]
 image::/images/programming-groovy-img3.jpg[]
 --
+
+[.get-the-book]
+== Get the book
+====
+*Paperback*
+
+image:/images/flags/us.png[United States, title="United States"] Amazon.com: {amazon-us}["Programming Groovy 2: Dynamic Productivity for the Java Developer"]
+
+image:/images/flags/gb.png[United Kingdom, title="United Kingdom"] Amazon.co.uk: {amazon-uk}["Programming Groovy 2: Dynamic Productivity for the Java Developer""]
+
+image:/images/flags/de.png[Germany, title="Germany"] Amazon.de: {amazon-de}["Programming Groovy 2: Dynamic Productivity for the Java Developer (Eng.)"]
+
+___
+[.small]#NOTE: Above links are affiliate links. If you decide to buy a book using my affiliate link, I will get a small percentage from your purchase. The&nbsp;affiliate link does not affect the final price of the product. Using it costs you nothing.#
+====

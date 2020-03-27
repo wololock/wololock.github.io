@@ -10,6 +10,7 @@ tags:
     - mind-mapping
     - reading
     - brain
+    - affiliate
 categories:
     - Programmer's Bookshelf
 cover: /images/pragmatic-thinking-and-learning-01.jpg
@@ -18,6 +19,9 @@ eyeCatchImage: /images/og/pragmatic-thinking-and-learning.jpg
 affiliates: true
 ---
 :book-url: https://amzn.to/2wajzj9
+:amazon-uk: https://www.amazon.co.uk/gp/product/1934356050?ie=UTF8&tag=eprintstack07-21&camp=1634&linkCode=xm2&creativeASIN=1934356050
+:amazon-de: https://www.amazon.de/gp/product/1934356050?ie=UTF8&tag=eprintstac0c4-21&camp=1638&linkCode=xm2&creativeASIN=1934356050
+:amazon-us: https://www.amazon.com/gp/product/1934356050?ie=UTF8&tag=eprintstacktr-20&camp=1789&linkCode=xm2&creativeASIN=1934356050
 
 There are books you read once, and you don't plan to read them back again any time soon. However, some books
 are so influential and valuable that when you decide to study them the second time, you realize that it was
@@ -151,3 +155,18 @@ below if you have any question related to the book. I tried to express my feelin
 accurately, but I accept that I might miss something important. Let me know, and I will do my best to help
 you find the answers you are looking for. Or maybe you have also read the {book-url}[_"Pragmatic Thinking and Learning"_, role="ga-track"]
 book and you have a different opinion? Please share it with us. I'd love to hear it from you.
+
+[.get-the-book]
+== Get the book
+====
+*Paperback*
+
+image:/images/flags/us.png[United States, title="United States"] Amazon.com: {amazon-us}["Pragmatic Thinking and Learning: Refactor Your Wetware"]
+
+image:/images/flags/gb.png[United Kingdom, title="United Kingdom"] Amazon.co.uk: {amazon-uk}["Pragmatic Thinking and Learning: Refactor Your Wetware"]
+
+image:/images/flags/de.png[Germany, title="Germany"] Amazon.de: {amazon-de}["Pragmatic Thinking and Learning: Refactor Your Wetware (Eng.)"]
+
+___
+[.small]#NOTE: Above links are affiliate links. If you decide to buy a book using my affiliate link, I will get a small percentage from your purchase. The&nbsp;affiliate link does not affect the final price of the product. Using it costs you nothing.#
+====
