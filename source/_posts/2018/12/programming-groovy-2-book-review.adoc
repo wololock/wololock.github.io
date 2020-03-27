@@ -109,11 +109,11 @@ image::/images/programming-groovy-img3.jpg[]
 ====
 *Paperback*
 
-image:/images/flags/us.png[United States, title="United States"] Amazon.com: {amazon-us}["Programming Groovy 2: Dynamic Productivity for the Java Developer"]
+image:/images/flags/us.png[United States, title="United States"] Amazon.com: {amazon-us}["Programming Groovy 2: Dynamic Productivity for the Java Developer", role="ga-track"]
 
-image:/images/flags/gb.png[United Kingdom, title="United Kingdom"] Amazon.co.uk: {amazon-uk}["Programming Groovy 2: Dynamic Productivity for the Java Developer""]
+image:/images/flags/gb.png[United Kingdom, title="United Kingdom"] Amazon.co.uk: {amazon-uk}["Programming Groovy 2: Dynamic Productivity for the Java Developer", role="ga-track"]
 
-image:/images/flags/de.png[Germany, title="Germany"] Amazon.de: {amazon-de}["Programming Groovy 2: Dynamic Productivity for the Java Developer (Eng.)"]
+image:/images/flags/de.png[Germany, title="Germany"] Amazon.de: {amazon-de}["Programming Groovy 2: Dynamic Productivity for the Java Developer (Eng.)", role="ga-track"]
 
 ___
 [.small]#NOTE: Above links are affiliate links. If you decide to buy a book using my affiliate link, I will get a small percentage from your purchase. The&nbsp;affiliate link does not affect the final price of the product. Using it costs you nothing.#

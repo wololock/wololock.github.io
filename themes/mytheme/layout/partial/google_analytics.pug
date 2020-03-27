@@ -17,7 +17,7 @@ if theme.google_analytics
 
             jQuery("a.ga-track").click(function (e) {
                 var text = jQuery(e.target).text();
-                ga("send", "event", "links", "click", text);
+                ga("send", "event", "affiliate", "click", text);
                 return true;
             });
         }
