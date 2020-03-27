@@ -417,9 +417,9 @@
       <category term="Conferences" scheme="https://e.printstacktrace.blog/categories/conferences/"/>
     
     
-      <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
-    
       <category term="grails" scheme="https://e.printstacktrace.blog/tags/grails/"/>
+    
+      <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
     
       <category term="ratpack" scheme="https://e.printstacktrace.blog/tags/ratpack/"/>
     
@@ -454,9 +454,9 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
     
-      <category term="graalvm" scheme="https://e.printstacktrace.blog/tags/graalvm/"/>
-    
       <category term="ratpack" scheme="https://e.printstacktrace.blog/tags/ratpack/"/>
+    
+      <category term="graalvm" scheme="https://e.printstacktrace.blog/tags/graalvm/"/>
     
       <category term="gr8conf" scheme="https://e.printstacktrace.blog/tags/gr8conf/"/>
     
@@ -524,11 +524,11 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
     
-      <category term="junit" scheme="https://e.printstacktrace.blog/tags/junit/"/>
+      <category term="spock" scheme="https://e.printstacktrace.blog/tags/spock/"/>
     
       <category term="unit-test" scheme="https://e.printstacktrace.blog/tags/unit-test/"/>
     
-      <category term="spock" scheme="https://e.printstacktrace.blog/tags/spock/"/>
+      <category term="junit" scheme="https://e.printstacktrace.blog/tags/junit/"/>
     
       <category term="random" scheme="https://e.printstacktrace.blog/tags/random/"/>
     
@@ -553,11 +553,11 @@
       <category term="How to" scheme="https://e.printstacktrace.blog/categories/how-to/"/>
     
     
+      <category term="ratpack" scheme="https://e.printstacktrace.blog/tags/ratpack/"/>
+    
       <category term="java" scheme="https://e.printstacktrace.blog/tags/java/"/>
     
       <category term="graalvm" scheme="https://e.printstacktrace.blog/tags/graalvm/"/>
-    
-      <category term="ratpack" scheme="https://e.printstacktrace.blog/tags/ratpack/"/>
     
       <category term="xmx" scheme="https://e.printstacktrace.blog/tags/xmx/"/>
     
