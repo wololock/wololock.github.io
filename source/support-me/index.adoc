@@ -7,7 +7,7 @@ layout: clean
 :codementor: https://www.codementor.io/@szymonstpniak
 :youtube: https://e.printstacktrace.blog/youtube?utm_source=support
 :twitter: https://twitter.com/wololock
-:books: https://e.printstacktrace.blog/tag/affiliate/
+:books: https://e.printstacktrace.blog/tags/affiliate/
 
 I hate ads and popups showing up a few seconds after visiting a website.
 That is why I decided to keep my blog free from those annoying elements.
