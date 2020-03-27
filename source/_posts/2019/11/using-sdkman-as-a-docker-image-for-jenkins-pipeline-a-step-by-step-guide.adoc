@@ -17,6 +17,7 @@ categories:
 cover: /images/jenkins-bg.jpg
 og_image: /images/og/jenkins-pipeline-docker-sdkman.jpg
 eyeCatchImage: /images/og/jenkins-pipeline-docker-sdkman.jpg
+thankyou: true
 ---
 :corretto-url: https://aws.amazon.com/corretto/
 :arg-doc-url: https://docs.docker.com/engine/reference/builder/#arg

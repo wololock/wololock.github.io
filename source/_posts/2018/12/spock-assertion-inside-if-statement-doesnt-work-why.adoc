@@ -13,6 +13,7 @@ tags:
 cover: /img/post-debugger.jpg
 og_image: /images/og/spock-then-assertion-if.jpg
 eyeCatchImage: /images/og/spock-then-assertion-if.jpg
+thankyou: true
 ---
 
 http://spockframework.org/[Spock Framework] is one of my favorite tools in the Groovy ecosystem toolbox.

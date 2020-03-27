@@ -1,0 +1,18 @@
+h2="Thank you!"
+p
+    | If you read up to this point - leave me a comment below.
+    | It means a lot to me to hear your opinion.
+    | Share this blog post on
+    |
+    != link_to('https://twitter.com/intent/tweet?text="' + page.title + '" ' + page.permalink + ' via @wololock', 'Twitter', {external: true})
+    | ,
+    |
+    != link_to('https://www.facebook.com/sharer/sharer.php?u=' + page.permalink + '&t=' + page.title, 'Facebook', {external: true})
+    | , or
+    |
+    != link_to('https://www.linkedin.com/sharing/share-offsite/?url=' + page.permalink + '&title=' + page.title, 'LinkedIn', {external: true})
+    | , if you found it helpful.
+p
+    | I will be very grateful if you consider <a href="/support-me">supporting</a> my work and effort.
+    | I run this blog to share my experience, inspire, and help other people to become better problem solvers.
+

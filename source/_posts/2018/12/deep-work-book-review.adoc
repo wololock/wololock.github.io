@@ -14,6 +14,7 @@ cover: /images/deep-work-book-review-img2.jpg
 og_image: /images/og/deep-work-book-review.jpg
 eyeCatchImage: /images/og/deep-work-book-review.jpg
 affiliates: true
+thankyou: true
 ---
 :book-url: https://amzn.to/2JgBOGz
 :cal-newport-url: http://calnewport.com/about/

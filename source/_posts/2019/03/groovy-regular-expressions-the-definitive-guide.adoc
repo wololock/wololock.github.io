@@ -15,6 +15,7 @@ cover: /images/groovy-regexp-jmh-bg.jpg
 og_image: /images/og/groovy-regexp-jmh.jpg
 eyeCatchImage: /images/og/groovy-regexp-jmh.jpg
 affiliates: true
+thankyou: true
 ---
 
 I've never enjoyed working with regular expressions in Java. It was always very error-prone. You had to remember

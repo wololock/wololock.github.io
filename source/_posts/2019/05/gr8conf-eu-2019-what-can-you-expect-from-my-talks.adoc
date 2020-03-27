@@ -14,6 +14,7 @@ categories:
 cover: /images/gr8conf-video-bg.jpg
 og_image: /images/og/gr8conf-video.jpg
 eyeCatchImage: /images/og/gr8conf-video.jpg
+thankyou: true
 ---
 :gr8conf-url: https://gr8conf.eu
 

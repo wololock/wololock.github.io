@@ -14,6 +14,7 @@ categories:
 cover: /images/groovy-cookbook.jpg
 og_image: /images/og/groovy-combinations.jpg
 eyeCatchImage: /images/og/groovy-combinations.jpg
+thankyou: true
 ---
 
 Groovy has many useful functions built-in, and one of them is `Iterable.combinations()` that takes aggregated collections and finds all combinations of items.

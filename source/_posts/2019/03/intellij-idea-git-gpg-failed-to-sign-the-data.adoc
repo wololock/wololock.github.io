@@ -12,6 +12,7 @@ categories:
 cover: /images/github-gpg-bg.jpg
 og_image: /images/og/github-gpg.jpg
 eyeCatchImage: /images/og/github-gpg.jpg
+thankyou: true
 ---
 
 Today I've decided to improve my Github account settings a bit. I thought that it would be nice to add GPG key to it

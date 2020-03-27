@@ -17,6 +17,7 @@ categories:
 cover: /images/jenkins-bg.jpg
 og_image: /images/og/jenkins-pipeline-build-docker-images.jpg
 eyeCatchImage: /images/og/jenkins-pipeline-build-docker-images.jpg
+thankyou: true
 ---
 :repository-url: https://github.com/wololock/sdkman-docker-pipeline-example
 :last-article: pass:[{% post_link using-sdkman-as-a-docker-image-for-jenkins-pipeline-a-step-by-step-guide "the last article" %}]

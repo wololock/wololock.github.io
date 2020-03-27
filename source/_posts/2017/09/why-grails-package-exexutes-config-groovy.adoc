@@ -13,6 +13,7 @@ categories:
 cover: /img/post-debugger.jpg
 og_image: /images/og/grails-package-config.jpg
 eyeCatchImage: /images/og/grails-package-config.jpg
+thankyou: true
 ---
 This blog post is inspired by one of my recent Stack Overflow answers to following question: 
 https://stackoverflow.com/questions/46279525/grails-why-is-the-config-groovy-file-executed-during-compilation/46376893[Grails: why is the Config.groovy file executed during compilation?].

@@ -13,6 +13,7 @@ categories:
 cover: /images/spock-random-tests-bg.jpg
 og_image: /images/og/spock-random-tests.jpg
 eyeCatchImage: /images/og/spock-random-tests.jpg
+thankyou: true
 ---
 
 http://spockframework.org/[Spock Framework] executes test methods _(features)_ in a single class _(specification)_ in the declaration order.

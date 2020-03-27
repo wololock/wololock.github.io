@@ -15,6 +15,7 @@ tags:
 cover: /images/advent-of-code-cover.jpg
 og_image: /images/og/advent-of-code-2018.jpg
 eyeCatchImage: /images/og/advent-of-code-2018.jpg
+thankyou: true
 ---
 
 The https://adventofcode.com/2018[4th edition of Advent Of Code] just started!

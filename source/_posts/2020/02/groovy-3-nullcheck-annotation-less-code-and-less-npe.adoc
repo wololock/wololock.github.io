@@ -11,6 +11,7 @@ categories:
 cover: /images/groovy-cookbook.jpg
 og_image: /images/og/groovy-null-check.jpg
 eyeCatchImage: /images/og/groovy-null-check.jpg
+thankyou: true
 ---
 
 Groovy 3 helps you write less, but more secure code.

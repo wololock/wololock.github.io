@@ -16,6 +16,7 @@ categories:
 cover: /images/debugging-teams-bg.jpg
 og_image: /images/og/debugging-teams2.jpg
 eyeCatchImage: /images/og/debugging-teams2.jpg
+thankyou: true
 ---
 
 _"Geniuses still make mistakes and having brilliant ideas and elite programming skills don't guarantee that your

@@ -13,6 +13,7 @@ categories:
 cover: /images/2019-summary-bg.jpg
 og_image: /images/og/2019-summary.jpg
 eyeCatchImage: /images/og/2019-summary.jpg
+thankyou: true
 ---
 :youtube-url: https://www.youtube.com/channel/UCEf8e5YAYnowq-2deW4tpsw/featured
 

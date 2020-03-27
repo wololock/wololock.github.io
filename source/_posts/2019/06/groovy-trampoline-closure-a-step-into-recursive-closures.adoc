@@ -13,6 +13,7 @@ categories:
     - Groovy Cookbook
 og_image: /images/og/groovy-trampoline-closure.jpg
 eyeCatchImage: /images/og/groovy-trampoline-closure.jpg
+thankyou: true
 ---
 :stackoverflow-url: https://stackoverflow.com/q/56578937/2194470
 :groovy-trampoline-docs: http://groovy-lang.org/closures.html#_trampoline

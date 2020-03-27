@@ -13,6 +13,7 @@ categories:
 og_image: /images/og/groovy-quicksort.jpg
 eyeCatchImage: /images/og/groovy-quicksort.jpg
 affiliates: true
+thankyou: true
 ---
 :cracking-coding-interview-url: https://amzn.to/2vZIxC3
 

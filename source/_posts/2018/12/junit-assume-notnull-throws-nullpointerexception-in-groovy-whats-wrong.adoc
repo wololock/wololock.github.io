@@ -15,6 +15,7 @@ categories:
 cover: /images/groovy-cookbook.jpg
 og_image: /images/og/groovy-junit-assume-notnull-npe.jpg
 eyeCatchImage: /images/og/groovy-junit-assume-notnull-npe.jpg
+thankyou: true
 ---
 
 Ignoring some of the unit tests when given conditions are not satisfied is a handy feature of a JUnit framework.

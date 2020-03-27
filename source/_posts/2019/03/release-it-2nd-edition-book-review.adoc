@@ -16,6 +16,7 @@ cover: /images/release-it-bg.jpg
 og_image: /images/og/release-it.jpg
 eyeCatchImage: /images/og/release-it.jpg
 affiliates: true
+thankyou: true
 ---
 :book-url: https://amzn.to/2vnj9pk
 :amazon-uk: https://www.amazon.co.uk/gp/product/1680502395?ie=UTF8&tag=eprintstack07-21&camp=1634&linkCode=xm2&creativeASIN=1680502395

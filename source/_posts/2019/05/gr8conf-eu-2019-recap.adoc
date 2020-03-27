@@ -15,6 +15,7 @@ categories:
 cover: /images/gr8conf.jpg
 og_image: /images/og/gr8conf.jpg
 eyeCatchImage: /images/og/gr8conf.jpg
+thankyou: true
 ---
 :gr8conf-2019: https://2019.gr8conf.eu/
 :gr8conf-about: https://gr8conf.eu/about

@@ -12,6 +12,7 @@ categories:
 cover: /images/graalvm-groovy-revisited.jpg
 og_image: /images/og/graalvm-groovy-how-to-start2.jpg
 eyeCatchImage: /images/og/graalvm-groovy-how-to-start2.jpg
+thankyou: true
 ---
 :original-post-url: https://github.com/wololock/wololock.github.io/blob/1f5b876860d0f9d6eaa53a891e19b939013ea9f0/source/_posts/2018/10/graalvm-and-groovy-how-to-start.adoc
 :footnote-static-compilation: As explained by Condrut Stancu in the following Github issue comment https://github.com/oracle/graal/issues/346#issuecomment-383015796

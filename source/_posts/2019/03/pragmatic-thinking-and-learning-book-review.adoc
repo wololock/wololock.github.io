@@ -17,6 +17,7 @@ cover: /images/pragmatic-thinking-and-learning-01.jpg
 og_image: /images/og/pragmatic-thinking-and-learning.jpg
 eyeCatchImage: /images/og/pragmatic-thinking-and-learning.jpg
 affiliates: true
+thankyou: true
 ---
 :book-url: https://amzn.to/2wajzj9
 :amazon-uk: https://www.amazon.co.uk/gp/product/1934356050?ie=UTF8&tag=eprintstack07-21&camp=1634&linkCode=xm2&creativeASIN=1934356050
