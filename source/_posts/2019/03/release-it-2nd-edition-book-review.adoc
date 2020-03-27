@@ -22,6 +22,9 @@ thankyou: true
 :amazon-uk: https://www.amazon.co.uk/gp/product/1680502395?ie=UTF8&tag=eprintstack07-21&camp=1634&linkCode=xm2&creativeASIN=1680502395
 :amazon-de: https://www.amazon.de/gp/product/1680502395?ie=UTF8&tag=eprintstac0c4-21&camp=1638&linkCode=xm2&creativeASIN=1680502395
 :amazon-us: https://www.amazon.com/gp/product/1680502395?ie=UTF8&tag=eprintstacktr-20&camp=1789&linkCode=xm2&creativeASIN=1680502395
+:kindle: https://www.amazon.com/gp/product/B079YWMY2V?ie=UTF8&tag=eprintstacktr-20&camp=1789&linkCode=xm2&creativeASIN=B079YWMY2V
+:pragprog: https://pragprog.com/book/mnee2/release-it-second-edition
+:allegro: https://go.buybox.click/linkclick_4951_137?&url=https%3A%2F%2Fallegro.pl%2Foferta%2Frelease-it-design-and-deploy-production-ready-sof-8942944133%3Futm_feed%3D6e9ce87e-bbdc-4cea-b90e-99a6691b894e
 
 We are software developers.
 Our daily duty is to write programs.
@@ -102,6 +105,14 @@ image:/images/flags/us.png[United States, title="United States"] Amazon.com: {am
 image:/images/flags/gb.png[United Kingdom, title="United Kingdom"] Amazon.co.uk: {amazon-uk}["Release It! Design and Deploy Production-Ready Software"]
 
 image:/images/flags/de.png[Germany, title="Germany"] Amazon.de: {amazon-de}["Release It! Design and Deploy Production-Ready Software (Eng.)"]
+
+image:/images/flags/pl.png[Germany, title="Germany"] Allegro.pl: {amazon-de}["Release It! Design and Deploy Production-Ready Software (Eng.)"]
+
+*Ebook*
+
+image:/images/flags/us.png[United States, title="United States"] Amazon Kindle: {kindle}["Release It! Design and Deploy Production-Ready Software"]
+
+image:/images/flags/us.png[United States, title="United States"] Pragmatic Bookshelf: {pragprog}["Release It! Design and Deploy Production-Ready Software"]
 
 ___
 [.small]#NOTE: Above links are affiliate links. If you decide to buy a book using my affiliate link, I will get a small percentage from your purchase. The&nbsp;affiliate link does not affect the final price of the product. Using it costs you nothing.#
