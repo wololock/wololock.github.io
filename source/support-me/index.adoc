@@ -8,6 +8,7 @@ layout: clean
 :youtube: https://e.printstacktrace.blog/youtube?utm_source=support
 :twitter: https://twitter.com/wololock
 :books: https://e.printstacktrace.blog/tags/affiliate/
+:email-me: mailto:szymon.stepniak@gmail.com
 
 I hate ads and popups showing up a few seconds after visiting a website.
 That is why I decided to keep my blog free from those annoying elements.
@@ -30,7 +31,7 @@ Would you like to be *my top 1% reader*?
 * I love slow brew coffee. Do you? You can {buy-me-a-coffee}[buy me one] through PayPal donation, I will be grateful for that.
 * Did you know that I also record YouTube videos? {youtube}[Subscribing to my channel], *commenting* videos and hitting that *like button* is also a great way to show support.
 * Do you use Twitter? {twitter}[I do]. You can help me by *sharing my blog posts* with people that follow you.
-* And last but not least, you can send me an email and just say "Thanks" if any of my blog posts were useful to you.
+* And last but not least, you can {email-me}[email me] and just say "Thanks" if any of my blog posts were useful to you.
 
 == What do I need the extra money for?
 
