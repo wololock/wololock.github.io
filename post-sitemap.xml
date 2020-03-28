@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/using-circleci-to-deploy-hexo-blog-to-github-pages-how-to-set-it-up/</loc>
+        <lastmod>2020-03-28T06:45:27.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/groovy-3-nullcheck-annotation-less-code-and-less-npe/</loc>
         <lastmod>2020-02-14T13:34:38.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -74,14 +82,6 @@
     <url>
         <loc>https://e.printstacktrace.blog/micronaut-non-blocking-and-async-part1/</loc>
         <lastmod>2019-11-19T11:21:07.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/using-circleci-to-deploy-hexo-blog-to-github-pages-how-to-set-it-up/</loc>
-        <lastmod>2019-11-17T11:25:50.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

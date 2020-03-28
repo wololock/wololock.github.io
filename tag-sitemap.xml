@@ -3,6 +3,55 @@
 
 
     <url>
+        <loc>https://e.printstacktrace.blog/tags/npm/</loc>
+        <lastmod>2020-03-28T06:45:27.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/travisci/</loc>
+        <lastmod>2020-03-28T06:45:27.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/circleci/</loc>
+        <lastmod>2020-03-28T06:45:27.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/cicd/</loc>
+        <lastmod>2020-03-28T06:45:27.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/github/</loc>
+        <lastmod>2020-03-28T06:45:27.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/blogging/</loc>
+        <lastmod>2020-03-28T06:45:27.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/hexo/</loc>
+        <lastmod>2020-03-28T06:45:27.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/tags/annotation/</loc>
         <lastmod>2020-02-14T13:34:38.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -32,13 +81,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/tags/pipeline/</loc>
-        <lastmod>2020-01-22T00:31:55.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/tags/cicd/</loc>
         <lastmod>2020-01-22T00:31:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -108,14 +150,14 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/docker/</loc>
+        <loc>https://e.printstacktrace.blog/tags/java/</loc>
         <lastmod>2019-11-28T20:53:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/java/</loc>
+        <loc>https://e.printstacktrace.blog/tags/docker/</loc>
         <lastmod>2019-11-28T20:53:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -194,41 +236,6 @@
     <url>
         <loc>https://e.printstacktrace.blog/tags/netty/</loc>
         <lastmod>2019-11-19T11:21:07.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/tags/travisci/</loc>
-        <lastmod>2019-11-17T11:25:50.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/tags/circleci/</loc>
-        <lastmod>2019-11-17T11:25:50.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/tags/github/</loc>
-        <lastmod>2019-11-17T11:25:50.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/tags/blogging/</loc>
-        <lastmod>2019-11-17T11:25:50.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/tags/hexo/</loc>
-        <lastmod>2019-11-17T11:25:50.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
