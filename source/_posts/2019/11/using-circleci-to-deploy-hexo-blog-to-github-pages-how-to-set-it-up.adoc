@@ -1,7 +1,7 @@
 ---
 title: Using CircleCI to deploy Hexo blog to GitHub Pages - how to set it up?
 date: 2019-11-17 12:25:50
-updated: 2019-11-17 12:25:50
+updated: 2020-03-28 07:45:27
 tags:
     - hexo
     - circleci
@@ -9,6 +9,7 @@ tags:
     - github
     - blogging
     - cicd
+    - npm
 categories:
     - How to
 cover: /images/circleci-bg.jpg
@@ -21,7 +22,7 @@ thankyou: true
 
 I was using Travis CI to execute {travisci-url}[271 builds] and deployments of this blog.
 Last Friday, I decided to experiment with {circleci}[CircleCI] and see if this could be a viable alternative to my current solution.
-In this blog post, I will explain why I decided to switch, and how to set up CircleCI to deploy Hexo blog to the GitHub Pages without much hustle.
+In this blog post, I explain why I decided to switch, and how to set up CircleCI to deploy Hexo blog to the GitHub Pages without much hustle.
 
 ++++
 <!-- more -->
@@ -34,7 +35,7 @@ It's *easy* to set up and use.
 It integrates with many *popular building tools* in a few steps.
 And the dashboard UI is *clean* and *simple*.
 
-However, I have found two major reasons to start considering alternative solutions.
+However, I have found two significant reasons to start considering alternative solutions.
 Firstly, the overall build and deployment times regularly kept increasing.
 The recent builds took 3 minutes 30 seconds, on average.
 The main reason for that was the time needed to set up a NodeJS build environment.
@@ -48,7 +49,7 @@ However, if someone hijacks your token (in one way or another), you are in troub
 
 == Why CircleCI?
 
-I made some experiments, and it turned out that CircleCI could solve both problems.
+I did some experiments, and it turned out that CircleCI could solve both problems.
 The build and deploy pipeline runs more than two times faster (1 minute and 30 seconds on average).
 CircleCI supports SSH keys I could use to grant write permissions to a single GitHub repository.
 
@@ -72,17 +73,19 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Update NPM
+          command: sudo npm install -g npm@latest
+      - run:
           name: Install Hexo CLI
           command: |
             sudo npm install hexo-cli -g
-            npm install hexo --save
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: node-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Install NPM packages
-          command: npm install
+          command: npm ci
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: node-cache-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
       - run:
@@ -97,15 +100,14 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - attach_workspace:
-          at: public
       - run:
           name: Install Hexo CLI
           command: |
             sudo npm install hexo-cli -g
-            npm install hexo --save
+      - restore_cache:
+          key: node-cache-{{ checksum "package-lock.json" }}
+      - attach_workspace:
+          at: public
       - add_ssh_keys:
           fingerprints:
             - "1d:0c:ea:28:8a:4f:f0:5d:98:e1:ca:93:0f:38:d6:ab"
@@ -115,6 +117,16 @@ jobs:
             git config --global user.name "Circle CI"
             git config --global user.email "bot@circleci.com"
             sh deploy.sh
+  verify:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - run:
+          name: Install BLC
+          command: sudo npm install -g broken-link-checker
+      - run:
+          name: Check broken internal links
+          command: blc https://e.printstacktrace.blog -roe
 
 workflows:
   version: 2
@@ -132,6 +144,9 @@ workflows:
           filters:
             branches:
               only: develop
+      - verify:
+          requires:
+            - deploy
 {% endraw %}
 ----
 
@@ -151,37 +166,33 @@ Here we also use a fingerprint of the SSH key used to authenticate with the GitH
 Don't use your personal SSH key.
 Generate a new one with an `ssh-keygen` tool instead.
 
-NOTE: Be careful when you generate a new key.
-It will ask you where to save the key file - do not override the default `~/.ssh/id_rsa` one.
-This is your personal key, and you don't want to lose that one.
-Also, use an empty passphrase, so there is no prompt for the password needed.
-
 [source,bash]
 ----
-$ ssh-keygen -t rsa -m PEM -C "bot@circleci.com"
+$ ssh-keygen -t rsa -m PEM -C "bot@github.com" -f github_rsa
 Generating public/private rsa key pair.
-Enter file in which to save the key (/home/wololock/.ssh/id_rsa): /tmp/this-key-is-not-used-anywhere-lol
 Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
-Your identification has been saved in /tmp/this-key-is-not-used-anywhere-lol.
-Your public key has been saved in /tmp/this-key-is-not-used-anywhere-lol.pub.
+Your identification has been saved in github_rsa.
+Your public key has been saved in github_rsa.pub.
 The key fingerprint is:
-SHA256:3K/RQpfR0sdJ4hv78JL/VSB10up0tuzTZnpvRodVtV0 bot@circleci.com
+SHA256:L94u73iniguI1ohlvraM1dYz8DUAf42PUbYxuFLB0Zw bot@github.com
 The key's randomart image is:
 +---[RSA 3072]----+
-|             .ooE|
-|            .+o+B|
-|            +o++=|
-|       . .   =*o+|
-|        S o o*.=o|
-|         . +  Bo+|
-|          o oo.++|
-|           +  ooO|
-|          .   .O*|
+|    .  .o*=.     |
+|     o  +=E+     |
+|      o.+.o      |
+|      .o.+       |
+|  o .  .S .      |
+|.=oo + . o       |
+|oo+.+ = . .      |
+|.+.o . =.+. .    |
+|..+.  o.+B*o     |
 +----[SHA256]-----+
 ----
 
-Setting up CircleCI SSH permissions
+After running the command, files `github_rsa` (private key) and `github_rsa.pub` get created.
+
+== Setting up CircleCI SSH permissions
 Go to your CircleCI project settings.
 You will find the "SSH Permissions" page under the "Permissions" label on the left side.
 Click on the "Add SSH Key" button.
@@ -265,10 +276,5 @@ We can commit changes and add our GitHub repository as a project in the CircleCI
 image::/images/circleci-workflow.jpg[]
 --
 
-== Conclusion
-
-That's all for today.
-I hope you have learned something useful from this blog post.
-Here is my question to you: what continuous integration server would you use to deploy a generated static site, and why?
-Please leave a comment down below.
-See you next time!
+And that's it!
+You are ready to deploy the Hexo blog through CircleCI continuous integration server.
