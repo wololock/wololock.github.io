@@ -46,7 +46,7 @@ Let's get directly into the details, and let's start with defining a simple `Doc
 FROM debian:stretch-slim <1>
 
 # Defining default Java and Maven version <2>
-ARG JAVA_VERSION="11.0.5-amzn"
+ARG JAVA_VERSION="11.0.6-amzn"
 ARG MAVEN_VERSION="3.6.2"
 
 # Defining default non-root user UID, GID, and name <3>
@@ -80,7 +80,7 @@ RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && \
 
 pass:[<em class="conum" data-value="1"></em>] I use `debian:stretch-slim` in this example - a small 55 MB base docker image.
 It's not the smallest available docker image, but it will work fine in our experiment.
-In our example, we will be using {corretto-url}[Amazon Corretto JDK 11.0.5] - a distribution of OpenJDK from Amazon.com.
+In our example, we will be using {corretto-url}[Amazon Corretto JDK 11.0.6] - a distribution of OpenJDK from Amazon.com.
 We also want to install Maven 3.6.2 so we can run some `mvn clean install` command in the Jenkins Pipeline. We
 define both pass:[<em class="conum" data-value="2"></em>]  using `ARG` instructionfootnote:[{arg-doc-url}] so we can
 easily override default versions from the command line.
@@ -111,15 +111,15 @@ Let's run the container in the interactive mode (`-it`) and attach a `bash` proc
 ----
 *$ docker run -it --rm  -u $(id -u) sdkman:local bash*
 jenkins@1c06914cb5ce:/*$ java -version*
-openjdk version "11.0.5" 2019-10-15 LTS
-OpenJDK Runtime Environment Corretto-11.0.5.10.1 (build 11.0.5+10-LTS)
-OpenJDK 64-Bit Server VM Corretto-11.0.5.10.1 (build 11.0.5+10-LTS, mixed mode)
+openjdk version "11.0.6" 2020-01-14 LTS
+OpenJDK Runtime Environment Corretto-11.0.6.10.1 (build 11.0.6+10-LTS)
+OpenJDK 64-Bit Server VM Corretto-11.0.6.10.1 (build 11.0.6+10-LTS, mixed mode)
 jenkins@1c06914cb5ce:/*$ mvn -version*
 Apache Maven 3.6.2 (40f52333136460af0dc0d7232c0dc0bcf0d9e117; 2019-08-27T15:06:16Z)
 Maven home: /home/jenkins/.sdkman/candidates/maven/current
-Java version: 11.0.5, vendor: Amazon.com Inc., runtime: /home/jenkins/.sdkman/candidates/java/11.0.5-amzn
+Java version: 11.0.6, vendor: Amazon.com Inc., runtime: /home/jenkins/.sdkman/candidates/java/11.0.6-amzn
 Default locale: en_US, platform encoding: ANSI_X3.4-1968
-OS name: "linux", version: "5.3.8-200.fc30.x86_64", arch: "amd64", family: "unix"
+OS name: "linux", version: "5.5.10-100.fc30.x86_64", arch: "amd64", family: "unix"
 ----
 
 It works like a charm! It's time to set up a Jenkins Pipeline.
@@ -217,7 +217,7 @@ we will use a command instead of a script file.
 FROM debian:stretch-slim
 
 # Defining default Java and Maven version
-ARG JAVA_VERSION="11.0.5-amzn"
+ARG JAVA_VERSION="11.0.6-amzn"
 ARG MAVEN_VERSION="3.6.2"
 
 # Defining default non-root user UID, GID, and name
@@ -260,7 +260,7 @@ We can rebuild the docker image and try to run `java -version` again.
 Sending build context to Docker daemon 3.584 kB
 Step 1/12 : FROM debian:stretch-slim
  ---> c2f145c34384
-Step 2/12 : ARG JAVA_VERSION="11.0.5-amzn"
+Step 2/12 : ARG JAVA_VERSION="11.0.6-amzn"
  ---> Using cache
  ---> 6a3e406a9502
 Step 3/12 : ARG MAVEN_VERSION="3.6.2"
@@ -296,9 +296,9 @@ Step 12/12 : ENTRYPOINT bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && $0 $
 Successfully built 1d38b0879ab0
 
 **$ docker run --rm -u $(id -u) sdkman:local java -version**
-openjdk version "11.0.5" 2019-10-15 LTS
-OpenJDK Runtime Environment Corretto-11.0.5.10.1 (build 11.0.5+10-LTS)
-OpenJDK 64-Bit Server VM Corretto-11.0.5.10.1 (build 11.0.5+10-LTS, mixed mode)
+openjdk version "11.0.6" 2020-01-14 LTS
+OpenJDK Runtime Environment Corretto-11.0.6.10.1 (build 11.0.6+10-LTS)
+OpenJDK 64-Bit Server VM Corretto-11.0.6.10.1 (build 11.0.6+10-LTS, mixed mode)
 ----
 
 Now, this is what we expect! We can run `java` and `mvn` commands without running Bash shell. We should be ready to go with the Jenkins Pipeline.
@@ -357,7 +357,7 @@ final Dockerfile looks like:
 FROM debian:stretch-slim
 
 # Defining default Java and Maven version
-ARG JAVA_VERSION="11.0.5-amzn"
+ARG JAVA_VERSION="11.0.6-amzn"
 ARG MAVEN_VERSION="3.6.2"
 
 # Defining default non-root user UID, GID, and name
@@ -411,9 +411,9 @@ Let's check if `java -version` command works.
 [source,bash,subs="quotes"]
 ----
 *$ docker run --rm -u $(id -u) sdkman:local java -version*
-openjdk version "11.0.5" 2019-10-15 LTS
-OpenJDK Runtime Environment Corretto-11.0.5.10.1 (build 11.0.5+10-LTS)
-OpenJDK 64-Bit Server VM Corretto-11.0.5.10.1 (build 11.0.5+10-LTS, mixed mode)
+openjdk version "11.0.6" 2020-01-14 LTS
+OpenJDK Runtime Environment Corretto-11.0.6.10.1 (build 11.0.6+10-LTS)
+OpenJDK 64-Bit Server VM Corretto-11.0.6.10.1 (build 11.0.6+10-LTS, mixed mode)
 ----
 
 It works! And now it is the time for the final test. Let's restart the pipeline.
