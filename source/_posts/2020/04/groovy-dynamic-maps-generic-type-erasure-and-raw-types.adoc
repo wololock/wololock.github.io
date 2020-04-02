@@ -1,0 +1,270 @@
+---
+title: >-
+  Groovy dynamic Maps, generic type erasure, and raw types - an interesting use
+  case to learn from
+date: 2020-04-02 12:18:26
+updated: 2020-04-02 12:18:26
+tags:
+  - groovy
+  - java
+  - type-erasure
+  - generics
+  - bytecode
+categories:
+  - Groovy Cookbook
+cover: /images/groovy-dynamic-maps.jpg
+og_image: /images/og/groovy-dynamic-maps.jpg
+eyeCatchImage: /images/og/groovy-dynamic-maps.jpg
+thankyou: true
+---
+:type-erasure-url: https://docs.oracle.com/javase/tutorial/java/generics/erasure.html
+
+Dynamic type inference in Groovy might be tricky.
+Add generic type erasure to it, and you can find yourself in trouble.
+In this blog post, I would like to show you such use case and explain what happens under the hood.
+Enjoy reading! icon:smile-o[]
+
+++++
+<!-- more -->
+++++
+
+== An example
+
+Let's start with a simple example.
+
+.SomeClass.groovy
+[source,groovy]
+----
+class SomeClass {
+
+    static final Map<String, String> PLAYERS = [
+        "Football": ["Adam", "John", "Travis", "Elliot"],
+        "Basketball": ["Samantha", "Greg", "Fabien", "Jessica"]
+    ]
+
+    static void main(String[] args) {
+        println PLAYERS
+        println PLAYERS.dump()
+
+        println PLAYERS.Football
+        println PLAYERS.Football.dump()
+    }
+}
+----
+
+Here is a Groovy class with a `PLAYERS` map.
+Its type was defined as `Map<String,String>`, but for some reason (maybe by accident), someone assigned a list of strings to each key.
+If you open such a file in the IDE like IntelliJ IDEA, it will show you a warning like this one.
+
+But the fact is, we can run `SomeClass.main()` method and get the following output.
+
+[source,text]
+----
+[Football:[Adam, John, Travis, Elliot], Basketball:[Samantha, Greg, Fabien, Jessica]]
+<java.util.LinkedHashMap@34f13c4f head=Football=[Adam, John, Travis, Elliot] tail=Basketball=[Samantha, Greg, Fabien, Jessica] accessOrder=false table=[Basketball=[Samantha, Greg, Fabien, Jessica], Football=[Adam, John, Travis, Elliot], null, null] entrySet=[Football=[Adam, John, Travis, Elliot], Basketball=[Samantha, Greg, Fabien, Jessica]] size=2 modCount=2 threshold=3 loadFactor=0.75 keySet=null values=null>
+[Adam, John, Travis, Elliot]
+<java.util.ArrayList@42c8f129 elementData=[Adam, John, Travis, Elliot] size=4 modCount=4>
+----
+
+It doesn't make much sense, right?
+Not necessarily.
+
+== Generic type erasure and raw types
+
+Java generic types {type-erasure-url}[gets erased at the compile time].
+It means that the Java Runtime Environment loses information about the generic type, and essentially, the `PLAYERS` map from our example becomes something similar to `Map<Object,Object>`.
+
+[source,bash]
+----
+$ javap -s -p SomeClass
+Compiled from "SomeClass.groovy"
+public class SomeClass implements groovy.lang.GroovyObject {
+  private static final java.util.Map<java.lang.String, java.lang.String> PLAYERS;
+    descriptor: Ljava/util/Map;
+  ...
+----
+
+Java also allows assigning "raw" types to the parameterized type.
+For instance, you can create a raw `List`, add some values of type `String` to it (or even mix different types), and assign such a list to the `List<Integer>` variable.
+
+[source,java]
+----
+final List foo = new ArrayList();
+foo.add("abc");
+foo.add("def");
+foo.add("ghj");
+foo.add(123);
+
+final List<Integer> numbers = foo;
+System.out.println(numbers); // prints: [abc, def, ghj]
+----
+
+Your IDE will throw a few warnings, like `Unchecked call to 'add(E)' as a member of raw type 'java.util.List'`, but it won't stop you from doing so.
+The above code compiles and runs without any issue.
+
+== What happens in the Groovy use case?
+
+Now when we know about generic type erasure and raw types, we can take a look at what happens in the Groovy use case under the hood.
+We can compile `SomeClass.groovy` file with the Groovy compiler.
+
+[source,bash]
+----
+$ groovyc SomeClass.groovy
+----
+
+And then we can open the `SomeClass.class` file in the IntelliJ IDEA to see its disassembled form.
+
+[source,java]
+----
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+import groovy.lang.GroovyObject;
+import groovy.lang.MetaClass;
+import groovy.transform.Generated;
+import groovy.transform.Internal;
+import java.util.Map;
+import org.codehaus.groovy.runtime.ScriptBytecodeAdapter;
+import org.codehaus.groovy.runtime.callsite.CallSite;
+
+public class SomeClass implements GroovyObject {
+    private static final Map<String, String> PLAYERS; // <1>
+
+    @Generated
+    public SomeClass() {
+        CallSite[] var1 = $getCallSiteArray();
+        super();
+        MetaClass var2 = this.$getStaticMetaClass();
+        this.metaClass = var2;
+    }
+
+    public static void main(String... args) {
+        CallSite[] var1 = $getCallSiteArray();
+        var1[0].callStatic(SomeClass.class, PLAYERS);
+        var1[1].callStatic(SomeClass.class, var1[2].call(PLAYERS));
+        var1[3].callStatic(SomeClass.class, var1[4].callGetProperty(PLAYERS));
+        var1[5].callStatic(SomeClass.class, var1[6].call(var1[7].callGetProperty(PLAYERS)));
+    }
+
+    @Generated
+    @Internal
+    public MetaClass getMetaClass() {
+        MetaClass var10000 = this.metaClass;
+        if (var10000 != null) {
+            return var10000;
+        } else {
+            this.metaClass = this.$getStaticMetaClass();
+            return this.metaClass;
+        }
+    }
+
+    @Generated
+    @Internal
+    public void setMetaClass(MetaClass var1) {
+        this.metaClass = var1;
+    }
+
+    static {
+        Map var0 = ScriptBytecodeAdapter.createMap(new Object[]{"Football", ScriptBytecodeAdapter.createList(new Object[]{"Adam", "John", "Travis", "Elliot"}), "Basketball", ScriptBytecodeAdapter.createList(new Object[]{"Samantha", "Greg", "Fabien", "Jessica"})});
+        PLAYERS = var0; //<2>
+    }
+
+    @Generated
+    public static Map<String, String> getPLAYERS() {
+        return PLAYERS;
+    }
+}
+----
+
+The disassembled code shows what the Groovy class looks like from the Java perspective.
+We can see that `PLAYERS` map pass:[<em class="conum" data-value="1"></em>] is the same `Map<String,String>` type.
+It gets initialized in the static constructor pass:[<em class="conum" data-value="2"></em>] by assigning a map created by `ScriptBytecodeAdapter.createMap()` function.
+It returns a raw `Map` type and accepts `Object[]` - an array of any objects.
+What it shows is that in the dynamically compiled Groovy, it doesn't matter what specific map we define on the right side of the assignment expression.
+The bytecode it produces takes all entries and treat them as they were of `Object` type, and produces a raw `Map` as a result.
+
+Groovy also does all the necessary casts for you.
+If we have to rewrite Groovy's `SomeClass` to its Java equivalent, we would need to either treat anything that is returned by the `PLAYERS.get()` as `Object`, or make all required casts by hand.
+
+.SomeJavaClass.java
+[source,java]
+----
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+final class SomeJavaClass {
+
+    private static final Map<String, String> PLAYERS;
+
+    static {
+        final Map map = new HashMap();
+        map.put("Football", Arrays.asList("Adam", "John", "Travis", "Elliot"));
+        map.put("Basketball", Arrays.asList("Samantha", "Greg", "Fabien", "Jessica"));
+
+        PLAYERS = map;
+    }
+
+    public static void main(String[] args) {
+        final Object footballPlayersObject = PLAYERS.get("Football");
+
+        System.out.println(footballPlayersObject);
+        System.out.println(footballPlayersObject.getClass());
+
+        final List<String> footballPlayersList = (List) ((Object) PLAYERS.get("Football"));
+
+        System.out.println(footballPlayersList);
+        System.out.println(footballPlayersList.getClass());
+    }
+}
+----
+
+Groovy handles all that.
+It uses `AbstractCallSite.callGetProperty()` method that accpets `Object` parameter and returns an `Object`.
+Also, if we do the following in our Groovy example:
+
+[source,groovy]
+----
+final List<String> footballPlayers = PLAYERS.Football
+----
+
+it would get compiled to the following Java equivalent:
+
+[source,java]
+----
+List footballPlayers = (List)ScriptBytecodeAdapter.castToType(var1[0].callGetProperty(PLAYERS), List.class);
+----
+
+== So, is it good or bad?
+
+As always - it depends.
+With great power comes great responsibility.
+Luckily, Groovy also offers solutions if you are looking for some more secure type checking or even static compilation.
+
+If you want to take advantage of Groovy's dynamic compilation, but you want to improve type checking, you can consider using `@groovy.transform.TypeChecked` annotation.
+When we add it to the `SomeClass`, IDE will mark `PLAYERS` variable red and say *Cannot assign `LinkedHashMap<String, List<String>>` to `Map<String, String>`*.
+Also, when we try to compile the class with `groovyc`, we will end up seeing the following error.
+
+[source,bash]
+----
+$ groovyc SomeClass.groovy
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+SomeClass.groovy: 6: [Static type checking] - Incompatible generic argument types. Cannot assign java.util.LinkedHashMap <java.lang.String, java.util.List> to: java.util.Map <String, String>
+ @ line 6, column 48.
+   Map<String, String> PLAYERS = [
+                                 ^
+
+SomeClass.groovy: 12: [Static type checking] - Cannot assign value of type java.lang.String to variable of type java.util.List <String>
+ @ line 12, column 46.
+   ist<String> footballPlayers = PLAYERS.Fo
+                                 ^
+
+2 errors
+----
+
+Alternatively, if you don't use any of the Groovy's dynamic features, you can enable static compilation with `@groovy.transform.CompileStatic` annotation.
+It enables static type checking and produces the bytecode that is much closer to what Java compiler produces.
+
