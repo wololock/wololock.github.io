@@ -218,13 +218,13 @@ final class SomeJavaClass {
     public static void main(String[] args) {
         final Object footballPlayersObject = PLAYERS.get("Football");
 
-        System.out.println(footballPlayersObject);
-        System.out.println(footballPlayersObject.getClass());
+        System.out.println(footballPlayersObject); // prints: [Adam, John, Travis, Elliot]
+        System.out.println(footballPlayersObject.getClass()); // prints: class java.util.Arrays$ArrayList
 
         final List<String> footballPlayersList = (List) ((Object) PLAYERS.get("Football"));
 
-        System.out.println(footballPlayersList);
-        System.out.println(footballPlayersList.getClass());
+        System.out.println(footballPlayersList); // prints: [Adam, John, Travis, Elliot]
+        System.out.println(footballPlayersList.getClass()); // prints: class java.util.Arrays$ArrayList
     }
 }
 ----
