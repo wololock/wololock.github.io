@@ -56,6 +56,13 @@ Here is a Groovy class with a `PLAYERS` map.
 Its type was defined as `Map<String,String>`, but for some reason (maybe by accident), someone assigned a list of strings to each key.
 If you open such a file in the IDE like IntelliJ IDEA, it will show you a warning like this one.
 
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/groovy-dynamic-map-warning.png]
+image::/images/groovy-dynamic-map-warning.png[]
+--
+
 But the fact is, we can run `SomeClass.main()` method and get the following output.
 
 [source,text]
@@ -96,7 +103,7 @@ foo.add("ghj");
 foo.add(123);
 
 final List<Integer> numbers = foo;
-System.out.println(numbers); // prints: [abc, def, ghj]
+System.out.println(numbers); // prints: [abc, def, ghj, 123]
 ----
 
 Your IDE will throw a few warnings, like `Unchecked call to 'add(E)' as a member of raw type 'java.util.List'`, but it won't stop you from doing so.
