@@ -39,8 +39,9 @@ The maintenance cost of my blog is quite low.
 I use GitHub Pages to host the static website, I use Cloudflare free plan to manage DNS, SSL, and some necessary network protection.
 However, there are some additional costs and investments I would like to cover with your help, that includes:
 
-* Annual domain renewal.
-* Annual Grammarly.com subscription.
+* Annual domain renewal. (~$50/yr)
+* Annual Disqus Plus (free plan adds some random ads around comment's section.) (~$108/yr)
+* Annual Grammarly.com subscription. (~$140/yr)
 * Investing in video/audio gear to produce better quality content.
 * Investing in products and services that help me to deliver high-quality blog posts.
 
