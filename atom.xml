@@ -209,9 +209,9 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/tags/java/"/>
     
-      <category term="sdkman" scheme="https://e.printstacktrace.blog/tags/sdkman/"/>
-    
       <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
+    
+      <category term="sdkman" scheme="https://e.printstacktrace.blog/tags/sdkman/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/tags/maven/"/>
     
@@ -312,11 +312,11 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/tags/java/"/>
     
+      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
+    
       <category term="sdkman" scheme="https://e.printstacktrace.blog/tags/sdkman/"/>
     
       <category term="devops" scheme="https://e.printstacktrace.blog/tags/devops/"/>
-    
-      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/tags/maven/"/>
     
@@ -351,11 +351,11 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/tags/java/"/>
     
+      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
+    
       <category term="sdkman" scheme="https://e.printstacktrace.blog/tags/sdkman/"/>
     
       <category term="devops" scheme="https://e.printstacktrace.blog/tags/devops/"/>
-    
-      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/tags/maven/"/>
     
@@ -456,11 +456,11 @@
     
       <category term="ratpack" scheme="https://e.printstacktrace.blog/tags/ratpack/"/>
     
-      <category term="micronaut" scheme="https://e.printstacktrace.blog/tags/micronaut/"/>
-    
       <category term="gr8conf" scheme="https://e.printstacktrace.blog/tags/gr8conf/"/>
     
       <category term="conference" scheme="https://e.printstacktrace.blog/tags/conference/"/>
+    
+      <category term="micronaut" scheme="https://e.printstacktrace.blog/tags/micronaut/"/>
     
       <category term="copenhagen" scheme="https://e.printstacktrace.blog/tags/copenhagen/"/>
     
