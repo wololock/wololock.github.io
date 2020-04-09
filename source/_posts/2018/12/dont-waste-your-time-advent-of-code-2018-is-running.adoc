@@ -9,7 +9,6 @@ tags:
     - advent-of-code
     - programming
     - haskell
-    - learning
     - career
     - progress
 cover: /images/advent-of-code-cover.jpg
