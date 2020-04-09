@@ -3,6 +3,34 @@
 
 
     <url>
+        <loc>https://e.printstacktrace.blog/tags/learning/</loc>
+        <lastmod>2020-04-09T11:02:16.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/youtube/</loc>
+        <lastmod>2020-04-09T11:02:16.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/report/</loc>
+        <lastmod>2020-04-09T11:02:16.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/blog/</loc>
+        <lastmod>2020-04-09T11:02:16.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/tags/bytecode/</loc>
         <lastmod>2020-04-02T10:18:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -129,21 +157,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/report/</loc>
-        <lastmod>2020-01-12T10:01:25.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://e.printstacktrace.blog/tags/google-analytics/</loc>
-        <lastmod>2020-01-12T10:01:25.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/tags/blog/</loc>
         <lastmod>2020-01-12T10:01:25.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -304,14 +318,14 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/jmh/</loc>
+        <loc>https://e.printstacktrace.blog/tags/recursion/</loc>
         <lastmod>2019-06-25T11:54:04.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/recursion/</loc>
+        <loc>https://e.printstacktrace.blog/tags/jmh/</loc>
         <lastmod>2019-06-25T11:54:04.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -507,14 +521,14 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/java-stream/</loc>
+        <loc>https://e.printstacktrace.blog/tags/java-8/</loc>
         <lastmod>2019-03-29T00:44:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/java-8/</loc>
+        <loc>https://e.printstacktrace.blog/tags/java-stream/</loc>
         <lastmod>2019-03-29T00:44:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -550,13 +564,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/tags/affiliate/</loc>
-        <lastmod>2019-03-26T16:50:06.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/tags/learning/</loc>
         <lastmod>2019-03-26T16:50:06.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
