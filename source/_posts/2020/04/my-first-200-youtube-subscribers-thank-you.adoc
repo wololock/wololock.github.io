@@ -1,0 +1,98 @@
+---
+title: My first 200 YouTube subscribers - Thank You!
+date: 2020-04-09 13:02:16
+updated: 2020-04-09 13:02:16
+tags:
+    - youtube
+    - blog
+    - report
+    - learning
+categories:
+    - Blog Reports
+cover: /images/youtube-bg.jpg
+og_image: /images/og/youtube.jpg
+eyeCatchImage: /images/og/youtube.jpg
+thankyou: true
+---
+:youtube-url: https://e.printstacktrace.blog/youtube?utm_source=post
+
+Many content creators celebrate their 10k, 100k, or 1M subscribers/followers milestones.
+There is nothing wrong with that.
+Achieving such numbers require tons of work, time, effort, sometimes even luck.
+Those numbers do not show up overnight.
+People deserve celebrating those moments and sharing their happiness with their community.
+Today I want to share my own success with you.
+The number that wouldn't be possible without your trust and support.
+
+++++
+<!-- more -->
+++++
+
+== Achievement unlocked!
+
+My {youtube-url}[YouTube channel] just reached *200 subscribers*.
+Is it a lot? Not necessarily.
+It's not even round number, like 256, or 512.
+But it means a lot to me.
+There are two hundred people who found my videos, either useful or entertaining.
+I&nbsp;hope you are one of them.
+I&nbsp;didn't plan to write a blog post about it, but then I thought that my fellow subscribers *deserve big and honest THANK YOU!* icon:thumbs-o-up[]
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/yt-200-subs.png]
+image::/images/yt-200-subs.png[]
+--
+
+I've seen many times people thanking the follower who made their 1k, 10k, or any other milestone.
+This is a very gentle way to welcome someone who just joined your subscribers or followers group.
+But every time I see it, I ask myself: _"Why they don't thank their, let's say, first 10 followers?"_
+Social media are a game of numbers.
+Those numbers work as social proof - it's easier to keep growing when you already have an audience.
+Anyone who starts and grows more or less organically needs to be patient and stay consistent, probably more than ever.
+And don't get me wrong - I don't try to blame it.
+I&nbsp;accept and agree with it.
+
+== Early adopters
+
+The beginnings in any discipline are tough.
+We&nbsp;learn new things, we experiment and measure results, and then we try to improve if something doesn't work.
+It&nbsp;is the time when we keep making mistakes, keep gaining confidence, and keep building trust.
+This is why, in my opinion, early adopters, people who trusted you when you just started (and don't have much to offer), deserve acknowledgment.
+I&nbsp;don't know all your names.
+YouTube notifies only about those of you who keep their subscriptions public.
+I&nbsp;keep all emails received when the new subscriber shows up.
+*Marcin, Søren, Paweł, Tucker, Naresha, Robert, Anton, Jay, Marouane, Kenneth, Jason, Sergiy, Giulio, Federico, Scott, Łukasz, Diego*, and all the rest of you - I'm happy and grateful you trusted me and shown your support.
+It&nbsp;motivates me to keep doing the work, and I hope I won't disappoint you.
+I&nbsp;don't know if I ever grow my YouTube channel to 10k, 100k, or more, but I know one thing - I will never forget that you were the early adopters.
+I&nbsp;salute to you!
+
+== The future
+
+Some of you know that I love recording, editing, and producing videos.
+I&nbsp;spent countless hours in Adobe Premiere to learn the video editing craft, and I can tell you, it became my favorite hobby.
+I&nbsp;prefer quality over quantity, and I know that sometimes I put probably too much attention and effort into polishing some small details.
+Just like with the "型 Programming Kata" series, where I spent around two and a half hours to produce 40 seconds intro that I am so proud of.
+From the economic stand of point, it was probably not the best time investment, but hey - I don't care.
+I&nbsp;enjoyed creating it like a child in Disneyland.
+
+So, what is the future of the YouTube channel?
+I&nbsp;will keep posting videos weekly.
+You can expect both long and short ones.
+I&nbsp;want to use the short form to share with you some useful tips and tricks that are ready to apply.
+This way you can learn something new without dedicating a lot of time.
+In&nbsp;the long-form videos, I will try to go a little deeper into some specific problems to solve.
+And everything is going to more or less Java oriented, with a strong accent on the Groovy ecosystem.
+But not only that.
+So, consider {youtube-url}[subscribing] if you haven't already.
+And&nbsp;remember - any kind of engagement (likes, comments, subscriptions) helps.
+I want to thank you for that!
+
+
+
+
+
+
+
+
