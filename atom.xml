@@ -35,11 +35,11 @@
       <category term="Blog Reports" scheme="https://e.printstacktrace.blog/categories/blog-reports/"/>
     
     
-      <category term="youtube" scheme="https://e.printstacktrace.blog/tags/youtube/"/>
-    
       <category term="blog" scheme="https://e.printstacktrace.blog/tags/blog/"/>
     
       <category term="report" scheme="https://e.printstacktrace.blog/tags/report/"/>
+    
+      <category term="youtube" scheme="https://e.printstacktrace.blog/tags/youtube/"/>
     
       <category term="learning" scheme="https://e.printstacktrace.blog/tags/learning/"/>
     
@@ -180,15 +180,15 @@
       <category term="Blog Reports" scheme="https://e.printstacktrace.blog/categories/blog-reports/"/>
     
     
-      <category term="blog" scheme="https://e.printstacktrace.blog/tags/blog/"/>
-    
-      <category term="report" scheme="https://e.printstacktrace.blog/tags/report/"/>
-    
       <category term="2019" scheme="https://e.printstacktrace.blog/tags/2019/"/>
     
       <category term="summary" scheme="https://e.printstacktrace.blog/tags/summary/"/>
     
+      <category term="blog" scheme="https://e.printstacktrace.blog/tags/blog/"/>
+    
       <category term="google-analytics" scheme="https://e.printstacktrace.blog/tags/google-analytics/"/>
+    
+      <category term="report" scheme="https://e.printstacktrace.blog/tags/report/"/>
     
   </entry>
   
@@ -479,9 +479,9 @@
       <category term="Conferences" scheme="https://e.printstacktrace.blog/categories/conferences/"/>
     
     
-      <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
-    
       <category term="grails" scheme="https://e.printstacktrace.blog/tags/grails/"/>
+    
+      <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
     
       <category term="ratpack" scheme="https://e.printstacktrace.blog/tags/ratpack/"/>
     
