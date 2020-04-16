@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://e.printstacktrace.blog/"/>
-  <updated>2020-04-09T11:02:16.000Z</updated>
+  <updated>2020-04-16T07:28:38.000Z</updated>
   <id>https://e.printstacktrace.blog/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>How to time out Jenkins Pipeline stage and keep the pipeline running?</title>
+    <link href="https://e.printstacktrace.blog/how-to-time-out-jenkins-pipeline-stage-and-keep-the-pipeline-running/"/>
+    <id>https://e.printstacktrace.blog/how-to-time-out-jenkins-pipeline-stage-and-keep-the-pipeline-running/</id>
+    <published>2020-04-16T07:28:38.000Z</published>
+    <updated>2020-04-16T07:28:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<div class="paragraph"><p>The declarative Jenkins Pipeline allows us to define timeout either at the pipeline level or the specific stage. This feature prevents Jenkins&#8217;s job from getting stuck. However, in some cases, we want to accept that one stage may timeout, but we want to keep the remaining stages running.</p></div><a id="more"></a><div class="sect1"><h2 id="using-stage-timeout">Using stage <code>timeout</code></h2><div class="sectionbody"><div class="paragraph"><p>Let&#8217;s start with a simple example. In this demo, I use a pipeline with two stages, <code>A</code> and <code>B</code>.</p></div><div class="listingblock"><div class="title">Listing 1. Jenkinsfile</div><div class="content"><pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">pipeline {    agent any    stages {        stage("A") {            options {                timeout(time: 3, unit: "SECONDS")            }            steps {                echo "Started stage A"                sleep(time: 5, unit: "SECONDS")            }        }        stage("B") {            steps {                echo "Started stage B"            }        }    }}</code></pre></div></div><div class="paragraph"><p>As you may expect, running this pipeline causes timeout in the <code>A</code> stage, and the remaining stage <code>B</code> does not get triggered.</p></div><div class="openblock text-center"><div class="content"><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="/images/pipeline-timeout-01.png"><img src="/images/pipeline-timeout-01.png" alt="pipeline timeout 01"></a></div></div></div></div></div></div><div class="sect1"><h2 id="using-catcherror-workflow-step">Using <code>catchError</code> workflow step</h2><div class="sectionbody"><div class="paragraph"><p>In most cases, this is OK. The remaining stage of the pipeline depends on the success of the previous one. But what if we want to treat <code>A</code> stage as <em>optional</em> and keep the pipeline running even if it times out? Let&#8217;s see if we can use <a href="https://jenkins.io/doc/pipeline/steps/workflow-basic-steps/#catcherror-catch-error-and-set-build-result-to-failure" target="_blank" rel="noopener"><code>catchError</code> workflow step</a> to handle the exception for us.</p></div><div class="listingblock"><div class="title">Listing 2. Jenkinsfile</div><div class="content"><pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">pipeline {    agent any    stages {        stage("A") {            options {                timeout(time: 3, unit: "SECONDS")            }            steps {                catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') { <i class="conum" data-value="1"></i><b>(1)</b>                    echo "Started stage A"                    sleep(time: 5, unit: "SECONDS")                }            }        }        stage("B") {            steps {                echo "Started stage B"            }        }    }}</code></pre></div></div><div class="paragraph"><p>In this example, we wrapped steps that potentially may timeout with the <code>catchError</code> <em class="conum" data-value="1"></em>. We want to mark the stage as <code>ABORTED</code>, but we want to keep the build status as <code>SUCCESS</code>. This way, we don&#8217;t want to affect the final build result with the timeout of the <code>A</code> stage. Let&#8217;s look at what happens when we run the pipeline now.</p></div><div class="openblock text-center"><div class="content"><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="/images/pipeline-timeout-02.png"><img src="/images/pipeline-timeout-02.png" alt="pipeline timeout 02"></a></div></div></div></div><div class="paragraph"><p>Looks good, but there is one small issue. We can see that stage <code>B</code> was executed, however, the job status is set to <code>ABORTED</code>. It turns out that, according to the documentation, we cannot set the build result to <code>SUCCESS</code> from results like <code>UNSTABLE</code> or <code>ABORTED</code>.</p></div><div class="quoteblock"><blockquote><div class="paragraph"><p>If an error is caught, the overall build result will be set to this value. Note that the build result can only get worse, so you cannot change the result to <code>SUCCESS</code> if the current result is <code>UNSTABLE</code> or worse. Use <code>SUCCESS</code> or <code>null</code> to keep the build result from being set when an error is caught.</p></div></blockquote></div></div></div><div class="sect1"><h2 id="using-try-catch-inside-script-step">Using <code>try-catch</code> inside <code>script</code> step</h2><div class="sectionbody"><div class="paragraph"><p>Let&#8217;s see if replacing <code>catchError</code> with good old <code>try-catch</code> can help us in this situation.</p></div><div class="listingblock"><div class="title">Listing 3. Jenkinsfile</div><div class="content"><pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">pipeline {    agent any    stages {        stage("A") {            options {                timeout(time: 3, unit: "SECONDS")            }            steps {                script { <i class="conum" data-value="2"></i><b>(2)</b>                    try {                        echo "Started stage A"                        sleep(time: 5, unit: "SECONDS")                    } catch (Exception e) {                        echo "Caught ${e.toString()}"                        currentBuild.result = "SUCCESS" <i class="conum" data-value="1"></i><b>(1)</b>                    }                }            }        }        stage("B") {            steps {                echo "Started stage B"            }        }    }}</code></pre></div></div><div class="paragraph"><p>In this example, we want to catch any potential exception and force the <code>SUCCESS</code> build status <em class="conum" data-value="1"></em>. Keep in mind, that we had to put the code into the <code>script</code> step <em class="conum" data-value="2"></em> to be able to use <code>try-catch</code> block. Let&#8217;s run the pipeline and see how it goes.</p></div><div class="openblock text-center"><div class="content"><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="/images/pipeline-timeout-03.png"><img src="/images/pipeline-timeout-03.png" alt="pipeline timeout 03"></a></div></div></div></div><div class="paragraph"><p>We can see the expected build status, but there is one issue with this approach. The <code>A</code> stage is marked as <code>SUCCESS</code> which might be confusing. It hides the information about the timeout, so we need to click on the stage and check if there was a timeout or not every time we run the pipeline. There should be a better way to handle it.</p></div></div></div><div class="sect1"><h2 id="using-catcherror-together-with-try-catch">Using <code>catchError</code> together with <code>try-catch</code></h2><div class="sectionbody"><div class="paragraph"><p>Luckily, there is a better solution. We can combine both <code>catchError</code> with the <code>try-catch</code>. Let&#8217;s take a look at the final example.</p></div><div class="listingblock"><div class="title">Listing 4. Jenkinsfile</div><div class="content"><pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">pipeline {    agent any    stages {        stage("A") {            options {                timeout(time: 3, unit: "SECONDS")            }            steps {                script {                    catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') { <i class="conum" data-value="1"></i><b>(1)</b>                        try { <i class="conum" data-value="2"></i><b>(2)</b>                            echo "Started stage A"                            sleep(time: 5, unit: "SECONDS")                        } catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException e) {                            error "Caught ${e.toString()}" <i class="conum" data-value="3"></i><b>(3)</b>                        }                    }                }            }        }        stage("B") {            steps {                echo "Started stage B"            }        }    }}</code></pre></div></div><div class="paragraph"><p>In this example, we use <code>catchError</code> to control the stage result in case of an error <em class="conum" data-value="1"></em>. The code that may potentially timeout is wrapped with the <code>try-catch</code> <em class="conum" data-value="2"></em> so we can control the exception. We can be very specific - in this case we catch only the <code>FlowInterruptedException</code>, so any other exception will stop the pipeline anyway. And when we catch the timeout, we emit the error <em class="conum" data-value="3"></em> so that the <code>catchError</code> step can do its job. Let&#8217;s run and see the final result.</p></div><div class="openblock text-center"><div class="content"><div class="imageblock img-responsive img-thumbnail"><div class="content"><a class="image" href="/images/pipeline-timeout-04.png"><img src="/images/pipeline-timeout-04.png" alt="pipeline timeout 04"></a></div></div></div></div><div class="paragraph"><p>Voilà! Now it works just as we expect. The <code>A</code> stage gets executed, and it is acceptable to timeout. The pipeline continues in such a case, and its final result depends on the remaining stages. <span class="icon"><i class="fa fa-thumbs-o-up"></i></span></p></div></div></div>]]></content>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;paragraph&quot;&gt;&lt;p&gt;The declarative Jenkins Pipeline allows us to define timeout either at the pipeline level or the specific stage. This feature prevents Jenkins&amp;#8217;s job from getting stuck. However, in some cases, we want to accept that one stage may timeout, but we want to keep the remaining stages running.&lt;/p&gt;&lt;/div&gt;
+    
+    </summary>
+    
+    
+      <category term="Jenkins Pipeline Cookbook" scheme="https://e.printstacktrace.blog/categories/jenkins-pipeline-cookbook/"/>
+    
+    
+      <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
+    
+      <category term="devops" scheme="https://e.printstacktrace.blog/tags/devops/"/>
+    
+      <category term="jenkins" scheme="https://e.printstacktrace.blog/tags/jenkins/"/>
+    
+      <category term="jenkins-pipeline" scheme="https://e.printstacktrace.blog/tags/jenkins-pipeline/"/>
+    
+      <category term="cicd" scheme="https://e.printstacktrace.blog/tags/cicd/"/>
+    
+      <category term="jenkinsfile" scheme="https://e.printstacktrace.blog/tags/jenkinsfile/"/>
+    
+      <category term="continuous-integration" scheme="https://e.printstacktrace.blog/tags/continuous-integration/"/>
+    
+  </entry>
   
   <entry>
     <title>My first 200 YouTube subscribers - Thank You!</title>
@@ -35,13 +70,13 @@
       <category term="Blog Reports" scheme="https://e.printstacktrace.blog/categories/blog-reports/"/>
     
     
-      <category term="learning" scheme="https://e.printstacktrace.blog/tags/learning/"/>
-    
       <category term="blog" scheme="https://e.printstacktrace.blog/tags/blog/"/>
     
       <category term="report" scheme="https://e.printstacktrace.blog/tags/report/"/>
     
       <category term="youtube" scheme="https://e.printstacktrace.blog/tags/youtube/"/>
+    
+      <category term="learning" scheme="https://e.printstacktrace.blog/tags/learning/"/>
     
   </entry>
   
@@ -97,9 +132,9 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
     
-      <category term="annotation" scheme="https://e.printstacktrace.blog/tags/annotation/"/>
-    
       <category term="groovy-3" scheme="https://e.printstacktrace.blog/tags/groovy-3/"/>
+    
+      <category term="annotation" scheme="https://e.printstacktrace.blog/tags/annotation/"/>
     
   </entry>
   
@@ -236,9 +271,9 @@
       <category term="Jenkins Pipeline Cookbook" scheme="https://e.printstacktrace.blog/categories/jenkins-pipeline-cookbook/"/>
     
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
-    
       <category term="java" scheme="https://e.printstacktrace.blog/tags/java/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
     
       <category term="sdkman" scheme="https://e.printstacktrace.blog/tags/sdkman/"/>
     
@@ -339,9 +374,9 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
-    
       <category term="java" scheme="https://e.printstacktrace.blog/tags/java/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
     
       <category term="sdkman" scheme="https://e.printstacktrace.blog/tags/sdkman/"/>
     
@@ -378,9 +413,9 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
-    
       <category term="java" scheme="https://e.printstacktrace.blog/tags/java/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
     
       <category term="sdkman" scheme="https://e.printstacktrace.blog/tags/sdkman/"/>
     
@@ -479,17 +514,17 @@
       <category term="Conferences" scheme="https://e.printstacktrace.blog/categories/conferences/"/>
     
     
-      <category term="grails" scheme="https://e.printstacktrace.blog/tags/grails/"/>
-    
       <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
     
-      <category term="ratpack" scheme="https://e.printstacktrace.blog/tags/ratpack/"/>
+      <category term="grails" scheme="https://e.printstacktrace.blog/tags/grails/"/>
     
-      <category term="micronaut" scheme="https://e.printstacktrace.blog/tags/micronaut/"/>
+      <category term="ratpack" scheme="https://e.printstacktrace.blog/tags/ratpack/"/>
     
       <category term="gr8conf" scheme="https://e.printstacktrace.blog/tags/gr8conf/"/>
     
       <category term="conference" scheme="https://e.printstacktrace.blog/tags/conference/"/>
+    
+      <category term="micronaut" scheme="https://e.printstacktrace.blog/tags/micronaut/"/>
     
       <category term="copenhagen" scheme="https://e.printstacktrace.blog/tags/copenhagen/"/>
     
@@ -617,44 +652,11 @@
     
       <category term="ratpack" scheme="https://e.printstacktrace.blog/tags/ratpack/"/>
     
-      <category term="graalvm" scheme="https://e.printstacktrace.blog/tags/graalvm/"/>
-    
       <category term="java" scheme="https://e.printstacktrace.blog/tags/java/"/>
     
+      <category term="graalvm" scheme="https://e.printstacktrace.blog/tags/graalvm/"/>
+    
       <category term="xmx" scheme="https://e.printstacktrace.blog/tags/xmx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Using the same prefix with different HTTP methods in Ratpack</title>
-    <link href="https://e.printstacktrace.blog/using-the-same-prefix-with-different-http-methods-in-ratpack/"/>
-    <id>https://e.printstacktrace.blog/using-the-same-prefix-with-different-http-methods-in-ratpack/</id>
-    <published>2019-04-01T08:12:52.000Z</published>
-    <updated>2019-04-01T08:12:52.000Z</updated>
-    
-    <content type="html"><![CDATA[<div class="paragraph"><p><a href="https://ratpack.io/" target="_blank" rel="noopener">Ratpack</a> is an excellent tool for building RESTful<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> applications. However, to benefit most of it, we need to know the tool a little bit better. It applies to Ratpack handler&#8217;s mechanism - it is much different compared to what we have learned by using many popular MVC frameworks. In today&#8217;s blog post I would like to show you a relatively simple example that confused many newcomers.</p></div><a id="more"></a><div class="sect1"><h2 id="an-example">An example</h2><div class="sectionbody"><div class="paragraph"><p>Let&#8217;s consider the following example. We have a simple API with the <code>/users</code> endpoint. This endpoint handles <code>GET</code> and <code>POST</code> requests. Sounds familiar, right? Here is how we might try to implement it in Ratpack.</p></div><div class="admonitionblock note"><table><tr><td class="icon"><i class="fa icon-note" title="Note"></i></td><td class="content">In this example, we use Ratpack&#8217;s excellent <a href="https://ratpack.io/manual/current/quick-start.html#using_a_groovy_script" target="_blank" rel="noopener">integration with Groovy</a>. Instead of creating an application with Gradle or Maven, we create a single Groovy script file with Ratpack Grape item, and we are ready to go. Just a few lines of code and we have a working REST application.</td></tr></table></div><div class="listingblock"><div class="title">Listing 1. Ratpack application as a Groovy script called <code>ratpack.groovy</code></div><div class="content"><pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">@Grab('io.ratpack:ratpack-groovy:1.6.0')import static ratpack.groovy.Groovy.ratpackratpack {    handlers {        prefix("users") {            get {                response.send("A list of users...")            }            post {                response.send("Create a new user...")            }        }    }}</code></pre></div></div><div class="paragraph"><p>Let&#8217;s run the application.</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ groovy ratpack.groovy</code></pre></div></div><div class="paragraph"><p>We are ready to send some HTTP requests with curl.</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ curl -i -X GET http://localhost:5050/usersHTTP/1.1 200 OKcontent-type: text/plain;charset=UTF-8content-length: 18A list of users...%$ curl -i -X POST http://localhost:5050/usersHTTP/1.1 405 Method Not Allowedcontent-type: text/plain;charset=UTF-8content-length: 16Client error 405%</code></pre></div></div><div class="paragraph"><p>Something went wrong. The <code>GET</code> request gets handled correctly, but when we send the <code>POST</code> request, it gets HTTP <strong>405 Method Not Allowed</strong>. Why is that?</p></div><div class="paragraph"><p>The problem is that the <code>prefix</code> method creates a handler (or handlers) that handle requests based on the relative path - it matches all requests starting with a given prefix. In this case, sending requests with the same URI path, but with different HTTP method does not make any difference for our application. Both kinds of requests match the same relative URI path, so Ratpack delegates them to the first handler in the queue. It happens that the first handler is the one that processes <code>GET</code> requests - it accepts any <code>GET</code> request but returns 405 HTTP status if an incorrect method was set.</p></div><div class="paragraph"><p>This is where <code>byMethod</code> helper method comes with help. It creates a chain of handlers that accept the same relative path but handle different HTTP methods. Let&#8217;s use it inside the <code>prefix</code> method and see how it works.</p></div><div class="listingblock"><div class="title">Listing 2. A first approach to use <code>byMethod</code> helper method.</div><div class="content"><pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">@Grab('io.ratpack:ratpack-groovy:1.6.0')import static ratpack.groovy.Groovy.ratpackratpack {    handlers {        prefix("users") {            byMethod {                get {                    response.send("A list of users...")                }                post {                    response.send("Create a new user...")                }            }        }    }}</code></pre></div></div><div class="paragraph"><p>Now we can run the updated application and test the <code>GET</code> request.</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ curl -i -X POST http://localhost:5050/usersHTTP/1.1 500 Internal Server Errorcontent-type: text/plain;charset=UTF-8content-length: 5388groovy.lang.MissingMethodException: No signature of method: ratpack.byMethod() is applicable for argument types: (ratpack$_run_closure1$_closure2$_closure3$_closure4) values: [ratpack$_run_closure1$_closure2$_closure3$_closure4@28289a28]at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.unwrap(ScriptBytecodeAdapter.java:70)at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:76)at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:51)at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:156)at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:168)at ratpack$_run_closure1$_closure2$_closure3.doCall(ratpack.groovy:8)at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</code></pre></div></div><div class="paragraph"><p>Oops. Something went wrong. The <code>MissingMethodException</code> seems like trying to tell us, that there is no option to use <code>byMethod</code> inside the <code>prefix</code> method. Does it mean that we can create separate handlers for different HTTP methods under the same prefix?</p></div></div></div><div class="sect1"><h2 id="the-solution">The solution</h2><div class="sectionbody"><div class="paragraph"><p>The answer is - yes, we can. The problem with the above solution is simple - a closure created for the <code>prefix</code> method does not have access to the context object (it delegates to <code>ratpack.handling.Chain</code> instead). The <code>byMethod</code> method is exposed by the <code>ratpack.handling.Context</code> thus we need something that delegates to it. Luckily, there is a method that delegates to the context object, and that can be used in our example. It&#8217;s <code>path</code> helper method that creates a chain of handlers that match the same relative path. Let&#8217;s take a look at the final example.</p></div><div class="listingblock"><div class="title">Listing 3. The final application code with <code>prefix</code> and <code>byMethod</code> methods combination.</div><div class="content"><pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">@Grab('io.ratpack:ratpack-groovy:1.6.0')import static ratpack.groovy.Groovy.ratpackratpack {    handlers {        prefix("users") {            path {                byMethod {                    get {                        response.send("A list of users...")                    }                    post {                        response.send("Create a new user...")                    }                }            }        }    }}</code></pre></div></div><div class="paragraph"><p>Let&#8217;s execute <code>GET</code> and <code>POST</code> requests to see if it works as we expect.</p></div><div class="listingblock"><div class="content"><pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ curl -i -X GET http://localhost:5050/usersHTTP/1.1 200 OKcontent-type: text/plain;charset=UTF-8content-length: 18A list of users...%$ curl -i -X POST http://localhost:5050/usersHTTP/1.1 200 OKcontent-type: text/plain;charset=UTF-8content-length: 20Create a new user...%</code></pre></div></div><div class="paragraph"><p>Cowabunga! It works like a charm.</p></div></div></div><div class="sect1"><h2 id="conclusion">Conclusion</h2><div class="sectionbody"><div class="paragraph"><p>I hope you have learned something new from this blog post. The reason I wrote it is that I couldn&#8217;t find any example in the documentation that covered an example of combining <code>prefix</code> and <code>byMethod</code> methods. However, it is a quite common use case, and people get confused by it.</p></div></div></div><div id="footnotes"><hr><div class="footnote" id="_footnotedef_1"><a href="#_footnoteref_1">1</a>. <a href="https://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank" rel="noopener" class="bare">https://en.wikipedia.org/wiki/Representational_state_transfer</a></div></div>]]></content>
-    
-    <summary type="html">
-    
-      &lt;div class=&quot;paragraph&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://ratpack.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Ratpack&lt;/a&gt; is an excellent tool for building RESTful&lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt; applications. However, to benefit most of it, we need to know the tool a little bit better. It applies to Ratpack handler&amp;#8217;s mechanism - it is much different compared to what we have learned by using many popular MVC frameworks. In today&amp;#8217;s blog post I would like to show you a relatively simple example that confused many newcomers.&lt;/p&gt;&lt;/div&gt;
-    
-    </summary>
-    
-    
-      <category term="Ratpack Cookbook" scheme="https://e.printstacktrace.blog/categories/ratpack-cookbook/"/>
-    
-    
-      <category term="groovy" scheme="https://e.printstacktrace.blog/tags/groovy/"/>
-    
-      <category term="ratpack" scheme="https://e.printstacktrace.blog/tags/ratpack/"/>
-    
-      <category term="rest" scheme="https://e.printstacktrace.blog/tags/rest/"/>
-    
-      <category term="netty" scheme="https://e.printstacktrace.blog/tags/netty/"/>
-    
-      <category term="http" scheme="https://e.printstacktrace.blog/tags/http/"/>
-    
-      <category term="curl" scheme="https://e.printstacktrace.blog/tags/curl/"/>
     
   </entry>
   
