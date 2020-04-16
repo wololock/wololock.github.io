@@ -1,0 +1,236 @@
+---
+title: How to time out Jenkins Pipeline stage and keep the pipeline running?
+date: 2020-04-16 09:28:38
+updated: 2020-04-16 09:28:38
+tags:
+    - jenkins
+    - jenkins-pipeline
+    - jenkinsfile
+    - groovy
+    - cicd
+    - continuous-integration
+    - devops
+categories:
+    - Jenkins Pipeline Cookbook
+thankyou: true
+cover: /images/jenkins-bg2.jpg
+og_image: /images/og/pipeline-timeout-stage.jpg
+eyeCatchImage: /images/og/pipeline-timeout-stage.jpg
+---
+:catch-error-url: https://jenkins.io/doc/pipeline/steps/workflow-basic-steps/#catcherror-catch-error-and-set-build-result-to-failure
+
+The declarative Jenkins Pipeline allows us to define timeout either at the pipeline level or the specific stage.
+This feature prevents Jenkins's job from getting stuck.
+However, in some cases, we want to accept that one stage may timeout, but we want to keep the remaining stages running.
+
+++++
+<!-- more -->
+++++
+
+== Using stage `timeout`
+
+Let's start with a simple example.
+In this demo, I use a pipeline with two stages, `A` and `B`.
+
+.Jenkinsfile
+[source,groovy]
+----
+pipeline {
+    agent any
+
+    stages {
+        stage("A") {
+            options {
+                timeout(time: 3, unit: "SECONDS")
+            }
+
+            steps {
+                echo "Started stage A"
+                sleep(time: 5, unit: "SECONDS")
+            }
+        }
+
+        stage("B") {
+            steps {
+                echo "Started stage B"
+            }
+        }
+    }
+}
+----
+
+As you may expect, running this pipeline causes timeout in the `A` stage, and the remaining stage `B` does not get triggered.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/pipeline-timeout-01.png]
+image::/images/pipeline-timeout-01.png[]
+--
+
+== Using `catchError` workflow step
+
+In most cases, this is OK.
+The remaining stage of the pipeline depends on the success of the previous one.
+But what if we want to treat `A` stage as _optional_ and keep the pipeline running even if it times out?
+Let's see if we can use {catch-error-url}[`catchError` workflow step] to handle the exception for us.
+
+.Jenkinsfile
+[source,groovy]
+----
+pipeline {
+    agent any
+
+    stages {
+        stage("A") {
+            options {
+                timeout(time: 3, unit: "SECONDS")
+            }
+
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') { //<1>
+                    echo "Started stage A"
+                    sleep(time: 5, unit: "SECONDS")
+                }
+            }
+        }
+
+        stage("B") {
+            steps {
+                echo "Started stage B"
+            }
+        }
+    }
+}
+----
+
+In this example, we wrapped steps that potentially may timeout with the `catchError` pass:[<em class="conum" data-value="1"></em>].
+We want to mark the stage as `ABORTED`, but we want to keep the build status as `SUCCESS`.
+This way, we don't want to affect the final build result with the timeout of the `A` stage.
+Let's look at what happens when we run the pipeline now.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/pipeline-timeout-02.png]
+image::/images/pipeline-timeout-02.png[]
+--
+
+Looks good, but there is one small issue.
+We can see that stage `B` was executed, however, the job status is set to `ABORTED`.
+It turns out that, according to the documentation, we cannot set the build result to `SUCCESS` from results like `UNSTABLE` or `ABORTED`.
+
+> If an error is caught, the overall build result will be set to this value. Note that the build result can only get worse, so you cannot change the result to `SUCCESS` if the current result is `UNSTABLE` or worse. Use `SUCCESS` or `null` to keep the build result from being set when an error is caught.
+
+== Using `try-catch` inside `script` step
+
+Let's see if replacing `catchError` with good old `try-catch` can help us in this situation.
+
+.Jenkinsfile
+[source,groovy]
+----
+pipeline {
+    agent any
+
+    stages {
+        stage("A") {
+            options {
+                timeout(time: 3, unit: "SECONDS")
+            }
+
+            steps {
+                script { //<2>
+                    try {
+                        echo "Started stage A"
+                        sleep(time: 5, unit: "SECONDS")
+                    } catch (Exception e) {
+                        echo "Caught ${e.toString()}"
+                        currentBuild.result = "SUCCESS" //<1>
+                    }
+                }
+            }
+        }
+
+        stage("B") {
+            steps {
+                echo "Started stage B"
+            }
+        }
+    }
+}
+----
+
+In this example, we want to catch any potential exception and force the `SUCCESS` build status pass:[<em class="conum" data-value="1"></em>].
+Keep in mind, that we had to put the code into the `script` step pass:[<em class="conum" data-value="2"></em>] to be able to use `try-catch` block.
+Let's run the pipeline and see how it goes.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/pipeline-timeout-03.png]
+image::/images/pipeline-timeout-03.png[]
+--
+
+We can see the expected build status, but there is one issue with this approach.
+The `A` stage is marked as `SUCCESS` which might be confusing.
+It hides the information about the timeout, so we need to click on the stage and check if there was a timeout or not every time we run the pipeline.
+There should be a better way to handle it.
+
+== Using `catchError` together with `try-catch`
+
+Luckily, there is a better solution.
+We can combine both `catchError` with the `try-catch`.
+Let's take a look at the final example.
+
+.Jenkinsfile
+[source,groovy]
+----
+pipeline {
+    agent any
+
+    stages {
+        stage("A") {
+            options {
+                timeout(time: 3, unit: "SECONDS")
+            }
+
+            steps {
+                script {
+                    catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') { //<1>
+                        try { //<2>
+                            echo "Started stage A"
+                            sleep(time: 5, unit: "SECONDS")
+                        } catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException e) {
+                            error "Caught ${e.toString()}" //<3>
+                        }
+                    }
+                }
+            }
+        }
+
+        stage("B") {
+            steps {
+                echo "Started stage B"
+            }
+        }
+    }
+}
+----
+
+In this example, we use `catchError` to control the stage result in case of an error pass:[<em class="conum" data-value="1"></em>].
+The code that may potentially timeout is wrapped with the `try-catch` pass:[<em class="conum" data-value="2"></em>] so we can control the exception.
+We can be very specific - in this case we catch only the `FlowInterruptedException`, so any other exception will stop the pipeline anyway.
+And when we catch the timeout, we emit the error pass:[<em class="conum" data-value="3"></em>] so that the `catchError` step can do its job.
+Let's run and see the final result.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/pipeline-timeout-04.png]
+image::/images/pipeline-timeout-04.png[]
+--
+
+Voilà!
+Now it works just as we expect.
+The `A` stage gets executed, and it is acceptable to timeout.
+The pipeline continues in such a case, and its final result depends on the remaining stages. icon:thumbs-o-up[]
