@@ -4,49 +4,49 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/tags/continuous-integration/</loc>
-        <lastmod>2020-04-16T07:28:38.000Z</lastmod>
+        <lastmod>2020-04-16T14:21:32.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://e.printstacktrace.blog/tags/jenkinsfile/</loc>
-        <lastmod>2020-04-16T07:28:38.000Z</lastmod>
+        <lastmod>2020-04-16T14:21:32.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://e.printstacktrace.blog/tags/cicd/</loc>
-        <lastmod>2020-04-16T07:28:38.000Z</lastmod>
+        <lastmod>2020-04-16T14:21:32.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://e.printstacktrace.blog/tags/jenkins-pipeline/</loc>
-        <lastmod>2020-04-16T07:28:38.000Z</lastmod>
+        <lastmod>2020-04-16T14:21:32.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://e.printstacktrace.blog/tags/jenkins/</loc>
-        <lastmod>2020-04-16T07:28:38.000Z</lastmod>
+        <lastmod>2020-04-16T14:21:32.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://e.printstacktrace.blog/tags/devops/</loc>
-        <lastmod>2020-04-16T07:28:38.000Z</lastmod>
+        <lastmod>2020-04-16T14:21:32.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://e.printstacktrace.blog/tags/groovy/</loc>
-        <lastmod>2020-04-16T07:28:38.000Z</lastmod>
+        <lastmod>2020-04-16T14:21:32.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -731,6 +731,13 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/tags/haskell/</loc>
+        <lastmod>2018-12-02T16:23:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/tags/advent-of-code/</loc>
         <lastmod>2018-12-02T16:23:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -739,13 +746,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/tags/aoc2018/</loc>
-        <lastmod>2018-12-02T16:23:11.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/tags/haskell/</loc>
         <lastmod>2018-12-02T16:23:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
