@@ -20,6 +20,7 @@ thankyou: true
 :jenkins-scripted-pipeline-doc: https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline
 :jenkins-declarative-pipeline-doc: https://jenkins.io/doc/book/pipeline/syntax/#declarative-pipeline
 :jenkins-2-book-url: https://amzn.to/3b3diVl
+:jenkins-pipeline-learning-kit: https://kit.co/wololock/jenkins-pipeline-learning-kit
 
 If you read this blog post, there is a high chance you're looking for information about practical differences between scripted and declarative pipeline, correct?
 You couldn't find a better place then.
@@ -423,8 +424,8 @@ In the scripted pipeline use case, the *Test* stage is not even rendered.
 This might introduce some unnecessary confusion, the declarative pipeline handles it much better in my opinion.
 Declarative vs. scripted, 4:0.
 
-NOTE: If you want to learn more about *Jenkins* and CI/CD pipelines, check out {jenkins-2-book-url}["_&quot;Continuous Delivery with Docker and Jenkins&quot;_", role="ga-track"] book by Rafal Leszko.
-This book will guide you through the process of setting up continuous delivery pipelines using Jenkins and Docker. Highly recommended!
+NOTE: Would you like to learn more about *Jenkins*, *Jenkins Pipelines*, and *CI/CD* in general?
+If so, check out my curated list of books collected in this {jenkins-pipeline-learning-kit}["_&quot;Jenkins Pipeline Learning Kit._&quot;", role="ga-tracker"]
 
 == Conclusion
 

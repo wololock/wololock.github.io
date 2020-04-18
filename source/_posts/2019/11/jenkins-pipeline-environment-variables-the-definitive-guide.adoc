@@ -22,6 +22,7 @@ thankyou: true
 :groovy-truth-strings: Read more about "The Groovy Truth" here - https://groovy-lang.org/semantics.html#_strings
 :jenkins-sh-step: https://jenkins.io/doc/pipeline/steps/workflow-durable-task-step/#sh-shell-script
 :jenkins-2-book-url: https://amzn.to/3b3diVl
+:jenkins-pipeline-learning-kit: https://kit.co/wololock/jenkins-pipeline-learning-kit
 
 Welcome to the first blog post of the *"Jenkins Pipeline Cookbook"* series.
 Today we are focus on working with Jenkins Pipeline environment variables effectively.
@@ -299,5 +300,5 @@ pipeline {
 image::/images/jenkins-sh-in-env-var.png[]
 --
 
-NOTE: If you want to learn more about *Jenkins* and CI/CD pipelines, check out {jenkins-2-book-url}["_&quot;Continuous Delivery with Docker and Jenkins&quot;_", role="ga-track"] book by Rafal Leszko.
-This book will guide you through the process of setting up continuous delivery pipelines using Jenkins and Docker. Highly recommended!
+NOTE: Would you like to learn more about *Jenkins*, *Jenkins Pipelines*, and *CI/CD* in general?
+If so, check out my curated list of books collected in this {jenkins-pipeline-learning-kit}["_&quot;Jenkins Pipeline Learning Kit._&quot;", role="ga-tracker"]
