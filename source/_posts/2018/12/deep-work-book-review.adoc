@@ -10,9 +10,9 @@ tags:
     - self-improvement
     - non-fiction
     - affiliate
-cover: /images/deep-work-book-review-img2.jpg
-og_image: /images/og/deep-work-book-review.jpg
-eyeCatchImage: /images/og/deep-work-book-review.jpg
+cover: /images/deep-work-book-review-img2.jpg?v=2
+og_image: /images/og/deep-work-book-review.jpg?v=2
+eyeCatchImage: /images/og/deep-work-book-review.jpg?v=2
 affiliates: true
 thankyou: true
 ---
