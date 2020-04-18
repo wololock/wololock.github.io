@@ -59,13 +59,6 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/youtube/</loc>
-        <lastmod>2020-04-09T11:02:16.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://e.printstacktrace.blog/tags/report/</loc>
         <lastmod>2020-04-09T11:02:16.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -74,6 +67,13 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/tags/blog/</loc>
+        <lastmod>2020-04-09T11:02:16.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/youtube/</loc>
         <lastmod>2020-04-09T11:02:16.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
