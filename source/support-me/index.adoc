@@ -38,7 +38,7 @@ Here are a few kits I created that you may find interesting. However, *please do
 ** https://kit.co/wololock/java-programmer-learning-kit["Java Programmer Learning Kit", role="ga-track"]
 ** https://kit.co/wololock/my-youtube-studio-equipment["My YouTube Studio Equipment Kit", role="ga-track"]
 * Maybe you are looking for *online mentoring*? You can find me on {codementor}[Codementor.io] and schedule a session. You read my blog, so you know what are my strong points and competences. I can help you solve an urgent problem, or share my experience with you in longer mentoring relationship to help you become a better problem solver.
-* I love slow brew coffee. Do you? You can {buy-me-a-coffee}[buy me one, role="ga-track"] through PayPal donation, I will be grateful for that.
+* I love slow brew coffee. Do you? You can {buy-me-a-coffee}[image:https://cdn.buymeacoffee.com/buttons/default-orange.png[Buy Me A Coffee,140,33]] &nbsp;and join the supporters group!
 * Did you know that I also record YouTube videos? {youtube}[Subscribing to my channel, role="ga-track"], *commenting* videos and hitting that *like button* is also a great way to show support.
 * Do you use Twitter? {twitter}[I do]. You can help me by *sharing my blog posts* with people that follow you.
 * And last but not least, you can {email-me}[email me] and just say "Thanks" if any of my blog posts were useful to you.
