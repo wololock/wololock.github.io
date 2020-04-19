@@ -128,9 +128,9 @@ category:
     'Jenkins Pipeline Cookbook': /images/jenkins-bg2.jpg
 
 video:
-  id: HaGeSq-SB9E
+  id: KwQDxwZRZiE
   size: mqdefault
-  title: Jenkins Pipeline Maven build - how to set it up?
+  title: Jenkins Pipeline Environment Variables explained
 
 stackoverflow:
   profile: https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile
