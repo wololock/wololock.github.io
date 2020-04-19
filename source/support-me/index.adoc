@@ -9,6 +9,7 @@ layout: clean
 :twitter: https://twitter.com/wololock
 :books: https://e.printstacktrace.blog/tags/affiliate/
 :email-me: mailto:szymon.stepniak@gmail.com
+:kitco: https://kit.co/wololock
 
 I hate ads and popups showing up a few seconds after visiting a website.
 That is why I decided to keep my blog free from those annoying elements.
@@ -26,8 +27,17 @@ Would you like to be *my top 1% reader*?
 
 == How to support my work?
 
-* If you buy books (or other stuff) on Amazon.com, check {books}[my books reviews]. You can find *affiliate links* there. If you decide to buy any book from my recommendation, I will receive a small percentage (~5%) of your purchase from the affiliate program. The affiliate link also works if you decide to buy something else. Using it does not affect your total purchase price.
-* Maybe you are looking for *online mentoring*? You can find me on {codementor}[Codementor.io] and schedule a session. I can share my experience to *help you in becoming a better problem solver*. You already read my blog, so you know what my teaching style is.
+* If you buy books (or other stuff) online, you can check {kitco}["my Kit.co profile", role="ga-track"] where I created a few kits/collections containing books and equipment I use and recommend. If you decide to buy anything through my affiliate link, I will receive *a small commission* from your purchase.
++
+NOTE: *Buying through the affiliate link does not affect the total purchase price*. Any commission I earn from your purchase comes at no additional cost to you.
++
+Here are a few kits I created that you may find interesting. However, *please do not spend any money on these products unless you feel they are useful and valuable to you.*
++
+** https://kit.co/wololock/groovy-programmer-learning-kit["Groovy Programmer Learning Kit", role="ga-track"]
+** https://kit.co/wololock/jenkins-pipeline-learning-kit["Jenkins Pipeline Learning Kit", role="ga-track"]
+** https://kit.co/wololock/java-programmer-learning-kit["Java Programmer Learning Kit", role="ga-track"]
+** https://kit.co/wololock/my-youtube-studio-equipment["My YouTube Studio Equipment Kit", role="ga-track"]
+* Maybe you are looking for *online mentoring*? You can find me on {codementor}[Codementor.io] and schedule a session. You read my blog, so you know what are my strong points and competences. I can help you solve an urgent problem, or share my experience with you in longer mentoring relationship to help you become a better problem solver.
 * I love slow brew coffee. Do you? You can {buy-me-a-coffee}[buy me one, role="ga-track"] through PayPal donation, I will be grateful for that.
 * Did you know that I also record YouTube videos? {youtube}[Subscribing to my channel, role="ga-track"], *commenting* videos and hitting that *like button* is also a great way to show support.
 * Do you use Twitter? {twitter}[I do]. You can help me by *sharing my blog posts* with people that follow you.
@@ -52,9 +62,9 @@ I hope you are a returning happy reader of my blog.
 If you can afford to support my work, I will be thankful.
 But don't feel forced to it.
 I will continue doing my work on the blog and on my YouTube channel.
-I enjoy it, and I see that my effort is not pointless - I keep getting messages from you that makes me really proud and happy.
+I enjoy it, and I see that my effort is not pointless - I keep getting thankful messages from you and that makes me really proud and happy.
 *Keep learning, keep coding, and have fun!*
 
 [%hardbreaks]
-Best regards,
+Yours sincerely,
 Szymon
