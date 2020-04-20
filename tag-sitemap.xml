@@ -3,13 +3,6 @@
 
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/devops/</loc>
-        <lastmod>2020-04-16T14:21:32.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://e.printstacktrace.blog/tags/continuous-integration/</loc>
         <lastmod>2020-04-16T14:21:32.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -45,6 +38,13 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/tags/devops/</loc>
+        <lastmod>2020-04-16T14:21:32.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/tags/groovy/</loc>
         <lastmod>2020-04-16T14:21:32.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -59,13 +59,6 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/youtube/</loc>
-        <lastmod>2020-04-09T11:02:16.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://e.printstacktrace.blog/tags/report/</loc>
         <lastmod>2020-04-09T11:02:16.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -74,6 +67,13 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/tags/blog/</loc>
+        <lastmod>2020-04-09T11:02:16.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/youtube/</loc>
         <lastmod>2020-04-09T11:02:16.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -199,14 +199,14 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/sdkman/</loc>
+        <loc>https://e.printstacktrace.blog/tags/maven/</loc>
         <lastmod>2019-11-28T20:53:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/maven/</loc>
+        <loc>https://e.printstacktrace.blog/tags/sdkman/</loc>
         <lastmod>2019-11-28T20:53:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
