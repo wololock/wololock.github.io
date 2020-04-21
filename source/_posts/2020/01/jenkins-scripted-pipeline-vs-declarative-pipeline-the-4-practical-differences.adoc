@@ -434,3 +434,12 @@ These are not the only differences, and I guess your list may look a little diff
 What is your choice?
 Do you prefer the declarative pipeline, or the scripted one?
 Please share your thoughts in the section down below.
+
+[.row]
+====
+[.col-md-10.col-md-offset-1]
+=====
+[.video-container]
+video::Ei_Nk14vruE[youtube]
+=====
+====

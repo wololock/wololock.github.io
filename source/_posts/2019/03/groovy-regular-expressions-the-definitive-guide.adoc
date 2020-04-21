@@ -544,6 +544,17 @@ at the low and acceptable cost.
 
 [IMPORTANT]
 ====
-*ATTENTION*: keep in mind that all benchmarks results are tighlty coupled to the examples they were used with. Consider
+*ATTENTION*: keep in mind that all benchmarks results are tightly coupled to the examples they were used with. Consider
 benchmarking your own usage scenario before picking one solution over another. *Context always matters.*
+====
+
+{nbsp} +
+
+[.row]
+====
+[.col-md-10.col-md-offset-1]
+=====
+[.video-container]
+video::BRw7e1QIOmA[youtube]
+=====
 ====

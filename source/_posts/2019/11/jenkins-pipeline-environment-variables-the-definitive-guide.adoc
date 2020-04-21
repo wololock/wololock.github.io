@@ -268,6 +268,10 @@ pipeline {
 image::/images/jenkins-string-env-var.png[]
 --
 
+NOTE: Would you like to learn more about *Jenkins*, *Jenkins Pipelines*, and *CI/CD* in general?
+If so, check out my curated list of books collected in this {jenkins-pipeline-learning-kit}["_&quot;Jenkins Pipeline Learning Kit._&quot;", role="ga-tracker"]
+
+
 == Capturing `sh` command output in the env variable
 
 You can also capture output of a shell command as an environment variable.
@@ -300,5 +304,13 @@ pipeline {
 image::/images/jenkins-sh-in-env-var.png[]
 --
 
-NOTE: Would you like to learn more about *Jenkins*, *Jenkins Pipelines*, and *CI/CD* in general?
-If so, check out my curated list of books collected in this {jenkins-pipeline-learning-kit}["_&quot;Jenkins Pipeline Learning Kit._&quot;", role="ga-tracker"]
+{nbsp} +
+
+[.row]
+====
+[.col-md-10.col-md-offset-1]
+=====
+[.video-container]
+video::KwQDxwZRZiE[youtube]
+=====
+====

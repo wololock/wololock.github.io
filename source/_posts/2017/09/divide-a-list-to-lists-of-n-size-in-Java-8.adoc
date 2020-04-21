@@ -307,8 +307,13 @@ To avoid some nasty side effects, you may always want to pass a copy of a list i
 Lists.partition(new ArrayList<>(numbers), 3);
 ----
 
-== Conclusion
+{nbsp} +
 
-That's it for today. I hope you have learned something useful from this blog post. If you read up to this
-paragraph - *thank you so much!* If you are a new visitor on my blog, I'm happy to welcome you here and
-recommend you read one of the related posts you can find below. Cheers!
+[.row]
+====
+[.col-md-10.col-md-offset-1]
+=====
+[.video-container]
+video::3u7MQkLbRdo[youtube]
+=====
+====
