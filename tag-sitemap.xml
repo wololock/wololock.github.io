@@ -206,14 +206,14 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/sdkman/</loc>
+        <loc>https://e.printstacktrace.blog/tags/docker/</loc>
         <lastmod>2019-11-28T20:53:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/docker/</loc>
+        <loc>https://e.printstacktrace.blog/tags/sdkman/</loc>
         <lastmod>2019-11-28T20:53:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -731,6 +731,13 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/tags/haskell/</loc>
+        <lastmod>2018-12-02T16:23:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/tags/advent-of-code/</loc>
         <lastmod>2018-12-02T16:23:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -739,13 +746,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/tags/aoc2018/</loc>
-        <lastmod>2018-12-02T16:23:11.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/tags/haskell/</loc>
         <lastmod>2018-12-02T16:23:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
