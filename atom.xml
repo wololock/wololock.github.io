@@ -70,13 +70,13 @@
       <category term="Blog Reports" scheme="https://e.printstacktrace.blog/categories/blog-reports/"/>
     
     
+      <category term="learning" scheme="https://e.printstacktrace.blog/tags/learning/"/>
+    
       <category term="blog" scheme="https://e.printstacktrace.blog/tags/blog/"/>
     
       <category term="report" scheme="https://e.printstacktrace.blog/tags/report/"/>
     
       <category term="youtube" scheme="https://e.printstacktrace.blog/tags/youtube/"/>
-    
-      <category term="learning" scheme="https://e.printstacktrace.blog/tags/learning/"/>
     
   </entry>
   
@@ -273,9 +273,9 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/tags/java/"/>
     
-      <category term="sdkman" scheme="https://e.printstacktrace.blog/tags/sdkman/"/>
-    
       <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
+    
+      <category term="sdkman" scheme="https://e.printstacktrace.blog/tags/sdkman/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/tags/maven/"/>
     
@@ -376,11 +376,11 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/tags/java/"/>
     
+      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
+    
       <category term="sdkman" scheme="https://e.printstacktrace.blog/tags/sdkman/"/>
     
       <category term="devops" scheme="https://e.printstacktrace.blog/tags/devops/"/>
-    
-      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/tags/maven/"/>
     
@@ -415,11 +415,11 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/tags/java/"/>
     
+      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
+    
       <category term="sdkman" scheme="https://e.printstacktrace.blog/tags/sdkman/"/>
     
       <category term="devops" scheme="https://e.printstacktrace.blog/tags/devops/"/>
-    
-      <category term="docker" scheme="https://e.printstacktrace.blog/tags/docker/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/tags/maven/"/>
     
