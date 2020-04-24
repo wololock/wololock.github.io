@@ -226,6 +226,8 @@ pipeline {
 image::/images/jenkins-override-env-var.png[]
 --
 
+include::source/_parts/jenkins-pipeline-offer.adoc[]
+
 == Storing `Boolean` values in environment variables
 
 There is one popular misconception when it comes to using environment variables.
@@ -267,10 +269,6 @@ pipeline {
 [link=/images/jenkins-string-env-var.png]
 image::/images/jenkins-string-env-var.png[]
 --
-
-NOTE: Would you like to learn more about *Jenkins*, *Jenkins Pipelines*, and *CI/CD* in general?
-If so, check out my curated list of books collected in this {jenkins-pipeline-learning-kit}["_&quot;Jenkins Pipeline Learning Kit._&quot;", role="ga-tracker"]
-
 
 == Capturing `sh` command output in the env variable
 

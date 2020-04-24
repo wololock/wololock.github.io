@@ -470,8 +470,4 @@ OS name: "linux", version: "5.3.8-200.fc30.x86_64", arch: "amd64", family: "unix
 In this example, we have built four different docker images from the same Dockerfile. It makes the maintenance of all variants
 much more straightforward - when something requires fixing, we change a single Dockerfile and rebuild all tags.
 
-== That's all, folks!
-
-I hope you liked this blog post, and you have learned something useful today. Please let me know in the comments section
-down below if you are interested in Jenkins Pipeline related topics. Expect more blog posts like this one shortly!
-See you all next time!
+include::source/_parts/jenkins-pipeline-offer.adoc[]

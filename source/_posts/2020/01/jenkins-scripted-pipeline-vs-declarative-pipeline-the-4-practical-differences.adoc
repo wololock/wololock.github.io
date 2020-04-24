@@ -424,8 +424,7 @@ In the scripted pipeline use case, the *Test* stage is not even rendered.
 This might introduce some unnecessary confusion, the declarative pipeline handles it much better in my opinion.
 Declarative vs. scripted, 4:0.
 
-NOTE: Would you like to learn more about *Jenkins*, *Jenkins Pipelines*, and *CI/CD* in general?
-If so, check out my curated list of books collected in this {jenkins-pipeline-learning-kit}["_&quot;Jenkins Pipeline Learning Kit._&quot;", role="ga-tracker"]
+include::source/_parts/jenkins-pipeline-offer.adoc[]
 
 == Conclusion
 

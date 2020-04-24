@@ -237,10 +237,4 @@ OS name: "linux", version: "5.3.8-200.fc30.x86_64", arch: "amd64", family: "unix
 
 NOTE: You can download the source code presented in this blog post from the following Github repository — {repository-url}.
 
-== Conclusion
-
-That's all for today.
-The pipeline I have shown you could be extended to run some parallelized smoke tests, and publish generated docker images to some remote hub.
-But this is maybe a subject for another story.
-Let me know what do you think about this blog post in the comments section down below.
-See you next time!
+include::source/_parts/jenkins-pipeline-offer.adoc[]

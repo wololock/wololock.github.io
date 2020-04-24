@@ -174,3 +174,5 @@ This stage also uses the `dockerfile` agent, but this time pass:[<em class="conu
 [link=/images/jenkins-pipeline-maven-parallel.png]
 image::/images/jenkins-pipeline-maven-parallel.png[]
 --
+
+include::source/_parts/jenkins-pipeline-offer.adoc[]

@@ -251,3 +251,5 @@ Voilà!
 Now it works just as we expect.
 The `A` stage gets executed, and it is acceptable to timeout.
 The pipeline continues in such a case, and its final result depends on the remaining stages. icon:thumbs-o-up[]
+
+include::source/_parts/jenkins-pipeline-offer.adoc[]

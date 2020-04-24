@@ -1,0 +1,16 @@
+[discrete, role="text-box-2"]
+=====
+:jenkins-pipeline-learning-kit: https://kit.co/wololock/jenkins-pipeline-learning-kit
+:codementor: https://www.codementor.io/@szymonstpniak
+:jenkins-pipeline-cookbook-yt: https://www.youtube.com/playlist?list=PLKaiHc24qCTSnXaus2t4b71ihq9k649XS
+
+[.larger]##*Do you need help in learning [.mark]#Jenkins Pipelines# and continuous delivery?*##
+
+I know from my own experience that learning and mastering Jenkins Pipelines might be tough.
+That is why I would like to offer you my help.
+
+[.nobullets]
+* icon:question-circle[role="color-green"] Are you looking for a mentor that can *guide you* and *explain* things that are difficult for you to understand? Contact me on {codementor}["Codementor.io", role="ga-track"] and let's see how I can help you.
+* icon:question-circle[role="color-green"] Are you looking for the *curated list of recommended learning materials* (books, online courses)? I {jenkins-pipeline-learning-kit}["created one", role="ga-track"] for you.
+* icon:question-circle[role="color-green"] Are you looking for some *inspiring and entertaining Jenkins-related videos*? You might want to check my {jenkins-pipeline-cookbook-yt}["_&quot;Jenkins Pipeline Cookbook&quot;_ video playlist", role="ga-track"] on YouTube.
+=====

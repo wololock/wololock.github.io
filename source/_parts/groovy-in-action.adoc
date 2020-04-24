@@ -12,5 +12,5 @@ That is why I would like to offer you my help.
 [.nobullets]
 * icon:question-circle[role="color-green"] Are you looking for a mentor that can *guide you* and *explain* things that are difficult for you to understand? Contact me on {codementor}["Codementor.io", role="ga-track"] and let's see how I can help you.
 * icon:question-circle[role="color-green"] Are you looking for the *curated list of recommended learning materials* (books, online courses)? I {groovy-books}["created one", role="ga-track"] for you.
-* icon:question-circle[role="color-green"] Are you looking for some *inspiring Groovy-related videos*? You might want to check my {groovy-cookbook-yt}["_&quot;Groovy Cookbook&quot;_ video playlist", role="ga-track"] on YouTube.
+* icon:question-circle[role="color-green"] Are you looking for some *inspiring and entertaining Groovy-related videos*? You might want to check my {groovy-cookbook-yt}["_&quot;Groovy Cookbook&quot;_ video playlist", role="ga-track"] on YouTube.
 =====
