@@ -1,7 +1,16 @@
-[.text-box-2]
-=== Looking for a good [.mark]#Groovy# book?
-====
+[discrete, role="text-box-2"]
+=====
 :groovy-books:  https://kit.co/wololock/groovy-programmer-learning-kit
+:codementor: https://www.codementor.io/@szymonstpniak
+:groovy-cookbook-yt: https://www.youtube.com/playlist?list=PLKaiHc24qCTQqGfb8CheoqBygptzSrTPo
 
-If you want to learn more about Groovy programming language, and you are looking for some learning resources, checkout my curated {groovy-books}["Groovy Programmer Learning Kit", role="ga-track"] books list.
-====
+[.larger]##*Do you need help in learning [.mark]#Groovy#?*##
+
+Exploring and mastering a programming language like Groovy might be challenging.
+That is why I would like to offer you my help.
+
+[.nobullets]
+* icon:question-circle[role="color-green"] Are you looking for a mentor that can *guide you* and *explain* things that are difficult for you to understand? Contact me on {codementor}["Codementor.io", role="ga-track"] and let's see how I can help you.
+* icon:question-circle[role="color-green"] Are you looking for the *curated list of recommended learning materials* (books, online courses)? I {groovy-books}["created one", role="ga-track"] for you.
+* icon:question-circle[role="color-green"] Are you looking for some *inspiring Groovy-related videos*? You might want to check my {groovy-cookbook-yt}["_&quot;Groovy Cookbook&quot;_ video playlist", role="ga-track"] on YouTube.
+=====
