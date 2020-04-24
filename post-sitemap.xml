@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/groovy-regular-expressions-the-definitive-guide/</loc>
+        <lastmod>2020-04-24T21:44:47.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/how-to-time-out-jenkins-pipeline-stage-and-keep-the-pipeline-running/</loc>
         <lastmod>2020-04-16T14:21:32.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -162,14 +170,6 @@
     <url>
         <loc>https://e.printstacktrace.blog/gr8conf-eu-2019-recap/</loc>
         <lastmod>2019-06-06T10:03:44.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/groovy-regular-expressions-the-definitive-guide/</loc>
-        <lastmod>2019-06-05T09:23:45.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

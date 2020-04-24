@@ -3,6 +3,48 @@
 
 
     <url>
+        <loc>https://e.printstacktrace.blog/tags/regular-expressions/</loc>
+        <lastmod>2020-04-24T21:44:47.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/regexp/</loc>
+        <lastmod>2020-04-24T21:44:47.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/benchmark/</loc>
+        <lastmod>2020-04-24T21:44:47.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/jmh/</loc>
+        <lastmod>2020-04-24T21:44:47.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/java/</loc>
+        <lastmod>2020-04-24T21:44:47.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/groovy/</loc>
+        <lastmod>2020-04-24T21:44:47.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/tags/continuous-integration/</loc>
         <lastmod>2020-04-16T14:21:32.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -45,8 +87,8 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/groovy/</loc>
-        <lastmod>2020-04-16T14:21:32.000Z</lastmod>
+        <loc>https://e.printstacktrace.blog/tags/learning/</loc>
+        <lastmod>2020-04-09T11:02:16.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -73,13 +115,6 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/learning/</loc>
-        <lastmod>2020-04-09T11:02:16.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://e.printstacktrace.blog/tags/bytecode/</loc>
         <lastmod>2020-04-02T10:18:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -95,13 +130,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/tags/type-erasure/</loc>
-        <lastmod>2020-04-02T10:18:26.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/tags/java/</loc>
         <lastmod>2020-04-02T10:18:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -234,13 +262,6 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/benchmark/</loc>
-        <lastmod>2019-11-24T14:11:55.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://e.printstacktrace.blog/tags/native-image/</loc>
         <lastmod>2019-11-22T21:14:49.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -325,13 +346,6 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/jmh/</loc>
-        <lastmod>2019-06-25T11:54:04.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://e.printstacktrace.blog/tags/recursion/</loc>
         <lastmod>2019-06-25T11:54:04.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -362,20 +376,6 @@
     <url>
         <loc>https://e.printstacktrace.blog/tags/grails/</loc>
         <lastmod>2019-06-06T10:03:44.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/tags/regular-expressions/</loc>
-        <lastmod>2019-06-05T09:23:45.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/tags/regexp/</loc>
-        <lastmod>2019-06-05T09:23:45.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -528,14 +528,14 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/java-8/</loc>
+        <loc>https://e.printstacktrace.blog/tags/java-stream/</loc>
         <lastmod>2019-03-29T00:44:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/java-stream/</loc>
+        <loc>https://e.printstacktrace.blog/tags/java-8/</loc>
         <lastmod>2019-03-29T00:44:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -717,20 +717,6 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tags/advent-of-code/</loc>
-        <lastmod>2018-12-02T16:23:11.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/tags/aoc2018/</loc>
-        <lastmod>2018-12-02T16:23:11.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://e.printstacktrace.blog/tags/progress/</loc>
         <lastmod>2018-12-02T16:23:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -739,6 +725,20 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/tags/career/</loc>
+        <lastmod>2018-12-02T16:23:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/advent-of-code/</loc>
+        <lastmod>2018-12-02T16:23:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/tags/aoc2018/</loc>
         <lastmod>2018-12-02T16:23:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
