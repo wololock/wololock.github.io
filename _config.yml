@@ -28,9 +28,9 @@ rss: http://feeds.feedburner.com/Eprintstacktracenet
 # Directory
 source_dir: source
 public_dir: public
-tag_dir: tags
+tag_dir: t
 archive_dir: archives
-category_dir: categories
+category_dir: ''
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:

@@ -7,7 +7,7 @@ block description
     meta(name="keywords", content=page.category)
 
 block site_title
-    = "Posts in category '" + page.category + "' | " + config.title
+    = page.category
 
 block header
     include partial/category-header
