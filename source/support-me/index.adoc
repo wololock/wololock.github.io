@@ -46,7 +46,7 @@ image::/images/github-sponsor.jpg[]
 --
 
 If you find my work valuable, and you want to [.mark]*support it*, consider becoming a *sponsor* / *patron* / *supporter* of the e.printstacktrace.blog.
-I strongly believe that *high-quality* and *ads-free* content can attract people that can appreciate such an approach.
+I strongly believe that *high-quality* and *ad-free* content can attract people that can appreciate such an approach.
 If you can afford a small monthly (or even one-time) donation, consider supporting me through one of the following platforms:
 
 [.nobullets]
