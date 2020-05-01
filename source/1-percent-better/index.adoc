@@ -1,0 +1,16 @@
+---
+title: 1% better, every day
+date: 2020-05-01 21:42:11
+layout: clean
+---
+:check: icon:check-square-o[role="color-green"]
+
+== Friday, May 1st, 2020
+
+[.nobullets]
+:hexo-tag-share-post: https://github.com/wololock/hexo-tag-share-post
+:avajs: https://github.com/avajs/ava
+:hexo-test-utils: https://github.com/ertrzyiks/hexo-test-utils
+* {check} Created my first nodejs open-source project - {hexo-tag-share-post}[hexo-tag-share-post] plugin.
+* {check} Learned how to write unit tests using {avajs}[ava testing framework] and {hexo-test-utils}[hexo-test-utils].
+* {check} Published and unpublished my very first npm package.
