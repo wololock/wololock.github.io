@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.13.5
+version: v1.14.1
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -69,3 +69,62 @@ patch:
   'npm:uglify-js:20151024':
     - hexo-renderer-jade > jade > transformers > uglify-js:
         patched: '2019-11-04T19:58:58.173Z'
+  SNYK-JS-LODASH-567746:
+    - hexo-generator-seo-friendly-sitemap > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - hexo > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - hexo-all-minifier > cheerio > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - hexo-related-popular-posts > cheerio > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > graphlib > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > @snyk/dep-graph > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > inquirer > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > snyk-config > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > snyk-mvn-plugin > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > snyk-nodejs-lockfile-parser > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > snyk-nuget-plugin > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - hexo-browsersync > browser-sync > easy-extender > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - hexo-related-popular-posts > kuromoji > async > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > @snyk/dep-graph > graphlib > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > snyk-go-plugin > graphlib > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > snyk-nodejs-lockfile-parser > graphlib > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/dep-graph > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > snyk-mvn-plugin > @snyk/java-call-graph-builder > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > snyk-nuget-plugin > dotnet-deps-parser > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > snyk-php-plugin > @snyk/composer-lockfile-parser > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/dep-graph > graphlib > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > snyk-mvn-plugin > @snyk/java-call-graph-builder > graphlib > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/cocoapods-lockfile-parser > @snyk/ruby-semver > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > snyk-mvn-plugin > @snyk/java-call-graph-builder > snyk-config > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - hexo-renderer-pug > pug > pug-code-gen > constantinople > babel-types > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - hexo-renderer-pug > pug > pug-filters > constantinople > babel-types > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/cocoapods-lockfile-parser > @snyk/dep-graph > graphlib > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
+    - hexo-renderer-pug > pug > pug-code-gen > pug-attrs > constantinople > babel-types > lodash:
+        patched: '2020-05-01T08:10:30.419Z'
