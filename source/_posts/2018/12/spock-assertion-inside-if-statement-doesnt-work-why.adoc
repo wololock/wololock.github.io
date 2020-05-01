@@ -13,7 +13,6 @@ tags:
 cover: /img/post-debugger.jpg
 og_image: /images/og/spock-then-assertion-if.jpg
 eyeCatchImage: /images/og/spock-then-assertion-if.jpg
-thankyou: true
 ---
 
 http://spockframework.org/[Spock Framework] is one of my favorite tools in the Groovy ecosystem toolbox.
@@ -408,4 +407,4 @@ Don't hesitate to leave a comment in the section below.
 Maybe you have experienced some unexpected Spock behavior - please share your story with the rest of us.
 Take care and see you next time!
 
-
+include::source/_parts/thank-you.adoc[]

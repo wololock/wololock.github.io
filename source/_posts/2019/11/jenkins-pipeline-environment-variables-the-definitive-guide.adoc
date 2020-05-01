@@ -14,7 +14,6 @@ cover: /images/jenkins-bg.jpg
 og_image: /images/og/jenkins-pipeline-env-variables.jpg
 eyeCatchImage: /images/og/jenkins-pipeline-env-variables.jpg
 affiliates: true
-thankyou: true
 ---
 :sectanchors:
 :toc: macro
@@ -312,3 +311,5 @@ image::/images/jenkins-sh-in-env-var.png[]
 video::KwQDxwZRZiE[youtube]
 =====
 ====
+
+include::source/_parts/thank-you.adoc[]

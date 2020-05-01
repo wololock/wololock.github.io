@@ -13,7 +13,6 @@ categories:
 cover: /images/ratpack-cookbook-bg.jpg
 og_image: /images/og/ratpack-graalvm-how-to-start.jpg
 eyeCatchImage: /images/og/ratpack-graalvm-how-to-start.jpg
-thankyou: true
 ---
 :graalvm-url: https://www.graalvm.org/
 :graalvm-version: 19.2.1
@@ -684,3 +683,5 @@ The final result makes me happy even more. It’s 06:03 AM. Time to go to sleep.
 This blog gets updated whenever new version of GraalVM or Groovy gets released. Below you can find a list of all updates.
 
 * [.mark]*2019-11-07*: Updated blog post to *GraalVM* `19.2.1` and *Ratpack* `1.7.5`
+
+include::source/_parts/thank-you.adoc[]

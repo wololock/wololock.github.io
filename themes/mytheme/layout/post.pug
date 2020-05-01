@@ -35,9 +35,6 @@ block content
                 article(role="main", class="blog-post")
                     != page.content
 
-                    if page.thankyou
-                        include partial/post-thank-you
-
                     include partial/post-footer
 
                     +post_related(popular_posts_json({ maxCount: 3, isImage: true, isExcerpt: true }, page))

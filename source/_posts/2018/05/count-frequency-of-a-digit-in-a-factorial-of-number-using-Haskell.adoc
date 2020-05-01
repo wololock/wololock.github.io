@@ -11,7 +11,6 @@ categories:
     - Programming tips
 og_image: /images/og/haskell-factorial-digits.jpg
 eyeCatchImage: /images/og/haskell-factorial-digits.jpg
-thankyou: true
 ---
 
 Some time ago I was interviewed to one of the Java-based projects and I was asked to solve this pretty interesting puzzle. The question
@@ -210,3 +209,5 @@ puzzle - comment section is all yours. See you next time!
 ++++
 <script src="https://asciinema.org/a/JYOClcsZF0AP7Cm9zmNHrtVTK.js" id="asciicast-JYOClcsZF0AP7Cm9zmNHrtVTK" async></script>
 ++++
+
+include::source/_parts/thank-you.adoc[]

@@ -14,7 +14,6 @@ cover: /images/jenkins-bg2.jpg
 og_image: /images/og/jenkins-declarative-vs-scripted-pipeline.jpg
 eyeCatchImage: /images/og/jenkins-declarative-vs-scripted-pipeline.jpg
 affiliates: true
-thankyou: true
 ---
 :toc: macro
 :jenkins-scripted-pipeline-doc: https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline
@@ -442,3 +441,5 @@ Please share your thoughts in the section down below.
 video::Ei_Nk14vruE[youtube]
 =====
 ====
+
+include::source/_parts/thank-you.adoc[]

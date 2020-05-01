@@ -14,7 +14,6 @@ categories:
 cover: /img/groovy-junit5-bg.jpg
 og_image: /images/og/groovy-junit5.jpg
 eyeCatchImage: /images/og/groovy-junit5.jpg
-thankyou: true
 ---
 
 In this short blog post I would like to explain how to avoid popular mistake when you write your
@@ -173,3 +172,5 @@ Run with --stacktrace option to get the stack trace. Run with --info or --debug 
 BUILD FAILED in 1s
 2 actionable tasks: 2 executed
 ----
+
+include::source/_parts/thank-you.adoc[]

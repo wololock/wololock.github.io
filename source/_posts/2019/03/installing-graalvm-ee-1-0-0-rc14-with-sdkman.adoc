@@ -12,7 +12,6 @@ categories:
 cover: /images/graalvm-ee-sdkman-bg.jpg
 og_image: /images/og/graalvm-ee-sdkman.jpg
 eyeCatchImage: /images/og/graalvm-ee-sdkman.jpg
-thankyou: true
 ---
 
 I love https://sdkman.io/[*_SDKMAN!_*]. It made using multiple different Java distributions in a single operating system much more
@@ -116,3 +115,5 @@ available on `sdk list java` distributions list.
 I hope you have learned something useful from this short blog post. _SDKMAN!_ is a powerful tool that makes developer's
 life easier. I use it to manage in a convenient way all my Java, Groovy, or Gradle installations. If you haven't used
 it so far, I strongly recommend giving _SDKMAN!_ a chance.
+
+include::source/_parts/thank-you.adoc[]

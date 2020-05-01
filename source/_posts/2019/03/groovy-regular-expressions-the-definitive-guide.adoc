@@ -15,7 +15,6 @@ cover: /images/groovy-regexp-jmh-bg.jpg
 og_image: /images/og/groovy-regexp-jmh.jpg
 eyeCatchImage: /images/og/groovy-regexp-jmh.jpg
 affiliates: true
-thankyou: true
 ---
 :toc: macro
 :matcher-javadoc: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html
@@ -857,3 +856,5 @@ I hope those benchmarks have shown you that there are some small differences bet
 Measuring application performance is not trivial, and in most cases, real bottlenecks exist in entirely different areas.
 I can tell you from my experience that one of the first places worth checking when tweaking application's performance is its I/O layer.
 I've seen countless times inefficient queries to the database, or threads blocked for nothing, and those are the real issues.
+
+include::source/_parts/thank-you.adoc[]

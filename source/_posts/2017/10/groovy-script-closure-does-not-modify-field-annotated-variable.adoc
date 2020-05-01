@@ -14,7 +14,6 @@ categories:
 cover: /img/post-debugger.jpg
 og_image: /images/og/groovy-field-variable.jpg
 eyeCatchImage: /images/og/groovy-field-variable.jpg
-thankyou: true
 ---
 
 Recently I have answered a few questions on Stack Overflow related to Groovy scripts and how they work in combination with 
@@ -179,8 +178,5 @@ in the beginning says in the end that:
 ----
 Current number value is 15
 ----
-   
-I hope this blog post will help you understanding what happens under the hood when using Closures inside a Groovy script.
-This post was inspired by following Stack Overflow answer: https://stackoverflow.com/questions/46579944/groovy-2-4-variable-scope-in-closure-with-field-annotation/46580819#46580819[Groovy 2.4 variable scope in closure with @Field annotation]
 
-
+include::source/_parts/thank-you.adoc[]

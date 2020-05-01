@@ -12,7 +12,6 @@ categories:
 cover: /img/hexo-github-bg.jpg
 og_image: /images/og/hexo-git-deployer.jpg
 eyeCatchImage: /images/og/hexo-git-deployer.jpg
-thankyou: true
 ---
 
 I have found https://hexo.io[Hexo] a great tool for building a blog and apply many well-known software development
@@ -108,3 +107,5 @@ image::/images/github-hexo-history.png[]
 I hope you find this post useful. It describes solution for Hexo + Travis CI + GitHub use case, but
 it can solve problems that other similar static site generators may have when running from CI server
 environment.
+
+include::source/_parts/thank-you.adoc[]

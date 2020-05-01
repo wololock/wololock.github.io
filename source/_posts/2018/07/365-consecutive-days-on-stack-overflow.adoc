@@ -12,7 +12,6 @@ tags:
 cover: /img/stack-overflow-bg.jpg
 og_image: /images/og/365-days-stack-overflow.jpg
 eyeCatchImage: /images/og/365-days-stack-overflow.jpg
-thankyou: true
 ---
 
 A few days ago I have reached 365 consecutive days on https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile[Stack Overflow].
@@ -139,3 +138,4 @@ Before this post ends - what is your Stack Overflow story? What have you learned
 Does participating in this community in 2018 make any sense to you? Please share your thoughts in the
 comments section below. I would love to hear it from you.
 
+include::source/_parts/thank-you.adoc[]

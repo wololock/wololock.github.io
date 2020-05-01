@@ -12,7 +12,6 @@ categories:
 cover: /images/github-gpg-bg.jpg
 og_image: /images/og/github-gpg.jpg
 eyeCatchImage: /images/og/github-gpg.jpg
-thankyou: true
 ---
 
 Today I've decided to improve my Github account settings a bit. I thought that it would be nice to add GPG key to it
@@ -221,6 +220,4 @@ $ gpg-agent --daemon
 If you are interested in enabling GPG signing of your Git commits, consider checking https://github.com/pstadler/keybase-gpg-github[this step-by-step guide],
 where you can find even more information about the setup process. Happy hacking!
 
-
-
-
+include::source/_parts/thank-you.adoc[]

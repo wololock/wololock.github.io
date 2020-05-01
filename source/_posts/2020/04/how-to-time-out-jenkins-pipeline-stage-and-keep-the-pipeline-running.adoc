@@ -12,7 +12,6 @@ tags:
     - devops
 categories:
     - Jenkins Pipeline Cookbook
-thankyou: true
 cover: /images/jenkins-bg2.jpg
 og_image: /images/og/pipeline-timeout-stage.jpg
 eyeCatchImage: /images/og/pipeline-timeout-stage.jpg
@@ -176,6 +175,8 @@ The `A` stage is marked as `SUCCESS` which might be confusing.
 It hides the information about the timeout, so we need to click on the stage and check if there was a timeout or not every time we run the pipeline.
 There should be a better way to handle it.
 
+include::source/_parts/jenkins-pipeline-offer.adoc[]
+
 == Using `catchError` together with `try-catch`
 
 Luckily, there is a better solution.
@@ -252,4 +253,4 @@ Now it works just as we expect.
 The `A` stage gets executed, and it is acceptable to timeout.
 The pipeline continues in such a case, and its final result depends on the remaining stages. icon:thumbs-o-up[]
 
-include::source/_parts/jenkins-pipeline-offer.adoc[]
+include::source/_parts/thank-you.adoc[]

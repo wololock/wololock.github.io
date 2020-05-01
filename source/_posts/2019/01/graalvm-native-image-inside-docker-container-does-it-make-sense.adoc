@@ -14,7 +14,6 @@ categories:
 cover: /images/graalvm-docker-groovy.jpg
 og_image: /images/og/graalvm-docker-groovy.jpg
 eyeCatchImage: /images/og/graalvm-docker-groovy.jpg
-thankyou: true
 ---
 :graalvm-dockerfile-url: https://github.com/oracle/docker-images/blob/master/GraalVM/CE/19/Dockerfile
 :groovy-version: 2.5.8
@@ -184,3 +183,5 @@ and much lower memory footprint. However, we always have to be careful when it c
 Java program inside the container - things like available resources (CPU, memory), secure access or
 networking may cause some issues. You just have to consider all pros and cons when choosing one
 option over another.
+
+include::source/_parts/thank-you.adoc[]

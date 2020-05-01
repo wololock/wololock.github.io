@@ -17,7 +17,6 @@ categories:
 cover: /images/jenkins-bg.jpg
 og_image: /images/og/jenkins-pipeline-docker-sdkman.jpg
 eyeCatchImage: /images/og/jenkins-pipeline-docker-sdkman.jpg
-thankyou: true
 ---
 :corretto-url: https://aws.amazon.com/corretto/
 :arg-doc-url: https://docs.docker.com/engine/reference/builder/#arg
@@ -471,3 +470,5 @@ In this example, we have built four different docker images from the same Docker
 much more straightforward - when something requires fixing, we change a single Dockerfile and rebuild all tags.
 
 include::source/_parts/jenkins-pipeline-offer.adoc[]
+
+include::source/_parts/thank-you.adoc[]

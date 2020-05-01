@@ -14,7 +14,6 @@ tags:
 cover: /images/advent-of-code-cover.jpg
 og_image: /images/og/advent-of-code-2018.jpg
 eyeCatchImage: /images/og/advent-of-code-2018.jpg
-thankyou: true
 ---
 
 The https://adventofcode.com/2018[4th edition of Advent Of Code] just started!
@@ -54,3 +53,5 @@ I want to encourage you to give the Advent Of Code 2018 a chance if you haven't 
 It's fun to solve those non-trivial puzzles, and it does not require allocating a huge amount of your time.
 You can start anytime you want - it's not about competing with others, it's a great learning experience instead.
 Pick your strategy (learning a new programming language or sharpening the one you already know) and have fun!
+
+include::source/_parts/thank-you.adoc[]

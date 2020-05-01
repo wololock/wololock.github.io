@@ -10,7 +10,6 @@ categories:
     - Programming tips
 og_image: /images/og/groovy-script-how-to-name.jpg
 eyeCatchImage: /images/og/groovy-script-how-to-name.jpg
-thankyou: true
 ---
 
 Some time ago I have found a very interesting question on Stack Overflow about https://stackoverflow.com/questions/51238868/forbidden-characters-in-groovy-script-filenames[forbidden characters
@@ -184,3 +183,5 @@ new public()
 ----
 
 With great power comes great responsibility.
+
+include::source/_parts/thank-you.adoc[]

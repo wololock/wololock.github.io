@@ -14,7 +14,6 @@ categories:
 cover: /images/groovy-cookbook.jpg
 og_image: /images/og/groovy-tail-recursive.jpg
 eyeCatchImage: /images/og/groovy-tail-recursive.jpg
-thankyou: true
 ---
 
 Most of the object-oriented programmers prefer constructing algorithms using imperative style over using recursion.
@@ -338,3 +337,5 @@ and code readability.
 That's it for today. I hope you have learned something useful from this article. If there is anything
 you would like to learn more about Groovy and its useful features, please let me know in the comments
 section below. Hope to see you next time!
+
+include::source/_parts/thank-you.adoc[]

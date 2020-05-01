@@ -15,7 +15,6 @@ categories:
 cover: /images/groovy-dynamic-maps.jpg
 og_image: /images/og/groovy-dynamic-maps.jpg
 eyeCatchImage: /images/og/groovy-dynamic-maps.jpg
-thankyou: true
 ---
 :type-erasure-url: https://docs.oracle.com/javase/tutorial/java/generics/erasure.html
 
@@ -275,3 +274,4 @@ SomeClass.groovy: 12: [Static type checking] - Cannot assign value of type java.
 Alternatively, if you don't use any of the Groovy's dynamic features, you can enable static compilation with `@groovy.transform.CompileStatic` annotation.
 It enables static type checking and produces the bytecode that is much closer to what Java compiler produces.
 
+include::source/_parts/thank-you.adoc[]

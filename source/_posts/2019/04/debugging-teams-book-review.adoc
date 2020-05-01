@@ -16,7 +16,6 @@ categories:
 cover: /images/debugging-teams-bg.jpg
 og_image: /images/og/debugging-teams2.jpg
 eyeCatchImage: /images/og/debugging-teams2.jpg
-thankyou: true
 ---
 
 _"Geniuses still make mistakes and having brilliant ideas and elite programming skills don't guarantee that your
@@ -119,5 +118,4 @@ information, presented in a very easy-to-consume and anecdotal style. It confirm
 You can read "Debugging Teams" on https://www.oreilly.com/library/view/debugging-teams/9781491932049/[Safari Online platform].
 You can also download the PDF format for free https://conferences.oreilly.com/fluent/fl-ca/public/content/debugging-teams[directly from O'Reilly website].
 
-
-
+include::source/_parts/thank-you.adoc[]

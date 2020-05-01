@@ -8,3 +8,5 @@ tags:
 ++++
 <!-- more -->
 ++++
+
+include::source/_parts/thank-you.adoc[]

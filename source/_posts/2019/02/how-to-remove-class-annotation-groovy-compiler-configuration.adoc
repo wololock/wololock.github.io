@@ -13,7 +13,6 @@ categories:
 cover: /images/groovy-cookbook.jpg
 og_image: /images/og/groovy-compiler-configuration.jpg
 eyeCatchImage: /images/og/groovy-compiler-configuration.jpg
-thankyou: true
 ---
 
 One of the most interesting Groovy features is its ability to configure advanced compilerfootnote:[http://docs.groovy-lang.org/latest/html/documentation/tools-groovyc.html] options using DSL script.
@@ -263,3 +262,5 @@ See you next time!
 <iframe width="560" height="315" src="https://www.youtube.com/embed/7TJwpuNsDS8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 ++++
+
+include::source/_parts/thank-you.adoc[]

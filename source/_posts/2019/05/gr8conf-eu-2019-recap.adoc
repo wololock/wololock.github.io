@@ -15,7 +15,6 @@ categories:
 cover: /images/gr8conf.jpg
 og_image: /images/og/gr8conf.jpg
 eyeCatchImage: /images/og/gr8conf.jpg
-thankyou: true
 ---
 :gr8conf-2019: https://2019.gr8conf.eu/
 :gr8conf-about: https://gr8conf.eu/about
@@ -190,3 +189,5 @@ See you all next year at the latest!
 
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 ++++
+
+include::source/_parts/thank-you.adoc[]

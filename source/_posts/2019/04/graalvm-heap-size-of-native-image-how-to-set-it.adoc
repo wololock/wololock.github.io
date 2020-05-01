@@ -12,7 +12,6 @@ categories:
 cover: /images/graalvm-heap-size-bg.jpg
 og_image: /images/og/graalvm-heap-size.jpg
 eyeCatchImage: /images/og/graalvm-heap-size.jpg
-thankyou: true
 ---
 
 In this short blog post, I would like to show you how to set a heap size of the application executed from the
@@ -220,3 +219,4 @@ than *256 MB*. Otherwise, the application pretty quickly started crashing with `
 I hope you have learned something useful from this blog post. Please let me know in the comment section
 below what is your experience with the GraalVM. Take care and see you next time!
 
+include::source/_parts/thank-you.adoc[]

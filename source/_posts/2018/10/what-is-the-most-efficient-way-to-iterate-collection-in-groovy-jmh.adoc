@@ -14,7 +14,6 @@ cover: /img/index-header2.jpg
 og_image: /images/og/groovy-jmh-benchmark.jpg
 eyeCatchImage: /images/og/groovy-jmh-benchmark.jpg
 affiliate: true
-thankyou: true
 ---
 
 I guess you may heard about Groovy's `Collection.each(Closure cl)` method - it was introduced 15 years ago footnote:[The first commit in the repository tree that mentions `DefaultGroovyMethods.each(Object self, Closure cl)`
@@ -350,3 +349,5 @@ I hope you have enjoyed reading this blog post. Feel free to leave a comment in 
 hear your opinion. Until the next time!
 
 include::source/_parts/groovy-in-action.adoc[]
+
+include::source/_parts/thank-you.adoc[]

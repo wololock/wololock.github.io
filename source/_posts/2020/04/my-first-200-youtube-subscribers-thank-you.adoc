@@ -12,7 +12,6 @@ categories:
 cover: /images/youtube-bg.jpg
 og_image: /images/og/youtube.jpg
 eyeCatchImage: /images/og/youtube.jpg
-thankyou: true
 ---
 :youtube-url: https://e.printstacktrace.blog/youtube?utm_source=post
 
@@ -89,10 +88,4 @@ So, consider {youtube-url}[subscribing] if you haven't already.
 And&nbsp;remember - any kind of engagement (likes, comments, subscriptions) helps.
 I want to thank you for that!
 
-
-
-
-
-
-
-
+include::source/_parts/thank-you.adoc[]

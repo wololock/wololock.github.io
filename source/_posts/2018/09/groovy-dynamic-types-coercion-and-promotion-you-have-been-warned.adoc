@@ -10,7 +10,6 @@ categories:
     - Programming tips
 og_image: /images/og/groovy-dynamic-types.jpg
 eyeCatchImage: /images/og/groovy-dynamic-types.jpg
-thankyou: true
 ---
 
 http://groovy-lang.org/[Groovy] is a very powerful language on a JVM platform and with this great power
@@ -234,5 +233,4 @@ may cause you a lot of problems when you are not careful enough. I always tend t
 writing Groovy code - I don't overuse dynamic type coercions and only use them when they are very straightforward and
 don't add any level of complication to my code.
 
-How does it look like on your side? What are the use cases that work for you if it comes to dynamic type coercion? Please
-share your story in the comments section below.
+include::source/_parts/thank-you.adoc[]

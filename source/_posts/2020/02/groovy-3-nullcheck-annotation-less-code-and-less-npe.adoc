@@ -11,7 +11,6 @@ categories:
 cover: /images/groovy-cookbook.jpg
 og_image: /images/og/groovy-null-check.jpg
 eyeCatchImage: /images/og/groovy-null-check.jpg
-thankyou: true
 ---
 
 Groovy 3 helps you write less, but more secure code.
@@ -147,3 +146,5 @@ In this case, we will get `NullPointerException` thrown by `str.toUpperCase()`, 
 
 But I'm optimistic, and I think this limitation may get solved in one of the future Groovy updates.
 I definitely add `@NullCheck` to the `@CompileStatic` annotations arsenal I use on a daily basis. icon:smile-o[]
+
+include::source/_parts/thank-you.adoc[]

@@ -14,7 +14,6 @@ categories:
 cover: /images/ratpack-cookbook-bg.jpg
 og_image: /images/og/ratpack-session-module.jpg
 eyeCatchImage: /images/og/ratpack-session-module.jpg
-thankyou: true
 ---
 
 Unit testing Ratpack handlers has many benefits. In the previous post we have learned how to +++{% post_link ratpack-mocking-Session-object-in-GroovyRequestFixture-test mock Session object %}+++
@@ -383,3 +382,5 @@ class RetrieveFooValueFromSessionSpec extends Specification {
 This final specification passes as we expect:
 
 +++{% img img-thumbnail /images/ratpack-session-test-passed.png  %}+++
+
+include::source/_parts/thank-you.adoc[]

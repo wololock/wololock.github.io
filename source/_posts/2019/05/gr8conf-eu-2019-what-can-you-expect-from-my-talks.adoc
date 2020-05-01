@@ -14,7 +14,6 @@ categories:
 cover: /images/gr8conf-video-bg.jpg
 og_image: /images/og/gr8conf-video.jpg
 eyeCatchImage: /images/og/gr8conf-video.jpg
-thankyou: true
 ---
 :gr8conf-url: https://gr8conf.eu
 
@@ -53,3 +52,5 @@ Tuesday, May 28th, 13:15-13:40, room `AUD-2`
 Tuesday, May 28th, 14:05-14:55, room `AUD-1`
 
 See you in Copenhagen! icon:smile-o[]
+
+include::source/_parts/thank-you.adoc[]

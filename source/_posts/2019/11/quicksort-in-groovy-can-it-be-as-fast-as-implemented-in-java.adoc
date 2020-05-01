@@ -13,7 +13,6 @@ categories:
 og_image: /images/og/groovy-quicksort.jpg
 eyeCatchImage: /images/og/groovy-quicksort.jpg
 affiliates: true
-thankyou: true
 ---
 :cracking-coding-interview-url: https://amzn.to/2vZIxC3
 
@@ -641,3 +640,5 @@ What do you think about it?
 Do you see an area for improvements?
 Would you implement a `quicksort` algorithm differently?
 Please share your thoughts in the comments section down below.
+
+include::source/_parts/thank-you.adoc[]

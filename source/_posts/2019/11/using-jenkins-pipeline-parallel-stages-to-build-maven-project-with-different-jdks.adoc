@@ -15,7 +15,6 @@ categories:
 cover: /images/jenkins-bg2.jpg
 og_image: /images/og/jenkins-pipeline-maven-parallel.jpg
 eyeCatchImage: /images/og/jenkins-pipeline-maven-parallel.jpg
-thankyou: true
 ---
 :last-article: pass:[{% post_link building-java-and-maven-docker-images-using-parallelized-jenkins-pipeline-and-sdkman "the latest blog posts" %}]
 :repository-url: https://github.com/wololock/simple-java-maven-app
@@ -176,3 +175,5 @@ image::/images/jenkins-pipeline-maven-parallel.png[]
 --
 
 include::source/_parts/jenkins-pipeline-offer.adoc[]
+
+include::source/_parts/thank-you.adoc[]

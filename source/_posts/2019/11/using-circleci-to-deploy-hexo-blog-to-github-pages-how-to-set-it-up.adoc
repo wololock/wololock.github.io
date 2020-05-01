@@ -15,7 +15,6 @@ categories:
 cover: /images/circleci-bg.jpg
 og_image: /images/og/circleci-hexo-githubpages.jpg
 eyeCatchImage: /images/og/circleci-hexo-githubpages.jpg
-thankyou: true
 ---
 :travisci-url: https://travis-ci.org/wololock/wololock.github.io/builds
 :circleci: https://circleci.com/
@@ -276,5 +275,4 @@ We can commit changes and add our GitHub repository as a project in the CircleCI
 image::/images/circleci-workflow.jpg[]
 --
 
-And that's it!
-You are ready to deploy the Hexo blog through CircleCI continuous integration server.
+include::source/_parts/thank-you.adoc[]

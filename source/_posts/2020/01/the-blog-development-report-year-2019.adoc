@@ -13,9 +13,8 @@ categories:
 cover: /images/2019-summary-bg.jpg
 og_image: /images/og/2019-summary.jpg
 eyeCatchImage: /images/og/2019-summary.jpg
-thankyou: true
 ---
-:youtube-url: https://www.youtube.com/channel/UCEf8e5YAYnowq-2deW4tpsw/featured
+:youtube-url: https://www.youtube.com/c/eprintstacktrace
 
 2019 was a fantastic year for my blog.
 I didn't manage to write articles every month, but it didn't stop the growth.
@@ -159,3 +158,5 @@ Define your own rules and live according to them, and everything will go smoothl
 Take care, and see you in the next blog post!
 
 PS: If there is something that surprised you most regarding the 2019 performance of this blog, please let me know in the comments section down below.
+
+include::source/_parts/thank-you.adoc[]

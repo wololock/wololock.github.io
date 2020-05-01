@@ -12,7 +12,6 @@ categories:
     - Programming tips
 og_image: /images/og/groovy-static-property-missing.jpg
 eyeCatchImage: /images/og/groovy-static-property-missing.jpg
-thankyou: true
 ---
 
 Some time ago I have found another interesting https://stackoverflow.com/q/51921068/2194470[Groovy related question on Stack Overflow]. This time someone
@@ -301,3 +300,5 @@ assert Person.findByNameAndAge('John', 21) == null //<1>
 Personally, I don't use much runtime metaprogramming in my Groovy code. Mostly because it makes reasoning about the
 program at least a few times harder. But if you want to start playing around and write some DSL with Groovy
 then you might find runtime metaprogramming an interesting starting point. Happy hacking!
+
+include::source/_parts/thank-you.adoc[]

@@ -39,3 +39,36 @@ function paginated_url(path, pagedir, page) {
 
     return basePath;
 }
+
+hexo.extend.tag.register("share_link", function(args){
+
+    const channel = args.shift();
+
+    const { htmlTag } = require('hexo-util');
+
+    if (channel == "facebook") {
+        return  htmlTag('a', {
+            href: 'https://www.facebook.com/sharer/sharer.php?u=' + this.permalink + '&t=' + this.title,
+            title: "Facebook",
+            target: "_blank",
+            rel: "noopener"
+        }, "Facebook");
+    }
+    if (channel == "twitter") {
+        return  htmlTag('a', {
+            href: 'https://twitter.com/intent/tweet?text="' + this.title + '" ' + this.permalink + ' via @wololock',
+            title: "Twitter",
+            target: "_blank",
+            rel: "noopener"
+        }, "Twitter");
+    }
+    if (channel == "linkedin") {
+        return  htmlTag('a', {
+            href: 'https://www.linkedin.com/sharing/share-offsite/?url=' + this.permalink + '&title=' + this.title,
+            title: "LinkedIn",
+            target: "_blank",
+            rel: "noopener"
+        }, "LinkedIn");
+    }
+    return ""
+});

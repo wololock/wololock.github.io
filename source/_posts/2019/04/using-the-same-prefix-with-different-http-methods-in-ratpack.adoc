@@ -14,7 +14,6 @@ categories:
 cover: /images/ratpack-cookbook-bg.jpg
 og_image: /images/og/ratpack-prefix-http-methods.jpg
 eyeCatchImage: /images/og/ratpack-prefix-http-methods.jpg
-thankyou: true
 ---
 
 https://ratpack.io/[Ratpack] is an excellent tool for building RESTfulfootnote:[https://en.wikipedia.org/wiki/Representational_state_transfer]
@@ -203,3 +202,5 @@ Cowabunga! It works like a charm.
 I hope you have learned something new from this blog post. The reason I wrote it is that I couldn't find any
 example in the documentation that covered an example of combining `prefix` and `byMethod` methods.
 However, it is a quite common use case, and people get confused by it.
+
+include::source/_parts/thank-you.adoc[]

@@ -14,7 +14,6 @@ cover: /images/deep-work-book-review-img2.jpg?v=2
 og_image: /images/og/deep-work-book-review.jpg?v=2
 eyeCatchImage: /images/og/deep-work-book-review.jpg?v=2
 affiliates: true
-thankyou: true
 ---
 :book-url: https://amzn.to/2JgBOGz
 :cal-newport-url: http://calnewport.com/about/
@@ -106,3 +105,5 @@ image:/images/flags/us.png[United States, title="United States"] Amazon Audible:
 ___
 [.small]#NOTE: Above links are affiliate links. If you decide to buy a book using my affiliate link, I will get a small percentage from your purchase. The&nbsp;affiliate link does not affect the final price of the product. Using it costs you nothing.#
 ====
+
+include::source/_parts/thank-you.adoc[]

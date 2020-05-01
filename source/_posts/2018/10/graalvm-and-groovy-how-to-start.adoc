@@ -12,7 +12,6 @@ categories:
 cover: /images/graalvm-groovy-revisited.jpg
 og_image: /images/og/graalvm-groovy-how-to-start2.jpg
 eyeCatchImage: /images/og/graalvm-groovy-how-to-start2.jpg
-thankyou: true
 ---
 :original-post-url: https://github.com/wololock/wololock.github.io/blob/1f5b876860d0f9d6eaa53a891e19b939013ea9f0/source/_posts/2018/10/graalvm-and-groovy-how-to-start.adoc
 :footnote-static-compilation: As explained by Condrut Stancu in the following Github issue comment https://github.com/oracle/graal/issues/346#issuecomment-383015796
@@ -703,3 +702,5 @@ This blog gets updated whenever new version of GraalVM or Groovy gets released. 
 * [.mark]*2019-11-22*: Added information about problems with *GraalVM* `19.3.0` native image compiler.
 * [.mark]*2019-11-07*: Updated blog post to *GraalVM* `19.2.1` and *Groovy* `2.5.8`.
 * [.mark]*2019-05-11*: Updated blog post to *GraalVM* `19.0.0`.
+
+include::source/_parts/thank-you.adoc[]

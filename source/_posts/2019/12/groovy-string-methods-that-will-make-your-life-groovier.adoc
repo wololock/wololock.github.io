@@ -10,7 +10,6 @@ categories:
 cover: /images/groovy-cookbook.jpg
 og_image: /images/og/groovy-string-methods.jpg
 eyeCatchImage: /images/og/groovy-string-methods.jpg
-thankyou: true
 ---
 :toc: macro
 :groovy-tr-url: http://docs.groovy-lang.org/latest/html/api/org/codehaus/groovy/runtime/StringGroovyMethods.html#tr(java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence)
@@ -201,6 +200,5 @@ Those small things make your life [.mark]#Groovier#! icon:smile-o[]
 This ranking only scratched the surface of useful Groovy string methods.
 I hope you have learned something new from this blog post, but I also encourage you to share feedback.
 What is your favorite string related method, that makes your life Groovy? icon:smile-o[]
-Let's create the Readers Choice Ranking containing other useful methods that were missing in today's blog post.
-I can't wait to see your suggestions!
 
+include::source/_parts/thank-you.adoc[]

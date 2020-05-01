@@ -13,7 +13,6 @@ categories:
     - Groovy Cookbook
 og_image: /images/og/groovy-trampoline-closure.jpg
 eyeCatchImage: /images/og/groovy-trampoline-closure.jpg
-thankyou: true
 ---
 :stackoverflow-url: https://stackoverflow.com/q/56578937/2194470
 :groovy-trampoline-docs: http://groovy-lang.org/closures.html#_trampoline
@@ -367,3 +366,5 @@ The cost of using `TrampolineClosure` in the statically compiled Groovy code bec
 However, in this case you can also consider refactoring to the tail recursive method call for the best performance.
 But remember what Donald Knuth said: _"Premature optimization is the root of all evil."_ footnote:[Donald Knuth, "Computer Programming as an Art (1974)", p. 671] icon:smile-o[]
 Use whatever programming construction that works for you (and your team) best, and solve performance problems when they start occurring.
+
+include::source/_parts/thank-you.adoc[]
