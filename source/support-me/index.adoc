@@ -46,7 +46,7 @@ image::/images/github-sponsor.jpg[]
 --
 
 If you find my work valuable, and you want to [.mark]*support it*, consider becoming a *sponsor* / *patron* / *supporter* of the e.printstacktrace.blog.
-I strongly believe that *high-quality* and *ad-free* content can attract people that can appreciate such an approach.
+I strongly believe that *high-quality* and *ad-free* content can attract people that appreciate such an approach.
 If you can afford a small monthly (or even one-time) donation, consider supporting me through one of the following platforms:
 
 [.nobullets]
@@ -56,7 +56,8 @@ If you can afford a small monthly (or even one-time) donation, consider supporti
 === [.circle-orange]#2# Check out books and other things I do recommend (affiliate links)
 
 I enjoy buying and reading {books}["books", role="ga-track"].
-If you do the same, I have created {kitco}["a few curated collections", role="ga-track"] of books (and other things) I can recommend. Maybe you will find something interesting for yourself.
+If you do the same, I have created {kitco}["a few curated collections", role="ga-track"] of books (and other things) I can recommend.
+Maybe you will find something interesting for yourself.
 Those lists contain affiliate links - *if you click on any of them and subsequently make a purchase, I&nbsp;will earn a small commission*.
 Using an affiliate link doesn't affect the final price - there is no additional cost to you.
 
@@ -70,7 +71,7 @@ I can offer you either a quick solution-oriented session or a long-term mentorin
 
 Also, if you are a *team leader* or an *engineering manager*, I can offer you (and your team) help through online training, workshop, or consulting.
 
-My leading areas are:
+My top competences are:
 https://e.printstacktrace.blog/t/groovy[`groovy`]
 https://e.printstacktrace.blog/t/jenkins-pipeline[`jenkins-pipeline`]
 https://e.printstacktrace.blog/t/continuous-integration[`continuous-integration`]
