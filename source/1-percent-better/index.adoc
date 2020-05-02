@@ -5,6 +5,13 @@ layout: clean
 ---
 :check: icon:check-square-o[role="color-green"]
 
+== Saturday, May 2nd, 2020
+
+[.nobullets]
+* {check} I learned multimethods in Clojure.
+* {check} I learned about Ring - Clojure library for building lightweight HTTP servers.
+
+
 == Friday, May 1st, 2020
 
 [.nobullets]
