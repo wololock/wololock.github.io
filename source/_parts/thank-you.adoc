@@ -4,7 +4,7 @@
 == Thank you!
 
 If you read up to this point - leave me a comment below, so I can *thank you* in person for such an engagement.
-You can also share this blog post on icon:twitter[role="color-twitter"] pass:[{% share_link "twitter" %}], icon:facebook-square[role="color-facebook"] pass:[{% share_link "facebook" %}], or icon:linkedin-square[role="color-linkedin"] pass:[{% share_link "linkedin" %}] if you think other people can benefit from reading it.
+You can also share this blog post on icon:twitter[role="color-twitter"] pass:[{% share_post "twitter" %}], icon:facebook-square[role="color-facebook"] pass:[{% share_post "facebook" %}], or icon:linkedin-square[role="color-linkedin"] pass:[{% share_post "linkedin" %}] if you think other people can benefit from reading it.
 Thanks in advance!
 
 PS: Creating high-quality content takes a lot of time and effort.
