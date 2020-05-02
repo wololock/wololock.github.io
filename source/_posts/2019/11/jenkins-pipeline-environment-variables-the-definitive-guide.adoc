@@ -302,6 +302,32 @@ pipeline {
 image::/images/jenkins-sh-in-env-var.png[]
 --
 
+Wrapping `sh` step with the Groovy string is only needed when you capture command's output in the `environment` block of the declarative pipeline.
+If you don't do it that way, the pipeline syntax validation fails instantly, saying that it expects string value on the right side of the assignment.
+When you capture the output inside the `script` block, however, you don't have to call `sh` from the inside of the Groovy string.
+The following code will work just fine in this case.
+
+.Jenkinsfile
+[source,groovy]
+----
+pipeline {
+    agent any
+
+    stages {
+        stage("Env Variables") {
+            steps {
+                script {
+                    env.LS = sh(script:'ls -lah', returnStdout: true).trim()
+                    echo "LS = ${env.LS}"
+                    // or if you access env variable in the shell command
+                    sh 'echo $LS'
+                }
+            }
+        }
+    }
+}
+----
+
 {nbsp} +
 
 [.row]
