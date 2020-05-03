@@ -5,6 +5,11 @@ layout: clean
 ---
 :check: icon:check-square-o[role="color-green"]
 
+== Sunday, May 3nd, 2020
+
+[.nobullets]
+* {check} I learned about cool-retro-term and crafted an idea for a future video series.
+
 == Saturday, May 2nd, 2020
 
 [.nobullets]
