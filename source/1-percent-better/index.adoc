@@ -5,7 +5,13 @@ layout: clean
 ---
 :check: icon:check-square-o[role="color-green"]
 
-== Sunday, May 3nd, 2020
+== Monday, May 4th, 2020
+
+[.nobullets]
+* {check} I learned how to set up Bitbucket Server 7.1 web hooks to Jenkins server (solved problem after Bitbucket upgrade.)
+* {check} I explored early Groovy syntax (pre 1.0) and learned that for-each loop syntax was introduced in Java 1.5.
+
+== Sunday, May 3rd, 2020
 
 [.nobullets]
 * {check} I learned about cool-retro-term and crafted an idea for a future video series.
