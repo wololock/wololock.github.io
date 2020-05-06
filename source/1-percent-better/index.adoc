@@ -5,6 +5,18 @@ layout: clean
 ---
 :check: icon:check-square-o[role="color-green"]
 
+== Wednesday, May 6th, 2020
+
+[.nobullets]
+* {check} I learned case pattern in Pug.
+* {check} I set up Git SCM + Bitbucket integration.
+
+== Tuesday, May 5th, 2020
+
+[.nobullets]
+* {check} I learned about `docker build --ssh default` - a way to forward ssh-agent to the docker image build process
+* {check} I experimented with Twitter Bootstrap 4, my first frontend CSS experiments after a long time.
+
 == Monday, May 4th, 2020
 
 [.nobullets]
