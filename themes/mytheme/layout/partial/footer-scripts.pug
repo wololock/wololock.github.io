@@ -1,10 +1,10 @@
-script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js")
-script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
-script(id="cookiebanner", src="//cdnjs.cloudflare.com/ajax/libs/cookie-banner/1.2.2/cookiebanner.min.js", data-moreinfo="/privacy-policy/", data-message="This blog uses cookies to enhance your experience. By continuing to visit it you agree to its use of cookies.", data-link="#ffad33", data-font-family="Lora,serif", data-font-size="1.6rem", data-bg="#444")
-script(src=url_for("/js/main.js?v=" + config.version.js))
+script(async src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+script(async src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+script(async id="cookiebanner", src="//cdnjs.cloudflare.com/ajax/libs/cookie-banner/1.2.2/cookiebanner.min.js", data-moreinfo="/privacy-policy/", data-message="This blog uses cookies to enhance your experience. By continuing to visit it you agree to its use of cookies.", data-link="#ffad33", data-font-family="Lora,serif", data-font-size="1.6rem", data-bg="#444")
+script(async src=url_for("/js/main.js?v=" + config.version.js))
 
 if theme.highlight.enable
-    script(src=url_for("/js/highlight.pack.js?v=9.18.1"))
+    script(async src=url_for("/js/highlight.pack.js?v=9.18.1"))
     script hljs.initHighlightingOnLoad();
 
 include google_analytics

@@ -45,8 +45,8 @@ You can open `${YOUR_JENKINS_HOST}/env-vars.html` page on your Jenkins master se
 [.text-center]
 --
 [.img-responsive.img-thumbnail]
-[link=/images/jenkins-env-vars.png]
-image::/images/jenkins-env-vars.png[]
+[link=/images/jenkins-env-vars.jpg]
+image::/images/jenkins-env-vars.jpg[]
 --
 
 === Using shell command
@@ -74,8 +74,8 @@ NOTE: It might be useful to use `printenv | sort` command combination to get a s
 [.text-center]
 --
 [.img-responsive.img-thumbnail]
-[link=/images/jenkins-printenv.png]
-image::/images/jenkins-printenv.png[]
+[link=/images/jenkins-printenv.jpg]
+image::/images/jenkins-printenv.jpg[]
 --
 
 == Reading environment variables
