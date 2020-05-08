@@ -24,14 +24,19 @@ link(rel="dns-prefetch", href="//c.disquscdn.com")
 | !{ autoCanonical(config, page) }
 link(rel="alternate", type="application/rss+xml", title=config.title, href=url_for("/atom.xml"))
 
-link(rel="stylesheet", href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
-link(rel="stylesheet", href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+link(rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
+link(rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+noscript
+    link(rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
+    link(rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
 
 if page.highlightjs
-    link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/androidstudio.min.css")
+    link(rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/androidstudio.min.css")
 
 link(rel="stylesheet", href=url_for("/css/main.css?v=" + config.version.css))
-link(rel="stylesheet", href=url_for("/css/conum.css?v=" + config.version.css))
+link(rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href=url_for("/css/conum.css?v=" + config.version.css))
+noscript
+    link(rel="stylesheet", href=url_for("/css/conum.css?v=" + config.version.css))
 
 if theme.googlefonts
     each font in theme.googlefonts
