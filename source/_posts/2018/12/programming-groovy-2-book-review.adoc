@@ -104,8 +104,9 @@ image::/images/programming-groovy-img3.jpg[]
 --
 
 [.get-the-book]
-== Get the book
 ====
++++<h2>Get the book+++
+
 *Paperback*
 
 image:/images/flags/us.png[United States, title="United States"] Amazon.com: {amazon-us}["Programming Groovy 2: Dynamic Productivity for the Java Developer", role="ga-track"]

@@ -157,8 +157,9 @@ you find the answers you are looking for. Or maybe you have also read the {book-
 book and you have a different opinion? Please share it with us. I'd love to hear it from you.
 
 [.get-the-book]
-== Get the book
 ====
++++<h2>Get the book+++
+
 *Paperback*
 
 image:/images/flags/us.png[United States, title="United States"] Amazon.com: {amazon-us}["Pragmatic Thinking and Learning: Refactor Your Wetware", role="ga-track"]
