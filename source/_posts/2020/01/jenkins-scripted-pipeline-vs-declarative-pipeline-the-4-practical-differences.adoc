@@ -434,13 +434,4 @@ What is your choice?
 Do you prefer the declarative pipeline, or the scripted one?
 Please share your thoughts in the section down below.
 
-[.row]
-====
-[.col-md-10.col-md-offset-1]
-=====
-[.video-container]
-video::Ei_Nk14vruE[youtube]
-=====
-====
-
 include::source/_parts/thank-you.adoc[]

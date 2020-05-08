@@ -21,6 +21,7 @@
     "hexo-generator-index": "^1.0.0",
     "hexo-generator-seo-friendly-sitemap": "^0.0.25",
     "hexo-generator-tag": "^1.0.0",
+    "hexo-lazyload-image-better": "^1.1.3",
     "hexo-reading-time": "^1.0.3",
     "hexo-related-popular-posts": "^4.0.0",
     "hexo-renderer-pug": "^1.0.0",

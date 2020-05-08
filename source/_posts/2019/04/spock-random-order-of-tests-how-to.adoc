@@ -218,8 +218,8 @@ We are ready to run the test now. Let's see if the execution order has changed.
 [.text-center]
 --
 [.img-responsive.img-thumbnail]
-[link=/images/spock-random-tests-02.jpg?v=1]
-image::/images/spock-random-tests-02.jpg?v=1[]
+[link=/images/spock-random-tests-02.jpg]
+image::/images/spock-random-tests-02.jpg[]
 --
 
 *It worked!* We can see that in the above example the execution order was: Test 4, Test 3, Test 5, Test&nbsp;1, and Test 2.

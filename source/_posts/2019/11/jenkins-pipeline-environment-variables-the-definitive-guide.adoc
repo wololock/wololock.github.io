@@ -329,15 +329,4 @@ pipeline {
 }
 ----
 
-{nbsp} +
-
-[.row]
-====
-[.col-md-10.col-md-offset-1]
-=====
-[.video-container]
-video::KwQDxwZRZiE[youtube]
-=====
-====
-
 include::source/_parts/thank-you.adoc[]

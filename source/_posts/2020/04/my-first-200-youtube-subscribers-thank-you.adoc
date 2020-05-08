@@ -40,8 +40,8 @@ I&nbsp;didn't plan to write a blog post about it, but then I thought that my fel
 [.text-center]
 --
 [.img-responsive.img-thumbnail]
-[link=/images/yt-200-subs.png?v=2]
-image::/images/yt-200-subs.png?v=2[]
+[link=/images/yt-200-subs.png]
+image::/images/yt-200-subs.png[]
 --
 
 I've seen many times people thanking the follower who made their 1k, 10k, or any other milestone.

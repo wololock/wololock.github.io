@@ -153,3 +153,10 @@ alias:
 share_post:
   twitter:
     handle: wololock
+
+lazyload:
+  enable: true
+  imgContainer: true
+  post:
+    only: true
+    excludeEncrypt: true
