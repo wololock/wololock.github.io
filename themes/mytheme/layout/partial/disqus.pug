@@ -1,14 +1,33 @@
 .disqus-comments
   .comments
       #disqus_thread
+          #disqus_empty(style="display:none") Empty
 
 script.
-    var url_parts = window.location.href.split("?");
-    var disqus_url = url_parts[0];
-    (function () {
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = "//#{theme.comment.id}.disqus.com/embed.js";
-        (document.head || d.body ).appendChild(dsq);
-    })();
+    function load_disqus( disqus_shortname ) {
+        var is_disqus_empty = document.getElementById('disqus_empty');
+
+        if (document.contains(is_disqus_empty)) {
+            var disqus_target = document.getElementById('disqus_thread'),
+            disqus_embed      = document.createElement('script'),
+            disqus_hook       = (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]);
+
+            if (disqus_target && is_disqus_empty) {
+                is_disqus_empty.remove();
+
+                disqus_embed.type = 'text/javascript';
+                disqus_embed.async = true;
+                disqus_embed.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                disqus_hook.appendChild(disqus_embed);
+            }
+        }
+    }
+
+    window.addEventListener('scroll', function(e) {
+        var currentScroll = document.scrollingElement.scrollTop;
+        var disqus_target = document.getElementById('disqus_thread');
+
+        if (currentScroll > disqus_target.getBoundingClientRect().top + 350) {
+            load_disqus('#{theme.comment.id}');
+        }
+    }, false);
