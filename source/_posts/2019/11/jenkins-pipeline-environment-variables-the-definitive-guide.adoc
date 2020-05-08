@@ -14,6 +14,7 @@ cover: /images/jenkins-bg.jpg
 og_image: /images/og/jenkins-pipeline-env-variables.jpg
 eyeCatchImage: /images/og/jenkins-pipeline-env-variables.jpg
 affiliates: true
+highlightjs: true
 ---
 :sectanchors:
 :toc: macro

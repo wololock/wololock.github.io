@@ -10,6 +10,7 @@ categories:
 cover: /images/groovy-cookbook.jpg
 og_image: /images/og/groovy-string-methods.jpg
 eyeCatchImage: /images/og/groovy-string-methods.jpg
+highlightjs: true
 ---
 :toc: macro
 :groovy-tr-url: http://docs.groovy-lang.org/latest/html/api/org/codehaus/groovy/runtime/StringGroovyMethods.html#tr(java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence)

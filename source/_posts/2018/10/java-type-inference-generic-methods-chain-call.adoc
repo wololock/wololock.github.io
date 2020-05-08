@@ -14,6 +14,7 @@ categories:
 cover: /images/java-type-inference-bg.jpg
 og_image: /images/og/java-generics-type-inference.jpg
 eyeCatchImage: /images/og/java-generics-type-inference.jpg
+highlightjs: true
 ---
 
 Yesterday I have found this interesting question on Stack Overflow asked by https://twitter.com/czaszo[Opal]. He faced

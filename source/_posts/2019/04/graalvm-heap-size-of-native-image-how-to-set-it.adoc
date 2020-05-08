@@ -12,6 +12,7 @@ categories:
 cover: /images/graalvm-heap-size-bg.jpg
 og_image: /images/og/graalvm-heap-size.jpg
 eyeCatchImage: /images/og/graalvm-heap-size.jpg
+highlightjs: true
 ---
 
 In this short blog post, I would like to show you how to set a heap size of the application executed from the

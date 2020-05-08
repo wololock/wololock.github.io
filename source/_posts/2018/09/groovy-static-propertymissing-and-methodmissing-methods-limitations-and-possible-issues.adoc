@@ -12,6 +12,7 @@ categories:
     - Programming tips
 og_image: /images/og/groovy-static-property-missing.jpg
 eyeCatchImage: /images/og/groovy-static-property-missing.jpg
+highlightjs: true
 ---
 
 Some time ago I have found another interesting https://stackoverflow.com/q/51921068/2194470[Groovy related question on Stack Overflow]. This time someone

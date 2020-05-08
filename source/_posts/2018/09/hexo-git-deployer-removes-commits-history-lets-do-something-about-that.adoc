@@ -12,6 +12,7 @@ categories:
 cover: /img/hexo-github-bg.jpg
 og_image: /images/og/hexo-git-deployer.jpg
 eyeCatchImage: /images/og/hexo-git-deployer.jpg
+highlightjs: true
 ---
 
 I have found https://hexo.io[Hexo] a great tool for building a blog and apply many well-known software development

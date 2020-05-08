@@ -15,6 +15,7 @@ categories:
 cover: /images/groovy-dynamic-maps.jpg
 og_image: /images/og/groovy-dynamic-maps.jpg
 eyeCatchImage: /images/og/groovy-dynamic-maps.jpg
+highlightjs: true
 ---
 :type-erasure-url: https://docs.oracle.com/javase/tutorial/java/generics/erasure.html
 

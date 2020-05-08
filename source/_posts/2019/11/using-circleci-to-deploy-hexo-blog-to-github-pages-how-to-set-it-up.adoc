@@ -15,6 +15,7 @@ categories:
 cover: /images/circleci-bg.jpg
 og_image: /images/og/circleci-hexo-githubpages.jpg
 eyeCatchImage: /images/og/circleci-hexo-githubpages.jpg
+highlightjs: true
 ---
 :travisci-url: https://travis-ci.org/wololock/wololock.github.io/builds
 :circleci: https://circleci.com/

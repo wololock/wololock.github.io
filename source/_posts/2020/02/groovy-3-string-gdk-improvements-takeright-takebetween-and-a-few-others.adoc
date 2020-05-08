@@ -11,6 +11,7 @@ categories:
 cover: /images/groovy-cookbook.jpg
 og_image: /images/og/groovy-3-string-gdk.jpg
 eyeCatchImage: /images/og/groovy-3-string-gdk.jpg
+highlightjs: true
 ---
 :toc: macro
 :groovy-3-release-notes: https://groovy-lang.org/releasenotes/groovy-3.0.html#Groovy3.0releasenotes-GDKimprovements

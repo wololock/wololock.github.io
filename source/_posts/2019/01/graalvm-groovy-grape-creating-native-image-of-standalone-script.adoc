@@ -12,6 +12,7 @@ categories:
 cover: /images/graalvm-groovy-bg.jpg
 og_image: /images/og/graalvm-groovy-grape.jpg
 eyeCatchImage: /images/og/graalvm-groovy-grape.jpg
+highlightjs: true
 ---
 :graalvm-url: https://www.graalvm.org/
 :graalvm-version: 19.2.1

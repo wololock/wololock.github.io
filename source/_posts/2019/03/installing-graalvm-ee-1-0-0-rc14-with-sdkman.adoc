@@ -12,6 +12,7 @@ categories:
 cover: /images/graalvm-ee-sdkman-bg.jpg
 og_image: /images/og/graalvm-ee-sdkman.jpg
 eyeCatchImage: /images/og/graalvm-ee-sdkman.jpg
+highlightjs: true
 ---
 
 I love https://sdkman.io/[*_SDKMAN!_*]. It made using multiple different Java distributions in a single operating system much more

@@ -12,6 +12,7 @@ categories:
 cover: /img/index-header2.jpg
 og_image: /images/og/groovy-equals-operator.jpg
 eyeCatchImage: /images/og/groovy-equals-operator.jpg
+highlightjs: true
 ---
 
 One of the first mistakes people do when starting their journey with Java programming language is

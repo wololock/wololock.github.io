@@ -15,6 +15,7 @@ cover: /images/groovy-regexp-jmh-bg.jpg
 og_image: /images/og/groovy-regexp-jmh.jpg
 eyeCatchImage: /images/og/groovy-regexp-jmh.jpg
 affiliates: true
+highlightjs: true
 ---
 :toc: macro
 :matcher-javadoc: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html

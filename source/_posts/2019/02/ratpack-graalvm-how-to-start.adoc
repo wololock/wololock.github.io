@@ -13,6 +13,7 @@ categories:
 cover: /images/ratpack-cookbook-bg.jpg
 og_image: /images/og/ratpack-graalvm-how-to-start.jpg
 eyeCatchImage: /images/og/ratpack-graalvm-how-to-start.jpg
+highlightjs: true
 ---
 :graalvm-url: https://www.graalvm.org/
 :graalvm-version: 19.2.1
