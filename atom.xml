@@ -621,11 +621,11 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
-      <category term="spock" scheme="https://e.printstacktrace.blog/t/spock/"/>
+      <category term="junit" scheme="https://e.printstacktrace.blog/t/junit/"/>
     
       <category term="unit-test" scheme="https://e.printstacktrace.blog/t/unit-test/"/>
     
-      <category term="junit" scheme="https://e.printstacktrace.blog/t/junit/"/>
+      <category term="spock" scheme="https://e.printstacktrace.blog/t/spock/"/>
     
       <category term="random" scheme="https://e.printstacktrace.blog/t/random/"/>
     
@@ -650,9 +650,9 @@
       <category term="How to" scheme="https://e.printstacktrace.blog/how-to/"/>
     
     
-      <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
-    
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
+    
+      <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
     
       <category term="graalvm" scheme="https://e.printstacktrace.blog/t/graalvm/"/>
     
