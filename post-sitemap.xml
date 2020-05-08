@@ -8,8 +8,24 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/jenkins-pipeline-environment-variables-the-definitive-guide/</loc>
+        <lastmod>2020-05-08T19:17:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/jenkins-scripted-pipeline-vs-declarative-pipeline-the-4-practical-differences/</loc>
+        <lastmod>2020-05-08T19:17:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/groovy-regular-expressions-the-definitive-guide/</loc>
-        <lastmod>2020-04-24T21:44:47.000Z</lastmod>
+        <lastmod>2020-05-08T19:17:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -58,14 +74,6 @@
     <url>
         <loc>https://e.printstacktrace.blog/groovy-3-string-gdk-improvements-takeright-takebetween-and-a-few-others/</loc>
         <lastmod>2020-02-12T11:15:33.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/jenkins-scripted-pipeline-vs-declarative-pipeline-the-4-practical-differences/</loc>
-        <lastmod>2020-01-22T00:31:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -146,14 +154,6 @@
     <url>
         <loc>https://e.printstacktrace.blog/graalvm-native-image-inside-docker-container-does-it-make-sense/</loc>
         <lastmod>2019-11-05T20:57:46.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/jenkins-pipeline-environment-variables-the-definitive-guide/</loc>
-        <lastmod>2019-11-02T17:27:57.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
