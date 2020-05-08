@@ -227,14 +227,14 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/docker/</loc>
+        <loc>https://e.printstacktrace.blog/t/maven/</loc>
         <lastmod>2019-11-28T20:53:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/maven/</loc>
+        <loc>https://e.printstacktrace.blog/t/docker/</loc>
         <lastmod>2019-11-28T20:53:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -528,14 +528,14 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/java-8/</loc>
+        <loc>https://e.printstacktrace.blog/t/java-stream/</loc>
         <lastmod>2019-03-29T00:44:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/java-stream/</loc>
+        <loc>https://e.printstacktrace.blog/t/java-8/</loc>
         <lastmod>2019-03-29T00:44:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
