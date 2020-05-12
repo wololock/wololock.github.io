@@ -145,10 +145,12 @@ alias:
     description: e.printstacktrace.blog YouTube channel is all about programming and learning. Watch a new video every week!
     image: /images/og/youtube.jpg
     url: https://www.youtube.com/c/eprintstacktrace
-
   buy-me-a-coffee/:
     title: Support my work and buy me a coffee!
     url: https://www.buymeacoffee.com/wololock
+  codementor/:
+    title: Codementor
+    url: https://www.codementor.io/@szymonstpniak
 
 share_post:
   twitter:
