@@ -128,9 +128,9 @@ category:
     'Jenkins Pipeline Cookbook': /images/jenkins-bg2.jpg
 
 video:
-  id: fdpKCuJKbMg
+  id: vJgcsyLJf0g
   size: mqdefault
-  title: "Groovy Closures Explained - community choice edition"
+  title: "Brainf**k interpreter in Groovy (tail recursive implementation) | #groovylang"
 
 stackoverflow:
   profile: https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile
