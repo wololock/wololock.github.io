@@ -9,7 +9,7 @@
     "asciidoctor.js": "^1.5.9",
     "cheerio": "^0.22.0",
     "entities": "^1.1.2",
-    "hexo": "4.2.0",
+    "hexo": "^4.2.1",
     "hexo-all-minifier": "^0.5.3",
     "hexo-auto-canonical": "^0.1.1",
     "hexo-browsersync": "^0.3.0",
@@ -28,8 +28,8 @@
     "hexo-renderer-stylus": "^1.1.0",
     "hexo-server": "^1.0.0",
     "hexo-tag-share-post": "0.0.1",
-    "hexo-util": "^1.9.0",
-    "snyk": "^1.319.2"
+    "hexo-util": "^1.9.1",
+    "snyk": "^1.323.0"
   },
   "scripts": {
     "snyk-protect": "snyk protect",
