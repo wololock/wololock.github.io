@@ -116,19 +116,19 @@ java.lang.IllegalArgumentException: str cannot be null
 	at test.run(test.groovy:20)
 ----
 
-== Limitations
+== Combining `@NullCheck` with other annotations
 
-So far I have noticed one minor limitation - the `@NullCheck` annotation doesn't work when combined with `@Canonical` or `@Immutable` annotations.
-If supported, it would allow us to skip constructor definition and simplify the code to something like this.
+Starting from Groovy 3.0.2, the `@NullCheck` annotation offers `includeGenerated` option.
+This option allows to use the annotation in combination with other AST transformations like `@Immutable` or `@TupleConstructor`.
 
 [source,groovy]
 ----
 import groovy.transform.CompileStatic
-import groovy.transform.NullCheck
 import groovy.transform.Immutable
+import groovy.transform.NullCheck
 
 @CompileStatic
-@NullCheck
+@NullCheck(includeGenerated = true)
 @Immutable
 class Foo {
     final String str
@@ -140,12 +140,40 @@ class Foo {
 
 assert new Foo("test").bar(BigDecimal.TEN) == "TEST = 10"
 
-new Foo(null).bar(BigDecimal.ONE) //<1>
+new Foo(null).bar(BigDecimal.ONE)
 ----
 
-In this case, we will get `NullPointerException` thrown by `str.toUpperCase()`, because there was no null-check in the generated constructor. pass:[<em class="conum" data-value="1"></em>]
+Output:
 
-But I'm optimistic, and I think this limitation may get solved in one of the future Groovy updates.
-I definitely add `@NullCheck` to the `@CompileStatic` annotations arsenal I use on a daily basis. icon:smile-o[]
+[source,bash]
+----
+$ groovy test.groovy
+Caught: java.lang.IllegalArgumentException: args cannot be null
+java.lang.IllegalArgumentException: args cannot be null
+	at Foo.<init>(test.groovy)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at test.run(test.groovy:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+----
+
+If we skip setting `includeGenerated` to true, the `@NullCheck` annotation won't be applied and we will see `NullPointerException`
+instead of the `IllegalArgumentException`.
+
+[source,bash]
+----
+$ groovy test.groovy
+Caught: java.lang.NullPointerException
+java.lang.NullPointerException
+	at Foo.bar(test.groovy:12)
+	at Foo$bar.call(Unknown Source)
+	at test.run(test.groovy:18)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+----
 
 include::source/_parts/thank-you.adoc[]
