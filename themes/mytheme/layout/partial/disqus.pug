@@ -27,7 +27,7 @@ script.
         var currentScroll = document.scrollingElement.scrollTop;
         var disqus_target = document.getElementById('disqus_thread');
 
-        if (currentScroll > disqus_target.getBoundingClientRect().top + 350) {
+        if (currentScroll > disqus_target.offsetTop - 500) {
             load_disqus('#{theme.comment.id}');
         }
     }, false);

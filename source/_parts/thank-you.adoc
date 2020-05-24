@@ -3,7 +3,31 @@
 ++++
 <div class="row">
 <div class="col-12">
-<script async data-uid="5e86560171" src="https://tremendous-motivator-1432.ck.page/5e86560171/index.js"></script>
+<div id="newsletter-01"></div>
+<script>
+function load_newsletter(uid) {
+    var newsletterTarget = document.getElementById("newsletter-01");
+    if (document.contains(newsletterTarget)) {
+        var parent = newsletterTarget.parentElement;
+        newsletterTarget.remove();
+
+        var newsletterEmbed = document.createElement("script");
+        newsletterEmbed.type = "text/javascript";
+        newsletterEmbed.async = true;
+        newsletterEmbed.src = "https://tremendous-motivator-1432.ck.page/" + uid + "/index.js";
+        newsletterEmbed.setAttribute("data-uid", uid);
+
+        parent.appendChild(newsletterEmbed);
+    }
+}
+window.addEventListener("scroll", function(e) {
+   var currentScroll = document.scrollingElement.scrollTop;
+   var newsletterTarget = document.getElementById("newsletter-01");
+   if (document.contains(newsletterTarget) && currentScroll > newsletterTarget.offsetTop - 500) {
+       load_newsletter("5e86560171");
+   }
+});
+</script>
 </div>
 </div>
 ++++
