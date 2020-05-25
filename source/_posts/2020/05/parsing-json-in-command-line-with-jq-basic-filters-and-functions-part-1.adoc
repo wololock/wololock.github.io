@@ -1,5 +1,5 @@
 ---
-title: 'Processing JSON from curl with jq: basic filters and functions (part 1)'
+title: 'Parsing JSON in command-line with jq: basic filters and functions (part 1)'
 date: 2020-05-24 18:28:32
 updated: 2020-05-24 18:28:32
 categories:
@@ -21,8 +21,8 @@ eyeCatchImage: /images/og/curl-jq.jpg
 :jq-download: https://stedolan.github.io/jq/download/
 :toc: macro
 
-Have you ever wondered, what is the most convenient way to process JSON data in the Unix/Linux command line?
-For instance, how to extract some information from the `curl` JSON response?
+Have you ever wondered, what is the most convenient way to parse JSON data in the Unix/Linux command line?
+For instance, how to parse some information from the `curl` JSON response?
 Grep?
 No, thank you.
 There is a better tool for that.
