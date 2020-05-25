@@ -1,7 +1,7 @@
 ---
 title: 'Parsing JSON in command-line with jq: basic filters and functions (part 1)'
 date: 2020-05-24 18:28:32
-updated: 2020-05-24 18:28:32
+updated: 2020-05-25 10:31:56
 categories:
 - jq cookbook
 tags:
@@ -107,8 +107,14 @@ Once we captured the input, we can e.g., pipe commands `cat` and `jq` to produce
 $ cat openlibrary.json | jq .
 ----
 
-You will notice the difference.
-Processing JSON from the local file completes in a blink of an eye. icon:smile-o[]
+However, using `cat` is not necessary if we want to read the input from a file - `jq` takes a file as an argument as well.
+In the all upcoming examples, I will use this syntax to save a few characters.
+
+.Taking input from the file example.
+[source,bash]
+----
+$ jq . openlibrary.json
+----
 
 == Extracting fields from the array
 
@@ -124,7 +130,7 @@ In our case, we want to apply `.docs[]` filter to extract documents.
 .Applying array value iterator on the `docs` key.
 [source,bash]
 ----
-$ cat openlibrary.json | jq '.docs[]'
+$ jq '.docs[]' openlibrary.json
 {
   "title_suggest": "Słownik tajemnych gwar przestępczych",
   "edition_key": [
@@ -144,7 +150,7 @@ It uses the same `|` symbol, but pay attention to one significant difference - p
 .Piping `jq` filters to extract specific fields.
 [source,bash]
 ----
-$ cat openlibrary.json | jq '.docs[] | {title,author_name,publish_year}'
+$ jq '.docs[] | {title,author_name,publish_year}' openlibrary.json
 {
   "title": "Słownik tajemnych gwar przestępczych",
   "author_name": [
@@ -172,7 +178,7 @@ We can update the filter to extract the first value from those arrays and store 
 .Transforming arrays to scalar values example.
 [source,bash]
 ----
-$ cat openlibrary.json | jq '.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]}'
+$ jq '.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]}' openlibrary.json
 {
   "title": "Słownik tajemnych gwar przestępczych",
   "author_name": "Klemens Stępniak",
@@ -196,7 +202,7 @@ We can exclude such documents from the final result using the `select(expr)` fil
 .Filtering objects containing `null` values.
 [source,bash]
 ----
-$ cat openlibrary.json | jq '.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)'
+$ jq '.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)' openlibrary.json
 {
   "title": "Słownik tajemnych gwar przestępczych",
   "author_name": "Klemens Stępniak",
@@ -224,7 +230,7 @@ Compare the following example with the previous one and spot the difference.
 .Transforming set of JSON objects into a JSON array of objects using `[]` constructor.
 [source,bash]
 ----
-$ cat openlibrary.json | jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)]'
+$ jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)]' openlibrary.json
 [
   {
     "title": "Słownik tajemnych gwar przestępczych",
@@ -245,7 +251,7 @@ Once we have a JSON array constructed, we can pipe `sort_by(.publish_year)` into
 .Sorting a JSON array of objects by specific field using `sort_by(expr)`.
 [source,bash]
 ----
-$ cat openlibrary.json | jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)] | sort_by(.publish_year)'
+$ jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)] | sort_by(.publish_year)' openlibrary.json
 [
   {
     "title": "Rada Portu i Dróg Wodnych w Wolnym Mieście Gdańsku.  Gdańsku",
@@ -272,7 +278,7 @@ To sort objects in the descending order, we can pipe `reverse` filter after the 
 .Sorting in the descending order.
 [source,bash]
 ----
-$ cat openlibrary.json | jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)] | sort_by(.publish_year) | reverse'
+$ jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)] | sort_by(.publish_year) | reverse' openlibrary.json
 [
   {
     "title": "Dziedzictwo archiwalne we współpracy Polski i Ukrainy",
@@ -305,7 +311,7 @@ It means that we don't get an array but rather a set of separate results instead
 .Applying `limit(3;.[])` filter.
 [source,bash]
 ----
-cat openlibrary.json | jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)] | sort_by(.publish_year)| reverse | limit(3;.[])'
+$ jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)] | sort_by(.publish_year)| reverse | limit(3;.[])' openlibrary.json
 {
   "title": "Dziedzictwo archiwalne we współpracy Polski i Ukrainy",
   "author_name": "Władysław Stępniak",
@@ -328,7 +334,7 @@ If we want to represent the result as a JSON array, we need to wrap `limit(n;exp
 .Final JSON array of the three latest documents.
 [source,bash]
 ----
-$ cat openlibrary.json | jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)] | sort_by(.publish_year)| reverse | [limit(3;.[])]'
+$ jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)] | sort_by(.publish_year)| reverse | [limit(3;.[])]' openlibrary.json
 [
   {
     "title": "Dziedzictwo archiwalne we współpracy Polski i Ukrainy",
@@ -357,7 +363,7 @@ In our case, we will use `group_by(.author_name)` to group all publications by t
 .Grouping results using `group_by(.author_name)` filter.
 [source,bash]
 ----
-$ cat openlibrary.json | jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)] | group_by(.author_name)'
+$ jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)] | group_by(.author_name)' openlibrary.json
 [
   [
     {
@@ -402,7 +408,7 @@ And as we seen before, `.[] | {author_name: .[0].author_name}` combination produ
 .Extracting `author_name` from the grouped result.
 [source,bash]
 ----
-$ cat openlibrary.json | jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)] | group_by(.author_name)| [.[] | {author_name: .[0].author_name}]'
+$ jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)] | group_by(.author_name)| [.[] | {author_name: .[0].author_name}]' openlibrary.json
 [
   {
     "author_name": "Andrzej Stępniak"
@@ -429,7 +435,7 @@ So in our case, an expression `. | lenght` used in the context of this transform
 .Extracting the number of publications using `length` filter.
 [source,bash]
 ----
-$ cat openlibrary.json | jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)] | group_by(.author_name)| [.[] | {author_name: .[0].author_name, count: . | length}]'
+$ jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)] | group_by(.author_name)| [.[] | {author_name: .[0].author_name, count: . | length}]' openlibrary.json
 [
   {
     "author_name": "Andrzej Stępniak",
@@ -457,7 +463,7 @@ We can add `sort_by(expr)` and `limit(n;expr)` to the latest query to produce th
 .Extracting the number of publications using `length` filter.
 [source,bash]
 ----
-$ cat openlibrary.json | jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)] | group_by(.author_name)| [.[] | {author_name: .[0].author_name, count: . | length}] | sort_by(.count) | reverse | [limit(3;.[])]'
+$ jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_year[0]} | select(.author_name!=null and .publish_year!=null)] | group_by(.author_name)| [.[] | {author_name: .[0].author_name, count: . | length}] | sort_by(.count) | reverse | [limit(3;.[])]' openlibrary.json
 [
   {
     "author_name": "Władysław Stępniak",
