@@ -19,6 +19,7 @@ eyeCatchImage: /images/og/curl-jq.jpg
 ---
 :openlibrary: https://openlibrary.org/dev/docs/api/search
 :jq-download: https://stedolan.github.io/jq/download/
+:gist: https://gist.github.com/wololock/0ba478cfeb73b36c41c4f8c814111db3
 :toc: macro
 
 Have you ever wondered, what is the most convenient way to parse JSON data in the Unix/Linux command line?
@@ -45,6 +46,10 @@ In this blog post, I will use {openlibrary}[openlibrary.org public Search API].
 The reason for that is simple - it returns quite complex and interesting data we can process, and it still mimics a real-life example.
 I want to use this API to run a full-text search query.
 I'm going to use my last name as a search term - it is not a very popular Polish last name, so there shouldn't be many results associated with it.
+
+NOTE: The JSON response used in this example is 3631 lines long.
+To keep all code samples clear, I will limit the JSON output to max. 10-15 lines.
+The original document can be found here - icon:github[] {gist}[openlibrary.json].
 
 .An example of openlibrary.org full-text search query
 [source,bash]
