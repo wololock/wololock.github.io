@@ -1,7 +1,5 @@
 navbar-links:
-    Archive: /archives
-    GitHub: https://github.com/wololock/wololock.github.io
-    YouTube: /youtube
+    'Support Me': /support-me
 
 avatar: /hexo.png
 favicon: /hexo.png

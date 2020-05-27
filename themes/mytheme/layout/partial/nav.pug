@@ -14,4 +14,14 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-custom
                     li
                         a(href=url_for(value))!= key
                 li
-                    include stack-overflow
+                    a(href=theme.footer.twitter.link)
+                        i.fa.fa-twitter.larger
+                        span.visible-xs-inline.ml-1 Twitter
+                li
+                    a(href=theme.footer.github.link)
+                        i.fa.fa-github.larger
+                        span.visible-xs-inline.ml-1 Github
+                li
+                    a(href=theme.footer.youtube.link)
+                        i.fa.fa-youtube.larger
+                        span.visible-xs-inline.ml-1 YouTube
