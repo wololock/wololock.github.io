@@ -105,13 +105,13 @@
       <category term="Blog Reports" scheme="https://e.printstacktrace.blog/blog-reports/"/>
     
     
+      <category term="learning" scheme="https://e.printstacktrace.blog/t/learning/"/>
+    
       <category term="blog" scheme="https://e.printstacktrace.blog/t/blog/"/>
     
       <category term="report" scheme="https://e.printstacktrace.blog/t/report/"/>
     
       <category term="youtube" scheme="https://e.printstacktrace.blog/t/youtube/"/>
-    
-      <category term="learning" scheme="https://e.printstacktrace.blog/t/learning/"/>
     
   </entry>
   
@@ -518,9 +518,9 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
-      <category term="recursion" scheme="https://e.printstacktrace.blog/t/recursion/"/>
-    
       <category term="jmh" scheme="https://e.printstacktrace.blog/t/jmh/"/>
+    
+      <category term="recursion" scheme="https://e.printstacktrace.blog/t/recursion/"/>
     
       <category term="benchmark" scheme="https://e.printstacktrace.blog/t/benchmark/"/>
     
@@ -549,11 +549,11 @@
       <category term="Conferences" scheme="https://e.printstacktrace.blog/conferences/"/>
     
     
-      <category term="grails" scheme="https://e.printstacktrace.blog/t/grails/"/>
+      <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
-      <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
+      <category term="grails" scheme="https://e.printstacktrace.blog/t/grails/"/>
     
       <category term="gr8conf" scheme="https://e.printstacktrace.blog/t/gr8conf/"/>
     
@@ -584,9 +584,9 @@
       <category term="Conferences" scheme="https://e.printstacktrace.blog/conferences/"/>
     
     
-      <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
-    
       <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
+    
+      <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
       <category term="graalvm" scheme="https://e.printstacktrace.blog/t/graalvm/"/>
     
