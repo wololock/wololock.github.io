@@ -1,4 +1,5 @@
 navbar-links:
+    'Archive': /archive
     'Support Me': /support-me
 
 avatar: /hexo.png
