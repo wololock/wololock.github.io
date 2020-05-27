@@ -105,13 +105,13 @@
       <category term="Blog Reports" scheme="https://e.printstacktrace.blog/blog-reports/"/>
     
     
-      <category term="learning" scheme="https://e.printstacktrace.blog/t/learning/"/>
-    
       <category term="blog" scheme="https://e.printstacktrace.blog/t/blog/"/>
     
       <category term="report" scheme="https://e.printstacktrace.blog/t/report/"/>
     
       <category term="youtube" scheme="https://e.printstacktrace.blog/t/youtube/"/>
+    
+      <category term="learning" scheme="https://e.printstacktrace.blog/t/learning/"/>
     
   </entry>
   
@@ -167,9 +167,9 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
-      <category term="annotation" scheme="https://e.printstacktrace.blog/t/annotation/"/>
-    
       <category term="groovy-3" scheme="https://e.printstacktrace.blog/t/groovy-3/"/>
+    
+      <category term="annotation" scheme="https://e.printstacktrace.blog/t/annotation/"/>
     
   </entry>
   
@@ -306,9 +306,9 @@
       <category term="Jenkins Pipeline Cookbook" scheme="https://e.printstacktrace.blog/jenkins-pipeline-cookbook/"/>
     
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
-    
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
@@ -409,9 +409,9 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
-    
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
@@ -448,9 +448,9 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
-    
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
@@ -522,11 +522,11 @@
     
       <category term="jmh" scheme="https://e.printstacktrace.blog/t/jmh/"/>
     
+      <category term="benchmark" scheme="https://e.printstacktrace.blog/t/benchmark/"/>
+    
       <category term="closures" scheme="https://e.printstacktrace.blog/t/closures/"/>
     
       <category term="tail-recursive" scheme="https://e.printstacktrace.blog/t/tail-recursive/"/>
-    
-      <category term="benchmark" scheme="https://e.printstacktrace.blog/t/benchmark/"/>
     
   </entry>
   
