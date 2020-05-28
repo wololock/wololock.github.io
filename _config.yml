@@ -129,9 +129,9 @@ category:
     'jq cookbook': /images/jq-bg.jpg
 
 video:
-  id: vJgcsyLJf0g
+  id: EIhLl9ebeiA
   size: mqdefault
-  title: "Brainf**k interpreter in Groovy (tail recursive implementation) | #groovylang"
+  title: "Parsing JSON in command-line with jq: sort_by, group_by, limit (part 1) | #jq #json"
 
 stackoverflow:
   profile: https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile
