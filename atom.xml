@@ -35,13 +35,13 @@
       <category term="jq cookbook" scheme="https://e.printstacktrace.blog/jq-cookbook/"/>
     
     
-      <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
-    
       <category term="rest" scheme="https://e.printstacktrace.blog/t/rest/"/>
     
       <category term="http" scheme="https://e.printstacktrace.blog/t/http/"/>
     
       <category term="curl" scheme="https://e.printstacktrace.blog/t/curl/"/>
+    
+      <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
     
       <category term="jq" scheme="https://e.printstacktrace.blog/t/jq/"/>
     
@@ -518,9 +518,9 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
-      <category term="jmh" scheme="https://e.printstacktrace.blog/t/jmh/"/>
-    
       <category term="recursion" scheme="https://e.printstacktrace.blog/t/recursion/"/>
+    
+      <category term="jmh" scheme="https://e.printstacktrace.blog/t/jmh/"/>
     
       <category term="benchmark" scheme="https://e.printstacktrace.blog/t/benchmark/"/>
     
@@ -549,17 +549,17 @@
       <category term="Conferences" scheme="https://e.printstacktrace.blog/conferences/"/>
     
     
-      <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
+      <category term="grails" scheme="https://e.printstacktrace.blog/t/grails/"/>
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
-      <category term="grails" scheme="https://e.printstacktrace.blog/t/grails/"/>
+      <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
+    
+      <category term="micronaut" scheme="https://e.printstacktrace.blog/t/micronaut/"/>
     
       <category term="gr8conf" scheme="https://e.printstacktrace.blog/t/gr8conf/"/>
     
       <category term="conference" scheme="https://e.printstacktrace.blog/t/conference/"/>
-    
-      <category term="micronaut" scheme="https://e.printstacktrace.blog/t/micronaut/"/>
     
       <category term="copenhagen" scheme="https://e.printstacktrace.blog/t/copenhagen/"/>
     
@@ -584,9 +584,9 @@
       <category term="Conferences" scheme="https://e.printstacktrace.blog/conferences/"/>
     
     
-      <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
-    
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
+    
+      <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
     
       <category term="graalvm" scheme="https://e.printstacktrace.blog/t/graalvm/"/>
     
