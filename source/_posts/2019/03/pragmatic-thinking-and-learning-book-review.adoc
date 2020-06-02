@@ -1,7 +1,7 @@
 ---
 title: Pragmatic Thinking and Learning - book review
 date: 2019-03-26 17:50:06
-updated: 2019-03-26 17:50:06
+updated: 2020-06-02 14:36:07
 tags:
     - book
     - review
@@ -22,6 +22,9 @@ affiliates: true
 :amazon-uk: https://www.amazon.co.uk/gp/product/1934356050?ie=UTF8&tag=eprintstack07-21&camp=1634&linkCode=xm2&creativeASIN=1934356050
 :amazon-de: https://www.amazon.de/gp/product/1934356050?ie=UTF8&tag=eprintstac0c4-21&camp=1638&linkCode=xm2&creativeASIN=1934356050
 :amazon-us: https://www.amazon.com/gp/product/1934356050?ie=UTF8&tag=eprintstacktr-20&camp=1789&linkCode=xm2&creativeASIN=1934356050
+:amazon-ca: https://amzn.to/2U2Fl1a
+:amazon-fr: https://amzn.to/2MjuETL
+:amazon-es: https://amzn.to/2ZZyEAF
 
 There are books you read once, and you don't plan to read them back again any time soon. However, some books
 are so influential and valuable that when you decide to study them the second time, you realize that it was
@@ -160,13 +163,17 @@ book and you have a different opinion? Please share it with us. I'd love to hear
 ====
 +++<h2>Get the book+++
 
-*Paperback*
+image:/images/flags/us.png[] &nbsp; {amazon-us}["Get from amazon.com", role="ga-track"]
 
-image:/images/flags/us.png[United States, title="United States"] Amazon.com: {amazon-us}["Pragmatic Thinking and Learning: Refactor Your Wetware", role="ga-track"]
+image:/images/flags/ca.png[] &nbsp; {amazon-ca}["Get from amazon.ca", role="ga-track"]
 
-image:/images/flags/gb.png[United Kingdom, title="United Kingdom"] Amazon.co.uk: {amazon-uk}["Pragmatic Thinking and Learning: Refactor Your Wetware", role="ga-track"]
+image:/images/flags/gb.png[] &nbsp; {amazon-uk}["Get from amazon.co.uk", role="ga-track"]
 
-image:/images/flags/de.png[Germany, title="Germany"] Amazon.de: {amazon-de}["Pragmatic Thinking and Learning: Refactor Your Wetware (Eng.)", role="ga-track"]
+image:/images/flags/de.png[] &nbsp; {amazon-de}["Get from amazon.de", role="ga-track"]
+
+image:/images/flags/fr.png[] &nbsp; {amazon-fr}["Get from amazon.fr", role="ga-track"]
+
+image:/images/flags/es.png[] &nbsp; {amazon-es}["Get from amazon.es", role="ga-track"]
 
 ___
 [.small]#NOTE: Above links are affiliate links. If you decide to buy a book using my affiliate link, I will get a small percentage from your purchase. The&nbsp;affiliate link does not affect the final price of the product. Using it costs you nothing.#
