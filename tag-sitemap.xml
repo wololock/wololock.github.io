@@ -3,6 +3,69 @@
 
 
     <url>
+        <loc>https://e.printstacktrace.blog/t/brain/</loc>
+        <lastmod>2020-06-02T12:36:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/mind-mapping/</loc>
+        <lastmod>2020-06-02T12:36:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/pragmatic/</loc>
+        <lastmod>2020-06-02T12:36:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/learning/</loc>
+        <lastmod>2020-06-02T12:36:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/affiliate/</loc>
+        <lastmod>2020-06-02T12:36:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/reading/</loc>
+        <lastmod>2020-06-02T12:36:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/review/</loc>
+        <lastmod>2020-06-02T12:36:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/book/</loc>
+        <lastmod>2020-06-02T12:36:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/habits/</loc>
+        <lastmod>2020-06-02T09:22:10.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/t/atomic-habits/</loc>
         <lastmod>2020-06-02T09:22:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -18,27 +81,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/t/self-improvement/</loc>
-        <lastmod>2020-06-02T09:22:10.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/affiliate/</loc>
-        <lastmod>2020-06-02T09:22:10.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/review/</loc>
-        <lastmod>2020-06-02T09:22:10.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/book/</loc>
         <lastmod>2020-06-02T09:22:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -122,13 +164,6 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/jmh/</loc>
-        <lastmod>2020-05-08T19:17:26.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://e.printstacktrace.blog/t/continuous-integration/</loc>
         <lastmod>2020-05-08T19:17:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -157,6 +192,13 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/t/jmh/</loc>
+        <lastmod>2020-05-08T19:17:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/t/java/</loc>
         <lastmod>2020-05-08T19:17:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -173,13 +215,6 @@
     <url>
         <loc>https://e.printstacktrace.blog/t/jenkinsfile/</loc>
         <lastmod>2020-04-16T14:21:32.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/learning/</loc>
-        <lastmod>2020-04-09T11:02:16.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -507,13 +542,6 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/reading/</loc>
-        <lastmod>2019-04-16T13:19:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://e.printstacktrace.blog/t/random/</loc>
         <lastmod>2019-04-09T06:58:20.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -577,7 +605,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/java-stream/</loc>
+        <loc>https://e.printstacktrace.blog/t/split/</loc>
         <lastmod>2019-03-29T00:44:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -591,29 +619,8 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/split/</loc>
+        <loc>https://e.printstacktrace.blog/t/java-stream/</loc>
         <lastmod>2019-03-29T00:44:13.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/brain/</loc>
-        <lastmod>2019-03-26T16:50:06.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/mind-mapping/</loc>
-        <lastmod>2019-03-26T16:50:06.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/pragmatic/</loc>
-        <lastmod>2019-03-26T16:50:06.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -759,13 +766,6 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/haskell/</loc>
-        <lastmod>2018-12-02T16:23:11.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://e.printstacktrace.blog/t/advent-of-code/</loc>
         <lastmod>2018-12-02T16:23:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -774,6 +774,13 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/t/aoc2018/</loc>
+        <lastmod>2018-12-02T16:23:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/haskell/</loc>
         <lastmod>2018-12-02T16:23:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/pragmatic-thinking-and-learning-book-review/</loc>
+        <lastmod>2020-06-02T12:36:07.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/atomic-habits-book-review/</loc>
         <lastmod>2020-06-02T09:22:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -234,14 +242,6 @@
     <url>
         <loc>https://e.printstacktrace.blog/divide-a-list-to-lists-of-n-size-in-Java-8/</loc>
         <lastmod>2019-03-29T00:44:13.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/pragmatic-thinking-and-learning-book-review/</loc>
-        <lastmod>2019-03-26T16:50:06.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

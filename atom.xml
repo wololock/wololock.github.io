@@ -41,11 +41,17 @@
     
       <category term="affiliate" scheme="https://e.printstacktrace.blog/t/affiliate/"/>
     
+      <category term="learning" scheme="https://e.printstacktrace.blog/t/learning/"/>
+    
       <category term="self-improvement" scheme="https://e.printstacktrace.blog/t/self-improvement/"/>
     
       <category term="non-fiction" scheme="https://e.printstacktrace.blog/t/non-fiction/"/>
     
+      <category term="mind-mapping" scheme="https://e.printstacktrace.blog/t/mind-mapping/"/>
+    
       <category term="atomic-habits" scheme="https://e.printstacktrace.blog/t/atomic-habits/"/>
+    
+      <category term="habits" scheme="https://e.printstacktrace.blog/t/habits/"/>
     
   </entry>
   
@@ -551,9 +557,9 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
-      <category term="recursion" scheme="https://e.printstacktrace.blog/t/recursion/"/>
-    
       <category term="jmh" scheme="https://e.printstacktrace.blog/t/jmh/"/>
+    
+      <category term="recursion" scheme="https://e.printstacktrace.blog/t/recursion/"/>
     
       <category term="benchmark" scheme="https://e.printstacktrace.blog/t/benchmark/"/>
     
