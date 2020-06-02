@@ -1,0 +1,193 @@
+---
+title: Atomic Habits - book review
+date: 2020-06-02 11:22:10
+updated: 2020-06-02 11:22:10
+tags:
+- atomic-habits
+- book
+- review
+- affiliate
+- self-improvement
+- non-fiction
+categories:
+- Programmer's Bookshelf
+cover: /images/atomic-habits-bg.jpg
+og_image: /images/og/atomic-habits.jpg
+eyeCatchImage: /images/og/atomic-habits.jpg
+affiliates: true
+---
+:the-war-of-art: https://amzn.to/2MgCKMD
+:atomic-habits: https://amzn.to/3coH0EF
+:james-clear: https://jamesclear.com/
+:the-power-of-habit: https://amzn.to/2MinoXY
+:james-clear-youtube: https://www.youtube.com/watch?v=mNeXuCYiE0U
+:amazon-us: https://amzn.to/3coH0EF
+:amazon-de: https://amzn.to/36YG6xt
+:amazon-uk: https://amzn.to/3ctSIxz
+:amazon-es: https://amzn.to/3crCDsg
+:tania-ksiazka: https://go.buybox.click/linkclick_4951_11?&url=https%3A%2F%2Fwww.taniaksiazka.pl%2Fatomowe-nawyki-drobne-zmiany-niezwykle-efekty-james-clear-p-1283871.html
+
+Sticking to the process of achieving my goals has always been one of the most difficult obstacles to overcome, both on my way to becoming a better professional, and in my private life.
+I have found that in some areas I need to make an extraordinary amount of effort to keep myself on the right track, no matter how *S.M.A.R.T.*
+(_Specific, Measurable, Achievable, Relevant, Time-based_) my goals are.
+I couldn’t understand why in some cases I was able to make the desired progress, while in others I kept failing.
+Was it a matter of talent I was missing, or a skill I haven’t acquired yet?
+I have seen the dots, but I didn’t yet know how to connect them.
+
+++++
+<!-- more -->
+++++
+
+== The hidden enemy
+
+I guess you heard it many times before.
+Almost every piece of advice on _"how to set goals"_ or _"how to build a habit"_ contains: _"set S.M.A.R.T. goals," "make a plan," "stick with it,"_ and so on.
+However, there is one thing that almost no advice takes into account - *the Resistance*, better known as *procrastination*.
+In his book {the-war-of-art}["The War of Art,"] Steven Pressfield describes Resistance as a destructive force that keeps you from doing the right thing.
+He explains that for him, as a professional writer, all that counts is to sit down and write.
+The amount of pages or their quality does not matter that much.
+The most important thing is to overcome the Resistance, so at the end of the day, the score is 1:0 for Steven.
+The Resistance loses, but it will try the next day.
+And the next.
+Again, and again.
+
+However, not all knowledge workers can apply the same pattern to their work - obviously, as a software developer, I can’t just write down any code that comes to my mind and expect my career to flourish.
+So even though Pressfield aptly defines the enemy, he does not provide the ultimate solution to my biggest problem.
+But it seems that I have finally found someone else who does.
+
+== The Power of Atomic Habits
+
+It’s difficult to summarize {atomic-habits}["Atomic Habits"] in a single sentence, but if I had to try, I would pick one of the subtitles from the first chapter: *"Forget about goals, focus on systems instead."*
+{james-clear}[James Clear] explains that goals are outcome-oriented, and what is obvious, yet still surprising - both winners and losers have the same goals.
+What makes the difference is *the system*, a process of introducing small incremental changes that eventually manifest themselves in a new habit.
+The rule of *getting 1% better every day* illustrates it very well.
+As James Clear states, _"Habits are the compound interest of self-improvement."_
+You won’t see drastic progress from day to day.
+But still, this 1% accumulates to a significant result over a couple of months or a year.
+Learning one small thing or one new idea doesn’t make you a genius, but, as the author states, _"a commitment to lifelong learning can be transformative."_
+
+If this is so obvious, then why do we keep failing in building positive habits?
+James Clear explains that *we often expect progress to be linear*, but it almost never is.
+We make small changes, we don’t see the expected results, and we instantly get discouraged and stop.
+However, to make a habit stick, it needs to persist long enough to break through the so-called *Plateau of Latent Potential*.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/the-plateau-of-latent-potential.jpg]
+image::/images/the-plateau-of-latent-potential.jpg[]
+--
+
+This is where implementing atomic habits makes a significant difference.
+If your goal is to read 12 books in a year (_the outcome_), you should focus on *becoming a reader* (_the identity_) who reads every day for 30 minutes.
+If your goal is to have a popular blog (_the outcome_), James Clear suggests focusing on *becoming a writer* (_the identity_) who writes daily for an hour or two.
+If you want to become an outstanding software developer (_the outcome_), you should focus on *becoming a lifelong learner* (_the identity_) who finds a way to learn something valuable daily.
+
+When you start tracking the progress of those small habits, you feed your brain with the dopamine it asks for.
+And at some point in time, probably later than you expect, you are going to break through *the Plateau of Latent Potential*.
+You will then realize that it wasn’t the goal that helped you do so, but rather *the system of consistent small improvements* that you have successfully adopted.
+
+== The Four Laws of Behavior Change
+
+While the first part of the "Atomic Habits" explains the power of systematic improvements (the _"why?"_ part), James Clear does not stop there.
+In the remaining parts, he introduces *"The Four Laws of Behavior Change."*
+
+* *Make It Obvious.* (Train your brain to predict certain outcomes on an autopilot. Use time and location as cues. Make your environment to support a new habit.)
+* *Make It Attractive.* (Dopamine improves motivation. Make habits more attractive by pairing an action you want with an action you need to do.)
+* *Make It Easy.* (Focus on practicing, not planning. Repetition creates a habit. Reduce the friction associated with a habit. Starting a new habit should take less than two minutes to do.)
+* *Make It Satisfying.* (Reward every action that strengthens a habit. "What is immediately rewarded is repeated." Track habits every day. Allow yourself to break a habit for one day, but never miss twice.)
+
+The inversion of those laws for breaking bad habits is the following:
+
+* *Make It Invisible.* (Reduce exposure to the bad habits triggers.)
+* *Make It Unattractive.* (Focus on highlighting the benefits of avoiding your bad habits.)
+* *Make It Difficult.* (Increase friction associated with a bad habit.)
+* *Make It Unsatisfying.* (Make the cost of your bad habit public and painful.)
+
+This is what makes "Atomic Habits" stand out from other books on the subject, even the iconic ones, such as {the-power-of-habit}["The Power of Habit"] by Charles Duhigg.
+It provides a framework that is ready to implement, and a guidebook to navigate through the process of change.
+But no manual, not even the best one, makes the desired impact if it is not put into real action.
+And the best way to practice any habit is to do it through *repetition*.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/atomic-habits-01.jpg]
+image::/images/atomic-habits-01.jpg[]
+--
+
+== Repetition is the key to success
+
+If you’re like me, you value quality over quantity.
+However, chapter eleven opens with a story that proves that *the quantity is your best ally* when it comes to building a habit.
+It tells the story of Jerry Uelsmann, a professor at the University of Florida, who divided students into two groups on his first day of the film photography class.
+One group was the _"quantity"_ group.
+Their final grade was based solely on the number of photos they submitted.
+The second group was the _"quality"_ group.
+They were asked to submit a single photo they thought the best.
+At the end of the semester, it turned out that *all the best photos were submitted* by the _"quantity"_ group.
+They *felt safe* to fail, *experiment*, and learn from *every mistake*.
+And eventually, they learned much more effectively through *repetition*.
+The _"quality"_ group, on the other hand, was busy speculating what the perfect photo looks like, and they didn’t have time to learn through experimentation.
+
+This brings us back to Steven Pressfield and his way of dealing with the Resistance by creating a *routine of writing*.
+As it turns out, it all comes down to repetitively exercising what you want to excel at.
+If Pressfield spent most of the time overthinking his results, he wouldn’t be able to produce any good story - just like the students from the “quality” group weren’t able to take the perfect photo.
+It helped me realize that most of my failures in the area of building new habits were caused by overcomplicating the process.
+I focused mostly on doing things right, instead of *doing the right things*.
+As James Clear tries to convince, the right thing doesn’t have to be spectacular right away.
+Doing *small things consistently* day after day is the way to build a *habit that sticks*, and to *produce results* that can change your life.
+What we need to understand and appreciate is the importance of small steps that we consciously decide to take - they eventually lead to success.
+
+== The conclusion
+
+* The effects of small habits *compound* over time. Apply [.mark]*1% better every day* rule to get *37 times* better over a year.
+* [.mark]*Forget about goals and focus on systems* that support the process of constant improvement instead. Winners and losers have the same goals - they just implemented different systems.
+* To make the habit stick, *repeat* small steps over and over again. Be aware of *the Plateau of Latent Potential*. The outcome is a side effect of [.mark]*the identity change*.
+* Implement [.mark]*"The Four Laws of Behavior Change"* for building desired habits and breaking the bad ones.
+
+I would strongly recommend reading {atomic-habits}[“Atomic Habits”] to everyone.
+The book is full of both scientific research and anecdotal evidence, which makes reading it fun, and applying the framework simple.
+I haven’t covered all the examples and ideas in this blog post, but I hope it encourages you to experiment with your own atomic habits.
+I strongly believe that everyone will profit from applying the tips included in this book into their own lives.
+
+_PS: Check the newsletter box below and get the "Atomic Habits" handmade mindmap after subscribing to my email list._ icon:smile-o[]
+
+
+[.get-the-book]
+====
++++<h2>Get the book+++
+
+image:/images/flags/us.png[] {amazon-us}["&nbsp; &quot;Atomic Habits&quot; @ amazon.com", role="ga-track"]
+
+image:/images/flags/gb.png[] {amazon-uk}["&nbsp; &quot;Atomic Habits&quot; @ amazon.co.uk", role="ga-track"]
+
+image:/images/flags/de.png[] {amazon-de}["&nbsp; &quot;Atomic Habits&quot; @ amazon.de", role="ga-track"]
+
+image:/images/flags/es.png[] {amazon-es}["&nbsp; &quot;Atomic Habits&quot; @ amazon.es", role="ga-track"]
+
+image:/images/flags/pl.png[] {tania-ksiazka}["&nbsp; &quot;Atomic Habits&quot; @ taniaksiazka.pl", role="ga-track"]
+
+___
+[.small]#NOTE: Above links are affiliate links. If you decide to buy a book using my affiliate link, I will get a small percentage from your purchase. The&nbsp;affiliate link does not affect the final price of the product. Using it costs you nothing.#
+====
+
+
+== Bonus: Atomic Habits ideas for Software Developers
+
+* Invest some time to learn how to use your IDE (or an editor) most effectively. Experiment with using one new shortcut every week. For instance, if you keep using a mouse to navigate in your project, find a shortcut (or a macro) that will speed up the process, and keep using it instead.
+* Apply the famous "Boy Scout Rule" and always leave your code better than you found it. Avoid huge refactorings. It’s better to constantly improve the code base with small chunks.
+* Join a group or a community that supports your activities. Consider contributing to an open-source project. Your contributions don’t have to be spectacular - almost every open-source project appreciates small contributions like documentation updates, fixing typos, improving code samples, etc.
+* Try to watch one presentation from your favorite conference on YouTube every week. Take notes while watching, and repeat it every week. After a year you will be 52 presentations smarter.
+* Synthesize and publish your notes on a blog. List a few things you find most interesting, and explain what you have learned from the presentation. After a year you will have a blog with at least 52 valuable blog posts.
+* Don’t be afraid to experiment. Every mistake is an experience you can learn from. Try different ways to learn new programming languages, frameworks, technologies. If you’re a backend developer, maybe it is not a bad idea to get a new perspective and learn some fancy frontend technology. Or a mobile app. Or an assembly language for your laptop’s processor. The sky is the limit.
+
+
+
+
+:convertkit: 1da0a4c87b
+include::source/_parts/thank-you.adoc[]
+
+
+
+

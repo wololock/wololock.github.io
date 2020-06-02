@@ -103,7 +103,7 @@ all_minifier: true
 
 # Update versions after updating resources to prevent reading from cache
 version:
-  css: 49
+  css: 50
   js: 5
 
 archive_generator:
@@ -163,3 +163,6 @@ lazyload:
   post:
     only: true
     excludeEncrypt: true
+
+convertkit:
+  domain: tremendous-motivator-1432.ck.page
