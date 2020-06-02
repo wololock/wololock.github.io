@@ -9,6 +9,9 @@ tags:
 - affiliate
 - self-improvement
 - non-fiction
+- learning
+- mind-mapping
+- habits
 categories:
 - Programmer's Bookshelf
 cover: /images/atomic-habits-bg.jpg
