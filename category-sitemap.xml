@@ -8,6 +8,13 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/programmer-s-bookshelf/</loc>
+        <lastmod>2020-06-02T09:22:10.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/jq-cookbook/</loc>
         <lastmod>2020-05-25T08:31:56.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -59,13 +66,6 @@
     <url>
         <loc>https://e.printstacktrace.blog/conferences/</loc>
         <lastmod>2019-06-06T10:03:44.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/programmer-s-bookshelf/</loc>
-        <lastmod>2019-04-16T13:19:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
