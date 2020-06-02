@@ -25,6 +25,8 @@ affiliates: true
 :amazon-de: https://amzn.to/36YG6xt
 :amazon-uk: https://amzn.to/3ctSIxz
 :amazon-es: https://amzn.to/3crCDsg
+:amazon-fr: https://amzn.to/3cxQq0N
+:amazon-ca: https://amzn.to/2AyAyNU
 :tania-ksiazka: https://go.buybox.click/linkclick_4951_11?&url=https%3A%2F%2Fwww.taniaksiazka.pl%2Fatomowe-nawyki-drobne-zmiany-niezwykle-efekty-james-clear-p-1283871.html
 
 Sticking to the process of achieving my goals has always been one of the most difficult obstacles to overcome, both on my way to becoming a better professional, and in my private life.
@@ -160,13 +162,17 @@ _PS: Check the newsletter box below and get the "Atomic Habits" handmade mindmap
 
 image:/images/flags/us.png[] {amazon-us}["&nbsp; &quot;Atomic Habits&quot; @ amazon.com", role="ga-track"]
 
+image:/images/flags/ca.png[] {amazon-ca}["&nbsp; &quot;Atomic Habits&quot; @ amazon.ca", role="ga-track"]
+
 image:/images/flags/gb.png[] {amazon-uk}["&nbsp; &quot;Atomic Habits&quot; @ amazon.co.uk", role="ga-track"]
 
 image:/images/flags/de.png[] {amazon-de}["&nbsp; &quot;Atomic Habits&quot; @ amazon.de", role="ga-track"]
 
+image:/images/flags/fr.png[] {amazon-fr}["&nbsp; &quot;Atomic Habits&quot; @ amazon.fr", role="ga-track"]
+
 image:/images/flags/es.png[] {amazon-es}["&nbsp; &quot;Atomic Habits&quot; @ amazon.es", role="ga-track"]
 
-image:/images/flags/pl.png[] {tania-ksiazka}["&nbsp; &quot;Atomic Habits&quot; @ taniaksiazka.pl", role="ga-track"]
+image:/images/flags/pl.png[] {tania-ksiazka}["&nbsp; &quot;Atomowe nawyki&quot; @ taniaksiazka.pl", role="ga-track"]
 
 ___
 [.small]#NOTE: Above links are affiliate links. If you decide to buy a book using my affiliate link, I will get a small percentage from your purchase. The&nbsp;affiliate link does not affect the final price of the product. Using it costs you nothing.#
