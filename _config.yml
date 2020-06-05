@@ -129,9 +129,9 @@ category:
     'jq cookbook': /images/jq-bg.jpg
 
 video:
-  id: EIhLl9ebeiA
+  id: j1lH3vOhucw
   size: mqdefault
-  title: "Parsing JSON in command-line with jq: sort_by, group_by, limit (part 1) | #jq #json"
+  title: "Multiple Java versions in a single Jenkins Pipeline using SDKMAN | #jenkinspipeline"
 
 stackoverflow:
   profile: https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile
