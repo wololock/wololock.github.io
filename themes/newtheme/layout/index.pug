@@ -23,9 +23,26 @@ block content
                 h1 Hi! I'm Szymon
                 p!=config.bio
 
-                - var latest = site.posts.sort("date").reverse().limit(3).toArray();
+                - var latest = site.posts.sort("date").reverse().limit(9).toArray();
+                - var posts = _.chunk(latest, 3)
+                - var carouselId = "recentArticles"
 
-                .row
-                    - latest.forEach(post => {
-                        +latest_post_card(post)
-                    - })
+            div.carousel.slide.pt-4(id=carouselId data-ride="carousel" data-interval="8000")
+                .container
+                    ol.carousel-indicators
+                        li(data-target="#"+carouselId data-slide-to="0" class="active")
+                        li(data-target="#"+carouselId data-slide-to="1")
+                        li(data-target="#"+carouselId data-slide-to="2")
+                    </ol>
+                    div.carousel-inner
+                        each group, index in posts
+                            div.carousel-item(class=index === 0 ? "active" : "")
+                                .row
+                                    each post in group
+                                        +latest_post_card(post)(video)
+                a.carousel-control-prev(href="#"+carouselId role="button" data-slide="prev")
+                    span.carousel-control-prev-icon(aria-hidden="true")
+                    span.sr-only="Previous"
+                a.carousel-control-next(href="#"+carouselId role="button" data-slide="next")
+                    span.carousel-control-next-icon(aria-hidden="true")
+                    span.sr-only="Next"
