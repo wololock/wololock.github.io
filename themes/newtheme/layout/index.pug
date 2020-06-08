@@ -1,0 +1,31 @@
+extends layout/base
+
+mixin latest_post_card(post)
+    .col-12.col-md-4
+        .card.mb-4.border-0
+            .card-header.shadow-sm(style="background-image: url('" + url_for(post.eyeCatchImage) + "')")
+                h2.h5.text-left.font-weight-bold=post.title
+            .card-body.faded-text.p-3
+                ul.post-meta.pb-3
+                    li
+                        time(datetime=date_xml(post.date), itemprop="datePublished")!= full_date(post.date, "MMM D, YYYY")
+                    li=readingTime(post.content, 'min. read', 200)
+                    li
+                        a(href=config.url + url_for(post.path) + "#disqus_thread")="0 Comments"
+                p.card-text.text-justify!=strip_html(post.excerpt)
+            a.stretched-link(href=url_for(post.path))
+
+block content
+    main#index(role="main")
+        section.jumbotron.text-center.pb-5
+            .container
+                img.rounded-circle.shadow-sm(src=config.photo width="100px")
+                h1 Hi! I'm Szymon
+                p!=config.bio
+
+                - var latest = site.posts.sort("date").reverse().limit(3).toArray();
+
+                .row
+                    - latest.forEach(post => {
+                        +latest_post_card(post)
+                    - })
