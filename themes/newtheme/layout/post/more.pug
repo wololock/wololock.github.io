@@ -1,0 +1,14 @@
+- var category = page.categories.first()
+- var data = site.data[category.slug] || {}
+
+ section.more-from-category(style= data.cover ? "background-image: url('" + data.cover + "')" : "")
+    .mask
+    .container
+        .col-12
+            h5
+                span.small.d-block.mb-2="More posts"
+                span.font-weight-bold.mark #{category.name}
+
+            div
+                em.fas.fa-angle-down
+            a.stretched-link(href=url_for(category.path))
