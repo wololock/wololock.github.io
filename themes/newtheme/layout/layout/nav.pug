@@ -1,0 +1,32 @@
+header#header.fixed-top
+    .container-fluid
+        nav.navbar.navbar-expand-lg
+            h3.logo.mr-auto.position-relative
+                | e.printstacktrace.blog
+                a.stretched-link(href=url_for("/"))
+
+            button.navbar-toggler(data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation")
+                span.navbar-toggler-icon
+
+            .collapse.navbar-collapse#mainNav
+                ul.navbar-nav.ml-lg-auto.text-center.text-md-left
+                    li.nav-item
+                        a.nav-link(href="/about") Start here
+                    li.nav-item
+                        a.nav-link(href="/about") About me
+                    li.nav-item
+                        a.nav-link(href="https://twitter.com/wololock")
+                            em.fa.fa-twitter
+                            span.d-md-none.d-inline.ml-1 Twitter
+                    li.nav-item
+                        a.nav-link(href="https://github.com/wololock")
+                            em.fa.fa-github
+                            span.d-md-none.d-inline.ml-1 GitHub
+                    li.nav-item
+                        a.nav-link(href="https://stackoverflow.com/users/2194470/szymon-stepniak")
+                            em.fa.fa-stack-overflow
+                            span.d-md-none.d-inline.ml-1 Stack Overflow
+                    li.nav-item
+                        a.nav-link(href="https://youtube.com/c/eprintstacktrace")
+                            em.fa.fa-youtube
+                            span.d-md-none.d-inline.ml-1 YouTube

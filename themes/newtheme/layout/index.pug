@@ -1,15 +1,5 @@
 extends layout/base
 
-mixin latest_post_card(post)
-    .col-12.col-md-4
-        .card.mb-4.border-0
-            .card-header.shadow-sm(style="background-image: url('" + url_for(post.eyeCatchImage) + "')")
-                h2.h5.text-left.font-weight-bold=post.title
-            .card-body.faded-text.p-3
-                +post_meta(post)
-                p.card-text.text-justify!=strip_html(post.excerpt)
-            a.stretched-link(href=url_for(post.path))
-
 block content
     main#page-home(role="main")
         section.jumbotron.text-center.pb-5
