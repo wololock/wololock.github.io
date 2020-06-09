@@ -3,6 +3,7 @@ extends layout/base
 block content
     main#page-home(role="main")
         section.jumbotron.text-center.pb-5
+            .mask
             .container
                 img.rounded-circle.shadow-sm(src=config.photo width="100px")
                 h1 Hi! I'm Szymon
@@ -31,3 +32,7 @@ block content
                 a.carousel-control-next(href="#"+carouselId role="button" data-slide="next")
                     span.carousel-control-next-icon(aria-hidden="true")
                     span.sr-only="Next"
+
+        section.py-5
+            .container
+                script(src="https://eprintstacktrace.disqus.com/recent_comments_widget.js?num_items=5&hide_avatars=1&avatar_size=32&excerpt_length=100")

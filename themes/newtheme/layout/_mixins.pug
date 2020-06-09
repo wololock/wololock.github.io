@@ -1,23 +1,24 @@
-mixin post_card(post)
+mixin post_card(post, options = {})
     article.card.shadow-sm(itemscope itemtype="http://schema.org/Article")
         .card-header(itemprop="image" style="background-image: url('" + url_for(post.eyeCatchImage) + "')")
             .mask
-            h4.h5.text-left.font-weight-bold.text-white(itemprop="name")
-                - post.categories.each(category => {
-                    div
-                        a.category=category.name
-                - })
+            h3.h5.text-left.font-weight-bold.text-white(itemprop="name")
+                if options.category !== false
+                    - post.categories.each(category => {
+                        div
+                            a.category=category.name
+                    - })
                 div.title=post.title
         .card-body
             +post_meta(post)
             p.card-text(itemprop="description")!=strip_html(post.excerpt)
         a.stretched-link(href=url_for(post.path) itemprop="url")
 
-mixin post_meta(post)
+mixin post_meta(post, options = {})
     section.post-meta.pb-3
         ul
             li
-                time(datetime=date_xml(post.date), itemprop="datePublished")!= full_date(post.date, "MMM D, YYYY")
+                time(class=options['date-class'] datetime=date_xml(post.date), itemprop="datePublished")!= full_date(post.date, "MMM D, YYYY")
             li=readingTime(post.content, 'min. read', 200)
             li
                 a(href=config.url + url_for(post.path) + "#disqus_thread")="0 Comments"

@@ -1,0 +1,48 @@
+extends layout/base
+
+block site_title
+    = page.category
+
+block content
+    - var category = site.categories.findOne({name: page.category});
+    - var data = site.data[category.slug] || {}
+    - var recommended = data.recommended ? site.posts.filter(post => data.recommended.some(it => it === post.slug)).sort("date").reverse().limit(3).toArray() : []
+    - var ads = data.ads || {}
+
+    main#page-category(role="main")
+        section.jumbotron.text-center.pb-5(style= data.cover ? "background-image: url('" + data.cover + "')" : "")
+            .mask
+            .container
+                h1 #{category.name}
+
+                h2.h2.py-3 Most popular posts
+                .card-deck
+                    each post in recommended
+                        +post_card(post, {category: false})
+
+
+        section.py-5.serif#list
+            .container
+                .row
+                    .col-12.col-lg-10
+                        each post in page.posts.toArray()
+                            article.list-elem.pr-3
+                                h3=post.title
+                                div.text-justify!=post.excerpt
+                                div.text-muted.sans-serif
+                                    +post_meta(post, { 'date-class': 'mark font-weight-bold'})
+                                a.stretched-link(href=url_for(post.path))
+
+                        if page.total > 1
+                            nav.paginator
+                                !=paginator({ prev_text: '<i class="fa fa-angle-left"></i>', next_text: '<i class="fa fa-angle-right"></i>', escape: false, format: "page/%d/#list" })
+
+                    .col-md-2.d-none.d-md-block
+                        if ads.column
+                            a(href=ads.column.url)
+                                img.img-fluid(src=ads.column.image)
+
+                    if ads.bottom
+                        .col-12.d-md-none.d-block.text-center
+                            a(href=ads.bottom.url)
+                                img.img-fluid(src=ads.bottom.image)

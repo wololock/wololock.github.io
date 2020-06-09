@@ -1,0 +1,15 @@
+cover: /images/bg/programmers-bookshelf-bg.jpg
+
+recommended:
+  - atomic-habits-book-review
+  - pragmatic-thinking-and-learning-book-review
+  - release-it-2nd-edition-book-review
+
+ads:
+  column:
+    url: https://www.amazon.com/gp/feature.html/ref=as_acph_kdb_deals_324_on?tag=eprintstacktr-20&linkCode=ur1&ie=UTF8&docId=1000677541
+    image: https://images-na.ssl-images-amazon.com/images/G/01/kindle/merch/associates/Kindle-Deals-160x600.jpg
+
+  bottom:
+    url: https://www.amazon.com/gp/feature.html/ref=as_acph_kdb_deals_324_on?tag=eprintstacktr-20&linkCode=ur1&ie=UTF8&docId=1000677541
+    image: https://images-na.ssl-images-amazon.com/images/G/01/kindle/merch/associates/Kindle-Deals-300x250.jpg
