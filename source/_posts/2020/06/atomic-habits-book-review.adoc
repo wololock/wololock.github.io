@@ -18,6 +18,36 @@ cover: /images/atomic-habits-bg.jpg
 og_image: /images/og/atomic-habits.jpg
 eyeCatchImage: /images/og/atomic-habits.jpg
 affiliates: true
+book:
+  title: "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones"
+  description: "No matter your goals, Atomic Habits offers a proven framework for improving--every day. James Clear, one of the world's leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results."
+  source:
+    name: goodreads.com
+    url: https://www.goodreads.com/book/show/40121378-atomic-habits
+  image: "/images/books/atomic_habits.jpg"
+  links:
+    - flag: us
+      text: Get from amazon.com
+      url: https://amzn.to/3coH0EF
+    - flag: ca
+      text: Get from amazon.ca
+      url: https://amzn.to/2AyAyNU
+    - flag: de
+      text: Get from amazon.de
+      url: https://amzn.to/3coH0EF
+    - flag: gb
+      text: Get from amazon.co.uk
+      url: https://amzn.to/2AyAyNU
+    - flag: fr
+      text: Get from amazon.fr
+      url: https://amzn.to/3coH0EF
+    - flag: es
+      text: Get from amazon.es
+      url: https://amzn.to/2AyAyNU
+    - flag: pl
+      text: Get from taniaksiazka.pl
+      url: https://amzn.to/2AyAyNU
+
 ---
 :the-war-of-art: https://amzn.to/2MgCKMD
 :atomic-habits: https://amzn.to/3coH0EF
@@ -144,6 +174,8 @@ As James Clear tries to convince, the right thing doesn’t have to be spectacul
 Doing *small things consistently* day after day is the way to build a *habit that sticks*, and to *produce results* that can change your life.
 What we need to understand and appreciate is the importance of small steps that we consciously decide to take - they eventually lead to success.
 
+pass:[{% convertkit "1da0a4c87b" %}]
+
 == The conclusion
 
 * The effects of small habits *compound* over time. Apply [.mark]*1% better every day* rule to get *37 times* better over a year.
@@ -156,31 +188,7 @@ The book is full of both scientific research and anecdotal evidence, which makes
 I haven’t covered all the examples and ideas in this blog post, but I hope it encourages you to experiment with your own atomic habits.
 I strongly believe that everyone will profit from applying the tips included in this book into their own lives.
 
-_PS: Check the newsletter box below and get the "Atomic Habits" handmade mindmap after subscribing to my email list._ icon:smile-o[]
-
-
-[.get-the-book]
-====
-+++<h2>Get the book+++
-
-image:/images/flags/us.png[] {amazon-us}["&nbsp; &quot;Atomic Habits&quot; @ amazon.com", role="ga-track"]
-
-image:/images/flags/ca.png[] {amazon-ca}["&nbsp; &quot;Atomic Habits&quot; @ amazon.ca", role="ga-track"]
-
-image:/images/flags/gb.png[] {amazon-uk}["&nbsp; &quot;Atomic Habits&quot; @ amazon.co.uk", role="ga-track"]
-
-image:/images/flags/de.png[] {amazon-de}["&nbsp; &quot;Atomic Habits&quot; @ amazon.de", role="ga-track"]
-
-image:/images/flags/fr.png[] {amazon-fr}["&nbsp; &quot;Atomic Habits&quot; @ amazon.fr", role="ga-track"]
-
-image:/images/flags/es.png[] {amazon-es}["&nbsp; &quot;Atomic Habits&quot; @ amazon.es", role="ga-track"]
-
-image:/images/flags/pl.png[] {tania-ksiazka}["&nbsp; &quot;Atomowe nawyki&quot; @ taniaksiazka.pl", role="ga-track"]
-
-___
-[.small]#NOTE: Above links are affiliate links. If you decide to buy a book using my affiliate link, I will get a small percentage from your purchase. The&nbsp;affiliate link does not affect the final price of the product. Using it costs you nothing.#
-====
-
+pass:[{% book %}]
 
 == Bonus: Atomic Habits ideas for Software Developers
 
@@ -192,9 +200,7 @@ ___
 * Don’t be afraid to experiment. Every mistake is an experience you can learn from. Try different ways to learn new programming languages, frameworks, technologies. If you’re a backend developer, maybe it is not a bad idea to get a new perspective and learn some fancy frontend technology. Or a mobile app. Or an assembly language for your laptop’s processor. The sky is the limit.
 
 
-
-
-:convertkit: 1da0a4c87b
+:noform:
 include::source/_parts/thank-you.adoc[]
 
 

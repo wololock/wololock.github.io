@@ -2,3 +2,28 @@ extends layout/base
 
 block site_title
     = page.title
+
+block content
+    main#page-post(role="main" itemscope itemtype="http://schema.org/Article")
+        header.jumbotron.text-center.pb-5(style="background-image: url('" + url_for(page.cover) + "')")
+            .mask
+            .container.pt-5.pb-1
+                - page.categories.each(category => {
+                    a.category.mark(href=url_for(category.path))=category.name
+                - })
+                h1(itemprop="name")=page.title
+                +post_meta(page)
+
+
+
+        article.post-content(role="article" itemprop="articleBody")
+            .container
+                .col-12.offset-0.col-md-10.offset-md-1
+                    != page.content
+
+            include post/footer
+
+    include post/related
+
+
+    include post/comments

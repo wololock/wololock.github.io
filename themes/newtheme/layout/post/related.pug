@@ -1,0 +1,8 @@
+- var related = popular_posts_json({ maxCount: 3, isImage: true, isExcerpt: true }, page)
+- var posts = site.posts.filter(post => related.json.some(it => it.title === post.title)).toArray()
+
+section.related-posts
+    .container
+        .card-deck
+            each post in posts
+                +post_card(post)

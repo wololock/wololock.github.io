@@ -1,0 +1,87 @@
+@import "../js/androidstudio.css"
+@import "mixins.styl"
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap')
+
+hljs-font()
+  font-family 'Roboto Mono', monospace
+  //font-family sans-serif
+
+.listingblock
+  font-size 0.9em
+  margin 20px 0 30px 0
+  border-top-left-radius 4px
+  border-top-right-radius 4px
+
+  > .title
+    sans-serif()
+    color #475e84
+    font-size 0.8em
+    padding 4px 0 4px 15px
+    background #d8d8da
+    border-top-left-radius 4px
+    border-top-right-radius 4px
+
+    &::before
+      color: #8c95a6;
+      content: "● ● ● ";
+      font-size: 1em;
+      line-height: 1.2
+      margin-right 5px
+
+  pre
+    border-radius 0
+
+  code
+    hljs-font()
+    border-radius 0
+
+  .hljs
+    padding 15px
+    font-weight 400
+    line-height 1.5
+    color #bababa
+    border-radius 0
+
+    @media only screen and (max-width: 767px)
+      font-size 0.9em
+
+  .hljs-keyword, .hljs-selector-tag, .hljs-deletion
+    font-weight 700
+
+  .hljs-string
+    color #8ec36f
+
+.conum[data-value]
+  sans-serif()
+  display inline-block
+  color #fff !important
+  background-color rgba(0, 0, 0, .8)
+  -webkit-border-radius 100px
+  border-radius 100px
+  text-align center
+  font-size 1em
+  width 1.67em
+  height 1.67em
+  line-height 1.67em
+  font-style normal
+  font-weight bold
+  margin-right 5px
+
+.conum[data-value] *
+  color #fff !important
+
+
+.conum[data-value] + b
+  display none
+
+
+.conum[data-value]:after
+  content attr(data-value)
+
+.colist .conum[data-value]
+  font-size 0.7em
+
+p > .conum[data-value]
+  font-size 0.7em
+

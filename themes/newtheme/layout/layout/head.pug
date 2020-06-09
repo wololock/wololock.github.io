@@ -1,16 +1,30 @@
 meta(charset="utf-8")
 meta(http-equiv="X-UA-Compatible", content="IE=edge")
 meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
-meta(name="robots", content="all")
+meta(name="robots", content="index, follow")
 
 title
     block site_title
+
+- var description = page.excerpt || ""
+meta(name="description" content=strip_html(description.slice(0,252))+"...")
+
+if page.tags
+    meta(name="keywords", content=page.tags.map(function(tag){ return tag.name }).join(","))
 
 link(href="//fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet")
 link(href="//fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet")
 link(href="//fonts.googleapis.com/css2?family=Noto+Serif:ital@1&display=swap" rel="stylesheet")
 link(href="//fonts.googleapis.com/css2?family=Quicksand:wght@500;700;900&display=swap" rel="stylesheet")
+link(href="//fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet")
+link(href="//fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet")
+link(href="//fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet")
 
 link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous")
 
+if page.highlightjs
+    link(rel="stylesheet" href=url_for("/css/highlightjs.css"))
+
 link(rel="stylesheet" href=url_for("/css/main.css"))
+
+link(rel="canonical" href=config.url + url_for(page.canonical_path, { relative: false }))

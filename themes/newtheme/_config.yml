@@ -1,0 +1,48 @@
+navbar-links:
+    'Archive': /archives
+    'Support Me': /support-me
+
+avatar: /hexo.png
+favicon: /hexo.png
+
+index_cover: /img/post-bg-1.jpg
+
+header:
+  title: Szymon Stępniak
+  motto: I walk through e.printStackTrace() so you don't have to
+
+rss: /atom.xml
+googlefonts:
+  - "Lora:400,700,400italic,700italic"
+  - "Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+  - "Source+Code+Pro"
+  - "Droid+Sans+Mono:400,700"
+
+footer:
+  twitter:
+    link: https://twitter.com/wololock
+    title: Twitter
+    icon: fa-twitter
+    enable: true
+  github:
+    link: https://github.com/wololock
+    title: GitHub
+    icon: fa-github
+    enable: true
+  stackoverflow:
+    link: https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile
+    title: StackOverflow
+    icon: fa-stack-overflow
+    enable: false
+  youtube:
+    link: https://www.youtube.com/c/eprintstacktrace
+    title: YouTube
+    icon: fa-youtube
+    enable: true
+
+google_analytics: UA-42400890-5
+
+comment:
+  enable: disqus
+  id: eprintstacktrace
+
