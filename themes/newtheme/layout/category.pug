@@ -6,14 +6,14 @@ block site_title
 block content
     - var category = site.categories.findOne({name: page.category});
     - var data = site.data[category.slug] || {}
-    - var recommended = data.recommended ? site.posts.filter(post => data.recommended.some(it => it === post.slug)).sort("date").reverse().limit(3).toArray() : []
+    - var recommended = data.recommended ? site.posts.find({slug: {$in: data.recommended}}).toArray().sort((a,b) => data.recommended.indexOf(a.slug) - data.recommended.indexOf(b.slug)) : []
     - var ads = data.ads || {}
 
     main#page-category(role="main")
         section.jumbotron.text-center.pb-5(style= data.cover ? "background-image: url('" + data.cover + "')" : "")
             .mask
             .container
-                h1 #{category.name}
+                h1.text-underline-warning.pb-2 #{category.name}
 
                 if recommended.length > 0
                     h2.h2.py-3 Most popular posts
@@ -24,7 +24,10 @@ block content
         if data.youtube
             section.py-md-5.pb-1.pt-3.youtube-videos
                 .container
-                    h3.h2.text-center.mb-4 Watch my #[em.fa.fa-youtube] #[b YouTube] videos
+                    h3.h2.text-center.mb-md-5.mt-md-0.my-4
+                        | Watch my
+                        |
+                        span.d-md-inline.d-block.ml-1 #[em.fa.fa-youtube] #[b YouTube] videos
                     .card-deck
                         each video in data.youtube
                             .card.shadow-sm
@@ -36,20 +39,20 @@ block content
                                 a.stretched-link(href="https://www.youtube.com/watch?v=" + video.id)
 
 
-        section.py-5.serif#list
+        section.pt-5.serif#list
             .container
                 .row
                     .col-12.col-lg-10
                         each post in page.posts.toArray()
                             article.list-elem.pr-3
                                 h3=post.title
-                                div.text-justify!=post.excerpt
+                                div.text-justify.excerpt!=post.excerpt
                                 div.text-muted.sans-serif
                                     +post_meta(post, { 'date-class': 'mark font-weight-bold'})
                                 a.stretched-link(href=url_for(post.path))
 
                         if page.total > 1
-                            nav.paginator
+                            nav.paginator.pb-4
                                 !=paginator({ prev_text: '<i class="fa fa-angle-left"></i>', next_text: '<i class="fa fa-angle-right"></i>', escape: false, format: "page/%d/#list" })
 
                     .col-md-2.d-none.d-md-block

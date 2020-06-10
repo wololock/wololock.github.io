@@ -11,11 +11,14 @@ mixin post_card(post, options = {})
                 div.title=post.title
         .card-body
             +post_meta(post)
-            p.card-text(itemprop="description")!=strip_html(post.excerpt)
+            if options.description !== false
+                - var excerpt = strip_html(post.excerpt)
+                p.card-text.pt-3(itemprop="description")
+                    != options.truncate > 0 ? truncate(excerpt, {length: options.truncate, omission: " ... "}) : excerpt
         a.stretched-link(href=url_for(post.path) itemprop="url")
 
 mixin post_meta(post, options = {})
-    section.post-meta.pb-3
+    section.post-meta
         ul
             li
                 time(class=options['date-class'] datetime=date_xml(post.date), itemprop="datePublished")!= full_date(post.date, "MMM D, YYYY")

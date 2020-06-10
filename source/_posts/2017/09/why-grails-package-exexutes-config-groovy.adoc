@@ -9,7 +9,7 @@ tags:
     - groovy
     - stackoverflow
 categories:
-    - Tales from debugger
+    - Groovy Cookbook
 cover: /img/post-debugger.jpg
 og_image: /images/og/grails-package-config.jpg
 eyeCatchImage: /images/og/grails-package-config.jpg

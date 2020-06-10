@@ -1,0 +1,242 @@
+#page-post
+  > header
+    color #fff
+    border-radius 0
+    padding-top 150px
+
+    h1
+      word-break break-word
+      @media phone
+        font-size 2rem
+
+    @media phone
+      padding-top 3rem
+
+    .post-meta
+      ul
+        text-align center
+
+        @media phone
+          font-size 0.8rem
+      a
+        color inherit
+
+  ul
+    text-align left
+
+article.post-content
+  serif()
+  font-weight 400
+  color #4a4a4a
+  line-height 1.6
+  text-align justify
+
+  h2, h3, h4, h5, h6
+    margin 1em 0 0.7em 0
+    text-align left
+
+  code
+    @media phone
+      word-break break-all
+
+  .paragraph
+    p
+      a
+        border-bottom 1px dashed #c1e4ec
+
+#toc
+  sans-serif()
+  background #f8f8f7
+  position static
+  padding 1.25em
+  border-bottom 1px solid #efefed
+  font-size 0.8em
+
+  .title
+    font-weight bold
+    margin-bottom 1em
+
+  ul
+    list-style decimal
+    li
+      line-height 2em
+      ul
+        list-style circle
+
+footer.post-footer
+  position relative
+  padding 20px 0 50px 0
+  sans-serif()
+  font-size 0.7em
+
+  .about-author
+    border-top 2px solid #f4f4f4
+
+    .bio
+      @media phone
+        font-size 1.2em
+        padding 0 1em
+
+    a
+      border none
+
+  h4
+    margin 15px 0 10px 0
+    padding 0
+    text-transform uppercase
+
+  ul.social-links
+    list-style none
+    margin 0
+    padding 0
+
+    li
+      list-style none
+      margin 0
+      padding 0
+      display inline-block
+      text-align center
+      margin-right 7px
+      font-size 20px
+      height 32px
+      line-height 32px
+      width 32px
+      background #f8f8f8
+      border-radius 50%
+
+      a
+        .fa-twitter
+          color cornflowerblue !important
+        .fa-github
+          color #222
+        .fa-stack-overflow
+          color darkorange
+        .fa-youtube
+          color red
+
+.related-posts
+  background #F5F7FA
+  padding 50px 0
+  color #333
+
+#footnotes
+  font-size 0.7em
+  sans-serif()
+
+.post-tags
+  sans-serif()
+  font-size 14px
+  border-top 2px solid #f4f4f4
+  margin 40px 0 0 0
+  padding 20px 0 0 0
+  color #aaa
+
+  @media phone
+    font-size 12px
+
+  ul
+    list-style none
+    margin 0
+    padding 3px 0
+
+    a
+      color #555
+      border none
+      &:hover
+        color cornflowerblue
+
+    li
+      list-style none
+      margin 0 4px 0 0
+      padding 0
+      display inline
+
+      &.text
+        a.mark
+          padding 3px 5px
+          font-weight bold
+          serif()
+          &:hover
+            color #444
+
+
+      &:not(.text):after
+        content ","
+
+      &:last-of-type
+        &:after
+          content none
+
+.admonitionblock
+  margin 20px 0
+  background #fafafa
+  padding 15px
+  text-align left
+
+  @media phone
+    padding 15px 0
+
+  >table
+    border-collapse separate
+    border 0
+    background none
+    width 100%
+    table-layout fixed
+
+    td.icon
+      text-align center
+      width 80px
+
+      @media phone
+        width 40px
+        vertical-align top
+        padding-top 30px
+
+      img
+        max-width none
+
+      .title
+        font-weight bold
+        font-family "Open Sans","DejaVu Sans",sans-serif
+        text-transform uppercase
+
+    td.content
+      padding-left 1.125em
+      padding-right 1.25em
+      border-left 1px solid #ddddd8
+      color rgba(0,0,0,.6)
+      overflow auto
+
+      @media phone
+        padding 0 0.7em
+
+      &>:last-child>:last-child
+        margin-bottom 0
+
+  td.icon
+    [class^="fa icon-"]
+      font-size 2.5em
+      cursor default
+
+      @media phone
+        font-size 1.5rem
+
+    .icon-note:before
+      content "\f05a"
+      color #19407c
+
+    .icon-tip:before
+      content "\f0eb"
+      color #111
+
+    .icon-warning:before
+      content "\f071"
+      color #bf6900
+
+    .icon-caution:before
+      content "\f06d"
+      color #bf3400
+
+    .icon-important:before
+      content "\f06a"
+      color #bf0000

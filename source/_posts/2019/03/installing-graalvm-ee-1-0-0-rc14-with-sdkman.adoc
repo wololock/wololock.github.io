@@ -8,7 +8,7 @@ tags:
     - java
     - sdkman
 categories:
-    - How to
+    - Learning Java
 cover: /images/graalvm-ee-sdkman-bg.jpg
 og_image: /images/og/graalvm-ee-sdkman.jpg
 eyeCatchImage: /images/og/graalvm-ee-sdkman.jpg

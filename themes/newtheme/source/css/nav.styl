@@ -1,6 +1,10 @@
 #header
   transition all 0.5s
 
+  h3.logo
+    font-size 1.5rem
+    letter-spacing -1px
+
   .navbar-collapse
     font-weight 700
 
@@ -13,15 +17,26 @@
       &:hover
         color #999
 
+  .nav-item
+    font-size 15px
+
+    a,
+    a > *
+      line-height 2em
+
   em.fa
+    height 2em
+    width 2em
     display inline-block
-    height 28px
-    line-height 28px
     padding 0
     margin 0
-    width 28px
-    font-size 18px
-    background #f4f4f4
+    background #f1f1f1
     border-radius 50%
     text-align center
+    transition all 0.2s
+
+    &:hover
+      background transparent
+      transform scale(1.5) rotate(360deg)
+
 

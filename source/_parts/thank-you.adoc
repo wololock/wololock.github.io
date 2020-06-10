@@ -1,11 +1,4 @@
 :support-me: https://e.printstacktrace.blog/support-me
-ifndef::convertkit[]
-:convertkit: 5e86560171
-endif::[]
-
-ifndef::noform[]
-{% convertkit {convertkit} %}
-endif::[]
 
 [discrete]
 == Thank you!

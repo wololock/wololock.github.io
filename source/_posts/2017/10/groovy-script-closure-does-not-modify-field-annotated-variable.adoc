@@ -10,7 +10,7 @@ tags:
     - stackoverflow
     - closure
 categories:
-    - Tales from debugger
+    - Groovy Cookbook
 cover: /img/post-debugger.jpg
 og_image: /images/og/groovy-field-variable.jpg
 eyeCatchImage: /images/og/groovy-field-variable.jpg

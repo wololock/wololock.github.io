@@ -8,7 +8,7 @@ tags:
     - xmx
     - ratpack
 categories:
-    - How to
+    - Learning Java
 cover: /images/graalvm-heap-size-bg.jpg
 og_image: /images/og/graalvm-heap-size.jpg
 eyeCatchImage: /images/og/graalvm-heap-size.jpg

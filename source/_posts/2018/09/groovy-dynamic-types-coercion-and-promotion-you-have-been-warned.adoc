@@ -7,7 +7,7 @@ tags:
     - dynamic-types
     - coercion
 categories:
-    - Programming tips
+    - Groovy Cookbook
 og_image: /images/og/groovy-dynamic-types.jpg
 eyeCatchImage: /images/og/groovy-dynamic-types.jpg
 highlightjs: true

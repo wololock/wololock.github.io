@@ -5,6 +5,11 @@ recommended:
   - jenkins-scripted-pipeline-vs-declarative-pipeline-the-4-practical-differences
   - using-jenkins-pipeline-parallel-stages-to-build-maven-project-with-different-jdks
 
+ads:
+  column:
+    url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.1348&subid=0&type=4
+    image: /images/yml/top-online-courses.png
+
 youtube:
   - title: "Multiple Java versions in a single Jenkins Pipeline using Docker and SDKMAN! | #jenkinspipeline"
     id: j1lH3vOhucw

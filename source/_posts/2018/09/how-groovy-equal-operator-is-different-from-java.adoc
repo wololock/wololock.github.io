@@ -8,7 +8,7 @@ tags:
     - operator
     - java
 categories:
-    - Programming tips
+    - Groovy Cookbook
 cover: /img/index-header2.jpg
 og_image: /images/og/groovy-equals-operator.jpg
 eyeCatchImage: /images/og/groovy-equals-operator.jpg

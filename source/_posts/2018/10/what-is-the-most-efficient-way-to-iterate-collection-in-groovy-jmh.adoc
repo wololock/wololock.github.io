@@ -9,7 +9,7 @@ tags:
     - java-8
     - benchmark
 categories:
-    - Programming tips
+    - Groovy Cookbook
 cover: /img/index-header2.jpg
 og_image: /images/og/groovy-jmh-benchmark.jpg
 eyeCatchImage: /images/og/groovy-jmh-benchmark.jpg

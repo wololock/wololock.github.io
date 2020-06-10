@@ -7,7 +7,7 @@ tags:
     - split
     - string
 categories:
-    - Programming tips
+    - Groovy Cookbook
 og_image: /images/og/groovy-split-string.jpg
 eyeCatchImage: /images/og/groovy-split-string.jpg
 affiliate: true

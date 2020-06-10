@@ -7,7 +7,7 @@
                         .shadow-sm.d-inline-flex
                             img.img-fluid(src=image alt=title)
                     .col-md-9
-                        h3 #{title}
+                        h3.text-md-left.text-center #{title}
                         p.description
                             span "#{description}"
                             |
@@ -16,7 +16,7 @@
 
                         .row
                             each link in links
-                                .col-md-6.col-12.mb-2
+                                .col-md-6.col-8.mb-2.offset-2.offset-md-0
                                     img(no-lazy src="/images/flags/" + link.flag + ".png")
                                     span.ml-2
                                         a(href=link.url)=link.text

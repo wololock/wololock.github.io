@@ -1,0 +1,33 @@
+extends layout/base
+
+block variables
+    - var header_class = "bg-white navbar-light shadow-sm scrolled"
+
+block site_title
+    | Archives
+
+block content
+    -
+        var archives = site.posts.sort("date", "desc").toArray().reduce((m,post) => {
+            var year = full_date(post.date, 'YYYY');
+            if (m[year] === undefined) m[year] = [];
+            m[year].push(post);
+            return m;
+        }, {});
+
+        var years = Object.keys(archives).reverse();
+
+    section.page-archives.pt-3
+        .container.py-5.text-md-left.text-center
+            each year in years
+                h2.my-4.text-md-left.text-center
+                    span #{year}
+                    |
+                    |
+                    span.badge.badge-warning=archives[year].length
+                .row.text-md-left.text-center
+                    each post in archives[year]
+                        .col-12.col-md-1.post-date.text-md-right
+                            !=full_date(post.date, 'MMM D')
+                        .col-10.offset-1.offset-md-0.col-md-11.mb-2.post-title
+                            a(href=url_for(post.path)) #{post.title}

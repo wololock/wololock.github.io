@@ -11,15 +11,16 @@ block content
                 - page.categories.each(category => {
                     a.category.mark(href=url_for(category.path))=category.name
                 - })
-                h1(itemprop="name")=page.title
+                h1.mt-2.mt-md-0(itemprop="name")=page.title
                 +post_meta(page)
-
-
 
         article.post-content(role="article" itemprop="articleBody")
             .container
-                .col-12.offset-0.col-md-10.offset-md-1.pt-5
-                    != page.content
+                .row
+                    .col-12.offset-0.col-md-10.offset-md-1.pt-3.pt-md-5
+                        != page.content
+
+                    include post/meta
 
             include post/footer
 

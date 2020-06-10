@@ -62,6 +62,10 @@ category_generator:
   path: ''
   per_page: 10
   order_by: -date
+
+tag_generator:
+  per_page: 9
+  order_by: -date
   
 # Category & Tag
 default_category: uncategorized

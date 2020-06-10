@@ -10,7 +10,7 @@ tags:
     - jsr335
     - jep101
 categories:
-    - Programming tips
+    - Learning Java
 cover: /images/java-type-inference-bg.jpg
 og_image: /images/og/java-generics-type-inference.jpg
 eyeCatchImage: /images/og/java-generics-type-inference.jpg

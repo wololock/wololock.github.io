@@ -10,7 +10,7 @@ tags:
     - gradle
     - ide
 categories:
-    - How to
+    - Groovy Cookbook
 cover: /img/groovy-junit5-bg.jpg
 og_image: /images/og/groovy-junit5.jpg
 eyeCatchImage: /images/og/groovy-junit5.jpg

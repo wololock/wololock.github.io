@@ -4,9 +4,9 @@
 
 section.related-posts
     .container
-        .card-deck
+        .card-deck.pt-2
             each post in posts
-                +post_card(post)
+                +post_card(post, {truncate: 300})
 
 
     .col-12.text-center.mt-5.serif

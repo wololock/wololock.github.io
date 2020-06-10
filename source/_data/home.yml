@@ -1,0 +1,15 @@
+youtube:
+  latest:
+    title: "Multiple Java versions in a single Jenkins Pipeline using Docker and SDKMAN! | #jenkinspipeline"
+    id: j1lH3vOhucw
+    time: "19:42"
+    description: "In this video, I show you how you can use Jenkins Declarative Pipeline to create a build pipeline that compiles the Maven Java project using three different Java versions (8, 11, and 15.) You will learn how to use a matrix section of the Jenkins Pipeline to define parallel stages, as well as how to create a Docker image that provides both Java and Maven using the powerful SDKMAN command-line tool. After watching this video you should feel comfortable with setting up multiple parallel stages to build your Java project using different versions of the compiler. And what is most important - it does not require creating Dockerfiles for each Java version. I will show you how to build the pipeline using just a single Dockerfile that does the job. Enjoy the video! 😁"
+
+
+
+posts:
+  - jenkins-pipeline-environment-variables-the-definitive-guide
+  - groovy-regular-expressions-the-definitive-guide
+  - jenkins-scripted-pipeline-vs-declarative-pipeline-the-4-practical-differences
+  - how-to-time-out-jenkins-pipeline-stage-and-keep-the-pipeline-running
+  - atomic-habits-book-review

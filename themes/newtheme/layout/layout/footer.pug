@@ -1,0 +1,53 @@
+footer.page-footer
+    section.links
+        .container
+            .row
+                .col-12.col-lg-4
+                    h5.text-md-left.text-center Useful links
+                    ul.text-md-left.text-center.mb-md-0.mb-5
+                        li
+                            a(href=url_for("/start-here")) Start here
+                        li
+                            a(href=url_for("/about-me")) About me
+                        li
+                            a(href=url_for("/resources")) Resources
+                        li
+                            a(href=url_for("/what-to-read")) What to read?
+                        li
+                            a(href=url_for("/privacy-policy")) Privacy Policy
+                        li
+                            a(href=url_for("/archives")) Archives
+                        li
+                            a(href=url_for("/support-me")) Become a supporter #[em.fas.fa-heart.color-red]
+
+
+                - var categories = site.categories.sort("length").reverse().limit(7).toArray()
+
+                .col-12.col-lg-4
+                    h5.text-md-left.text-center Popular categories
+                    ul.text-md-left.text-center.mb-md-0.mb-5
+                        each category in categories
+                            li
+                                a(href=url_for(category.path))
+                                    != category.name
+                                    span.count.ml-2=category.posts.length
+
+                .col-12.col-lg-4.text-center
+                    div
+                        a(href="#")
+                            img.img-fluid(src="https://mproxy.banner.linksynergy.com/fs/banners/43061/43061_39.png")
+
+    section.bottom
+        .container
+            ul.text-center.py-2
+                li.d-inline-block.mb-md-0.mb-2
+                    | Created with #[a(href="https://hexo.io") Hexo]
+                li.d-inline-block.mb-md-0.mb-2
+                    | Hosted on #[a(href="https://github.com/wololock/wololock.github.io") GitHub]
+                li.d-inline-block.mb-md-0.mb-2
+                    | Deployed with #[a(href="https://circleci.com/gh/wololock/wololock.github.io") Circle CI]
+                li.d-inline-block.mb-md-0.mb-2
+                    a(href="https://github.com/wololock/wololock.github.io/commits/develop")
+                        img(src="https://badgen.net/github/last-commit/wololock/wololock.github.io?color=blue&scale=0.8")
+
+

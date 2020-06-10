@@ -6,20 +6,19 @@ block content
             .mask
             .container
                 img.rounded-circle.shadow-sm(src=config.photo width="100px")
-                h1 Hi! I'm Szymon
-                p!=config.bio
+                h1.my-3 Hi! I'm Szymon
+                p.lead.my-2.px-0.px-md-5!=config.bio
 
                 - var latest = site.posts.sort("date").reverse().limit(9).toArray();
                 - var posts = _.chunk(latest, 3)
                 - var carouselId = "recentArticles"
 
-            div.carousel.slide.pt-4(id=carouselId data-ride="carousel" data-interval="118000")
+            div.carousel.slide.pt-4(id=carouselId data-ride="carousel" data-interval="8000")
                 .container
                     ol.carousel-indicators
                         li(data-target="#"+carouselId data-slide-to="0" class="active")
                         li(data-target="#"+carouselId data-slide-to="1")
                         li(data-target="#"+carouselId data-slide-to="2")
-                    </ol>
                     div.carousel-inner
                         each group, index in posts
                             div.carousel-item(class=index === 0 ? "active" : "")
@@ -33,6 +32,42 @@ block content
                     span.carousel-control-next-icon(aria-hidden="true")
                     span.sr-only="Next"
 
-        section.py-5
+        - var home = site.data.home
+
+        section.sec.most-popular-posts
             .container
-                script(src="https://eprintstacktrace.disqus.com/recent_comments_widget.js?num_items=5&hide_avatars=1&avatar_size=32&excerpt_length=100")
+                h2 Most popular posts #[span.small (last 28 days)]
+                - var popular = site.posts.find({slug: {$in: home.posts }}).toArray().sort((a,b) => home.posts.indexOf(a.slug) - home.posts.indexOf(b.slug))
+
+                .row
+                    each post,idx in popular
+                        .col-12.offset-0.col-md-10.offset-md-1.post.my-3
+                            .rank
+                                span #{idx+1}.
+                            .data
+                                h3 #{post.title}
+
+                                p.lead!=strip_html(post.excerpt)
+
+        section.sec.bg-gray-blue.latest-comments
+            .container
+                h2 Latest comments
+
+                script(src="https://eprintstacktrace.disqus.com/recent_comments_widget.js?num_items=7&hide_avatars=0&avatar_size=32&excerpt_length=100")
+
+
+        - var video = site.data.home.youtube.latest
+
+        section.sec.latest-video
+            .container
+                h2 Latest YouTube video
+                .row
+                    .col-12.col-md-5
+                        .card.shadow-sm
+                            .card-header(itemprop="image" style="height:250px;background-image: url('https://i3.ytimg.com/vi/" + video.id + "/mqdefault.jpg')")
+                                div.time=video.time
+                                em.fa.fa-youtube
+                            a.stretched-link(href="https://www.youtube.com/watch?v=" + video.id)
+                    .col-12.col-md-7
+                        h4 #{video.title}
+                        p.desc #{video.description}
