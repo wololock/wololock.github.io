@@ -19,11 +19,51 @@
         color #ccc
 
   .latest-comments
-    font-size 1.1rem
+    font-size 1rem
 
-    .dsq-widget-avatar
-      border-radius 50%
-      margin -3px 3px 3px 0
+    ul.dsq-widget-list
+      margin 0
+      padding 0
+      font-size 0.8em
+
+      >li.dsq-widget-item
+        .dsq-widget-avatar
+          border-radius 50%
+          margin-top 0.6em
+
+        .dsq-widget-user
+          display none
+
+        .dsq-widget-comment
+          position relative
+          background color-bubble-speech
+          border-radius .6em
+          display block
+          padding 0.5rem 1rem
+          margin 0 0 0 65px
+
+          &:after
+            content ''
+            position absolute
+            left 0
+            top 50%
+            width 0
+            height 0
+            border 15px solid transparent
+            border-right-color color-bubble-speech
+            border-left 0
+            border-bottom 0
+            margin-top -7.5px
+            margin-left -15px
+
+            @media phone
+              top 20%
+              left 1px
+
+        p.dsq-widget-meta
+          text-align right
+          margin 0.5rem 1rem 0 2rem
+          font-size 0.8rem
 
   .latest-video
     .desc

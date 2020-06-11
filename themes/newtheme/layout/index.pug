@@ -53,7 +53,12 @@ block content
             .container
                 h2 Latest comments
 
-                script(src="https://eprintstacktrace.disqus.com/recent_comments_widget.js?num_items=7&hide_avatars=0&avatar_size=32&excerpt_length=100")
+                .row
+                    .col-12.col-lg-10
+                        script(src="https://eprintstacktrace.disqus.com/recent_comments_widget.js?num_items=6&hide_avatars=0&avatar_size=48&excerpt_length=200")
+                    .col-lg-2.d-none.d-lg-block
+                        a(href=site.data.home.ads.comments.right.url)
+                            img(src=site.data.home.ads.comments.right.image)
 
 
         - var video = site.data.home.youtube.latest
@@ -63,7 +68,7 @@ block content
                 h2 Latest YouTube video
                 .row
                     .col-12.col-md-5
-                        .card.shadow-sm
+                        .card.shadow
                             .card-header(itemprop="image" style="height:250px;background-image: url('https://i3.ytimg.com/vi/" + video.id + "/mqdefault.jpg')")
                                 div.time=video.time
                                 em.fa.fa-youtube
