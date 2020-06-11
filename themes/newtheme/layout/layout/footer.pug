@@ -2,7 +2,7 @@ footer.page-footer
     section.links
         .container
             .row
-                .col-12.col-lg-4
+                .col-12.col-md-4
                     h5.text-md-left.text-center Useful links
                     ul.text-md-left.text-center.mb-md-0.mb-5
                         li
@@ -23,7 +23,7 @@ footer.page-footer
 
                 - var categories = site.categories.sort("length").reverse().limit(7).toArray()
 
-                .col-12.col-lg-4
+                .col-12.col-md-4
                     h5.text-md-left.text-center Popular categories
                     ul.text-md-left.text-center.mb-md-0.mb-5
                         each category in categories
@@ -32,7 +32,7 @@ footer.page-footer
                                     != category.name
                                     span.count.ml-2=category.posts.length
 
-                .col-12.col-lg-4.text-center
+                .col-12.col-md-4.text-center
                     div
                         a(href="#")
                             img.img-fluid(src="https://mproxy.banner.linksynergy.com/fs/banners/43061/43061_39.png")

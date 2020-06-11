@@ -4,14 +4,19 @@
 
   .sec
     padding 4rem 0
+    @media phone
+      padding 2rem 0
 
     h2
       text-align center
       font-weight 700
-      font-size 3rem
+      font-size 4rem
       padding 0 0 3rem 0
-      color #c4d5e2
-      font-family "Quicksand"
+      color #d3e6ec
+
+      @media phone
+        font-size 2.5rem !important
+        padding-bottom 2rem
 
       span.small
         font-size 1.5rem
@@ -66,9 +71,29 @@
           font-size 0.8rem
 
   .latest-video
+    .card-header
+      height 249px
+
+      @media phone
+        height 200px
+
     .desc
       font-size 0.9rem
       text-align justify
+
+    h2
+      color #bbb
+      font-weight 400
+      font-size 3rem
+
+    .youtube
+      letter-spacing -4px
+      font-weight 700
+      color #333
+
+    .small
+      color #bbb !important
+
 
   .most-popular-posts
     .post
@@ -85,14 +110,49 @@
         left 0
         z-index 0
 
+        @media phone
+          left 10px
+
       .data
         position relative
         z-index 1
         padding-left 5rem
+
+        @media phone
+          padding-left 2rem
+          padding-right 1rem
 
         h3
           font-size 1.7rem
 
         p.lead
           text-align justify
+
+  .newsletter
+    background #ffba30
+    background-image: linear-gradient(to top, #ffba30 0%, #ffcd72 80%);
+    color #5a473e
+    serif()
+    font-size 1.3rem
+
+    h2
+      color #fff
+      display inline
+      padding 0 0 20px 0
+      serif()
+
+    .formkit-form
+      background none !important
+      max-width inherit
+
+      input[type="text"]
+        border-color #ffbd00 !important
+        box-shadow rgba(0,0,0,0.08) 0 5px 5px
+        color #777 !important
+        font-size 1.1rem !important
+        sans-serif()
+
+      button.formkit-submit
+        font-weight bold !important
+        font-size 1.3rem
 

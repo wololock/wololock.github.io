@@ -2,6 +2,10 @@ if theme.comment.enable && !page.comment_disable
     if theme.comment.enable === "disqus"
         .container.py-5
             .disqus-comments
+
+                .alert.alert-info.small
+                    | #[em.fa.fa-info-circle] Want to paste code in the comment and make the formatting look good? Read this - #[a(href="https://help.disqus.com/en/articles/1717236-syntax-highlighting") #[b Syntax highlighting]].
+
                 .comments
                     #disqus_thread
                         #disqus_empty(style="display:none") Empty
