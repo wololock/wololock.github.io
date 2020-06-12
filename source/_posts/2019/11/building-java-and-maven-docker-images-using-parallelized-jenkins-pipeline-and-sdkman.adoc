@@ -16,7 +16,7 @@ categories:
     - Jenkins Pipeline Cookbook
 cover: /images/jenkins-bg.jpg
 og_image: /images/og/jenkins-pipeline-build-docker-images.jpg
-eyeCatchImage: /images/og/jenkins-pipeline-build-docker-images.jpg
+card: /images/cards/jenkins-01.jpg
 highlightjs: true
 ---
 :repository-url: https://github.com/wololock/sdkman-docker-pipeline-example

@@ -13,7 +13,7 @@ categories:
     - Learning Java
 cover: /images/java-type-inference-bg.jpg
 og_image: /images/og/java-generics-type-inference.jpg
-eyeCatchImage: /images/og/java-generics-type-inference.jpg
+card: /images/cards/java-01.jpg
 highlightjs: true
 ---
 

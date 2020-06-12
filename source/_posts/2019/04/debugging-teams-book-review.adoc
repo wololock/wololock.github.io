@@ -15,7 +15,7 @@ categories:
     - Programmer's Bookshelf
 cover: /images/debugging-teams-bg.jpg
 og_image: /images/og/debugging-teams2.jpg
-eyeCatchImage: /images/og/debugging-teams2.jpg
+card: /images/cards/debugging-teams.jpg
 affiliates: true
 book:
   title: "Debugging Teams: Better Productivity Through Collaboration"

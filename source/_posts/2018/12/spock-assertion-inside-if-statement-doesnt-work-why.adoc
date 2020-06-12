@@ -12,7 +12,7 @@ tags:
     - testing
 cover: /img/post-debugger.jpg
 og_image: /images/og/spock-then-assertion-if.jpg
-eyeCatchImage: /images/og/spock-then-assertion-if.jpg
+card: /images/cards/groovy-04.jpg
 highlightjs: true
 ---
 

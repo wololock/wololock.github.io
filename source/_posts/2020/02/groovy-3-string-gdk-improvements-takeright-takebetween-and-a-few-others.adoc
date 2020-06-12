@@ -10,7 +10,7 @@ categories:
   - Groovy Cookbook
 cover: /images/groovy-cookbook.jpg
 og_image: /images/og/groovy-3-string-gdk.jpg
-eyeCatchImage: /images/og/groovy-3-string-gdk.jpg
+card: /images/cards/groovy-03.jpg
 highlightjs: true
 ---
 :toc: macro

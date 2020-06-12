@@ -14,7 +14,7 @@ categories:
     - Programmer's Bookshelf
 cover: /images/release-it-bg.jpg
 og_image: /images/og/release-it.jpg
-eyeCatchImage: /images/og/release-it.jpg
+card: /images/cards/release-it.jpg
 affiliates: true
 book:
   title: "Release It!: Design and Deploy Production-Ready Software"

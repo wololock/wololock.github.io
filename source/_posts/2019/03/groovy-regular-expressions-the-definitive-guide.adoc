@@ -13,7 +13,7 @@ tags:
 - switch
 cover: /images/groovy-regexp-jmh-bg.jpg
 og_image: /images/og/groovy-regexp-jmh.jpg
-eyeCatchImage: /images/og/groovy-regexp-jmh.jpg
+card: /images/cards/groovy-04.jpg
 affiliates: true
 highlightjs: true
 ---

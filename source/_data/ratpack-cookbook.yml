@@ -1,4 +1,4 @@
-cover: /images/ratpack-cookbook-bg.jpg
+cover: /images/bg/ratpack-cookbook.jpg
 
 recommended:
   - using-the-same-prefix-with-different-http-methods-in-ratpack

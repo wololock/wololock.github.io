@@ -14,7 +14,7 @@ categories:
 - Jenkins Pipeline Cookbook
 cover: /images/jenkins-bg2.jpg
 og_image: /images/og/jenkins-pipeline-maven-parallel.jpg
-eyeCatchImage: /images/og/jenkins-pipeline-maven-parallel.jpg
+card: /images/cards/jenkins-01.jpg
 highlightjs: true
 ---
 :last-article: pass:[{% post_link building-java-and-maven-docker-images-using-parallelized-jenkins-pipeline-and-sdkman "the latest blog posts" %}]

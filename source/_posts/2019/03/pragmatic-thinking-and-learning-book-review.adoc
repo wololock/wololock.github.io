@@ -15,7 +15,7 @@ categories:
     - Programmer's Bookshelf
 cover: /images/pragmatic-thinking-and-learning-01.jpg
 og_image: /images/og/pragmatic-thinking-and-learning.jpg
-eyeCatchImage: /images/og/pragmatic-thinking-and-learning.jpg
+card: /images/cards/pragmatic-thinking-and-learning.jpg
 affiliates: true
 book:
   title: "Pragmatic Thinking and Learning: Refactor Your Wetware"

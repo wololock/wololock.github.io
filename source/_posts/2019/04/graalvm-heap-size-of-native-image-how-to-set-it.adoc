@@ -11,7 +11,7 @@ categories:
     - Learning Java
 cover: /images/graalvm-heap-size-bg.jpg
 og_image: /images/og/graalvm-heap-size.jpg
-eyeCatchImage: /images/og/graalvm-heap-size.jpg
+card: /images/cards/groovy-graalvm.jpg
 highlightjs: true
 ---
 

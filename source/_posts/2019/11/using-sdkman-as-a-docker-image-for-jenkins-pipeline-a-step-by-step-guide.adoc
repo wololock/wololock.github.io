@@ -16,7 +16,7 @@ categories:
     - Jenkins Pipeline Cookbook
 cover: /images/jenkins-bg.jpg
 og_image: /images/og/jenkins-pipeline-docker-sdkman.jpg
-eyeCatchImage: /images/og/jenkins-pipeline-docker-sdkman.jpg
+card: /images/cards/jenkins-03.jpg
 highlightjs: true
 ---
 :corretto-url: https://aws.amazon.com/corretto/

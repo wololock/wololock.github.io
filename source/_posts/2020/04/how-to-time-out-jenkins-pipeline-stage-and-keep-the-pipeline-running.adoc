@@ -14,7 +14,7 @@ categories:
     - Jenkins Pipeline Cookbook
 cover: /images/jenkins-bg2.jpg
 og_image: /images/og/pipeline-timeout-stage.jpg
-eyeCatchImage: /images/og/pipeline-timeout-stage.jpg
+card: /images/cards/jenkins-02.jpg
 highlightjs: true
 ---
 :catch-error-url: https://jenkins.io/doc/pipeline/steps/workflow-basic-steps/#catcherror-catch-error-and-set-build-result-to-failure

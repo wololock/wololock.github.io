@@ -19,7 +19,7 @@ block content
                     h2.h2.py-3 Most popular posts
                     .card-deck
                         each post in recommended
-                            +post_card(post, {category: false})
+                            +post_card(post, {category: true})
 
         if data.youtube
             section.py-md-5.pb-1.pt-3.youtube-videos

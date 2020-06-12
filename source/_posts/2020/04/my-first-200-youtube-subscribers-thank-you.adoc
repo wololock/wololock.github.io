@@ -11,7 +11,7 @@ categories:
     - Blog Reports
 cover: /images/youtube-bg.jpg
 og_image: /images/og/youtube.jpg
-eyeCatchImage: /images/og/youtube.jpg
+card: /images/cards/youtube.jpg
 ---
 :youtube-url: https://e.printstacktrace.blog/youtube?utm_source=post
 

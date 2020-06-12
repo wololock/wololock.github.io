@@ -11,7 +11,7 @@ categories:
     - How to
 cover: /img/hexo-github-bg.jpg
 og_image: /images/og/hexo-git-deployer.jpg
-eyeCatchImage: /images/og/hexo-git-deployer.jpg
+card: /images/cards/hexo-github.jpg
 highlightjs: true
 ---
 

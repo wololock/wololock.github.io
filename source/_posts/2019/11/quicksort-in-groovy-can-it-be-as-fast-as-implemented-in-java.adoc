@@ -11,7 +11,7 @@ tags:
 categories:
 - Groovy Cookbook
 og_image: /images/og/groovy-quicksort.jpg
-eyeCatchImage: /images/og/groovy-quicksort.jpg
+card: /images/cards/groovy-01.jpg
 affiliates: true
 highlightjs: true
 ---

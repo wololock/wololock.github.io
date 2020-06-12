@@ -10,7 +10,7 @@ categories:
     - Groovy Cookbook
 cover: /images/groovy-cookbook.jpg
 og_image: /images/og/groovy-null-check.jpg
-eyeCatchImage: /images/og/groovy-null-check.jpg
+card: /images/cards/groovy-02.jpg
 highlightjs: true
 ---
 

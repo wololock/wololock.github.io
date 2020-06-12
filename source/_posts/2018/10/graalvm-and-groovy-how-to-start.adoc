@@ -11,7 +11,7 @@ categories:
     - Groovy Cookbook
 cover: /images/graalvm-groovy-revisited.jpg
 og_image: /images/og/graalvm-groovy-how-to-start2.jpg
-eyeCatchImage: /images/og/graalvm-groovy-how-to-start2.jpg
+card: /images/cards/groovy-graalvm.jpg
 highlightjs: true
 ---
 :original-post-url: https://github.com/wololock/wololock.github.io/blob/1f5b876860d0f9d6eaa53a891e19b939013ea9f0/source/_posts/2018/10/graalvm-and-groovy-how-to-start.adoc

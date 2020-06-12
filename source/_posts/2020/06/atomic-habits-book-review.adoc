@@ -16,7 +16,7 @@ categories:
 - Programmer's Bookshelf
 cover: /images/atomic-habits-bg.jpg
 og_image: /images/og/atomic-habits.jpg
-eyeCatchImage: /images/og/atomic-habits.jpg
+card: /images/cards/atomic-habits.jpg
 affiliates: true
 book:
   title: "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones"

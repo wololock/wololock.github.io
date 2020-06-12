@@ -16,7 +16,7 @@ categories:
     - Learning Java
 cover: /img/post-bg-1.jpg
 og_image: /images/og/java-divide-list-to-lists.jpg
-eyeCatchImage: /images/og/java-divide-list-to-lists.jpg
+card: /images/cards/java-01.jpg
 highlightjs: true
 ---
 

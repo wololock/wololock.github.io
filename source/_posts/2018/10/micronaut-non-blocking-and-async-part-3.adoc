@@ -13,7 +13,7 @@ categories:
     - Micronaut Cookbook
 cover: /img/micronaut-bg.jpg
 og_image: /images/og/micronaut-nonblocking-part3.jpg
-eyeCatchImage: /images/og/micronaut-nonblocking-part3.jpg
+card: /images/cards/micronaut.jpg
 highlightjs: true
 ---
 

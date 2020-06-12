@@ -12,7 +12,7 @@ tags:
     - affiliate
 cover: /images/deep-work-book-review-img2.jpg?v=2
 og_image: /images/og/deep-work-book-review.jpg?v=2
-eyeCatchImage: /images/og/deep-work-book-review.jpg?v=2
+card: /images/cards/deep-work.jpg
 affiliates: true
 book:
   title: "Deep Work: Rules for Focused Success in a Distracted World"

@@ -12,7 +12,7 @@ categories:
     - Groovy Cookbook
 cover: /images/spock-random-tests-bg.jpg
 og_image: /images/og/spock-random-tests.jpg
-eyeCatchImage: /images/og/spock-random-tests.jpg
+card: /images/cards/groovy-01.jpg
 highlightjs: true
 ---
 

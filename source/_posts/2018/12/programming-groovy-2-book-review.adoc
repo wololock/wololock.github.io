@@ -13,7 +13,7 @@ tags:
     - affiliate
 cover: /images/programming-groovy-bg.jpg
 og_image: /images/og/programming-groovy.jpg
-eyeCatchImage: /images/og/programming-groovy.jpg
+card: /images/cards/programming-groovy.jpg
 affiliates: true
 book:
   title: "Programming Groovy 2: Dynamic Productivity for the Java Developer"

@@ -1,6 +1,6 @@
 mixin post_card(post, options = {})
     article.card.shadow-sm(itemscope itemtype="http://schema.org/Article")
-        .card-header(itemprop="image" style="background-image: url('" + url_for(post.eyeCatchImage) + "')")
+        .card-header(itemprop="image" style="background-image: url('" + url_for(post.card || post.eyeCatchImage) + "')")
             .mask
             h3.h5.text-left.font-weight-bold.text-white(itemprop="name")
                 if options.category !== false
