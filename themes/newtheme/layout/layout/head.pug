@@ -5,6 +5,7 @@ meta(name="robots", content="index, follow")
 
 title
     block site_title
+        != config.title
 
 - var description = page.excerpt || ""
 meta(name="description" content=strip_html(description.slice(0,252))+"...")

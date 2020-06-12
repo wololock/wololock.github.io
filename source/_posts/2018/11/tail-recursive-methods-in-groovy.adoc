@@ -13,7 +13,7 @@ categories:
     - Groovy Cookbook
 cover: /images/groovy-cookbook.jpg
 og_image: /images/og/groovy-tail-recursive.jpg
-card: /images/cards/groovy-01.jpg
+card: /images/cards/groovy-02.jpg
 highlightjs: true
 ---
 

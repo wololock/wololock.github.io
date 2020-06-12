@@ -4,6 +4,7 @@
 
 section.related-posts
     .container
+        h3="Related posts"
         .card-deck.pt-2
             each post in posts
                 +post_card(post, {truncate: 300})
