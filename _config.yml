@@ -171,4 +171,5 @@ lazyload:
 
 convertkit:
   domain: tremendous-motivator-1432.ck.page
+  threshold: -1500
 

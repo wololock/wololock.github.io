@@ -47,7 +47,11 @@ book:
     - flag: pl
       text: Get from taniaksiazka.pl
       url: https://amzn.to/2AyAyNU
-
+newsletter:
+  image: /images/convertkit/atomic-habits.jpg
+  title: Download the "Atomic Habits" mindmap
+  lead: "Subscribe to mail email list and get hand-drawn <b class=\"mark\">printable mindmap</b> in the PDF."
+  horizontal: true
 ---
 :the-war-of-art: https://amzn.to/2MgCKMD
 :atomic-habits: https://amzn.to/3coH0EF
@@ -174,7 +178,11 @@ As James Clear tries to convince, the right thing doesn’t have to be spectacul
 Doing *small things consistently* day after day is the way to build a *habit that sticks*, and to *produce results* that can change your life.
 What we need to understand and appreciate is the importance of small steps that we consciously decide to take - they eventually lead to success.
 
-pass:[{% convertkit "1da0a4c87b" %}]
+++++
+{% newsletter %}
+{% convertkit "3679b635aa" %}
+{% endnewsletter %}
+++++
 
 == The conclusion
 
@@ -199,8 +207,6 @@ pass:[{% book %}]
 * Synthesize and publish your notes on a blog. List a few things you find most interesting, and explain what you have learned from the presentation. After a year you will have a blog with at least 52 valuable blog posts.
 * Don’t be afraid to experiment. Every mistake is an experience you can learn from. Try different ways to learn new programming languages, frameworks, technologies. If you’re a backend developer, maybe it is not a bad idea to get a new perspective and learn some fancy frontend technology. Or a mobile app. Or an assembly language for your laptop’s processor. The sky is the limit.
 
-
-:noform:
 include::source/_parts/thank-you.adoc[]
 
 

@@ -47,7 +47,11 @@ block content
                             .data
                                 h3 #{post.title}
 
-                                p.lead!=strip_html(post.excerpt)
+                                p.lead
+                                    != strip_html(post.excerpt)
+                                    |
+                                    |
+                                    a.stretched-link(href=url_for(post.path)) Read more &raquo;
 
         section.sec.bg-gray-blue.latest-comments
             .container

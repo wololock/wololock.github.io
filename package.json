@@ -26,7 +26,7 @@
     "hexo-renderer-pug": "^1.0.0",
     "hexo-renderer-stylus": "^1.1.0",
     "hexo-server": "^1.0.0",
-    "hexo-tag-convertkit": "^0.1.2",
+    "hexo-tag-convertkit": "^0.2.0",
     "hexo-tag-share-post": "0.0.1",
     "hexo-util": "^1.9.1",
     "snyk": "^1.336.0"
