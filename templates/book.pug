@@ -4,12 +4,12 @@
             .col-12
                 .row
                     .col-md-3.text-center
-                        .shadow-sm.d-inline-flex
+                        .shadow-sm.d-inline-flex.img-fluid
                             img.img-fluid(src=image alt=title)
                     .col-md-9
                         h3.text-md-left.text-center #{title}
                         p.description
-                            span "#{description}"
+                            span!=description
                             |
                             |
                             span (source: #[a(href=source.url)=source.name])

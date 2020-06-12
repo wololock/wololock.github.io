@@ -5,7 +5,7 @@ if page.tags
                 li.text
                     - var category = page.categories.first()
                     em.far.fa-calendar-alt.mr-1
-                    | Published on #{full_date(page.date, "MMM D, YYYY")} in #[a.mark(href=url_for(category.path))=category.name]
+                    | Published: #{full_date(page.date, "MMM D, YYYY")} in #[a.mark(href=url_for(category.path))=category.name]
             ul.mt-2
                 li.text
                     em.fas.fa-tags
