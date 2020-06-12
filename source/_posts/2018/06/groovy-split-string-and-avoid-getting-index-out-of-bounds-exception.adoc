@@ -108,6 +108,4 @@ text.eachLine { line ->
 }
 ----
 
-include::source/_parts/groovy-in-action.adoc[]
-
 include::source/_parts/thank-you.adoc[]

@@ -489,4 +489,6 @@ And that's it for today.
 In the next episode, we will dive deeper into more advanced filters and functions that `jq` offers.
 Stay tuned! icon:smile-o[]
 
+pass:[{% youtube_card EIhLl9ebeiA %}]
+
 include::source/_parts/thank-you.adoc[]

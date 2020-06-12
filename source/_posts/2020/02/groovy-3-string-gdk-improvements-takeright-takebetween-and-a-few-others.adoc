@@ -128,10 +128,6 @@ assert text.containsIgnoreCase("OLD") == false
 assert text.containsIgnoreCase("OrLd") == true
 ----
 
-== Conclusion
-
-Here are a few new interesting methods added to Groovy in the 3.0 release.
-The list of all changes is much more impressive, so please take a look at the release notes.
-You can expect some more Groovy 3 related content soon on my blog, as well as on {my-youtube-channel}[my YouTube channel].
+pass:[{% youtube_card TjLDHIa-HVE %}]
 
 include::source/_parts/thank-you.adoc[]

@@ -215,9 +215,4 @@ I've run several tests with my demo Ratpack application, and I was able to limit
 However, if I kept the default size of the even loop group _(16 in my case)_, then I couldn't get lower
 than *256 MB*. Otherwise, the application pretty quickly started crashing with `OutOfMemoryError`.
 
-== Conclusion
-
-I hope you have learned something useful from this blog post. Please let me know in the comment section
-below what is your experience with the GraalVM. Take care and see you next time!
-
 include::source/_parts/thank-you.adoc[]

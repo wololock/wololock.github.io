@@ -28,18 +28,21 @@ I've managed to find the answer to that question.
 
 According to following http://docs.grails.org/2.4.4/guide/conf.html#config[Grails 2.4 documentation]:
 
-> For general configuration Grails provides two files:
->
->  * `grails-app/conf/BuildConfig.groovy`
->  * `grails-app/conf/Config.groovy`
->  
-> Both of them use Groovy's http://docs.groovy-lang.org/2.4.6/html/gapi/groovy/util/ConfigSlurper.html[`ConfigSlurper`] syntax.
-> The first, `BuildConfig.groovy`, is for settings that are used when running Grails commands, such as compile, doc, etc. 
-> The second file, `Config.groovy`, is for settings that are used when your application is running. This means that 
-> `Config.groovy` is packaged with your application, but `BuildConfig.groovy` is not. Don't worry if you're not clear 
-> on the distinction: the guide will tell you which file to put a particular setting in. 
+[.source-quote]
+____
+For general configuration Grails provides two files:
 
-After reading such documentation you could run into assumption, that no matter what you put into `Config.groovy` file
+* `grails-app/conf/BuildConfig.groovy`
+* `grails-app/conf/Config.groovy`
+
+Both of them use Groovy's http://docs.groovy-lang.org/2.4.6/html/gapi/groovy/util/ConfigSlurper.html[`ConfigSlurper`] syntax.
+The first, `BuildConfig.groovy`, is for settings that are used when running Grails commands, such as compile, doc, etc.
+The second file, `Config.groovy`, is for settings that are used when your application is running. This means that
+`Config.groovy` is packaged with your application, but `BuildConfig.groovy` is not. Don't worry if you're not clear
+on the distinction: the guide will tell you which file to put a particular setting in.
+____
+
+After reading such a documentation you could run into an assumption, that no matter what you put into `Config.groovy` file
 it will get executed while running application only. Unfortunately - this is not true.
 
 == Packaging Grails application

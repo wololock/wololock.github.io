@@ -424,8 +424,6 @@ In the scripted pipeline use case, the *Test* stage is not even rendered.
 This might introduce some unnecessary confusion, the declarative pipeline handles it much better in my opinion.
 Declarative vs. scripted, 4:0.
 
-include::source/_parts/jenkins-pipeline-offer.adoc[]
-
 == Conclusion
 
 Here are my top 4 differences between the declarative and scripted Jenkins pipeline.

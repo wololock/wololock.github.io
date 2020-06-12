@@ -32,15 +32,9 @@ This year you can also attend one of my three talks I'm going to deliver.
 If you wonder if it is worth dedicating your time to attend one of my presentations, here is a short video I recorded yesterday.
 I explain what the goals of each talk are, what you can expect from them, and what kind of things you can learn during the presentation.
 
-++++
-<div class="video-container">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/eFX02DssGLc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-++++
+pass:[{% youtube_card eFX02DssGLc %}]
 
 Here is the schedule.
-
-NOTE: Be aware, that date, time and/or room might change, so please double-check the agenda a day before.
 
 *"Practical quickstart to non-blocking I/O with Ratpack"* +
 Monday, May 27th, 10:40-11:30, room `AUD-2`

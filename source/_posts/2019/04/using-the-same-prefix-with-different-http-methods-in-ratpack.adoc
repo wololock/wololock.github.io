@@ -204,4 +204,6 @@ I hope you have learned something new from this blog post. The reason I wrote it
 example in the documentation that covered an example of combining `prefix` and `byMethod` methods.
 However, it is a quite common use case, and people get confused by it.
 
+pass:[{% youtube_card KkL2ZMmNY3I %}]
+
 include::source/_parts/thank-you.adoc[]

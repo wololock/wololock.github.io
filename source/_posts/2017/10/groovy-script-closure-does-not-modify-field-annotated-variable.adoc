@@ -111,8 +111,8 @@ public class incrementing_number extends Script {
 
 Second thing - in this example we used `@Field` annotation on purpose in line 3. According to http://docs.groovy-lang.org/2.4.12/html/gapi/groovy/transform/Field.html[class Javadoc documentation]:
 
-[]
-""
+[.source-quote]
+____
 Variable annotation used for changing the scope of a variable within a script from being within the run method of the script to being at the class level for the script.
 
 The annotated variable will become a private field of the script class. The type of the field will be the same as the type of the variable. Example usage:
@@ -126,7 +126,7 @@ assert awesum() == 6
 ----
 
 In this example, without the annotation, variable awe would be a local script variable (technically speaking it will be a local variable within the run method of the script class). Such a local variable would not be visible inside the `awesum` method. With the annotation, `awe` becomes a private List field in the script class and is visible within the `awesum` method.
-""
+____
 
 
 That's why in compiled Java class we can find `Integer number` class field. The rest of the script body gets executed in `Script.run()` method.

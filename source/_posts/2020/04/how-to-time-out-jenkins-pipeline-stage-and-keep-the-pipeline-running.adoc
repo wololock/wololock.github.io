@@ -176,8 +176,6 @@ The `A` stage is marked as `SUCCESS` which might be confusing.
 It hides the information about the timeout, so we need to click on the stage and check if there was a timeout or not every time we run the pipeline.
 There should be a better way to handle it.
 
-include::source/_parts/jenkins-pipeline-offer.adoc[]
-
 == Using `catchError` together with `try-catch`
 
 Luckily, there is a better solution.

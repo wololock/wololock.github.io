@@ -1,0 +1,74 @@
+BjO_vBzaB4c:
+  title: "Groovy + GraalVM native-image = instant startup time!"
+  description: "This is a short version of my \"Groovy and GraalVM\" talk presented at GR8Conf EU 2019 in Copenhagen, Denmark. I use slides prepared in AsciiDoc and compiled to reveal.js with AsciiDoctorJ Gradle plugin. I hope you enjoy it!"
+  time: "10:14"
+
+aOszDmbSsyM:
+  title: "Ratpack on GraalVM and Oracle JDK - 500k requests benchmark test"
+  description: "This video demonstrates the difference between Ratpack Hello World application run on GraalVM versus the same application run on Oracle JDK 1.8"
+  time: "2:20"
+
+7TJwpuNsDS8:
+  title: "Removing annotations with Groovy compiler configuration script"
+  description: "In this video, I demonstrate how to remove @CompileStatic annotation from the Groovy class using a compiler configuration script. Enjoy!"
+  time: "2:20"
+
+KkL2ZMmNY3I:
+  title: "Building an HTTP application in a single .groovy file with Ratpack!"
+  description: "Learn more about Ratpack here - https://ratpack.io"
+  time: "5:01"
+
+lwlfUGkTf8c:
+  title: "Spock Framework random tests order - how to do it? | #spockframework"
+  description: "Have you ever wondered how to randomize Spock Framework test methods execution? In this short video, I show you how you can create a random runner that shuffles all test methods before executing them."
+  time: "1:49"
+
+eFX02DssGLc:
+  title: "Let's meet at GR8Conf EU 2019 in Copenhagen!"
+  description: "GR8Conf website: https://gr8conf.eu"
+  time: "3:27"
+
+ZbTXrCrjNRw:
+  title: "GR8Conf EU 2019 vlog"
+  description: "This is a short video from GR8Conf EU 2019 that took place in Copenhagen, Denmark on May 27th-29th, 2019."
+  time: "3:19"
+
+KwQDxwZRZiE:
+  title: "Jenkins Pipeline Environment Variables explained | #jenkinspipeline"
+  description: "In today's video, I show you how you can work effectively with environment variables in the Jenkins pipeline as a code. You will learn how to list, read, set, and override those variables, plus I will show you some tricky problems you might run into (e.g. how to deal with null or boolean values in the pipeline.) After watching this video, working with Jenkins Pipeline environment variables shouldn't cause you any problems. Below you can find a list of all timestamps if you want to quickly jump to the specific section."
+  time: "16:43"
+
+BRw7e1QIOmA:
+  title: "Groovy Tutorial | Working with regular expressions | #groovylang"
+  description: "In this video, I show you three features that make working with regular expressions in the Groovy programming language a hit! Java made us used to verbose regex processing. We had to write a few lines of code just to perform some simple regex. It doesn't have to be this way. Groovy makes working with regex very simple, thanks to the find operator (=~), exact match operator (==~), or slashy strings (e.g. /\\d+\\.\\d+\\.\\d+/) that make writing regular expressions as simple as possible."
+  time: "9:00"
+
+j1lH3vOhucw:
+  title: "Multiple Java versions in a single Jenkins Pipeline using Docker and SDKMAN! | #jenkinspipeline"
+  description: "In this video, I show you how you can use Jenkins Declarative Pipeline to create a build pipeline that compiles the Maven Java project using three different Java versions (8, 11, and 15.) You will learn how to use a matrix section of the Jenkins Pipeline to define parallel stages, as well as how to create a Docker image that provides both Java and Maven using the powerful SDKMAN command-line tool."
+  time: "19:42"
+
+HaGeSq-SB9E:
+  title: "Jenkins Pipeline Maven build - how to set it up? | #jenkinspipeline #maven"
+  description: "Building a continuous integration Jenkins pipeline for the Maven-based Java project was never easier. You can start by using mvn installed on the Jenkins node, and then you can slowly migrate to a more flexible solution - dockerized builds using either \"docker\" agent, or the \"dockerfile\" one. In this video, I show you how quickly you can start building a Maven project in the Jenkins pipeline, and when you should consider improving by including docker containers to your workflow."
+  time: "17:42"
+
+O28X60MimH4:
+  title: "Groovy Tutorial | Useful String Methods | #groovylang"
+  description: "In this video, I show you useful Groovy string methods you may haven't hear about. Enjoy!"
+  time: "6:03"
+
+TjLDHIa-HVE:
+  title: "Groovy 3 Quick Review | #groovylang"
+  description: "In this video, I check what features are added in the recent Groovy 3 release."
+  time: "12:41"
+
+yN6EbeevV2w:
+  title: "Groovy Tutorial | Avoiding NPE with @NullCheck annotation | #groovylang"
+  description: "@NullCheck is class, method, or constructor annotation which indicates that each parameter should be checked to ensure it isn't null. If placed at the class level, all explicit methods and constructors will be checked. This feature was added in Groovy 3.0"
+  time: "4:20"
+
+EIhLl9ebeiA:
+  title: "Parsing JSON from curl with jq: sort_by, group_by, limit (part 1) | #jq #json #curl"
+  description: "In this video, I show you how to use the jq command-line to parse and transform a JSON response to the desired format. I use openlibrary.org Search API to get a complex JSON document (~3600 lines) using curl command for further parsing using jq. In the first step, we extract three fields for each document (title, author, publishing year) and then we continue transforming the JSON - we sort it, we limit the number of elements, and last but not least, we group elements by the author name."
+  time: "9:44"

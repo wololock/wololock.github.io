@@ -157,17 +157,20 @@ Now, what happens inside `Assume.assumeNotNull(expr)`  method is the following: 
 Otherwise, it ignores the test.
 It works as expected when the `null` value gets wrapped with an array because we get a list with just one element - the `null` value.
 
-> +++<h4>15.12.4.2. Evaluate Arguments</h4>+++
->
-> The process of evaluating the argument list differs, depending on whether the method being invoked is a fixed arity method or a variable arity method (https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.4.1[§8.4.1]).
->
-> If the method being invoked is a variable arity method `m`, it necessarily has `n > 0` formal parameters. The final formal parameter of m necessarily has type `T[]` for some `T`, and m is necessarily being invoked with `k ≥ 0` actual argument expressions.
->
-> If `m` is being invoked with `k ≠ n` actual argument expressions, or, if `m` is being invoked with `k = n` actual argument expressions and the type of the k'th argument expression is not assignment compatible with `T[]`, then the argument list (`e1`, ..., `en-1`, `en`, ..., `ek`) is evaluated as if it were written as (`e1`, ..., `en-1`, `new |T[]| { en, ..., ek }`), where `|T[]|` denotes the erasure (https://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.6[§4.6]) of `T[]`.
->
-> +++<hr/>+++
->
-> Source: https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.12.4.2[Java Language Specification, Chapter 15: Expressions]
+[.source-quote]
+____
++++<h4>15.12.4.2. Evaluate Arguments</h4>+++
+
+The process of evaluating the argument list differs, depending on whether the method being invoked is a fixed arity method or a variable arity method (https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.4.1[§8.4.1]).
+
+If the method being invoked is a variable arity method `m`, it necessarily has `n > 0` formal parameters. The final formal parameter of m necessarily has type `T[]` for some `T`, and m is necessarily being invoked with `k ≥ 0` actual argument expressions.
+
+If `m` is being invoked with `k ≠ n` actual argument expressions, or, if `m` is being invoked with `k = n` actual argument expressions and the type of the k'th argument expression is not assignment compatible with `T[]`, then the argument list (`e1`, ..., `en-1`, `en`, ..., `ek`) is evaluated as if it were written as (`e1`, ..., `en-1`, `new |T[]| { en, ..., ek }`), where `|T[]|` denotes the erasure (https://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.6[§4.6]) of `T[]`.
+
++++<hr/>+++
+
+Source: https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.12.4.2[Java Language Specification, Chapter 15: Expressions]
+____
 
 When we finally understand how does the Java varargs wrapping mechanism works, let's try to understand the Groovy use case.
 In contrast to Java's static compilation, Groovy is a dynamically typed language by default.

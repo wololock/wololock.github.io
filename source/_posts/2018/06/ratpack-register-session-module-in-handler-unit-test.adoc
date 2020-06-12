@@ -281,8 +281,8 @@ Great! `SessionModule` gets bind correctly, there is no `No object for type 'rat
 To finalize this specification we need to satisfy the expectation. For purpose of this test we will add `all()` handler to the `GroovyChainAction`
 and in this handler we will initialize value in session for key `foo`.
 
-____
-
+[NOTE]
+====
 ++++
 <h4>The <code>all()</code> handler</h4>
 ++++
@@ -290,7 +290,7 @@ ____
 This handler is useful in some scenarios - when it's added at the top of the chain it inspects every incoming request. It's important
 to remember that if we want to keep chain continuing we have to call `next()` method that instructs Ratpack that this handler
 does not terminate request processing and it has to continue. Otherwise request handling ends up inside `all()` handler.
-____
+====
 
 
 The simplest `all()` handler that sets value for session key`foo` may look like this:

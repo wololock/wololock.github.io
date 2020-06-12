@@ -98,6 +98,7 @@ pass:[{% book %}]
 
 == Brain dump: 10 ideas to remember
 
+[.styled]
 1. Define what matters to you most and dedicate most of your attention to progress in these areas (career, family, relationships, personal goals).
 2. Define what shallow work means to you and minimize the time you spent on it.
 3. When doing a shallow job, do it effectively (e.g., batch responding to e-mails in a single time-box).

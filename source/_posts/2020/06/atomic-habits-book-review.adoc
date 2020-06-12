@@ -50,7 +50,7 @@ book:
 newsletter:
   image: /images/convertkit/atomic-habits.jpg
   title: Download the "Atomic Habits" mindmap
-  lead: "Subscribe to mail email list and get hand-drawn <b class=\"mark\">printable mindmap</b> in the PDF."
+  lead: "Subscribe to my email list and get the PDF with the hand drawn <b class=\"mark\">printable mindmap</b>."
   horizontal: true
 ---
 :the-war-of-art: https://amzn.to/2MgCKMD
@@ -200,12 +200,12 @@ pass:[{% book %}]
 
 == Bonus: Atomic Habits ideas for Software Developers
 
-* Invest some time to learn how to use your IDE (or an editor) most effectively. Experiment with using one new shortcut every week. For instance, if you keep using a mouse to navigate in your project, find a shortcut (or a macro) that will speed up the process, and keep using it instead.
-* Apply the famous "Boy Scout Rule" and always leave your code better than you found it. Avoid huge refactorings. It’s better to constantly improve the code base with small chunks.
-* Join a group or a community that supports your activities. Consider contributing to an open-source project. Your contributions don’t have to be spectacular - almost every open-source project appreciates small contributions like documentation updates, fixing typos, improving code samples, etc.
-* Try to watch one presentation from your favorite conference on YouTube every week. Take notes while watching, and repeat it every week. After a year you will be 52 presentations smarter.
-* Synthesize and publish your notes on a blog. List a few things you find most interesting, and explain what you have learned from the presentation. After a year you will have a blog with at least 52 valuable blog posts.
-* Don’t be afraid to experiment. Every mistake is an experience you can learn from. Try different ways to learn new programming languages, frameworks, technologies. If you’re a backend developer, maybe it is not a bad idea to get a new perspective and learn some fancy frontend technology. Or a mobile app. Or an assembly language for your laptop’s processor. The sky is the limit.
+1. Invest some time to learn how to use your IDE (or an editor) most effectively. Experiment with using one new shortcut every week. For instance, if you keep using a mouse to navigate in your project, find a shortcut (or a macro) that will speed up the process, and keep using it instead.
+2. Apply the famous "Boy Scout Rule" and always leave your code better than you found it. Avoid huge refactorings. It’s better to constantly improve the code base with small chunks.
+3. Join a group or a community that supports your activities. Consider contributing to an open-source project. Your contributions don’t have to be spectacular - almost every open-source project appreciates small contributions like documentation updates, fixing typos, improving code samples, etc.
+4. Try to watch one presentation from your favorite conference on YouTube every week. Take notes while watching, and repeat it every week. After a year you will be 52 presentations smarter.
+5. Synthesize and publish your notes on a blog. List a few things you find most interesting, and explain what you have learned from the presentation. After a year you will have a blog with at least 52 valuable blog posts.
+6. Don’t be afraid to experiment. Every mistake is an experience you can learn from. Try different ways to learn new programming languages, frameworks, technologies. If you’re a backend developer, maybe it is not a bad idea to get a new perspective and learn some fancy frontend technology. Or a mobile app. Or an assembly language for your laptop’s processor. The sky is the limit.
 
 include::source/_parts/thank-you.adoc[]
 

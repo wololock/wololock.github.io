@@ -25,7 +25,7 @@ we have created connection between two services using HTTP protocol and we have 
 <!-- more -->
 ++++
 
-NOTE: Source code of the application described in this blog post can be found here https://github.com/wololock/micronaut-nonblocking-async-demo
+NOTE: Source code can be found here: icon:github[] https://github.com/wololock/micronaut-nonblocking-async-demo[wololock/micronaut-nonblocking-async-demo]
 
 == The motivation
 

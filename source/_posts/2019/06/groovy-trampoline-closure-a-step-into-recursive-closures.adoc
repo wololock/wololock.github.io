@@ -49,9 +49,12 @@ This recursive closure allows me to compute factorial of `706`, but it hits the 
 
 This is where `TrampolineClosure` comes with a help.
 
-> Closures are wrapped in a `TrampolineClosure`. Upon calling, a trampolined `Closure` will call the original `Closure` waiting for its result. If the outcome of the call is another instance of a `TrampolineClosure`, created perhaps as a result to a call to the `trampoline()` method, the `Closure` will again be invoked. This repetitive invocation of returned trampolined `Closures` instances will continue until a value other than a trampolined `Closure` is returned. That value will become the final result of the trampoline. That way, calls are made serially, rather than filling the stack.
-> +++<hr>+++
-> Source: http://groovy-lang.org/closures.html#_trampoline
+[.source-quote]
+____
+Closures are wrapped in a `TrampolineClosure`. Upon calling, a trampolined `Closure` will call the original `Closure` waiting for its result. If the outcome of the call is another instance of a `TrampolineClosure`, created perhaps as a result to a call to the `trampoline()` method, the `Closure` will again be invoked. This repetitive invocation of returned trampolined `Closures` instances will continue until a value other than a trampolined `Closure` is returned. That value will become the final result of the trampoline. That way, calls are made serially, rather than filling the stack.
++++<hr>+++
+Source: http://groovy-lang.org/closures.html#_trampoline
+____
 
 The above example refactored to the trampoline version may look like this:
 
@@ -90,7 +93,7 @@ I created a benchmark that simulates a very similar scenario.
 In this test we benchmark the execution of calculating factorial 100,000 time using pseudo-random numbers from range `<30,34>`.
 This way we can eliminate anomalies (e.g. calculating `factorial(0)` or `factorial(1)`) and prevent JIT compiler from inlining method call with fixed argument.
 
-NOTE: You can clone the JMH benchmark test source code from: https://github.com/wololock/groovy-closure-trampoline-example
+NOTE: You can clone the JMH benchmark test source code from: icon:github[] https://github.com/wololock/groovy-closure-trampoline-example[wololock/groovy-closure-trampoline-example]
 
 The benchmark tests the following scenarios:
 

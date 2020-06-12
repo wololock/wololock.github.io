@@ -64,7 +64,7 @@ collect2: error: ld returned 1 exit status
 
 It is most probably related to the changes introduced in 19.3.0 to the `native-image` compilerfootnote:[https://www.graalvm.org/docs/release-notes/19_3/#native-image].
 
-The issue was reported here - https://github.com/oracle/graal/issues/1875
+The issue was reported here - icon:github[] https://github.com/oracle/graal/issues/1875[oracle/graal/issues/1875]
 ====
 
 Let's make sure we are using correct GraalVM Java distribution.
@@ -675,16 +675,12 @@ NOTE: Here you can read more about {graalvm-limitations-url}[SubstrateVM limitat
 I hope you have learned something interesting from this blog post. If you are interested in learning more about
 Groovy and GraalVM, checkout my other blog posts you can find in the section below.
 
-You can also check my {graalvm-groovy-examples-url}[wololock/graalvm-groovy-examples] GitHub repository, where I collect
+You can also check my icon:github[] {graalvm-groovy-examples-url}[wololock/graalvm-groovy-examples] GitHub repository, where I collect
 some of the demos and examples I create during my experiments. Feel free to test it, experiment on your side and contribute
 to the project. GraalVM is fascinating and quite challenging piece of technology. The more we experiment with it and learn
 how to use it most effectively, the more we can help other people adopting it.
 
-++++
-<div class="video-container">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BjO_vBzaB4c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-++++
+pass:[{% youtube_card BjO_vBzaB4c %}]
 
 == Useful resources
 

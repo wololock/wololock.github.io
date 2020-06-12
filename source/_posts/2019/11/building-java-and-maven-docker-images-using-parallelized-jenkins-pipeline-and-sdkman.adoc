@@ -235,8 +235,8 @@ Default locale: en_US, platform encoding: ANSI_X3.4-1968
 OS name: "linux", version: "5.3.8-200.fc30.x86_64", arch: "amd64", family: "unix"
 ----
 
-NOTE: You can download the source code presented in this blog post from the following Github repository — {repository-url}.
+NOTE: You can download the source code presented in this blog post from the following Github repository — icon:github[] {repository-url}.
 
-include::source/_parts/jenkins-pipeline-offer.adoc[]
+pass:[{% youtube_card HaGeSq-SB9E %}]
 
 include::source/_parts/thank-you.adoc[]

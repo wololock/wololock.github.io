@@ -194,12 +194,6 @@ groovy:000> "Lorem ipsum dolor sit amet".count("abc")
 ===> 0
 ----
 
-Those small things make your life [.mark]#Groovier#! icon:smile-o[]
-
-== Conclusion
-
-This ranking only scratched the surface of useful Groovy string methods.
-I hope you have learned something new from this blog post, but I also encourage you to share feedback.
-What is your favorite string related method, that makes your life Groovy? icon:smile-o[]
+pass:[{% youtube_card O28X60MimH4 %}]
 
 include::source/_parts/thank-you.adoc[]

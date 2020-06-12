@@ -176,4 +176,6 @@ java.lang.NullPointerException
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 ----
 
+pass:[{% youtube_card yN6EbeevV2w %}]
+
 include::source/_parts/thank-you.adoc[]

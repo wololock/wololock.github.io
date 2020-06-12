@@ -338,3 +338,5 @@ pipeline {
 ----
 
 include::source/_parts/thank-you.adoc[]
+
+pass:[{% youtube_card KwQDxwZRZiE %}]

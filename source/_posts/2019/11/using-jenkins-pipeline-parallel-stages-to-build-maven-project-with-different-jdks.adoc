@@ -30,7 +30,7 @@ Today I would like to continue the topic and show you, how you can compile your 
 
 == Using `dockerfile` agent
 
-NOTE: Sample Maven application used in this article can be found here - https://github.com/wololock/simple-java-maven-app.
+NOTE: Sample Maven application used in this article can be found here - icon:github[] https://github.com/wololock/simple-java-maven-app[wololock/simple-java-maven-app].
 
 To keep the example simple, I'm going to use Jenkins Pipeline's `dockerfile` {jenkins-pipeline-agent-url}[agent].
 It executes given pipeline stage (or stages) in a docker container that gets started from a docker image created using local Dockerfile.
@@ -175,6 +175,6 @@ This stage also uses the `dockerfile` agent, but this time pass:[<em class="conu
 image::/images/jenkins-pipeline-maven-parallel.png[]
 --
 
-include::source/_parts/jenkins-pipeline-offer.adoc[]
+pass:[{% youtube_card j1lH3vOhucw %}]
 
 include::source/_parts/thank-you.adoc[]

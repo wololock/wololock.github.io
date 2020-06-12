@@ -67,9 +67,10 @@ The expression shown in REPL is an equivalent of
 ----
 Prelude> show (product [1..1000])
 ----
-    
-> `$` operator is used to avoid using parentheses and it simply means that the expression on the left side will use the result
-> of an expression on the right side of `$` operator.
+
+
+NOTE: `$` operator is used to avoid using parentheses and it simply means that the expression on the left side will use the result
+of an expression on the right side of `$` operator.
 
 Now we have a list of 2568 characters. If we want to calculate a frequency of character `7` we can apply following algorithm:
 
@@ -116,8 +117,8 @@ Prelude> sum $ map (\x -> if x == '7' then 1 else 0) $ show $ product [1..1000]
     
 And this is it - digit `7` occurs 217 times in factorial of 1000
 
+[.source-quote]
 ____
-
 ++++
 <h3>Using <code>foldl</code></h3>
 ++++
@@ -200,12 +201,6 @@ Prelude> minimum $ map (\y -> (sum $ map (\x -> if x == y then 1 else 0) $ show 
 ----
     
 And the answer is that digit `5` occurs the least amount of times (213 times) in the factorial of 1000.
-
-
-== Conclusion
-
-I hope you enjoyed today's post and you have learned something interesting. Don't hesitate to suggest alternative solutions to this
-puzzle - comment section is all yours. See you next time!
 
 ++++
 <script src="https://asciinema.org/a/JYOClcsZF0AP7Cm9zmNHrtVTK.js" id="asciicast-JYOClcsZF0AP7Cm9zmNHrtVTK" async></script>
