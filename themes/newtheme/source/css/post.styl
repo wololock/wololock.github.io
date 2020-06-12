@@ -44,6 +44,38 @@ article.post-content
       a
         border-bottom 1px dashed #c1e4ec
 
+  ol.arabic
+    list-style none
+    counter-reset number
+    margin 0 2rem
+    padding 0
+
+    @media phone
+      margin 0 1rem 0 0
+
+    > li
+      counter-increment number
+      position relative
+      padding-top 25px
+
+      p
+        margin-left 40px
+        z-index 1
+        position relative
+
+
+      &:before
+        letter-spacing -2px
+        content counter(number) ". "
+        font-weight 700
+        font-size 3rem
+        color #eee
+        position absolute
+        top -5px
+        left 0
+        z-index 0
+
+
 #toc
   sans-serif()
   background #f8f8f7
