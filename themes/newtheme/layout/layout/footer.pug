@@ -12,13 +12,13 @@ footer.page-footer
                         li
                             a(href=url_for("/resources")) Resources
                         li
-                            a(href=url_for("/what-to-read")) What to read?
+                            a(href=url_for("/archives")) Archives
                         li
                             a(href=url_for("/privacy-policy")) Privacy Policy
                         li
-                            a(href=url_for("/archives")) Archives
+                            a(href=url_for("/rss")) RSS
                         li
-                            a(href=url_for("/support-me")) Become a supporter #[em.fas.fa-heart.color-red]
+                            a(href=url_for("/support-me")) Support me #[em.fas.fa-heart.color-red.ml-2]
 
 
                 - var categories = site.categories.sort("length").reverse().limit(7).toArray()

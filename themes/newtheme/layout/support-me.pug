@@ -1,0 +1,108 @@
+extends layout/base
+
+block site_title
+    = "Support me"
+
+block content
+    section.support-me-page
+        section.jumbotron.text-justify.pb-5
+            .mask
+            .container
+                h1.my-3.text-center Support me
+
+                p I hate annoying ads and popups showing up a few seconds after visiting a website. That is why I decided to keep my blog free from those annoying elements. I care about excellent user experience, and my goal is to offer you one that can be compared to reading an ebook. No distracting banners, no ads, no stupid popups. Just clean and well-formatted content.
+                p Does it mean that I don’t want to monetize my blog by any form? Not necessarily. I just believe that there are better forms to do that. In the last 6 months (from October 1st, 2019 to March 27th, 2020), more than 110,000 unique users visited my blog. I don’t expect support from every reader, this is unrealistic. But I believe there is a chance that 0.1% of my readers (or my YouTube subscribers) could support my work and effort in one way or another. Would you like to give it a try?
+                p I want to use it as a way to invest more in the e.printstacktrace.blog development and growth.
+
+
+        section
+            .container
+                .row
+                    .col-12.col-md-8.order-1
+                        h2 Become a sponsor #[em.fas.fa-heart.color-red.ml-2]
+
+                        p
+                            | If you find my work valuable, and you want to support it, consider becoming a sponsor / patron / supporter of the e.printstacktrace.blog. I strongly believe that high-quality and ad-free content can attract people that appreciate such an approach. If you can afford a small monthly (or even one-time) donation, consider supporting me through one of the following platforms:
+
+                        ul
+                            li
+                                a(href="https://github.com/sponsors/wololock") GitHub Sponsors
+                            li
+                                a(href="https://github.com/sponsors/wololock") Open Collective
+
+                        a(href="https://opencollective.com/eprintstacktrace#section-contributors")
+                            img(src="https://opencollective.com/eprintstacktrace/backers.svg?avatarHeight=32&width=auto")
+                    .col-12.col-md-4.text-center
+                        img.img-fluid(src=url_for("/images/support-me/github.png"))
+        section.sponsor
+            .container
+                .row
+                    .col-12.col-md-8.order-1
+                        h2 Use my affiliate links
+
+                        p
+                            | If you find my work valuable, and you want to support it, consider becoming a sponsor / patron / supporter of the e.printstacktrace.blog. I strongly believe that high-quality and ad-free content can attract people that appreciate such an approach. If you can afford a small monthly (or even one-time) donation, consider supporting me through one of the following platforms:
+
+                    .col-12.col-md-4.text-center
+                        img.img-fluid(src=url_for("/images/support-me/affiliate.png"))
+
+        section
+            .container
+                .row
+                    .col-12.col-md-8.order-1
+                        h2 Hire me
+
+                        p
+                            | If you find my work valuable, and you want to support it, consider becoming a sponsor / patron / supporter of the e.printstacktrace.blog. I strongly believe that high-quality and ad-free content can attract people that appreciate such an approach. If you can afford a small monthly (or even one-time) donation, consider supporting me through one of the following platforms:
+
+
+                    .col-12.col-md-4.text-center
+                        img.img-fluid(src=url_for("/images/support-me/hire.png"))
+
+        section.sponsor
+            .container
+                .row
+                    .col-12.col-md-8.order-1
+                        h2 Subscribe to my #[em.fa.fa-youtube] #[span.color-black YouTube] channel
+
+                        p
+                            | If you find my work valuable, and you want to support it, consider becoming a sponsor / patron / supporter of the e.printstacktrace.blog. I strongly believe that high-quality and ad-free content can attract people that appreciate such an approach. If you can afford a small monthly (or even one-time) donation, consider supporting me through one of the following platforms:
+                    .col-12.col-md-4.text-center
+                        img.img-fluid(src=url_for("/images/support-me/subscribe.png"))
+
+        section
+            .container
+                .row
+                    .col-12.col-md-8.order-1
+                        h2 Share
+
+                        p
+                            | If you find my work valuable, and you want to support it, consider becoming a sponsor / patron / supporter of the e.printstacktrace.blog. I strongly believe that high-quality and ad-free content can attract people that appreciate such an approach. If you can afford a small monthly (or even one-time) donation, consider supporting me through one of the following platforms:
+
+
+                    .col-12.col-md-4.text-center
+                        img.img-fluid(src=url_for("/images/support-me/share.png"))
+
+        section.sponsor
+            .container
+                .row
+                    .col-12.col-md-8.order-1
+                        h2 Join my newsletter
+
+                        p
+                            | If you find my work valuable, and you want to support it, consider becoming a sponsor / patron / supporter of the e.printstacktrace.blog. I strongly believe that high-quality and ad-free content can attract people that appreciate such an approach. If you can afford a small monthly (or even one-time) donation, consider supporting me through one of the following platforms:
+                            != convertkit("5bc70426c4")
+                    .col-12.col-md-4.text-center
+                        img.img-fluid(src=url_for("/images/support-me/email.png"))
+
+        section
+            .container.py-5
+                .row
+                    .col-12
+                        h2.text-center.display-3.font-weight-bold THANK YOU! #[em.fas.fa-heart.color-red.ml-2]
+
+                        p.text-justify Thank you for reading up to this point. I hope you are a returning happy reader of my blog. If you can afford to support my work, I will be thankful for any kind of it. But don’t feel forced to it. I will continue doing my work on the blog and on my YouTube channel. I enjoy it, and I see that my effort is not pointless - I keep getting thankful messages from you, and that makes me really proud and happy. Keep learning, keep coding, and have fun!
+
+
+
+
