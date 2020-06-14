@@ -14,6 +14,9 @@ if page.affiliates
     div(id="amzn-assoc-ad-43b3fa6d-ffc7-44a2-84ce-6364ef258da9")
         script(async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=43b3fa6d-ffc7-44a2-84ce-6364ef258da9")
 
+if is_home() || is_post || is_tag() || is_category
+    script(async id="dsq-count-scr", src="//" + theme.comment.id + ".disqus.com/count.js")
+
 if theme.google_analytics
     script.
         (function (i, s, o, g, r, a, m) {
