@@ -8,22 +8,36 @@
     </url>
     
     <url>
-        <loc>https://e.printstacktrace.blog/support-me/</loc>
-        <lastmod>2020-06-07T13:48:33.056Z</lastmod>
+        <loc>https://e.printstacktrace.blog/privacy-policy/</loc>
+        <lastmod>2020-06-14T23:07:10.839Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
-        <loc>https://e.printstacktrace.blog/privacy-policy/</loc>
-        <lastmod>2020-06-07T13:48:33.052Z</lastmod>
+        <loc>https://e.printstacktrace.blog/support-me/</loc>
+        <lastmod>2020-06-14T23:07:10.839Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://e.printstacktrace.blog/start-here/</loc>
+        <lastmod>2020-06-14T23:07:10.839Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://e.printstacktrace.blog/about/</loc>
+        <lastmod>2020-06-14T23:07:10.759Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
         <loc>https://e.printstacktrace.blog/404.html</loc>
-        <lastmod>2020-06-07T13:48:32.936Z</lastmod>
+        <lastmod>2020-06-14T23:07:10.751Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>

@@ -8,7 +8,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/programmer-s-bookshelf/</loc>
+        <loc>https://e.printstacktrace.blog/programmers-bookshelf/</loc>
         <lastmod>2020-06-02T12:36:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -71,8 +71,8 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/tales-from-debugger/</loc>
-        <lastmod>2018-12-27T18:52:37.000Z</lastmod>
+        <loc>https://e.printstacktrace.blog/learning-java/</loc>
+        <lastmod>2019-04-02T13:38:38.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -86,7 +86,7 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/programming-tips/</loc>
-        <lastmod>2018-10-28T05:50:57.000Z</lastmod>
+        <lastmod>2018-05-26T15:19:14.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

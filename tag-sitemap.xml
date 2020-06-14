@@ -136,6 +136,34 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/t/pipeline/</loc>
+        <lastmod>2020-05-08T19:17:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/switch/</loc>
+        <lastmod>2020-05-08T19:17:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/find/</loc>
+        <lastmod>2020-05-08T19:17:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/match/</loc>
+        <lastmod>2020-05-08T19:17:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/t/regular-expressions/</loc>
         <lastmod>2020-05-08T19:17:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -144,13 +172,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/t/regexp/</loc>
-        <lastmod>2020-05-08T19:17:26.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/pipeline/</loc>
         <lastmod>2020-05-08T19:17:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
