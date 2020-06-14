@@ -1,0 +1,34 @@
+header#header.fixed-top(class=header_class)
+    .container-fluid.px-md-auto.px-0
+        nav.navbar.navbar-expand-lg
+            h3.logo.mr-auto.position-relative
+                | e.printstacktrace.blog
+                a.stretched-link(href=url_for("/"))
+
+            span.badge.badge-info.badge-pill.h5.ml-2 NEW!
+
+            button.navbar-toggler(data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation")
+                span.navbar-toggler-icon
+
+            .collapse.navbar-collapse#mainNav
+                ul.navbar-nav.ml-lg-auto.text-center.text-md-left.d-block.d-lg-flex
+                    li.nav-item
+                        a.nav-link(href="/") Start here
+                    li.nav-item
+                        a.nav-link(href="/about") About
+                    li.nav-item
+                        a.nav-link(href="/support-me") Support me
+                    li.nav-item
+                        a.nav-link(href="/archives") Archives
+                    li.nav-item.d-inline-block.d-lg-block.mx-2.mx-lg-0
+                        a.nav-link(href="https://twitter.com/wololock")
+                            em.fa.fa-twitter
+                    li.nav-item.d-inline-block.d-lg-block.mx-2.mx-lg-0
+                        a.nav-link(href="https://github.com/wololock")
+                            em.fa.fa-github
+                    li.nav-item.d-inline-block.d-lg-block.mx-2.mx-lg-0
+                        a.nav-link(href="https://stackoverflow.com/users/2194470/szymon-stepniak")
+                            em.fa.fa-stack-overflow
+                    li.nav-item.d-inline-block.d-lg-block.mx-2.mx-lg-0
+                        a.nav-link(href="https://youtube.com/c/eprintstacktrace")
+                            em.fa.fa-youtube

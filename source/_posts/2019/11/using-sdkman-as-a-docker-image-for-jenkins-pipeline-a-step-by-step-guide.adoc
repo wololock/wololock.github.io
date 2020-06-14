@@ -16,7 +16,7 @@ categories:
     - Jenkins Pipeline Cookbook
 cover: /images/jenkins-bg.jpg
 og_image: /images/og/jenkins-pipeline-docker-sdkman.jpg
-eyeCatchImage: /images/og/jenkins-pipeline-docker-sdkman.jpg
+card: /images/cards/jenkins-03.jpg
 highlightjs: true
 ---
 :corretto-url: https://aws.amazon.com/corretto/
@@ -470,6 +470,6 @@ OS name: "linux", version: "5.3.8-200.fc30.x86_64", arch: "amd64", family: "unix
 In this example, we have built four different docker images from the same Dockerfile. It makes the maintenance of all variants
 much more straightforward - when something requires fixing, we change a single Dockerfile and rebuild all tags.
 
-include::source/_parts/jenkins-pipeline-offer.adoc[]
+pass:[{% youtube_card j1lH3vOhucw %}]
 
 include::source/_parts/thank-you.adoc[]

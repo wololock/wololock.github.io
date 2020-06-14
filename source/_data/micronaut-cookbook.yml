@@ -1,0 +1,17 @@
+cover: /images/bg/micronaut-cookbook.jpg
+
+recommended:
+  - micronaut-non-blocking-and-async-part1
+  - micronaut-non-blocking-and-async-part-2
+  - micronaut-non-blocking-and-async-part-3
+
+youtube:
+  - title: "Groovy Tutorial | Closures - how to use them? | #groovylang"
+    id: fdpKCuJKbMg
+    time: "26:07"
+  - title: "Groovy Tutorial | Groovy DSL Quickstart | #groovylang"
+    id: i9pNYW1Pg9A
+    time: "23:01"
+  - title: "Building an HTTP application in a single .groovy file with Ratpack!"
+    id: KkL2ZMmNY3I
+    time: "5:01"

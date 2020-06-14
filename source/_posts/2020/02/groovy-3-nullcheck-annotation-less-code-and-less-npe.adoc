@@ -10,7 +10,7 @@ categories:
     - Groovy Cookbook
 cover: /images/groovy-cookbook.jpg
 og_image: /images/og/groovy-null-check.jpg
-eyeCatchImage: /images/og/groovy-null-check.jpg
+card: /images/cards/groovy-02.jpg
 highlightjs: true
 ---
 
@@ -175,5 +175,7 @@ java.lang.NullPointerException
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 ----
+
+pass:[{% youtube_card yN6EbeevV2w %}]
 
 include::source/_parts/thank-you.adoc[]

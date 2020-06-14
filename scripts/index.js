@@ -1,6 +1,8 @@
 'use strict'
 
 const asciidoc = require('./lib/asciidoc.js')
+const fs = require('fs');
+const path = require('path');
 
 hexo.extend.renderer.register('ad', 'html', asciidoc, true)
 hexo.extend.renderer.register('adoc', 'html', asciidoc, true)
@@ -9,6 +11,23 @@ hexo.extend.renderer.register('asciidoc', 'html', asciidoc, true)
 hexo.extend.generator.register('alias', require('./lib/alias'));
 
 hexo.extend.helper.register('structured_data', require('./lib/structured_data.js'));
+hexo.extend.tag.register('book', function() {
+    const book = this.book || {};
+    if (book === undefined) return "";
+    const template = fs.readFileSync(path.resolve(__dirname, '../templates/book.pug'), 'utf-8');
+    return hexo.render.renderSync({ text: template, engine: "pug"}, book);
+});
+hexo.extend.tag.register('newsletter', function(args, content) {
+    const newsletter = this.newsletter || {};
+    if (newsletter === undefined) return "";
+    const template = fs.readFileSync(path.resolve(__dirname, '../templates/newsletter.pug'), 'utf-8');
+    return hexo.render.renderSync({ text: template, engine: "pug" }, { newsletter: newsletter, convertkit: content });
+}, true);
+hexo.extend.tag.register('youtube_card', function(id) {
+    const template = fs.readFileSync(path.resolve(__dirname, '../templates/youtube_card.pug'), 'utf-8');
+    return hexo.render.renderSync({ text: template, engine: "pug"}, { video: this.site.data.youtube[id], id: id });
+});
+
 
 Array.prototype.shuffle = function() {
     var i = this.length, j, temp;

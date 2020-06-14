@@ -7,7 +7,7 @@ tags:
     - script
     - class
 categories:
-    - Programming tips
+    - Groovy Cookbook
 og_image: /images/og/groovy-script-how-to-name.jpg
 eyeCatchImage: /images/og/groovy-script-how-to-name.jpg
 highlightjs: true

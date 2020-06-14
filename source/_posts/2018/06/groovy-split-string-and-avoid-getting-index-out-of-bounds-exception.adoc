@@ -7,9 +7,9 @@ tags:
     - split
     - string
 categories:
-    - Programming tips
+    - Groovy Cookbook
 og_image: /images/og/groovy-split-string.jpg
-eyeCatchImage: /images/og/groovy-split-string.jpg
+card: /images/cards/groovy-01.jpg
 affiliate: true
 highlightjs: true
 ---
@@ -107,7 +107,5 @@ text.eachLine { line ->
     println "id: ${id}, name: ${name}, email: ${email}, sibling: ${sibling}"
 }
 ----
-
-include::source/_parts/groovy-in-action.adoc[]
 
 include::source/_parts/thank-you.adoc[]

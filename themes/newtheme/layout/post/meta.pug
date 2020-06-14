@@ -1,0 +1,14 @@
+if page.tags
+    .col-12.offset-0.col-md-10.offset-md-1
+        .post-tags
+            ul
+                li.text
+                    - var category = page.categories.first()
+                    em.far.fa-calendar-alt.mr-1
+                    | Published: #{full_date(page.date, "MMM D, YYYY")} in #[a.mark(href=url_for(category.path))=category.name]
+            ul.mt-2
+                li.text
+                    em.fas.fa-tags
+                each tag in page.tags.sort("name").toArray()
+                    li
+                        a(href=url_for(tag.path))=tag.name

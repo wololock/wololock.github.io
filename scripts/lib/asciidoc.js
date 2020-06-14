@@ -1,7 +1,6 @@
 'use strict'
 
-const asciidoctor = require('asciidoctor.js')();
-const path = require('path');
+const asciidoctor = require('asciidoctor')();
 
 const opts = {
     safe: 'safe',
@@ -12,19 +11,13 @@ const opts = {
         idprefix: '',
         idseparator: '-',
         sectids: true,
-        'source-highlighter': 'highlight.js',
+        'source-highlighter': 'highlightjs',
         'listing-caption': 'Listing',
         linkattrs: true
     }
 };
 
 function render(data) {
-    // if (data.path) {
-    //     const entry = path.parse(data.path);
-    //     const assetDir = path.join(entry.dir, entry.name);
-    //     opts.attributes.docdir = assetDir;
-    // }
-
     return asciidoctor.convert(data.text, opts);
 }
 

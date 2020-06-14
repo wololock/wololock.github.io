@@ -1,0 +1,41 @@
+mixin post_card(post, options = {})
+    article.card.shadow-sm(itemscope itemtype="http://schema.org/Article")
+        .card-header(itemprop="image" style="background-image: url('" + url_for(post.card || post.eyeCatchImage) + "')")
+            .mask
+            h3.h5.text-left.font-weight-bold.text-white(itemprop="name")
+                if options.category !== false
+                    - post.categories.each(category => {
+                        div
+                            a.category=category.name
+                    - })
+                div.title=post.title
+        .card-body
+            +post_meta(post)
+            if options.description !== false
+                - var excerpt = strip_html(post.excerpt)
+                p.card-text.pt-3(itemprop="description")
+                    != options.truncate > 0 ? truncate(excerpt, {length: options.truncate, omission: " ... "}) : excerpt
+        a.stretched-link(href=url_for(post.path) itemprop="url")
+
+mixin youtube_card(id, video, options = {})
+    .card.shadow
+        .card-header(itemprop="image" style="background-image: url('https://i3.ytimg.com/vi/" + id + "/mqdefault.jpg')")
+            div.time=video.time
+            em.fa.fa-youtube
+        if options.title !== false
+            .card-body
+                h4.text-left=video.title
+        a.stretched-link.gatr(href="https://www.youtube.com/watch?v=" + id data-type="youtube" data-name=video.title)
+
+mixin ad_banner(ad)
+    a.gatr(href=ad.url data-type="banner" data-name=ad.name)
+        img.img-fluid(src=ad.image)
+
+mixin post_meta(post, options = {})
+    section.post-meta
+        ul
+            li
+                time(class=options['date-class'] datetime=date_xml(post.date), itemprop="datePublished")!= full_date(post.date, "MMM D, YYYY")
+            li=readingTime(post.content, 'min. read', 200)
+            li
+                a(href=config.url + url_for(post.path) + "#disqus_thread")="0 Comments"

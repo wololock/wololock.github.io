@@ -1,0 +1,97 @@
+.card
+  transition all 0.2s ease-in-out 0s
+
+  a
+    border none
+
+  &:hover
+    transform translateY(-5px)
+
+    .fa-youtube
+      transition all 0.2s ease-in-out 0s
+      color color-red !important
+      opacity 0.7 !important
+      transform scale(1.2) translateY(-35px) translateX(-35px) !important
+
+  .card-body
+    font-size 0.9rem
+    line-height 1.6rem
+    text-align justify
+    serif()
+
+    p
+      word-break break-all
+      hyphens auto
+
+    .post-meta
+      sans-serif()
+      margin-bottom 0
+      padding-bottom 0
+      ul
+        font-size 0.9em !important
+        color #777
+
+    h4
+      letter-spacing 0
+      font-size 18px
+      font-weight 700
+
+  .card-header
+    height 0
+    padding-bottom 53%
+    position relative
+    background-size cover
+    background-position top left
+    background-repeat no-repeat
+
+    .time
+      color #fff
+      font-size 13px
+      padding 3px 7px
+      background rgba(0,0,0,0.6)
+      display inline-block
+      font-weight bold
+      border-radius 5px
+      position absolute
+      bottom 10px
+      right 10px
+
+    .fa-youtube
+      font-size 82px
+      opacity 0.5
+      color #fafafa
+      position absolute
+      top 50%
+      left 50%
+      transform translate(-50%, -50%)
+
+    h2,h3,h4
+      position absolute
+      bottom 0
+      max-width 90%
+      z-index 1
+      letter-spacing 0
+
+      div.title
+        padding 10px
+
+  .faded-text
+    max-height 300px
+
+.jumbotron
+  .card
+    box-shadow none !important
+    border none !important
+    background linear-gradient(to bottom, rgba(0,0,0,0.5) 50%, rgba(0, 0, 0, 0) 90%) !important
+
+  .card-body
+    height 250px
+    position relative
+    overflow hidden
+    background linear-gradient(to bottom, #f3f3f3 50%, rgba(0, 0, 0, 0) 90%) !important
+    -webkit-background-clip text !important
+    -webkit-text-fill-color transparent !important
+    sans-serif()
+
+    .post-meta
+      font-weight 700

@@ -14,16 +14,42 @@ categories:
     - Programmer's Bookshelf
 cover: /images/release-it-bg.jpg
 og_image: /images/og/release-it.jpg
-eyeCatchImage: /images/og/release-it.jpg
+card: /images/cards/release-it.jpg
 affiliates: true
+book:
+  title: "Release It!: Design and Deploy Production-Ready Software"
+  description: "A single dramatic software failure can cost a company millions of dollars - but can be avoided with simple changes to design and architecture. This new edition of the best-selling industry standard shows you how to create systems that run longer, with fewer failures, and recover better when bad things happen. New coverage includes DevOps, microservices, and cloud-native architecture. Stability antipatterns have grown to include systemic problems in large-scale systems. This is a must-have pragmatic guide to engineering for production systems."
+  source:
+    name: goodreads.com
+    url: https://www.goodreads.com/book/show/34695798-release-it
+  image: "/images/books/release-it.jpg"
+  links:
+    - flag: us
+      text: Get from amazon.com
+      url: https://www.amazon.com/gp/product/1680502395?ie=UTF8&tag=eprintstacktr-20&camp=1789&linkCode=xm2&creativeASIN=1680502395
+    - flag: us
+      text: Get from pragprog.com
+      url: https://pragprog.com/book/mnee2/release-it-second-edition
+    - flag: ca
+      text: Get from amazon.ca
+      url: https://amzn.to/3feEiTY
+    - flag: de
+      text: Get from amazon.de
+      url: https://www.amazon.de/gp/product/1680502395?ie=UTF8&tag=eprintstac0c4-21&camp=1638&linkCode=xm2&creativeASIN=1680502395
+    - flag: gb
+      text: Get from amazon.co.uk
+      url: https://www.amazon.co.uk/gp/product/1680502395?ie=UTF8&tag=eprintstack07-21&camp=1634&linkCode=xm2&creativeASIN=1680502395
+    - flag: fr
+      text: Get from amazon.fr
+      url: https://amzn.to/3fdORXt
+    - flag: es
+      text: Get from amazon.es
+      url: https://amzn.to/3cOKpgc
+    - flag: pl
+      text: Get from allegro.pl
+      url: https://go.buybox.click/linkclick_4951_137?&url=https%3A%2F%2Fallegro.pl%2Foferta%2Frelease-it-design-and-deploy-production-ready-sof-8942944133%3Futm_feed%3D6e9ce87e-bbdc-4cea-b90e-99a6691b894e
 ---
 :book-url: https://amzn.to/2vnj9pk
-:amazon-uk: https://www.amazon.co.uk/gp/product/1680502395?ie=UTF8&tag=eprintstack07-21&camp=1634&linkCode=xm2&creativeASIN=1680502395
-:amazon-de: https://www.amazon.de/gp/product/1680502395?ie=UTF8&tag=eprintstac0c4-21&camp=1638&linkCode=xm2&creativeASIN=1680502395
-:amazon-us: https://www.amazon.com/gp/product/1680502395?ie=UTF8&tag=eprintstacktr-20&camp=1789&linkCode=xm2&creativeASIN=1680502395
-:kindle: https://www.amazon.com/gp/product/B079YWMY2V?ie=UTF8&tag=eprintstacktr-20&camp=1789&linkCode=xm2&creativeASIN=B079YWMY2V
-:pragprog: https://pragprog.com/book/mnee2/release-it-second-edition
-:allegro: https://go.buybox.click/linkclick_4951_137?&url=https%3A%2F%2Fallegro.pl%2Foferta%2Frelease-it-design-and-deploy-production-ready-sof-8942944133%3Futm_feed%3D6e9ce87e-bbdc-4cea-b90e-99a6691b894e
 
 We are software developers.
 Our daily duty is to write programs.
@@ -94,28 +120,6 @@ However, if it focused more on the specific tools instead of principles, it woul
 You won't regret spending time with the book - it is 336 pages of useful and never outdating knowledge.
 Highly recommended!
 
-[.get-the-book]
-====
-+++<h2>Get the book+++
-
-*Paperback*
-
-image:/images/flags/us.png[United States, title="United States"] Amazon.com: {amazon-us}["Release It! Design and Deploy Production-Ready Software", role="ga-track"]
-
-image:/images/flags/gb.png[United Kingdom, title="United Kingdom"] Amazon.co.uk: {amazon-uk}["Release It! Design and Deploy Production-Ready Software", role="ga-track"]
-
-image:/images/flags/de.png[Germany, title="Germany"] Amazon.de: {amazon-de}["Release It! Design and Deploy Production-Ready Software (Eng.)", role="ga-track"]
-
-image:/images/flags/pl.png[Germany, title="Germany"] Allegro.pl: {amazon-de}["Release It! Design and Deploy Production-Ready Software (Eng.)", role="ga-track"]
-
-*Ebook*
-
-image:/images/flags/us.png[United States, title="United States"] Amazon Kindle: {kindle}["Release It! Design and Deploy Production-Ready Software", role="ga-track"]
-
-image:/images/flags/us.png[United States, title="United States"] Pragmatic Bookshelf: {pragprog}["Release It! Design and Deploy Production-Ready Software", role="ga-track"]
-
-___
-[.small]#NOTE: Above links are affiliate links. If you decide to buy a book using my affiliate link, I will get a small percentage from your purchase. The&nbsp;affiliate link does not affect the final price of the product. Using it costs you nothing.#
-====
+pass:[{% book %}]
 
 include::source/_parts/thank-you.adoc[]

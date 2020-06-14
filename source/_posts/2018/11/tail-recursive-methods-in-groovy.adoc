@@ -13,7 +13,7 @@ categories:
     - Groovy Cookbook
 cover: /images/groovy-cookbook.jpg
 og_image: /images/og/groovy-tail-recursive.jpg
-eyeCatchImage: /images/og/groovy-tail-recursive.jpg
+card: /images/cards/groovy-02.jpg
 highlightjs: true
 ---
 
@@ -324,7 +324,7 @@ FactorialBench.java_iterative_factorial_1_000         avgt  120    0,173 ±  0,0
 FactorialBench.java_iterative_factorial_25_000        avgt  120  129,951 ±  0,321  ms/op
 ----
 
-Full log: https://gist.github.com/wololock/bec6c6cd09c80a2868eca8cce7a016a2
+Full log: icon:github[] https://gist.github.com/wololock/bec6c6cd09c80a2868eca8cce7a016a2[wololock/bec6c6cd09c80a2868eca8cce7a016a2]
 
 NOTE: Laptop specs: JDK 1.8.0_162 (Java HotSpot(TM) 64-Bit Server VM, 25.162-b12), Groovy 2.4.12, Intel(R) Core(TM) i7-4900MQ CPU @ 2.80GHz (4 cores, cache size 8192 KB), 16 GB RAM, OS: Fedora 26 (64 bit)
 

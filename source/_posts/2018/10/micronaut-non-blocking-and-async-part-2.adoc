@@ -13,7 +13,7 @@ categories:
     - Micronaut Cookbook
 cover: /img/micronaut-bg.jpg
 og_image: /images/og/micronaut-nonblocking-part2.jpg
-eyeCatchImage: /images/og/micronaut-nonblocking-part2.jpg
+card: /images/cards/micronaut.jpg
 highlightjs: true
 ---
 
@@ -26,7 +26,7 @@ benchmark tests. Let's start!
 <!-- more -->
 ++++
 
-NOTE: Source code of the application described in this blog post can be found here https://github.com/wololock/micronaut-nonblocking-async-demo
+NOTE: Source code can be found here: icon:github[] https://github.com/wololock/micronaut-nonblocking-async-demo[wololock/micronaut-nonblocking-async-demo]
 
 == Implementing recommendations-service
 

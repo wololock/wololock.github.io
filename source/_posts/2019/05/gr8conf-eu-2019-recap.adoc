@@ -51,7 +51,7 @@ It all started on Monday. I arrived at the venue, {venue}[the IT-University of C
 the opening to get some coffee and make a short tour around. I have to admit that it is one of the best venues for
 conferences I have ever seen. Big dual-screen, good sound, very comfortable seats, much space in the main hallway to
 grab something to drink, talk to people, and relax. Also, everything is pretty close to each other. Top level!
-
+]
 ++++
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/gr8conf?src=hash&amp;ref_src=twsrc%5Etfw">#gr8conf</a> booting process started... ⏳ <a href="https://twitter.com/hashtag/allthingsgroovy?src=hash&amp;ref_src=twsrc%5Etfw">#allthingsgroovy</a> <a href="https://twitter.com/hashtag/groovylang?src=hash&amp;ref_src=twsrc%5Etfw">#groovylang</a> <a href="https://twitter.com/hashtag/conference?src=hash&amp;ref_src=twsrc%5Etfw">#conference</a> <a href="https://t.co/NVCEafviVO">pic.twitter.com/NVCEafviVO</a></p>&mdash; Szymon Stepniak 🧔🏻 (@wololock) <a href="https://twitter.com/wololock/status/1132898540236300288?ref_src=twsrc%5Etfw">May 27, 2019</a></blockquote>
 ++++
@@ -163,6 +163,8 @@ the Groovy ecosystem - I guess those things will inspire people to prepare excel
 I will be there, no doubt about that. If you use anything from the Groovy ecosystem and you are interested in all
 those GR8 things, you should definitely consider attending GR8Conf EU next year. I won't regret it I can guarantee!
 
+pass:[{% youtube_card ZbTXrCrjNRw %}]
+
 == Thank you!
 
 I would like to thank all the people who were involved in making GR8Conf EU 2019 possible. It's hard to name you all,
@@ -179,15 +181,6 @@ See you all next year at the latest!
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Goodbye, Copenhagen 🇩🇰 Hope to see you again next year! <a href="https://twitter.com/hashtag/Copenhagen?src=hash&amp;ref_src=twsrc%5Etfw">#Copenhagen</a> <a href="https://twitter.com/hashtag/Denmark?src=hash&amp;ref_src=twsrc%5Etfw">#Denmark</a> <a href="https://twitter.com/hashtag/gr8conf?src=hash&amp;ref_src=twsrc%5Etfw">#gr8conf</a> <a href="https://twitter.com/hashtag/AllThingsGroovy?src=hash&amp;ref_src=twsrc%5Etfw">#AllThingsGroovy</a> <a href="https://t.co/4JvL7v3LKd">pic.twitter.com/4JvL7v3LKd</a></p>&mdash; Szymon Stepniak 🧔🏻 (@wololock) <a href="https://twitter.com/wololock/status/1134111032895561734?ref_src=twsrc%5Etfw">May 30, 2019</a></blockquote>
 ++++
 
-+++<br>+++
-
 ++++
-<div class="video-container">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ZbTXrCrjNRw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-<br>
-
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 ++++
-
-include::source/_parts/thank-you.adoc[]

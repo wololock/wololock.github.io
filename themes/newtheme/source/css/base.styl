@@ -1,0 +1,295 @@
+body
+  sans-serif()
+  font-weight 400
+  font-size 20px
+  color #444
+  overflow-x hidden
+
+  @media phone
+    font-size 16px
+
+h1,h2,h3,h4
+  font-family 'Source Sans Pro', sans-serif
+  font-weight 700
+  font-size 3.5rem
+  letter-spacing -2px
+
+  code
+    letter-spacing 0 !important
+
+  @media phone
+    font-size 2.5rem
+    letter-spacing -1px
+
+h2
+  font-size 2.5rem
+  @media phone
+    font-size 2rem
+
+h3
+  font-size 2rem
+  @media phone
+    font-size 1.6rem
+
+h4
+  font-size 1.6rem
+  letter-spacing -1px
+  @media phone
+    font-size 1.2rem
+
+a
+  color #1c92aa
+  transition all 0.2s ease-in-out 0s
+  text-decoration none
+
+  &:hover
+    text-decoration none
+    color orangered
+    border none
+
+nav
+  a
+    text-decoration none
+    border none
+
+.jumbotron
+  padding-top 150px
+  border-radius 0
+  background url("../img/index-bg.jpg") top center
+  position relative
+  background-size cover
+  color #fff
+  margin-bottom 0
+
+  a
+    text-decoration none
+    border none
+
+  @media phone
+    padding-top 100px
+
+
+ul
+  @media phone
+    padding-left 2em
+
+.mark
+  background #ffd88b
+  padding 3px 5px
+  color #232323
+
+a.gatr
+  display inline-block
+
+a.category
+  text-decoration none
+  display inline-block
+  padding 5px 10px
+  text-transform uppercase
+  background #ffd100
+  color #222 !important
+  font-weight bold
+  font-size 0.7em
+
+.post-meta
+  ul
+    text-align left
+    list-style none
+    margin 0
+    padding 0
+    font-size 0.9rem
+
+    li
+      list-style none
+      display inline-block
+      &::after
+        content ' / '
+        color #ccc
+        padding 0 5px
+      &:last-child
+        &::after
+          content ''
+
+.container
+  position relative
+  z-index 10
+
+.mask
+  background linear-gradient(to top, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0) 90%) !important
+  position absolute
+  width 100%
+  height 100%
+  left 0
+  bottom 0
+
+.get-the-book
+  roboto()
+  font-size 16px
+  background #fafafb
+  color #777 !important
+  width: 100vw
+  margin-left 50%
+  transform translateX(-50%)
+  padding 40px 0
+
+  h3
+    margin 20px 0 !important
+    padding 0 !important
+    font-size 1.6rem !important
+    letter-spacing -1px !important
+
+  .description
+    margin 0 0 20px 0
+    padding 0
+
+  .affiliate-info
+    margin-top 20px
+    color #888
+    font-size 0.9em
+    serif()
+
+    i.fas
+      margin-right 10px
+
+.newsletter-box
+  //background #f0f3f5
+  background #fafafa
+  //background-image: linear-gradient(to top, #f0f3f5 0%, #f4f4f4 80%);
+  width: 100vw
+  margin-left 50%
+  transform translateX(-50%)
+  font-size 14px
+
+  b
+    font-weight bold !important
+
+  h4
+    margin 0 0 0.5rem 0 !important
+    padding 0 !important
+    @media phone
+      text-align center
+
+  p
+    font-size 14px !important
+    margin 1rem 0 !important
+
+
+    @media phone
+      text-align center
+
+  p.nospam
+    opacity 0.7
+    padding 0 !important
+
+  form
+    margin 0 !important
+    padding 0 !important
+    background none !important
+
+
+  .horizontal
+    form
+      .formkit-fields
+        > *
+          margin-right 8px !important
+          &:last-child
+            margin-right 0 !important
+
+      .formkit-field,
+      .formkit-submit
+        flex 1 1 auto !important
+
+    >div
+      padding 0 !important
+      margin-top 0.7rem !important
+
+    input[type="text"]
+      box-shadow rgba(0,0,0,0.08) 0 5px 5px
+
+      button.formkit-submit
+        font-weight bold !important
+        font-size 1.3rem
+
+  p.small
+    opacity 0.8
+
+code
+  background #ebf2f6
+  color #4271ae
+  padding 3px 6px
+  border-radius 5px
+  font-size 0.7em
+
+
+.img-lazyload-container
+  display inline-block
+
+.formkit-form
+  margin 40px auto
+  max-width 100%
+  background #fafafa
+  sans-serif()
+
+  input
+    padding 10px !important
+
+  .formkit-column
+    padding 30px !important
+
+  .formkit-background
+    border-right 1px solid #ddd !important
+
+  .formkit-disclaimer
+    p
+      text-align center
+
+  a
+    border none
+
+  h1
+    text-align center
+    color #777 !important
+    font-size 1.8rem !important
+    font-weight 900 !important
+    padding 0 0 0 0 !important
+    margin 0 !important
+    line-height 2.2rem
+
+
+
+.fa-twitter
+  color #1889ba
+
+.fa-github
+  color #444
+
+.fa-stack-overflow
+  color #d07500
+
+.fa-youtube
+  color #cb0909
+
+[class*=text-underline-]
+  background-repeat no-repeat
+  background-size 100% 0.4em
+  background-position 0 70%
+  padding-left 5px
+  padding-right 5px
+  margin-left -5px
+  margin-right -5px
+
+.text-underline-warning
+  background-image -webkit-gradient(linear,left top,right top,from(rgba(245,192,112,.4)))
+  background-image -o-linear-gradient(left,rgba(245,192,112,.4))
+  background-image linear-gradient(to right,rgba(245,192,112,.4))
+
+.text-underline-error
+  background-image -webkit-gradient(linear,left top,right top,from(rgba(203, 9, 9,.1)))
+  background-image -o-linear-gradient(left,rgba(203, 9, 9,.1))
+  background-image linear-gradient(to right,rgba(203, 9, 9,.1))
+
+
+.disqus-comments
+  .alert-info
+    background #f3fbff
+    color #658eb1

@@ -11,7 +11,7 @@ categories:
     - How to
 cover: /images/github-gpg-bg.jpg
 og_image: /images/og/github-gpg.jpg
-eyeCatchImage: /images/og/github-gpg.jpg
+card: /images/cards/idea-gpg.jpg
 highlightjs: true
 ---
 

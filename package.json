@@ -6,12 +6,11 @@
     "version": "4.2.1"
   },
   "dependencies": {
-    "asciidoctor.js": "^1.5.9",
+    "asciidoctor": "^2.2.0",
     "cheerio": "^0.22.0",
     "entities": "^1.1.2",
     "hexo": "^4.2.1",
     "hexo-all-minifier": "^0.5.3",
-    "hexo-auto-canonical": "^0.1.1",
     "hexo-browsersync": "^0.3.0",
     "hexo-deployer-git": "^2.1.0",
     "hexo-generator-archive": "^1.0.0",
@@ -27,7 +26,7 @@
     "hexo-renderer-pug": "^1.0.0",
     "hexo-renderer-stylus": "^1.1.0",
     "hexo-server": "^1.0.0",
-    "hexo-tag-convertkit": "^0.1.2",
+    "hexo-tag-convertkit": "^0.2.0",
     "hexo-tag-share-post": "0.0.1",
     "hexo-util": "^1.9.1",
     "snyk": "^1.336.0"

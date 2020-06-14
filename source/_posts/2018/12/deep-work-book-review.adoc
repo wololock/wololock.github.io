@@ -12,8 +12,40 @@ tags:
     - affiliate
 cover: /images/deep-work-book-review-img2.jpg?v=2
 og_image: /images/og/deep-work-book-review.jpg?v=2
-eyeCatchImage: /images/og/deep-work-book-review.jpg?v=2
+card: /images/cards/deep-work.jpg
 affiliates: true
+book:
+  title: "Deep Work: Rules for Focused Success in a Distracted World"
+  description: "Deep work is the ability to focus without distraction on a cognitively demanding task. It's a skill that allows you to quickly master complicated information and produce better results in less time. Deep work will make you better at what you do and provide the sense of true fulfillment that comes from craftsmanship. In short, deep work is like a super power in our increasingly competitive twenty-first century economy. And yet, most people have lost the ability to go deep-spending their days instead in a frantic blur of e-mail and social media, not even realizing there's a better way."
+  source:
+    name: goodreads.com
+    url: https://www.goodreads.com/book/show/25744928-deep-work
+  image: "/images/books/deep-work.jpg"
+  links:
+    - flag: us
+      text: Get from amazon.com
+      url: https://www.amazon.com/gp/product/1455586692?ie=UTF8&tag=eprintstacktr-20&camp=1789&linkCode=xm2&creativeASIN=1455586692
+    - flag: ca
+      text: Get from amazon.ca
+      url: https://amzn.to/2UBccu5
+    - flag: de
+      text: Get from amazon.de
+      url: https://www.amazon.de/gp/product/0349411905?ie=UTF8&tag=eprintstac0c4-21&camp=1638&linkCode=xm2&creativeASIN=0349411905
+    - flag: gb
+      text: Get from amazon.co.uk
+      url: https://www.amazon.co.uk/gp/product/0349411905?ie=UTF8&tag=eprintstack07-21&camp=1634&linkCode=xm2&creativeASIN=0349411905
+    - flag: fr
+      text: Get from amazon.fr
+      url: https://amzn.to/2MPvkAp
+    - flag: es
+      text: Get from amazon.es
+      url: https://amzn.to/2YqUavZ
+    - flag: pl
+      text: Get from taniaksiazka.pl
+      url: https://go.buybox.click/linkclick_4951_11?&url=https%3A%2F%2Fwww.taniaksiazka.pl%2Fpraca-gleboka-jak-odniesc-sukces-w-swiecie-cal-newport-p-988675.html
+    - flag: pl
+      text: Get from ebookpoint.pl (ebook)
+      url: https://go.buybox.click/linkclick_4951_32?&url=https%3A%2F%2Febookpoint.pl%2Fksiazki%2Fpraca-gleboka-cal-newport%2Ce_1fgz.htm
 ---
 :book-url: https://amzn.to/2JgBOGz
 :cal-newport-url: http://calnewport.com/about/
@@ -22,8 +54,6 @@ affiliates: true
 :amazon-us: https://www.amazon.com/gp/product/1455586692?ie=UTF8&tag=eprintstacktr-20&camp=1789&linkCode=xm2&creativeASIN=1455586692
 :tania-ksiazka: https://go.buybox.click/linkclick_4951_11?&url=https%3A%2F%2Fwww.taniaksiazka.pl%2Fpraca-gleboka-jak-odniesc-sukces-w-swiecie-cal-newport-p-988675.html
 :ebook-point: https://go.buybox.click/linkclick_4951_32?&url=https%3A%2F%2Febookpoint.pl%2Fksiazki%2Fpraca-gleboka-cal-newport%2Ce_1fgz.htm
-:kindle: https://www.amazon.com/gp/product/B00X47ZVXM?ie=UTF8&tag=eprintstacktr-20&camp=1789&linkCode=xm2&creativeASIN=B00X47ZVXM
-:audible: https://www.amazon.com/gp/offer-listing/B0189PVAWY/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B0189PVAWY&linkCode=am2&tag=eprintstacktr-20&linkId=305e9950b402336d47cb3e7f1268ffa3
 
 This is the second blog post in _"Programmer's Bookshelf"_ category, and today I would like to share with you my opinion on the {book-url}[_"Deep Work"_, role="ga-track"] book by Cal Newport.
 It's not about programming, but it's still beneficial to any software developer out there.
@@ -64,10 +94,11 @@ image::/images/deep-work-book-review-img1.jpg[]
 
 The binary Yes/No answer is - yes. But it depends. I've found "Deep Work" an exciting and practical lecture because it felt like I lost the ability to work with a high level of concentration some time ago. It's not revolutionary, and it does not present any ideas you won't find in other books. However, it still condenses many useful and scientific proven information. It might look too wordy, and it could do the same job half size. Also, some of the examples are sound bizarre and very inaccurate (like the ones described with "Embrace boredom" rule). But it doesn't change the fact that it presents valuable and useful information to any knowledge-worker.
 
-NOTE: My rating on Goodreads.com - https://www.goodreads.com/review/show/2647838546[4/5 stars]
+pass:[{% book %}]
 
 == Brain dump: 10 ideas to remember
 
+[.styled]
 1. Define what matters to you most and dedicate most of your attention to progress in these areas (career, family, relationships, personal goals).
 2. Define what shallow work means to you and minimize the time you spent on it.
 3. When doing a shallow job, do it effectively (e.g., batch responding to e-mails in a single time-box).
@@ -78,34 +109,6 @@ NOTE: My rating on Goodreads.com - https://www.goodreads.com/review/show/2647838
 8. Use shutdown ritual to program your brain that the work for today is done, and it is the right time to rest and relax. Let your subconscious mind do its job.
 9. Train your memory with memorization techniques (worth reading: "Moonwalking with Einstein" by Joshua Foer).
 10. Challenge yourself by setting deadlines for all activities to overcome Parkinson's law. Use 30-minutes buffers in case an important activity was underestimated, and you don't want to drop it unfinished.
-
-[.get-the-book]
-====
-+++<h2>Get the book+++
-
-*Paperback*
-
-image:/images/flags/us.png[United States, title="United States"] Amazon.com: {amazon-us}["Deep Work: Rules for Focused Success in a Distracted World", role="ga-track"]
-
-image:/images/flags/gb.png[United Kingdom, title="United Kingdom"] Amazon.co.uk: {amazon-uk}["Deep Work: Rules for Focused Success in a Distracted World", role="ga-track"]
-
-image:/images/flags/de.png[Germany, title="Germany"] Amazon.de: {amazon-de}["Deep Work: Rules for Focused Success in a Distracted World" (Eng.)", role="ga-track"]
-
-image:/images/flags/pl.png[Poland, title="Poland"] TaniaKsiazka.pl: {tania-ksiazka}["Praca głęboka. Jak odnieść sukces w świecie, w którym ciągle coś nas rozprasza.", role="ga-track"]
-
-*Ebook*
-
-image:/images/flags/us.png[United States, title="United States"] Amazon Kindle: {kindle}["Deep Work: Rules for Focused Success in a Distracted World", role="ga-track"]
-
-image:/images/flags/pl.png[Poland, title="Poland"] Ebookpoint.pl: {ebook-point}["Praca głęboka. Jak odnieść sukces w świecie, w którym ciągle coś nas rozprasza.", role="ga-track"]
-
-*Audiobook*
-
-image:/images/flags/us.png[United States, title="United States"] Amazon Audible: {audible}["Deep Work: Rules for Focused Success in a Distracted World", role="ga-track"]
-
-___
-[.small]#NOTE: Above links are affiliate links. If you decide to buy a book using my affiliate link, I will get a small percentage from your purchase. The&nbsp;affiliate link does not affect the final price of the product. Using it costs you nothing.#
-====
 
 
 include::source/_parts/thank-you.adoc[]

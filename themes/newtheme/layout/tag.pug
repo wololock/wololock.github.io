@@ -1,0 +1,30 @@
+extends layout/base
+
+block variables
+    - var header_class = "bg-white navbar-light shadow-sm scrolled"
+
+block site_title
+    | All posts with '#{page.tag}' tag
+
+block content
+    - var tag = site.tags.findOne({name: page.tag})
+    - var total = tag.posts.count()
+
+    section.page-tag.pt-5#list
+        .container.pt-4
+            h1.pb-3.mb-4 #{page.tag} #[span.badge.badge-warning=total]
+
+            .row
+                .col-12.col-lg-10
+                    each post in page.posts.toArray()
+                        article.list-elem.pr-3
+                            h3=post.title
+                            div.text-justify!=post.excerpt
+                            div.text-muted.sans-serif
+                                +post_meta(post, {'date-class': 'mark font-weight-bold'})
+                            a.stretched-link(href=url_for(post.path))
+
+                    if page.total > 1
+                        nav.paginator.pb-4
+                            !=paginator({ prev_text: '<i class="fa fa-angle-left"></i>', next_text: '<i class="fa fa-angle-right"></i>', escape: false, format: "page/%d/#list" })
+

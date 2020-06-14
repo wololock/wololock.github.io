@@ -1,0 +1,25 @@
+convertkit: 1d25fc71bd
+
+youtube:
+  latest:
+    - j1lH3vOhucw
+    - EIhLl9ebeiA
+    - vJgcsyLJf0g
+    - fdpKCuJKbMg
+
+posts:
+  - jenkins-pipeline-environment-variables-the-definitive-guide
+  - groovy-regular-expressions-the-definitive-guide
+  - jenkins-scripted-pipeline-vs-declarative-pipeline-the-4-practical-differences
+  - how-to-time-out-jenkins-pipeline-stage-and-keep-the-pipeline-running
+  - atomic-habits-book-review
+
+ads:
+  comments:
+    name: "Grammarly Latest Comments"
+    image: /images/yml/grammarly-square.png
+    url: https://www.anrdoezrs.net/click-100154593-11275898
+  footer:
+    name: "NordVPN home footer"
+    image: /images/yml/nord-vpn.jpg
+    url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=572706.45&subid=0&type=4

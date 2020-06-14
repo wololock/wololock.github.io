@@ -1,0 +1,25 @@
+- var related = popular_posts_json({ maxCount: 3, isImage: true, isExcerpt: true }, page)
+- var category = page.categories.first()
+- var posts = site.posts.filter(post => related.json.some(it => it.title === post.title)).toArray()
+
+section.related-posts.bg-light-blue
+    .container
+        h3.color-light-purple Related posts
+        .card-deck.pt-2
+            each post in posts
+                +post_card(post, {truncate: 300})
+
+
+    .col-12.text-center.mt-5.serif
+        h5.h3
+            span.small.d-block.mb-2="More posts from"
+            span.font-weight-bold.mark #{category.name}
+
+        div
+            em.fas.fa-angle-down
+        a.stretched-link(href=url_for(category.path))
+
+    if page.ad
+        .mt-5.text-center
+            .container
+                +ad_banner(page.ad)

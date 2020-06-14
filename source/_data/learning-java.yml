@@ -1,0 +1,17 @@
+#cover:
+
+recommended:
+  - divide-a-list-to-lists-of-n-size-in-Java-8
+  - java-type-inference-generic-methods-chain-call
+  - graalvm-heap-size-of-native-image-how-to-set-it
+
+youtube:
+  - title: "Multiple Java versions in a single Jenkins Pipeline using Docker and SDKMAN! | #jenkinspipeline"
+    id: j1lH3vOhucw
+    time: "19:42"
+  - title: "How to install multiple Java versions? Use SDKMAN! (Mac OS, Linux, or Cygwin)"
+    id: 5cc8IZRvRcI
+    time: "6:36"
+  - title: "Can Java Runtime Environment execute a class with the \"class\" name?"
+    id: 3u7MQkLbRdo
+    time: "3:54"

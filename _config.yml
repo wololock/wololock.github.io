@@ -3,8 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: e.printStackTrace(); // Blog
-#subtitle: Lorem ipsum
+title: Szymon Stepniak - Freelance Groovy Developer & DevOps
 description: Blog about programming, created by Upwork's Top Rated freelancer, 10+ years experienced Java/Groovy developer. Contact me if you are looking for an experienced and high quality consultant.
 author: Szymon Stepniak
 bio: Groovista, Upwork's Top Rated freelancer, Toruń Java User Group founder, open&nbsp;source contributor, Stack Overflow addict, bedroom guitar player. I walk through e.printStackTrace() so you don't have to.
@@ -48,11 +47,6 @@ render_drafts: false
 post_asset_folder: false
 relative_link: false
 future: true
-highlight:
-  enable: true
-  line_number: true
-  auto_detect: false
-  tab_replace:
   
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -60,12 +54,22 @@ highlight:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
+  per_page: 0
+  order_by: -date
+
+category_generator:
+  path: ''
   per_page: 10
+  order_by: -date
+
+tag_generator:
+  per_page: 9
   order_by: -date
   
 # Category & Tag
 default_category: uncategorized
 category_map:
+  "Programmer's Bookshelf": 'programmers-bookshelf'
 tag_map:
 
 # Date / Time format
@@ -84,7 +88,7 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 #theme: clean-blog
-theme: mytheme
+theme: newtheme
 
 disqus_shortname: eprintstacktrace
 
@@ -103,8 +107,8 @@ all_minifier: true
 
 # Update versions after updating resources to prevent reading from cache
 version:
-  css: 50
-  js: 5
+  css: 51
+  js: 6
 
 archive_generator:
   per_page: 0
@@ -135,10 +139,10 @@ video:
 
 stackoverflow:
   profile: https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile
-  reputation: 27,623
+  reputation: 27,703
   gold: 9
-  silver: 62
-  bronze: 94
+  silver: 63
+  bronze: 95
 
 alias:
   youtube/:
@@ -166,3 +170,5 @@ lazyload:
 
 convertkit:
   domain: tremendous-motivator-1432.ck.page
+  threshold: -500
+

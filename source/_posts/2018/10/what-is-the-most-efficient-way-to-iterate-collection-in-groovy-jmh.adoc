@@ -9,10 +9,10 @@ tags:
     - java-8
     - benchmark
 categories:
-    - Programming tips
-cover: /img/index-header2.jpg
+    - Groovy Cookbook
+cover: /img/index-bg.jpg
 og_image: /images/og/groovy-jmh-benchmark.jpg
-eyeCatchImage: /images/og/groovy-jmh-benchmark.jpg
+card: /images/cards/groovy-02.jpg
 affiliate: true
 highlightjs: true
 ---
@@ -185,8 +185,8 @@ class GroovyIterationBenchmarks {
 <6> Java 8 `forEach()` test case with closure in place of a lambda expression
 <7> Java 8 `forEach()` test case with an anonymous class in place of lambda expression
 
-[NOTE]
-Above example can be cloned from https://github.com/wololock/groovy-jmh
+
+NOTE: Above example can be cloned from icon: icon:github[] https://github.com/wololock/groovy-jmh[wololock/groovy-jmh]
 
 == The results
 
@@ -225,7 +225,7 @@ static compilation and see how it works.
 [NOTE]
 Laptop specs: JDK 1.8.0_162 (Java HotSpot(TM) 64-Bit Server VM, 25.162-b12), Groovy 2.4.12, Intel(R) Core(TM) i7-4900MQ CPU @ 2.80GHz (4 cores, cache size 8192 KB), 16 GB RAM, OS: Fedora 26 (64 bit)
 
-Full log can be found here: https://gist.github.com/wololock/c4039cc75a359660b11f89bc8abd6629
+Full log can be found here: icon:github[] https://gist.github.com/wololock/c4039cc75a359660b11f89bc8abd6629[c4039cc75a359660b11f89bc8abd6629]
 
 == The improvement: static compilation
 
@@ -281,7 +281,7 @@ As you can see, enabling static compilation was a game changer! To sum it up:
 As you can see Groovy `each` method with a closure can be faster than other variants when static
 compilation is enabled. But is it always like that? It depends.
 
-Full log can be found here: https://gist.github.com/wololock/161aae90bcdaabd0fe6144f5339d1727
+Full log can be found here: icon:github[] https://gist.github.com/wololock/161aae90bcdaabd0fe6144f5339d1727[161aae90bcdaabd0fe6144f5339d1727]
 
 == Small collection size
 
@@ -309,7 +309,7 @@ Things got change as you can see.
 
 Even though Groovy `each` didn't record the best result this time, it is still very close to the fastest variant.
 
-Full log can be found here: https://gist.github.com/wololock/3a9b1e169c58abbfb4e067aa69b9bfc0
+Full log can be found here: icon:github[] https://gist.github.com/wololock/3a9b1e169c58abbfb4e067aa69b9bfc0[3a9b1e169c58abbfb4e067aa69b9bfc0]
 
 == Benchmarking Java
 
@@ -330,7 +330,7 @@ Let's compare the results:
 * Groovy for-each took in average `96.422` ms while Java did the same job in approximately `8.839` ms.
 * Groovy iterator test took in average `103.568` ms while Java did the same job in approximately `8.865` ms.
 
-Full log can be found here: https://gist.github.com/wololock/c895114949be2820b0fada72df099fcf
+Full log can be found here: icon:github[] https://gist.github.com/wololock/c895114949be2820b0fada72df099fcf[c895114949be2820b0fada72df099fcf]
 
 == Conclusion
 
@@ -348,7 +348,5 @@ might not be worth the effort.
 
 I hope you have enjoyed reading this blog post. Feel free to leave a comment in the section below, I would love to
 hear your opinion. Until the next time!
-
-include::source/_parts/groovy-in-action.adoc[]
 
 include::source/_parts/thank-you.adoc[]

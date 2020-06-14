@@ -14,7 +14,7 @@ categories:
     - Jenkins Pipeline Cookbook
 cover: /images/jenkins-bg2.jpg
 og_image: /images/og/pipeline-timeout-stage.jpg
-eyeCatchImage: /images/og/pipeline-timeout-stage.jpg
+card: /images/cards/jenkins-02.jpg
 highlightjs: true
 ---
 :catch-error-url: https://jenkins.io/doc/pipeline/steps/workflow-basic-steps/#catcherror-catch-error-and-set-build-result-to-failure
@@ -175,8 +175,6 @@ We can see the expected build status, but there is one issue with this approach.
 The `A` stage is marked as `SUCCESS` which might be confusing.
 It hides the information about the timeout, so we need to click on the stage and check if there was a timeout or not every time we run the pipeline.
 There should be a better way to handle it.
-
-include::source/_parts/jenkins-pipeline-offer.adoc[]
 
 == Using `catchError` together with `try-catch`
 

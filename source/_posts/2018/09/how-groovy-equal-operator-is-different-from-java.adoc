@@ -8,10 +8,10 @@ tags:
     - operator
     - java
 categories:
-    - Programming tips
-cover: /img/index-header2.jpg
+    - Groovy Cookbook
+cover: /img/index-bg.jpg
 og_image: /images/og/groovy-equals-operator.jpg
-eyeCatchImage: /images/og/groovy-equals-operator.jpg
+card: /images/cards/groovy-01.jpg
 highlightjs: true
 ---
 

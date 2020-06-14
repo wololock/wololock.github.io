@@ -9,7 +9,7 @@ tags:
     - metaprogramming
     - static
 categories:
-    - Programming tips
+    - Groovy Cookbook
 og_image: /images/og/groovy-static-property-missing.jpg
 eyeCatchImage: /images/og/groovy-static-property-missing.jpg
 highlightjs: true

@@ -1,0 +1,27 @@
+cover: /images/bg/jenkins-pipeline-cookbook.jpg
+
+recommended:
+  - jenkins-pipeline-environment-variables-the-definitive-guide
+  - jenkins-scripted-pipeline-vs-declarative-pipeline-the-4-practical-differences
+  - using-jenkins-pipeline-parallel-stages-to-build-maven-project-with-different-jdks
+
+ads:
+  column:
+    name: "Udemy - Top Online Courses Development - Column"
+    url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.1348&subid=0&type=4
+    image: /images/yml/top-online-courses.png
+  bottom:
+    name: "Udemy - Top Online Courses Development - Bottom"
+    url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.1346&subid=0&type=4
+    image: /images/yml/udemy-top-online-courses-square.png
+
+youtube:
+  - title: "Multiple Java versions in a single Jenkins Pipeline using Docker and SDKMAN! | #jenkinspipeline"
+    id: j1lH3vOhucw
+    time: "19:42"
+  - title: "Jenkins Pipeline Environment Variables explained | #jenkinspipeline"
+    id: KwQDxwZRZiE
+    time: "16:43"
+  - title: "Jenkins Declarative Pipeline vs Scripted Pipeline - 4 key differences | #jenkinspipeline"
+    id: Ei_Nk14vruE
+    time: "13:45"

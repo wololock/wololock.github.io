@@ -15,7 +15,7 @@ tags:
 highlightjs: true
 cover: /images/jq-bg.jpg
 og_image: /images/og/curl-jq.jpg
-eyeCatchImage: /images/og/curl-jq.jpg
+card: /images/cards/jq.jpg
 ---
 :openlibrary: https://openlibrary.org/dev/docs/api/search
 :jq-download: https://stedolan.github.io/jq/download/
@@ -488,5 +488,7 @@ $ jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_yea
 And that's it for today.
 In the next episode, we will dive deeper into more advanced filters and functions that `jq` offers.
 Stay tuned! icon:smile-o[]
+
+pass:[{% youtube_card EIhLl9ebeiA %}]
 
 include::source/_parts/thank-you.adoc[]

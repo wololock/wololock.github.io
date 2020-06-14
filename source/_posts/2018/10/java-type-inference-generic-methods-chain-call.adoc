@@ -10,10 +10,10 @@ tags:
     - jsr335
     - jep101
 categories:
-    - Programming tips
+    - Learning Java
 cover: /images/java-type-inference-bg.jpg
 og_image: /images/og/java-generics-type-inference.jpg
-eyeCatchImage: /images/og/java-generics-type-inference.jpg
+card: /images/cards/java-01.jpg
 highlightjs: true
 ---
 
@@ -107,7 +107,10 @@ image::/images/java-type-inference-error.png[]
 At some point it makes sense, because Java generics are invariantfootnote:[https://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.10]
 - Java Language Specification in chapter **4.10. Subtyping** says clearly:
 
-> Subtyping does not extend through parameterized types: `T` <: `S` does not imply that `C<T>` <: `C<S>`.
+[.source-quote]
+____
+Subtyping does not extend through parameterized types: `T` <: `S` does not imply that `C<T>` <: `C<S>`.
+____
 
 So why does the example without `peek()` method invocation worked?
 

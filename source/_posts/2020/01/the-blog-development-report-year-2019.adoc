@@ -12,7 +12,7 @@ categories:
     - Blog Reports
 cover: /images/2019-summary-bg.jpg
 og_image: /images/og/2019-summary.jpg
-eyeCatchImage: /images/og/2019-summary.jpg
+card: /images/cards/blog-reports.jpg
 ---
 :youtube-url: https://www.youtube.com/c/eprintstacktrace
 

@@ -12,7 +12,7 @@ categories:
 - Jenkins Pipeline Cookbook
 cover: /images/jenkins-bg2.jpg
 og_image: /images/og/jenkins-declarative-vs-scripted-pipeline.jpg
-eyeCatchImage: /images/og/jenkins-declarative-vs-scripted-pipeline.jpg
+card: /images/cards/jenkins-declarative-vs-scripted.jpg
 affiliates: true
 highlightjs: true
 ---
@@ -423,8 +423,6 @@ This is not the same result.
 In the scripted pipeline use case, the *Test* stage is not even rendered.
 This might introduce some unnecessary confusion, the declarative pipeline handles it much better in my opinion.
 Declarative vs. scripted, 4:0.
-
-include::source/_parts/jenkins-pipeline-offer.adoc[]
 
 == Conclusion
 

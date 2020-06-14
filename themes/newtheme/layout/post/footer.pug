@@ -1,0 +1,21 @@
+footer.post-footer
+    .container
+        .row
+            .col-12.offset-0.col-md-10.offset-md-1
+                .about-author
+                    .row
+                        .col-md-2.col-6.offset-md-0.offset-3.text-center.mt-4
+                            img.rounded-circle.img-fluid(src=config.photo)
+                        .col-md-10.col-12.text-md-left.text-center.mt-md-4.mt-1
+                            h4.text-md-left.text-center(itemprop="creator")
+                                a(href=url_for("/about"))=config.author
+                            p.bio
+                                span!=config.bio
+                                span.ml-2
+                                    a(href=url_for("/about")) More about me &raquo;
+
+                            ul.social-links.text-md-left.text-center
+                                each value, key in theme.footer
+                                    li
+                                        a(href=value.link, onclick="window.open(this.href);return false;")
+                                            span.fa(class=value.icon)

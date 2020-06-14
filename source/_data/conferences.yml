@@ -1,0 +1,18 @@
+cover: /images/bg/conferences.jpg
+
+youtube:
+  - title: "GR8Conf EU 2019 vlog"
+    id: ZbTXrCrjNRw
+    time: "3:19"
+  - title: "Let's meet at GR8Conf EU 2019 in Copenhagen!"
+    id: eFX02DssGLc
+    time: "3:27"
+  - title: "GreachConf 2020 - a quick look at the agenda! (Madrid, March 26th-28th 2020)"
+    id: tvIHmwxdgec
+    time: "5:28"
+
+ads:
+  column:
+    name: "Conferences Column - Personal Development"
+    image: /images/yml/personal-development.png
+    url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.1436&subid=0&type=4

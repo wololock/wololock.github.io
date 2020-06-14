@@ -1,0 +1,20 @@
+.newsletter-box.my-4.my-md-5.py-md-5.py-4
+    .container
+        .row
+            .col-12.offset-0.col-md-10.offset-md-1
+                .row
+                    .col-12.col-md-3.mb-md-0.mb-5.text-center
+                        .shadow.d-inline-flex.img-fluid
+                            img.shadow.img-fluid(src=newsletter.image)
+                    .col-12.col-md-9(class=newsletter.horizontal ? "horizontal" : "")
+                        h4 #{newsletter.title}
+
+                        if newsletter.lead
+                            p.lead!=newsletter.lead
+
+                        p.nospam
+                            | #[b No spam] guaranteed. Weekly updates only. Unsubscribe at any time.
+
+                        div.convertkit
+                            != convertkit
+
