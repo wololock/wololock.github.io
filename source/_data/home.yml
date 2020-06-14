@@ -16,8 +16,10 @@ posts:
 
 ads:
   comments:
-    image: https://www.ftjcfx.com/image-100154593-11277005
+    name: "Grammarly Latest Comments"
+    image: /images/yml/grammarly-square.png
     url: https://www.anrdoezrs.net/click-100154593-11275898
   footer:
-    image: https://mproxy.banner.linksynergy.com/fs/banners/43061/43061_39.png
-    url: http://localhost:4000/#
+    name: "NordVPN home footer"
+    image: /images/yml/nord-vpn.jpg
+    url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=572706.45&subid=0&type=4

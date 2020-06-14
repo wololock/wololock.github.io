@@ -34,7 +34,7 @@ link(rel="shortcut icon", type="image/png", href=url_for("/favicon_new.png"))
 if page.highlightjs
     link(rel="stylesheet" href=url_for("/css/highlightjs.css"))
 
-link(rel="stylesheet" href=url_for("/css/main.css"))
+link(rel="stylesheet" href=url_for("/css/main.css?v=" + config.version.css))
 
 link(rel="canonical" href=config.url + url_for(page.canonical_path, { relative: false }))
 

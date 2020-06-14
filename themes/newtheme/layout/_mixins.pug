@@ -18,17 +18,17 @@ mixin post_card(post, options = {})
         a.stretched-link(href=url_for(post.path) itemprop="url")
 
 mixin youtube_card(id, video, options = {})
-    .card.shadow-sm
+    .card.shadow
         .card-header(itemprop="image" style="background-image: url('https://i3.ytimg.com/vi/" + id + "/mqdefault.jpg')")
             div.time=video.time
             em.fa.fa-youtube
         if options.title !== false
             .card-body
                 h4.text-left=video.title
-        a.stretched-link(href="https://www.youtube.com/watch?v=" + id)
+        a.stretched-link.gatr(href="https://www.youtube.com/watch?v=" + id data-type="youtube" data-name=video.title)
 
 mixin ad_banner(ad)
-    a(href=ad.url)
+    a.gatr(href=ad.url data-type="banner" data-name=ad.name)
         img.img-fluid(src=ad.image)
 
 mixin post_meta(post, options = {})

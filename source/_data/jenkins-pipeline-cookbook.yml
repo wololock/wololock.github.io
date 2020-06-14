@@ -7,8 +7,13 @@ recommended:
 
 ads:
   column:
+    name: "Udemy - Top Online Courses Development - Column"
     url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.1348&subid=0&type=4
     image: /images/yml/top-online-courses.png
+  bottom:
+    name: "Udemy - Top Online Courses Development - Bottom"
+    url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.1346&subid=0&type=4
+    image: /images/yml/udemy-top-online-courses-square.png
 
 youtube:
   - title: "Multiple Java versions in a single Jenkins Pipeline using Docker and SDKMAN! | #jenkinspipeline"

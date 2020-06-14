@@ -42,12 +42,13 @@ block content
 
                         ul
                             li
-                                a(href="https://github.com/sponsors/wololock") GitHub Sponsors
+                                a.gatr(href="https://github.com/sponsors/wololock" data-type="patron" data-name="GitHub Sponsors") GitHub Sponsors
                             li
-                                a(href="https://github.com/sponsors/wololock") Open Collective
+                                a.gatr(href="https://github.com/sponsors/wololock" data-type="patron" data-name="Open Collective") Open Collective
 
-                        a(href="https://opencollective.com/eprintstacktrace#section-contributors")
+                        a.gatr(href="https://opencollective.com/eprintstacktrace#section-contributors" data-type="patron" data-name="Open Collective Contributors")
                             img(src="https://opencollective.com/eprintstacktrace/backers.svg?avatarHeight=32&width=auto")
+
                     .col-12.col-md-3.text-center
                         img.img-fluid.mt-5(src=url_for("/images/support-me/github.png"))
         section.py-5
@@ -81,8 +82,8 @@ block content
                         h2 Hire me #[b as a mentor]
 
                         p
-                            | I accept #[a(href=site.data.links.upwork) freelance] gigs occasionally only, but I never refuse to #[b help other people].
-                            | If you feel stuck with your learning process or face problems that are too difficult for you to solve, feel free to contact me (#[a(href="mailto:szymon.stepniak@gmail.com") email] or #[a(href=site.data.links.codementor) CodeMentor.io]) and do my best to help you.
+                            | I accept #[a.gatr(href=site.data.links.upwork data-type="mentor" data-name="Upwork") freelance] gigs occasionally only, but I never refuse to #[b help other people].
+                            | If you feel stuck with your learning process or face problems that are too difficult for you to solve, feel free to contact me (#[a(href="mailto:szymon.stepniak@gmail.com") email] or #[a.gatr(href=site.data.links.codementor data-type="mentor" data-name="Codementor") CodeMentor.io]) and do my best to help you.
                             | I can offer you either #[b a quick solution-oriented session] or #[b a long-term mentoring relationship] - whatever works for #[b.mark you] best.
 
 

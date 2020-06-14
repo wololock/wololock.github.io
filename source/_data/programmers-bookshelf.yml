@@ -7,9 +7,11 @@ recommended:
 
 ads:
   column:
-    url: https://www.amazon.com/gp/feature.html/ref=as_acph_kdb_deals_324_on?tag=eprintstacktr-20&linkCode=ur1&ie=UTF8&docId=1000677541
-    image: https://images-na.ssl-images-amazon.com/images/G/01/kindle/merch/associates/Kindle-Deals-160x600.jpg
+    name: "Amazon Countdown Deals - Column"
+    url: https://www.amazon.com/b/ref=as_acph_kd_kcd_111_on?tag=eprintstacktr-20&linkCode=ur1&ie=UTF8&node=7078878011
+    image: /images/yml/amazon-countdown-deals-01.png
 
   bottom:
-    url: https://www.amazon.com/gp/feature.html/ref=as_acph_kdb_deals_324_on?tag=eprintstacktr-20&linkCode=ur1&ie=UTF8&docId=1000677541
-    image: https://images-na.ssl-images-amazon.com/images/G/01/kindle/merch/associates/Kindle-Deals-300x250.jpg
+    name: "Amazon Countdown Deals - Bottom"
+    url: https://www.amazon.com/b/ref=as_acph_kd_kcd_111_on?tag=eprintstacktr-20&linkCode=ur1&ie=UTF8&node=7078878011
+    image: /images/yml/amazon-countdown-deals-02.png

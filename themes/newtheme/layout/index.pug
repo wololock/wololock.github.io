@@ -90,11 +90,9 @@ block content
                             span.d-inline-block.mt-3.small.text-muted and don't forget to subscribe #[em.far.fa-smile-wink]
 
                     .col-12.col-md-5.order-0.order-md-1
-                        .card.shadow.mt-0.mt-md-3.mb-4.mb-md-0
-                            .card-header(itemprop="image" style="background-image: url('https://i3.ytimg.com/vi/" + video_id + "/mqdefault.jpg')")
-                                div.time=video.time
-                                em.fa.fa-youtube
-                            a.stretched-link(href="https://www.youtube.com/watch?v=" + video_id)
+                        .mt-0.mt-md-3.mb-4.mb-md-0
+                            +youtube_card(video_id, video, { title: false })
+
         section.sec.bg-light-blue
             .container
                 .row
@@ -106,13 +104,13 @@ block content
         section.sec.newsletter
             .container
                 .row
-                    .col-12.col-md-3.mb-md-0.mb-5.order-1.order-md-0
-                        img.shadow.img-fluid(src=url_for("/images/convertkit/home.jpg"))
-                    .col-12.col-md-9.text-center.order-0.order-md-1
+                    //.col-12.col-md-3.mb-md-0.mb-5.order-1.order-md-0
+                    //    img.shadow.img-fluid(src=url_for("/images/convertkit/home.jpg"))
+                    .col-12.col-md-10.offset-0.offset-md-1.text-center.order-0.order-md-1
                         h2.text-underline-error Sign up to my newsletter
-                        p.text-center.mt-4
-                            | and grab a PDF #[b "How To Become A Better Groovy Developer"] now!
-                        p.text-center.small
+                        //p.text-center.mt-4
+                        //    | and grab a PDF #[b "How To Become A Better Groovy Developer"] now!
+                        p.text-center.small.mt-4
                             | #[em.fa.fa-ban.font-weight-bold.color-red] #[b No spam] guaranteed. Weekly updates only. Unsubscribe at any time.
                         != convertkit(site.data.home.convertkit)
 

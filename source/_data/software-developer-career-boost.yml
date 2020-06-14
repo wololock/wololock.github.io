@@ -12,5 +12,6 @@ youtube:
 
 ads:
   column:
+    name: "Personal Development"
     image: /images/yml/personal-development.png
     url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.1436&subid=0&type=4

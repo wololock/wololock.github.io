@@ -18,3 +18,8 @@ section.related-posts.bg-light-blue
         div
             em.fas.fa-angle-down
         a.stretched-link(href=url_for(category.path))
+
+    if page.ad
+        .mt-5.text-center
+            .container
+                +ad_banner(page.ad)

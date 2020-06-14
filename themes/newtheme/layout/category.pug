@@ -35,13 +35,7 @@ block content
                         span.d-md-inline.d-block.ml-1 #[em.fa.fa-youtube] #[b YouTube] videos
                     .card-deck
                         each video in data.youtube
-                            .card.shadow-sm
-                                .card-header(itemprop="image" style="background-image: url('https://i3.ytimg.com/vi/" + video.id + "/mqdefault.jpg')")
-                                    div.time=video.time
-                                    em.fa.fa-youtube
-                                .card-body
-                                    h4.text-left=video.title
-                                a.stretched-link(href="https://www.youtube.com/watch?v=" + video.id)
+                            +youtube_card(video.id, video)
 
 
         section.pt-5.serif#list
@@ -62,10 +56,8 @@ block content
 
                     .col-md-2.d-none.d-md-block
                         if ads.column
-                            a(href=ads.column.url)
-                                img.img-fluid(src=ads.column.image)
+                            +ad_banner(ads.column)
 
                     if ads.bottom
-                        .col-12.d-md-none.d-block.text-center
-                            a(href=ads.bottom.url)
-                                img.img-fluid(src=ads.bottom.image)
+                        .col-12.d-md-none.d-block.text-center.pt-2.pb-5
+                            +ad_banner(ads.bottom)

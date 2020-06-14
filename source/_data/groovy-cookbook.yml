@@ -7,8 +7,13 @@ recommended:
 
 ads:
   column:
-    image: https://www.lduhtrp.net/image-100154593-12490425
-    url: https://www.anrdoezrs.net/click-100154593-12490425
+    name: "Coursera Online Data Science - Groovy Cookbook - Column"
+    image: /images/yml/coursera-online-data-science-01.jpg
+    url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=759505.359&subid=0&type=4
+  bottom:
+    name: "Coursera Online Data Science - Groovy Cookbook - Bottom"
+    image: /images/yml/coursera-online-data-science-02.jpg
+    url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=759505.360&subid=0&type=4
 
 
 youtube:

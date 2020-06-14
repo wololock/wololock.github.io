@@ -19,6 +19,10 @@ newsletter:
   image: /images/convertkit/jenkins.jpg
   title: Download the "Atomic Habits" mindmap
   lead: "Subscribe to mail email list and get hand-drawn <b class=\"mark\">printable mindmap</b> in the PDF."
+ad:
+  name: "Udemy - Top Online Courses Development - Jenkins Env Vars"
+  url: "https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.1347&subid=0&type=4"
+  image: /images/yml/udemy-top-online-courses-wide.png
 ---
 :sectanchors:
 :toc: macro

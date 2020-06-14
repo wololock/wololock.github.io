@@ -19,7 +19,9 @@
                                 .col-md-6.col-8.mb-2.offset-2.offset-md-0
                                     img(no-lazy src="/images/flags/" + link.flag + ".png")
                                     span.ml-2
-                                        a(href=link.url)=link.text
+                                        - var name = title.split(":")[0].split(".")[0] + " [" + link.text + "]";
+
+                                        a.gatr(href=link.url data-type="book" data-name=name)=link.text
 
                     .col-12.py-2.affiliate-info
                         i.fas.fa-info-circle

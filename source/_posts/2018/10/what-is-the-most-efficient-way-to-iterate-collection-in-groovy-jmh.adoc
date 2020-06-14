@@ -10,7 +10,7 @@ tags:
     - benchmark
 categories:
     - Groovy Cookbook
-cover: /img/index-header2.jpg
+cover: /img/index-bg.jpg
 og_image: /images/og/groovy-jmh-benchmark.jpg
 card: /images/cards/groovy-02.jpg
 affiliate: true
