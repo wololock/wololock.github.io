@@ -1,11 +1,16 @@
 extends layout/base
 
+block variables
+    - var category = site.categories.findOne({name: page.category});
+    - var data = site.data[category.slug] || {}
+
+block footer_ad
+    +ad_banner((data.ads || {}).footer || site.data.footer.ad)
+
 block site_title
     = page.category
 
 block content
-    - var category = site.categories.findOne({name: page.category});
-    - var data = site.data[category.slug] || {}
     - var recommended = data.recommended ? site.posts.find({slug: {$in: data.recommended}}).toArray().sort((a,b) => data.recommended.indexOf(a.slug) - data.recommended.indexOf(b.slug)) : []
     - var ads = data.ads || {}
 

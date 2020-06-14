@@ -3,6 +3,9 @@ extends layout/base
 block site_title
     = page.title
 
+block structured_data
+    != structured_data(page, config)
+
 block content
     main#page-post(role="main" itemscope itemtype="http://schema.org/Article")
         header.jumbotron.text-center.pb-5(style="background-image: url('" + url_for(page.cover) + "')")

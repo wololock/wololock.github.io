@@ -230,12 +230,6 @@ pipeline {
 image::/images/jenkins-override-env-var.png[]
 --
 
-++++
-{% newsletter %}
-{% convertkit "3679b635aa" %}
-{% endnewsletter %}
-++++
-
 == Storing `Boolean` values in environment variables
 
 There is one popular misconception when it comes to using environment variables.

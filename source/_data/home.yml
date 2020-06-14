@@ -2,10 +2,10 @@ convertkit: 1d25fc71bd
 
 youtube:
   latest:
-    title: "Multiple Java versions in a single Jenkins Pipeline using Docker and SDKMAN! | #jenkinspipeline"
-    id: j1lH3vOhucw
-    time: "19:42"
-    description: "In this video, I show you how you can use Jenkins Declarative Pipeline to create a build pipeline that compiles the Maven Java project using three different Java versions (8, 11, and 15.) You will learn how to use a matrix section of the Jenkins Pipeline to define parallel stages, as well as how to create a Docker image that provides both Java and Maven using the powerful SDKMAN command-line tool..."
+    - j1lH3vOhucw
+    - EIhLl9ebeiA
+    - vJgcsyLJf0g
+    - fdpKCuJKbMg
 
 posts:
   - jenkins-pipeline-environment-variables-the-definitive-guide
@@ -16,9 +16,8 @@ posts:
 
 ads:
   comments:
-    right:
-      image: https://www.lduhtrp.net/image-100154593-12490425
-      url: https://www.anrdoezrs.net/click-100154593-12490425
-    mobile:
-      image: https://www.ftjcfx.com/image-100154593-11277005
-      url: https://www.anrdoezrs.net/click-100154593-11275898
+    image: https://www.ftjcfx.com/image-100154593-11277005
+    url: https://www.anrdoezrs.net/click-100154593-11275898
+  footer:
+    image: https://mproxy.banner.linksynergy.com/fs/banners/43061/43061_39.png
+    url: http://localhost:4000/#

@@ -6,17 +6,17 @@ footer.page-footer
                     h5.text-md-left.text-center Useful links
                     ul.text-md-left.text-center.mb-md-0.mb-5
                         li
-                            a(href=url_for("/start-here")) Start here
+                            a(href=url_for("/")) Start here
                         li
-                            a(href=url_for("/about-me")) About me
-                        li
-                            a(href=url_for("/resources")) Resources
+                            a(href=url_for("/about")) About
                         li
                             a(href=url_for("/archives")) Archives
                         li
                             a(href=url_for("/privacy-policy")) Privacy Policy
                         li
-                            a(href=url_for("/rss")) RSS
+                            a(href=site.data.links.kit) My Kit
+                        li
+                            a(href=site.data.links.rss) RSS
                         li
                             a(href=url_for("/support-me")) Support me #[em.fas.fa-heart.color-red.ml-2]
 
@@ -33,19 +33,22 @@ footer.page-footer
                                     span.count.ml-2=category.posts.length
 
                 .col-12.col-md-4.text-center
-                    div
-                        a(href="#")
-                            img.img-fluid(src="https://mproxy.banner.linksynergy.com/fs/banners/43061/43061_39.png")
+                    block footer_ad
+                        +ad_banner(site.data.footer.ad)
 
     section.bottom
         .container
             ul.text-center.py-2
+                li.d-inline-block.mb-md-0.mb-2
+                    | Designed by #[a(href=site.data.links.twitter) @wololock]
                 li.d-inline-block.mb-md-0.mb-2
                     | Created with #[a(href="https://hexo.io") Hexo]
                 li.d-inline-block.mb-md-0.mb-2
                     | Hosted on #[a(href="https://github.com/wololock/wololock.github.io") GitHub]
                 li.d-inline-block.mb-md-0.mb-2
                     | Deployed with #[a(href="https://circleci.com/gh/wololock/wololock.github.io") Circle CI]
+                li.d-inline-block.mb-md-0.mb-2
+                    | License #[a(href="https://creativecommons.org/licenses/by-nc-sa/4.0/") CC BY-NC-SA 4.0]
                 li.d-inline-block.mb-md-0.mb-2
                     a(href="https://github.com/wololock/wololock.github.io/commits/develop")
                         img(src="https://badgen.net/github/last-commit/wololock/wololock.github.io?color=blue&scale=0.8")

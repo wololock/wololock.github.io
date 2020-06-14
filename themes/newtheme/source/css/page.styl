@@ -1,44 +1,118 @@
-.page-text
-  padding 120px 0 50px 0
+#page
+  p
+    line-height 2rem
+    color color-dark-purple
 
-  h1
-    margin-bottom 30px
+    &.small
+      line-height 1.5rem
 
-.support-me-page
-  font-size 1rem
+
+  h2
+    color color-light-purple
+    font-size 3.5rem
+    font-weight 400
+    margin-bottom 1.5rem
+    margin-top 1.5rem
+    @media phone
+      text-align center
 
   >.jumbotron
     background-image url("/images/bg/support-me.jpg")
     padding-top 200px
     font-size 1.1rem
+    color color-light-blue
+    @media phone
+      padding-top 50px
 
-  >section
-    padding 3rem 0
+    p
+      color color-light-blue
 
-    h2
-      color #a8aaaa
-      margin-top 2rem
-
-  .sponsor
-    background #f4f7f7
-
-  ul.expenses
+  ul
     list-style none
-    padding 10px
-    margin 0
-    background #fff9e7
-    color #938a82
-
+    margin 20px 0
+    padding 0
     li
       list-style none
-      padding 0
-      margin 5px 0
+      margin 0 0 7px 15px
+      padding-left 25px
+      position relative
+      transition all 0.2s ease-in-out 0s
 
-.start-here-page
-  font-size 1rem
+      @media phone
+        margin-left 0
+        text-align left
 
-  >.jumbotron
-    background #ffba30
-    background-image: linear-gradient(to top, #dc9900 0%, #ffd68d 80%);
-    padding-top 200px
-    font-size 1.1rem
+      &:before
+        font-family "FontAwesome"
+        content "\f138"
+        color #ff9900
+        position absolute
+        top 0
+        left 0
+
+  form.formkit-form
+    background none
+
+    input[type="text"]
+      box-shadow rgba(0,0,0,0.08) 0 5px 5px
+
+  &.page-text
+    padding 120px 0 50px 0
+
+    h1
+      margin-bottom 30px
+
+  &.support-me-page
+    font-size 1rem
+
+    .sponsor
+      background #f8fbfe
+
+    ul.expenses
+      list-style none
+      padding 10px
+      margin 0
+      background #fff9e7
+      color #938a82
+
+      li
+        list-style none
+        padding 0
+        margin 5px 0
+
+  &.about-me-page
+    font-size 1rem
+
+    p.hi
+      background rgba(0,0,0,0.2)
+      display inline-block
+      padding 0.4rem 1rem
+
+    >.jumbotron
+      background-image: linear-gradient(to top, #7cafd5 0%, #0f3a5a 100%);
+      font-size 1.1rem
+
+
+
+
+    .tagcloud
+      //serif()
+      roboto()
+      font-size 12.5px
+      overflow hidden
+      margin 3rem 0 1rem 0
+
+      @media phone
+        font-size 10px
+
+      a
+        display inline-flex
+        position relative
+        margin -16px 5px
+        margin-left 0
+
+        @media phone
+          margin -8px 5px
+          margin-left 0
+
+

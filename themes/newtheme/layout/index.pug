@@ -1,30 +1,29 @@
 extends layout/base
 
+block footer_ad
+    +ad_banner(site.data.home.ads.footer)
+
 block content
     main#page-home(role="main")
         section.jumbotron.text-center.pb-5
             .mask
             .container
-                img.rounded-circle.shadow-sm(src=config.photo width="100px")
-                h1.my-3 Hi! I'm Szymon
-                p.lead.my-2.px-0.px-md-5!=config.bio
+                .author.position-relative
+                    img.rounded-circle.shadow-sm(src=config.photo width="100px")
+                    h1.my-3 Hi! I'm Szymon
+                    p.lead.my-2.px-0.px-md-5!=config.bio
+                    a.stretched-link(href=url_for("/about"))
 
                 - var latest = site.posts.sort("date").reverse().limit(9).toArray();
                 - var posts = _.chunk(latest, 3)
                 - var carouselId = "recentArticles"
 
-            div.carousel.slide.pt-4(id=carouselId data-ride="carousel" data-interval="8000")
+            .carousel.slide.pt-4(id=carouselId data-ride="carousel" data-interval="8000")
                 .container
-                    ol.carousel-indicators
-                        li(data-target="#"+carouselId data-slide-to="0" class="active")
-                        li(data-target="#"+carouselId data-slide-to="1")
-                        li(data-target="#"+carouselId data-slide-to="2")
-                    div.carousel-inner
-                        each group, index in posts
-                            div.carousel-item(class=index === 0 ? "active" : "")
-                                .card-deck
-                                    each post in group
-                                        +post_card(post)
+                    .carousel-inner.row.w-100.mx-auto
+                        each post,index in latest
+                            .carousel-item.col-md-4(class=index === 0 ? "active" : "")
+                                +post_card(post)
                 a.carousel-control-prev(href="#"+carouselId role="button" data-slide="prev")
                     span.carousel-control-prev-icon(aria-hidden="true")
                     span.sr-only="Previous"
@@ -45,27 +44,31 @@ block content
                             .rank
                                 span #{idx+1}.
                             .data
-                                h3 #{post.title}
+                                .category
+                                    each category in post.categories.toArray()
+                                        a.category(href=url_for(category.path))!=category.name
+                                h3
+                                    a(href=url_for(post.path)) #{post.title}
 
                                 p.lead
                                     != strip_html(post.excerpt)
                                     |
                                     |
-                                    a.stretched-link(href=url_for(post.path)) Read more &raquo;
+                                    a.font-weight-bold(href=url_for(post.path)) Read more &raquo;
 
-        section.sec.bg-gray-blue.latest-comments
+        section.sec.latest-comments.bg-light-blue
             .container
                 h2 Latest comments
 
                 .row
                     .col-12.col-lg-9
-                        script(src="https://eprintstacktrace.disqus.com/recent_comments_widget.js?num_items=3&hide_avatars=0&avatar_size=48&excerpt_length=200")
+                        script(src="https://eprintstacktrace.disqus.com/recent_comments_widget.js?num_items=4&hide_avatars=0&avatar_size=48&excerpt_length=200")
                     .col-12.col-lg-3.pt-3.text-center
-                        a(href=site.data.home.ads.comments.mobile.url)
-                            img.img-fluid(src=site.data.home.ads.comments.mobile.image)
+                        +ad_banner(site.data.home.ads.comments)
 
 
-        - var video = site.data.home.youtube.latest
+        - var video_id = site.data.home.youtube.latest[0]
+        - var video = site.data.youtube[video_id]
 
         section.sec.latest-video
             .container
@@ -76,22 +79,29 @@ block content
                         em.fa.fa-youtube.mx-1
                         span.youtube YouTube
                     |
-                    | video
+                    | videos
                 .row
-                    .col-12.col-md-7.pr-0.pr-md-5.order-1.order-md-0
+                    .col-12.col-md-7.pr-md-5.order-1.order-md-0
                         h4.mb-3 #{video.title}
                         p.desc #{video.description}
                         p.text-center.py-3
-                            a.btn.btn-danger.text-white(href="https://www.youtube.com/watch?v=" + video.id) Watch now
+                            a.btn.btn-danger.text-white(href="https://www.youtube.com/watch?v=" + video_id) Watch now
                             br
                             span.d-inline-block.mt-3.small.text-muted and don't forget to subscribe #[em.far.fa-smile-wink]
 
                     .col-12.col-md-5.order-0.order-md-1
                         .card.shadow.mt-0.mt-md-3.mb-4.mb-md-0
-                            .card-header(itemprop="image" style="background-image: url('https://i3.ytimg.com/vi/" + video.id + "/mqdefault.jpg')")
+                            .card-header(itemprop="image" style="background-image: url('https://i3.ytimg.com/vi/" + video_id + "/mqdefault.jpg')")
                                 div.time=video.time
                                 em.fa.fa-youtube
-                            a.stretched-link(href="https://www.youtube.com/watch?v=" + video.id)
+                            a.stretched-link(href="https://www.youtube.com/watch?v=" + video_id)
+        section.sec.bg-light-blue
+            .container
+                .row
+                    .col-12
+                        .card-deck
+                            each video in site.data.home.youtube.latest.slice(1,4)
+                                +youtube_card(video, site.data.youtube[video], { title: false })
 
         section.sec.newsletter
             .container
@@ -105,5 +115,4 @@ block content
                         p.text-center.small
                             | #[em.fa.fa-ban.font-weight-bold.color-red] #[b No spam] guaranteed. Weekly updates only. Unsubscribe at any time.
                         != convertkit(site.data.home.convertkit)
-
 

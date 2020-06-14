@@ -4,25 +4,41 @@ block site_title
     = "Support me"
 
 block content
-    section.support-me-page
+    section.support-me-page#page(role="main")
         section.jumbotron.text-justify.pb-5
             .mask
             .container
                 h1.my-3.text-center Support me
 
-                p I hate annoying ads and popups showing up a few seconds after visiting a website. That is why I decided to keep my blog free from those annoying elements. I care about excellent user experience, and my goal is to offer you one that can be compared to reading an ebook. No distracting banners, no ads, no stupid popups. Just clean and well-formatted content.
-                p Does it mean that I don’t want to monetize my blog by any form? Not necessarily. I just believe that there are better forms to do that. In the last 6 months (from October 1st, 2019 to March 27th, 2020), more than 110,000 unique users visited my blog. I don’t expect support from every reader, this is unrealistic. But I believe there is a chance that 0.1% of my readers (or my YouTube subscribers) could support my work and effort in one way or another. Would you like to give it a try?
-                p I want to use it as a way to invest more in the e.printstacktrace.blog development and growth.
+                p
+                    | I hate annoying popups and ads that #[b disturb visitors] from reading what they came for - #[b.mark the content].
+                    | For that specific reason, I keep the number of advertisements #[b as minimal as possible], and I keep them away from the body of the article you came here to read.
+                    | I care about #[b.mark an excellent] user experience. My goal is to offer you one that can be compared to reading an ebook.
 
-
-        section
+        section.py-5
             .container
                 .row
-                    .col-12.col-md-8.order-1
-                        h2 Become a sponsor #[em.fas.fa-heart.color-red.ml-2]
+                    .col-12
+                        p.text-justify
+                            | Does it mean that I don’t want to monetize my blog by any form?
+                            | #[b Not necessarily].
+                            | I just believe that #[b there are better forms] to do that.
+                            | On average, more than #[b 22,000 unique users] visit this blog every month.
+                            | I strongly believe that #[b.mark 1%] of those visitors may be interested in supporting my work in one way or another.
+                            | It doesn't have to mean financial support only.
+                            | I listed below #[b a couple of different ways] how you can support my blog and my work. I hope you are in the 1% I mentioned earlier, and you will find something that fits you.
+
+        section.py-5.bg-light-blue
+            .container
+                .row
+                    .col-12.col-md-9.order-1
+                        h2 Become a #[b patron]
 
                         p
-                            | If you find my work valuable, and you want to support it, consider becoming a sponsor / patron / supporter of the e.printstacktrace.blog. I strongly believe that high-quality and ad-free content can attract people that appreciate such an approach. If you can afford a small monthly (or even one-time) donation, consider supporting me through one of the following platforms:
+                            | If you find my work valuable and want to #[b support it], consider #[b.mark becoming a patron] of the e.printstacktrace.blog.
+                            | I will keep posting unique and high-quality content, no matter what.
+                            | The blog will always remain free of charge and available to everyone.
+                            | However, if you can afford a donation of any size, I will be thankful if you consider supporting my work through one of the following platforms:
 
                         ul
                             li
@@ -32,76 +48,110 @@ block content
 
                         a(href="https://opencollective.com/eprintstacktrace#section-contributors")
                             img(src="https://opencollective.com/eprintstacktrace/backers.svg?avatarHeight=32&width=auto")
-                    .col-12.col-md-4.text-center
-                        img.img-fluid(src=url_for("/images/support-me/github.png"))
-        section.sponsor
+                    .col-12.col-md-3.text-center
+                        img.img-fluid.mt-5(src=url_for("/images/support-me/github.png"))
+        section.py-5
             .container
                 .row
-                    .col-12.col-md-8.order-1
-                        h2 Use my affiliate links
+                    .col-12.col-md-9.order-1.order-md-0
+                        h2 Use my #[b affiliate links]
 
                         p
-                            | If you find my work valuable, and you want to support it, consider becoming a sponsor / patron / supporter of the e.printstacktrace.blog. I strongly believe that high-quality and ad-free content can attract people that appreciate such an approach. If you can afford a small monthly (or even one-time) donation, consider supporting me through one of the following platforms:
+                            | There are not many banners on the blog. And when they appear, they do that in the least disturbing locations, like website footer, or posts category page.
+                            | They are not random - they are #[b manually selected], and they #[b promote] products or services I can safely recommend.
+                            | Those banners use #[b.mark affiliate links].
+                            | If you click on any of them and subsequently #[b make a purchase, I will earn a small commission].
+                            | Using an affiliate link does not affect the final price - #[b there is no additional cost to you].
 
-                    .col-12.col-md-4.text-center
-                        img.img-fluid(src=url_for("/images/support-me/affiliate.png"))
+                        p
+                            | Let me make this statement clear - #[b I don't encourage you to purchase anything].
+                            | Don't spend your money on those products or services #[b unless you feel they are useful and valuable to you].
 
-        section
+                        p
+                            | #[b PS:] I also put affiliate links in #[a(href=url_for("/programmers-bookshelf")) the book reviews] I publish on the blog.
+
+
+                    .col-12.col-md-3.text-center
+                        img.img-fluid.mt-5(src=url_for("/images/support-me/affiliate.png"))
+
+        section.py-5.bg-light-blue
             .container
                 .row
-                    .col-12.col-md-8.order-1
-                        h2 Hire me
+                    .col-12.col-md-9.order-1
+                        h2 Hire me #[b as a mentor]
 
                         p
-                            | If you find my work valuable, and you want to support it, consider becoming a sponsor / patron / supporter of the e.printstacktrace.blog. I strongly believe that high-quality and ad-free content can attract people that appreciate such an approach. If you can afford a small monthly (or even one-time) donation, consider supporting me through one of the following platforms:
+                            | I accept #[a(href=site.data.links.upwork) freelance] gigs occasionally only, but I never refuse to #[b help other people].
+                            | If you feel stuck with your learning process or face problems that are too difficult for you to solve, feel free to contact me (#[a(href="mailto:szymon.stepniak@gmail.com") email] or #[a(href=site.data.links.codementor) CodeMentor.io]) and do my best to help you.
+                            | I can offer you either #[b a quick solution-oriented session] or #[b a long-term mentoring relationship] - whatever works for #[b.mark you] best.
 
 
-                    .col-12.col-md-4.text-center
-                        img.img-fluid(src=url_for("/images/support-me/hire.png"))
+                    .col-12.col-md-3.text-center
+                        img.img-fluid.mt-5(src=url_for("/images/support-me/hire.png"))
 
-        section.sponsor
+        section.py-5
             .container
                 .row
-                    .col-12.col-md-8.order-1
-                        h2 Subscribe to my #[em.fa.fa-youtube] #[span.color-black YouTube] channel
+                    .col-12.col-md-9.order-1.order-md-0
+                        h2 Subscribe to my #[em.fa.fa-youtube] #[b.color-black YouTube] channel
 
                         p
-                            | If you find my work valuable, and you want to support it, consider becoming a sponsor / patron / supporter of the e.printstacktrace.blog. I strongly believe that high-quality and ad-free content can attract people that appreciate such an approach. If you can afford a small monthly (or even one-time) donation, consider supporting me through one of the following platforms:
-                    .col-12.col-md-4.text-center
-                        img.img-fluid(src=url_for("/images/support-me/subscribe.png"))
+                            | You might haven't heard that, but I also run #[b a dynamically growing YouTube channel], where I post videos weekly.
+                            | I haven't reached 4,000 hours watch-time yet, so my videos are not monetized.
+                            | However, you can still help me #[b bring it to the next level] - any form of engagement like #[a(href=site.data.links.youtube + "?sub_confirmation=1") subscribing to my channel], commenting videos, and clicking that like button #[b are all valuable] forms of support.
+                    .col-12.col-md-3.text-center
+                        img.img-fluid.mt-5(src=url_for("/images/support-me/subscribe.png"))
 
-        section
+        section.py-5.bg-light-blue
             .container
                 .row
-                    .col-12.col-md-8.order-1
-                        h2 Share
+                    .col-12.col-md-9.order-1
+                        h2 Help me #[b to spread] the word
 
                         p
-                            | If you find my work valuable, and you want to support it, consider becoming a sponsor / patron / supporter of the e.printstacktrace.blog. I strongly believe that high-quality and ad-free content can attract people that appreciate such an approach. If you can afford a small monthly (or even one-time) donation, consider supporting me through one of the following platforms:
+                            | One of the simplest yet still compelling forms of support is #[b.mark helping spread the word] about blog posts - the new ones, or the ones you enjoyed the most.
+                            | I added a "Share on Twitter" and "Share on LinkedIn" buttons under every blog post - it would mean a lot to me if you could click on them once in a while and help me spread the word about the work that I'm doing here.
+                            | I want to #[b thank you] in advance for doing that.
+
+                        - var twitter = "https://twitter.com/intent/tweet?text=" + encodeURI("Hi, @wololock! 👋 I read your blog " + full_url_for("/") + " and I find it very useful! 🙂")
+
+                        p
+                            | #[b PS:] if you use #[em.fa.fa-twitter] #[b Twitter], #[a(href=twitter) poke me in the message] so that I can thank you directly.
 
 
-                    .col-12.col-md-4.text-center
-                        img.img-fluid(src=url_for("/images/support-me/share.png"))
+                    .col-12.col-md-3.text-center
+                        img.img-fluid.mt-5(src=url_for("/images/support-me/share.png"))
 
-        section.sponsor
+        section.py-5
             .container
                 .row
-                    .col-12.col-md-8.order-1
-                        h2 Join my newsletter
+                    .col-12.col-md-9.order-1.order-md-0
+                        h2 Join my #[b newsletter]
 
                         p
-                            | If you find my work valuable, and you want to support it, consider becoming a sponsor / patron / supporter of the e.printstacktrace.blog. I strongly believe that high-quality and ad-free content can attract people that appreciate such an approach. If you can afford a small monthly (or even one-time) donation, consider supporting me through one of the following platforms:
+                            | And last but not least - you can #[b join the e-mail list] that I started creating a short while ago.
+                            | I use it to share some updates and news from both the blog and the YouTube channel.
+                            | I use it for the #[b.mark bi-directional relationship] - you are always welcome to answer any of my e-mails and share your thoughts.
+                            | Also, subscribers have one more benefit - they get information about upcoming updates first.
+
                             != convertkit("5bc70426c4")
-                    .col-12.col-md-4.text-center
-                        img.img-fluid(src=url_for("/images/support-me/email.png"))
+                    .col-12.col-md-3.text-center
+                        img.img-fluid.mt-5(src=url_for("/images/support-me/email.png"))
 
-        section
-            .container.py-5
+        section.py-5.bg-light-blue
+            .container
                 .row
                     .col-12
-                        h2.text-center.display-3.font-weight-bold THANK YOU! #[em.fas.fa-heart.color-red.ml-2]
+                        h2.text-center.display-3.font-weight-bold THANK YOU!
 
-                        p.text-justify Thank you for reading up to this point. I hope you are a returning happy reader of my blog. If you can afford to support my work, I will be thankful for any kind of it. But don’t feel forced to it. I will continue doing my work on the blog and on my YouTube channel. I enjoy it, and I see that my effort is not pointless - I keep getting thankful messages from you, and that makes me really proud and happy. Keep learning, keep coding, and have fun!
+                        p.text-justify
+                            | No matter if any of the options listed above fits you, I want to #[b.mark thank you] for giving me a chance to present them and reading up to this point.
+                            | I hope you are one of my #[b regular readers] who keep coming back and keep finding useful information on my blog.
+                            | I will continue this journey, and I want to #[b invite you] to play a more active role in it.
+                            | Also, if you see other options to support my blog that I didn't mention above, please let me know.
+                            | Helping other people in becoming better problem solvers and programmers is a fascinating journey.
+                            | There is enough room for everyone, regardless of the level of experience.
+                            | #[b Join me, and let's do it together!]
 
 
 

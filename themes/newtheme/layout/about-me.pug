@@ -1,0 +1,102 @@
+extends layout/base
+
+block site_title
+    = "About me"
+
+block content
+    section.about-me-page#page(role="main")
+        section.jumbotron.text-justify.pb-5
+            .container
+                .row
+                    .col-12.col-md-6.pt-5
+                        .text-center
+                            img.rounded-circle.shadow(src=config.photo width="100px")
+
+                        h1.text-center Szymon Stepniak
+
+                        p.small!=config.bio
+
+                    .col-12.col-md-6
+                        p.hi Hi there! I'm #[b Szymon Stepniak], the author of this blog.
+
+                        p Here are a few facts about me:
+
+                        ul
+                            li I work as a software developer since 2007
+                            li I live in Toruń, Poland
+                            li I'm a freelancer since 2014
+                            li I'm a founder of #[b Toruń Java User Group]
+                            li I run this blog since 2017
+                            li I create YouTube videos
+                            li I collected #[b!=config.stackoverflow.reputation] reputation points on Stack Overflow
+                            li My type of personality is #[b "Assertive Logistician"] (ISTJ-A)
+                            li I'm an avid book reader
+
+        section.py-5
+            .container
+                .row
+                    .col-12.col-md-9.order-1.order-md-0
+                        h2 Who am I?
+
+                        p.text-justify
+                            | I'm a pragmatic #[b problem solver].
+                            | I spent last years around Java and Groovy ecosystem, but I don't identify myself from a specific programming language, framework, or other technology perspectives.
+                            | I prefer to choose #[b the right tool] to solve a particular problem instead.
+                            | I'm a #[a(href=site.data.links.upwork) freelancer] since 2014, and a #[b professional content creator] since June 1st, 2020 -&nbsp;I&nbsp;do write blog posts, create #[em.fa.fa-youtube] #[b YouTube] #[a(href=site.data.links.youtube) videos], and create other digital learning materials.
+                            | I&nbsp;occasionally accept freelance gigs, but that's more an exception to the rule.
+
+                        p.text-justify
+                            | Even though #[a(href=site.data.links.sixteenpersonalities) I'm #[b 74% introvert]], I believe in the power of community collaboration.
+                            | That is why I started #[a(href=site.data.links.torunjug) Toruń Java User Group] in February 2014 - a community that keeps connecting and growing up to this day.
+                            | I&nbsp;also got engaged in helping people on #[a(href=site.data.links.stackoverflow) Stack Overflow], where I regularly try to answer questions tagged with #[code groovy] or #[code jenkins-pipeline].
+
+                    .col-12.col-md-3.text-center.order-0.order-md-1
+                        img.img-fluid.mt-5(src=url_for("/images/about/problem-solver.png"))
+
+        section.pt-5.pb-3.bg-light-blue
+            .container
+                .row
+                    .col-12.col-md-3.text-center
+                        img.img-fluid.mt-5(src=url_for("/images/about/idea.png"))
+
+                    .col-12.col-md-9
+                        h2.color-light-purple.display-4.mt-4.mb-4 What is #[b.font-weight-bold my blog] about?
+
+                        p.text-justify
+                            | I use this blog to publish #[b problem-solution] types of articles to both - share my experience and knowledge with you and improve my learning skills by synthesizing thoughts.
+                            | Whenever I sit down to write a new blog post, I start with #[em "why?"] question, and then I try to explain, step-by-step, how to solve this specific problem.
+                            | My goal is not only to give you the answer but also to make all I can to clarify:
+
+                        ul
+                            li #[b what] is the root cause,
+                            li #[b what] potentially may go wrong,
+                            li #[b how] to prevent the problem from happening again,
+                            li and #[b what] we can learn more from this experience.
+
+                        p Here you can find a cloud of topics I already wrote about:
+
+                        section.tagcloud.clearfix.pb-5.bg-light-blue
+                            != tagcloud(site.tags.sort('length', -1).limit(50), { unit: 'em', min_font: 1.3, max_font: 4.5, start_color: '#bdcfe0', end_color: '#717e97', color: true })
+
+
+        section.py-5.stay-in-touch
+            .container
+                .row
+                    .col-12.col-md-9.order-1.order-md-0
+                        h2 Let's stay in touch!
+
+                        - var twitter = "https://twitter.com/intent/tweet?text=" + encodeURI("Hi, @wololock! 👋 I read your blog " + full_url_for("/") + " and want to say hi! 🙂")
+
+                        p
+                            | I will be more than happy to hear the feedback from you!
+                        p
+                            | If you use #[em.fa.fa-twitter.color-twitter] #[b Twitter], please #[a(href=twitter) say "Hi!"], so know that someone read this page up to this point #[em.fa.fa-smile-o]
+                        p
+                            | If you use #[em.fa.fa-linkedin-square.color-linkedin] #[b LinkedIn], #[a(href=site.data.links.linkedin) we can connect] there as well. Just let me know that you're coming from the blog, so I know that you are not a random person that connects with everyone.
+                        p
+                            | I also encourage you to #[b subscribe to my newsletter] so that we can connect via e-mail. I send only (bi-)weekly newsletter with interesting updates and news. No spam, I promise. You can unsubscribe at any time if you don't get any value from it.
+
+                            != convertkit("5bc70426c4")
+
+                    .col-12.col-md-3.text-center.order-0.order-md-1
+                        img.img-fluid.mt-5(src=url_for("/images/about/stay-in-touch.png"))

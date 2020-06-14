@@ -2,9 +2,9 @@
 - var category = page.categories.first()
 - var posts = site.posts.filter(post => related.json.some(it => it.title === post.title)).toArray()
 
-section.related-posts
+section.related-posts.bg-light-blue
     .container
-        h3="Related posts"
+        h3.color-light-purple Related posts
         .card-deck.pt-2
             each post in posts
                 +post_card(post, {truncate: 300})

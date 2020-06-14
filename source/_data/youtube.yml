@@ -72,3 +72,13 @@ EIhLl9ebeiA:
   title: "Parsing JSON from curl with jq: sort_by, group_by, limit (part 1) | #jq #json #curl"
   description: "In this video, I show you how to use the jq command-line to parse and transform a JSON response to the desired format. I use openlibrary.org Search API to get a complex JSON document (~3600 lines) using curl command for further parsing using jq. In the first step, we extract three fields for each document (title, author, publishing year) and then we continue transforming the JSON - we sort it, we limit the number of elements, and last but not least, we group elements by the author name."
   time: "9:44"
+
+vJgcsyLJf0g:
+  title: "Groovy Tutorial | Writing Brainf**k interpreter | #groovylang"
+  description: "In this episode, I explain what the Brainfuck esoteric programming language is, how the program written in it gets interpreted, and how to write your own interpreter using Groovy, tail recursion, and immutable data structures. I use a simple Gradle project with Groovy 3.0.3 and Spock Framework 2.0.M2 for unit tests. The test cases are already written, so I'm going to do something almost like test-driven development (TDD), where the unit tests are written first. I hope you will find it entertaining and useful :-)"
+  time: "32:50"
+
+fdpKCuJKbMg:
+  title: "Groovy Tutorial | Closures - how to use them? | #groovylang"
+  description: "I asked Groovy users what their favorite example of using Groovy closures is, and here is what they told me! In this video, I show you the results of the Twitter survey I did a couple of months ago (https://twitter.com/wololock/status/1...). I did that survey to get some feedback from the Groovy community, process the data, and write a blog post with a summary. Unfortunately, it never happened, and in this video, I try to fix this."
+  time: "26:07"

@@ -26,6 +26,8 @@
 
   .latest-comments
     font-size 1rem
+    h2
+      color color-light-purple
 
     ul.dsq-widget-list
       margin 0
@@ -33,9 +35,14 @@
       font-size 0.8em
 
       >li.dsq-widget-item
+        position relative
+        padding-left 64px
+
         .dsq-widget-avatar
           border-radius 50%
-          margin-top 0.6em
+          position absolute
+          top 0
+          left 0
 
         .dsq-widget-user
           display none
@@ -46,7 +53,7 @@
           border-radius .6em
           display block
           padding 0.5rem 1rem
-          margin 0 0 0 65px
+          margin 0
 
           &:after
             content ''
@@ -68,15 +75,13 @@
 
         p.dsq-widget-meta
           text-align right
-          margin 0.5rem 1rem 0 2rem
+          margin 0 5px 0 2rem
           font-size 0.8rem
+          @media phone
+            font-size 0.6rem
+            margin-top 5px
 
   .latest-video
-    .card-header
-      height 249px
-
-      @media phone
-        height 200px
 
     .desc
       font-size 0.9rem
@@ -101,6 +106,9 @@
       position relative
       color #666
 
+      a.category
+        font-size 0.7rem
+
       .rank
         font-size 7rem
         line-height 6.8rem
@@ -110,6 +118,7 @@
         top 0
         left 0
         z-index 0
+        letter-spacing -8px
 
         @media phone
           left 10px
@@ -125,6 +134,10 @@
 
         h3
           font-size 1.7rem
+          line-height 2rem
+          margin 5px 0 10px 0
+          a
+            color inherit
 
         p.lead
           text-align justify
