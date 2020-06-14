@@ -117,9 +117,9 @@
     
       <category term="jenkins-pipeline" scheme="https://e.printstacktrace.blog/t/jenkins-pipeline/"/>
     
-      <category term="cicd" scheme="https://e.printstacktrace.blog/t/cicd/"/>
-    
       <category term="jenkinsfile" scheme="https://e.printstacktrace.blog/t/jenkinsfile/"/>
+    
+      <category term="cicd" scheme="https://e.printstacktrace.blog/t/cicd/"/>
     
       <category term="continuous-integration" scheme="https://e.printstacktrace.blog/t/continuous-integration/"/>
     
@@ -351,13 +351,13 @@
     
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
-      <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
-    
       <category term="jenkins" scheme="https://e.printstacktrace.blog/t/jenkins/"/>
     
       <category term="jenkins-pipeline" scheme="https://e.printstacktrace.blog/t/jenkins-pipeline/"/>
     
       <category term="cicd" scheme="https://e.printstacktrace.blog/t/cicd/"/>
+    
+      <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
     
   </entry>
   
@@ -456,13 +456,13 @@
     
       <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
     
-      <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
-    
       <category term="jenkins" scheme="https://e.printstacktrace.blog/t/jenkins/"/>
     
       <category term="jenkins-pipeline" scheme="https://e.printstacktrace.blog/t/jenkins-pipeline/"/>
     
       <category term="cicd" scheme="https://e.printstacktrace.blog/t/cicd/"/>
+    
+      <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
     
   </entry>
   
@@ -495,13 +495,13 @@
     
       <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
     
-      <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
-    
       <category term="jenkins" scheme="https://e.printstacktrace.blog/t/jenkins/"/>
     
       <category term="jenkins-pipeline" scheme="https://e.printstacktrace.blog/t/jenkins-pipeline/"/>
     
       <category term="cicd" scheme="https://e.printstacktrace.blog/t/cicd/"/>
+    
+      <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
     
   </entry>
   
@@ -590,9 +590,9 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
-      <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
-    
       <category term="grails" scheme="https://e.printstacktrace.blog/t/grails/"/>
+    
+      <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
     
       <category term="gr8conf" scheme="https://e.printstacktrace.blog/t/gr8conf/"/>
     
