@@ -5,11 +5,11 @@
                 h4 #{video.title}
                 p.desc #{video.description}
                 p.text-center.pt-3
-                    a.btn.btn-danger.text-white(href="https://www.youtube.com/watch?v=" + id) Watch now
+                    a.btn.btn-danger.text-white(href="https://www.youtube.com/watch?v=" + id data-type="youtube" data-name=video.title) Watch now
 
             .col-12.col-md-4.order-0.order-md-1
                 .card.shadow.mb-4.mb-md-0
                     .card-header(itemprop="image" style="background-image: url('https://i3.ytimg.com/vi/" + id + "/mqdefault.jpg')")
                         div.time=video.time
                         em.fa.fa-youtube
-                    a.stretched-link(href="https://www.youtube.com/watch?v=" + id)
+                    a.stretched-link.gatr(href="https://www.youtube.com/watch?v=" + id data-type="youtube" data-name=video.title)
