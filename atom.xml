@@ -347,9 +347,9 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
-    
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
     
@@ -450,11 +450,11 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
-    
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
       <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
     
@@ -489,11 +489,11 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
-    
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
       <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
     
@@ -588,9 +588,9 @@
       <category term="Conferences" scheme="https://e.printstacktrace.blog/conferences/"/>
     
     
-      <category term="grails" scheme="https://e.printstacktrace.blog/t/grails/"/>
-    
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
+    
+      <category term="grails" scheme="https://e.printstacktrace.blog/t/grails/"/>
     
       <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
     
