@@ -18,6 +18,10 @@ cover: /images/jenkins-bg.jpg
 og_image: /images/og/jenkins-pipeline-build-docker-images.jpg
 card: /images/cards/jenkins-01.jpg
 highlightjs: true
+ad:
+  name: "Udemy - Start Learning Devops - Building Java and Maven docker"
+  url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Flearn-devops-ci-cd-with-jenkins-using-pipelines-and-docker%2F
+  image: /images/yml/udemy-start-learning-devops-hz.jpg
 ---
 :repository-url: https://github.com/wololock/sdkman-docker-pipeline-example
 :last-article: pass:[{% post_link using-sdkman-as-a-docker-image-for-jenkins-pipeline-a-step-by-step-guide "the last article" %}]

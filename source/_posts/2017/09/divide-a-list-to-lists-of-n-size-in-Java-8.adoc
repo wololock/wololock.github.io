@@ -19,6 +19,7 @@ og_image: /images/og/java-divide-list-to-lists.jpg
 card: /images/cards/java-01.jpg
 highlightjs: true
 ad:
+  name: "Udemy - Learn anything - Divide list"
   url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.1627&subid=0&type=4
   image: /images/yml/udemy-learn-anything-horizontal.png
 ---

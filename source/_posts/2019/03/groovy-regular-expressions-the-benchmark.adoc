@@ -17,8 +17,11 @@ tags:
 cover: /images/groovy-regexp-jmh-bg.jpg
 og_image: /images/og/groovy-regexp-jmh.jpg
 card: /images/cards/groovy-04.jpg
-affiliates: true
 highlightjs: true
+ad:
+  name: "Udemy - Learn anything - Groovy Regex (Part 2)"
+  url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fapache-groovy%2F
+  image: /images/yml/udemy-learn-groovy-hz.jpg
 ---
 :toc: macro
 :toclevels: 1

@@ -82,3 +82,8 @@ fdpKCuJKbMg:
   title: "Groovy Tutorial | Closures - how to use them? | #groovylang"
   description: "I asked Groovy users what their favorite example of using Groovy closures is, and here is what they told me! In this video, I show you the results of the Twitter survey I did a couple of months ago (https://twitter.com/wololock/status/1...). I did that survey to get some feedback from the Groovy community, process the data, and write a blog post with a summary. Unfortunately, it never happened, and in this video, I try to fix this."
   time: "26:07"
+
+Ei_Nk14vruE:
+  title: "Jenkins Declarative Pipeline vs Scripted Pipeline - 4 key differences | #jenkinspipeline"
+  description: "Jenkins Pipeline as a code is a new standard for defining continuous integration and delivery pipelines in Jenkins. The scripted pipeline was the first implementation of the pipeline as a code standard. The later one, the declarative pipeline, slowly becomes a standard of how Jenkins users define their pipeline logic. In this tutorial video, I explain what are four major differences between Jenkins declarative pipeline and the scripted one. Enjoy and don't forget to like and comment on the video!"
+  time: "13:45"

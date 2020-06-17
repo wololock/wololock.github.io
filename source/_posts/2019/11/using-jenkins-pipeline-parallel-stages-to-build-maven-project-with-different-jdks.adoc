@@ -16,6 +16,10 @@ cover: /images/jenkins-bg2.jpg
 og_image: /images/og/jenkins-pipeline-maven-parallel.jpg
 card: /images/cards/jenkins-01.jpg
 highlightjs: true
+ad:
+  name: "Udemy - Start Learning Devops - Jenkins Parallel Stages"
+  url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Flearn-devops-ci-cd-with-jenkins-using-pipelines-and-docker%2F
+  image: /images/yml/udemy-start-learning-devops-hz.jpg
 ---
 :last-article: pass:[{% post_link building-java-and-maven-docker-images-using-parallelized-jenkins-pipeline-and-sdkman "the latest blog posts" %}]
 :repository-url: https://github.com/wololock/simple-java-maven-app

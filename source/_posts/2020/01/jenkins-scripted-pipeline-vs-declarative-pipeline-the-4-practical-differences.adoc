@@ -13,8 +13,11 @@ categories:
 cover: /images/jenkins-bg2.jpg
 og_image: /images/og/jenkins-declarative-vs-scripted-pipeline.jpg
 card: /images/cards/jenkins-declarative-vs-scripted.jpg
-affiliates: true
 highlightjs: true
+ad:
+  name: "Udemy - Start Learning Devops - Scripted vs Declarative"
+  url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Flearn-devops-ci-cd-with-jenkins-using-pipelines-and-docker%2F
+  image: /images/yml/udemy-start-learning-devops-hz.jpg
 ---
 :toc: macro
 :jenkins-scripted-pipeline-doc: https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline
@@ -196,6 +199,8 @@ image::/images/jenkins-scripted-pipeline-no-restart-option.png[]
 
 No restart option as you can see.
 The declarative pipeline vs. scripted pipeline - 2:0.
+
+pass:[{% youtube_card Ei_Nk14vruE %}]
 
 === 3. Declarative pipeline `options` block
 

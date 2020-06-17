@@ -15,9 +15,9 @@ og_image: /images/og/jenkins-pipeline-env-variables.jpg
 card: /images/cards/jenkins-env-vars.jpg
 highlightjs: true
 ad:
-  name: "Udemy - Top Online Courses Development - Jenkins Env Vars"
-  url: "https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.1347&subid=0&type=4"
-  image: /images/yml/udemy-top-online-courses-wide.png
+  name: "Udemy - Start Learning Devops - Jenkins Env Vars"
+  url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Flearn-devops-ci-cd-with-jenkins-using-pipelines-and-docker%2F
+  image: /images/yml/udemy-start-learning-devops-hz.jpg
 ---
 :sectanchors:
 :toc: macro
