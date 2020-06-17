@@ -13,12 +13,7 @@ tags:
 cover: /images/bg/jenkins-env-vars.jpg
 og_image: /images/og/jenkins-pipeline-env-variables.jpg
 card: /images/cards/jenkins-env-vars.jpg
-affiliates: true
 highlightjs: true
-newsletter:
-  image: /images/convertkit/jenkins.jpg
-  title: Download the "Atomic Habits" mindmap
-  lead: "Subscribe to mail email list and get hand-drawn <b class=\"mark\">printable mindmap</b> in the PDF."
 ad:
   name: "Udemy - Top Online Courses Development - Jenkins Env Vars"
   url: "https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.1347&subid=0&type=4"
@@ -234,6 +229,8 @@ pipeline {
 image::/images/jenkins-override-env-var.png[]
 --
 
+pass:[{% youtube_card KwQDxwZRZiE %}]
+
 == Storing `Boolean` values in environment variables
 
 There is one popular misconception when it comes to using environment variables.
@@ -336,5 +333,3 @@ pipeline {
 ----
 
 include::source/_parts/thank-you.adoc[]
-
-pass:[{% youtube_card KwQDxwZRZiE %}]

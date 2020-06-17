@@ -16,6 +16,9 @@ og_image: /images/og/groovy-regexp-jmh.jpg
 card: /images/cards/groovy-04.jpg
 affiliates: true
 highlightjs: true
+ad:
+  url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.1627&subid=0&type=4
+  image: /images/yml/udemy-learn-anything-horizontal.png
 ---
 :toc: macro
 :matcher-javadoc: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html
@@ -184,6 +187,9 @@ assert !("GROOVY-123: some change" ==~ /[A-Z]{3,6}-\d{1,4}/)
 
 assert "GROOVY-123: some change" ==~ /[A-Z]{3,6}-\d{1,4}.{1,100}/
 ----
+
+
+pass:[{% youtube_card BRw7e1QIOmA %}]
 
 == Usage examples
 
@@ -374,7 +380,5 @@ The word has 4 letters.
 == The benchmark
 
 If you want to learn about the performance of Groovy Regular Expressions, pass:[{% post_link groovy-regular-expressions-the-benchmark "continue reading the part 2" %}] of this blog post.
-
-pass:[{% youtube_card BRw7e1QIOmA %}]
 
 include::source/_parts/thank-you.adoc[]

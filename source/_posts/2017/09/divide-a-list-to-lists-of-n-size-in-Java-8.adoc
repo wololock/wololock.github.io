@@ -18,6 +18,9 @@ cover: /img/post-bg-1.jpg
 og_image: /images/og/java-divide-list-to-lists.jpg
 card: /images/cards/java-01.jpg
 highlightjs: true
+ad:
+  url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.1627&subid=0&type=4
+  image: /images/yml/udemy-learn-anything-horizontal.png
 ---
 
 Every Java developer works with lists daily. There are many popular list (or collection) operations implemented in
