@@ -15,7 +15,7 @@ mixin post_card(post, options = {})
                 - var excerpt = strip_html(post.excerpt)
                 p.card-text.pt-3(itemprop="description")
                     != options.truncate > 0 ? truncate(excerpt, {length: options.truncate, omission: " ... "}) : excerpt
-        a.stretched-link(href=url_for(post.path) itemprop="url")
+        a.stretched-link(href=url_for(post.path) itemprop="url" data-type=options.gatr data-name=post.title class=options.gatr !== undefined ? "gatr" : "")
 
 mixin youtube_card(id, video, options = {})
     .card.shadow

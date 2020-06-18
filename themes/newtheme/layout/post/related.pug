@@ -7,7 +7,7 @@ section.related-posts
         h3 Related posts
         .card-deck.pt-2
             each post in posts
-                +post_card(post, {truncate: 300})
+                +post_card(post, {truncate: 300, gatr: "related"})
 
     if page.ad
         .mt-5.text-center
