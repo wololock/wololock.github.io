@@ -8,7 +8,7 @@ footer.post-footer
                             img.rounded-circle.img-fluid(src=config.photo)
                         .col-md-10.col-12.text-md-left.text-center.mt-md-4.mt-1
                             h4.text-md-left.text-center(itemprop="creator")
-                                a(href=url_for("/about"))=config.author
+                                a.gatr(href=url_for("/about") data-type="post-footer" data-name="About")=config.author
                             p.bio
                                 span!=config.bio
                                 span.ml-2
@@ -17,5 +17,5 @@ footer.post-footer
                             ul.social-links.text-md-left.text-center
                                 each value, key in theme.footer
                                     li
-                                        a(href=value.link, onclick="window.open(this.href);return false;")
+                                        a.gatr(href=value.link, onclick="window.open(this.href);return false;" data-type="post-footer" data-name=key)
                                             span.fa(class=value.icon)

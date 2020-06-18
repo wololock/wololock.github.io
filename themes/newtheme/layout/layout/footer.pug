@@ -6,19 +6,19 @@ footer.page-footer
                     h5.text-md-left.text-center Useful links
                     ul.text-md-left.text-center.mb-md-0.mb-5
                         li
-                            a(href=url_for("/")) Start here
+                            a.gatr(href=url_for("/") data-type="footer-useful-links" data-name="Start here") Start here
                         li
-                            a(href=url_for("/about")) About
+                            a.gatr(href=url_for("/about") data-type="footer-useful-links" data-name="About") About
                         li
-                            a(href=url_for("/archives")) Archives
+                            a.gatr(href=url_for("/archives") data-type="footer-useful-links" data-name="Archives") Archives
                         li
-                            a(href=url_for("/privacy-policy")) Privacy Policy
+                            a.gatr(href=url_for("/privacy-policy") data-type="footer-useful-links" data-name="Privacy Policy") Privacy Policy
                         li
-                            a.gatr(href=site.data.links.kit data-type="affiliate" data-name="My Kit") My Kit
+                            a.gatr(href=site.data.links.kit data-type="footer-useful-links" data-name="My Kit") My Kit
                         li
-                            a(href=site.data.links.rss) RSS
+                            a.gatr(href=site.data.links.rss data-type="footer-useful-links" data-name="RSS") RSS
                         li
-                            a(href=url_for("/support-me")) Support me #[em.fas.fa-heart.color-red.ml-2]
+                            a.gatr(href=url_for("/support-me") data-type="footer-useful-links" data-name="Support me") Support me #[em.fas.fa-heart.color-red.ml-2]
 
 
                 - var categories = site.categories.sort("length").reverse().limit(7).toArray()
@@ -28,7 +28,7 @@ footer.page-footer
                     ul.text-md-left.text-center.mb-md-0.mb-5
                         each category in categories
                             li
-                                a(href=url_for(category.path))
+                                a.gatr(href=url_for(category.path) data-type="footer-category" data-name=category.name)
                                     != category.name
                                     span.count.ml-2=category.posts.length
 
@@ -40,17 +40,17 @@ footer.page-footer
         .container
             ul.text-center.py-2
                 li.d-inline-block.mb-md-0.mb-2
-                    | Designed by #[a(href=site.data.links.twitter) @wololock]
+                    | Designed by #[a.gatr(href=site.data.links.twitter data-type="footer" data-name="designed") @wololock]
                 li.d-inline-block.mb-md-0.mb-2
-                    | Created with #[a(href="https://hexo.io") Hexo]
+                    | Created with #[a.gatr(href="https://hexo.io" data-type="footer" data-name="hexo") Hexo]
                 li.d-inline-block.mb-md-0.mb-2
-                    | Hosted on #[a(href="https://github.com/wololock/wololock.github.io") GitHub]
+                    | Hosted on #[a.gatr(href="https://github.com/wololock/wololock.github.io" data-type="footer" data-name="github") GitHub]
                 li.d-inline-block.mb-md-0.mb-2
-                    | Deployed with #[a(href="https://circleci.com/gh/wololock/wololock.github.io") Circle CI]
+                    | Deployed with #[a.gatr(href="https://circleci.com/gh/wololock/wololock.github.io" data-type="footer" data-name="circleci") Circle CI]
                 li.d-inline-block.mb-md-0.mb-2
-                    | License #[a(href="https://creativecommons.org/licenses/by-nc-sa/4.0/") CC BY-NC-SA 4.0]
+                    | License #[a.gatr(href="https://creativecommons.org/licenses/by-nc-sa/4.0/" data-type="footer" data-name="license") CC BY-NC-SA 4.0]
                 li.d-inline-block.mb-md-0.mb-2
-                    a(href="https://github.com/wololock/wololock.github.io/commits/develop")
+                    a.gatr(href="https://github.com/wololock/wololock.github.io/commits/develop" data-type="footer" data-name="last-commit")
                         img(src="https://badgen.net/github/last-commit/wololock/wololock.github.io?color=blue&scale=0.8")
 
 
