@@ -27,12 +27,14 @@ block content
                             +post_card(post, {category: true})
 
         if data.youtube
-            section.py-md-5.pb-1.pt-3.youtube-videos
+            section.py-md-5.pb-1.pt-3.youtube-videos.bg-light-blue
                 .container
-                    h3.h2.text-center.mb-md-5.mt-md-0.my-4
+                    h3.h1.text-center.mb-md-5.mt-md-0.my-4.color-light-purple
                         | Watch my
                         |
-                        span.d-md-inline.d-block.ml-1 #[em.fa.fa-youtube] #[b YouTube] videos
+                        b.d-md-inline.d-block.ml-1.color-black #[em.fa.fa-youtube] #[b YouTube]
+                        |
+                        | videos
                     .card-deck
                         each video in data.youtube
                             +youtube_card(video.id, video)
@@ -41,6 +43,9 @@ block content
         section.pt-5.serif#list
             .container
                 .row
+                    .col-12.text-center
+                        h3.h1.text-center.mb-md-5.mt-md-0.my-4.color-light-purple Latest blog posts
+
                     .col-12.col-lg-10
                         each post in page.posts.toArray()
                             article.list-elem.pr-3
