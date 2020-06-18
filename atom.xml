@@ -516,7 +516,7 @@
     
     <summary type="html">
     
-      &lt;div class=&quot;paragraph&quot;&gt;&lt;p&gt;Welcome to the first blog post of the &lt;strong&gt;&quot;Jenkins Pipeline Cookbook&quot;&lt;/strong&gt; series. Today we are focus on working with Jenkins Pipeline environment variables effectively. You will learn how to define env variables, how to updated them, and how to use them in boolean expressions correctly.&lt;/p&gt;&lt;/div&gt;
+      In this blog post, I will show you how you can work with Jenkins pipeline environment variables effectively. You will learn how to set env variable, how to use it in different context, as well as how to override the environment variable.
     
     </summary>
     
