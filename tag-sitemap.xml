@@ -136,14 +136,14 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/continuous-integration/</loc>
+        <loc>https://e.printstacktrace.blog/t/pipeline/</loc>
         <lastmod>2020-05-08T19:17:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/pipeline/</loc>
+        <loc>https://e.printstacktrace.blog/t/continuous-integration/</loc>
         <lastmod>2020-05-08T19:17:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -374,14 +374,14 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/sdkman/</loc>
+        <loc>https://e.printstacktrace.blog/t/docker/</loc>
         <lastmod>2019-11-28T20:53:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/docker/</loc>
+        <loc>https://e.printstacktrace.blog/t/sdkman/</loc>
         <lastmod>2019-11-28T20:53:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
