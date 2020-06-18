@@ -7,9 +7,9 @@ recommended:
 
 ads:
   column:
-    name: "Udemy - Top Online Courses Development - Column"
-    url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.1348&subid=0&type=4
-    image: /images/yml/top-online-courses.png
+    name: "Jenkins Pipeline Learning Kit"
+    url: https://kit.co/wololock/jenkins-pipeline-learning-kit
+    image: /images/yml/jenkins-pipeline-learning-kit.jpg
   bottom:
     name: "Udemy - Top Online Courses Development - Bottom"
     url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.1346&subid=0&type=4
