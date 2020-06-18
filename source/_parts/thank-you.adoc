@@ -1,2 +1,3 @@
 
+[.mt-5]
 Share this blog post on icon:twitter[role="color-twitter"] pass:[{% share_post "twitter" %}] or icon:linkedin-square[role="color-linkedin"] pass:[{% share_post "linkedin" %}] to help me spread the word. Thanks! icon:smile-o[]
