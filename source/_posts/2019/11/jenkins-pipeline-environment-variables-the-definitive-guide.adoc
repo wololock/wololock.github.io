@@ -2,6 +2,7 @@
 title: Jenkins Pipeline Environment Variables - The Definitive Guide
 date: 2019-11-02 18:27:57
 updated: 2020-05-08 21:17:26
+description: In this blog post, I will show you how you can work with Jenkins pipeline environment variables effectively. You will learn how to set env variable, how to use it in different context, as well as how to override the environment variable.
 categories:
     - Jenkins Pipeline Cookbook
 tags:
@@ -50,7 +51,7 @@ You can open `${YOUR_JENKINS_HOST}/env-vars.html` page on your Jenkins master se
 --
 [.img-responsive.img-thumbnail]
 [link=/images/jenkins-env-vars.jpg]
-image::/images/jenkins-env-vars.jpg[]
+image::/images/jenkins-env-vars.jpg[alt="The list of Jenkins environment variables"]
 --
 
 === Using shell command
@@ -79,7 +80,7 @@ NOTE: It might be useful to use `printenv | sort` command combination to get a s
 --
 [.img-responsive.img-thumbnail]
 [link=/images/jenkins-printenv.jpg]
-image::/images/jenkins-printenv.jpg[]
+image::/images/jenkins-printenv.jpg[alt="The result of printenv"]
 --
 
 == Reading environment variables
@@ -110,7 +111,7 @@ pipeline {
 --
 [.img-responsive.img-thumbnail]
 [link=/images/jenkins-read-env-var.png]
-image::/images/jenkins-read-env-var.png[]
+image::/images/jenkins-read-env-var.png[alt="Reading Jenkins pipeline environment variable"]
 --
 
 == Setting environment variables
@@ -156,7 +157,7 @@ pipeline {
 --
 [.img-responsive.img-thumbnail]
 [link=/images/jenkins-set-env-var.png]
-image::/images/jenkins-set-env-var.png[]
+image::/images/jenkins-set-env-var.png[alt="Setting Jenkins pipeline environment variable"]
 --
 
 == Overriding environment variables
@@ -226,7 +227,7 @@ pipeline {
 --
 [.img-responsive.img-thumbnail]
 [link=/images/jenkins-override-env-var.png]
-image::/images/jenkins-override-env-var.png[]
+image::/images/jenkins-override-env-var.png[alt="Overriding Jenkins pipeline environment variable"]
 --
 
 pass:[{% youtube_card KwQDxwZRZiE %}]
@@ -270,7 +271,7 @@ pipeline {
 --
 [.img-responsive.img-thumbnail]
 [link=/images/jenkins-string-env-var.png]
-image::/images/jenkins-string-env-var.png[]
+image::/images/jenkins-string-env-var.png[alt="String type of Jenkins environment variable"]
 --
 
 == Capturing `sh` command output in the env variable
@@ -303,7 +304,7 @@ pipeline {
 --
 [.img-responsive.img-thumbnail]
 [link=/images/jenkins-sh-in-env-var.png]
-image::/images/jenkins-sh-in-env-var.png[]
+image::/images/jenkins-sh-in-env-var.png[alt="Capturing sh step in Jenkins pipeline environment variable"]
 --
 
 Wrapping `sh` step with the Groovy string is only needed when you capture command's output in the `environment` block of the declarative pipeline.
