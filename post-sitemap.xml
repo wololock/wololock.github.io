@@ -40,7 +40,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/jenkins-scripted-pipeline-vs-declarative-pipeline-the-4-practical-differences/</loc>
+        <loc>https://e.printstacktrace.blog/jenkins-pipeline-environment-variables-the-definitive-guide/</loc>
         <lastmod>2020-05-08T19:17:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -48,7 +48,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/jenkins-pipeline-environment-variables-the-definitive-guide/</loc>
+        <loc>https://e.printstacktrace.blog/jenkins-scripted-pipeline-vs-declarative-pipeline-the-4-practical-differences/</loc>
         <lastmod>2020-05-08T19:17:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
