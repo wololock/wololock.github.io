@@ -1,9 +1,2 @@
-:support-me: https://e.printstacktrace.blog/support-me
 
-[discrete]
-== Thank you!
-
-If you read up to this point - leave me a comment below so that I can *thank you* in person for such an engagement.
-You can share this blog post on icon:twitter[role="color-twitter"] pass:[{% share_post "twitter" %}] or icon:linkedin-square[role="color-linkedin"] pass:[{% share_post "linkedin" %}] to help me reach a broader audience.
-If you appreciate my work on this blog, consider {support-me}["supporting", role="ga-track"] my efforts and joining me on that journey.
-Thank you so much, and I will see you next time! icon:smile-wink[role="color-orange"]
+Share this blog post on icon:twitter[role="color-twitter"] pass:[{% share_post "twitter" %}] or icon:linkedin-square[role="color-linkedin"] pass:[{% share_post "linkedin" %}] to help me spread the word. Thanks! icon:smile-o[]
