@@ -1,9 +1,6 @@
-@import "../js/androidstudio.css"
+@import "../js/agate.css"
 @import "mixins.styl"
-
-hljs-font()
-  font-family 'Roboto Mono', monospace
-  //font-family sans-serif
+@import "colors.styl"
 
 .listingblock
   font-size 0.9em
@@ -12,7 +9,7 @@ hljs-font()
   border-top-right-radius 4px
 
   > .title
-    sans-serif()
+    roboto()
     color #475e84
     font-size 0.8em
     padding 4px 10px 4px 15px
@@ -23,8 +20,8 @@ hljs-font()
     white-space nowrap
 
     &::before
-      color: #8c95a6;
-      content: "● ● ● ";
+      color: #868686;
+      content: "× ○ ● ";
       font-size: 1em;
       line-height: 1.2
       margin-right 5px
@@ -33,14 +30,13 @@ hljs-font()
     border-radius 0
 
   code
-    hljs-font()
+    monospace()
     border-radius 0
 
   .hljs
     padding 15px
     font-weight 400
     line-height 1.5
-    color #bababa
     border-radius 0
 
     @media only screen and (max-width: 767px)
@@ -49,8 +45,8 @@ hljs-font()
   .hljs-keyword, .hljs-selector-tag, .hljs-deletion
     font-weight 700
 
-  .hljs-string
-    color #8ec36f
+  .hljs-number
+    color color-yellow
 
 .conum[data-value]
   sans-serif()
@@ -71,10 +67,8 @@ hljs-font()
 .conum[data-value] *
   color #fff !important
 
-
 .conum[data-value] + b
   display none
-
 
 .conum[data-value]:after
   content attr(data-value)

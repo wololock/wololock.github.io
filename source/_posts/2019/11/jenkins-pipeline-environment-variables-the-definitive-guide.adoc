@@ -22,7 +22,6 @@ ad:
 ---
 :sectanchors:
 :toc: macro
-:toc-title: You can jump directly to...
 :groovy-truth-strings: Read more about "The Groovy Truth" here - https://groovy-lang.org/semantics.html#_strings
 :jenkins-sh-step: https://jenkins.io/doc/pipeline/steps/workflow-durable-task-step/#sh-shell-script
 :jenkins-2-book-url: https://amzn.to/3b3diVl

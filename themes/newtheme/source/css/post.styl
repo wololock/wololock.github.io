@@ -150,21 +150,33 @@ article.post-content
 
 
 #toc
-  sans-serif()
-  background #f8f8f7
+  roboto()
+  background color-light-blue
   position static
   padding 1.25em
   border-bottom 1px solid #efefed
   font-size 0.8em
+  display inline-block
 
   .title
     font-weight bold
-    margin-bottom 1em
+    margin-bottom 0.5rem
+    font-size 1.5rem
+    letter-spacing -2px
+    color color-light-purple
+    border-bottom 2px solid #e8f0ff
+
+    &:before
+      font-family "FontAwesome"
+      content "\f0cb"
+      font-weight 400
+      margin-right 0.5rem
 
   ul
     list-style decimal
+    margin-bottom 0
     li
-      line-height 2em
+      line-height 1.8rem
       ul
         list-style circle
 
