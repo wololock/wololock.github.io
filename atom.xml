@@ -411,13 +411,13 @@
       <category term="How to" scheme="https://e.printstacktrace.blog/how-to/"/>
     
     
-      <category term="hexo" scheme="https://e.printstacktrace.blog/t/hexo/"/>
-    
-      <category term="blogging" scheme="https://e.printstacktrace.blog/t/blogging/"/>
-    
       <category term="github" scheme="https://e.printstacktrace.blog/t/github/"/>
     
       <category term="cicd" scheme="https://e.printstacktrace.blog/t/cicd/"/>
+    
+      <category term="hexo" scheme="https://e.printstacktrace.blog/t/hexo/"/>
+    
+      <category term="blogging" scheme="https://e.printstacktrace.blog/t/blogging/"/>
     
       <category term="circleci" scheme="https://e.printstacktrace.blog/t/circleci/"/>
     
@@ -588,9 +588,9 @@
       <category term="Conferences" scheme="https://e.printstacktrace.blog/conferences/"/>
     
     
-      <category term="grails" scheme="https://e.printstacktrace.blog/t/grails/"/>
-    
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
+    
+      <category term="grails" scheme="https://e.printstacktrace.blog/t/grails/"/>
     
       <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
     
