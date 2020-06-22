@@ -3,6 +3,34 @@
 
 
     <url>
+        <loc>https://e.printstacktrace.blog/t/jenkinsfile/</loc>
+        <lastmod>2020-06-22T18:20:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/jenkins-pipeline/</loc>
+        <lastmod>2020-06-22T18:20:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/jenkins/</loc>
+        <lastmod>2020-06-22T18:20:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/curl/</loc>
+        <lastmod>2020-06-22T18:20:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/t/brain/</loc>
         <lastmod>2020-06-02T12:36:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -108,7 +136,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/curl/</loc>
+        <loc>https://e.printstacktrace.blog/t/devops/</loc>
         <lastmod>2020-05-25T08:31:56.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -123,13 +151,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/t/rest/</loc>
-        <lastmod>2020-05-25T08:31:56.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/devops/</loc>
         <lastmod>2020-05-25T08:31:56.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -206,20 +227,6 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/jenkins-pipeline/</loc>
-        <lastmod>2020-05-08T19:17:26.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/jenkins/</loc>
-        <lastmod>2020-05-08T19:17:26.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://e.printstacktrace.blog/t/java/</loc>
         <lastmod>2020-05-08T19:17:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -234,20 +241,6 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/jenkinsfile/</loc>
-        <lastmod>2020-04-16T14:21:32.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/youtube/</loc>
-        <lastmod>2020-04-09T11:02:16.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://e.printstacktrace.blog/t/report/</loc>
         <lastmod>2020-04-09T11:02:16.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -256,6 +249,13 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/t/blog/</loc>
+        <lastmod>2020-04-09T11:02:16.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/youtube/</loc>
         <lastmod>2020-04-09T11:02:16.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -304,6 +304,13 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/t/github/</loc>
+        <lastmod>2020-03-28T06:45:27.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/t/blogging/</loc>
         <lastmod>2020-03-28T06:45:27.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -312,13 +319,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/t/hexo/</loc>
-        <lastmod>2020-03-28T06:45:27.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/github/</loc>
         <lastmod>2020-03-28T06:45:27.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
