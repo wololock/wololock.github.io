@@ -9,6 +9,8 @@ tags:
 - jenkins
 - jenkins-pipeline
 - jenkinsfile
+- jq
+- json
 highlightjs: true
 card: /images/cards/jenkins-04.jpg
 cover: /images/bg/how-to-catch-curl-response-in-jenkins-pipeline.jpg
