@@ -43,6 +43,10 @@
     
       <category term="jenkinsfile" scheme="https://e.printstacktrace.blog/t/jenkinsfile/"/>
     
+      <category term="jq" scheme="https://e.printstacktrace.blog/t/jq/"/>
+    
+      <category term="json" scheme="https://e.printstacktrace.blog/t/json/"/>
+    
   </entry>
   
   <entry>
@@ -103,13 +107,13 @@
       <category term="jq cookbook" scheme="https://e.printstacktrace.blog/jq-cookbook/"/>
     
     
+      <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
+    
       <category term="rest" scheme="https://e.printstacktrace.blog/t/rest/"/>
     
       <category term="http" scheme="https://e.printstacktrace.blog/t/http/"/>
     
       <category term="curl" scheme="https://e.printstacktrace.blog/t/curl/"/>
-    
-      <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
     
       <category term="jq" scheme="https://e.printstacktrace.blog/t/jq/"/>
     
@@ -173,11 +177,11 @@
       <category term="Blog Reports" scheme="https://e.printstacktrace.blog/blog-reports/"/>
     
     
-      <category term="youtube" scheme="https://e.printstacktrace.blog/t/youtube/"/>
-    
       <category term="blog" scheme="https://e.printstacktrace.blog/t/blog/"/>
     
       <category term="report" scheme="https://e.printstacktrace.blog/t/report/"/>
+    
+      <category term="youtube" scheme="https://e.printstacktrace.blog/t/youtube/"/>
     
       <category term="learning" scheme="https://e.printstacktrace.blog/t/learning/"/>
     
@@ -318,15 +322,15 @@
       <category term="Blog Reports" scheme="https://e.printstacktrace.blog/blog-reports/"/>
     
     
-      <category term="blog" scheme="https://e.printstacktrace.blog/t/blog/"/>
-    
-      <category term="report" scheme="https://e.printstacktrace.blog/t/report/"/>
-    
       <category term="2019" scheme="https://e.printstacktrace.blog/t/2019/"/>
     
       <category term="summary" scheme="https://e.printstacktrace.blog/t/summary/"/>
     
+      <category term="blog" scheme="https://e.printstacktrace.blog/t/blog/"/>
+    
       <category term="google-analytics" scheme="https://e.printstacktrace.blog/t/google-analytics/"/>
+    
+      <category term="report" scheme="https://e.printstacktrace.blog/t/report/"/>
     
   </entry>
   
@@ -374,9 +378,9 @@
       <category term="Jenkins Pipeline Cookbook" scheme="https://e.printstacktrace.blog/jenkins-pipeline-cookbook/"/>
     
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
-    
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
@@ -477,9 +481,9 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
-    
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
@@ -516,9 +520,9 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
-    
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
@@ -617,9 +621,9 @@
       <category term="Conferences" scheme="https://e.printstacktrace.blog/conferences/"/>
     
     
-      <category term="grails" scheme="https://e.printstacktrace.blog/t/grails/"/>
-    
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
+    
+      <category term="grails" scheme="https://e.printstacktrace.blog/t/grails/"/>
     
       <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
     
