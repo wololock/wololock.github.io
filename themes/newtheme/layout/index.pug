@@ -104,12 +104,12 @@ block content
         section.sec.newsletter#newsletter
             .container
                 .row
-                    //.col-12.col-md-3.mb-md-0.mb-5.order-1.order-md-0
-                    //    img.shadow.img-fluid(src=url_for("/images/convertkit/home.jpg"))
-                    .col-12.col-md-10.offset-0.offset-md-1.text-center.order-0.order-md-1
+                    .col-12.col-md-3.mb-md-0.mb-5.order-1.order-md-0
+                        img.shadow.img-fluid(src=url_for("/images/convertkit/home.jpg?v=2"))
+                    .col-12.col-md-9.text-center.order-0.order-md-1
                         h2.text-underline-error Sign up to my newsletter
-                        //p.text-center.mt-4
-                        //    | and grab a PDF #[b "How To Become A Better Groovy Developer"] now!
+                        p.text-center.mt-4
+                            | and grab the #[b "Seven Groovy one-liners you want to know"] e-book now!
                         p.text-center.small.mt-4
                             | #[em.fa.fa-ban.font-weight-bold.color-red] #[b No spam] guaranteed. Weekly updates only. Unsubscribe at any time.
                         != convertkit(site.data.home.convertkit)

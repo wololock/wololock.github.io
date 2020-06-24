@@ -20,6 +20,11 @@ ad:
   name: "Udemy - Learn anything - Groovy Regex (Part 1)"
   url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fapache-groovy%2F
   image: /images/yml/udemy-learn-groovy-hz.jpg
+newsletter:
+  image: /images/convertkit/home.jpg
+  title: Download "Seven Groovy one-liners you want to know" e-book
+  lead: "Did you know that you can take a screenshot of a website using one-line Groovy script? Or that you can convert CSV to JSON in just one line? <b>Subscribe</b> to my e-mail list and get <b class=\"mark\">the e-book</b> with the seven useful Groovy recipes."
+  horizontal: true
 ---
 :toc: macro
 :matcher-javadoc: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html
@@ -189,8 +194,11 @@ assert !("GROOVY-123: some change" ==~ /[A-Z]{3,6}-\d{1,4}/)
 assert "GROOVY-123: some change" ==~ /[A-Z]{3,6}-\d{1,4}.{1,100}/
 ----
 
-
-pass:[{% youtube_card BRw7e1QIOmA %}]
+++++
+{% newsletter %}
+{% convertkit "73df1d6b65" %}
+{% endnewsletter %}
+++++
 
 == Usage examples
 
@@ -319,6 +327,8 @@ assert major == "3"
 assert minor == "21"
 assert patch == "0"
 ----
+
+pass:[{% youtube_card BRw7e1QIOmA %}]
 
 === Replacing matching elements using `replaceFirst()`
 
