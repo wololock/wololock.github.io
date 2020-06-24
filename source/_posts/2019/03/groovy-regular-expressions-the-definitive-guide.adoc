@@ -23,7 +23,7 @@ ad:
 newsletter:
   image: /images/convertkit/home.jpg
   title: Download "Seven Groovy one-liners you want to know" e-book
-  lead: "Did you know that you can take a screenshot of a website using one-line Groovy script? Or that you can convert CSV to JSON in just one line? <b>Subscribe</b> to my e-mail list and get <b class=\"mark\">the e-book</b> with the seven useful Groovy recipes."
+  lead: "Did you know that you can take a screenshot of a website using one-line Groovy script? Or that you can convert CSV to JSON in just one line? <b>Subscribe</b> to my e-mail list and get a <b class=\"mark\">free e-book</b> with the seven useful Groovy recipes."
   horizontal: true
 ---
 :toc: macro
