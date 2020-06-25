@@ -6,8 +6,8 @@
                     .col-12.col-md-3.mb-md-0.mb-5.text-center
                         .shadow.d-inline-flex.img-fluid
                             img.shadow.img-fluid(src=newsletter.image)
-                    .col-12.col-md-9(class=newsletter.horizontal ? "horizontal" : "")
-                        h4 #{newsletter.title}
+                    .col-12.col-md-9.pl-md-5(class=[newsletter.horizontal ? "horizontal" : "", newsletter.center ? "center" : ""])
+                        h4!=newsletter.title
 
                         if newsletter.lead
                             p.lead!=newsletter.lead

@@ -18,7 +18,7 @@ hexo.extend.tag.register('book', function() {
     return hexo.render.renderSync({ text: template, engine: "pug"}, book);
 });
 hexo.extend.tag.register('newsletter', function(args, content) {
-    const newsletter = this.newsletter || {};
+    const newsletter = this.site.data.convertkit[this.newsletter] || {};
     if (newsletter === undefined) return "";
     const template = fs.readFileSync(path.resolve(__dirname, '../templates/newsletter.pug'), 'utf-8');
     return hexo.render.renderSync({ text: template, engine: "pug" }, { newsletter: newsletter, convertkit: content });

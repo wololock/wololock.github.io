@@ -20,11 +20,7 @@ ad:
   name: "Udemy - Learn anything - Groovy Regex (Part 1)"
   url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fapache-groovy%2F
   image: /images/yml/udemy-learn-groovy-hz.jpg
-newsletter:
-  image: /images/convertkit/home.jpg
-  title: Download "Seven Groovy one-liners you want to know" e-book
-  lead: "Did you know that you can take a screenshot of a website using one-line Groovy script? Or that you can convert CSV to JSON in just one line? <b>Subscribe</b> to my e-mail list and get a <b class=\"mark\">free e-book</b> with the seven useful Groovy recipes."
-  horizontal: true
+newsletter: seven-groovy-one-liners
 ---
 :toc: macro
 :matcher-javadoc: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html
@@ -193,12 +189,6 @@ assert !("GROOVY-123: some change" ==~ /[A-Z]{3,6}-\d{1,4}/)
 
 assert "GROOVY-123: some change" ==~ /[A-Z]{3,6}-\d{1,4}.{1,100}/
 ----
-
-++++
-{% newsletter %}
-{% convertkit "73df1d6b65" %}
-{% endnewsletter %}
-++++
 
 == Usage examples
 
@@ -393,3 +383,9 @@ The word has 4 letters.
 If you want to learn about the performance of Groovy Regular Expressions, pass:[{% post_link groovy-regular-expressions-the-benchmark "continue reading the part 2" %}] of this blog post.
 
 include::source/_parts/thank-you.adoc[]
+
+++++
+{% newsletter %}
+{% convertkit "73df1d6b65" %}
+{% endnewsletter %}
+++++

@@ -15,9 +15,10 @@ og_image: /images/og/groovy-jmh-benchmark.jpg
 card: /images/cards/groovy-02.jpg
 highlightjs: true
 ad:
-  name: "Udemy - Learn anything - Groovy Regex (Part 2)"
+  name: "Udemy - Learn anything - Groovy collections JMH"
   url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fapache-groovy%2F
   image: /images/yml/udemy-learn-groovy-hz.jpg
+newsletter: seven-groovy-one-liners
 ---
 
 I guess you may heard about Groovy's `Collection.each(Closure cl)` method - it was introduced 15 years ago footnote:[The first commit in the repository tree that mentions `DefaultGroovyMethods.each(Object self, Closure cl)`
@@ -334,6 +335,12 @@ Let's compare the results:
 * Groovy iterator test took in average `103.568` ms while Java did the same job in approximately `8.865` ms.
 
 Full log can be found here: icon:github[] https://gist.github.com/wololock/c895114949be2820b0fada72df099fcf[c895114949be2820b0fada72df099fcf]
+
+++++
+{% newsletter %}
+{% convertkit "73df1d6b65" %}
+{% endnewsletter %}
+++++
 
 == Conclusion
 

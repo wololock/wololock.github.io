@@ -47,11 +47,7 @@ book:
     - flag: pl
       text: Get from taniaksiazka.pl
       url: https://amzn.to/2AyAyNU
-newsletter:
-  image: /images/convertkit/atomic-habits.jpg
-  title: Download the "Atomic Habits" mindmap
-  lead: "Subscribe to my email list and get the PDF with the hand drawn <b class=\"mark\">printable mindmap</b>."
-  horizontal: true
+newsletter: atomic-habits
 ---
 :the-war-of-art: https://amzn.to/2MgCKMD
 :atomic-habits: https://amzn.to/3coH0EF
