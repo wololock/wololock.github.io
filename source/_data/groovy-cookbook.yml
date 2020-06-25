@@ -7,9 +7,9 @@ recommended:
 
 ads:
   column:
-    name: "Coursera Online Data Science - Groovy Cookbook - Column"
-    image: /images/yml/coursera-online-data-science-01.jpg
-    url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=759505.359&subid=0&type=4
+    name: "Groovy Learning Kit"
+    image: /images/yml/groovy-learning-kit.jpg
+    url: https://kit.co/wololock/groovy-programmer-learning-kit
   bottom:
     name: "Coursera Online Data Science - Groovy Cookbook - Bottom"
     image: /images/yml/coursera-online-data-science-02.jpg
