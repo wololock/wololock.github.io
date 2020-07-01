@@ -508,6 +508,8 @@ running in `nioEventLoopGroup-1-2` thread. It receives HTTP request and instead 
 pool uses cached thread pool, so in this case it spawns 20 threads to handle the operation and they will wait 60 seconds
 to handle another job.
 
+pass:[{% youtube_card Xdcg4Drg1hc %}]
+
 == Conclusion
 
 Part 1 ends here. You have seen Micronaut's non-blocking processing in action, and what is even more important - now you

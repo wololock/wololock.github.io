@@ -87,3 +87,8 @@ Ei_Nk14vruE:
   title: "Jenkins Declarative Pipeline vs Scripted Pipeline - 4 key differences | #jenkinspipeline"
   description: "Jenkins Pipeline as a code is a new standard for defining continuous integration and delivery pipelines in Jenkins. The scripted pipeline was the first implementation of the pipeline as a code standard. The later one, the declarative pipeline, slowly becomes a standard of how Jenkins users define their pipeline logic. In this tutorial video, I explain what are four major differences between Jenkins declarative pipeline and the scripted one. Enjoy and don't forget to like and comment on the video!"
   time: "13:45"
+
+Xdcg4Drg1hc:
+  title: "Building command-line app with Java 11, Micronaut, Picocli, and GraalVM | #micronaut"
+  description: "In this video, I will show you how to create a standalone command-line application (CLI app) using Java 11, Micronaut, Picocli, and GraalVM. We are going to build from scratch a Java program, and in the end, we will compile it to the native binary executable file you can run without the Java Virtual Machine. This is not a deep dive tutorial. It's a quickstart introduction to the technology to give you a better understanding about what Micronaut, Picocli, and GraalVM are suitable for."
+  time: "36:53"

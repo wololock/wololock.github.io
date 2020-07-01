@@ -337,6 +337,8 @@ It's still far from the best results, however 200 concurrent requests produce al
 that application has some difficulties and hits timeouts for PROD-002 in some cases. But this is not a bulletproof benchmark
 and we are only experimenting to see the order of magnitude.
 
+pass:[{% youtube_card Xdcg4Drg1hc %}]
+
 == Conclusion
 
 And that's it, we finally reached the end of 3 part article on quick start to non-blocking and async processing in Micronaut.

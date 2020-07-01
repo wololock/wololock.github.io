@@ -287,6 +287,8 @@ image::/images/micronaut-jprofiler.png[]
 this is not a bulletproof benchmark - I used application running with `gradle run` and I haven't set any useful
 JVM tweak flags.
 
+pass:[{% youtube_card Xdcg4Drg1hc %}]
+
 == Conclusion
 
 Part 2 ends here. In the next (and last) part of this article we will play around with timeouts and see what kind of

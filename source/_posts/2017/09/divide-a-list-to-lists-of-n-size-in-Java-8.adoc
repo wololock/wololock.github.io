@@ -295,6 +295,8 @@ we could reduce *8737 microseconds* to less than *2 microseconds*. It could be q
 of a copy means that whenever the input list changes outside the context of `Partition` class, it changes
 our partitioned list.
 
+pass:[{% youtube_card Xdcg4Drg1hc %}]
+
 == What if I want to use a 3rd party library?
 
 That's completely fine. There are at least two libraries that provide list partitioning operation,
