@@ -1,8 +1,8 @@
 mixin post_card(post, options = {})
-    article.card.shadow-sm(itemscope itemtype="http://schema.org/Article")
-        .card-header(itemprop="image" style="background-image: url('" + url_for(post.card || post.eyeCatchImage) + "')")
+    article.card.shadow-sm
+        .card-header(style="background-image: url('" + url_for(post.card || post.eyeCatchImage) + "')")
             .mask
-            h3.h5.text-left.font-weight-bold.text-white(itemprop="name")
+            h3.h5.text-left.font-weight-bold.text-white
                 if options.category !== false
                     - post.categories.each(category => {
                         div
@@ -13,13 +13,13 @@ mixin post_card(post, options = {})
             +post_meta(post)
             if options.description !== false
                 - var excerpt = strip_html(post.excerpt)
-                p.card-text.pt-3(itemprop="description")
+                p.card-text.pt-3
                     != options.truncate > 0 ? truncate(excerpt, {length: options.truncate, omission: " ... "}) : excerpt
-        a.stretched-link(href=url_for(post.path) itemprop="url" data-type=options.gatr data-name=post.title class=options.gatr !== undefined ? "gatr" : "")
+        a.stretched-link(href=url_for(post.path) data-type=options.gatr data-name=post.title class=options.gatr !== undefined ? "gatr" : "")
 
 mixin youtube_card(id, video, options = {})
     .card.shadow
-        .card-header(itemprop="image" style="background-image: url('https://i3.ytimg.com/vi/" + id + "/mqdefault.jpg')")
+        .card-header(style="background-image: url('https://i3.ytimg.com/vi/" + id + "/mqdefault.jpg')")
             div.time=video.time
             em.fa.fa-youtube
         if options.title !== false
@@ -35,7 +35,7 @@ mixin post_meta(post, options = {})
     section.post-meta
         ul
             li
-                time(class=options['date-class'] datetime=date_xml(post.date), itemprop="datePublished")!= full_date(post.date, "MMM D, YYYY")
+                time(class=options['date-class'] datetime=date_xml(post.date))!= full_date(post.date, "MMM D, YYYY")
             li=readingTime(post.content, 'min. read', 200)
             li
                 a(href=config.url + url_for(post.path) + "#disqus_thread")="0 Comments"
