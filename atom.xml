@@ -380,9 +380,9 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
     
-      <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
-    
       <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
+    
+      <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
     
@@ -483,11 +483,11 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
     
+      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
+    
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
       <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
-    
-      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
     
@@ -522,11 +522,11 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
     
+      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
+    
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
       <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
-    
-      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
     
