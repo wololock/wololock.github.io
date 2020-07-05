@@ -48,6 +48,28 @@ book:
       text: Get from taniaksiazka.pl
       url: https://amzn.to/2AyAyNU
 newsletter: atomic-habits
+structured_data:
+  '@type': 'Book'
+  name: "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones"
+  image: "https://e.printstacktrace.blog/images/books/atomic_habits.jpg"
+  author:
+    '@type': "Person"
+    name: "James Clear"
+  datePublished: "2018-10-18"
+  publisher:
+    '@type': "Organization"
+    name: "Random House Business"
+  inLanguage: "en-US"
+  isbn: "978-1847941831"
+  review:
+    '@type': "Review"
+    author:
+      '@id': "https://e.printstacktrace.blog/#/schema/person/wololock"
+    datePublished: "2020-06-02"
+    reviewRating:
+      '@type': "Rating"
+      ratingValue: 5
+    reviewBody: "We usually expect to see linear growth when building new habits. It doesn't work like that. We do not realize that making small improvements, like 1% every day, results in making 37-times better progress after a year. James Clear extends the idea of the habit loop (cue, craving, response, reward) and guides you on how to build an efficient habits building system. The book is pleasant to read, very \"actionable\", and is based on research, and not only \"because I think so.\" Highly recommended!"
 ---
 :the-war-of-art: https://amzn.to/2MgCKMD
 :atomic-habits: https://amzn.to/3coH0EF
