@@ -3,6 +3,41 @@
 
 
     <url>
+        <loc>https://e.printstacktrace.blog/t/picocli/</loc>
+        <lastmod>2020-07-08T12:17:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/micronaut/</loc>
+        <lastmod>2020-07-08T12:17:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/native-image/</loc>
+        <lastmod>2020-07-08T12:17:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/graalvm/</loc>
+        <lastmod>2020-07-08T12:17:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/java/</loc>
+        <lastmod>2020-07-08T12:17:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/t/json/</loc>
         <lastmod>2020-06-22T18:20:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -136,6 +171,13 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/t/devops/</loc>
+        <lastmod>2020-05-25T08:31:56.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/t/http/</loc>
         <lastmod>2020-05-25T08:31:56.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -144,13 +186,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/t/rest/</loc>
-        <lastmod>2020-05-25T08:31:56.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/devops/</loc>
         <lastmod>2020-05-25T08:31:56.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -221,13 +256,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/t/cicd/</loc>
-        <lastmod>2020-05-08T19:17:26.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/java/</loc>
         <lastmod>2020-05-08T19:17:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -402,20 +430,6 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/native-image/</loc>
-        <lastmod>2019-11-22T21:14:49.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/graalvm/</loc>
-        <lastmod>2019-11-22T21:14:49.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://e.printstacktrace.blog/t/rxjava/</loc>
         <lastmod>2019-11-19T11:21:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -438,13 +452,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/t/non-blocking/</loc>
-        <lastmod>2019-11-19T11:21:07.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/micronaut/</loc>
         <lastmod>2019-11-19T11:21:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -570,7 +577,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/junit/</loc>
+        <loc>https://e.printstacktrace.blog/t/spock/</loc>
         <lastmod>2019-04-09T06:58:20.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -584,7 +591,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/spock/</loc>
+        <loc>https://e.printstacktrace.blog/t/junit/</loc>
         <lastmod>2019-04-09T06:58:20.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
