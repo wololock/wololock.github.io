@@ -577,7 +577,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/junit/</loc>
+        <loc>https://e.printstacktrace.blog/t/spock/</loc>
         <lastmod>2019-04-09T06:58:20.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -591,7 +591,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/spock/</loc>
+        <loc>https://e.printstacktrace.blog/t/junit/</loc>
         <lastmod>2019-04-09T06:58:20.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -640,14 +640,14 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/java-8/</loc>
+        <loc>https://e.printstacktrace.blog/t/split/</loc>
         <lastmod>2019-03-29T00:44:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/split/</loc>
+        <loc>https://e.printstacktrace.blog/t/java-8/</loc>
         <lastmod>2019-03-29T00:44:13.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

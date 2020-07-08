@@ -652,9 +652,9 @@
       <category term="Conferences" scheme="https://e.printstacktrace.blog/conferences/"/>
     
     
-      <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
-    
       <category term="grails" scheme="https://e.printstacktrace.blog/t/grails/"/>
+    
+      <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
       <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
     
