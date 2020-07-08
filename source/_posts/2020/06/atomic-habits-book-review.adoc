@@ -14,9 +14,9 @@ tags:
 - habits
 categories:
 - Programmer's Bookshelf
-cover: /images/atomic-habits-bg.jpg
-og_image: /images/og/atomic-habits.jpg
-card: /images/cards/atomic-habits.jpg?v=2
+cover: /images/bg/atomic-habits.jpg
+og_image: /images/og/atomic-habits-02.jpg
+card: /images/cards/atomic-habits.jpg?v=3
 affiliates: true
 book:
   title: "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones"
@@ -169,8 +169,8 @@ And the best way to practice any habit is to do it through *repetition*.
 [.text-center]
 --
 [.img-responsive.img-thumbnail]
-[link=/images/atomic-habits-01.jpg]
-image::/images/atomic-habits-01.jpg[]
+[link=/images/atomic-habits/book.jpg]
+image::/images/atomic-habits/book.jpg[]
 --
 
 == Repetition is the key to success
