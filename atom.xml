@@ -138,13 +138,13 @@
       <category term="jq cookbook" scheme="https://e.printstacktrace.blog/jq-cookbook/"/>
     
     
-      <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
-    
       <category term="rest" scheme="https://e.printstacktrace.blog/t/rest/"/>
     
       <category term="http" scheme="https://e.printstacktrace.blog/t/http/"/>
     
       <category term="curl" scheme="https://e.printstacktrace.blog/t/curl/"/>
+    
+      <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
     
       <category term="jq" scheme="https://e.printstacktrace.blog/t/jq/"/>
     
@@ -175,13 +175,13 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
-      <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
-    
       <category term="jenkins" scheme="https://e.printstacktrace.blog/t/jenkins/"/>
     
       <category term="jenkins-pipeline" scheme="https://e.printstacktrace.blog/t/jenkins-pipeline/"/>
     
       <category term="cicd" scheme="https://e.printstacktrace.blog/t/cicd/"/>
+    
+      <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
     
       <category term="continuous-integration" scheme="https://e.printstacktrace.blog/t/continuous-integration/"/>
     
@@ -411,9 +411,9 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
-    
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
     
@@ -514,11 +514,9 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
-    
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
-      <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
+      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
     
@@ -527,6 +525,8 @@
       <category term="jenkins-pipeline" scheme="https://e.printstacktrace.blog/t/jenkins-pipeline/"/>
     
       <category term="cicd" scheme="https://e.printstacktrace.blog/t/cicd/"/>
+    
+      <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
     
   </entry>
   
@@ -553,11 +553,9 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
-    
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
-      <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
+      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
     
@@ -566,6 +564,8 @@
       <category term="jenkins-pipeline" scheme="https://e.printstacktrace.blog/t/jenkins-pipeline/"/>
     
       <category term="cicd" scheme="https://e.printstacktrace.blog/t/cicd/"/>
+    
+      <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
     
   </entry>
   
@@ -652,9 +652,9 @@
       <category term="Conferences" scheme="https://e.printstacktrace.blog/conferences/"/>
     
     
-      <category term="grails" scheme="https://e.printstacktrace.blog/t/grails/"/>
-    
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
+    
+      <category term="grails" scheme="https://e.printstacktrace.blog/t/grails/"/>
     
       <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
     
