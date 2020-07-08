@@ -345,6 +345,14 @@ image::/images/curl-jenkins-pipeline/07-jq.jpg[]
 
 NOTE: You can learn more about `jq` from my [.mark]*jq cookbook* +++{% link "blog posts series" https://e.printstacktrace.blog/jq-cookbook/ %}+++.
 
+++++
+<div class="imageblock img-fluid">
+<a href="https://kit.co/wololock/jenkins-pipeline-learning-kit" class="gatr" data-type="banner" data-name="Jenkins Pipeline Learning Kit 02">
+<img src="/images/yml/jenkins-pipeline-learning-kit-02.jpg" class="img-fluid" alt="Jenkins Pipeline Learning Kit" />
+</a>
+</div>
+++++
+
 == Bonus: a few more useful `curl` parameters
 
 The list of all available options and parameters that the `curl` command supports is enormous.

@@ -244,3 +244,11 @@ NOTE: You can download the source code presented in this blog post from the foll
 pass:[{% youtube_card HaGeSq-SB9E %}]
 
 include::source/_parts/thank-you.adoc[]
+
+++++
+<div class="imageblock img-fluid">
+<a href="https://kit.co/wololock/jenkins-pipeline-learning-kit" class="gatr" data-type="banner" data-name="Jenkins Pipeline Learning Kit 02">
+<img src="/images/yml/jenkins-pipeline-learning-kit-02.jpg" class="img-fluid" alt="Jenkins Pipeline Learning Kit" />
+</a>
+</div>
+++++

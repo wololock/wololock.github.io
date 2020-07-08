@@ -257,3 +257,11 @@ The `A` stage gets executed, and it is acceptable to timeout.
 The pipeline continues in such a case, and its final result depends on the remaining stages. icon:thumbs-o-up[]
 
 include::source/_parts/thank-you.adoc[]
+
+++++
+<div class="imageblock img-fluid">
+<a href="https://kit.co/wololock/jenkins-pipeline-learning-kit" class="gatr" data-type="banner" data-name="Jenkins Pipeline Learning Kit 02">
+<img src="/images/yml/jenkins-pipeline-learning-kit-02.jpg" class="img-fluid" alt="Jenkins Pipeline Learning Kit" />
+</a>
+</div>
+++++

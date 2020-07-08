@@ -477,3 +477,11 @@ much more straightforward - when something requires fixing, we change a single D
 pass:[{% youtube_card j1lH3vOhucw %}]
 
 include::source/_parts/thank-you.adoc[]
+
+++++
+<div class="imageblock img-fluid">
+<a href="https://kit.co/wololock/jenkins-pipeline-learning-kit" class="gatr" data-type="banner" data-name="Jenkins Pipeline Learning Kit 02">
+<img src="/images/yml/jenkins-pipeline-learning-kit-02.jpg" class="img-fluid" alt="Jenkins Pipeline Learning Kit" />
+</a>
+</div>
+++++
