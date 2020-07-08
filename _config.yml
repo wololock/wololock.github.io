@@ -107,7 +107,7 @@ all_minifier: true
 
 # Update versions after updating resources to prevent reading from cache
 version:
-  css: 57
+  css: 58
   js: 6
 
 archive_generator:
@@ -139,7 +139,7 @@ video:
 
 stackoverflow:
   profile: https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile
-  reputation: 27,773
+  reputation: 28,023
   gold: 9
   silver: 66
   bronze: 97

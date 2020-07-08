@@ -1,0 +1,523 @@
+---
+title: 'Building stackoverflow-cli with Java 11, Micronaut, Picocli, and GraalVM'
+date: 2020-07-08 14:17:41
+updated: 2020-07-08 14:17:41
+tags:
+- java
+- micronaut
+- picocli
+- graalvm
+- native-image
+categories:
+- Micronaut Cookbook
+highlightjs: true
+cover: /images/bg/micronaut-cookbook-2.jpg
+card: /images/cards/micronaut-02.jpg
+og_image: /images/og/stackoverflow-cli.jpg
+---
+:toc: macro
+:micronaut-launch: https://micronaut.io/launch/
+:github-url: https://github.com/wololock/stackoverflow-cli
+:sdkman: https://sdkman.io/
+:micronaut: https://micronaut.io/
+:picocli: https://picocli.info/
+:spock: http://spockframework.org/
+:api-docs: https://api.stackexchange.com/docs/search
+:ansi-colors: https://picocli.info/#_ansi_colors_and_styles
+:graalvm: https://www.graalvm.org/
+
+In this blog post, I show you how to build `stackoverflow-cli` - a command-line application that allows you to search Stack Overflow questions directly from the terminal window.
+I use Java 11+, Micronaut, Picocli, and GraalVM's `native-image`.
+
+
+++++
+<!-- more -->
+++++
+
+toc::[]
+
+NOTE: Source code and resources links available in the icon:github[] {github-url}[wololock/stackoverflow-cli] repository.
+
+== Introduction
+
+Let's start with explaining what the `stackoverflow-cli` application may look like.
+Below you can find what the final application's help page may look like, as well as a help page for the `search` command, and an exemplary search result.
+
+[source,bash,subs="attributes,macros,quotes"]
+----
+$ stackoverflow-cli -h
+Usage: *stackoverflow-cli* [-hvV] [COMMAND]
+...
+  [.color-yellow]#-h, --help#      Show this help message and exit.
+  [.color-yellow]#-v, --verbose#   ...
+  [.color-yellow]#-V, --version#   Print version information and exit.
+Commands:
+  *search*
+
+$ stackoverflow-cli search -h
+Usage: *stackoverflow-cli search* [-hV] [-n=<limit>] [-q=<query>] [-s=<sort>]
+                                [-t=<tag>]
+  [.color-yellow]#-h, --help#             Show this help message and exit.
+  [.color-yellow]#-n, --limit=&lt;limit&gt;#    Limit the number of results to specific number.
+                           Default: 10
+  [.color-yellow]#-q, --query=&lt;query&gt;#    Search phrase
+  [.color-yellow]#-s, --sort-by=&lt;sort&gt;#   Available options: relevance (default), activity,
+                           votes, creation
+  [.color-yellow]#-t, --tags=&lt;tag&gt;#       Limit search to the specific tag
+  [.color-yellow]#-V, --version#          Print version information and exit.
+
+
+$ stackoverflow-cli search -q "java stream api" -t java -n 4
+[.color-green]*✔* 5|3 [.color-yellow]*Java Stream API filter*
+      https://stackoverflow.com/questions/56691000/java-stream-api-filter
+[.color-green]*✔* 4|5 [.color-yellow]*Java Stream API collect method*
+      https://stackoverflow.com/questions/56748468/java-stream-api-collect-method
+[.color-green]*✔* 0|2 [.color-yellow]*Java Stream API*
+      https://stackoverflow.com/questions/51712988/java-stream-api
+[.color-green]*✔* 4|2 [.color-yellow]*Java Stream API map argument*
+      https://stackoverflow.com/questions/49936865/java-stream-api-map-argument
+----
+
+pass:[{% youtube_card Xdcg4Drg1hc %}]
+
+== Installing Micronaut CLI tool
+
+The first thing we need to do is to create a new {micronaut}[Micronaut] project.
+We can do it using Micronaut CLI - `mn`.
+Here is how you can install it using {sdkman}[SDKMAN!] command-line tool.
+
+[source,bash]
+----
+$ sdk install micronaut 2.0.0
+----
+
+== Creating new project
+
+Once SDKMAN! is installed, we can create a new project.
+We use `create-cli-app` to generate a CLI-based project with the {picocli}[Picocli] support added.
+We can define the minimum JDK version with `--jdk` option.
+In this example I also set the testing framework to {spock}[Spock], and I add two features: `graalvm` and `http-client`.
+
+[source,bash]
+----
+$ mn create-cli-app --jdk=11 -t spock -f graalvm,http-client com.github.wololock.stackoverflow-cli
+----
+
+NOTE: Instead of using the `mn` command-line tool, you can use {micronaut-launch}[Micronaut Launch] web starter to bootstrap new project.
+
+== Enable annotation processing
+
+After importing the new project to IntelliJ IDEA, go to Settings and search for "annotation processing" and enable annotation processing option as shown below.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/micronaut-picocli-graalvm/enable-annotation-processing.jpg]
+image::/images/micronaut-picocli-graalvm/enable-annotation-processing.jpg[]
+--
+
+== Preparing the unit test
+
+The application created with `create-cli-app` comes with a single unit test we can extend to test our final expectation.
+
+.src/test/groovy/com/github/wololock/StackoverflowCliCommandSpec.groovy
+[source,groovy]
+----
+package com.github.wololock
+
+import io.micronaut.configuration.picocli.PicocliRunner
+import io.micronaut.context.ApplicationContext
+import io.micronaut.context.env.Environment
+import spock.lang.AutoCleanup
+import spock.lang.Shared
+import spock.lang.Specification
+
+class StackoverflowCliCommandSpec extends Specification {
+
+    @Shared @AutoCleanup ApplicationContext ctx = ApplicationContext.run(Environment.CLI, Environment.TEST)
+
+    void "test stackoverflow-cli search command"() {
+        given:
+        ByteArrayOutputStream baos = new ByteArrayOutputStream()
+        PrintStream out = System.out
+        System.setOut(new PrintStream(baos))
+
+        String[] args = ["search", "-q", "merge maps", "-t", "java", "--verbose"] as String[]
+        PicocliRunner.run(StackoverflowCliCommand, ctx, args)
+        out.println baos.toString() //<1>
+
+        // ✔ 9|3 Merge maps in Groovy
+        //       https://stackoverflow.com/questions/213123/merge-maps-groovy
+        expect: //<2>
+        baos.toString() =~ $/✔? \d+\|\d+ [^\n]+\n {6}https://stackoverflow.com/questions/\d+/[a-z0-9\-]+/$
+    }
+}
+----
+
+We use this test to achieve two things.
+Firstly, we want to pass:[<em class="conum" data-value="1"></em>] print the output of the command to the standard output.
+And secondly, we want to pass:[<em class="conum" data-value="2"></em>] test if the output matches given regular expression.
+
+== Implementing the declarative HTTP client
+
+In the next step, we can implement HTTP client that communicates with the {api-docs}[Stack Exchange REST API].
+We are going to use Micronaut's declarative HTTP client to do so.
+We create an interface called `StackOverflowHttpClient` and we annotate it with the `@Client(url)` annotation pass:[<em class="conum" data-value="1"></em>].
+The client's URL is taken from the configuration property defined in the `application.yml` file.
+Next, we create the `search` method annotated with `@Get(path)` annotation pass:[<em class="conum" data-value="2"></em>].
+This annotation defines HTTP method (`GET` in this case) and the request's path.
+We also use `@QueryValue` annotations pass:[<em class="conum" data-value="3"></em>] to map querystring parameters with the method arguments.
+
+
+.src/main/java/com/github/wololock/api/StackOverflowHttpClient.java
+[source,java]
+----
+package com.github.wololock.api;
+
+import io.micronaut.http.annotation.Get;
+import io.micronaut.http.annotation.QueryValue;
+import io.micronaut.http.client.annotation.Client;
+
+@Client("${stackoverflow.api.url}") // <1>
+public interface StackOverflowHttpClient {
+
+    @Get("/search?site=stackoverflow") //<2>
+    ApiResponse<Question> search(
+            @QueryValue("intitle") String query, //<3>
+            @QueryValue("tagged") String tag,
+            @QueryValue("pagesize") int limit,
+            @QueryValue("sort") String sort
+    );
+}
+----
+
+And here is the `application.yml` file that defines `stackoverflow.api.url` configuration property.
+
+.src/main/resources/application.yml
+[source,yml]
+----
+micronaut:
+  application:
+    name: stackoverflowCli
+
+stackoverflow:
+  api:
+    url: https://api.stackexchange.com/2.2
+----
+
+Next, we need to implement `ApiResponse<T>` and `Question` classes.
+We use them to deserialize a raw JSON response into an instance of `ApiResponse<Question>`.
+We can implement both classes as a regular Java POJO's with getters and setters, or we can use public fields keep as simple as possible.
+In both cases, however, we want to add `@Introspected` annotation pass:[<em class="conum" data-value="1"></em>] to instruct Micronaut to use a reflection-free Jackson module to handle serialization and deserialization.
+It's a nice boost, but it is also a mandatory step if we want to use those classes in the final native executable file.
+
+Here's an implementation of the `ApiResponse<T>` class.
+
+.src/main/java/com/github/wololock/api/ApiResponse.java
+[source,java]
+----
+package com.github.wololock.api;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.micronaut.core.annotation.Introspected;
+
+import java.util.Collections;
+import java.util.List;
+
+@Introspected //<1>
+final public class ApiResponse<T> {
+
+    public List<T> items = Collections.emptyList();
+
+    @JsonProperty("has_more")
+    public boolean hasMore;
+
+    @JsonProperty("quota_max")
+    public int quotaMax;
+
+    @JsonProperty("quota_remaining")
+    public int quotaRemaining;
+}
+----
+
+And here's an implementation of the `Question` class.
+
+.src/main/java/com/github/wololock/api/Question.java
+[source,java]
+----
+package com.github.wololock.api;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.micronaut.core.annotation.Introspected;
+
+@Introspected
+final public class Question {
+    public String title;
+    public String link;
+    public int score;
+    @JsonProperty("answer_count")
+    public int answers;
+    @JsonProperty("is_answered")
+    public boolean accepted;
+}
+----
+
+Keep in mind we used `@JsonProperty` over the fields that didn't match the same naming convention between POJO class (camelCase) and the JSON body (snake_case).
+Alternatively, we could use `@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)` over the class to get the same result.
+
+== Implementing the `search` command
+
+Once we implemented the HTTP client, it's time to implement the `search` command of the `stackoverflow-cli` app.
+We start with creating a new class - `SearchCommand`.
+Picocli requires, that the command class implements either `Runnable` or `Callable<T>` interface.
+The main difference is that the first one does not return any value, so if you want to return an exit code, you may want to use `Callable<Integer>` instead of a `Runnable` interface.
+
+Next, the newly created class has to be annotated with the `@Command` annotation pass:[<em class="conum" data-value="1"></em>].
+We use it to define the command name `search`, its description, and we also use the standard help mixin to instruct Picocli to generate a default help page based on the command's options.
+
+Speaking of options, we define them as class fields and we add `@Option` annotation pass:[<em class="conum" data-value="2"></em>] that specifies each option name (or names if you want to use short and long option name formats).
+
+We also inject previously created `StackOverflowHttpClient` pass:[<em class="conum" data-value="3"></em>].
+
+The desired business logic of the `search` command happens in the `run` method pass:[<em class="conum" data-value="4"></em>].
+We call `client.search(query, tag, limit, sort)` with the parameters retrieved from the command line.
+Once the data is fetched from the REST API, we display format each question the helper `formatQuestion` method, and then we print it.
+One thing worth mentioning is the usage of `Ansi.AUTO.string()` method with the {ansi-colors}[ANSI colors and styles] applied pass:[<em class="conum" data-value="5"></em>].
+
+
+.src/main/java/com/github/wololock/search/SearchCommand.java
+[source,java]
+----
+package com.github.wololock.search;
+
+import com.github.wololock.api.Question;
+import com.github.wololock.api.SearchHttpRequest;
+import com.github.wololock.api.StackOverflowHttpClient;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Help.Ansi;
+import picocli.CommandLine.Option;
+
+import javax.inject.Inject;
+
+@Command(name = "search", description = "Search questions matching criteria.",
+    mixinStandardHelpOptions = true) //<1>
+final public class SearchCommand implements Runnable {
+
+    @Option(names = {"-q", "--query"}, description = "Search phrase.") //<2>
+    String query = "";
+
+    @Option(names = {"-t", "--tag"}, description = "Search inside specific tag.")
+    String tag = "";
+
+    @Option(names = {"-n", "--limit"}, description = "Limit results. Default: 10")
+    int limit = 10;
+
+    @Option(names = {"-s", "--sort-by"}, description = "Available values: relevance, votes, creation, activity. Default: relevance.")
+    String sort = "relevance";
+
+    @Option(names = {"--verbose"}, description = "Print verbose output.")
+    boolean verbose;
+
+    @Inject
+    StackOverflowHttpClient client; //<3>
+
+    @Override
+    public void run() { //<4>
+        var response = client.search(query, tag, limit, sort);
+
+        response.items.stream()
+                .map(SearchCommand::formatQuestion)
+                .forEach(System.out::println);
+
+        if (verbose) {
+            System.out.printf(
+                    "\nItems size: %d | Quota max: %d | Quota remaining: %d | Has more: %s\n",
+                    response.items.size(),
+                    response.quotaMax,
+                    response.quotaRemaining,
+                    response.hasMore
+            );
+        }
+    }
+
+    static private String formatQuestion(final Question question) {
+        return Ansi.AUTO.string(String.format(
+                "@|bold,fg(green) %s|@ %d|%d @|bold,fg(yellow) %s|@\n      %s", //<5>
+                question.accepted ? "✔" : "",
+                question.score,
+                question.answers,
+                question.title,
+                question.link
+        ));
+    }
+}
+----
+
+After implementing the command class, we need to register it as a subcommand in the main application class.
+We do it by adding `SearchCommand.class` to the `subcommands` array of the `@Command` annotation in the main class pass:[<em class="conum" data-value="1"></em>].
+
+.src/main/java/com/github/wololock/StackoverflowCliCommand.java
+[source,java]
+----
+package com.github.wololock;
+
+import com.github.wololock.search.SearchCommand;
+import io.micronaut.configuration.picocli.PicocliRunner;
+import io.micronaut.context.ApplicationContext;
+
+import picocli.CommandLine;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
+import picocli.CommandLine.Parameters;
+
+@Command(name = "stackoverflow-cli", description = "...",
+        mixinStandardHelpOptions = true, subcommands = {SearchCommand.class}) //<1>
+public class StackoverflowCliCommand implements Runnable {
+
+    @Option(names = {"-v", "--verbose"}, description = "...")
+    boolean verbose;
+
+    public static void main(String[] args) throws Exception {
+        PicocliRunner.run(StackoverflowCliCommand.class, args);
+    }
+
+    public void run() {
+        // business logic here
+        if (verbose) {
+            System.out.println("Hi!");
+        }
+    }
+}
+----
+
+After that, we can run the unit test to see the results.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/micronaut-picocli-graalvm/running-unit-test.jpg]
+image::/images/micronaut-picocli-graalvm/running-unit-test.jpg[]
+--
+
+
+== Installing GraalVM and `native-image`
+
+The last step is to compile the application to the native executable file.
+Before we do so, we need to install {graalvm}[GraalVM] and the `native-image` tool.
+Below you can find step by step guide using SDKMAN!.
+
+[source,bash,subs="quotes"]
+----
+*$ sdk install java 20.1.0.r11-grl*
+
+Downloading: java 20.1.0.r11-grl
+
+In progress...
+
+&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35 100,00%
+
+Repackaging Java 20.1.0.r11-grl...
+
+Done repackaging...
+
+[.color-green]##Installing: java 20.1.0.r11-grl##
+[.color-green]##Done installing!##
+
+[.color-yellow]##Do you want java 20.1.0.r11-grl to be set as default? (Y/n): n##
+
+*$ sdk use java 20.1.0.r11-grl*
+
+[.color-green]##Using java version 20.1.0.r11-grl in this shell.##
+
+*$ java -version*
+openjdk version "11.0.7" 2020-04-14
+OpenJDK Runtime Environment GraalVM CE 20.1.0 (build 11.0.7+10-jvmci-20.1-b02)
+OpenJDK 64-Bit Server VM GraalVM CE 20.1.0 (build 11.0.7+10-jvmci-20.1-b02, mixed mode)
+
+*$ gu install native-image*
+Downloading: Component catalog from www.graalvm.org
+Processing Component: Native Image
+Downloading: Component native-image: Native Image  from github.com
+Installing new component: Native Image (org.graalvm.native-image, version 20.1.0)
+
+*$ native-image --version*
+GraalVM Version 20.1.0 (Java Version 11.0.7)
+----
+
+NOTE: Depending on when you read this blog post, version `20.1.0.r11-grl` may not exist anymore in the SDKMAN. Run `sdk list java` to find the latest GraalVM version available.
+
+== Compiling final native executable file
+
+Once we installed GraalVM, `native-image`, and we switched the Java to the GraalVM's one, we can firstly assemble our application to the JAR file.
+
+[source,bash,subs="quotes"]
+----
+*$ ./gradlew --no-daemon assemble*
+To honour the JVM settings for this build a new JVM will be forked. Please consider using the daemon: https://docs.gradle.org/6.5/userguide/gradle_daemon.html.
+Daemon will be stopped at the end of the build stopping after processing
+
+> Task :compileJava
+Note: Writing native-image.properties file to destination: META-INF/native-image/com.github.wololock/stackoverflow-cli/native-image.properties
+Note: Writing reflection-config.json file to destination: META-INF/native-image/com.github.wololock/stackoverflow-cli/reflection-config.json
+Note: Writing resource-config.json file to destination: META-INF/native-image/com.github.wololock/stackoverflow-cli/resource-config.json
+Note: Creating bean classes for 3 type elements
+Note: ReflectConfigGen writing to: CLASS_OUTPUT/META-INF/native-image/picocli-generated/reflect-config.json
+Note: ResourceConfigGen writing to: CLASS_OUTPUT/META-INF/native-image/picocli-generated/resource-config.json
+Note: ProxyConfigGen writing to: CLASS_OUTPUT/META-INF/native-image/picocli-generated/proxy-config.json
+
+[.color-green]*BUILD SUCCESSFUL* in 10s
+10 actionable tasks: 10 executed
+----
+
+Next, we can run `native-image` compilation.
+It takes some time, and may utilize all available cores on your laptop, so be aware of it. icon:smile-o[]
+
+[source,bash,subs="quotes"]
+----
+*$ native-image --no-server -cp build/libs/stackoverflow-cli-&#42-all.jar*
+[stackoverflow-cli:614922]    classlist:   4,204.35 ms,  1.18 GB
+[stackoverflow-cli:614922]        (cap):   1,080.85 ms,  1.18 GB
+[stackoverflow-cli:614922]        setup:   3,027.05 ms,  1.18 GB
+WARNING GR-10238: VarHandle for static field is currently not fully supported. Static field private static volatile java.lang.System$Logger jdk.internal.event.EventHelper.securityLogger is not properly marked for Unsafe access!
+[stackoverflow-cli:614922]     (clinit):   1,542.14 ms,  4.85 GB
+[stackoverflow-cli:614922]   (typeflow):  31,615.83 ms,  4.85 GB
+[stackoverflow-cli:614922]    (objects):  33,949.48 ms,  4.85 GB
+[stackoverflow-cli:614922]   (features):   3,764.04 ms,  4.85 GB
+[stackoverflow-cli:614922]     analysis:  74,941.32 ms,  4.85 GB
+[stackoverflow-cli:614922]     universe:   2,433.46 ms,  4.85 GB
+[stackoverflow-cli:614922]      (parse):   6,762.73 ms,  4.85 GB
+[stackoverflow-cli:614922]     (inline):   9,066.65 ms,  5.18 GB
+[stackoverflow-cli:614922]    (compile):  54,236.90 ms,  4.74 GB
+[stackoverflow-cli:614922]      compile:  73,993.64 ms,  4.74 GB
+[stackoverflow-cli:614922]        image:   7,939.30 ms,  4.82 GB
+[stackoverflow-cli:614922]        write:   1,066.98 ms,  4.82 GB
+[stackoverflow-cli:614922]      [total]: 167,963.48 ms,  4.82 GB
+
+*$ ls -lah stackoverflow-cli*
+-rwxrwxr-x 1 wololock wololock 54M 07-08 11:26 [.color-green]#stackoverflow-cli#
+----
+
+Once the native binary file is created (54 megabytes, it's not mistaken), we can run a final test to search questions matching `stream foreach` phrase inside the `java` tag, and we can limit the output to 4 most relevant questions.
+
+[source,bash,subs="quotes"]
+----
+*$ ./stackoverflow-cli search --verbose -n 4 -t java -q "stream foreach"*
+[.color-green]*✔* 313|13 [.color-yellow]#Break or return from Java 8 stream forEach?#
+      https://stackoverflow.com/questions/23308193/break-or-return-from-java-8-stream-foreach
+[.color-green]*✔* 26|4 [.color-yellow]#Incrementing counter in Stream foreach Java 8#
+      https://stackoverflow.com/questions/38568129/incrementing-counter-in-stream-foreach-java-8
+[.color-green]*✔* 46|4 [.color-yellow]#Java 8 Lambda Stream forEach with multiple statements#
+      https://stackoverflow.com/questions/31130457/java-8-lambda-stream-foreach-with-multiple-statements
+ 0|0 [.color-yellow]#Java stream forEach#
+      https://stackoverflow.com/questions/44951862/java-stream-foreach
+
+Items size: 4 | Quota max: 300 | Quota remaining: 292 | Has more: true
+----
+
+== Useful resources
+
+- https://micronaut-projects.github.io/micronaut-picocli/latest/guide/[Micronaut Picocli Configuration]
+- https://picocli.info/quick-guide.html[Picocli Quick Guide]
+- https://www.youtube.com/watch?v=Xdcg4Drg1hc["Building command-line app with Java 11, Micronaut, Picocli, and GraalVM" video]
+
+include::source/_parts/thank-you.adoc[]
