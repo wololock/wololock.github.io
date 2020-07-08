@@ -43,6 +43,28 @@ book:
     - flag: es
       text: Get from amazon.es
       url: https://amzn.to/2ZZyEAF
+structured_data:
+  '@type': 'Book'
+  name: "Pragmatic Thinking and Learning: Refactor Your Wetware"
+  image: "https://e.printstacktrace.blog/images/books/pragmatic-thinking-and-learning.jpg"
+  author:
+    '@type': "Person"
+    name: "Andy Hunt"
+  datePublished: "2008-10-28"
+  publisher:
+    '@type': "Organization"
+    name: "Pragmatic Bookshelf"
+  inLanguage: "en-US"
+  isbn: "978-1934356050"
+  review:
+    '@type': "Review"
+    author:
+      '@id': "https://e.printstacktrace.blog/#/schema/person/wololock"
+    datePublished: "2019-04-20"
+    reviewRating:
+      '@type': "Rating"
+      ratingValue: 5
+    reviewBody: "One of my favorite books ever. I've read \"Pragmatic Thinking and Learning\" the second time after six years, and I must say that this book is phenomenal. My opinion is entirely biased - I'm not going to deny this fact. Just like Andy Hunt, I'm also a software engineer, and that is why I find all examples and exercises very useful. He explains how our brain works in L- and R-modes, how we can benefit from both modes, how we can design and plan our learning process to build habits that will help us achieve even more. It's a great supplement for Cal Newport's \"Deep Work\" book. However, it's much more practical and useful for software engineers (or any knowledge workers). I strongly recommend reading it!"
 ---
 :book-url: https://amzn.to/2wajzj9
 
