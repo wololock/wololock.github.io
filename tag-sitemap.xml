@@ -402,14 +402,14 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/docker/</loc>
+        <loc>https://e.printstacktrace.blog/t/sdkman/</loc>
         <lastmod>2019-11-28T20:53:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/sdkman/</loc>
+        <loc>https://e.printstacktrace.blog/t/docker/</loc>
         <lastmod>2019-11-28T20:53:10.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
