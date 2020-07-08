@@ -18,7 +18,7 @@ footer.page-footer
                         li
                             a.gatr(href=site.data.links.rss data-type="footer-useful-links" data-name="RSS") RSS
                         li
-                            a.gatr(href=url_for("/support-me") data-type="footer-useful-links" data-name="Support me") Support me #[em.fas.fa-heart.color-red.ml-2]
+                            a.gatr(href=url_for("/support-me") data-type="footer-useful-links" data-name="Support me") Support the blog #[em.fas.fa-heart.color-red.ml-2]
 
 
                 - var categories = site.categories.sort("length").reverse().limit(7).toArray()
