@@ -99,13 +99,13 @@
       <category term="Programmer&#39;s Bookshelf" scheme="https://e.printstacktrace.blog/programmers-bookshelf/"/>
     
     
-      <category term="learning" scheme="https://e.printstacktrace.blog/t/learning/"/>
-    
       <category term="book" scheme="https://e.printstacktrace.blog/t/book/"/>
     
       <category term="review" scheme="https://e.printstacktrace.blog/t/review/"/>
     
       <category term="affiliate" scheme="https://e.printstacktrace.blog/t/affiliate/"/>
+    
+      <category term="learning" scheme="https://e.printstacktrace.blog/t/learning/"/>
     
       <category term="self-improvement" scheme="https://e.printstacktrace.blog/t/self-improvement/"/>
     
@@ -208,13 +208,13 @@
       <category term="Blog Reports" scheme="https://e.printstacktrace.blog/blog-reports/"/>
     
     
-      <category term="learning" scheme="https://e.printstacktrace.blog/t/learning/"/>
-    
       <category term="blog" scheme="https://e.printstacktrace.blog/t/blog/"/>
     
       <category term="report" scheme="https://e.printstacktrace.blog/t/report/"/>
     
       <category term="youtube" scheme="https://e.printstacktrace.blog/t/youtube/"/>
+    
+      <category term="learning" scheme="https://e.printstacktrace.blog/t/learning/"/>
     
   </entry>
   
@@ -621,9 +621,9 @@
     
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
-      <category term="jmh" scheme="https://e.printstacktrace.blog/t/jmh/"/>
-    
       <category term="recursion" scheme="https://e.printstacktrace.blog/t/recursion/"/>
+    
+      <category term="jmh" scheme="https://e.printstacktrace.blog/t/jmh/"/>
     
       <category term="benchmark" scheme="https://e.printstacktrace.blog/t/benchmark/"/>
     
