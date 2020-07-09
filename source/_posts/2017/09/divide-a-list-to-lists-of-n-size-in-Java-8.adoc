@@ -118,6 +118,14 @@ Running this example will produce the following input to the console:
 [[1, 2], [3, 4], [5, 6], [7]]
 ----
 
+++++
+<div class="imageblock img-fluid">
+<a href="https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fjava-the-complete-java-developer-course%2F" class="gatr" data-type="banner" data-name="Java Programming Masterclass for Software Developers">
+<img src="/images/yml/java-programming-masterclass-for-software-developers.jpg" class="img-fluid" alt="Java Programming Masterclass for Software Developers" />
+</a>
+</div>
+++++
+
 == Why bother with creating a new class?
 
 We can also ask ourselves if creating such a `Partition` class is mandatory. Maybe there is an alternative way to
