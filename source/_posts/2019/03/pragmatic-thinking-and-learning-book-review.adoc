@@ -1,7 +1,7 @@
 ---
 title: Pragmatic Thinking and Learning - book review
 date: 2019-03-26 17:50:06
-updated: 2020-06-02 14:36:07
+updated: 2020-07-09 08:08:50
 tags:
     - book
     - review
