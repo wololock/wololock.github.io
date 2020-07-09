@@ -8,6 +8,13 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/programmers-bookshelf/</loc>
+        <lastmod>2020-07-09T06:08:50.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/micronaut-cookbook/</loc>
         <lastmod>2020-07-08T12:17:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -17,13 +24,6 @@
     <url>
         <loc>https://e.printstacktrace.blog/jenkins-pipeline-cookbook/</loc>
         <lastmod>2020-06-22T18:20:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/programmers-bookshelf/</loc>
-        <lastmod>2020-06-02T12:36:07.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
