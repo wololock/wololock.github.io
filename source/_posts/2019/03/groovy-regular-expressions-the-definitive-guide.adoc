@@ -11,10 +11,10 @@ tags:
 - match
 - find
 - switch
-cover: /images/groovy-regexp-jmh-bg.jpg
+cover: /images/bg/groovy-cookbook.jpg
 og_image: /images/og/groovy-regexp-jmh.jpg
 card: /images/cards/groovy-04.jpg
-affiliates: true
+= affiliates: true
 highlightjs: true
 ad:
   name: "Udemy - Learn anything - Groovy Regex (Part 1)"

@@ -1,0 +1,202 @@
+---
+title: How to merge two maps in Groovy?
+date: 2020-07-17 20:11:17
+updated: 2020-07-17 20:11:17
+categories:
+- Groovy Cookbook
+tags:
+- groovy
+- maps
+- merge
+- quick-tip
+cover: /images/bg/groovy-cookbook.jpg
+og_image: /images/og/how-to-merge-two-maps-in-groovy.jpg
+card: /images/cards/groovy-02.jpg
+affiliates: true
+highlightjs: true
+ad:
+  name: "Udemy - Learn Groovy - How to merge two maps in Groovy?"
+  url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fapache-groovy%2F
+  image: /images/yml/udemy-learn-groovy-hz.jpg
+newsletter: seven-groovy-one-liners
+---
+:inject-doc: http://docs.groovy-lang.org/latest/html/groovy-jdk/java/util/Collection.html#inject(java.lang.Object,%20groovy.lang.Closure)
+:metaprogramming: https://groovy-lang.org/metaprogramming.html#_methods
+:toc: macro
+
+One of the most popular map-related operation in any programming language is merging two (or more) maps.
+In this short blog post, I explain how to do it in the Groovy programming language, starting from the simplest `+` operation, up to more advanced use cases of merging nested maps and using runtime metaprogramming to add a `merge` method to the `Map` interface.
+Enjoy reading and learning!
+
+
+++++
+<!-- more -->
+++++
+
+
+toc::[]
+
+== Merge maps using `+` operator
+
+The easiest way to merge two maps in Groovy is to use `+` operator.
+This method is straightforward - it creates a new map from the left-hand-side and right-hand-side maps.
+The below example illustrates it clearly.
+
+[source,groovy]
+----
+def a = [a: 1, b: 3]
+def b = [a: 2, c: 4]
+
+def c = a + b
+
+assert c == [a: 2, b: 3, c: 4]
+----
+
+However, this method has one limitation - it doesn't perform a so-called _"deep merge"_ operation.
+Any nested map won't get merged - it will only override the left-hand-side map entry with the one from the right-hand-side map.
+Just like in the example shown below.
+
+[source,groovy]
+----
+def a = [a: 1, b: 3, z: [a: 10, b: 20]]
+def b = [a: 2, c: 4, z: [c: 30]]
+
+def c = a + b
+
+assert c == [a: 2, b: 3, c: 4, z: [c: 30]]
+----
+
+You can see that the final map contains the `z` key.
+However, the value it stores comes from the right-hand-side map only.
+
+== Merge maps with nested maps
+
+It can be fixed by implementing custom `merge(lhs,rhs)` function.
+
+[source,groovy]
+----
+def a = [a: 1, b: 3, z: [a: 10, b: 20]]
+def b = [a: 2, c: 4, z: [c: 30]]
+
+def merge(Map lhs, Map rhs) {
+    return rhs.inject(lhs.clone()) { map, entry ->
+        if (map[entry.key] instanceof Map && entry.value instanceof Map) {
+            map[entry.key] = merge(map[entry.key], entry.value)
+        } else {
+            map[entry.key] = entry.value
+        }
+        return map
+    }
+}
+
+def d = merge(a, b)
+
+assert d == [a: 2, b: 3, c: 4, z: [a: 10, b: 20, c: 30]]
+----
+
+It starts with the {inject-doc}[`inject` function], which is an equivalent (or close equivalent) of the `reduce` or `fold` functions from other popular programming languages.
+It takes two parameters - the initial value (the `lhs.clone()` in our case), and the two-argument closure that receives the current accumulator (the `map` variable from our example) and the current map entry from the iteration.
+
+TIP: We use `lhs.clone()` to avoid creating any side effects. If we use just `lhs`, we would modify the state of the first map passed to the `merge` function.
+
+In the next step, we need to check what is the type of the specific map key.
+If the same key stores a map in both maps, we call a `merge` function to create a new value as a result of merging two nested maps.
+Otherwise, we just copy the value from the right-hand-side map.
+
+It looks like we are ready to go, but what if maps we are merging contain e.g. a list of numbers?
+
+[source,groovy]
+----
+def a = [a: 1, b: 3, z: [a: 10, b: 20], y: [1,2,3,4]]
+def b = [a: 2, c: 4, z: [c: 30], y: [5,6,7]]
+
+def merge(Map lhs, Map rhs) {
+    return rhs.inject(lhs.clone()) { map, entry ->
+        if (map[entry.key] instanceof Map && entry.value instanceof Map) {
+            map[entry.key] = merge(map[entry.key], entry.value)
+        } else {
+            map[entry.key] = entry.value
+        }
+        return map
+    }
+}
+
+def d = merge(a, b)
+
+assert d == [a: 2, b: 3, c: 4, z: [a: 10, b: 20, c: 30], y: [5,6,7]]
+----
+
+Our current implementation does not support merging nested lists.
+Let's fix it.
+
+== Merging maps with nested lists
+
+The solution to this problem is simple.
+We need to add one more condition.
+
+[source,groovy]
+----
+def a = [a: 1, b: 3, z: [a: 10, b: 20], y: [1,2,3,4]]
+def b = [a: 2, c: 4, z: [c: 30], y: [5,6,7]]
+
+def merge(Map lhs, Map rhs) {
+    return rhs.inject(lhs.clone()) { map, entry ->
+        if (map[entry.key] instanceof Map && entry.value instanceof Map) {
+            map[entry.key] = merge(map[entry.key], entry.value)
+        } else if (map[entry.key] instanceof Collection && entry.value instanceof Collection) {
+            map[entry.key] += entry.value
+        } else {
+            map[entry.key] = entry.value
+        }
+        return map
+    }
+}
+
+def d = merge(a, b)
+
+assert d == [a: 2, b: 3, c: 4, z: [a: 10, b: 20, c: 30], y: [1,2,3,4,5,6,7]]
+----
+
+It works! icon:smile-o[]
+
+== Adding `merge` method to the `Map` interface
+
+Groovy supports {metaprogramming}[runtime and compile time metaprogramming].
+We can use it to add `merge(Map m)` method to the `Map` interface.
+Let's re-use the `merge` function we've already implemented.
+
+[source,groovy]
+----
+def a = [a: 1, b: 3, z: [a: 10, b: 20], y: [1,2,3,4]]
+def b = [a: 2, c: 4, z: [c: 30], y: [5,6,7]]
+
+def merge(Map lhs, Map rhs) {
+    return rhs.inject(lhs.clone()) { map, entry ->
+        if (map[entry.key] instanceof Map && entry.value instanceof Map) {
+            map[entry.key] = merge(map[entry.key], entry.value)
+        } else if (map[entry.key] instanceof Collection && entry.value instanceof Collection) {
+            map[entry.key] += entry.value
+        } else {
+            map[entry.key] = entry.value
+        }
+        return map
+    }
+}
+
+Map.metaClass.merge << { Map rhs -> merge(delegate, rhs) } // <1>
+
+def e = a.merge(b) //<2>
+
+assert e == [a: 2, b: 3, c: 4, z: [a: 10, b: 20, c: 30], y: [1,2,3,4,5,6,7]]
+----
+
+In the final example, we use runtime metaprogramming to create `merge(Map rhs)` method in the `Map` interface pass:[<em class="conum" data-value="1"></em>].
+This way we can simply call `a.merge(b)` pass:[<em class="conum" data-value="2"></em>] to create a new map using deep merge operation.
+
+include::source/_parts/thank-you.adoc[]
+
+++++
+{% newsletter %}
+{% convertkit "73df1d6b65" %}
+{% endnewsletter %}
+++++
