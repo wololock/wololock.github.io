@@ -3,6 +3,34 @@
 
 
     <url>
+        <loc>https://e.printstacktrace.blog/t/quick-tip/</loc>
+        <lastmod>2020-07-17T18:11:17.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/merge/</loc>
+        <lastmod>2020-07-17T18:11:17.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/maps/</loc>
+        <lastmod>2020-07-17T18:11:17.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/groovy/</loc>
+        <lastmod>2020-07-17T18:11:17.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/t/habits/</loc>
         <lastmod>2020-07-09T06:08:50.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -277,13 +305,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/t/cicd/</loc>
-        <lastmod>2020-05-08T19:17:26.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/groovy/</loc>
         <lastmod>2020-05-08T19:17:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
