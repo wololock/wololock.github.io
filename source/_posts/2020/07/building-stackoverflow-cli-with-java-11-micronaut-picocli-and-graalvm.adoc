@@ -1,7 +1,7 @@
 ---
 title: 'Building stackoverflow-cli with Java 11, Micronaut, Picocli, and GraalVM'
 date: 2020-07-08 14:17:41
-updated: 2020-07-08 14:17:41
+updated: 2020-07-18 10:43:49
 tags:
 - java
 - micronaut
@@ -354,6 +354,9 @@ final public class SearchCommand implements Runnable {
     }
 }
 ----
+
+TIP: When using Micronaut's declarative HTTP client, it is worth adding `System.exit(0)` at the end of the command's `run()` method.
+This way we force to *shut down the application instantly*, without waiting 2 seconds until Netty gracefully shuts down all event loop groups.
 
 After implementing the command class, we need to register it as a subcommand in the main application class.
 We do it by adding `SearchCommand.class` to the `subcommands` array of the `@Command` annotation in the main class pass:[<em class="conum" data-value="1"></em>].
