@@ -1,0 +1,5 @@
+---
+title: Resources & Tools for software developers, bloggers, and content creators
+layout: resources
+excerpt: A list of useful tools and resources for software developers, bloggers, and content creators.
+---

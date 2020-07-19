@@ -1,0 +1,49 @@
+extends layout/base
+
+block site_title
+    = page.title
+
+block content
+    section.resources-page#page(role="main")
+        section.jumbotron.text-justify.pb-5
+            .mask
+            .container
+                h1.my-3.text-center=page.title
+
+        - var resources = site.data.resources || [];
+
+        each resource,idx in resources
+            section.py-5(class=idx % 2 == 1 ? "bg-light-blue" : "")
+                .container
+                    .row
+                        .col-12.text-center
+                            h2=resource.name
+                    .card-deck.py-5
+                        each item in resource.items
+                            .card.border-0
+                                .card-body.text-center
+                                    if item.image
+                                        img.mb-3(height=128 src=item.image alt=item.name)
+                                    //h3.card-title=item.name
+                                    p.card-text.pt-3!=item.description
+                                    a.card-link.gatr.btn.btn-secondary(href=item.url data-type="resources" data-name=item.name) Check #{item.name} &#8594;
+                                    if item.affiliate
+                                        p.py-2.color-blue
+                                            em.fas.fa-info-circle
+                                            |
+                                            |
+                                            ="This is an affiliate link. "
+                                            a(href="#affiliate")!="More &raquo;"
+
+
+        section.py-5.bg-light-orange
+            .container
+                .row
+                    .col-12.color-gray
+                        h4.h2#affiliate
+                            em.fas.fa-info-circle
+                            |
+                            |
+                            ="Affiliate disclaimer"
+
+                        p.color-gray Some of the links above are #[b affiliate links]. If you decide to click that link and subsequently make a purchase, I will get a small percentage from your purchase. Using the affiliate link #[b does not affect the final price of the product]. The commission I earn comes at no additional cost to you.
