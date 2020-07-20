@@ -193,6 +193,31 @@ assert e == [a: 2, b: 3, c: 4, z: [a: 10, b: 20, c: 30], y: [1,2,3,4,5,6,7]]
 In the final example, we use runtime metaprogramming to create `merge(Map rhs)` method in the `Map` interface pass:[<em class="conum" data-value="1"></em>].
 This way we can simply call `a.merge(b)` pass:[<em class="conum" data-value="2"></em>] to create a new map using deep merge operation.
 
+== Bonus: using `Map.withDefault` method
+:reddit-comment: https://www.reddit.com/r/groovy/comments/htx1d9/how_to_merge_two_maps_in_groovy/fyk4xdg/
+:method-pointer-operator: https://docs.groovy-lang.org/latest/html/documentation/core-operators.html#method-pointer-operator
+
+The last tip comes from the Reddit user {reddit-comment}[icon:reddit[role="color-reddit"] `/u/-jp-`] - thanks for the contribution!
+He posted a comment with an alternative solution that uses combination of `Map.withDefault` method with a {method-pointer-operator}[method pointer operator] that creates a closure from the `Map.get` method.
+It produces a slightly different solution than the one posted above.
+However, it's very clever and creative way to use Groovy, so I want to share it with you as well.
+Here's the original comment.
+
+[.source-quote]
+____
+Depending on what semantics you want you can also use `withDefault`. This will create a view of `map1` that gets missing references from `map2`:
+
+[source,groovy]
+----
+final map1 = [x: 1, y: 2]
+final map2 = [z: 3]
+final merged = map1.withDefault(map2.&get)
+println "$merged.x, $merged.y, $merged.z"
+----
+
+~Source:~ ~{reddit-comment}~
+____
+
 include::source/_parts/thank-you.adoc[]
 
 ++++
