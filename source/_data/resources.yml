@@ -21,10 +21,11 @@
       image: /images/resources/hexo.png
       description: "My blog is being developed using a static site generator - <b>Hexo</b>. It's fast, robust, and flexible. It's written in Node.js, so whenever I have to implement additional functionality myself, I need to play around with a JavaScript. :-)"
       url: https://hexo.io/
-    - name: GoDaddy
-      image: /images/resources/godaddy.png
-      description: "I buy all my domains on <b>GoDaddy.com</b>. It offers a wide variety of different extensions like, for instance, the one I use here - .blog. I also use an e-mail inbox with Office 365 integration for a quite affordable annual subscription."
-      url: https://godaddy.com/
+    - name: Domain.com
+      image: /images/resources/domain.png
+      description: "When you start your blog, you may want to give it a nice and unique domain name. The <b>domain.com</b> offers a wide variety of different extensions like .blog, .me, .tech, etc. Plus, you can use a coupon code <b class=\"mark\">DOMAIN10</b> to get a 10% discount for your first purchase."
+      url: https://www.tkqlhce.com/click-100154593-13601620
+      affiliate: true
     - name: Cloudflare
       image: /images/resources/cloudflare.png
       description: "I use Github Pages to host my blog, and it comes with some limitations. Luckily, I eliminated most of them by using <b>Cloudflare</b> free services like DNS, SSL certificate, HTTP/2, firewall, page rules, CDN, file cache, and many more."
@@ -53,6 +54,8 @@
   items:
     - name: Convertkit
       image: /images/resources/convertkit.png
+      size:
+        height: 128
       description: "One of the biggest mistakes every successful blogger makes is postponing building the e-mail list. If you want to be smarter and build your e-mail list earlier, try <b>Convertkit</b>. It's an e-mail marketing tool created specifically for content creators. You can use it for free (with some functionality limitations) up to the first 1,000 subscribers."
       url: https://app.convertkit.com/referrals/l/0de2af60-39b9-4c36-a925-687b4c4189e8
       affiliate: true
@@ -99,3 +102,22 @@
       image: /images/resources/premiere.png
       description: "I edit all of my videos in the <b>Adobe Premiere Pro CC</b>. The video editing software does not fall into the \"the simplest programs to learn\" category, but Premiere tries to make the learning process as smooth as possible. I spent more than 1,000 hours on editing various videos, and I can't imagine using different software to produce my YouTube content."
       url: https://www.adobe.com/pl/products/premiere.html
+
+- name: Other tools
+  description:
+  items:
+    - name: NordVPN
+      description: "If you value privacy and security, you may want to use a VPN that protects your personal IP address from being tracked. <b>NordVPN</b> does not only offers both but also guarantees that it does not collect any logs from your activity."
+      image: /images/resources/nordvpn.png
+      affiliate: true
+      url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=572706.11&type=3&subid=0
+    - name: vidIQ
+      description: "YouTube is the second largest search engine used by millions of users. <b>vidIQ</b> is a great tool you can use to learn and analyze SEO settings of your videos. You can use it for free, or you can unlock more options through one of the affordable subscription plans."
+      image: /images/resources/vidiq.png
+      affiliate: true
+      url: https://vidiq.com?afmc=4cf
+    - name: Udemy.com
+      description: "<b>Udemy</b> is one of the largest platforms with online courses. You can learn almost everything in many different languages. It's a popular platform to not only learn from but also to publish your own online courses. Check it out and browse the large catalog of existing courses to learn a new skill or master the existing one."
+      image: /images/resources/udemy.png
+      affiliate: true
+      url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.13533&type=3&subid=0

@@ -23,7 +23,7 @@ block content
                             .card.border-0
                                 .card-body.text-center
                                     if item.image
-                                        img.mb-3(height=128 src=item.image alt=item.name)
+                                        img.mb-3(src=item.image alt=item.name height=(item.size || {}).height)
                                     //h3.card-title=item.name
                                     p.card-text.pt-3!=item.description
                                     a.card-link.gatr.btn.btn-secondary(href=item.url data-type="resources" data-name=item.name) Check #{item.name} &#8594;
