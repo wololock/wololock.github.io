@@ -19,3 +19,20 @@ footer.post-footer
                                     li
                                         a.gatr(href=value.link, onclick="window.open(this.href);return false;" data-type="post-footer" data-name=key)
                                             span.fa(class=value.icon)
+
+        .row.mt-lg-2.mt-3.h6.pager
+            .col-lg-6.col-12.text-lg-left.text-center.py-3
+                if page.next
+                    a.gatr(href=url_for(page.next.path) data-type="prev-post" data-name=page.next.title title=page.next.title)
+                        | &laquo; Previous:
+                        |
+                        b #{page.next.title}
+
+            .col-lg-6.col-12.text-lg-right.text-center.py-3
+                if page.prev
+                    a.gatr(href=url_for(page.prev.path) data-type="next-post" data-name=page.prev.title title=page.prev.title)
+                        | Next:
+                        |
+                        b #{page.prev.title}
+                        |
+                        | &raquo;
