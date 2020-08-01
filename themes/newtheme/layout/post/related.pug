@@ -1,6 +1,12 @@
-- var related = popular_posts_json({ maxCount: 3, isImage: true, isExcerpt: true }, page)
-- var category = page.categories.first()
-- var posts = site.posts.filter(post => related.json.some(it => it.title === post.title)).toArray()
+-
+    var related = page.related ?
+            page.related :
+            popular_posts_json({ maxCount: 3, isImage: true, isExcerpt: true }, page).json.map(it => it.path.slice(1,-1))
+    var category = page.categories.first()
+    var posts = site.posts
+            .find({slug: {$in: related}})
+            .toArray()
+            .sort((a,b) => related.indexOf(a.slug) - related.indexOf(b.slug))
 
 section.related-posts
     .container
