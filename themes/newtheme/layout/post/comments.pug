@@ -5,10 +5,15 @@ if theme.comment.enable && !page.comment_disable
                 if page.highlightjs
                     .alert.alert-info.small
                         | #[em.fa.fa-info-circle] Want to paste code in the comment and make the formatting look good? Read this - #[a(href="https://help.disqus.com/en/articles/1717236-syntax-highlighting") #[b Syntax highlighting]].
-
                 .comments
                     #disqus_thread
                         #disqus_empty(style="display:none") Empty
+
+                .text-center.pt-4
+                    a.gatr(href="https://www.jdoqocy.com/click-100191173-10952823" data-type="grammarly-comments" data-name="Grammar Check")
+                        img.d-none.d-lg-inline(src="/images/yml/grammarly-comments-banner.png" width="728" height="90" alt="Grammar Check " border="0")
+                        img.d-inline.d-lg-none(src="/images/yml/grammarly-square.png" alt="Grammar Check " border="0")
+
 
             script.
                 function load_disqus(disqus_shortname) {
