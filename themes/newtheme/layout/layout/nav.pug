@@ -3,7 +3,7 @@ header#header.fixed-top(class=header_class)
         nav.navbar.navbar-expand-lg
             h3.logo.mr-auto.position-relative
                 | e.printstacktrace.blog
-                a.stretched-link(href=url_for("/"))
+                a.stretched-link.gatr(href=url_for("/") data-type="logo" data-name="e.printstacktrace.blog")
 
             button.navbar-toggler(data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation")
                 span.navbar-toggler-icon
