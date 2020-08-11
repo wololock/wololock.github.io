@@ -440,8 +440,6 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
-    
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
@@ -451,6 +449,8 @@
       <category term="jenkins-pipeline" scheme="https://e.printstacktrace.blog/t/jenkins-pipeline/"/>
     
       <category term="cicd" scheme="https://e.printstacktrace.blog/t/cicd/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
   </entry>
   
@@ -543,8 +543,6 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
-    
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
@@ -554,6 +552,8 @@
       <category term="jenkins-pipeline" scheme="https://e.printstacktrace.blog/t/jenkins-pipeline/"/>
     
       <category term="cicd" scheme="https://e.printstacktrace.blog/t/cicd/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
       <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
     
@@ -582,8 +582,6 @@
     
       <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
     
-      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
-    
       <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
       <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
@@ -593,6 +591,8 @@
       <category term="jenkins-pipeline" scheme="https://e.printstacktrace.blog/t/jenkins-pipeline/"/>
     
       <category term="cicd" scheme="https://e.printstacktrace.blog/t/cicd/"/>
+    
+      <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
       <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
     
