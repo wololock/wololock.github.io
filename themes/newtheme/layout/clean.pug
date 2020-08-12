@@ -1,0 +1,15 @@
+extends layout/base
+
+block variables
+    - var header_class = "bg-white navbar-light shadow-sm scrolled"
+
+block site_title
+    = page.title
+
+block content
+    section.page-text#clean-page(role="main")
+        .container.py-5
+            article.post-content.py-5
+                h1=page.title
+
+                != page.content
