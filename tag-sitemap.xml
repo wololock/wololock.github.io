@@ -199,6 +199,13 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/t/curl/</loc>
+        <lastmod>2020-06-22T18:20:41.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/t/jenkins-pipeline/</loc>
         <lastmod>2020-06-22T18:20:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -207,13 +214,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/t/jenkins/</loc>
-        <lastmod>2020-06-22T18:20:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/curl/</loc>
         <lastmod>2020-06-22T18:20:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -311,13 +311,6 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/youtube/</loc>
-        <lastmod>2020-04-09T11:02:16.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://e.printstacktrace.blog/t/report/</loc>
         <lastmod>2020-04-09T11:02:16.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -326,6 +319,13 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/t/blog/</loc>
+        <lastmod>2020-04-09T11:02:16.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/youtube/</loc>
         <lastmod>2020-04-09T11:02:16.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
