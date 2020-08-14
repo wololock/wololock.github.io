@@ -97,3 +97,13 @@ js5H9UbmmMY:
   title: "OAuth 2.0 in a Java command-line app | #micronaut #picocli #oauth2"
   description: "Implementing OAuth 2.0 authentication flow for web applications is simple. Doing so for a command-line app - not so much. In this video, I will guide you step-by-step through the process of implementing the OAuth2.0 flow in a Java-based CLI app we created in the previous video. I use Stack Overflow REST API to authenticate and then authorize all outgoing HTTP requests. After watching this video, you will understand what kind of challenges building OAuth 2.0 flow in the CLI world has, as well as you will learn how to overcome those obstacles and add OAuth 2.0 to any CLI application or tool you currently develop. Enjoy!"
   time: "33:16"
+
+uIKvYgix-L4:
+  title: "How to merge two JSON files in the command-line using jq? | #jq #json #curl"
+  description: "In this jq tutorial video, I show you how you can merge two JSON files in the command-line using jq JSON processor. I explain how to merge those files using a simple \"add\" filter, then I explain how to merge nested objects, as well as how to merge arrays of different objects."
+  time: "9:00"
+
+fAa5uyB3jOs:
+  title: "Q&A #0: Hello, World! | #QnA"
+  description: "In this video, I would like to announce a new Q&A video series where you can ask any question, share ideas, suggest improvements, or just share your thoughts with the community. If you want your question to be answered in the first Q&A episode, write your comment down below."
+  time: "1:42"
