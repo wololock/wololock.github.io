@@ -191,12 +191,6 @@ to your favorite web browser.
 
 We may use third-party Service Providers to show advertisements to you to help support and maintain our Service.
 
-=== Google AdSense & DoubleClick Cookie
-
-Google, as a third party vendor, uses cookies to serve ads on our Service. Google’s use of the DoubleClick cookie enables it and its partners to serve ads to our users based on their visit to our Service or other websites on the Internet.
-
-You may opt out of the use of the DoubleClick Cookie for interest-based advertising by visiting the Google http://www.google.com/ads/preferences/[**Ads Settings**] web page.
-
 == Affiliate Disclosure
 
 This site uses affiliate links and does earn a commission from certain links. This does not affect your purchases or the price you may pay.
