@@ -10,9 +10,9 @@ youtube:
 posts:
   - jenkins-pipeline-environment-variables-the-definitive-guide
   - groovy-regular-expressions-the-definitive-guide
+  - divide-a-list-to-lists-of-n-size-in-Java-8
+  - how-to-catch-curl-response-in-jenkins-pipeline
   - jenkins-scripted-pipeline-vs-declarative-pipeline-the-4-practical-differences
-  - how-to-time-out-jenkins-pipeline-stage-and-keep-the-pipeline-running
-  - atomic-habits-book-review
 
 ads:
   comments:
