@@ -1,0 +1,36 @@
+---
+title: 5 Common Jenkins Pipeline Mistakes
+date: 2020-08-24 12:53:13
+updated: 2020-08-24 12:53:13
+categories:
+- Jenkins Pipeline Cookbook
+tags:
+- jenkins
+- jenkins-pipeline
+- cicd
+- devops
+cover: /images/bg/jenkins-pipeline-mistakes.jpg
+card: /images/cards/jenkins-pipeline-mistakes.jpg
+og_image: /images/og/jenkins-pipeline-mistakes.jpg
+---
+
+Do you know that you can unit test your Jenkins pipeline code?
+Have you ever used linter to validate the syntax of the Jenkinsfile?
+Do you use `input` step with a long timeout that blocks the executor and you don't know how to improve?
+I answer those three questions (and two more) in the following YouTube video.
+
+++++
+<!-- more -->
+++++
+
+pass:[{% youtube_card aFRjn_4nb-Q %}]
+
+include::source/_parts/thank-you.adoc[]
+
+++++
+<div class="imageblock img-fluid">
+<a href="https://kit.co/wololock/jenkins-pipeline-learning-kit" class="gatr" data-type="banner" data-name="Jenkins Pipeline Learning Kit 02">
+<img src="/images/yml/jenkins-pipeline-learning-kit-02.jpg" class="img-fluid" alt="Jenkins Pipeline Learning Kit" />
+</a>
+</div>
+++++
