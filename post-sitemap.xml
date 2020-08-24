@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/5-common-jenkins-pipeline-mistakes/</loc>
+        <lastmod>2020-08-24T10:53:13.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/building-stackoverflow-cli-with-java-11-micronaut-picocli-and-graalvm/</loc>
         <lastmod>2020-07-18T08:43:49.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -32,7 +40,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/pragmatic-thinking-and-learning-book-review/</loc>
+        <loc>https://e.printstacktrace.blog/release-it-2nd-edition-book-review/</loc>
         <lastmod>2020-07-09T06:08:50.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -40,7 +48,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/release-it-2nd-edition-book-review/</loc>
+        <loc>https://e.printstacktrace.blog/pragmatic-thinking-and-learning-book-review/</loc>
         <lastmod>2020-07-09T06:08:50.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -80,7 +88,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/jenkins-pipeline-environment-variables-the-definitive-guide/</loc>
+        <loc>https://e.printstacktrace.blog/jenkins-scripted-pipeline-vs-declarative-pipeline-the-4-practical-differences/</loc>
         <lastmod>2020-05-08T19:17:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -88,7 +96,7 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/jenkins-scripted-pipeline-vs-declarative-pipeline-the-4-practical-differences/</loc>
+        <loc>https://e.printstacktrace.blog/jenkins-pipeline-environment-variables-the-definitive-guide/</loc>
         <lastmod>2020-05-08T19:17:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
