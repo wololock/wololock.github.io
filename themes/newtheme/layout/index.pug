@@ -15,7 +15,7 @@ block content
                     a.stretched-link(href=url_for("/about"))
 
                 - var latest = site.posts.sort("date").reverse().limit(9).toArray();
-                - var posts = _.chunk(latest, 3)
+                - var posts = chunk(latest, 3)
                 - var carouselId = "recentArticles"
 
             .carousel.slide.pt-4(id=carouselId data-ride="carousel" data-interval="8000")
