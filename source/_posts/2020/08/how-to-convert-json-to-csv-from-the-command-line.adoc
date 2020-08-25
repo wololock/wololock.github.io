@@ -1,0 +1,76 @@
+---
+title: How to convert JSON to CSV from the command-line?
+date: 2020-08-25 20:44:31
+updated: 2020-08-25 20:44:31
+categories:
+- jq cookbook
+tags:
+- jq
+- json
+- csv
+- curl
+- command-line
+- how-to
+highlightjs: true
+cover: /images/jq-bg.jpg
+og_image: /images/og/curl-jq.jpg
+card: /images/cards/jq.jpg
+---
+:toc: macro
+
+Are you looking for an easy and fast way to convert a JSON file to a CSV one?
+In this blog post, I will show you how you can use `jq` command-line tool to do exactly that.
+
+++++
+<!-- more -->
+++++
+
+toc::[]
+
+== Install `jq`
+
+First, you need to install `jq` in your operating system - https://stedolan.github.io/jq/download/
+
+== Prepare the JSON file
+
+To convert JSON file to the CSV format we will need a JSON file that is represented by an array of objects.
+In this tutorial, I use Github's Jobs API that returns JSON in that desired format.
+Below you can find a `curl` command that searches for open kotlin job positions and stores the result in the `jobs.json` file.
+
+[source,bash]
+----
+$ curl -s "https://jobs.github.com/positions.json?description=kotlin" > jobs.json
+----
+
+== Convert a JSON file to the CSV one
+
+And here is how we can convert input JSON file to the CSV format.
+
+[source,bash]
+----
+$ jq -r 'map({id,title,url,company,location}) | (first | keys_unsorted) as $keys | map([to_entries[] | .value]) as $rows | $keys,$rows[] | @csv' jobs.json > jobs.csv
+
+$ cat jobs.csv
+"id","title","url","company","location"
+"2ededc50-3c18-4d2c-ba54-95151ca4209a","Android Engineer","https://jobs.github.com/positions/2ededc50-3c18-4d2c-ba54-95151ca4209a","Trade Republic Bank GmbH","Berlin"
+"2cc06700-d9ac-45ad-9bd7-a7e5d3c29b6f","Software Engineer - Android","https://jobs.github.com/positions/2cc06700-d9ac-45ad-9bd7-a7e5d3c29b6f","AiCure","Remote"
+"242132e0-f129-4a1b-8bfa-30f2fed13123","Senior Backend Developer (Data Science)","https://jobs.github.com/positions/242132e0-f129-4a1b-8bfa-30f2fed13123","komoot","Remote Europe"
+"fd8c3b7c-ccfe-4cc1-882c-ef9c0522903e","Software Engineer","https://jobs.github.com/positions/fd8c3b7c-ccfe-4cc1-882c-ef9c0522903e","HBM nCode Federal LLC","Starkville, MS"
+"7d84945b-893d-493e-957a-4ed9e6f84607","Software Engineer","https://jobs.github.com/positions/7d84945b-893d-493e-957a-4ed9e6f84607","HBM nCode Federal LLC","Southfield, MI"
+"2231d64f-e79b-4036-8601-24b2717b2896","Senior Fullstack / Flutter Developer (m/f/d)","https://jobs.github.com/positions/2231d64f-e79b-4036-8601-24b2717b2896","Superlist","Remote"
+"caa90907-8252-4732-a815-06d96f1348bb","Senior Software Engineer - Mobile (m/f/d)","https://jobs.github.com/positions/caa90907-8252-4732-a815-06d96f1348bb","BASF Digital Farming GmbH","Köln"
+----
+
+Let's deconstruct it piece by piece.
+
+* We run `jq -r` to output raw strings (without double quotes.)
+* In the filter part, we pipe multiple filters together, starting with `map({id,title,url,company,location})`. This filter instructs `jq` which keys we want to extract from the input JSON file.
+* Then we use `(first | keys_unsorted) as $keys` filter which takes the first object, extracts its keys and stores them under the `$keys` variable as an array.
+* Next, we use `map([to_entries[] | .value]) as $rows` filter which converts every key-value entry like `"foo": "bar"` into an object like `{"key":"foo","value":"bar"}` so we can extract only values as an array and store it in a `$rows` variable.
+* Once we do it, we can use `$keys,$rows[]` filter to put keys and rows together and then pipe it with the `@csv` filter to convert JSON objects to CSV rows.
+
+
+pass:[{% youtube_card uIKvYgix-L4 %}]
+
+
+include::source/_parts/thank-you.adoc[]
