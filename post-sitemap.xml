@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/jenkins-pipeline-environment-variables-the-definitive-guide/</loc>
+        <lastmod>2020-08-29T12:45:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/how-to-convert-json-to-csv-from-the-command-line/</loc>
         <lastmod>2020-08-25T18:44:31.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -40,6 +48,14 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/deep-work-book-review/</loc>
+        <lastmod>2020-07-09T06:08:50.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/pragmatic-thinking-and-learning-book-review/</loc>
         <lastmod>2020-07-09T06:08:50.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -49,14 +65,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/release-it-2nd-edition-book-review/</loc>
-        <lastmod>2020-07-09T06:08:50.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/deep-work-book-review/</loc>
         <lastmod>2020-07-09T06:08:50.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -89,14 +97,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/groovy-regular-expressions-the-definitive-guide/</loc>
-        <lastmod>2020-05-08T19:17:26.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/jenkins-pipeline-environment-variables-the-definitive-guide/</loc>
         <lastmod>2020-05-08T19:17:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
