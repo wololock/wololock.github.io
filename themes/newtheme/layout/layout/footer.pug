@@ -25,7 +25,7 @@ footer.page-footer
                             a.gatr(href=url_for("/support-me") data-type="footer-useful-links" data-name="Support me") Support the blog #[em.fas.fa-heart.color-red.ml-2]
 
 
-                - var categories = site.categories.sort("length").reverse().limit(7).toArray()
+                - var categories = site.categories.sort("length").reverse().limit(9).toArray()
 
                 .col-12.col-md-3
                     h5.text-md-left.text-center Popular categories
@@ -36,7 +36,7 @@ footer.page-footer
                                     != category.name
                                     span.count.ml-2=category.posts.length
 
-                - var posts = site.posts.sort("date").reverse().limit(6).toArray()
+                - var posts = site.posts.sort("date").reverse().limit(7).toArray()
 
                 .col-12.col-md-4.text-center
                     h5.text-md-left.text-center Latest posts
