@@ -6,12 +6,6 @@ recommended:
   - graalvm-heap-size-of-native-image-how-to-set-it
 
 youtube:
-  - title: "Multiple Java versions in a single Jenkins Pipeline using Docker and SDKMAN! | #jenkinspipeline"
-    id: j1lH3vOhucw
-    time: "19:42"
-  - title: "How to install multiple Java versions? Use SDKMAN! (Mac OS, Linux, or Cygwin)"
-    id: 5cc8IZRvRcI
-    time: "6:36"
-  - title: "OAuth 2.0 in a Java command-line app | #micronaut #picocli #oauth2"
-    id: js5H9UbmmMY
-    time: "33:16"
+  - j1lH3vOhucw
+  - 5cc8IZRvRcI
+  - js5H9UbmmMY

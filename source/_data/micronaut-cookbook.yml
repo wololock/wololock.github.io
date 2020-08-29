@@ -12,12 +12,6 @@ ads:
     url: https://kit.co/wololock/groovy-programmer-learning-kit
 
 youtube:
-  - title: "OAuth 2.0 in a Java command-line app | #micronaut #picocli #oauth2"
-    id: js5H9UbmmMY
-    time: "33:16"
-  - title: "Building command-line app with Java 11, Micronaut, Picocli, and GraalVM | #micronaut"
-    id: Xdcg4Drg1hc
-    time: "36:35"
-  - title: "Groovy Tutorial | Closures - how to use them? | #groovylang"
-    id: fdpKCuJKbMg
-    time: "26:07"
+  - js5H9UbmmMY
+  - Xdcg4Drg1hc
+  - fdpKCuJKbMg

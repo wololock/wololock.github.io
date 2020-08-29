@@ -1,12 +1,6 @@
 cover: /images/jq-bg.jpg
 
 youtube:
-  - title: "Parsing JSON from curl with jq: sort_by, group_by, limit (part 1) | #jq #json #curl"
-    id: EIhLl9ebeiA
-    time: "9:44"
-  - title: "How to process JSON using curl and jq? | #jq #curl #json"
-    id: FSn_38gDvzM
-    time: "6:32"
-  - title: "How to get O'Reilly Learning Platform with a significant discount? Join ACM.org!"
-    id: OQr2Rv5C-P0
-    time: "5:59"
+  - uIKvYgix-L4
+  - EIhLl9ebeiA
+  - FSn_38gDvzM

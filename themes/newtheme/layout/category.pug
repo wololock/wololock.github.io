@@ -36,8 +36,9 @@ block content
                         |
                         | videos
                     .card-deck
-                        each video in data.youtube
-                            +youtube_card(video.id, video)
+                        each id in data.youtube
+                            - var video = site.data.youtube[id] || {}
+                            +youtube_card(id, video, {title: true})
 
 
         section.pt-5.serif#list

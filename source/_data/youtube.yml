@@ -1,3 +1,8 @@
+5cc8IZRvRcI:
+  title: "How to install multiple Java versions? Use SDKMAN! (Mac OS, Linux, or Cygwin)"
+  description: "In this video, I show you what is the best way to install multiple Java versions on Mac OSX, Linux, Cygwin, Solaris, or FreeBSD, by using SDKMAN command-line tool. SDKMAN can be also used to manage multiple versions of other programming languages (e.g. Groovy, Scala, Kotlin, Ceylon, Clojure), frameworks (e.g. Grails, Micronaut, Spring Boot, Vert.x, Ratpack) or build tools (e.g. Gradle, Maven, Ant, sbt, Leiningen.) If you use any UNIX-like platform, SDKMAN is your way to go."
+  time: "6:37"
+
 BjO_vBzaB4c:
   title: "Groovy + GraalVM native-image = instant startup time!"
   description: "This is a short version of my \"Groovy and GraalVM\" talk presented at GR8Conf EU 2019 in Copenhagen, Denmark. I use slides prepared in AsciiDoc and compiled to reveal.js with AsciiDoctorJ Gradle plugin. I hope you enjoy it!"
@@ -68,6 +73,11 @@ yN6EbeevV2w:
   description: "@NullCheck is class, method, or constructor annotation which indicates that each parameter should be checked to ensure it isn't null. If placed at the class level, all explicit methods and constructors will be checked. This feature was added in Groovy 3.0"
   time: "4:20"
 
+FSn_38gDvzM:
+  title: "How to process JSON using curl and jq? | #jq #curl #json"
+  description: "How many times you used curl and grep to extract some data from the JSON response in bash shell? Luckily, you don't have to do it anymore. Let me show you jq, a lightweight and flexible command-line JSON processor. You can use it to slice, filter, map, and process JSON documents from the curl command using simple expressions. Operations like extracting the first (or last) element from the nested array, or transforming one JSON document to another was never that easy!"
+  time: "6:34"
+
 EIhLl9ebeiA:
   title: "Parsing JSON from curl with jq: sort_by, group_by, limit (part 1) | #jq #json #curl"
   description: "In this video, I show you how to use the jq command-line to parse and transform a JSON response to the desired format. I use openlibrary.org Search API to get a complex JSON document (~3600 lines) using curl command for further parsing using jq. In the first step, we extract three fields for each document (title, author, publishing year) and then we continue transforming the JSON - we sort it, we limit the number of elements, and last but not least, we group elements by the author name."
@@ -82,6 +92,11 @@ fdpKCuJKbMg:
   title: "Groovy Tutorial | Closures - how to use them? | #groovylang"
   description: "In this Groovy tutorial, I explore the most popular use cases of using closures in Groovy. The data for those experiments is taken from the Twitter survey I run a couple of months ago - https://twitter.com/wololock/status/1146127106025373696. I asked Groovy users what are their favorite examples of using closures in particular, and many people provided interesting examples we are going to explore today."
   time: "26:07"
+
+i9pNYW1Pg9A:
+  title: "Groovy Tutorial | Groovy DSL Quickstart | #groovylang"
+  description: "In this Groovy DSL quickstart tutorial, I show you how you can start writing fluent DSL (domain-specific language) using Apache Groovy programming language. You will see an example - Jenkins pipeline, and we are going to implement underlying DSL implementation to execute the code that does not work out-of-the-box. We will use only plain Groovy, no additional libraries or build tools needed."
+  time: "23:01"
 
 Ei_Nk14vruE:
   title: "Jenkins Declarative Pipeline vs Scripted Pipeline - 4 key differences | #jenkinspipeline"

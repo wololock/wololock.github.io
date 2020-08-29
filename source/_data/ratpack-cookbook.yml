@@ -6,12 +6,6 @@ recommended:
   - ratpack-register-session-module-in-handler-unit-test
 
 youtube:
-  - title: "Building an HTTP application in a single .groovy file with Ratpack!"
-    id: KkL2ZMmNY3I
-    time: "5:01"
-  - title: "How to install multiple Java versions? Use SDKMAN! (Mac OS, Linux, or Cygwin)"
-    id: 5cc8IZRvRcI
-    time: "6:36"
-  - title: "Groovy Tutorial | Groovy DSL Quickstart | #groovylang"
-    id: i9pNYW1Pg9A
-    time: "23:01"
+  - KkL2ZMmNY3I
+  - 5cc8IZRvRcI
+  - i9pNYW1Pg9A

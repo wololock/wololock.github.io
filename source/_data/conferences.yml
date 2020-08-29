@@ -1,15 +1,9 @@
 cover: /images/bg/conferences.jpg
 
 youtube:
-  - title: "GR8Conf EU 2019 vlog"
-    id: ZbTXrCrjNRw
-    time: "3:19"
-  - title: "Let's meet at GR8Conf EU 2019 in Copenhagen!"
-    id: eFX02DssGLc
-    time: "3:27"
-  - title: "GreachConf 2020 - a quick look at the agenda! (Madrid, March 26th-28th 2020)"
-    id: tvIHmwxdgec
-    time: "5:28"
+  - ZbTXrCrjNRw
+  - eFX02DssGLc
+  - tvIHmwxdgec
 
 ads:
   column:

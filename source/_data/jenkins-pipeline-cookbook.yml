@@ -16,12 +16,6 @@ ads:
     image: /images/yml/udemy-top-online-courses-square.png
 
 youtube:
-  - title: "Multiple Java versions in a single Jenkins Pipeline using Docker and SDKMAN! | #jenkinspipeline"
-    id: j1lH3vOhucw
-    time: "19:42"
-  - title: "Jenkins Pipeline Environment Variables explained | #jenkinspipeline"
-    id: KwQDxwZRZiE
-    time: "16:43"
-  - title: "Jenkins Declarative Pipeline vs Scripted Pipeline - 4 key differences | #jenkinspipeline"
-    id: Ei_Nk14vruE
-    time: "13:45"
+  - aFRjn_4nb-Q
+  - KwQDxwZRZiE
+  - Ei_Nk14vruE
