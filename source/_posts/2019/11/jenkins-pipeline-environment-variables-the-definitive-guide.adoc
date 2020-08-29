@@ -173,7 +173,7 @@ image::/images/jenkins-set-env-var.png[alt="Setting Jenkins pipeline environment
 
 == Overriding environment variables
 
-Jenkins Pipeline supports overriding environment variables.
+http://e.printstacktrace.blog/jenkins-pipeline-cookbook/[Jenkins Pipeline] supports overriding environment variables.
 There are a few rules you need to be aware of.
 
 * The `withEnv(["env=value]) { }` block can override any environment variable.
@@ -241,7 +241,7 @@ pipeline {
 image::/images/jenkins-override-env-var.png[alt="Overriding Jenkins pipeline environment variable"]
 --
 
-pass:[{% youtube_card KwQDxwZRZiE %}]
+pass:[{% youtube_card aFRjn_4nb-Q %}]
 
 == Storing `Boolean` values in environment variables
 
@@ -318,7 +318,7 @@ pipeline {
 image::/images/jenkins-sh-in-env-var.png[alt="Capturing sh step in Jenkins pipeline environment variable"]
 --
 
-Wrapping `sh` step with the Groovy string is only needed when you capture command's output in the `environment` block of the declarative pipeline.
+Wrapping `sh` step with the +++{% post_link groovy-string-methods-that-will-make-your-life-groovier "Groovy string" %}+++ is only needed when you capture command's output in the `environment` block of the declarative pipeline.
 If you don't do it that way, the pipeline syntax validation fails instantly, saying that it expects string value on the right side of the assignment.
 When you capture the output inside the `script` block, however, you don't have to call `sh` from the inside of the Groovy string.
 The following code will work just fine in this case.
