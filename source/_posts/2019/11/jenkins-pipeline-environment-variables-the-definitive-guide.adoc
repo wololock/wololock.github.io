@@ -1,7 +1,7 @@
 ---
 title: Jenkins Pipeline Environment Variables - The Definitive Guide
 date: 2019-11-02 18:27:57
-updated: 2020-05-08 21:17:26
+updated: 2020-08-29 14:45:11
 description: In this blog post, I will show you how you can work with Jenkins pipeline environment variables effectively. You will learn how to set env variable, how to use it in different context, as well as how to override the environment variable.
 categories:
     - Jenkins Pipeline Cookbook
@@ -32,11 +32,23 @@ Welcome to the first blog post of the *"Jenkins Pipeline Cookbook"* series.
 Today we are focus on working with Jenkins Pipeline environment variables effectively.
 You will learn how to define env variables, how to updated them, and how to use them in boolean expressions correctly.
 
+In this blog post, I will explain all information you need to know to work effectively with Jenkins Environment Variables.
+
 ++++
 <!-- more -->
 ++++
 
 toc::[]
+
+[NOTE]
+====
+.pass:q[<h2 class="mt-3">What is Jenkins Environment Variable?</h2>]
+
+*Jenkins Environment Variable* is a global variable exposed through the `env` variable and used anywhere in the `Jenkinsfile`.
+Any value stored in the `env` variable gets stored as a `String` type.
+Environment Variables can be set either at the pipeline top level, at the specific stage level, or inside the `script` block.
+====
+
 
 == List environment variables
 
