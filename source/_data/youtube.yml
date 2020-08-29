@@ -112,3 +112,8 @@ aFRjn_4nb-Q:
   title: "5 Common Jenkins Pipeline Mistakes"
   description: "In this Jenkins Pipeline tutorial video, I reveal five common Jenkins Pipeline mistakes and I explain how those mistakes can be avoided. If you're new to the Jenkins declarative pipeline and you want to take your knowledge to the next level, this video will show you some best practices and resources for further learning."
   time: "17:46"
+
+RPdugI8eZgo:
+  title: "Using GraalVM native-image with a Groovy script - from 2.1s to 0.013s startup time 🚀"
+  description: "GraalVM native-image compiler uses ahead-of-time compilation to produce a highly optimized standalone executable file that can start 10x faster than the same program on a regular JVM. In this video, I will show you how to take a Groovy script and compile it to a native image without much hustle."
+  time: "15:51"
