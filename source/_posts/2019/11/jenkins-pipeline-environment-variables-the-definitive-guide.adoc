@@ -28,11 +28,10 @@ newsletter: seven-groovy-one-liners
 :jenkins-2-book-url: https://amzn.to/3b3diVl
 :jenkins-pipeline-learning-kit: https://kit.co/wololock/jenkins-pipeline-learning-kit
 
-Welcome to the first blog post of the *"Jenkins Pipeline Cookbook"* series.
-Today we are focus on working with Jenkins Pipeline environment variables effectively.
-You will learn how to define env variables, how to updated them, and how to use them in boolean expressions correctly.
+Have you run into troubles when you started using Jenkins Environment Variables in your `Jenkinsfile`?
+In this blog post, I show you how to use environment variables, how to override them, how to work with `boolean` values, and how to store a result of `sh` step in the env variable.
+After reading this article, Jenkins env variables won't surprise you anymore!
 
-In this blog post, I will explain all information you need to know to work effectively with Jenkins Environment Variables.
 
 ++++
 <!-- more -->
