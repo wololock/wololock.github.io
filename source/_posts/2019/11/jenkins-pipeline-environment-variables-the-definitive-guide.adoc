@@ -11,7 +11,7 @@ tags:
     - cicd
     - continuous-integration
     - groovy
-cover: /images/bg/jenkins-env-vars.jpg
+cover: /images/bg/jenkins-env-vars2.jpg
 og_image: /images/og/jenkins-pipeline-env-variables.jpg
 card: /images/cards/jenkins-env-vars.jpg
 highlightjs: true
