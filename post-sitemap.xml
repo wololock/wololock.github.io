@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/atomic-habits-book-review/</loc>
+        <lastmod>2020-09-09T16:26:20.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/jenkins-pipeline-environment-variables-the-definitive-guide/</loc>
         <lastmod>2020-08-29T12:45:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -65,14 +73,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/release-it-2nd-edition-book-review/</loc>
-        <lastmod>2020-07-09T06:08:50.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/atomic-habits-book-review/</loc>
         <lastmod>2020-07-09T06:08:50.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
