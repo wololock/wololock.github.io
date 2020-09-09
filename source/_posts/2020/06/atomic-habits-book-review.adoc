@@ -1,7 +1,7 @@
 ---
 title: Atomic Habits - book review
 date: 2020-06-02 11:22:10
-updated: 2020-07-09 08:08:50
+updated: 2020-09-09 18:26:20
 tags:
 - atomic-habits
 - book
@@ -95,6 +95,13 @@ I have seen the dots, but I didn’t yet know how to connect them.
 <!-- more -->
 ++++
 
+[NOTE]
+====
+.pass:q[<h2 class="mt-3">What is an atomic habit?</h2>]
+
+"An *atomic habit* is a regular practice or routine that is not only small and easy to do, but also the source of incredible power; a component of the system of compound growth." - James Clear
+====
+
 == The hidden enemy
 
 I guess you heard it many times before.
@@ -108,7 +115,7 @@ The Resistance loses, but it will try the next day.
 And the next.
 Again, and again.
 
-However, not all knowledge workers can apply the same pattern to their work - obviously, as a software developer, I can’t just write down any code that comes to my mind and expect my career to flourish.
+However, not all knowledge workers can apply the same pattern to their work - obviously, as a https://e.printstacktrace.blog/programmers-bookshelf/[software developer], I can’t just write down any code that comes to my mind and expect my career to flourish.
 So even though Pressfield aptly defines the enemy, he does not provide the ultimate solution to my biggest problem.
 But it seems that I have finally found someone else who does.
 
