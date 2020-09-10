@@ -33,7 +33,7 @@ if theme.google_analytics
         ga('create', '#{theme.google_analytics}', 'auto');
         ga('send', 'pageview');
 
-        jQuery("a.gatr").click(function() {
+        jQuery(document).on("click", "a.gatr", function() {
             var a = jQuery(this);
             var category = a.attr("data-type");
             var name = a.attr("data-name");
