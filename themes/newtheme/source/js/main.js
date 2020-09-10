@@ -61,4 +61,42 @@
         $(this).css("font-weight", (size * 12));
     })
 
+    if (typeof udemy !== 'undefined') {
+        var offset = 600;
+        var top = document.getElementsByTagName("article").item(0).getBoundingClientRect().height - offset - 1000;
+
+        var container = jQuery("article.post-content > .container");
+        var offsetTop = 150;
+        var offsetLeft = container.offset().left + container.width();
+
+        window.addEventListener("scroll", function (e){
+            var currentScroll = document.scrollingElement.scrollTop;
+
+            if (currentScroll > offset && document.getElementById(udemy.id) === null) {
+                var a = document.createElement("a");
+                a.href = udemy.url;
+                a.target = "_blank";
+                a.setAttribute("class", "gatr");
+                a.setAttribute("data-name", "Learn Anything Floating");
+                a.setAttribute("data-type", "banner");
+
+                var img = document.createElement("img");
+                img.id = udemy.id;
+                img.src = udemy.src;
+                img.setAttribute("class", "floating-udemy");
+                img.setAttribute("style", "display: none; top: " + offsetTop + "px; left: " + offsetLeft + "px;");
+
+                a.append(img);
+
+                jQuery("article.post-content > .container").first().append(a);
+
+            } else if (currentScroll < offset && document.getElementById(udemy.id) !== null) {
+                jQuery("#"+udemy.id).fadeOut();
+            } else if (currentScroll > offset && currentScroll < top && jQuery("#"+udemy.id).css("display") === "none") {
+                jQuery("#"+udemy.id).fadeIn();
+            } else if (currentScroll >= top  && jQuery("#"+udemy.id).css("display") !== "none") {
+                jQuery("#"+udemy.id).fadeOut();
+            }
+        });
+    }
 })(jQuery);

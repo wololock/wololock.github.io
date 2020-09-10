@@ -108,7 +108,7 @@ all_minifier: true
 
 # Update versions after updating resources to prevent reading from cache
 version:
-  css: 61
+  css: 62
   js: 6
 
 archive_generator:
@@ -132,11 +132,6 @@ category:
     'Tales from debugger': /img/post-debugger.jpg
     'Jenkins Pipeline Cookbook': /images/jenkins-bg2.jpg
     'jq cookbook': /images/jq-bg.jpg
-
-video:
-  id: j1lH3vOhucw
-  size: mqdefault
-  title: "Multiple Java versions in a single Jenkins Pipeline using SDKMAN | #jenkinspipeline"
 
 stackoverflow:
   profile: https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile
