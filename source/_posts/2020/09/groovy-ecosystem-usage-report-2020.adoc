@@ -1,0 +1,165 @@
+---
+title: Groovy Ecosystem Usage Report (2020)
+date: 2020-09-13 07:40:19
+updated: 2020-09-13 07:40:19
+tags:
+- groovy
+- gradle
+- spock-framework
+- grails
+- ratpack
+- micronaut
+- codenarc
+- geb
+- picocli
+- spring-boot
+categories:
+- Groovy Cookbook
+highlightjs: true
+cover: /images/bg/report.jpg
+og_image: /images/og/groovy-report-2020.jpg
+card: /images/cards/reports.jpg
+---
+:gradle: https://gradle.org/
+:spock: http://spockframework.org/
+:grails: https://grails.org/
+:survey: https://docs.google.com/forms/d/e/1FAIpQLSd28xZnASR15OXTUnL23GjS7dguz3CCeovupr5linw510JEyA/viewanalytics
+:codenarc: https://codenarc.github.io/CodeNarc/
+:micronaut: https://micronaut.io/
+:springboot: https://spring.io/projects/spring-boot
+:geb: https://gebish.org/
+:picocli: https://picocli.info/
+:results: https://docs.google.com/spreadsheets/d/1poYljiBY1bhb00pBZGpjc-UZ7b4bRb3RnVyg8bFJXbE/edit?usp=sharing
+
+What is the most popular Groovy library, framework, or a tool?
+I {survey}[surveyed 308 Groovy community members], and here are the results.
+
+++++
+<!-- more -->
+++++
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/groovy-top-10.png]
+image::/images/groovy-top-10.png[]
+--
+
+== 🥇 The most popular tool: [.mark]##Gradle##
+
+{gradle}[Gradle] (an open-source build automation tool) collected the most votes - *190* out of 308 (61.7%).
+
+== 🥇 The most popular library: [.mark]##Spock Framework##
+
+{spock}[Spock Framework] (a testing library for Java and Groovy applications) collected *157* votes (51%).
+
+== 🥇 The most popular web framework: [.mark]##Grails##
+
+{grails}[Grails Framework] (a Groovy-based web application framework for the JVM built on top of Spring Boot) collected *116* votes (37.7%)
+
+== Using Groovy as a [.mark]##scripting language##
+
+* *163* respondents (52.9%) mentioned that they use Groovy as a scripting language.
+* *131* respondents (42.5%) mentioned that they use Groovy as a general-purpose language.
+* *76* respondents (24.7%) mentioned that they use Groovy for building fluent DSLs.
+
+[.text-center]
+--
+[.img-responsive.img-thumbnail]
+[link=/images/groovy-top-20.png]
+image::/images/groovy-top-20.png[]
+--
+
+== My personal thoughts
+
+I was close to guess the exact *TOP 3* - I thought it is going to be *Spock*, *Gradle*, and *Grails* (in this particular order.)
+The *Groovy Console* result surprised me, and especially when it's compared to the `groovysh` - I definitely prefer to use a command-line tool instead of GUI-based one.
+
+There is also a positive trend in the *Jenkins Pipeline* space - much more people use Groovy with pipelines instead of Job DSL plugin.
+
+Also, {micronaut}[*Micronaut*] and {springboot}[*Spring Boot*] are head-to-head when it comes to the number of users, but it's hard to deduct anything from those numbers.
+
+I was also surprised by the {codenarc}[*CodeNarc*], {geb}[*Geb*], and {picocli}[*Picocli*] small numbers.
+The last two are used in the specific context, which may explain the number of votes.
+However, {codenarc}[*CodeNarc*] is a static analysis tool for Groovy, and I would love to see more people using it to improve their code quality.
+
+There are my first thoughts after looking at the survey results.
+*And what are yours?*
+Let me know in the comments bellow. 👍
+
+== The data
+
+* {survey}[Survey summary (Google Form)]
+* {results}[Survey raw results (Google Sheet)]
+
+[source,plain]
+----
+#  | Votes | Choice
+======================================================================
+1  | 190   | Gradle
+2  | 163   | I use Groovy for scripting
+3  | 157   | Spock
+4  | 131   | I use Groovy as a general purpose language
+5  | 127   | Groovy Console
+6  | 116   | Grails
+7  | 92    | Jenkins Pipeline
+8  | 82    | Micronaut
+9  | 81    | Spring Boot
+10 | 76    | I use Groovy for DSLs
+11 | 58    | CodeNarc
+12 | 50    | Jenkins Job DSL
+13 | 50    | Geb
+14 | 49    | groovysh
+15 | 42    | Picocli
+16 | 35    | GPars
+17 | 28    | Nextflow
+18 | 21    | JMeter
+19 | 19    | Ratpack
+20 | 16    | SoapUI
+21 | 14    | Jira ScriptRunner
+22 | 13    | Vert.x
+23 | 8     | Spreadsheet Builder
+24 | 8     | REST-assured
+25 | 6     | sshoogr
+26 | 5     | Ersatz
+27 | 4     | Spring Cloud Contracts
+28 | 3     | BeakerX
+29 | 3     | Gru
+30 | 2     | Griffon
+31 | 2     | Dru
+32 | 2     | Gaelyk
+33 | 2     | GPerfUtils (gprof, gbench)
+34 | 1     | gradle
+35 | 1     | Gradle Plugin authoring
+36 | 1     | Grain
+37 | 1     | Test automation with MQ and XmlUnit and Selenium
+38 | 1     | Jira
+39 | 1     | JBake
+40 | 1     | docToolchain
+41 | 1     | Groovy + JUnit 5 + Mockito is my favorite way to write tests
+42 | 1     | I'm writing a content migration process for a large LMS using JSoup, apache httpcomponents, and JsonSlurper
+43 | 1     | writing my own AST and transpilers (metaprogramming)
+44 | 1     | Groovy used as a scripting language inside XWiki wiki pages
+45 | 1     | Vaadin, Ebean
+46 | 1     | groogle to work with google sheet https://groogle.gitlab.io/groogle/latest/index.html
+47 | 1     | gcontracts
+48 | 1     | I exclusively use Groovy for test automation
+49 | 1     | At work we use Java for the production code of our low-latency trading system, but all our tests are written in Groovy
+50 | 1     | Gremlin
+51 | 1     | GrooCSS
+52 | 1     | Portofino
+53 | 1     | It's part of our own Framework
+54 | 1     | Gaiden
+55 | 1     | Extensions for Legacy Java APIs
+56 | 1     | Katalon Studio
+57 | 1     | Kiss web framework
+58 | 1     | My favourite scripting language
+59 | 1     | Transformation scripts in Oracle SQL Developer Data Modeler
+60 | 1     | Bonita, template engine
+61 | 1     | FileBot
+62 | 1     | GQL (https://github.com/grooviter/gql) ASTEROID (https://github.com/grooviter/asteroid)
+63 | 1     | Wide use of @CompileStatic
+
+----
+
+include::source/_parts/thank-you.adoc[]
