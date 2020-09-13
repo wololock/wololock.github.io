@@ -163,3 +163,9 @@ Let me know in the comments bellow. 👍
 ----
 
 include::source/_parts/thank-you.adoc[]
+
+++++
+{% newsletter %}
+{% convertkit "73df1d6b65" %}
+{% endnewsletter %}
+++++
