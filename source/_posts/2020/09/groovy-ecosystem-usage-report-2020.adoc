@@ -19,6 +19,7 @@ highlightjs: true
 cover: /images/bg/report.jpg
 og_image: /images/og/groovy-report-2020.jpg
 card: /images/cards/reports.jpg
+newsletter: seven-groovy-one-liners
 ---
 :gradle: https://gradle.org/
 :spock: http://spockframework.org/
