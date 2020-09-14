@@ -88,11 +88,24 @@ There are my first thoughts after looking at the survey results.
 *And what are yours?*
 Let me know in the comments bellow. 👍
 
-== The data
+== About the survey
 
-* {survey}[Survey summary (Google Form)]
-* {results}[Survey raw results (Google Sheet)]
+The survey was launched on *August 28th*, and it was collecting the answers up to *September 11th*.
+It contained a single multi-choice question with predefined options to choose from, plus a text input to vote for a thing that was not mentioned on the list.
+It was announced using many communication channels, including the Groovy mailing list, Groovy Community Slack, Twitter, LinkedIn, Reddit, etc.
+The survey link was clicked 520 times, and it was converted to 308 responses (59.23% conversion rate.)
 
+* {survey}[The survey's chart summary (Google Form)]
+* {results}[The survey's raw results (Google Sheet)]
+
+NOTE: This survey and its results *do not* represent the Groovy community choices as a whole.
+I did my best to survey as many community members as possible.
+However, I couldn't reach out to every single person.
+*Treat this report as trends radar*, based on the data provided by some percentage of the active Groovy users.
+
+(PS: I will run a similar survey next year so that we can study changes in trends. 😉)
+
+.Survey results sorted by the number of votes
 [source,plain]
 ----
 #  | Votes | Choice
