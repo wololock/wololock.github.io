@@ -20,6 +20,10 @@ cover: /images/bg/report.jpg
 og_image: /images/og/groovy-report-2020.jpg
 card: /images/cards/reports.jpg
 newsletter: seven-groovy-one-liners
+related:
+- how-to-merge-two-maps-in-groovy
+- building-stackoverflow-cli-with-java-11-micronaut-picocli-and-graalvm
+- groovy-string-methods-that-will-make-your-life-groovier
 ---
 :gradle: https://gradle.org/
 :spock: http://spockframework.org/
