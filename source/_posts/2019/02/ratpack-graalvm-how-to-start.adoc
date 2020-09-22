@@ -673,8 +673,6 @@ I’m pleased I have finally run the Ratpack example on GraalVM.
 It took me hours to make it running, and I almost gave up, but I couldn't accept the failure.
 The final result makes me happy even more. It’s 06:03 AM. Time to go to sleep. See you soon!
 
-pass:[{% youtube_card aOszDmbSsyM %}]
-
 == Updates
 
 This blog gets updated whenever new version of GraalVM or Groovy gets released. Below you can find a list of all updates.

@@ -8,25 +8,10 @@ BjO_vBzaB4c:
   description: "This is a short version of my \"Groovy and GraalVM\" talk presented at GR8Conf EU 2019 in Copenhagen, Denmark. I use slides prepared in AsciiDoc and compiled to reveal.js with AsciiDoctorJ Gradle plugin. I hope you enjoy it!"
   time: "10:14"
 
-aOszDmbSsyM:
-  title: "Ratpack on GraalVM and Oracle JDK - 500k requests benchmark test"
-  description: "This video demonstrates the difference between Ratpack Hello World application run on GraalVM versus the same application run on Oracle JDK 1.8"
-  time: "2:20"
-
-7TJwpuNsDS8:
-  title: "Removing annotations with Groovy compiler configuration script"
-  description: "In this video, I demonstrate how to remove @CompileStatic annotation from the Groovy class using a compiler configuration script. Enjoy!"
-  time: "2:20"
-
 KkL2ZMmNY3I:
   title: "Building an HTTP application in a single .groovy file with Ratpack!"
   description: "Learn more about Ratpack here - https://ratpack.io"
   time: "5:01"
-
-lwlfUGkTf8c:
-  title: "Spock Framework random tests order - how to do it? | #spockframework"
-  description: "Have you ever wondered how to randomize Spock Framework test methods execution? In this short video, I show you how you can create a random runner that shuffles all test methods before executing them."
-  time: "1:49"
 
 eFX02DssGLc:
   title: "Let's meet at GR8Conf EU 2019 in Copenhagen!"

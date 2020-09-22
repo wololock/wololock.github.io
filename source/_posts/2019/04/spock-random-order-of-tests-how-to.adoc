@@ -239,6 +239,4 @@ mechanism to add the new extension without annotating classes - might be useful 
 to deal with.)_ In other cases, we might also benefit from the random execution order as a safeguard that always
 forces us (and our teammates) to write tests that are isolated and atomic.
 
-pass:[{% youtube_card lwlfUGkTf8c %}]
-
 include::source/_parts/thank-you.adoc[]
