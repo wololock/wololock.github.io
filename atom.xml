@@ -38,8 +38,6 @@ I &lt;a href=&quot;https://docs.google.com/forms/d/e/1FAIpQLSd28xZnASR15OXTUnL23
       <category term="Groovy Cookbook" scheme="https://e.printstacktrace.blog//groovy-cookbook/"/>
     
     
-      <category term="grails" scheme="https://e.printstacktrace.blog/t/grails/"/>
-    
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
       <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
@@ -47,6 +45,8 @@ I &lt;a href=&quot;https://docs.google.com/forms/d/e/1FAIpQLSd28xZnASR15OXTUnL23
       <category term="gradle" scheme="https://e.printstacktrace.blog/t/gradle/"/>
     
       <category term="micronaut" scheme="https://e.printstacktrace.blog/t/micronaut/"/>
+    
+      <category term="grails" scheme="https://e.printstacktrace.blog/t/grails/"/>
     
       <category term="spock-framework" scheme="https://e.printstacktrace.blog/t/spock-framework/"/>
     
@@ -420,9 +420,9 @@ Enjoy reading! &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-smile-
       <category term="Groovy Cookbook" scheme="https://e.printstacktrace.blog//groovy-cookbook/"/>
     
     
-      <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
-    
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
+    
+      <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
     
       <category term="type-erasure" scheme="https://e.printstacktrace.blog/t/type-erasure/"/>
     
@@ -656,9 +656,9 @@ Let&amp;#8217;s give it a try! &lt;span class=&quot;icon&quot;&gt;&lt;i class=&q
       <category term="Groovy Cookbook" scheme="https://e.printstacktrace.blog//groovy-cookbook/"/>
     
     
-      <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
-    
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
+    
+      <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
     
       <category term="benchmark" scheme="https://e.printstacktrace.blog/t/benchmark/"/>
     
@@ -729,9 +729,9 @@ Today I will show you how you can build multiple different docker images using p
       <category term="Jenkins Pipeline Cookbook" scheme="https://e.printstacktrace.blog//jenkins-pipeline-cookbook/"/>
     
     
-      <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
-    
       <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
+    
+      <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
     
       <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
     
