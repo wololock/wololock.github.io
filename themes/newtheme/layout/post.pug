@@ -32,4 +32,11 @@ block content
     include post/comments
 
     script.
-        var udemy = {id: "learn-anything-jjkw2", src: "/images/yml/learn-anything-float.jpg", url: "https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.1628&subid=0&type=4"}
+        var _a = !{JSON.stringify(page.floating || {})};
+        var _b = {
+            id: "learn-anything-jjkw2",
+            src: "/images/yml/learn-anything-float.jpg",
+            url: "https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.1628&subid=0&type=4",
+            name: "Learn Anything Floating"
+        };
+        var udemy = { id: _a.id || _b.id, src: _a.src || _b.src, url: _a.url || _b.url, name: _a.name || _b.name }

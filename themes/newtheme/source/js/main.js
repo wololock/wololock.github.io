@@ -61,7 +61,7 @@
         $(this).css("font-weight", (size * 12));
     })
 
-    if (typeof udemy !== 'undefined') {
+    if (typeof udemy !== 'undefined' && (typeof udemy.src !== 'undefined')) {
         var offset = 600;
         var top = document.getElementsByTagName("article").item(0).getBoundingClientRect().height - offset - 1000;
 
@@ -77,7 +77,7 @@
                 a.href = udemy.url;
                 a.target = "_blank";
                 a.setAttribute("class", "gatr");
-                a.setAttribute("data-name", "Learn Anything Floating");
+                a.setAttribute("data-name", udemy.name);
                 a.setAttribute("data-type", "banner");
 
                 var img = document.createElement("img");

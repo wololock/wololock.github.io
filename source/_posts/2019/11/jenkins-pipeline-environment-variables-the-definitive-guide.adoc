@@ -20,6 +20,11 @@ ad:
   url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Flearn-devops-ci-cd-with-jenkins-using-pipelines-and-docker%2F
   image: /images/yml/udemy-start-learning-devops-hz.jpg
 newsletter: seven-groovy-one-liners
+floating:
+  id: jenkins-pipeline-tutorials
+  src: /images/yml/jenkins-pipeline-tutorials.png
+  url: https://www.youtube.com/playlist?list=PLKaiHc24qCTSnXaus2t4b71ihq9k649XS
+  name: Jenkins Pipeline Tutorials on YouTube
 ---
 :sectanchors:
 :toc: macro
