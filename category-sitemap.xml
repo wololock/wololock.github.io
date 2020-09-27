@@ -8,6 +8,13 @@
     </url>
 
     <url>
+        <loc>https://e.printstacktrace.blog/jenkins-pipeline-cookbook/</loc>
+        <lastmod>2020-09-27T07:32:11.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/groovy-cookbook/</loc>
         <lastmod>2020-09-13T05:40:19.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -17,13 +24,6 @@
     <url>
         <loc>https://e.printstacktrace.blog/programmers-bookshelf/</loc>
         <lastmod>2020-09-09T16:26:20.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/jenkins-pipeline-cookbook/</loc>
-        <lastmod>2020-08-29T12:45:11.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
