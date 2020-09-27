@@ -1,0 +1,70 @@
+---
+title: Jenkins Declarative Pipeline with the dynamic agent - how to configure it?
+date: 2020-09-27 09:32:11
+updated: 2020-09-27 09:32:11
+categories:
+- Jenkins Pipeline Cookbook
+tags:
+- jenkins
+- jenkins-pipeline
+- jenkinsfile
+- devops
+- continuous-integration
+highlightjs: true
+cover: /images/bg/how-to-catch-curl-response-in-jenkins-pipeline.jpg
+card: /images/cards/jenkins-04.jpg
+---
+:jira: https://issues.jenkins.io/browse/JENKINS-43016?focusedCommentId=333915&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-333915
+
+In some cases, you would like to use Jenkins declarative pipeline with the dynamic agent.
+For instance, you want to provide a list of available agent nodes as a parameter for the pipeline job.
+In this blog post, I will explain how you can configure such a behavior in just a few steps.
+
+++++
+<!-- more -->
+++++
+
+== Jenkins Pipeline `agent` label from the parameter
+
+.Jenkinsfile
+[source,groovy]
+----
+pipeline {
+    agent {
+        label params.AGENT == "any" ? "" : params.AGENT //<1>
+    }
+
+    parameters {
+        choice(name: "AGENT", choices: ["any", "docker", "windows", "linux"]) //<2>
+    }
+
+    stages {
+        stage("Build") {
+            steps {
+                echo "Hello, World!"
+            }
+        }
+    }
+}
+----
+
+There is one thing worth explaining.
+You can see that in the line pass:[<em class="conum" data-value="1"></em>], we check if `params.AGENT` is equal to `"any"`.
+If this is the case, we put an empty string instead.
+_(An empty string in this case is an equivalent of `agent any` - {jira}[source].)_
+Otherwise, Jenkins would search for the node with label `"any"` instead.
+
+In the line pass:[<em class="conum" data-value="2"></em>], we define a list of available nodes.
+When you start the job and choose `any` from the dropdown, any available node will be used to run the job.
+If you choose `docker`, `windows`, or `linux` (or any other label you will define in your pipeline), the node with that exact label will be used to run the job.
+And that's it. icon:smile-o[]
+
+++++
+<div class="imageblock img-fluid">
+<a href="https://kit.co/wololock/jenkins-pipeline-learning-kit" class="gatr" data-type="banner" data-name="Jenkins Pipeline Learning Kit 02">
+<img src="/images/yml/jenkins-pipeline-learning-kit-02.jpg" class="img-fluid" alt="Jenkins Pipeline Learning Kit" />
+</a>
+</div>
+++++
+
+include::source/_parts/thank-you.adoc[]
