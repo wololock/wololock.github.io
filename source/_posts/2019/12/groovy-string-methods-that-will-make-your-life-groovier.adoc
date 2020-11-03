@@ -7,10 +7,9 @@ tags:
     - string
 categories:
     - Groovy Cookbook
-cover: /images/groovy-cookbook.jpg
-og_image: /images/og/groovy-string-methods.jpg
-card: /images/cards/groovy-03.jpg
+card: /images/cards/27.png
 highlightjs: true
+icon: /images/icons/6.png
 ---
 :toc: macro
 :groovy-tr-url: http://docs.groovy-lang.org/latest/html/api/org/codehaus/groovy/runtime/StringGroovyMethods.html#tr(java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence)

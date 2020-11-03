@@ -10,9 +10,9 @@ tags:
     - static
 categories:
     - Groovy Cookbook
-og_image: /images/og/groovy-static-property-missing.jpg
-eyeCatchImage: /images/og/groovy-static-property-missing.jpg
+card: /images/cards/37.png
 highlightjs: true
+icon: /images/icons/12.png
 ---
 
 Some time ago I have found another interesting https://stackoverflow.com/q/51921068/2194470[Groovy related question on Stack Overflow]. This time someone

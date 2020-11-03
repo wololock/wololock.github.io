@@ -13,9 +13,7 @@ tags:
     - affiliate
 categories:
     - Programmer's Bookshelf
-cover: /images/pragmatic-thinking-and-learning-01.jpg
-og_image: /images/og/pragmatic-thinking-and-learning.jpg
-card: /images/cards/pragmatic-thinking-and-learning.jpg
+card: /images/cards/14.png
 affiliates: true
 book:
   title: "Pragmatic Thinking and Learning: Refactor Your Wetware"
@@ -65,6 +63,7 @@ structured_data:
       '@type': "Rating"
       ratingValue: 5
     reviewBody: "One of my favorite books ever. I've read \"Pragmatic Thinking and Learning\" the second time after six years, and I must say that this book is phenomenal. My opinion is entirely biased - I'm not going to deny this fact. Just like Andy Hunt, I'm also a software engineer, and that is why I find all examples and exercises very useful. He explains how our brain works in L- and R-modes, how we can benefit from both modes, how we can design and plan our learning process to build habits that will help us achieve even more. It's a great supplement for Cal Newport's \"Deep Work\" book. However, it's much more practical and useful for software engineers (or any knowledge workers). I strongly recommend reading it!"
+icon: /images/icons/26.png
 ---
 :book-url: https://amzn.to/2wajzj9
 
@@ -203,4 +202,3 @@ book and you have a different opinion? Please share it with us. I'd love to hear
 
 pass:[{% book %}]
 
-include::source/_parts/thank-you.adoc[]

@@ -8,9 +8,9 @@ tags:
     - class
 categories:
     - Groovy Cookbook
-og_image: /images/og/groovy-script-how-to-name.jpg
-eyeCatchImage: /images/og/groovy-script-how-to-name.jpg
+card: /images/cards/37.png
 highlightjs: true
+icon: /images/icons/28.png
 ---
 
 Some time ago I have found a very interesting question on Stack Overflow about https://stackoverflow.com/questions/51238868/forbidden-characters-in-groovy-script-filenames[forbidden characters

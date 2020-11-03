@@ -13,9 +13,8 @@ tags:
 - rest
 - devops
 highlightjs: true
-cover: /images/jq-bg.jpg
-og_image: /images/og/curl-jq.jpg
-card: /images/cards/jq.jpg
+card: /images/cards/6.png
+icon: /images/icons/5.png
 ---
 :openlibrary: https://openlibrary.org/dev/docs/api/search
 :jq-download: https://stedolan.github.io/jq/download/

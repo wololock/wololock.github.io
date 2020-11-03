@@ -11,10 +11,9 @@ tags:
     - native-image
 categories:
     - Groovy Cookbook
-cover: /images/graalvm-docker-groovy.jpg
-og_image: /images/og/graalvm-docker-groovy.jpg
-eyeCatchImage: /images/og/graalvm-docker-groovy.jpg
+card: /images/cards/32.png
 highlightjs: true
+icon: /images/icons/24.png
 ---
 :graalvm-dockerfile-url: https://github.com/oracle/docker-images/blob/master/GraalVM/CE/19/Dockerfile
 :groovy-version: 2.5.8

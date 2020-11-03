@@ -12,10 +12,9 @@ tags:
   - bytecode
 categories:
   - Groovy Cookbook
-cover: /images/groovy-dynamic-maps.jpg
-og_image: /images/og/groovy-dynamic-maps.jpg
-card: /images/cards/groovy-01.jpg
+card: /images/cards/27.png
 highlightjs: true
+icon: /images/icons/15.png
 ---
 :type-erasure-url: https://docs.oracle.com/javase/tutorial/java/generics/erasure.html
 

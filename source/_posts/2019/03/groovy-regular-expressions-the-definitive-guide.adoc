@@ -11,10 +11,8 @@ tags:
 - match
 - find
 - switch
-cover: /images/bg/groovy-cookbook.jpg
-og_image: /images/og/groovy-regexp-jmh.jpg
-card: /images/cards/groovy-04.jpg
-= affiliates: true
+card: /images/cards/39.png
+affiliates: true
 highlightjs: true
 ad:
   name: "Udemy - Learn anything - Groovy Regex (Part 1)"
@@ -25,11 +23,7 @@ related:
 - groovy-regular-expressions-the-benchmark
 - how-to-merge-two-maps-in-groovy
 - graalvm-and-groovy-how-to-start
-floating:
-  id: groovy-developer-course
-  src: /images/yml/groovy-developer-course.png
-  url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fapache-groovy%2F
-  name: The Complete Apache Groovy Developer Course
+icon: /images/icons/6.png
 ---
 :toc: macro
 :matcher-javadoc: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html
@@ -387,14 +381,3 @@ Running the above example produces the following output.
 The word has 4 letters.
 ----
 
-== The benchmark
-
-If you want to learn about the performance of Groovy Regular Expressions, pass:[{% post_link groovy-regular-expressions-the-benchmark "continue reading the part 2" %}] of this blog post.
-
-include::source/_parts/thank-you.adoc[]
-
-++++
-{% newsletter %}
-{% convertkit "73df1d6b65" %}
-{% endnewsletter %}
-++++

@@ -11,9 +11,9 @@ tags:
     - benchmark
 categories:
     - Groovy Cookbook
-og_image: /images/og/groovy-trampoline-closure.jpg
-eyeCatchImage: /images/og/groovy-trampoline-closure.jpg
+card: /images/cards/27.png
 highlightjs: true
+icon: /images/icons/15.png
 ---
 :stackoverflow-url: https://stackoverflow.com/q/56578937/2194470
 :groovy-trampoline-docs: http://groovy-lang.org/closures.html#_trampoline

@@ -8,13 +8,9 @@ tags:
     - string
 categories:
     - Groovy Cookbook
-og_image: /images/og/groovy-split-string.jpg
-card: /images/cards/groovy-01.jpg
+card: /images/cards/27.png
 highlightjs: true
-ad:
-  name: "Udemy - Learn anything - Groovy Regex (Part 2)"
-  url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fapache-groovy%2F
-  image: /images/yml/udemy-learn-groovy-hz.jpg
+icon: /images/icons/28.png
 ---
 
 If you use Groovy for scripting or other similar tasks you probably faced a situation where you 

@@ -1,0 +1,299 @@
+.post-meta
+  ul
+    list-style none
+    margin 0 0 1em 0
+    padding 0
+    font-size 0.8em
+    font-family "Roboto", sans-serif
+    opacity 0.5
+
+    >li
+      list-style none
+      margin 0
+      padding 0
+      display inline-block
+
+      & + li:before
+        content "•"
+        font-size 1em
+        font-weight 700
+        padding 0 7px
+
+.breadcrumb
+  background none
+  padding 0
+  margin 0
+  font-family "Montserrat"
+  font-weight bold
+  text-rendering optimizeLegib
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+  font-size 12px
+
+  .breadcrumb-item + .breadcrumb-item
+    &:before
+      content "»"
+
+  a
+    color #8bc4de
+
+.post-body
+  position relative
+
+  h1
+    serif()
+    font-size 2.7rem
+    margin 0
+
+  h2,h3,h4,h5
+    margin 1em 0
+
+  >.content
+    >.paragraph
+      sans-serif()
+      font-weight bold
+      //font-size 110%
+      color #777
+      line-height 1.5
+      border-bottom 1px solid #eee
+      margin-bottom 2rem
+      em
+        serif()
+
+  .imageblock
+    margin 2.5rem 0
+
+    .img-lazyload-container
+      margin 0 auto !important
+
+  .img-thumbnail
+    padding 0
+    border none
+
+  >.excerpt
+    font-size 1.3rem
+    font-weight 400
+    color #888
+    text-align justify
+    padding-bottom 1em
+    margin-bottom 1em
+    border-bottom 1px solid #eee
+
+  .listingblock
+    >.title
+      font-family "Roboto", sans-serif
+      font-size 0.7em
+      color #788f99
+
+  .colist
+    sans-serif()
+    font-size 14px
+
+  ul.tags-list
+    list-style none
+    margin 0
+    padding 0
+    sans-serif()
+    font-size 13px
+
+    li
+      list-style none
+      margin 0
+      display inline-block
+      padding 3px 7px
+      background #f5f5f5
+      border-radius 4px
+
+      & + li
+        margin-left 10px
+
+      a
+        color #999
+        &:hover
+          text-decoration none
+
+  #footnotes
+    sans-serif()
+    font-size 13px
+    color #777
+
+  .imageblock
+    img
+      max-width 100%
+
+  @media (max-width: 1499px)
+    #toc
+      background #f3f3f3
+      padding 1rem 2rem
+      sans-serif()
+      font-size 16px
+
+      .title
+        font-weight bold
+        margin 0 0 1rem 0
+
+      >ul
+        list-style decimal
+        padding 0
+        margin 0 0 0 20px
+
+        >li
+          ul
+            margin 0 0 0 2em
+            padding 0
+
+  @media (min-width: 1500px)
+    #toc
+      position -webkit-sticky
+      position sticky
+      top 6rem
+      float right
+      margin-right 105%
+      margin-top -100%
+      margin-left -47%
+      z-index 999
+
+      padding-left 20px
+      padding-right 2em
+
+      font-family "Roboto", sans-serif
+      opacity 0.6
+      font-size 0.8em
+
+      border-right 3px solid #f8f8f8
+
+      >.title
+        font-weight 700
+        text-transform uppercase
+        margin-bottom 0.5em
+
+      >ul
+        list-style decimal
+        padding 0
+        margin 0 0 0 20px
+
+        >li
+          ul
+            margin 0 0 0 2em
+            padding 0
+
+
+        li::marker
+          font-size 0.9em
+          color #999
+
+        a
+          color #999
+
+        li.active
+          >a, &::marker
+            font-weight bold
+            color #0059ab
+
+  .admonitionblock
+    margin 20px 0
+    background #fafafa
+    padding 15px
+    text-align left
+    font-size 1.1rem
+
+    pre.highlightjs:hover
+      transform none
+
+    @media phone
+      padding 15px 0
+
+    >table
+      border-collapse separate
+      border 0
+      background none
+      width 100%
+      table-layout fixed
+
+      td.icon
+        text-align center
+        width 80px
+
+        @media phone
+          width 40px
+          vertical-align top
+          padding-top 30px
+
+        img
+          max-width none
+
+      td.content
+        padding-left 1.125em
+        padding-right 1.25em
+        border-left 1px solid #ddddd8
+        color rgba(0,0,0,.6)
+        overflow auto
+
+        h2,h3,h4
+          margin 1rem 0 1rem 0
+
+        @media phone
+          padding 0 0.7em
+
+        &>:last-child,
+        &>:last-child>:last-child
+          margin-bottom 0
+
+    td.icon
+      [class^="fa icon-"]
+        font-size 2.5em
+        cursor default
+
+        @media phone
+          font-size 1.5rem
+
+      .icon-note:before
+        content "\f05a"
+        color #4878c1
+
+      .icon-tip:before
+        content "\f0eb"
+        color #ffa620
+      //font-weight 400
+
+      .icon-warning:before
+        content "\f071"
+        color #ffb257
+
+      .icon-caution:before
+        content "\f06d"
+        color #bf3400
+
+      .icon-important:before
+        content "\f06a"
+        color #bf0000
+
+#related
+  color #aaa
+
+  .breadcrumb
+    a
+      color #ccc
+
+  h3
+    serif()
+    font-size 2.5rem
+
+  h4
+    font-family "Roboto", sans-serif
+    font-size 18px
+    line-height 28px
+
+  .small
+    sans-serif()
+    font-size 14px
+
+  a:not(.btn)
+    color #8ab6c4
+    &:hover
+      text-decoration none
+      color #456583
+
+  p.subtitle
+    a
+      color #f17e7e

@@ -1,15 +1,13 @@
-.youtube-box.py-4
-    .container
-        .row
-            .col-12.col-md-6.offset-md-1.offset-0.pr-md-5.order-1.order-md-0
-                h4 #{video.title}
-                p.desc #{video.description}
-                p.text-center.pt-3
-                    a.btn.btn-danger.text-white(href="https://www.youtube.com/watch?v=" + id data-type="youtube" data-name=video.title) Watch now
 
-            .col-12.col-md-4.order-0.order-md-1
-                .card.shadow.mb-4.mb-md-0
-                    .card-header(itemprop="image" style="background-image: url('https://i3.ytimg.com/vi/" + id + "/mqdefault.jpg')")
-                        div.time=video.time
-                        em.fa.fa-youtube
-                    a.stretched-link.gatr(href="https://www.youtube.com/watch?v=" + id data-type="youtube" data-name=video.title)
+.youtube-row.py-5
+    .row
+        .col-12.col-lg-5.text-lg-left.text-center.mb-lg-0.mb-4
+            a.thumb.gatr.d-inline-block(href=`https://youtu.be/${id}` data-time=video.time data-type="youtube" data-name=video.title)
+                img.img-fluid.shadow(data-lazy="https://i3.ytimg.com/vi/" + id + "/mqdefault.jpg")
+        .col-12.col-lg-7
+            h5.m-0.p-0.mb-3.text-lg-left.text-center
+                a.gatr(href=`https://youtu.be/${id}` data-type="youtube" data-name=video.title)=video.title
+            p.sans-serif.small.text-lg-left.text-justify
+                | #{video.description}
+                |
+                a.gatr.font-weight-bold(href=`https://youtu.be/${id}` data-type="youtube" data-name=video.title) Watch&nbsp;now&nbsp;&raquo;

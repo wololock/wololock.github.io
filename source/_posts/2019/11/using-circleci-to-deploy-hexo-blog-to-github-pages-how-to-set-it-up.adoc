@@ -12,10 +12,9 @@ tags:
     - npm
 categories:
     - How to
-cover: /images/circleci-bg.jpg
-og_image: /images/og/circleci-hexo-githubpages.jpg
-card: /images/cards/circle-ci.jpg
+card: /images/cards/11.png
 highlightjs: true
+icon: /images/icons/18.png
 ---
 :travisci-url: https://travis-ci.org/wololock/wololock.github.io/builds
 :circleci: https://circleci.com/

@@ -1,0 +1,64 @@
+extends layout/base
+
+block main
+    each resource,i in site.data.resources
+        section.posts-layout-01(class=[i % 2 == 0 ? "bg-light": "", i === 0 ? "pt-5" : ""] data-debug=`Resources: scrolled to ${strip_html(resource.name)}`)
+            .container.py-5
+                h2.pt-lg-5.h1.mb-5.text-lg-left.text-center!=resource.name
+
+                - var items = resource.items
+                - var first = items[0]
+                - var right = items.slice(1,5)
+                - var rest = items.slice(5)
+
+                .row.pb-3
+                    .col-12.col-lg-7.mb-lg-0.mb-5
+                        .pr-lg-5.sans-serif
+                            if first.card
+                                .mb-4
+                                    a.gatr(href=first.url data-type="resource" data-name=first.name)
+                                        img.img-fluid.shadow.mb-4(data-lazy=first.card)
+
+                            h4.h1.serif.font-weight-bold
+                                a.gatr(href=first.url data-type="resource" data-name=first.name) #{first.name}
+
+                            p.small.text-justify!=first.description
+
+                            p.small.text-center
+                                a.btn.btn-secondary.gatr(href=first.url data-type="resource" data-name=first.name) Try #{first.name}
+
+                    .col-12.col-lg-5.sans-serif
+                        each item in right
+                            .row.mb-4
+                                .col-9
+                                    h4.h5.font-weight-bold.m-0
+                                        a.gatr(href=item.url data-type="resource" data-name=item.name) #{item.name}
+
+                                    p.text-justify.mt-2(style="font-size:13px")!=item.description
+
+                                .col-3
+                                    .pt-1
+                                        a.gatr(href=item.url data-type="resource" data-name=item.name)
+                                            img.img-fluid(data-lazy=item.image)
+
+                if rest.length > 0
+                    hr
+                    .pt-5.row
+                        each item in rest
+                            .col-6
+                                .media.align-items-start.mb-4
+                                    .d-block
+                                        a(href=item.url)
+                                            img.img-fluid(data-lazy=item.image)
+
+                                    .media-body.pl-3
+                                        h4.m-0.small.font-weight-bold
+                                            a(href=item.url) #{item.name}
+
+                                        .sans-serif.m-0.p-0(style="font-size:12px")!=item.description
+        if i === 0
+            section#affiliate.bg-dark-02.text-lg-left.text-center
+                .container.py-5.sans-serif(style="color: #d4e6ec")
+                    h3.h3(style="color: #d4e6ec") #[i.fa.fa-info-circle] Affiliate Disclaimer
+
+                    p.small  Some of the links above are #[b affiliate links]. If you decide to click that link and subsequently make a purchase, I will get a small percentage from your purchase. Using the affiliate link #[b does not affect the final price of the product]. The commission I earn comes at no additional cost to you.

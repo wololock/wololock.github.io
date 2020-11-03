@@ -10,15 +10,9 @@ tags:
     - benchmark
 categories:
     - Groovy Cookbook
-cover: /img/index-bg.jpg
-og_image: /images/og/groovy-jmh-benchmark.jpg
-card: /images/cards/groovy-02.jpg
+card: /images/cards/21.png
 highlightjs: true
-ad:
-  name: "Udemy - Learn anything - Groovy collections JMH"
-  url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fapache-groovy%2F
-  image: /images/yml/udemy-learn-groovy-hz.jpg
-newsletter: seven-groovy-one-liners
+icon: /images/icons/6.png
 ---
 
 I guess you may heard about Groovy's `Collection.each(Closure cl)` method - it was introduced 15 years ago footnote:[The first commit in the repository tree that mentions `DefaultGroovyMethods.each(Object self, Closure cl)`

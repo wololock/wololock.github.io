@@ -10,9 +10,7 @@ tags:
     - self-improvement
     - non-fiction
     - affiliate
-cover: /images/deep-work-book-review-img2.jpg?v=2
-og_image: /images/og/deep-work-book-review.jpg?v=2
-card: /images/cards/deep-work.jpg
+card: /images/cards/10.png
 affiliates: true
 book:
   title: "Deep Work: Rules for Focused Success in a Distracted World"
@@ -68,6 +66,7 @@ structured_data:
       '@type': "Rating"
       ratingValue: 5
     reviewBody: "An interesting and useful (in many ways) book."
+icon: /images/icons/34.png
 ---
 :book-url: https://amzn.to/2JgBOGz
 :cal-newport-url: http://calnewport.com/about/

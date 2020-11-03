@@ -1,0 +1,7 @@
+ul.social-media
+    each media in config["social-media"]
+        li
+            a.gatr(href=media.url data-type="social-media" data-name=media.name title=media.name)
+                i.fa(class=media.icon)
+                span.number #{media.number}
+                span.description #{media.description}

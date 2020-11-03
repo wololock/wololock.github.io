@@ -1,12 +1,20 @@
+default:
+  id: 5bc70426c4
+  title: "Don't miss anything - join my newsletter"
+  lead: "Usu tantas omittantur ut, per te modo appetere senserit. Ei ius aperiam tincidunt, ea sit natum iisque repudiandae. Ea nec wisi facete. Ex hinc rebum omittam his."
+  position: sidebar
+
 seven-groovy-one-liners:
+  id: 73df1d6b65
   image: /images/convertkit/home.jpg
-  title: Download "Seven Groovy <span class="mark">one-liners</span> you want to know" e-book
+  title: "Download free e-book"
   lead: "Did you know that you can take a full screenshot of a website using one-line Groovy script? Or that you can convert a CSV file to the JSON one in just one line? <b>Subscribe</b> to my e-mail list and get those <b>two</b> and <b>five</b> more recipes from my latest ebook <b class='mark'>for free</b>."
-  horizontal: true
+  position: sidebar
 
 atomic-habits:
+  id: 3679b635aa
   image: /images/convertkit/atomic-habits.jpg
   title: Download the "Atomic Habits" mindmap
   lead: "Subscribe to my email list and get the PDF with the hand drawn <b class=\"mark\">printable mindmap</b>."
-  horizontal: true
-  center: true
+  position: sidebar
+

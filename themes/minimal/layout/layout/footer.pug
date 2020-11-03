@@ -1,0 +1,94 @@
+footer#footer.bg-dark(data-debug="Scrolled to footer")
+    .container.py-5
+        .px-lg-0.px-3
+            .row.py-lg-3
+                .col-12.col-md-6
+                    - var posts = site.posts.sort("date").reverse().limit(10).toArray()
+                    h5.mb-4 Latest blog posts
+
+                    ul.list-unstyled.mb-5
+                        each post in posts
+                            li
+                                a(href=url_for(post.path))!=post.title
+
+
+                .col-12.col-md-6
+                    h5.mb-4 Trending videos
+
+                    -
+                        var trending = site.data.home.youtube.trending
+                        var videos = Object.entries(site.data.youtube)
+                                .filter(it => trending.includes(it[0]))
+                                //.sort((a, b) => trending.indexOf(a[0]) - trending.indexOf(b[0]))
+                                .shuffle()
+                                .slice(0,2)
+
+
+                    each video in videos
+                        .youtube-row.mb-4
+                            .row
+                                .col-12.col-lg-6.text-lg-left.text-center.mb-lg-0.mb-4
+                                    a.d-inline-block.thumb.gatr(href=`https://youtu.be/${video[0]}` data-type="youtube" data-name=video[1].title data-time=video[1].time)
+                                        img.img-fluid.shadow(data-lazy="https://i3.ytimg.com/vi/" + video[0] + "/mqdefault.jpg")
+                                .col-12.col-lg-6
+                                    h6.m-0.p-0.mb-3.sans-serif.text-lg-left.text-center.px-lg-0.px-4
+                                        a.gatr(href=`https://youtu.be/${video[0]}` data-type="youtube" data-name=video[1].title)=video[1].title
+                                    p.sans-serif.small.text-justify!=truncate(video[1].description,{length:128})
+            .row.text-lg-left.text-center
+                .col-12.col-md-3.mb-lg-0.mb-4
+                    h5.mb-4 Useful links
+                    ul.list-unstyled
+                        li
+                            a.gatr(href=url_for("/") data-type="footer-useful-links" data-name="Start here") Start here
+                        li
+                            a.gatr(href=url_for("/about") data-type="footer-useful-links" data-name="About") About
+                        li
+                            a.gatr(href=url_for("/archives") data-type="footer-useful-links" data-name="Archives") Archives
+                        li
+                            a.gatr(href=url_for("/resources") data-type="footer-useful-links" data-name="Resources") Resources
+                        li
+                            a.gatr(href=url_for("/privacy-policy") data-type="footer-useful-links" data-name="Privacy Policy") Privacy Policy
+                        li
+                            a.gatr(href=site.data.links.merchandise data-type="footer-useful-links" data-name="Merchandise") Merchandise
+                        li
+                            a.gatr(href=site.data.links.kit data-type="footer-useful-links" data-name="My Kit") My Kit
+                        li
+                            a.gatr(href=site.data.links.rss data-type="footer-useful-links" data-name="RSS") RSS
+                        li
+                            a.gatr(href=url_for("/support-me") data-type="footer-useful-links" data-name="Support me") Support the blog #[em.fas.fa-heart.color-red.ml-2]
+
+
+                - var categories = site.categories.sort("length").reverse().limit(9).toArray()
+
+                .col-12.col-md-3.mb-lg-0.mb-4
+                    h5.mb-4 Popular categories
+                    ul.list-unstyled
+                        each category in categories
+                            li
+                                a.gatr(href=url_for(category.path) data-type="footer-category" data-name=category.name)
+                                    != category.name
+                                    span.count.ml-2=category.posts.length
+
+                .col-12.col-md-6
+
+                    h5.mb-4 Popular tags
+
+                    section.tagcloud
+                        != tagcloud(site.tags.sort('length', -1).limit(50), { unit: 'em', min_font: 1.2, max_font: 3, start_color: '#60666b', end_color: '#b1b9ca', color: true })
+
+    section.bottom
+        .container
+            ul.text-center.py-1.m-0
+                li.d-inline-block
+                    | Designed by #[a.gatr(href=site.data.links.twitter data-type="footer" data-name="designed") @wololock]
+                li.d-inline-block
+                    | Created with #[a.gatr(href="https://hexo.io" data-type="footer" data-name="hexo") Hexo]
+                li.d-inline-block
+                    | Hosted on #[a.gatr(href="https://github.com/wololock/wololock.github.io" data-type="footer" data-name="github") GitHub]
+                li.d-inline-block
+                    | Deployed with #[a.gatr(href="https://circleci.com/gh/wololock/wololock.github.io" data-type="footer" data-name="circleci") Circle CI]
+                li.d-inline-block
+                    | License #[a.gatr(href="https://creativecommons.org/licenses/by-nc-sa/4.0/" data-type="footer" data-name="license") CC BY-NC-SA 4.0]
+                li.d-inline-block
+                    a.gatr(href="https://github.com/wololock/wololock.github.io/commits/develop" data-type="footer" data-name="last-commit")
+                        img(data-lazy="https://badgen.net/github/last-commit/wololock/wololock.github.io?color=blue&scale=0.8")

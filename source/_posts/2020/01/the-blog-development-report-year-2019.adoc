@@ -10,9 +10,8 @@ tags:
     - report
 categories:
     - Blog Reports
-cover: /images/2019-summary-bg.jpg
-og_image: /images/og/2019-summary.jpg
-card: /images/cards/blog-reports.jpg
+card: /images/cards/5.png
+icon: /images/icons/14.png
 ---
 :youtube-url: https://www.youtube.com/c/eprintstacktrace
 

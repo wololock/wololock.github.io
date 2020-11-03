@@ -11,9 +11,7 @@ tags:
     - programming
     - reading
     - affiliate
-cover: /images/programming-groovy-bg.jpg
-og_image: /images/og/programming-groovy.jpg
-card: /images/cards/programming-groovy.jpg
+card: /images/cards/16.png
 affiliates: true
 book:
   title: "Programming Groovy 2: Dynamic Productivity for the Java Developer"
@@ -41,6 +39,7 @@ book:
     - flag: es
       text: Get from amazon.es
       url: https://amzn.to/2YqXabJ
+icon: /images/icons/33.png
 ---
 :book-url: https://amzn.to/2IKCPXg
 

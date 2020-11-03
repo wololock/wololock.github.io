@@ -11,9 +11,8 @@ tags:
 categories:
 - Micronaut Cookbook
 highlightjs: true
-cover: /images/bg/micronaut-cookbook-2.jpg
-card: /images/cards/micronaut-02.jpg
-og_image: /images/og/stackoverflow-cli.jpg
+card: /images/cards/8.png
+icon: /images/icons/8.png
 ---
 :toc: macro
 :micronaut-launch: https://micronaut.io/launch/

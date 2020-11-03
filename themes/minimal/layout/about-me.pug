@@ -1,0 +1,77 @@
+extends layout/base
+
+block main
+    section.about-me-page.sans-serif.small
+        section.py-5
+            .container.py-lg-5
+                .row
+                    .col-12.col-md-9.order-1.order-md-0
+                        .pr-lg-5
+                            h2.color-light-purple.display-4.mt-4.mb-4.serif.text-lg-left.text-center Who am I?
+
+                            p.text-justify
+                                | I'm a pragmatic #[b problem solver].
+                                | I have been working inside the Java and Groovy ecosystem since 2012, but I&nbsp;don't identify myself from a specific programming language, framework, or other technology perspectives.
+                                | I&nbsp;prefer to choose #[b the right tool] to solve a particular problem instead.
+                                | Sometimes you may find me coding in Java, Groovy, Bash, or even Haskell.
+                                | Back in September 2014, I decided to make a career shift, and I became a full-time #[a(href=site.data.links.upwork) freelancer].
+                                | It was one of the most important decisions I made career-wise.
+                                | It opened new opportunities, like working (remotely) with startups around the globe or eventually joining Upwork.com in April 2017 to lead the continuous delivery transformation at the organization level.
+
+                            p.text-justify
+                                | Even though #[a(href=site.data.links.sixteenpersonalities) I'm #[b 74% introvert]], I believe in the power of community collaboration.
+                                | That is why I started #[a(href=site.data.links.torunjug) Toruń Java User Group] in February 2014 - a community that keeps connecting and growing up to this day.
+                                | Aside from this blog, I also run a #[em.fa.fa-youtube] #[b YouTube] #[a(href=site.data.links.youtube) channel] where I publish video tutorials on a weekly basis.
+                                | You can also find me on #[a(href=site.data.links.stackoverflow) Stack Overflow], where I regularly try to answer questions tagged with #[code groovy] or #[code jenkins-pipeline], to name just these two.
+
+                    .col-12.col-md-3.text-center.order-0.order-md-1
+                        .px-5.px-lg-0
+                            img.img-fluid.mt-5(src="/images/face.png")
+
+                        .text-center.mt-4
+                            include common/social-media
+
+        section.bg-light
+            .container.py-5
+                .row.py-lg-5
+                    .col-12.col-md-3.text-center
+                        img.img-fluid.mt-5(src=url_for("/images/about/idea.png"))
+
+                    .col-12.col-md-9
+                        h2.color-light-purple.display-4.mb-4.text-lg-left.text-center What is #[b.font-weight-bold my blog] about?
+
+                        p.text-justify
+                            | I use this blog to publish #[b problem-solution] types of articles to both - share my experience and knowledge with you and improve my learning skills by synthesizing thoughts.
+                            | Whenever I sit down to write a new blog post, I start with #[em "why?"] question, and then I try to explain, step-by-step, how to solve this specific problem.
+                            | My goal is not only to give you the answer but also to make all I can to clarify:
+
+                        ul
+                            li #[b what] is the root cause,
+                            li #[b what] potentially may go wrong,
+                            li #[b how] to prevent the problem from happening again,
+                            li and #[b what] we can learn more from this experience.
+
+
+        section.stay-in-touch
+            .container.py-5
+                .row.py-lg-5
+                    .col-12.col-md-9.order-1.order-md-0
+                        h2.color-light-purple.display-4.mb-4.text-lg-left.text-center Let's stay in touch!
+
+                        - var twitter = "https://twitter.com/intent/tweet?text=" + encodeURI("Hi, @wololock! 👋 I read your blog " + full_url_for("/") + " and want to say hi! 🙂")
+
+                        p
+                            | I will be more than happy to hear your feedback!
+                        p
+                            | Feel free to reach out at any time. My e-mail address is #[b hello@printstacktrace.blog].
+                        p
+                            | If you use #[em.fa.fa-twitter.color-twitter] #[b Twitter], please #[a(href=twitter) say "Hi!"], so know that someone read this page up to this point #[em.fa.fa-smile-o]
+                        p
+                            | If you use #[em.fa.fa-linkedin-square.color-linkedin] #[b LinkedIn], #[a(href=site.data.links.linkedin) we can connect] there as well. Just let me know that you're coming from the blog, so I know that you are not a random person that connects with everyone.
+                        p
+                            | I also encourage you to #[b subscribe to my newsletter] so that we can connect via e-mail. I send only (bi-)weekly newsletter with interesting updates and news. No spam, I promise. You can unsubscribe at any time if you don't get any value from it.
+
+                            != convertkit("5bc70426c4")
+
+                    .col-12.col-md-3.text-center.order-0.order-md-1
+                        img.img-fluid.mt-5(src=url_for("/images/about/stay-in-touch.png"))

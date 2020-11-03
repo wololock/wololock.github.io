@@ -9,10 +9,9 @@ tags:
     - github
 categories:
     - How to
-cover: /images/github-gpg-bg.jpg
-og_image: /images/og/github-gpg.jpg
-card: /images/cards/idea-gpg.jpg
+card: /images/cards/31.png
 highlightjs: true
+icon: /images/icons/29.png
 ---
 
 Today I've decided to improve my Github account settings a bit. I thought that it would be nice to add GPG key to it

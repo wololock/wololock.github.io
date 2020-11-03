@@ -12,14 +12,9 @@ tags:
     - devops
 categories:
     - Jenkins Pipeline Cookbook
-cover: /images/jenkins-bg2.jpg
-og_image: /images/og/pipeline-timeout-stage.jpg
-card: /images/cards/jenkins-02.jpg
+card: /images/cards/4.png
 highlightjs: true
-ad:
-  name: "Udemy - Start Learning Devops - How to timeout stage"
-  url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Flearn-devops-ci-cd-with-jenkins-using-pipelines-and-docker%2F
-  image: /images/yml/udemy-start-learning-devops-hz.jpg
+icon: /images/icons/2.png
 ---
 :catch-error-url: https://jenkins.io/doc/pipeline/steps/workflow-basic-steps/#catcherror-catch-error-and-set-build-result-to-failure
 

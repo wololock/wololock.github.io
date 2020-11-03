@@ -11,8 +11,9 @@ tags:
 - devops
 - continuous-integration
 highlightjs: true
-cover: /images/bg/how-to-catch-curl-response-in-jenkins-pipeline.jpg
-card: /images/cards/jenkins-04.jpg
+card: /images/cards/3.png
+latest_posts: false
+icon: /images/icons/50.png
 ---
 :jira: https://issues.jenkins.io/browse/JENKINS-43016?focusedCommentId=333915&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-333915
 

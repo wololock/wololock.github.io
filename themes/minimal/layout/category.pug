@@ -1,0 +1,55 @@
+extends layout/base
+
+block main
+    - var category = site.categories.findOne({name: page.category})
+    - var data = site.data[category.slug] || {}
+    - var recommended = data.recommended ? site.posts.find({slug: {$in: data.recommended}}).toArray().sort((a,b) => data.recommended.indexOf(a.slug) - data.recommended.indexOf(b.slug)) : []
+
+
+    section#popular.bg-light.posts-layout-01
+        .container.py-5
+            h1.mb-5.pt-5.h1 Featured #[b.mark #{category.name}] posts
+
+            if recommended.length > 0
+                .row
+                    - var first = recommended.reverse().pop()
+
+                    .col-12.col-lg-7.mb-lg-0.mb-4
+                        .pr-lg-5.sans-serif
+                            +article_large_cover(first)
+
+                    .col-12.col-lg-5.sans-serif
+                        each post in recommended.reverse()
+                            +article_small_tile(post)
+
+                        +random_ad(site.data.banners.config.category)
+
+    section#posts
+        .container.py-5
+            .row.pt-lg-5
+                .col-12.col-lg-8
+                    each post in page.posts.toArray()
+                        .row.mb-3
+                            .col-lg-2.d-none.d-lg-block
+                                if post.icon
+                                    a(href=url_for(post.path))
+                                        img.img-fluid.rounded.shadow-sm.mt-2(data-lazy=post.icon)
+                            .col-12.col-lg-10
+                                h3.h4.m-0.sans-serif.font-weight-bold
+                                    a(href=url_for(post.path))!=post.title
+
+                                .post-meta.mb-1
+                                    ul
+                                        li
+                                            time(datetime=date_xml(post.date))!= full_date(post.date, "MMMM D, YYYY")
+                                        li
+                                            !=readingTime(page.content, 'min. read', 200)
+                                        li
+                                            a(href=config.url + url_for(post.path) + "#disqus_thread")="0 Comments"
+
+
+                                p.small.sans-serif.text-justify!=strip_html(post.excerpt)
+
+                    if page.total > 1
+                        nav.paginator.pb-4
+                            !=paginator({ prev_text: '<i class="fa fa-angle-left"></i>', next_text: '<i class="fa fa-angle-right"></i>', escape: false, format: "page/%d/#posts"})

@@ -11,10 +11,9 @@ tags:
     - closure
 categories:
     - Groovy Cookbook
-cover: /img/post-debugger.jpg
-og_image: /images/og/groovy-field-variable.jpg
-eyeCatchImage: /images/og/groovy-field-variable.jpg
+card: /images/cards/24.png
 highlightjs: true
+icon: /images/icons/6.png
 ---
 
 Recently I have answered a few questions on Stack Overflow related to Groovy scripts and how they work in combination with 

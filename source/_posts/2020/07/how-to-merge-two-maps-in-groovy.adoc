@@ -9,20 +9,14 @@ tags:
 - maps
 - merge
 - quick-tip
-cover: /images/bg/groovy-cookbook.jpg
-og_image: /images/og/how-to-merge-two-maps-in-groovy.jpg
-card: /images/cards/groovy-02.jpg
+card: /images/cards/7.png
 affiliates: true
 highlightjs: true
-ad:
-  name: "Udemy - Learn Groovy - How to merge two maps in Groovy?"
-  url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fapache-groovy%2F
-  image: /images/yml/udemy-learn-groovy-hz.jpg
-newsletter: seven-groovy-one-liners
 related:
 - groovy-regular-expressions-the-definitive-guide
 - tail-recursive-methods-in-groovy
 - groovy-string-methods-that-will-make-your-life-groovier
+icon: /images/icons/28.png
 ---
 :inject-doc: http://docs.groovy-lang.org/latest/html/groovy-jdk/java/util/Collection.html#inject(java.lang.Object,%20groovy.lang.Closure)
 :metaprogramming: https://groovy-lang.org/metaprogramming.html#_methods
@@ -218,14 +212,12 @@ final map2 = [z: 3]
 final merged = map1.withDefault(map2.&get)
 println "$merged.x, $merged.y, $merged.z"
 ----
-
-~Source:~ ~{reddit-comment}~
 ____
 
-include::source/_parts/thank-you.adoc[]
-
-++++
-{% newsletter %}
-{% convertkit "73df1d6b65" %}
-{% endnewsletter %}
-++++
+//include::source/_parts/thank-you.adoc[]
+//
+//++++
+//{% newsletter %}
+//{% convertkit "73df1d6b65" %}
+//{% endnewsletter %}
+//++++

@@ -1,11 +1,13 @@
 convertkit: 1d25fc71bd
 
 youtube:
-  latest:
+  trending:
+    - Xdcg4Drg1hc
+    - KwQDxwZRZiE
     - RPdugI8eZgo
     - aFRjn_4nb-Q
-    - fAa5uyB3jOs
     - uIKvYgix-L4
+    - Ei_Nk14vruE
 
 posts:
   - jenkins-pipeline-environment-variables-the-definitive-guide

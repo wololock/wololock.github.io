@@ -9,9 +9,8 @@ tags:
     - career
     - learning
     - progress
-cover: /img/stack-overflow-bg.jpg
-og_image: /images/og/365-days-stack-overflow.jpg
-eyeCatchImage: /images/og/365-days-stack-overflow.jpg
+card: /images/cards/17.png
+icon: /images/icons/38.png
 ---
 
 A few days ago I have reached 365 consecutive days on https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile[Stack Overflow].

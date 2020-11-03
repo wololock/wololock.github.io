@@ -9,10 +9,9 @@ tags:
     - java
 categories:
     - Groovy Cookbook
-cover: /img/index-bg.jpg
-og_image: /images/og/groovy-equals-operator.jpg
-card: /images/cards/groovy-01.jpg
+card: /images/cards/39.png
 highlightjs: true
+icon: /images/icons/15.png
 ---
 
 One of the first mistakes people do when starting their journey with Java programming language is

@@ -11,10 +11,10 @@ tags:
     - jep101
 categories:
     - Learning Java
-cover: /images/java-type-inference-bg.jpg
-og_image: /images/og/java-generics-type-inference.jpg
-card: /images/cards/java-01.jpg
+card: /images/cards/23.png
 highlightjs: true
+icon: /images/icons/44.png
+
 ---
 
 Yesterday I have found this interesting question on Stack Overflow asked by https://twitter.com/czaszo[Opal]. He faced

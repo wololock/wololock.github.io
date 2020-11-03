@@ -10,10 +10,9 @@ tags:
     - java
     - unit-testing
     - testing
-cover: /img/post-debugger.jpg
-og_image: /images/og/spock-then-assertion-if.jpg
-card: /images/cards/groovy-04.jpg
+card: /images/cards/24.png
 highlightjs: true
+icon: /images/icons/45.png
 ---
 
 http://spockframework.org/[Spock Framework] is one of my favorite tools in the Groovy ecosystem toolbox.

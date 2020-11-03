@@ -12,9 +12,8 @@ tags:
 - command-line
 - how-to
 highlightjs: true
-cover: /images/jq-bg.jpg
-og_image: /images/og/curl-jq.jpg
-card: /images/cards/jq.jpg
+card: /images/cards/6.png
+icon: /images/icons/4.png
 ---
 :toc: macro
 

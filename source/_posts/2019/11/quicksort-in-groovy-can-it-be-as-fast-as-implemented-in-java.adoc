@@ -10,10 +10,10 @@ tags:
 - algorithm
 categories:
 - Groovy Cookbook
-og_image: /images/og/groovy-quicksort.jpg
-card: /images/cards/groovy-01.jpg
+card: /images/cards/27.png
 affiliates: true
 highlightjs: true
+icon: /images/icons/41.png
 ---
 :cracking-coding-interview-url: https://amzn.to/2vZIxC3
 

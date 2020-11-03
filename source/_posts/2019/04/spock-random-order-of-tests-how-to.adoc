@@ -10,10 +10,9 @@ tags:
     - junit
 categories:
     - Groovy Cookbook
-cover: /images/spock-random-tests-bg.jpg
-og_image: /images/og/spock-random-tests.jpg
-card: /images/cards/groovy-01.jpg
+card: /images/cards/35.png
 highlightjs: true
+icon: /images/icons/45.png
 ---
 
 http://spockframework.org/[Spock Framework] executes test methods _(features)_ in a single class _(specification)_ in the declaration order.

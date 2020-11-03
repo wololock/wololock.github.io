@@ -9,10 +9,9 @@ tags:
     - native-image
 categories:
     - Groovy Cookbook
-cover: /images/graalvm-groovy-bg.jpg
-og_image: /images/og/graalvm-groovy-grape.jpg
-eyeCatchImage: /images/og/graalvm-groovy-grape.jpg
+card: /images/cards/29.png
 highlightjs: true
+icon: /images/icons/24.png
 ---
 :graalvm-url: https://www.graalvm.org/
 :graalvm-version: 19.2.1

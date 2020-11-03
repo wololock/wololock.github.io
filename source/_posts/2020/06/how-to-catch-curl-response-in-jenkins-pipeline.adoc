@@ -12,14 +12,8 @@ tags:
 - jq
 - json
 highlightjs: true
-card: /images/cards/jenkins-04.jpg
-cover: /images/bg/how-to-catch-curl-response-in-jenkins-pipeline.jpg
-og_image: /images/og/how-to-catch-curl-response-in-jenkins-pipeline.jpg
-floating:
-  id: jenkins-pipeline-tutorials
-  src: /images/yml/jenkins-pipeline-tutorials.png
-  url: https://www.youtube.com/playlist?list=PLKaiHc24qCTSnXaus2t4b71ihq9k649XS
-  name: Jenkins Pipeline Tutorials on YouTube
+card: /images/cards/3.png
+icon: /images/icons/48.png
 ---
 :toc: macro
 :pipeline-fundamentals: https://www.jenkins.io/blog/2017/02/01/pipeline-scalability-best-practice/#fundamentals

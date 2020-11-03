@@ -1,0 +1,44 @@
+extends layout/base
+
+block main
+    - var top = page.posts.toArray().slice(0,4)
+    - var rest = page.posts.toArray().slice(4)
+
+    section.posts-layout-01.bg-light
+        .container.py-5
+            h2.h1.mb-5.pt-5 All posts with tag #[b.mark #{page.tag}]
+
+            .row.pb-3
+                .col-12.col-lg-7.mb-lg-0.mb-5
+                    .pr-lg-5.sans-serif
+                        +article_large_cover(top[0])
+
+                .col-12.col-lg-5.sans-serif
+                    each post in top.slice(1)
+                        +article_small_tile(post)
+
+                    +random_ad(site.data.banners.config.tag)
+
+    if rest.length > 0
+        section#posts
+            .container.py-5
+                .pt-lg-5.row
+                    each post in rest
+                        .col-12.col-lg-6
+                            .media.align-items-start.mb-4
+                                .d-block
+                                    if post.icon
+                                        a(href=url_for(post.path))
+                                            img.rounded(data-lazy=post.icon width=64)
+                                .media-body.pl-3
+                                    h3.m-0.small.font-weight-bold
+                                        a(style="color:#666" href=url_for(post.path)) #{post.title}
+                                    .post-meta.small.m-0
+                                        ul.m-0
+                                            li
+                                                time(datetime=date_xml(post.date))!= full_date(post.date, "MMMM D, YYYY")
+                                            li
+                                                !=readingTime(page.content, 'min. read', 200)
+                                            li
+                                                a(href=config.url + url_for(post.path) + "#disqus_thread")="0 Comments"
+                                    .sans-serif.m-0.p-0(style="font-size:12px")!=truncate(strip_html(post.excerpt), {length: 150})

@@ -11,10 +11,9 @@ tags:
     - rxjava
 categories:
     - Micronaut Cookbook
-cover: /img/micronaut-bg.jpg
-og_image: /images/og/micronaut-nonblocking-part3.jpg
-card: /images/cards/micronaut.jpg
+card: /images/cards/18.png
 highlightjs: true
+icon: /images/icons/36.png
 ---
 
 Welcome to the part 3 of _"Non-blocking and async http://micronaut.io[Micronaut]"_ article. In the +++{% post_link micronaut-non-blocking-and-async-part-2 previous post %}+++

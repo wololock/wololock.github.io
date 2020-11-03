@@ -11,9 +11,8 @@ tags:
     - video
 categories:
     - Conferences
-cover: /images/gr8conf-video-bg.jpg
-og_image: /images/og/gr8conf-video.jpg
-eyeCatchImage: /images/og/gr8conf-video.jpg
+card: /images/cards/12.png
+icon: /images/icons/22.png
 ---
 :gr8conf-url: https://gr8conf.eu
 

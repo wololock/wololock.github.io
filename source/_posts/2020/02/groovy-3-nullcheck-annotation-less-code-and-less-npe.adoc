@@ -8,10 +8,9 @@ tags:
     - annotation
 categories:
     - Groovy Cookbook
-cover: /images/groovy-cookbook.jpg
-og_image: /images/og/groovy-null-check.jpg
-card: /images/cards/groovy-02.jpg
+card: /images/cards/27.png
 highlightjs: true
+icon: /images/icons/6.png
 ---
 
 Groovy 3 helps you write less, but more secure code.

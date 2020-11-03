@@ -10,10 +10,9 @@ tags:
     - non-blocking
 categories:
     - Ratpack Cookbook
-cover: /images/ratpack-cookbook-bg.jpg
-og_image: /images/og/ratpack-graalvm-how-to-start.jpg
-eyeCatchImage: /images/og/ratpack-graalvm-how-to-start.jpg
+card: /images/cards/19.png
 highlightjs: true
+icon: /images/icons/40.png
 ---
 :graalvm-url: https://www.graalvm.org/
 :graalvm-version: 19.2.1

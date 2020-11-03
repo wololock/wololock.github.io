@@ -9,10 +9,9 @@ tags:
     - ratpack
 categories:
     - Learning Java
-cover: /images/graalvm-heap-size-bg.jpg
-og_image: /images/og/graalvm-heap-size.jpg
-card: /images/cards/groovy-graalvm.jpg
+card: /images/cards/29.png
 highlightjs: true
+icon: /images/icons/31.png
 ---
 
 In this short blog post, I would like to show you how to set a heap size of the application executed from the

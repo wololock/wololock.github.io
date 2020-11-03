@@ -14,14 +14,9 @@ tags:
     - java
 categories:
     - Jenkins Pipeline Cookbook
-cover: /images/jenkins-bg.jpg
-og_image: /images/og/jenkins-pipeline-docker-sdkman.jpg
-card: /images/cards/jenkins-03.jpg
+card: /images/cards/3.png
 highlightjs: true
-ad:
-  name: "Udemy - Start Learning Devops - Using SDKMAN as a docker image"
-  url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Flearn-devops-ci-cd-with-jenkins-using-pipelines-and-docker%2F
-  image: /images/yml/udemy-start-learning-devops-hz.jpg
+icon: /images/icons/19.png
 ---
 :corretto-url: https://aws.amazon.com/corretto/
 :arg-doc-url: https://docs.docker.com/engine/reference/builder/#arg

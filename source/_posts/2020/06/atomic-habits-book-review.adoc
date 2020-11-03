@@ -14,9 +14,7 @@ tags:
 - habits
 categories:
 - Programmer's Bookshelf
-cover: /images/bg/atomic-habits.jpg
-og_image: /images/og/atomic-habits-02.jpg
-card: /images/cards/atomic-habits.jpg?v=3
+card: /images/cards/9.png
 affiliates: true
 book:
   title: "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones"
@@ -34,19 +32,19 @@ book:
       url: https://amzn.to/2AyAyNU
     - flag: de
       text: Get from amazon.de
-      url: https://amzn.to/3coH0EF
+      url: https://amzn.to/36YG6xt
     - flag: gb
       text: Get from amazon.co.uk
-      url: https://amzn.to/2AyAyNU
+      url: https://amzn.to/3ctSIxz
     - flag: fr
       text: Get from amazon.fr
-      url: https://amzn.to/3coH0EF
+      url: https://amzn.to/3cxQq0N
     - flag: es
       text: Get from amazon.es
-      url: https://amzn.to/2AyAyNU
+      url: https://amzn.to/3crCDsg
     - flag: pl
       text: Get from taniaksiazka.pl
-      url: https://amzn.to/2AyAyNU
+      url: https://go.buybox.click/linkclick_4951_11?&url=https%3A%2F%2Fwww.taniaksiazka.pl%2Fatomowe-nawyki-drobne-zmiany-niezwykle-efekty-james-clear-p-1283871.html
 newsletter: atomic-habits
 structured_data:
   '@type': 'Book'
@@ -70,6 +68,7 @@ structured_data:
       '@type': "Rating"
       ratingValue: 5
     reviewBody: "We usually expect to see linear growth when building new habits. It doesn't work like that. We do not realize that making small improvements, like 1% every day, results in making 37-times better progress after a year. James Clear extends the idea of the habit loop (cue, craving, response, reward) and guides you on how to build an efficient habits building system. The book is pleasant to read, very \"actionable\", and is based on research, and not only \"because I think so.\" Highly recommended!"
+icon: /images/icons/9.png
 ---
 :the-war-of-art: https://amzn.to/2MgCKMD
 :atomic-habits: https://amzn.to/3coH0EF
@@ -83,6 +82,7 @@ structured_data:
 :amazon-fr: https://amzn.to/3cxQq0N
 :amazon-ca: https://amzn.to/2AyAyNU
 :tania-ksiazka: https://go.buybox.click/linkclick_4951_11?&url=https%3A%2F%2Fwww.taniaksiazka.pl%2Fatomowe-nawyki-drobne-zmiany-niezwykle-efekty-james-clear-p-1283871.html
+:toc: macro
 
 Sticking to the process of achieving my goals has always been one of the most difficult obstacles to overcome, both on my way to becoming a better professional, and in my private life.
 I have found that in some areas I need to make an extraordinary amount of effort to keep myself on the right track, no matter how *S.M.A.R.T.*
@@ -94,6 +94,8 @@ I have seen the dots, but I didn’t yet know how to connect them.
 ++++
 <!-- more -->
 ++++
+
+toc::[]
 
 [NOTE]
 ====
@@ -203,11 +205,6 @@ As James Clear tries to convince, the right thing doesn’t have to be spectacul
 Doing *small things consistently* day after day is the way to build a *habit that sticks*, and to *produce results* that can change your life.
 What we need to understand and appreciate is the importance of small steps that we consciously decide to take - they eventually lead to success.
 
-++++
-{% newsletter %}
-{% convertkit "3679b635aa" %}
-{% endnewsletter %}
-++++
 
 == The conclusion
 
@@ -232,7 +229,6 @@ pass:[{% book %}]
 5. Synthesize and publish your notes on a blog. List a few things you find most interesting, and explain what you have learned from the presentation. After a year you will have a blog with at least 52 valuable blog posts.
 6. Don’t be afraid to experiment. Every mistake is an experience you can learn from. Try different ways to learn new programming languages, frameworks, technologies. If you’re a backend developer, maybe it is not a bad idea to get a new perspective and learn some fancy frontend technology. Or a mobile app. Or an assembly language for your laptop’s processor. The sky is the limit.
 
-include::source/_parts/thank-you.adoc[]
 
 
 

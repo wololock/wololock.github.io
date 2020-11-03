@@ -12,9 +12,7 @@ tags:
     - affiliate
 categories:
     - Programmer's Bookshelf
-cover: /images/release-it-bg.jpg
-og_image: /images/og/release-it.jpg
-card: /images/cards/release-it.jpg
+card: /images/cards/15.png
 affiliates: true
 book:
   title: "Release It!: Design and Deploy Production-Ready Software"
@@ -70,6 +68,7 @@ structured_data:
       '@type': "Rating"
       ratingValue: 5
     reviewBody: "A great book every software developer, architect, designer or even QA engineer should read. It focuses on principles and guidance so it may feel like it misses some level of details. However, if it focused more on the specific tools instead of principles, it would quickly become outdated. You won’t regret spending time with the book - it is 336 pages of useful and never outdating knowledge. Highly recommended!"
+icon: /images/icons/30.png
 ---
 :book-url: https://amzn.to/2vnj9pk
 

@@ -1,0 +1,54 @@
+extends layout/base
+
+block main
+    -
+        var archives = site.posts.sort("date", "desc").toArray().reduce((m, post) => {
+            var year = full_date(post.date, 'YYYY');
+            if (m[year] === undefined) m[year] = [];
+            m[year].push(post);
+            return m;
+        }, {});
+
+        var years = Object.keys(archives).reverse();
+
+    each year,i in years
+        section.posts-layout-01(id=`year-${year}` class=[i % 2 == 0 ? "bg-light": "", i === 0 ? "pt-5" : ""])
+            .container.py-5
+                h2.h1.mb-5 #[b.mark.rounded #{archives[year].length}] posts from #[b #{year}]
+
+                - var first = archives[year][0]
+                - var other = archives[year].slice(1,4)
+                - var posts = archives[year].slice(4)
+
+                .row.pb-3
+                    .col-12.col-lg-7.mb-lg-0.mb-4
+                        .pr-lg-5.sans-serif
+                            +article_large_cover(first)
+
+                    .col-12.col-lg-5.sans-serif
+                        each post in other
+                            +article_small_tile(post)
+
+                        if i === 1 || i === (years.length - 1)
+                            +random_ad(site.data.banners.config.archives)
+                hr
+                .pt-5.row
+                    each post in posts
+                        .col-lg-6.col-12
+                            .media.align-items-start.mb-4
+                                .d-block
+                                    if post.icon
+                                        a(href=url_for(post.path))
+                                            img.rounded(data-lazy=post.icon width=64)
+                                .media-body.pl-3
+                                    h3.m-0.small.font-weight-bold
+                                        a(style="color:#666" href=url_for(post.path)) #{post.title}
+                                    .post-meta.small.m-0
+                                        ul.m-0
+                                            li
+                                                time(datetime=date_xml(post.date))!= full_date(post.date, "MMMM D, YYYY")
+                                            li
+                                                !=readingTime(page.content, 'min. read', 200)
+                                            li
+                                                a(href=config.url + url_for(post.path) + "#disqus_thread")="0 Comments"
+                                    .sans-serif.m-0.p-0(style="font-size:12px")!=truncate(strip_html(post.excerpt), {length:150})

@@ -1,0 +1,8 @@
+header#header.fixed-top
+    .container
+        nav.navbar.navbar-light.mx-0.px-0(class=is_post() ? "justify-content-start" : "justify-content-end")
+            a(href=url_for("/")) Home
+            a(href=url_for("/about")) About
+            a(href=url_for("/archives")) Archives
+            a(href=url_for("/resources")) Tools & Resources
+            a(href=url_for("/support-me")) Support me

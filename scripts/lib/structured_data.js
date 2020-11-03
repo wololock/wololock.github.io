@@ -87,7 +87,7 @@ function structured_data(page, config) {
                 'image': {
                     '@type': 'ImageObject',
                     '@id': config.url + '/' + page.path + '#primaryimage',
-                    'url': config.url + page.og_image,
+                    'url': config.url + page.card,
                     'inLanguage': 'en-US',
                     'caption': page.title
                 },
@@ -99,26 +99,19 @@ function structured_data(page, config) {
                     {
                         '@type': 'ListItem',
                         'position': 1,
-                        'item': {
-                            '@id': config.url,
-                            'name': 'Home'
-                        }
+                        'name': 'Home',
+                        'item': config.url
                     },
                     {
                         '@type': 'ListItem',
                         'position': 2,
-                        'item': {
-                            '@id': category.permalink,
-                            'name': category.name
-                        }
+                        'name': category.name,
+                        'item': category.permalink
                     },
                     {
                         '@type': 'ListItem',
                         'position': 3,
-                        'item': {
-                            '@id': config.url + '/' + page.path,
-                            'name': page.title
-                        }
+                        'name': page.title
                     }
                 ]
             }

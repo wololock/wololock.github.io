@@ -1,0 +1,130 @@
+extends layout/base
+
+block main
+    section.sans-serif.small
+        .container.py-5
+
+            h1.color-light-purple.display-4.mb-4.pt-lg-5 #[b.font-weight-bold Support] the blog
+
+            p
+                | I hate annoying popups and ads that #[b disturb visitors] from reading what they came for - #[b.mark the content].
+                | For that specific reason, I keep the number of advertisements #[b as minimal as possible], and I keep them away from the body of the article you came here to read.
+                | I care about an excellent #[b.mark user experience]. My goal is to offer you one that can be compared to reading an ebook.
+
+            p.pt-3
+                | Does it mean that I don’t want to monetize my blog by any form?
+                | #[b Not necessarily].
+                | I just believe that #[b there are better forms] to do that.
+                | On average, more than #[b 22,000 unique users] visit this blog every month.
+                | I strongly believe that #[b.mark 1%] of those visitors may be interested in supporting my work in one way or another.
+                | It doesn't have to mean financial support only.
+                | I listed below #[b a couple of different ways] how you can support my blog and my work. I hope you are in the 1% I mentioned earlier, and you will find something that fits you.
+
+
+    section.sans-serif.small.bg-light
+        .container.py-5
+            .row.py-lg-5
+                .col-12.col-md-9.order-0
+                    h2.mb-4.h1.text-lg-left.text-center Become a #[b patron]
+
+                    p.text-justify
+                        | If you find my work valuable and want to #[b support it], consider #[b.mark becoming a patron] of the e.printstacktrace.blog.
+                        | I will keep posting unique and high-quality content, no matter what.
+                        | The blog will always remain free of charge and available to everyone.
+                        | However, if you can afford a donation of any size, I will be thankful if you consider supporting my work through one of the following platforms:
+
+
+                    ul
+                        li
+                            a.gatr(href="https://github.com/sponsors/wololock" data-type="patron" data-name="GitHub Sponsors") GitHub Sponsors
+                        li
+                            a.gatr(href="https://opencollective.com/eprintstacktrace" data-type="patron" data-name="Open Collective") Open Collective
+
+                    a.gatr(href="https://opencollective.com/eprintstacktrace#section-contributors" data-type="patron" data-name="Open Collective Contributors")
+                        img(src="https://opencollective.com/eprintstacktrace/backers.svg?avatarHeight=32&width=auto")
+
+                .col-12.col-md-3.text-center
+                    img.img-fluid(src=url_for("/images/support-me/github.png"))
+
+    section.py-5.small.sans-serif
+        .container
+            .row.py-lg-5
+                .col-12.col-md-9.order-1
+                    h2.h1.mb-4.text-lg-left.text-center Hire me #[b as a mentor]
+
+                    p
+                        | I accept #[a.gatr(href=site.data.links.upwork data-type="mentor" data-name="Upwork") freelance] gigs occasionally only, but I never refuse to #[b help other people].
+                        | If you feel stuck with your learning process or face problems that are too difficult for you to solve, feel free to contact me (#[a(href="mailto:szymon.stepniak@gmail.com") email] or #[a.gatr(href=site.data.links.codementor data-type="mentor" data-name="Codementor") CodeMentor.io]) and do my best to help you.
+                        | I can offer you either #[b a quick solution-oriented session] or #[b a long-term mentoring relationship] - whatever works for #[b.mark you] best.
+
+
+                .col-12.col-md-3.text-center
+                    img.img-fluid(src=url_for("/images/support-me/hire.png"))
+
+    section.py-5.small.bg-light.sans-serif
+        .container
+            .row.py-lg-5
+                .col-12.col-md-9.order-1.order-md-0
+                    h2.h1.mb-4.text-lg-left.text-center Subscribe to my #[em.fa.fa-youtube] #[b.color-black YouTube] channel
+
+                    p
+                        | You might haven't heard that, but I also run #[b a dynamically growing YouTube channel], where I post videos weekly.
+                        | I haven't reached 4,000 hours watch-time yet, so my videos are not monetized.
+                        | However, you can still help me #[b bring it to the next level] - any form of engagement like #[a(href=site.data.links.youtube + "?sub_confirmation=1") subscribing to my channel], commenting videos, and clicking that like button #[b are all valuable] forms of support.
+                .col-12.col-md-3.text-center
+                    img.img-fluid(src=url_for("/images/support-me/subscribe.png"))
+
+    section.py-5.small.sans-serif
+        .container
+            .row.py-lg-5
+                .col-12.col-md-9.order-1
+                    h2.h1.mb-4.text-lg-left.text-center Help me #[b to spread] the word
+
+                    p
+                        | One of the simplest yet still compelling forms of support is #[b.mark helping spread the word] about blog posts - the new ones, or the ones you enjoyed the most.
+                        | I added a "Share on Twitter" and "Share on LinkedIn" buttons under every blog post - it would mean a lot to me if you could click on them once in a while and help me spread the word about the work that I'm doing here.
+                        | I want to #[b thank you] in advance for doing that.
+
+                    - var twitter = "https://twitter.com/intent/tweet?text=" + encodeURI("Hi, @wololock! 👋 I read your blog " + full_url_for("/") + " and I find it very useful! 🙂")
+
+                    p
+                        | #[b PS:] if you use #[em.fa.fa-twitter] #[b Twitter], #[a(href=twitter) poke me in the message] so that I can thank you directly.
+
+
+                .col-12.col-md-3.text-center
+                    img.img-fluid(src=url_for("/images/support-me/share.png"))
+
+    section.py-5.small.bg-light.sans-serif
+        .container
+            .row.py-lg-5
+                .col-12.col-md-9.order-1.order-md-0
+                    h2.h1.mb-4.text-lg-left.text-center Join my #[b newsletter]
+
+                    p
+                        | And last but not least - you can #[b join the e-mail list] that I started creating a short while ago.
+                        | I use it to share some updates and news from both the blog and the YouTube channel.
+                        | I use it for the #[b.mark bi-directional relationship] - you are always welcome to answer any of my e-mails and share your thoughts.
+                        | Also, subscribers have one more benefit - they get information about upcoming updates first.
+
+                        != convertkit("5bc70426c4")
+                .col-12.col-md-3.text-center
+                    img.img-fluid(src=url_for("/images/support-me/email.png"))
+
+    section.py-5.small.sans-serif
+        .container
+            .row.py-lg-5
+                .col-12
+                    h2.text-center.display-3.font-weight-bold THANK YOU!
+
+                    p.text-justify
+                        | No matter if any of the options listed above fits you, I want to #[b.mark thank you] for giving me a chance to present them and reading up to this point.
+                        | I hope you are one of my #[b regular readers] who keep coming back and keep finding useful information on my blog.
+                        | I will continue this journey, and I want to #[b invite you] to play a more active role in it.
+                        | Also, if you see other options to support my blog that I didn't mention above, please let me know.
+                        | Helping other people in becoming better problem solvers and programmers is a fascinating journey.
+                        | There is enough room for everyone, regardless of the level of experience.
+                        | #[b Join me, and let's do it together!]
+
+
+
+

@@ -9,9 +9,10 @@ tags:
 - jenkins-pipeline
 - cicd
 - devops
-cover: /images/bg/jenkins-pipeline-mistakes.jpg
-card: /images/cards/jenkins-pipeline-mistakes.jpg
-og_image: /images/og/jenkins-pipeline-mistakes.jpg
+card: /images/cards/2.png
+latest_posts: false
+newsletter: none
+icon: /images/icons/1.png
 ---
 
 Do you know that you can unit test your Jenkins pipeline code?

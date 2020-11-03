@@ -1,0 +1,61 @@
+config:
+  tag: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "grammarly-02"]
+  archives: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "grammarly-02"]
+  category: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01"]
+  post: ["nordvpn-02", "udemy-02", "udemy-devops-02", "audible-premium-02"]
+
+ids:
+  grammarly-01:
+    src: /images/yml/grammarly-tower.png
+    link: https://www.jdoqocy.com/click-100191173-10952823
+
+  grammarly-02:
+    randomRatio: 1
+    src: /images/yml/grammarly-02.png
+    link: https://www.jdoqocy.com/click-100191173-10952823
+
+  nordvpn-01:
+    randomRatio: 4
+    src: /images/yml/nord-vpn-01.png
+    link: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=572706.11&type=3&subid=0
+    class: "img-fluid border"
+
+  nordvpn-02:
+    randomRatio: 4
+    src: /images/yml/nord-vpn-02.png
+    link: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=572706.11&type=3&subid=0
+
+  nordvpn-03:
+    randomRatio: 4
+    src: /images/yml/nord-vpn-03.png
+    link: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=572706.11&type=3&subid=0
+
+  udemy-01:
+    randomRatio: 1
+    src: /images/yml/udemy-01.png
+    link: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.13486&subid=0&type=4
+
+  udemy-02:
+    randomRatio: 1
+    src: /images/yml/udemy-02.png
+    link: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.13486&subid=0&type=4
+
+  udemy-devops-01:
+    randomRation: 1
+    src: /images/yml/udemy-devops-01.png
+    link: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Ftopic%2Fdevops%2F
+
+  udemy-devops-02:
+    randomRation: 1
+    src: /images/yml/udemy-devops-02.png
+    link: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Ftopic%2Fdevops%2F
+
+  audible-premium-01:
+    randomRation: 2
+    src: /images/yml/audible-01.png
+    link: https://amzn.to/35QTnYE
+
+  audible-premium-02:
+    randomRation: 2
+    src: /images/yml/audible-02.png
+    link: https://amzn.to/35QTnYE

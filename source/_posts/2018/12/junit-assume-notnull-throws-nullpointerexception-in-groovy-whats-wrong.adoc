@@ -12,10 +12,9 @@ tags:
     - junit-4
 categories:
     - Groovy Cookbook
-cover: /images/groovy-cookbook.jpg
-og_image: /images/og/groovy-junit-assume-notnull-npe.jpg
-eyeCatchImage: /images/og/groovy-junit-assume-notnull-npe.jpg
+card: /images/cards/24.png
 highlightjs: true
+icon: /images/icons/45.png
 ---
 
 Ignoring some of the unit tests when given conditions are not satisfied is a handy feature of a JUnit framework.

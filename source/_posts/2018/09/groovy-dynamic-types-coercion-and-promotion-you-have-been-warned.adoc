@@ -8,9 +8,9 @@ tags:
     - coercion
 categories:
     - Groovy Cookbook
-og_image: /images/og/groovy-dynamic-types.jpg
-eyeCatchImage: /images/og/groovy-dynamic-types.jpg
+card: /images/cards/37.png
 highlightjs: true
+icon: /images/icons/6.png
 ---
 
 http://groovy-lang.org/[Groovy] is a very powerful language on a JVM platform and with this great power

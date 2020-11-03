@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Szymon Stepniak - Freelance Groovy Developer & DevOps
+title: e.printstacktrace.blog - I help you become a better software developer.
 description: Blog about programming, created by Upwork's Top Rated freelancer, 10+ years experienced Java/Groovy developer. Contact me if you are looking for an experienced and high quality consultant.
 author: Szymon Stepniak
-bio: Groovista, Upwork's Top Rated freelancer, Toruń Java User Group founder, open&nbsp;source contributor, Stack Overflow addict, bedroom guitar player. I walk through e.printStackTrace() so you don't have to.
+bio: I help you become a better software developer.
 photo: https://www.gravatar.com/avatar/b22c1842c6e8f7f2b9b3ed8c0d4efb4d?s=200
 language: en
 timezone: Europe/Warsaw
@@ -64,7 +64,7 @@ category_generator:
   order_by: -date
 
 tag_generator:
-  per_page: 9
+  per_page: 0
   order_by: -date
   
 # Category & Tag
@@ -89,7 +89,7 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 #theme: clean-blog
-theme: newtheme
+theme: minimal
 
 disqus_shortname: eprintstacktrace
 
@@ -133,12 +133,27 @@ category:
     'Jenkins Pipeline Cookbook': /images/jenkins-bg2.jpg
     'jq cookbook': /images/jq-bg.jpg
 
-stackoverflow:
-  profile: https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile
-  reputation: 28,023
-  gold: 9
-  silver: 66
-  bronze: 97
+social-media:
+  - icon: "fa-twitter"
+    name: Twitter
+    url: https://twitter.com/wololock
+    number: 1.12k
+    description: Followers
+  - icon: "fa-youtube"
+    name: YouTube
+    url: https://www.youtube.com/eprintstacktrace
+    number: 1.96k
+    description: Subscribers
+  - icon: "fa-github"
+    name: Github
+    url: https://github.com/wololock
+    number: 97
+    description: Followers
+  - icon: "fa-stack-overflow"
+    name: StackOverflow
+    url: https://stackoverflow.com/users/2194470/szymon-stepniak
+    number: 29.4k
+    description: Reputation
 
 alias:
   youtube/:
@@ -198,3 +213,4 @@ convertkit:
   domain: tremendous-motivator-1432.ck.page
   threshold: -500
 
+google_analytics: UA-42400890-5

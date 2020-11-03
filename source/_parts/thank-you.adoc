@@ -1,17 +1,2 @@
 
-[discrete]
-== Thank you!
 
-Thank you so much for reading up to this point!
-I hope this article met your expectations, and you have learned something valuable from it.
-If you have one more minute, leave me a comment below, please.
-This way, I can thank you for your time more in person.
-
-And last but not least.
-If you find this blog post valuable, help me spread the word, please.
-You can share it on icon:twitter[role="color-twitter"] pass:[{% share_post "twitter" %}], icon:linkedin-square[role="color-linkedin"] pass:[{% share_post "linkedin" %}], or anywhere else you can think of.
-This single tweet or post on social media helps a lot.
-One more time - thank you so much!
-*You're awesome!* icon:heart[role="color-red"]
-
-_(PS: Check "Related posts" below for more content like this one.)_

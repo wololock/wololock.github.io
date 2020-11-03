@@ -9,10 +9,9 @@ tags:
     - github
 categories:
     - How to
-cover: /img/hexo-github-bg.jpg
-og_image: /images/og/hexo-git-deployer.jpg
-card: /images/cards/hexo-github.jpg
+card: /images/cards/22.png
 highlightjs: true
+icon: /images/icons/42.png
 ---
 
 I have found https://hexo.io[Hexo] a great tool for building a blog and apply many well-known software development

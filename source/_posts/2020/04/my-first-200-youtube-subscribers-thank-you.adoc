@@ -9,9 +9,8 @@ tags:
     - learning
 categories:
     - Blog Reports
-cover: /images/youtube-bg.jpg
-og_image: /images/og/youtube.jpg
-card: /images/cards/youtube.jpg
+card: /images/cards/38.png
+icon: /images/icons/11.png
 ---
 :youtube-url: https://e.printstacktrace.blog/youtube?utm_source=post
 

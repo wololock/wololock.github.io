@@ -11,10 +11,9 @@ tags:
     - ide
 categories:
     - Groovy Cookbook
-cover: /img/groovy-junit5-bg.jpg
-og_image: /images/og/groovy-junit5.jpg
-card: /images/cards/groovy-02.jpg
+card: /images/cards/24.png
 highlightjs: true
+icon: /images/icons/37.png
 ---
 
 In this short blog post I would like to explain how to avoid popular mistake when you write your

@@ -1,8 +1,9 @@
-- name: Software development
+- name: 'Tools for <b>Software Developers</b>'
   description:
   items:
     - name: IntelliJ IDEA
       image: /images/resources/idea.png
+      card: /images/resources/1.jpg
       description: "The primary IDE I use for Java/Groovy development is <b>IntelliJ IDEA Ultimate Edition</b>. It has everything Java developer can think of. I use the commercial version (paid annually), but Community Editon offers enough to consider it as your primary IDE."
       url: https://www.jetbrains.com/idea/
     - name: Visual Studio Code
@@ -13,13 +14,18 @@
       image: /images/resources/github.png
       description: "I store all my source code (either public or private) on <b>Github.com</b>. I tried using some other alternatives, but eventually, I always ended up using Github as my primary remote repository. "
       url: https://github.com
+    - name: Guake Terminal
+      image: /images/resources/guake.png
+      description: "Guake is a top-down terminal for Linux, and is highly inspired by the famous terminal used in Quake &copy; game."
+      url: http://guake-project.org/
 
-- name: Blog setup
+- name: 'Tools & services for <b>Bloggers</b>'
   description:
   items:
     - name: Hexo
+      card: /images/resources/4.jpg
       image: /images/resources/hexo.png
-      description: "My blog is being developed using a static site generator - <b>Hexo</b>. It's fast, robust, and flexible. It's written in Node.js, so whenever I have to implement additional functionality myself, I need to play around with a JavaScript. :-)"
+      description: "My blog is being developed using a static site generator - <b>Hexo</b>. It's fast, robust, and flexible. It's written in Node.js, so whenever I have to implement additional functionality myself, I have a chance to play around with a JavaScript."
       url: https://hexo.io/
     - name: Domain.com
       image: /images/resources/domain.png
@@ -30,12 +36,18 @@
       image: /images/resources/cloudflare.png
       description: "I use Github Pages to host my blog, and it comes with some limitations. Luckily, I eliminated most of them by using <b>Cloudflare</b> free services like DNS, SSL certificate, HTTP/2, firewall, page rules, CDN, file cache, and many more."
       url: https://www.cloudflare.com/
+    - name: Bluehost
+      image: /images/resources/bluehost.png
+      description: "With Bluehost, you get all the benefits of the world's most popular site builder in a smart, secure, easy-to-use package."
+      url: https://www.bluehost.com/track/szymonstepniak/
+      affiliate: true
 
 - name: Writing & Creating
   description:
   items:
     - name: Canva
       image: /images/resources/canva.png
+      card: /images/resources/2.jpg
       description: "I'm not a graphic designer, but I still need to create graphics for social media or thumbnails for my YouTube videos. I use my favorite Swiss Army Knife in that field - <b>Canva</b>. It's a web-based program for creating beautiful artworks. No graphic skills or talent required."
       url: https://canva.7eqqol.net/c/2430749/653612/10068
       affiliate: true
@@ -54,6 +66,7 @@
   items:
     - name: Convertkit
       image: /images/resources/convertkit.png
+      card: /images/resources/5.jpg
       size:
         height: 128
       description: "One of the biggest mistakes every successful blogger makes is postponing building the e-mail list. If you want to be smarter and build your e-mail list earlier, try <b>Convertkit</b>. It's an e-mail marketing tool created specifically for content creators. You can use it for free (with some functionality limitations) up to the first 1,000 subscribers."
@@ -73,6 +86,7 @@
   items:
     - name: Notion
       image: /images/resources/notion.png
+      card: /images/resources/3.jpg
       description: "I use <b>Notion</b> as my all-in-one tool for organizing notes, task lists, projects, drafts, video scripts, and coordinating all other creative work. I like its clean and minimalistic design, templates, and mobile app. You can use Notion for free for personal use. So why not give it a try?"
       url: https://www.notion.so/
     - name: Audible
@@ -84,15 +98,25 @@
       image: /images/resources/toggl.png
       description: "I do track the time spent on my daily tasks. My all-time favorite app is <b>Toggl</b>, a web-based time tracker supporting projects, tags, reports, and a few more useful features. It's free, although it also has paid plans. You can use it on your desktop as well as on your iOS or Android mobile phone."
       url: https://toggl.com/
+    - name: RescueTime
+      image: /images/resources/rescuetime.png
+      description: 'Automatic time-tracking, distraction blocking, and more! See exactly where your time goes, block your worst distractions, and get powerful reports and tools to improve every aspect of your day.'
+      url: https://rescuetime.com
 
-- name: Video Gear
+- name: 'Tools & gear for <i class="fa fa-youtube"></i> <b>YouTube</b>'
   description:
   items:
     - name: Panasonic Lumix G7
       image: /images/resources/lumixg7.png
+      card: /images/resources/7.jpg
       description: "The primary camera I use to shoot my YouTube videos is <b>Panasonic Lumix G7</b> mirrorless camera. It's not the newest and most shiny camera out there, but it delivers good quality (4K and 1080p) for an affordable price. It has a flip-out screen, built-in audio pre-amp with mini-jack input. I still think this is a reasonable choice for someone who starts recording videos with something more advanced than a smartphone."
       affiliate: true
       url: https://amzn.to/39bZWX3
+    - name: vidIQ
+      description: "YouTube is the second largest search engine used by millions of users. <b>vidIQ</b> is a great tool you can use to learn and analyze SEO settings of your videos. You can use it for free, or you can unlock more options through one of the affordable subscription plans."
+      image: /images/resources/vidiq.png
+      affiliate: true
+      url: https://vidiq.com?afmc=4cf
     - name: P. Lumix 25mm f1.7
       image: /images/resources/lumix25mm.png
       description: "My Lumix G7 came with a 14-42mm f3.5-5.6 kit lens, and the first upgrade I made was the <b>Panasonic Lumix 25mm f1.7</b> lens. It's a much brighter lens that offers a significant image quality improvement. I use it while I record all of my YouTube videos. The focal length (the equivalent of 50mm in a full-frame camera) is quite challenging, but it produces a much better image than the kit lens. If you own G7/G85 and you think about the first upgrade - consider getting this affordable lens."
@@ -103,21 +127,22 @@
       description: "I edit all of my videos in the <b>Adobe Premiere Pro CC</b>. The video editing software does not fall into the \"the simplest programs to learn\" category, but Premiere tries to make the learning process as smooth as possible. I spent more than 1,000 hours on editing various videos, and I can't imagine using different software to produce my YouTube content."
       url: https://www.adobe.com/pl/products/premiere.html
 
-- name: Other tools
-  description:
-  items:
-    - name: NordVPN
-      description: "If you value privacy and security, you may want to use a VPN that protects your personal IP address from being tracked. <b>NordVPN</b> does not only offers both but also guarantees that it does not collect any logs from your activity."
-      image: /images/resources/nordvpn.png
-      affiliate: true
-      url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=572706.11&type=3&subid=0
-    - name: vidIQ
-      description: "YouTube is the second largest search engine used by millions of users. <b>vidIQ</b> is a great tool you can use to learn and analyze SEO settings of your videos. You can use it for free, or you can unlock more options through one of the affordable subscription plans."
-      image: /images/resources/vidiq.png
-      affiliate: true
-      url: https://vidiq.com?afmc=4cf
-    - name: Udemy.com
-      description: "<b>Udemy</b> is one of the largest platforms with online courses. You can learn almost everything in many different languages. It's a popular platform to not only learn from but also to publish your own online courses. Check it out and browse the large catalog of existing courses to learn a new skill or master the existing one."
-      image: /images/resources/udemy.png
-      affiliate: true
-      url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.13533&type=3&subid=0
+#- name: Other tools
+#  description:
+#  items:
+#    - name: NordVPN
+#      card: /images/resources/6.jpg
+#      description: "If you value privacy and security, you may want to use a VPN that protects your personal IP address from being tracked. <b>NordVPN</b> does not only offers both but also guarantees that it does not collect any logs from your activity."
+#      image: /images/resources/nordvpn.png
+#      affiliate: true
+#      url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=572706.11&type=3&subid=0
+#    - name: vidIQ
+#      description: "YouTube is the second largest search engine used by millions of users. <b>vidIQ</b> is a great tool you can use to learn and analyze SEO settings of your videos. You can use it for free, or you can unlock more options through one of the affordable subscription plans."
+#      image: /images/resources/vidiq.png
+#      affiliate: true
+#      url: https://vidiq.com?afmc=4cf
+#    - name: Udemy.com
+#      description: "<b>Udemy</b> is one of the largest platforms with online courses. You can learn almost everything in many different languages. It's a popular platform to not only learn from but also to publish your own online courses. Check it out and browse the large catalog of existing courses to learn a new skill or master the existing one."
+#      image: /images/resources/udemy.png
+#      affiliate: true
+#      url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.13533&type=3&subid=0

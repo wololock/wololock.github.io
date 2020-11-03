@@ -9,9 +9,9 @@ tags:
     - puzzle
 categories:
     - Programming tips
-og_image: /images/og/haskell-factorial-digits.jpg
-eyeCatchImage: /images/og/haskell-factorial-digits.jpg
+card: /images/cards/21.png
 highlightjs: true
+icon: /images/icons/39.png
 ---
 
 Some time ago I was interviewed to one of the Java-based projects and I was asked to solve this pretty interesting puzzle. The question

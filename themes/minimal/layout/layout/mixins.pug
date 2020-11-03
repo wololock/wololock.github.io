@@ -1,0 +1,62 @@
+mixin random_ad(list)
+    - var list = Object.entries(site.data.banners.ids).filter(it => list.includes(it[0])).map(it => Array(it[1].randomRatio).fill(it[0])).flat().shuffle()
+    +ad(list[0])
+
+mixin ad(id)
+    - var banner = site.data.banners.ids[id]
+    if banner
+        a.gatr(href=banner.link data-type="banner" data-name=id data-debug=`Displayed ${id} banner`)
+            img.img-fluid(class=banner.class data-lazy=banner.src)
+
+mixin article_large_cover(post)
+    - var category = post.categories ? post.categories.first() : {}
+
+    article
+        if post.card
+            a(href=url_for(post.path))
+                img.mb-4.shadow(data-lazy=post.card width="100%")
+
+        p.subtitle.m-0
+            a(href=url_for(category.path))!=category.name
+        h3.m-0.serif
+            a(href=url_for(post.path))!=post.title
+
+        .post-meta.mb-4
+            ul
+                li
+                    time(datetime=date_xml(post.date))!= full_date(post.date, "MMMM D, YYYY")
+                li
+                    !=readingTime(page.content, 'min. read', 200)
+                li
+                    a(href=config.url + url_for(post.path) + "#disqus_thread")="0 Comments"
+
+
+        p.small!=strip_html(post.excerpt)
+
+mixin article_small_tile(post)
+    - var category = post.categories.first()
+
+    article.tile
+        .row.mb-4
+            .col-9
+                p.subtitle.m-0
+                    a(href=url_for(category.path))!=category.name
+                h4.m-0.serif
+                    a(href=url_for(post.path))!=post.title
+
+                .post-meta.mb-4
+                    ul
+                        li
+                            time(datetime=date_xml(post.date))!= full_date(post.date, "MMMM D, YYYY")
+                        li
+                            !=readingTime(page.content, 'min. read', 200)
+                        li
+                            a(href=config.url + url_for(post.path) + "#disqus_thread")="0 Comments"
+
+
+                p.small!=truncate(strip_html(post.excerpt), {length:100})
+
+            .col-3
+                if post.icon
+                    a(href=url_for(post.path))
+                        img.img-fluid.rounded.shadow-sm.mt-3.mb-lg-0(data-lazy=post.icon)

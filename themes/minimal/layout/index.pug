@@ -1,0 +1,87 @@
+extends layout/base
+
+block main
+    section#hero
+        .container.py-5
+            .row.pt-lg-5
+                .col-12.col-lg-9
+                    .pr-lg-5.text-lg-left.text-center
+                        h1
+                            span.h5 Hi! 👋 I'm #[b Szymon] and I ...
+                            p.serif.h1 Help you become a #[b #[span.mark better] software developer]
+
+                        p.small.sans-serif Groovista, Upwork's Top Rated freelancer, Toruń Java User Group founder, open source contributor, Stack Overflow addict, bedroom guitar player. I walk through e.printStackTrace() so you don't have to.
+
+                        img.d-block.mx-auto.mx-lg-0(src="/images/sig.png" height=80)
+
+                .col-12.col-lg-3.text-center
+                    .px-5.px-lg-0
+                        img.img-fluid(src="/images/face.png")
+
+                    .mt-4
+                        include common/social-media
+
+    section#popular.bg-light.posts-layout-01
+        .container.py-5
+            .px-1.px-sm-1
+                h2.mb-lg-5.pt-lg-4.h1 Most #[b popular] blog posts
+
+                .row
+                    - var home = site.data.home
+                    - var popular = site.posts.find({slug: {$in: home.posts }}).toArray().sort((a,b) => home.posts.indexOf(a.slug) - home.posts.indexOf(b.slug))
+                    - var first = popular.reverse().pop()
+
+                    .col-12.col-lg-7
+                        .pr-lg-5.sans-serif.mb-5.mb-lg-0
+                            +article_large_cover(first)
+
+                    .col-12.col-lg-5.sans-serif
+                        each post in popular.reverse()
+                            +article_small_tile(post)
+
+    section#youtube(data-debug="Home: scrolled to YouTube")
+        .container.py-5
+            h2.mb-5.pt-lg-4.h1 Latest #[i.fa.fa-youtube] #[b YouTube] videos
+
+            .row
+                .col-12.col-lg-9.mb-lg-0.mb-5
+                    - var videos = Object.entries(site.data.youtube).reverse().slice(0,3)
+
+                    each video in videos
+                        .youtube-row.mb-4
+                            .row
+                                .col-12.col-lg-4.text-center
+                                    a.d-inline-block.thumb.gatr.mb-lg-0.mb-4(href=`https://youtu.be/${video[0]}` data-time=video[1].time data-type="youtube" data-name=video[1].title)
+                                        img.img-fluid.shadow(data-lazy="https://i3.ytimg.com/vi/" + video[0] + "/mqdefault.jpg")
+                                .col-12.col-lg-8
+                                    h5.m-0.p-0.mb-3.text-lg-left.text-center
+                                        a.gatr(href=`https://youtu.be/${video[0]}` data-type="youtube" data-name=video[1].title)=video[1].title
+                                    p.sans-serif.small.text-justify!=video[1].description
+
+                    .text-center
+                        a.btn.btn-danger.btn-lg.sans-serif.gatr(href="https://www.youtube.com/eprintstacktrace?sub_confirmation=1" data-type="subscribe" data-name="Subscribe for more videos") Subscribe for more
+
+                .col-12.col-lg-3.text-center
+                    +ad("nordvpn-01")
+
+    section#newsletter.bg-gray(data-debug="Home: scrolled to newsletter")
+        .container.py-5
+            h2.h1 Subscribe to the #[b newsletter]
+            p.sans-serif.small Subscribe and never miss any update. Zero spam. You can unsubscribe at any time.
+            !=convertkit("1d25fc71bd")
+
+    section#recent.bg-light.posts-layout-01(data-debug="Home: scrolled to recently published")
+        .container.py-5
+            h2.mb-5.pt-4.h1 #[b Recently] published
+
+            .row
+                - var recent = site.posts.sort("date").reverse().limit(5).toArray()
+                - var first = recent.reverse().pop()
+
+                .col-12.col-lg-7.mb-lg-0.mb-5
+                    .pr-lg-5.sans-serif
+                        +article_large_cover(first)
+
+                .col-12.col-lg-5.sans-serif
+                    each post in recent.reverse()
+                        +article_small_tile(post)

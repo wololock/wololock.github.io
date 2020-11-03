@@ -11,10 +11,9 @@ tags:
     - curl
 categories:
     - Ratpack Cookbook
-cover: /images/ratpack-cookbook-bg.jpg
-og_image: /images/og/ratpack-prefix-http-methods.jpg
-eyeCatchImage: /images/og/ratpack-prefix-http-methods.jpg
+card: /images/cards/25.png
 highlightjs: true
+icon: /images/icons/25.png
 ---
 
 https://ratpack.io/[Ratpack] is an excellent tool for building RESTfulfootnote:[https://en.wikipedia.org/wiki/Representational_state_transfer]

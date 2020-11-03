@@ -11,9 +11,8 @@ tags:
     - haskell
     - career
     - progress
-cover: /images/advent-of-code-cover.jpg
-og_image: /images/og/advent-of-code-2018.jpg
-eyeCatchImage: /images/og/advent-of-code-2018.jpg
+card: /images/cards/26.png
+icon: /images/icons/35.png
 ---
 
 The https://adventofcode.com/2018[4th edition of Advent Of Code] just started!

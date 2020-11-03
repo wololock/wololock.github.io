@@ -10,10 +10,9 @@ tags:
     - ast
 categories:
     - Groovy Cookbook
-cover: /images/groovy-cookbook.jpg
-og_image: /images/og/groovy-compiler-configuration.jpg
-eyeCatchImage: /images/og/groovy-compiler-configuration.jpg
+card: /images/cards/37.png
 highlightjs: true
+icon: /images/icons/6.png
 ---
 
 One of the most interesting Groovy features is its ability to configure advanced compilerfootnote:[http://docs.groovy-lang.org/latest/html/documentation/tools-groovyc.html] options using DSL script.

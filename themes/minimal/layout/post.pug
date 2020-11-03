@@ -1,0 +1,169 @@
+extends layout/base
+
+block structured_data
+    != structured_data(page, config)
+
+block main
+    - const newsletter = (page.newsletter !== undefined ? site.data.convertkit[page.newsletter] : site.data.convertkit.default) || {}
+
+    section#content.sidebar-enabled
+        .container
+            .row
+                .col-lg-3.bg-primary.sidebar.pt-5.d-flex.align-items-start.flex-column.order-1.pr-lg-0
+                    .mb-auto
+                        .text-center.pt-lg-5.pl-3
+                            a(href="/about")
+                                img.rounded-circle.mb-4(src=config.photo height=96)
+
+                            h5 Hi! 👋 I'm Szymon
+
+                            p.small=config.bio
+
+
+                        .my-4.pl-2.text-lg-right.text-center
+                            include common/social-media
+
+                        if page.latest_posts !== false
+                            .pl-4.mt-lg-5.pt-lg-5
+                                - var category = page.categories.first()
+                                - var latest = site.posts.filter(it => it.categories.some(cat => cat.name === category.name)).sort("date").reverse().limit(5).toArray()
+
+                                h4.h4.pt-4.mb-4.sans-serif Latest posts from the #[span.h3.font-weight-bold #{category.name}]
+
+                                each post in latest
+                                    .media.align-items-center.pb-1.mb-3
+                                        if post.icon
+                                            a.d-block(href="#")
+                                                img.rounded(src=post.icon width=64)
+                                        .media-body.pl-2.ml-1
+                                            h5.m-0.small(style="font-size:14px;font-weight:600;line-height:22px")
+                                                a.sans-serif(href=url_for(post.path)) #{truncate(post.title, {length:64})}
+
+                        .mb-5.pt-5.text-center
+                            +random_ad(site.data.banners.config.post)
+
+
+
+                    .spread-the-love.pt-4.mt-lg-5
+                        if newsletter.position === "sidebar"
+                            .mb-lg-5.pb-5.pl-lg-4
+                                if newsletter.image
+                                    img.mb-4.img-fluid.shadow(src=newsletter.image)
+
+                                h3.mb-3!=newsletter.title
+                                p.text-justify!=newsletter.lead
+                                !=convertkit(newsletter.id)
+
+                        .pl-lg-3.text-lg-left.text-center
+                            p.m-0.serif Did you like this article?
+                            h5.text-uppercase Spread the #[i.fa.fa-heart]!
+
+                            - var url2share = full_url_for(page.path)
+                            - var image2share = full_url_for(page.card)
+                            ul.mb-5
+                                li
+                                    a.gatr(href=`https://twitter.com/intent/tweet?text=${page.title} ${url2share} via @wololock` data-type="share" data-name="Shared on Twitter")
+                                        i.fa.fa-twitter
+                                li
+                                    a.gatr(href=`https://www.linkedin.com/shareArticle?url=${url2share}` data-type="share" data-name="Shared on LinkedIn")
+                                        i.fa.fa-linkedin
+                                li
+                                    a.gatr(href=`https://www.facebook.com/sharer.php?u=${url2share}` data-type="share" data-name="Shared on Facebook")
+                                        i.fa.fa-facebook-square
+                                li
+                                    a.gatr(href=`http://www.reddit.com/submit?url=${url2share}&title=${page.title}` data-type="share" data-name="Shared on Reddit")
+                                        i.fa.fa-reddit
+                                li
+                                    a.gatr(href=`https://pinterest.com/pin/create/button/?url=${url2share}&media=${image2share}&description=${page.title}` data-type="share" data-name="Shared on Pinterest")
+                                        i.fa.fa-pinterest
+                                li
+                                    a.gatr(href="https://ko-fi.com/eprintstacktrace" data-type="share" data-name="Clicked on Ko-Fi") ☕️
+
+
+                .col-lg-9.py-5.order-0
+                    .pr-lg-4.px-1.pt-lg-5
+                        nav(aria-label="breadcrumb")
+                            ol.breadcrumb
+                                li.breadcrumb-item
+                                    a(href="/") e.printstacktrace.blog
+                                if page.categories
+                                    each cat in page.categories.toArray()
+                                        li.breadcrumb-item
+                                            a(href=url_for(cat.path))=cat.name
+
+                        article.post-body
+                            h1 #{page.title}
+
+                            .post-meta.mb-4
+                                ul
+                                    li
+                                        time(datetime=date_xml(page.date))!= full_date(page.date, "MMMM D, YYYY")
+                                    li
+                                        !=readingTime(page.content, 'min. read', 200)
+                                    li
+                                        a(href=config.url + url_for(page.path) + "#disqus_thread")="0 Comments"
+
+                            .content!=page.content
+
+                            if page.tags
+                                ul.tags-list.mt-4
+                                    each tag in page.tags.toArray()
+                                        li
+                                            a(href=url_for(tag.path))=tag.name
+
+
+
+    if newsletter.position === "bottom"
+        section#newsletter
+            .container.py-5
+                .row
+                    if newsletter.image
+                        .col-12.col-lg-3
+                            .pt-4.text-center
+                                img.img-fluid.shadow.sm(src=newsletter.image style="max-height: 250px")
+                    .col-12.col-lg-9
+                        .px-3
+                            h3.pt-4.pb-1.serif!=newsletter.title
+                            p.pr-5.sans-serif.small!=newsletter.lead
+                            !=convertkit(newsletter.id)
+
+
+    section#related.bg-dark.posts-layout-01
+        .container.py-5
+            .row.py-lg-5
+                .col-12.col-lg-7.d-flex.align-items-start.mb-lg-0.mb-4
+                    .px-3.px-lg-0.pr-lg-5
+                        - var next = page.prev || page.next
+                        - var nextcat = next.categories.toArray()[0]
+
+                        +article_large_cover(next)
+
+                .col-12.col-lg-5
+                    -
+                        var related = page.related ?
+                                page.related :
+                                popular_posts_json({maxCount: 3,isImage: true,isExcerpt: true}, page).json.map(it => it.path.slice(1, -1))
+                        var category = page.categories.first()
+                        var posts = site.posts
+                                .find({slug: {$in: related}})
+                                .toArray()
+                                .sort((a, b) => related.indexOf(a.slug) - related.indexOf(b.slug))
+
+                    .px-3.px-lg-0
+                        each post in posts
+                            +article_small_tile(post)
+
+                        +ad("nordvpn-03")
+
+    section#comments(data-debug="Scrolled to comments").sidebar-enabled
+        .container
+            .row
+                .col-12.col-lg-3.sidebar.order-1.pr-0
+                    .py-5.position-sticky.text-center(style="top: -40px" data-debug)
+                        +ad("grammarly-01")
+
+                .col-12.col-lg-9.order-0
+                    .pr-lg-5.pt-5
+                        p.m-0.serif.small.text-muted Any thoughts or ideas?
+                        h2.mb-4 Let's talk in the comment's section 💬
+                        include post/comments

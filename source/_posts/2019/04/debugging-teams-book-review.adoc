@@ -13,9 +13,7 @@ tags:
     - communication
 categories:
     - Programmer's Bookshelf
-cover: /images/debugging-teams-bg.jpg
-og_image: /images/og/debugging-teams2.jpg
-card: /images/cards/debugging-teams.jpg
+card: /images/cards/13.png
 affiliates: true
 book:
   title: "Debugging Teams: Better Productivity Through Collaboration"
@@ -46,6 +44,7 @@ book:
     - flag: es
       text: Get from amazon.es
       url: https://amzn.to/2YrN22b
+icon: /images/icons/23.png
 ---
 
 _"Geniuses still make mistakes and having brilliant ideas and elite programming skills don't guarantee that your

@@ -4,6 +4,7 @@ recommended:
   - jenkins-pipeline-environment-variables-the-definitive-guide
   - jenkins-scripted-pipeline-vs-declarative-pipeline-the-4-practical-differences
   - using-jenkins-pipeline-parallel-stages-to-build-maven-project-with-different-jdks
+  - 5-common-jenkins-pipeline-mistakes
 
 ads:
   column:

@@ -9,10 +9,9 @@ tags:
     - sdkman
 categories:
     - Learning Java
-cover: /images/graalvm-ee-sdkman-bg.jpg
-og_image: /images/og/graalvm-ee-sdkman.jpg
-eyeCatchImage: /images/og/graalvm-ee-sdkman.jpg
+card: /images/cards/33.png
 highlightjs: true
+icon: /images/icons/27.png
 ---
 
 I love https://sdkman.io/[*_SDKMAN!_*]. It made using multiple different Java distributions in a single operating system much more
