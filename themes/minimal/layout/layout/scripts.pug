@@ -4,7 +4,7 @@ script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.
 script(src="https://kit.fontawesome.com/48c5da59c9.js" crossorigin="anonymous" async)
 script(async id="cookiebanner", src="//cdnjs.cloudflare.com/ajax/libs/cookie-banner/1.2.2/cookiebanner.min.js", data-moreinfo="/privacy-policy/", data-message="This blog uses cookies to enhance your experience. By continuing to visit it you agree to its use of cookies.", data-link="#5fc4ff", data-font-family="Lora,serif", data-font-size="16px", data-bg="#1d2b36")
 
-script(src=url_for("/js/main.js"))
+script(src=url_for(`/js/main.js?v=${config.version.js}`))
 
 if page.highlightjs
     script(src=url_for("/js/highlightjs/highlight.pack.js"))

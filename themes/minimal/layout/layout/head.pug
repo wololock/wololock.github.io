@@ -18,10 +18,10 @@ link(rel="canonical" href=full_url_for(page.canonical_path))
 
 link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:wght@400;500;700|Poppins:300,400,400i,700|Montserrat:400,600,700|Roboto:300,400,400i,700|Lora:400,400i,700,700i&display=swap")
 link(rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous")
-link(rel="stylesheet" href=url_for("/css/main.css"))
+link(rel="stylesheet" href=url_for(`/css/main.css?v=${config.version.css}`))
 
 if page.highlightjs
-    link(rel="stylesheet", href=url_for("/css/highlight.css"))
+    link(rel="stylesheet", href=url_for(`/css/highlight.css?v=${config.version.css}`))
 
 != open_graph({ image: page.card || null, twitter_id: 'wololock', twitter_card: 'summary_large_image' })
 
