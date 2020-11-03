@@ -72,14 +72,6 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/deep-work-book-review/</loc>
-        <lastmod>2020-07-09T06:08:50.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://e.printstacktrace.blog/pragmatic-thinking-and-learning-book-review/</loc>
         <lastmod>2020-07-09T06:08:50.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -89,6 +81,14 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/release-it-2nd-edition-book-review/</loc>
+        <lastmod>2020-07-09T06:08:50.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/deep-work-book-review/</loc>
         <lastmod>2020-07-09T06:08:50.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
