@@ -42,3 +42,9 @@ if config.google_analytics
             ga("send", "event", "related", "click", a.attr("href"));
             return true;
         });
+
+        jQuery(document).on("click", "#footer a", function(){
+            var a = jQuery(this);
+            ga("send", "event", "footer", "click", a.attr("href"));
+            return true;
+        });

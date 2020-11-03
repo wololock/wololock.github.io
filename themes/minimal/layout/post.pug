@@ -26,18 +26,20 @@ block main
                         if page.latest_posts !== false
                             .pl-4.mt-lg-5.pt-lg-5
                                 - var category = page.categories.first()
-                                - var latest = site.posts.filter(it => it.categories.some(cat => cat.name === category.name)).sort("date").reverse().limit(5).toArray()
+                                - var latest = site.posts.filter(it => it.categories.some(cat => cat.name === category.name)).sort("date").reverse().limit(7).toArray()
 
                                 h4.h4.pt-4.mb-4.sans-serif Latest posts from the #[span.h3.font-weight-bold #{category.name}]
 
                                 each post in latest
                                     .media.align-items-center.pb-1.mb-3
                                         if post.icon
-                                            a.d-block(href="#")
+                                            a.d-block.gatr(href=url_for(post.path) data-type="latest-sidebar" data-name=post.title)
                                                 img.rounded(src=post.icon width=64)
                                         .media-body.pl-2.ml-1
                                             h5.m-0.small(style="font-size:14px;font-weight:600;line-height:22px")
-                                                a.sans-serif(href=url_for(post.path)) #{truncate(post.title, {length:64})}
+                                                a.sans-serif.gatr(href=url_for(post.path) data-type="latest-sidebar" data-name=post.title) #{truncate(post.title, {length:64})}
+
+                                a.d-block.gatr.text-center.h5(href=url_for(category.path) data-type="latest-sidebar" data-name="More &raquo;") More &raquo;
 
                         .mb-5.pt-5.text-center
                             +random_ad(site.data.banners.config.post)
@@ -85,11 +87,11 @@ block main
                         nav(aria-label="breadcrumb")
                             ol.breadcrumb
                                 li.breadcrumb-item
-                                    a(href="/") e.printstacktrace.blog
+                                    a.gatr(href="/" data-type="breadcrumb" data-name="/") e.printstacktrace.blog
                                 if page.categories
                                     each cat in page.categories.toArray()
                                         li.breadcrumb-item
-                                            a(href=url_for(cat.path))=cat.name
+                                            a.gatr(href=url_for(cat.path) data-type="breadcrumb" data-name=cat.name)=cat.name
 
                         article.post-body
                             h1 #{page.title}
