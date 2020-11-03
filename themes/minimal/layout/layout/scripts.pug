@@ -36,3 +36,9 @@ if config.google_analytics
             ga("send", "event", category, "click", name);
             return true;
         });
+
+        jQuery(document).on("click", "#related a", function(){
+            var a = jQuery(this);
+            ga("send", "event", "related", "click", a.attr("href"));
+            return true;
+        });
