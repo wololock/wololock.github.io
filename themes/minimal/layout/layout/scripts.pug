@@ -29,22 +29,25 @@ if config.google_analytics
         ga('create', '#{config.google_analytics}', 'auto');
         ga('send', 'pageview');
 
-        jQuery(document).on("click", "a.gatr", function() {
+        jQuery(document).on("mousedown", "a.gatr", function(e) {
             var a = jQuery(this);
             var category = a.attr("data-type");
             var name = a.attr("data-name");
-            ga("send", "event", category, "click", name);
+            var click = e.which === 1 ? "click" : (e.which === 2 ? "middle-click" : "right-click")
+            ga("send", "event", category, click, name);
             return true;
         });
 
-        jQuery(document).on("click", "#related a", function(){
+        jQuery(document).on("mousedown", "#related a", function(e){
             var a = jQuery(this);
-            ga("send", "event", "related", "click", a.attr("href"));
+            var click = e.which === 1 ? "click" : (e.which === 2 ? "middle-click" : "right-click")
+            ga("send", "event", "related", click, a.attr("href"));
             return true;
         });
 
-        jQuery(document).on("click", "#footer a", function(){
+        jQuery(document).on("mousedown", "#footer a", function(e){
             var a = jQuery(this);
-            ga("send", "event", "footer", "click", a.attr("href"));
+            var click = e.which === 1 ? "click" : (e.which === 2 ? "middle-click" : "right-click")
+            ga("send", "event", "footer", click, a.attr("href"));
             return true;
         });
