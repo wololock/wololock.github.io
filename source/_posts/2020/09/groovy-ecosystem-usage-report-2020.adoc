@@ -177,11 +177,3 @@ However, I couldn't reach out to every single person.
 63 | 1     | Wide use of @CompileStatic
 
 ----
-
-include::source/_parts/thank-you.adoc[]
-
-++++
-{% newsletter %}
-{% convertkit "73df1d6b65" %}
-{% endnewsletter %}
-++++

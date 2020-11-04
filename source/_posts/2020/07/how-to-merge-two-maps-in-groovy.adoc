@@ -214,10 +214,3 @@ println "$merged.x, $merged.y, $merged.z"
 ----
 ____
 
-//include::source/_parts/thank-you.adoc[]
-//
-//++++
-//{% newsletter %}
-//{% convertkit "73df1d6b65" %}
-//{% endnewsletter %}
-//++++

@@ -330,12 +330,6 @@ Let's compare the results:
 
 Full log can be found here: icon:github[] https://gist.github.com/wololock/c895114949be2820b0fada72df099fcf[c895114949be2820b0fada72df099fcf]
 
-++++
-{% newsletter %}
-{% convertkit "73df1d6b65" %}
-{% endnewsletter %}
-++++
-
 == Conclusion
 
 Now it is the good time to draw a conclusion.
@@ -352,5 +346,3 @@ might not be worth the effort.
 
 I hope you have enjoyed reading this blog post. Feel free to leave a comment in the section below, I would love to
 hear your opinion. Until the next time!
-
-include::source/_parts/thank-you.adoc[]
