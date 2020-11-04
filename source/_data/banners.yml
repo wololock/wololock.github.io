@@ -1,8 +1,8 @@
 config:
-  tag: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "grammarly-02"]
-  archives: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "grammarly-02"]
-  category: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01"]
-  post: ["nordvpn-02", "udemy-02", "udemy-devops-02", "audible-premium-02"]
+  tag: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "grammarly-02", "domain10-01"]
+  archives: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "grammarly-02", "domain10-01"]
+  category: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "domain10-01"]
+  post: ["nordvpn-02", "udemy-02", "udemy-devops-02", "audible-premium-02", "domain10-02"]
 
 ids:
   grammarly-01:
@@ -59,3 +59,13 @@ ids:
     randomRation: 2
     src: /images/yml/audible-02.png
     link: https://amzn.to/35QTnYE
+
+  domain10-01:
+    randomRation: 1
+    src: /images/yml/domain10-01.png
+    link: https://www.jdoqocy.com/click-100191173-14085090
+
+  domain10-02:
+    randomRation: 1
+    src: /images/yml/domain10-02.png
+    link: https://www.jdoqocy.com/click-100191173-14085090

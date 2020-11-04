@@ -41,8 +41,11 @@ block main
 
                                 a.d-block.gatr.text-center.h5(href=url_for(category.path) data-type="latest-sidebar" data-name="More &raquo;") More &raquo;
 
-                        .mb-5.pt-5.text-center
-                            +random_ad(site.data.banners.config.post)
+                        .text-center
+                            .d-none.d-lg-inline-block.mb-5.pt-5
+                                +random_ad(site.data.banners.config.post)
+                            .d-inline-block.d-lg-none.py-3
+                                +random_ad(site.data.banners.config.tag)
 
 
 
@@ -160,12 +163,15 @@ block main
     section#comments(data-debug="Scrolled to comments").sidebar-enabled
         .container
             .row
-                .col-12.col-lg-3.sidebar.order-1.pr-0
-                    .py-5.position-sticky.text-center(style="top: 20px")
-                        +ad("grammarly-01")
+                .col-12.col-lg-3.sidebar.order-lg-1.order-0
+                    .py-lg-5.py-3.position-sticky.text-center(style="top: 20px")
+                        .d-inline-block.d-lg-none
+                            +ad("grammarly-02")
+                        .d-none.d-lg-inline-block
+                            +ad("grammarly-01")
 
-                .col-12.col-lg-9.order-0
-                    .pr-lg-5.pt-5
+                .col-12.col-lg-9.order-0.order-lg-0.order-1
+                    .pr-lg-5.py-5
                         p.m-0.serif.small.text-muted Any thoughts or ideas?
                         h2.mb-4 Let's talk in the comment's section 💬
                         include post/comments
