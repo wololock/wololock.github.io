@@ -34,7 +34,10 @@ block main
                                     h4.h5.font-weight-bold.m-0
                                         a.gatr(href=item.url data-type="resource" data-name=item.name) #{item.name}
 
-                                    p.text-justify.mt-2(style="font-size:13px")!=item.description
+                                    p.text-justify.mt-2(style="font-size:13px")
+                                        | !{item.description}
+                                        |
+                                        a.gatr.font-weight-bold(href=item.url data-type="resource" data-name=item.name) Try&nbsp;it&nbsp;out&nbsp;&raquo;
 
                                 .col-3
                                     .pt-1
