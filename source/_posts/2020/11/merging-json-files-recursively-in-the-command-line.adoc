@@ -1,0 +1,164 @@
+---
+title: Merging JSON files recursively in the command-line
+date: 2020-11-05 23:14:35
+updated: 2020-11-05 23:14:35
+tags:
+- jq
+- json
+- merge
+categories:
+- jq cookbook
+highlightjs: true
+card: /images/cards/jq-merge-json.jpg
+icon: /images/icons/jq-merge-json.jpg
+---
+
+Have you ever need to merge two (or more) JSON files and you wondered if you can do it in the command-line?
+In this blog post, I will show you how you can use `jq` command-line JSON processor to merge recursively multiple JSON files.
+
+++++
+<!-- more -->
+++++
+
+NOTE: Get `jq` from https://stedolan.github.io/jq/
+
+== Exemplary input files
+
+Below you can find two exemplary JSON files we are going to merge recursively, including combining unique elements from all arrays.
+
+.product1.json file
+[source,json]
+----
+{
+  "id": "324a9e6f-44e8-4d70-9645-7247e5385d05",
+  "name": "Product old name",
+  "prices": [
+    {
+      "amount": 19.99,
+      "currency": "USD"
+    }
+  ],
+  "tags": [
+    "tech",
+    "book",
+    "programming"
+  ],
+  "prototype": false,
+  "meta": {
+    "test": 1
+  },
+  "nested": {
+    "map": {
+      "1": "2",
+      "4": 0
+    },
+    "list": [
+      1,
+      2,
+      3
+    ]
+  }
+}
+----
+
+.product2.json file
+[source,json]
+----
+{
+  "id": "324a9e6f-44e8-4d70-9645-7247e5385d05",
+  "name": "Product new name",
+  "vendor": "Vendor Name Inc.",
+  "prices": [
+    {
+      "amount": 19.99,
+      "currency": "CAD"
+    }
+  ],
+  "tags": [
+    "programming",
+    "learning"
+  ],
+  "meta": {
+    "beta": 0
+  },
+  "nested": {
+    "map": {
+      "1": 3,
+      "2": 1
+    },
+    "list": [
+      2,
+      3,
+      4
+    ]
+  }
+}
+----
+
+== Merging multiple files recursively
+
+And here is the `jq` code that does the job:
+
+[source,bash]
+----
+$ jq -s 'def deepmerge(a;b):
+  reduce b[] as $item (a;
+    reduce ($item | keys_unsorted[]) as $key (.;
+      $item[$key] as $val | ($val | type) as $type | .[$key] = if ($type == "object") then
+        deepmerge({}; [if .[$key] == null then {} else .[$key] end, $val])
+      elif ($type == "array") then
+        (.[$key] + $val | unique)
+      else
+        $val
+      end)
+    );
+  deepmerge({}; .)' product1.json product2.json > merged.json
+----
+
+We define `deepmerge(a;b)` function that merges two JSON objects recursively.
+
+== Output
+
+.merged.json file
+[source,json]
+----
+{
+  "id": "324a9e6f-44e8-4d70-9645-7247e5385d05",
+  "name": "Product new name",
+  "prices": [
+    {
+      "amount": 19.99,
+      "currency": "CAD"
+    },
+    {
+      "amount": 19.99,
+      "currency": "USD"
+    }
+  ],
+  "tags": [
+    "book",
+    "learning",
+    "programming",
+    "tech"
+  ],
+  "prototype": false,
+  "meta": {
+    "test": 1,
+    "beta": 0
+  },
+  "nested": {
+    "map": {
+      "1": 3,
+      "4": 0,
+      "2": 1
+    },
+    "list": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "vendor": "Vendor Name Inc."
+}
+----
