@@ -108,6 +108,9 @@ block main
                                     li
                                         a(href=config.url + url_for(page.path) + "#disqus_thread")="0 Comments"
 
+                            if page.header
+                                img.img-fluid.mb-4.rounded(src=page.header)
+
                             .content!=page.content
 
                             if page.tags

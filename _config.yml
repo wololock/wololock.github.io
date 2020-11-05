@@ -108,7 +108,7 @@ all_minifier: true
 
 # Update versions after updating resources to prevent reading from cache
 version:
-  css: 65
+  css: 66
   js: 11
 
 archive_generator:
@@ -197,6 +197,8 @@ alias:
     url: https://vidiq.com?afmc=4cf
   udemy/:
     url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.13533&type=3&subid=0
+  youtube-secrets-book/:
+    url: https://amzn.to/3mPZKlS
 
 share_post:
   twitter:
