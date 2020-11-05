@@ -17,7 +17,7 @@ header: /images/youtube-cover.jpg
 ---
 :toc: macro
 :youtube-url: https://e.printstacktrace.blog/youtube?utm_source=post
-:youtube-secrets: https://e.printstacktrace.blog/youtube-secrets-books
+:youtube-secrets: https://e.printstacktrace.blog/youtube-secrets-book
 :audible-premium: https://e.printstacktrace.blog/audible
 
 Many content creators celebrate their 10k, 100k, or 1M subscribers/followers milestones.
