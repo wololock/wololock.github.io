@@ -21,23 +21,26 @@ block main
                     .mt-4
                         include common/social-media
 
-    section#popular.bg-light.posts-layout-01
+    section#recent.bg-light.posts-layout-01(data-debug="Home: scrolled to recently published")
         .container.py-5
-            .px-1.px-sm-1
-                h2.mb-lg-5.pt-lg-4.h1 Most #[b popular] blog posts
+            .row.pt-4
+                .col-12.col-lg-8
+                    h2.mb-5.h1 #[b Recently] published
+                .col-12.col-lg-4.text-right
+                    a.mt-3.gatr.d-block.view-all(href="/archives" data-type="view-all" data-name="Archives") View&nbsp;all&nbsp;&raquo;
 
-                .row
-                    - var home = site.data.home
-                    - var popular = site.posts.find({slug: {$in: home.posts }}).toArray().sort((a,b) => home.posts.indexOf(a.slug) - home.posts.indexOf(b.slug))
-                    - var first = popular.reverse().pop()
 
-                    .col-12.col-lg-7
-                        .pr-lg-5.sans-serif.mb-5.mb-lg-0
-                            +article_large_cover(first)
+            .row
+                - var recent = site.posts.sort("date").reverse().limit(5).toArray()
+                - var first = recent.reverse().pop()
 
-                    .col-12.col-lg-5.sans-serif
-                        each post in popular.reverse()
-                            +article_small_tile(post)
+                .col-12.col-lg-7.mb-lg-0.mb-5
+                    .pr-lg-5.sans-serif
+                        +article_large_cover(first)
+
+                .col-12.col-lg-5.sans-serif
+                    each post in recent.reverse()
+                        +article_small_tile(post)
 
     section#youtube(data-debug="Home: scrolled to YouTube")
         .container.py-5
@@ -70,18 +73,20 @@ block main
             p.sans-serif.small Subscribe and never miss any update. Zero spam. You can unsubscribe at any time.
             !=convertkit("1d25fc71bd")
 
-    section#recent.bg-light.posts-layout-01(data-debug="Home: scrolled to recently published")
+    section#popular.bg-light.posts-layout-01
         .container.py-5
-            h2.mb-5.pt-4.h1 #[b Recently] published
+            .px-1.px-sm-1
+                h2.mb-lg-5.pt-lg-4.h1 Most #[b popular] blog posts
 
-            .row
-                - var recent = site.posts.sort("date").reverse().limit(5).toArray()
-                - var first = recent.reverse().pop()
+                .row
+                    - var home = site.data.home
+                    - var popular = site.posts.find({slug: {$in: home.posts }}).toArray().sort((a,b) => home.posts.indexOf(a.slug) - home.posts.indexOf(b.slug))
+                    - var first = popular.reverse().pop()
 
-                .col-12.col-lg-7.mb-lg-0.mb-5
-                    .pr-lg-5.sans-serif
-                        +article_large_cover(first)
+                    .col-12.col-lg-7
+                        .pr-lg-5.sans-serif.mb-5.mb-lg-0
+                            +article_large_cover(first)
 
-                .col-12.col-lg-5.sans-serif
-                    each post in recent.reverse()
-                        +article_small_tile(post)
+                    .col-12.col-lg-5.sans-serif
+                        each post in popular.reverse()
+                            +article_small_tile(post)
