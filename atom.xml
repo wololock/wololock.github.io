@@ -65,15 +65,15 @@ In this blog post, I will explain how you can configure such a behavior in just 
     <category term="Jenkins Pipeline Cookbook" scheme="https://e.printstacktrace.blog/jenkins-pipeline-cookbook/"/>
     
     
+    <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
+    
     <category term="jenkins" scheme="https://e.printstacktrace.blog/t/jenkins/"/>
     
     <category term="jenkins-pipeline" scheme="https://e.printstacktrace.blog/t/jenkins-pipeline/"/>
     
-    <category term="jenkinsfile" scheme="https://e.printstacktrace.blog/t/jenkinsfile/"/>
-    
     <category term="continuous-integration" scheme="https://e.printstacktrace.blog/t/continuous-integration/"/>
     
-    <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
+    <category term="jenkinsfile" scheme="https://e.printstacktrace.blog/t/jenkinsfile/"/>
     
   </entry>
   
@@ -139,13 +139,13 @@ In this blog post, I will show you how you can use &lt;code&gt;jq&lt;/code&gt; c
     <category term="jq cookbook" scheme="https://e.printstacktrace.blog/jq-cookbook/"/>
     
     
+    <category term="curl" scheme="https://e.printstacktrace.blog/t/curl/"/>
+    
     <category term="jq" scheme="https://e.printstacktrace.blog/t/jq/"/>
     
     <category term="json" scheme="https://e.printstacktrace.blog/t/json/"/>
     
     <category term="csv" scheme="https://e.printstacktrace.blog/t/csv/"/>
-    
-    <category term="curl" scheme="https://e.printstacktrace.blog/t/curl/"/>
     
     <category term="command-line" scheme="https://e.printstacktrace.blog/t/command-line/"/>
     
@@ -175,13 +175,13 @@ I answer those three questions (and two more) in the following YouTube video.&lt
     <category term="Jenkins Pipeline Cookbook" scheme="https://e.printstacktrace.blog/jenkins-pipeline-cookbook/"/>
     
     
+    <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
+    
     <category term="jenkins" scheme="https://e.printstacktrace.blog/t/jenkins/"/>
     
     <category term="jenkins-pipeline" scheme="https://e.printstacktrace.blog/t/jenkins-pipeline/"/>
     
     <category term="cicd" scheme="https://e.printstacktrace.blog/t/cicd/"/>
-    
-    <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
     
   </entry>
   
@@ -240,11 +240,11 @@ I use Java 11+, Micronaut, Picocli, and GraalVM&amp;#8217;s &lt;code&gt;native-i
     
     <category term="micronaut" scheme="https://e.printstacktrace.blog/t/micronaut/"/>
     
-    <category term="picocli" scheme="https://e.printstacktrace.blog/t/picocli/"/>
-    
     <category term="graalvm" scheme="https://e.printstacktrace.blog/t/graalvm/"/>
     
     <category term="native-image" scheme="https://e.printstacktrace.blog/t/native-image/"/>
+    
+    <category term="picocli" scheme="https://e.printstacktrace.blog/t/picocli/"/>
     
   </entry>
   
@@ -267,6 +267,8 @@ I use Java 11+, Micronaut, Picocli, and GraalVM&amp;#8217;s &lt;code&gt;native-i
     <category term="Jenkins Pipeline Cookbook" scheme="https://e.printstacktrace.blog/jenkins-pipeline-cookbook/"/>
     
     
+    <category term="curl" scheme="https://e.printstacktrace.blog/t/curl/"/>
+    
     <category term="jenkins" scheme="https://e.printstacktrace.blog/t/jenkins/"/>
     
     <category term="jenkins-pipeline" scheme="https://e.printstacktrace.blog/t/jenkins-pipeline/"/>
@@ -276,8 +278,6 @@ I use Java 11+, Micronaut, Picocli, and GraalVM&amp;#8217;s &lt;code&gt;native-i
     <category term="jq" scheme="https://e.printstacktrace.blog/t/jq/"/>
     
     <category term="json" scheme="https://e.printstacktrace.blog/t/json/"/>
-    
-    <category term="curl" scheme="https://e.printstacktrace.blog/t/curl/"/>
     
   </entry>
   
@@ -317,9 +317,9 @@ I have seen the dots, but I didn’t yet know how to connect them.&lt;/p&gt;
     
     <category term="affiliate" scheme="https://e.printstacktrace.blog/t/affiliate/"/>
     
-    <category term="atomic-habits" scheme="https://e.printstacktrace.blog/t/atomic-habits/"/>
-    
     <category term="mind-mapping" scheme="https://e.printstacktrace.blog/t/mind-mapping/"/>
+    
+    <category term="atomic-habits" scheme="https://e.printstacktrace.blog/t/atomic-habits/"/>
     
     <category term="habits" scheme="https://e.printstacktrace.blog/t/habits/"/>
     
@@ -351,15 +351,15 @@ And it&amp;#8217;s called &lt;code&gt;jq&lt;/code&gt;.&lt;/p&gt;
     
     <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
     
-    <category term="jq" scheme="https://e.printstacktrace.blog/t/jq/"/>
-    
-    <category term="json" scheme="https://e.printstacktrace.blog/t/json/"/>
-    
-    <category term="curl" scheme="https://e.printstacktrace.blog/t/curl/"/>
-    
     <category term="rest" scheme="https://e.printstacktrace.blog/t/rest/"/>
     
     <category term="http" scheme="https://e.printstacktrace.blog/t/http/"/>
+    
+    <category term="curl" scheme="https://e.printstacktrace.blog/t/curl/"/>
+    
+    <category term="jq" scheme="https://e.printstacktrace.blog/t/jq/"/>
+    
+    <category term="json" scheme="https://e.printstacktrace.blog/t/json/"/>
     
     <category term="linux" scheme="https://e.printstacktrace.blog/t/linux/"/>
     
@@ -388,17 +388,17 @@ However, in some cases, we want to accept that one stage may timeout, but we wan
     
     <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
+    <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
+    
     <category term="jenkins" scheme="https://e.printstacktrace.blog/t/jenkins/"/>
     
     <category term="jenkins-pipeline" scheme="https://e.printstacktrace.blog/t/jenkins-pipeline/"/>
     
     <category term="cicd" scheme="https://e.printstacktrace.blog/t/cicd/"/>
     
-    <category term="jenkinsfile" scheme="https://e.printstacktrace.blog/t/jenkinsfile/"/>
-    
     <category term="continuous-integration" scheme="https://e.printstacktrace.blog/t/continuous-integration/"/>
     
-    <category term="devops" scheme="https://e.printstacktrace.blog/t/devops/"/>
+    <category term="jenkinsfile" scheme="https://e.printstacktrace.blog/t/jenkinsfile/"/>
     
   </entry>
   
@@ -497,9 +497,9 @@ Today I want to show you one of the features added in the latest release - &lt;c
     
     <category term="groovy" scheme="https://e.printstacktrace.blog/t/groovy/"/>
     
-    <category term="groovy-3" scheme="https://e.printstacktrace.blog/t/groovy-3/"/>
-    
     <category term="annotation" scheme="https://e.printstacktrace.blog/t/annotation/"/>
+    
+    <category term="groovy-3" scheme="https://e.printstacktrace.blog/t/groovy-3/"/>
     
   </entry>
   
@@ -560,9 +560,9 @@ Stay with me for a few minutes and enjoy the ride!&lt;/p&gt;
     
     <category term="jenkins-pipeline" scheme="https://e.printstacktrace.blog/t/jenkins-pipeline/"/>
     
-    <category term="pipeline" scheme="https://e.printstacktrace.blog/t/pipeline/"/>
-    
     <category term="cicd" scheme="https://e.printstacktrace.blog/t/cicd/"/>
+    
+    <category term="pipeline" scheme="https://e.printstacktrace.blog/t/pipeline/"/>
     
   </entry>
   
@@ -649,15 +649,15 @@ Today I would like to continue the topic and show you, how you can compile your 
     
     <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
     
+    <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
+    
+    <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
+    
     <category term="jenkins" scheme="https://e.printstacktrace.blog/t/jenkins/"/>
     
     <category term="jenkins-pipeline" scheme="https://e.printstacktrace.blog/t/jenkins-pipeline/"/>
     
     <category term="cicd" scheme="https://e.printstacktrace.blog/t/cicd/"/>
-    
-    <category term="docker" scheme="https://e.printstacktrace.blog/t/docker/"/>
-    
-    <category term="sdkman" scheme="https://e.printstacktrace.blog/t/sdkman/"/>
     
     <category term="maven" scheme="https://e.printstacktrace.blog/t/maven/"/>
     
