@@ -67,7 +67,7 @@ footer#footer.bg-dark(data-debug="Scrolled to footer")
                             li
                                 a.gatr(href=url_for(category.path) data-type="footer-category" data-name=category.name)
                                     != category.name
-                                    span.count.ml-2=category.posts.length
+                                    span.count.ml-2.text-muted=category.posts.length
 
                 .col-12.col-md-6
 

@@ -24,7 +24,7 @@ block main
                             include common/social-media
 
                         if page.latest_posts !== false
-                            .pl-4.mt-lg-5.pt-lg-5
+                            .pl-4.mt-lg-5.pt-lg-2
                                 - var category = page.categories.first()
                                 - var latest = site.posts.filter(it => it.categories.some(cat => cat.name === category.name)).sort("date").reverse().limit(7).toArray()
 
@@ -38,8 +38,21 @@ block main
                                         .media-body.pl-2.ml-1
                                             h5.m-0.small(style="font-size:14px;font-weight:600;line-height:22px")
                                                 a.sans-serif.gatr(href=url_for(post.path) data-type="latest-sidebar" data-name=post.title) #{truncate(post.title, {length:64})}
+                                .text-center
+                                    a.view-all(href=url_for(category.path) data-type="latest-sidebar" data-name="More &raquo;")
+                                        span.d-block.m-0 More
+                                        i.fas.fa-chevron-down.d-block.m-0
 
-                                a.d-block.gatr.text-center.h5(href=url_for(category.path) data-type="latest-sidebar" data-name="More &raquo;") More &raquo;
+                        - var categories = site.categories.sort("length").reverse().limit(9).toArray()
+
+                        .pl-4.mt-5
+                            h4.mb-3 Popular categories
+                            ul.list-unstyled
+                                each category in categories
+                                    li.my-1
+                                        a.gatr(href=url_for(category.path) data-type="footer-category" data-name=category.name)
+                                            != category.name
+                                            span.count.ml-2.mark=category.posts.length
 
                         .text-center
                             .d-none.d-lg-inline-block.mb-5.pt-5
