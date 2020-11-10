@@ -50,7 +50,7 @@ block main
                             ul.list-unstyled
                                 each category in categories
                                     li.my-1
-                                        a.gatr(href=url_for(category.path) data-type="footer-category" data-name=category.name)
+                                        a.gatr(href=url_for(category.path) data-type="sidebar-category" data-name=category.name)
                                             != category.name
                                             span.count.ml-2.mark=category.posts.length
 
