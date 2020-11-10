@@ -9,28 +9,35 @@
     
     <url>
         <loc>https://e.printstacktrace.blog/resources/</loc>
-        <lastmod>2020-11-10T10:04:14.548Z</lastmod>
+        <lastmod>2020-11-10T12:55:42.712Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
         <loc>https://e.printstacktrace.blog/support-me/</loc>
-        <lastmod>2020-11-10T10:04:14.548Z</lastmod>
+        <lastmod>2020-11-10T12:55:42.712Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://e.printstacktrace.blog/newsletter/</loc>
+        <lastmod>2020-11-10T12:55:42.708Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
         <loc>https://e.printstacktrace.blog/about/</loc>
-        <lastmod>2020-11-10T10:04:14.368Z</lastmod>
+        <lastmod>2020-11-10T12:55:42.340Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
         <loc>https://e.printstacktrace.blog/404.html</loc>
-        <lastmod>2020-11-10T10:04:14.344Z</lastmod>
+        <lastmod>2020-11-10T12:55:42.260Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
