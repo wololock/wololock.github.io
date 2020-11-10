@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>https://e.printstacktrace.blog/t/merge/</loc>
+        <lastmod>2020-11-05T22:14:35.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/t/json/</loc>
         <lastmod>2020-11-05T22:14:35.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -11,13 +18,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/t/jq/</loc>
-        <lastmod>2020-11-05T22:14:35.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/merge/</loc>
         <lastmod>2020-11-05T22:14:35.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
