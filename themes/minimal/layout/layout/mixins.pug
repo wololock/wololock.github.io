@@ -5,7 +5,7 @@ mixin random_ad(list)
 mixin ad(id)
     - var banner = site.data.banners.ids[id]
     if banner
-        a.gatr(href=banner.link data-type="banner" data-name=id)
+        a.gatr(href=banner.link data-type="banner" data-name=id target="_blank")
             img.img-fluid(class=banner.class data-lazy=banner.src)
 
 mixin article_large_cover(post)

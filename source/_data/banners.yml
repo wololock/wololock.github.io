@@ -1,8 +1,9 @@
 config:
-  tag: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "grammarly-02", "domain10-01"]
-  archives: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "grammarly-02", "domain10-01"]
-  category: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "domain10-01"]
-  post: ["nordvpn-02", "udemy-02", "udemy-devops-02", "audible-premium-02", "domain10-02"]
+  tag: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "grammarly-02", "domain10-01", "vidiq-01", "bluehost-01"]
+  archives: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "grammarly-02", "domain10-01", "vidiq-01", "bluehost-01"]
+  category: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "domain10-01", "vidiq-01", "bluehost-01"]
+  post: ["bluehost-02", "vidiq-02"]
+  home: ["nordvpn-01", "vidiq-03"]
 
 ids:
   grammarly-01:
@@ -15,7 +16,7 @@ ids:
     link: https://www.jdoqocy.com/click-100191173-10952823
 
   nordvpn-01:
-    randomRatio: 4
+    randomRatio: 1
     src: /images/yml/nord-vpn-01.png
     link: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=572706.11&type=3&subid=0
     class: "img-fluid border"
@@ -69,3 +70,29 @@ ids:
     randomRation: 1
     src: /images/yml/domain10-02.png
     link: https://www.jdoqocy.com/click-100191173-14085090
+
+  bluehost-01:
+    randomRation: 2
+    src: /images/yml/bluehost-01.png
+    link: https://e.printstacktrace.blog/bluehost
+
+  bluehost-02:
+    randomRation: 2
+    src: /images/yml/bluehost-02.png
+    link: https://e.printstacktrace.blog/bluehost
+
+  vidiq-01:
+    randomRation: 2
+    src: /images/yml/vidiq-01.png
+    link: https://e.printstacktrace.blog/vidiq
+
+  vidiq-02:
+    randomRation: 2
+    src: /images/yml/vidiq-02.png
+    link: https://e.printstacktrace.blog/vidiq
+
+  vidiq-03:
+    randomRation: 2
+    src: /images/yml/vidiq-03.png
+    link: https://e.printstacktrace.blog/vidiq
+    class: "img-fluid border"
