@@ -11,9 +11,44 @@ hexo.extend.renderer.register('asciidoc', 'html', asciidoc, true)
 hexo.extend.generator.register('alias', require('./lib/alias'));
 
 hexo.extend.helper.register('structured_data', require('./lib/structured_data.js'));
-hexo.extend.tag.register('book', function() {
-    const book = this.book || {};
+
+hexo.extend.tag.register('book', function(id) {
+    if (id.length === 0) {
+        return ""
+    }
+    const book = this.site.data._books[id[0]] || {};
     if (book === undefined) return "";
+
+    book.ld_json = {
+        "@context": "https://schema.org",
+        "@type": "Book",
+        "name": book.title,
+        "image": hexo.config.url + book.cover,
+        "author": {
+            "@type": "Person",
+            "name": book.author
+        },
+        "datePublished": book.datePublished,
+        "publisher": {
+            "@type": "Organization",
+            "name": book.publisher,
+        },
+        "inLanguage": book.inLanguage,
+        "isbn": book.isbn,
+        "review": {
+            "@type": "Review",
+            "author": {
+                "@id": "https://e.printstacktrace.blog/#/schema/person/wololock",
+            },
+            "datePublished": book.review.datePublished,
+            "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": book.review.rating,
+            },
+            "reviewBody": book.review.body
+        }
+    }
+
     const template = fs.readFileSync(path.resolve(__dirname, '../templates/book.pug'), 'utf-8');
     return hexo.render.renderSync({ text: template, engine: "pug"}, book);
 });

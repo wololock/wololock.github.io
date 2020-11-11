@@ -1,0 +1,254 @@
+atomic-habits:
+  title: "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones"
+  description:
+    content: "No matter your goals, Atomic Habits offers a proven framework for improving - every day. James Clear, one of the world's leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results."
+    source: amazon.com
+    url: "https://amzn.to/3coH0EF"
+  cover: "/images/books/atomic_habits.jpg"
+  author: "James Clear"
+  datePublished: "2018-10-18"
+  publisher: "Random House Business"
+  inLanguage: "en-US"
+  isbn: "978-1847941831"
+  review:
+    datePublished: "2020-06-02"
+    rating: 5
+    body: "We usually expect to see linear growth when building new habits. It doesn't work like that. We do not realize that making small improvements, like 1% every day, results in making 37-times better progress after a year. James Clear extends the idea of the habit loop (cue, craving, response, reward) and guides you on how to build an efficient habits building system. The book is pleasant to read, very \"actionable\", and is based on research, and not only \"because I think so.\" Highly recommended!"
+  links:
+    - flag: us
+      text: Audible audiobook <span class="small">(30-days free trial)</span>
+      url: https://amzn.to/3ng73DL
+    - flag: us
+      text: Kindle ebook
+      url: https://amzn.to/35mMf7v
+    - flag: us
+      text: Get from amazon.com
+      url: https://amzn.to/3coH0EF
+    - flag: ca
+      text: Get from amazon.ca
+      url: https://amzn.to/2AyAyNU
+    - flag: de
+      text: Get from amazon.de
+      url: https://amzn.to/36YG6xt
+    - flag: gb
+      text: Get from amazon.co.uk
+      url: https://amzn.to/3ctSIxz
+    - flag: fr
+      text: Get from amazon.fr
+      url: https://amzn.to/3cxQq0N
+    - flag: es
+      text: Get from amazon.es
+      url: https://amzn.to/3crCDsg
+    - flag: pl
+      text: Get from taniaksiazka.pl
+      url: https://go.buybox.click/linkclick_4951_11?&url=https%3A%2F%2Fwww.taniaksiazka.pl%2Fatomowe-nawyki-drobne-zmiany-niezwykle-efekty-james-clear-p-1283871.html
+
+debugging-teams:
+  title: "Debugging Teams: Better Productivity Through Collaboration"
+  description:
+    content: "In the course of their 20+-year engineering careers, authors Brian Fitzpatrick and Ben Collins-Sussman have picked up a treasure trove of wisdom and anecdotes about how successful teams work together. Their conclusion? Even among people who have spent decades learning the technical side of their jobs, most haven't really focused on the human component. Learning to collaborate is just as important to success. If you invest in the \"soft skills\" of your job, you can have a much greater impact for the same amount of effort."
+    source: "amazon.com"
+    url: "https://amzn.to/3dWLHaa"
+  cover: "/images/books/debugging-teams.jpg"
+  isbn: "978-1491932056"
+  inLanguage: "en-US"
+  author: "Brian Fitzpatrick, Ben Collins-Sussman"
+  datePublished: "2015-11-03"
+  publisher: "O'Reilly Media"
+  review:
+    datePublished: "2019-04-16"
+    rating: 4.50
+    body: "Great book on developing strong team culture. Highly recommended!"
+  links:
+    - flag: us
+      text: Kindle ebook
+      url: https://amzn.to/2Itloxo
+    - flag: us
+      text: Get from amazon.com
+      url: https://amzn.to/3dWLHaa
+    - flag: ca
+      text: Get from amazon.ca
+      url: https://amzn.to/3hf8ujL
+    - flag: de
+      text: Get from amazon.de
+      url: https://amzn.to/2XVUJi0
+    - flag: gb
+      text: Get from amazon.co.uk
+      url: https://amzn.to/3fgBbL9
+    - flag: fr
+      text: Get from amazon.fr
+      url: https://amzn.to/2UE5Lqp
+    - flag: es
+      text: Get from amazon.es
+      url: https://amzn.to/2YrN22b
+
+pragmatic-thinking-and-learning:
+  title: "Pragmatic Thinking and Learning: Refactor Your Wetware"
+  description:
+    content: "Software development happens in your head. Not in an editor, IDE, or design tool. You're well educated on how to work with software and hardware, but what about wetware--our own brains? Learning new skills and new technology is critical to your career, and it's all in your head. In this book by Andy Hunt, you'll learn how our brains are wired, and how to take advantage of your brain's architecture. You'll learn new tricks and tips to learn more, faster, and retain more of what you learn."
+    source: amazon.com
+    url: https://amzn.to/3eNnnZE
+  cover: "/images/books/pragmatic-thinking-and-learning.jpg"
+  author: "Andy Hunt"
+  datePublished: "2008-10-28"
+  publisher: "Pragmatic Bookshelf"
+  inLanguage: "en-US"
+  isbn: "978-1934356050"
+  review:
+    datePublished: "2019-04-20"
+    rating: 5
+    body: "One of my favorite books ever. I've read \"Pragmatic Thinking and Learning\" the second time after six years, and I must say that this book is phenomenal. My opinion is entirely biased - I'm not going to deny this fact. Just like Andy Hunt, I'm also a software engineer, and that is why I find all examples and exercises very useful. He explains how our brain works in L- and R-modes, how we can benefit from both modes, how we can design and plan our learning process to build habits that will help us achieve even more. It's a great supplement for Cal Newport's \"Deep Work\" book. However, it's much more practical and useful for software engineers (or any knowledge workers). I strongly recommend reading it!"
+  links:
+    - flag: us
+      text: Kindle ebook
+      url: https://amzn.to/3lngCjP
+    - flag: us
+      text: Get from amazon.com
+      url: https://amzn.to/3eNnnZE
+    - flag: ca
+      text: Get from amazon.ca
+      url: https://amzn.to/2U2Fl1a
+    - flag: de
+      text: Get from amazon.de
+      url: https://www.amazon.de/gp/product/1934356050?ie=UTF8&tag=eprintstac0c4-21&camp=1638&linkCode=xm2&creativeASIN=1934356050
+    - flag: gb
+      text: Get from amazon.co.uk
+      url: https://www.amazon.co.uk/gp/product/1934356050?ie=UTF8&tag=eprintstack07-21&camp=1634&linkCode=xm2&creativeASIN=1934356050
+    - flag: fr
+      text: Get from amazon.fr
+      url: https://amzn.to/2MjuETL
+    - flag: es
+      text: Get from amazon.es
+      url: https://amzn.to/2ZZyEAF
+
+deep-work:
+  title: "Deep Work: Rules for Focused Success in a Distracted World"
+  description:
+    content: "Deep work is the ability to focus without distraction on a cognitively demanding task. It's a skill that allows you to quickly master complicated information and produce better results in less time. Deep work will make you better at what you do and provide the sense of true fulfillment that comes from craftsmanship. In short, deep work is like a super power in our increasingly competitive twenty-first century economy. And yet, most people have lost the ability to go deep-spending their days instead in a frantic blur of e-mail and social media, not even realizing there's a better way."
+    source: amazon.com
+    url: https://amzn.to/32Ct5Zo
+  cover: "/images/books/deep-work.jpg"
+  author: "Cal Newport"
+  datePublished: "2016-01-12"
+  publisher: "Piatkus Non Fiction"
+  inLanguage: "en-US"
+  isbn: "978-0349411905"
+  review:
+    datePublished: "2018-12-31"
+    rating: 5
+    body: "An interesting and useful (in many ways) book."
+  links:
+    - flag: us
+      text: Audible audiobook <span class="small">(30-days free trial)</span>
+      url: https://amzn.to/38vuvZC
+    - flag: us
+      text: Kindle ebook
+      url: https://amzn.to/3neWLnh
+    - flag: us
+      text: Get from amazon.com
+      url: https://amzn.to/32Ct5Zo
+    - flag: ca
+      text: Get from amazon.ca
+      url: https://amzn.to/2UBccu5
+    - flag: de
+      text: Get from amazon.de
+      url: https://www.amazon.de/gp/product/0349411905?ie=UTF8&tag=eprintstac0c4-21&camp=1638&linkCode=xm2&creativeASIN=0349411905
+    - flag: gb
+      text: Get from amazon.co.uk
+      url: https://www.amazon.co.uk/gp/product/0349411905?ie=UTF8&tag=eprintstack07-21&camp=1634&linkCode=xm2&creativeASIN=0349411905
+    - flag: fr
+      text: Get from amazon.fr
+      url: https://amzn.to/2MPvkAp
+    - flag: es
+      text: Get from amazon.es
+      url: https://amzn.to/2YqUavZ
+    - flag: pl
+      text: Get from taniaksiazka.pl
+      url: https://go.buybox.click/linkclick_4951_11?&url=https%3A%2F%2Fwww.taniaksiazka.pl%2Fpraca-gleboka-jak-odniesc-sukces-w-swiecie-cal-newport-p-988675.html
+    - flag: pl
+      text: Get from ebookpoint.pl (ebook)
+      url: https://go.buybox.click/linkclick_4951_32?&url=https%3A%2F%2Febookpoint.pl%2Fksiazki%2Fpraca-gleboka-cal-newport%2Ce_1fgz.htm
+
+release-it:
+  title: "Release It!: Design and Deploy Production-Ready Software"
+  description:
+    content: "A single dramatic software failure can cost a company millions of dollars - but can be avoided with simple changes to design and architecture. This new edition of the best-selling industry standard shows you how to create systems that run longer, with fewer failures, and recover better when bad things happen. New coverage includes DevOps, microservices, and cloud-native architecture. Stability antipatterns have grown to include systemic problems in large-scale systems. This is a must-have pragmatic guide to engineering for production systems."
+    source: amazon.com
+    url: https://amzn.to/32Cj5j3
+  cover: "/images/books/release-it.jpg"
+  author: "Michael T. Nygard"
+  datePublished: "2017-10-25"
+  publisher: "Pragmatic Bookshelf"
+  inLanguage: "en-US"
+  isbn: "978-1680502395"
+  review:
+    datePublished: "2019-04-20"
+    rating: 5
+    body: "A great book every software developer, architect, designer or even QA engineer should read. It focuses on principles and guidance so it may feel like it misses some level of details. However, if it focused more on the specific tools instead of principles, it would quickly become outdated. You won’t regret spending time with the book - it is 336 pages of useful and never outdating knowledge. Highly recommended!"
+  links:
+    - flag: us
+      text: Kindle ebook
+      url: https://amzn.to/32w4eGI
+    - flag: us
+      text: Get from amazon.com
+      url: https://amzn.to/32Cj5j3
+    - flag: us
+      text: Get from pragprog.com
+      url: https://pragprog.com/book/mnee2/release-it-second-edition
+    - flag: ca
+      text: Get from amazon.ca
+      url: https://amzn.to/3feEiTY
+    - flag: de
+      text: Get from amazon.de
+      url: https://www.amazon.de/gp/product/1680502395?ie=UTF8&tag=eprintstac0c4-21&camp=1638&linkCode=xm2&creativeASIN=1680502395
+    - flag: gb
+      text: Get from amazon.co.uk
+      url: https://www.amazon.co.uk/gp/product/1680502395?ie=UTF8&tag=eprintstack07-21&camp=1634&linkCode=xm2&creativeASIN=1680502395
+    - flag: fr
+      text: Get from amazon.fr
+      url: https://amzn.to/3fdORXt
+    - flag: es
+      text: Get from amazon.es
+      url: https://amzn.to/3cOKpgc
+    - flag: pl
+      text: Get from allegro.pl
+      url: https://go.buybox.click/linkclick_4951_137?&url=https%3A%2F%2Fallegro.pl%2Foferta%2Frelease-it-design-and-deploy-production-ready-sof-8942944133%3Futm_feed%3D6e9ce87e-bbdc-4cea-b90e-99a6691b894e
+
+programming-groovy-2:
+  title: "Programming Groovy 2: Dynamic Productivity for the Java Developer"
+  description:
+    content: "You don’t have to leave the rich Java Platform to take advantage of Groovy. Groovy preserves Java’s semantics and extends the JDK, so programming in Groovy feels like the Java language has been augmented; it’s like working with a lighter, more elegant Java. If you’re an experienced Java developer who wants to learn how Groovy works, you’ll find exactly what you need in this book."
+    source: amazon.com
+    url: "https://amzn.to/36p1pZ7"
+  cover: "/images/books/programming-groovy-2.jpg"
+  author: "Venkat Subramaniam"
+  datePublished: "2013-07-25"
+  publisher: "Pragmatic Bookshelf"
+  inLanguage: "en-US"
+  isbn: "978-1937785307"
+  review:
+    datePublished: "2018-12-29"
+    rating: 4.3
+    body: "One of the best books for novice Groovy programmers. It's a bit outdated, but if you have never seen Groovy in action, you will still learn a lot from it. Highly recommended!"
+  links:
+    - flag: us
+      text: Kindle Ebook
+      url: https://amzn.to/3nihK8G
+    - flag: us
+      text: Get from amazon.com
+      url: https://amzn.to/36p1pZ7
+    - flag: ca
+      text: Get from amazon.ca
+      url: https://amzn.to/2XRsBga
+    - flag: de
+      text: Get from amazon.de
+      url: https://www.amazon.de/gp/product/1937785300?ie=UTF8&tag=eprintstac0c4-21&camp=1638&linkCode=xm2&creativeASIN=1937785300
+    - flag: gb
+      text: Get from amazon.co.uk
+      url: https://www.amazon.co.uk/gp/product/1937785300?ie=UTF8&tag=eprintstack07-21&camp=1634&linkCode=xm2&creativeASIN=1937785300
+    - flag: fr
+      text: Get from amazon.fr
+      url: https://amzn.to/3cRNGeB
+    - flag: es
+      text: Get from amazon.es
+      url: https://amzn.to/2YqXabJ

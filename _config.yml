@@ -108,7 +108,7 @@ all_minifier: true
 
 # Update versions after updating resources to prevent reading from cache
 version:
-  css: 69
+  css: 70
   js: 11
 
 archive_generator:
@@ -142,7 +142,7 @@ social-media:
   - icon: "fa-youtube"
     name: YouTube
     url: https://www.youtube.com/eprintstacktrace
-    number: 2.01k
+    number: 2.02k
     description: Subscribers
   - icon: "fa-github"
     name: Github

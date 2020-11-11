@@ -13,32 +13,6 @@ tags:
     - affiliate
 card: /images/cards/16.png
 affiliates: true
-book:
-  title: "Programming Groovy 2: Dynamic Productivity for the Java Developer"
-  description: "The strength of Java is no longer in the language itself; it's in the Java Platform (the JVM, JDK, and rich frameworks and libraries). But recently, the industry has turned to dynamic languages for increased productivity and speed to market. Groovy is one of a new breed of dynamic languages that run on the Java platform. You can use these new languages on the JVM and intermix them with your existing Java code. You can leverage your Java investments while benefiting from advanced features including true Closures, Meta Programming, the ability to create internal DSLs, and a higher level of abstraction."
-  source:
-    name: goodreads.com
-    url: https://www.goodreads.com/book/show/22097079-programming-groovy-2
-  image: "/images/books/programming-groovy-2.jpg"
-  links:
-    - flag: us
-      text: Get from amazon.com
-      url: https://www.amazon.com/gp/product/1937785300?ie=UTF8&tag=eprintstacktr-20&camp=1789&linkCode=xm2&creativeASIN=1937785300
-    - flag: ca
-      text: Get from amazon.ca
-      url: https://amzn.to/2XRsBga
-    - flag: de
-      text: Get from amazon.de
-      url: https://www.amazon.de/gp/product/1937785300?ie=UTF8&tag=eprintstac0c4-21&camp=1638&linkCode=xm2&creativeASIN=1937785300
-    - flag: gb
-      text: Get from amazon.co.uk
-      url: https://www.amazon.co.uk/gp/product/1937785300?ie=UTF8&tag=eprintstack07-21&camp=1634&linkCode=xm2&creativeASIN=1937785300
-    - flag: fr
-      text: Get from amazon.fr
-      url: https://amzn.to/3cRNGeB
-    - flag: es
-      text: Get from amazon.es
-      url: https://amzn.to/2YqXabJ
 icon: /images/icons/33.png
 ---
 :book-url: https://amzn.to/2IKCPXg
@@ -103,7 +77,7 @@ Tons of practical examples, very natural and smooth writing style, and a great l
 You can work it out in one weekend with the fast pace, or you can relax and split the experience into a several 1-hour long learning sessions.
 Whatever works for you best.
 
-pass:[{% book %}]
+pass:[{% book programming-groovy-2 %}]
 
 == Bonus: how did I get my copy of the book?
 
@@ -126,5 +100,3 @@ Venkat is not only a great teacher but also one of the kindest person I have eve
 [link=/images/programming-groovy-img3.jpg]
 image::/images/programming-groovy-img3.jpg[]
 --
-
-include::source/_parts/thank-you.adoc[]

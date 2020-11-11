@@ -161,6 +161,8 @@ It covers some tips and tricks that help to stay in the "zone".
 (inaction is the real enemy), _recognize that developing new habits take time_, _believe in own capabilities_,
 _and always take small next steps._
 
+pass:[{% book pragmatic-thinking-and-learning %}]
+
 == What are my main takeaways from this book?
 
 I enjoyed reading _"Pragmatic Thinking and Learning"_, but apart from that it encouraged me to do the following things:
@@ -200,5 +202,5 @@ accurately, but I accept that I might miss something important. Let me know, and
 you find the answers you are looking for. Or maybe you have also read the {book-url}[_"Pragmatic Thinking and Learning"_, role="ga-track"]
 book and you have a different opinion? Please share it with us. I'd love to hear it from you.
 
-pass:[{% book %}]
+
 

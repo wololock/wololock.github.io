@@ -15,35 +15,6 @@ categories:
     - Programmer's Bookshelf
 card: /images/cards/13.png
 affiliates: true
-book:
-  title: "Debugging Teams: Better Productivity Through Collaboration"
-  description: "In the course of their 20+-year engineering careers, authors Brian Fitzpatrick and Ben Collins-Sussman have picked up a treasure trove of wisdom and anecdotes about how successful teams work together. Their conclusion? Even among people who have spent decades learning the technical side of their jobs, most haven't really focused on the human component. Learning to collaborate is just as important to success. If you invest in the \"soft skills\" of your job, you can have a much greater impact for the same amount of effort."
-  source:
-    name: goodreads.com
-    url: https://www.goodreads.com/book/show/26544401-debugging-teams
-  image: "/images/books/debugging-teams.jpg"
-  links:
-    - flag: us
-      text: Get from oreilly.com (free PDF)
-      url: https://conferences.oreilly.com/fluent/fl-ca/public/content/debugging-teams
-    - flag: us
-      text: Get from amazon.com
-      url: https://amzn.to/3dWLHaa
-    - flag: ca
-      text: Get from amazon.ca
-      url: https://amzn.to/3hf8ujL
-    - flag: de
-      text: Get from amazon.de
-      url: https://amzn.to/2XVUJi0
-    - flag: gb
-      text: Get from amazon.co.uk
-      url: https://amzn.to/3fgBbL9
-    - flag: fr
-      text: Get from amazon.fr
-      url: https://amzn.to/2UE5Lqp
-    - flag: es
-      text: Get from amazon.es
-      url: https://amzn.to/2YrN22b
 icon: /images/icons/23.png
 ---
 
@@ -142,6 +113,5 @@ information, presented in a very easy-to-consume and anecdotal style. It confirm
 * dealing with people is hard and applying HRT principles helps to build strong relationships,
 * debugging teams is a process that never ends.
 
-pass:[{% book %}]
+pass:[{% book debugging-teams %}]
 
-include::source/_parts/thank-you.adoc[]

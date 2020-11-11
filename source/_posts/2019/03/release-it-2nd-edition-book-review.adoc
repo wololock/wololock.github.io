@@ -13,61 +13,8 @@ tags:
 categories:
     - Programmer's Bookshelf
 card: /images/cards/15.png
+header: /images/release-it-img1.jpg
 affiliates: true
-book:
-  title: "Release It!: Design and Deploy Production-Ready Software"
-  description: "A single dramatic software failure can cost a company millions of dollars - but can be avoided with simple changes to design and architecture. This new edition of the best-selling industry standard shows you how to create systems that run longer, with fewer failures, and recover better when bad things happen. New coverage includes DevOps, microservices, and cloud-native architecture. Stability antipatterns have grown to include systemic problems in large-scale systems. This is a must-have pragmatic guide to engineering for production systems."
-  source:
-    name: goodreads.com
-    url: https://www.goodreads.com/book/show/34695798-release-it
-  image: "/images/books/release-it.jpg"
-  links:
-    - flag: us
-      text: Get from amazon.com
-      url: https://www.amazon.com/gp/product/1680502395?ie=UTF8&tag=eprintstacktr-20&camp=1789&linkCode=xm2&creativeASIN=1680502395
-    - flag: us
-      text: Get from pragprog.com
-      url: https://pragprog.com/book/mnee2/release-it-second-edition
-    - flag: ca
-      text: Get from amazon.ca
-      url: https://amzn.to/3feEiTY
-    - flag: de
-      text: Get from amazon.de
-      url: https://www.amazon.de/gp/product/1680502395?ie=UTF8&tag=eprintstac0c4-21&camp=1638&linkCode=xm2&creativeASIN=1680502395
-    - flag: gb
-      text: Get from amazon.co.uk
-      url: https://www.amazon.co.uk/gp/product/1680502395?ie=UTF8&tag=eprintstack07-21&camp=1634&linkCode=xm2&creativeASIN=1680502395
-    - flag: fr
-      text: Get from amazon.fr
-      url: https://amzn.to/3fdORXt
-    - flag: es
-      text: Get from amazon.es
-      url: https://amzn.to/3cOKpgc
-    - flag: pl
-      text: Get from allegro.pl
-      url: https://go.buybox.click/linkclick_4951_137?&url=https%3A%2F%2Fallegro.pl%2Foferta%2Frelease-it-design-and-deploy-production-ready-sof-8942944133%3Futm_feed%3D6e9ce87e-bbdc-4cea-b90e-99a6691b894e
-structured_data:
-  '@type': 'Book'
-  name: "Release It!: Design and Deploy Production-Ready Software"
-  image: "https://e.printstacktrace.blog/images/books/release-it.jpg"
-  author:
-    '@type': "Person"
-    name: "Michael T. Nygard"
-  datePublished: "2017-10-25"
-  publisher:
-    '@type': "Organization"
-    name: "Pragmatic Bookshelf"
-  inLanguage: "en-US"
-  isbn: "978-1680502395"
-  review:
-    '@type': "Review"
-    author:
-      '@id': "https://e.printstacktrace.blog/#/schema/person/wololock"
-    datePublished: "2019-04-20"
-    reviewRating:
-      '@type': "Rating"
-      ratingValue: 5
-    reviewBody: "A great book every software developer, architect, designer or even QA engineer should read. It focuses on principles and guidance so it may feel like it misses some level of details. However, if it focused more on the specific tools instead of principles, it would quickly become outdated. You won’t regret spending time with the book - it is 336 pages of useful and never outdating knowledge. Highly recommended!"
 icon: /images/icons/30.png
 ---
 :book-url: https://amzn.to/2vnj9pk
@@ -125,13 +72,7 @@ It accepts that systems are fragile and failures show up sooner than later.
 And the more control over them we have, the better.
 Building resilient systems require breaking them regularly and in a controlled way.
 
-
-[.text-center]
---
-[.img-responsive.img-thumbnail]
-[link=/images/release-it-img1.jpg]
-image::/images/release-it-img1.jpg[]
---
+pass:[{% book release-it %}]
 
 == Conclusion
 
@@ -141,6 +82,5 @@ However, if it focused more on the specific tools instead of principles, it woul
 You won't regret spending time with the book - it is 336 pages of useful and never outdating knowledge.
 Highly recommended!
 
-pass:[{% book %}]
 
-include::source/_parts/thank-you.adoc[]
+

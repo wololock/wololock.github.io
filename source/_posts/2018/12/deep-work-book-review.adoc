@@ -100,6 +100,8 @@ So, what kind of work is "deep work?" We can find, let's say, a formal definitio
 
 NOTE: _"Deep work is at a severe disadvantage in a technopoly because it builds on values like quality, craftsmanship, and mastery that are decidedly old-fashioned and nontechnological."_
 
+pass:[{% book deep-work %}]
+
 == How to practice Deep Work?
 
 The first rule explained in the book focuses on how to work deeply. It starts with an extreme example of Donald Knuth's so-called "Monastic Philosophy," where he can dedicate almost 100% of his time to distraction-free and highly-focused work. This type of practice applies to a tiny amount of people worldwide. Still, there are three more philosophies we can put into action. The first of them, called "Bimodal Philosophy," assumes that you can dedicate a significant amount of time during the year to in-depth work (e.g., one or two months a year you take a break from day-to-day practice and during that time you dedicate to the deep work only). The second of them, "The Rhythmic Philosophy," sounds most practical - every regular amount of time (e.g., every day) you dedicate some part of the day to distraction-free deep work. This philosophy is mostly applied to early morning rituals, where you can assign an hour or two to work on something that matters to you most. And the last philosophy Cal Newport describes is called "The Journalistic Philosophy," and he uses Walter Isaacson as an example of a person who can jump into in-depth work mode almost any time he gets inspired. He doesn't rate one philosophy over another; it's not a competition. It's not even a closed list, and it is entirely possible that there are other techniques (or philosophies) that do the work even better. It is mostly about choosing whatever works for us best and taking the best of it.
@@ -115,7 +117,6 @@ image::/images/deep-work-book-review-img1.jpg[]
 
 The binary Yes/No answer is - yes. But it depends. I've found "Deep Work" an exciting and practical lecture because it felt like I lost the ability to work with a high level of concentration some time ago. It's not revolutionary, and it does not present any ideas you won't find in other books. However, it still condenses many useful and scientific proven information. It might look too wordy, and it could do the same job half size. Also, some of the examples are sound bizarre and very inaccurate (like the ones described with "Embrace boredom" rule). But it doesn't change the fact that it presents valuable and useful information to any knowledge-worker.
 
-pass:[{% book %}]
 
 == Brain dump: 10 ideas to remember
 
@@ -131,5 +132,3 @@ pass:[{% book %}]
 9. Train your memory with memorization techniques (worth reading: "Moonwalking with Einstein" by Joshua Foer).
 10. Challenge yourself by setting deadlines for all activities to overcome Parkinson's law. Use 30-minutes buffers in case an important activity was underestimated, and you don't want to drop it unfinished.
 
-
-include::source/_parts/thank-you.adoc[]
