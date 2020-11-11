@@ -2,7 +2,7 @@ config:
   tag: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "grammarly-02", "domain10-01", "vidiq-01", "bluehost-01"]
   archives: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "grammarly-02", "domain10-01", "vidiq-01", "bluehost-01"]
   category: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "domain10-01", "vidiq-01", "bluehost-01"]
-  post: ["bluehost-02", "vidiq-02"]
+  post: ["nordvpn-02", "udemy-02", "udemy-devops-02", "audible-premium-02", "domain10-02", "bluehost-02", "vidiq-02"]
   home: ["vidiq-03"]
 
 ids:
@@ -22,12 +22,12 @@ ids:
     class: "img-fluid border"
 
   nordvpn-02:
-    randomRatio: 4
+    randomRatio: 2
     src: /images/yml/nord-vpn-02.png
     link: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=572706.11&type=3&subid=0
 
   nordvpn-03:
-    randomRatio: 4
+    randomRatio: 2
     src: /images/yml/nord-vpn-03.png
     link: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=572706.11&type=3&subid=0
 
