@@ -3,7 +3,7 @@ config:
   archives: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "grammarly-02", "domain10-01", "vidiq-01", "bluehost-01"]
   category: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "domain10-01", "vidiq-01", "bluehost-01"]
   post: ["bluehost-02", "vidiq-02"]
-  home: ["nordvpn-01", "vidiq-03"]
+  home: ["vidiq-03"]
 
 ids:
   grammarly-01:
