@@ -137,12 +137,12 @@ social-media:
   - icon: "fa-twitter"
     name: Twitter
     url: https://twitter.com/wololock
-    number: 1.13k
+    number: 1.29k
     description: Followers
   - icon: "fa-youtube"
     name: YouTube
     url: https://www.youtube.com/eprintstacktrace
-    number: 2.02k
+    number: 2.03k
     description: Subscribers
   - icon: "fa-github"
     name: Github

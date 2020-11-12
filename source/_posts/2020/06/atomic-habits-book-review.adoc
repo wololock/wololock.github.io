@@ -155,6 +155,7 @@ As James Clear tries to convince, the right thing doesn’t have to be spectacul
 Doing *small things consistently* day after day is the way to build a *habit that sticks*, and to *produce results* that can change your life.
 What we need to understand and appreciate is the importance of small steps that we consciously decide to take - they eventually lead to success.
 
+pass:[{% book atomic-habits %}]
 
 == The conclusion
 
@@ -167,8 +168,6 @@ I would strongly recommend reading {atomic-habits}[“Atomic Habits”] to every
 The book is full of both scientific research and anecdotal evidence, which makes reading it fun, and applying the framework simple.
 I haven’t covered all the examples and ideas in this blog post, but I hope it encourages you to experiment with your own atomic habits.
 I strongly believe that everyone will profit from applying the tips included in this book into their own lives.
-
-pass:[{% book atomic-habits %}]
 
 == Bonus: Atomic Habits ideas for Software Developers
 
