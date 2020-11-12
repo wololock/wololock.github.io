@@ -343,6 +343,8 @@ they require specifying additional `PATH` env variable like `PATH+EXTRA` which m
 yourself for missing `PATH` locations. I would accept it if there was no other option, but ideally no such workarounds
 should be necessary. And I have found a way how to do it.
 
+pass:[{% banner jenkins %}]
+
 == Override `PATH` in your Dockerfile
 
 There is at least one way how you can override `PATH` variable used by the docker container started in the Jenkins Pipeline.

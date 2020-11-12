@@ -193,6 +193,8 @@ assert !("GROOVY-123: some change" ==~ /[A-Z]{3,6}-\d{1,4}/)
 assert "GROOVY-123: some change" ==~ /[A-Z]{3,6}-\d{1,4}.{1,100}/
 ----
 
+pass:[{% banner regexp %}]
+
 == Usage examples
 
 Checking if specific string matches given pattern is not the only thing you can do with regular expressions.

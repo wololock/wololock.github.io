@@ -88,6 +88,8 @@ NOTE: It might be useful to use `printenv | sort` command combination to get a s
 image::/images/jenkins-printenv.jpg[alt="The result of printenv"]
 --
 
+pass:[{% banner jenkins %}]
+
 == Reading environment variables
 
 You can access environment variables in pipeline steps through the `env` object, e.g., `env.BUILD_NUMBER` will return the current build number.

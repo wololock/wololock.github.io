@@ -62,6 +62,26 @@ hexo.extend.tag.register('youtube_card', function(id) {
     const template = fs.readFileSync(path.resolve(__dirname, '../templates/youtube_card.pug'), 'utf-8');
     return hexo.render.renderSync({ text: template, engine: "pug"}, { video: this.site.data.youtube[id], id: id });
 });
+hexo.extend.tag.register('banner', function(id){
+    if (id.length === 0) return "";
+    const banners = this.site.data.banners.config[id[0]] || [];
+    if (banners.length === 0) return "";
+
+    const candidates = Object.entries(this.site.data.banners.ids)
+        .filter(it => banners.includes(it[0]))
+        .map(it => Array(it[1].randomRatio).fill(it[0]))
+        .flat()
+        .shuffle()
+
+    if (candidates.length === 0) return "";
+
+    const banner = this.site.data.banners.ids[candidates[0]];
+
+    if (banner === undefined) return "";
+
+    const template = fs.readFileSync(path.resolve(__dirname, '../templates/banner.pug'), 'utf-8');
+    return hexo.render.renderSync({ text: template, engine: "pug"}, { banner: banner, id: candidates[0] });
+});
 
 
 Array.prototype.shuffle = function() {

@@ -4,6 +4,8 @@ config:
   category: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "domain10-01", "vidiq-01", "bluehost-01"]
   post: ["nordvpn-02", "udemy-02", "udemy-devops-02", "audible-premium-02", "domain10-02", "bluehost-02", "vidiq-02"]
   home: ["vidiq-03"]
+  jenkins: ["jenkins-from-zero-to-hero"]
+  regexp: ["regular-expressions"]
 
 ids:
   grammarly-01:
@@ -96,3 +98,17 @@ ids:
     src: /images/yml/vidiq-03.png
     link: https://e.printstacktrace.blog/vidiq
     class: "img-fluid border"
+
+  jenkins-from-zero-to-hero:
+    randomRation: 3
+    src: /images/yml/jenkins-from-zero-to-hero.png
+    link: "https://www.udemy.com/course/jenkins-from-zero-to-hero/?ranMID=39197&ranEAID=uow2LCEuhvQ&ranSiteID=uow2LCEuhvQ-eudJSeLMRGPLc9IovvjfsA&couponCode=NEWLEARNINGSF1"
+    class: "img-fluid border"
+
+  regular-expressions:
+    randomRation: 3
+    src: /images/yml/regular-expressions.png
+    link: "https://www.udemy.com/course/regular-expressions-mastery/?ranMID=39197&ranEAID=uow2LCEuhvQ&ranSiteID=uow2LCEuhvQ-6bZOe.fRmKp1R2ihvfRtQw&couponCode=NEWLEARNINGSF1"
+    class: "img-fluid border"
+
+

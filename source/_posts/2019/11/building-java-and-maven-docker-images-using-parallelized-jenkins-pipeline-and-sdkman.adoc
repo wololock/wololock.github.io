@@ -85,6 +85,8 @@ ENTRYPOINT bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && $0 $@"
 
 We specify `JAVA_VERSION`  and `MAVEN_VERSION` using `ARG` for one important reason — we want to allow overriding those values using `--build-arg` command-line parameter.
 
+pass:[{% banner jenkins %}]
+
 == Jenkins Pipeline
 
 We are going to build three docker images containing different Java distribution.

@@ -51,6 +51,8 @@ This way, you can design a topology where only a specific node can perform strat
 
 Now when you know _"why"_, let's take a look at the _"how"_ part.
 
+pass:[{% banner jenkins %}]
+
 == Capturing `sh` output with `returnStdout` option
 
 The way to execute curl command is to use `sh` (or `bat` if you are on the Windows server) step.
