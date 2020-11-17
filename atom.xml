@@ -103,9 +103,9 @@ I &lt;a href=&quot;https://docs.google.com/forms/d/e/1FAIpQLSd28xZnASR15OXTUnL23
     
     <category term="ratpack" scheme="https://e.printstacktrace.blog/t/ratpack/"/>
     
-    <category term="micronaut" scheme="https://e.printstacktrace.blog/t/micronaut/"/>
-    
     <category term="gradle" scheme="https://e.printstacktrace.blog/t/gradle/"/>
+    
+    <category term="micronaut" scheme="https://e.printstacktrace.blog/t/micronaut/"/>
     
     <category term="spock-framework" scheme="https://e.printstacktrace.blog/t/spock-framework/"/>
     
@@ -238,11 +238,11 @@ I use Java 11+, Micronaut, Picocli, and GraalVM&amp;#8217;s &lt;code&gt;native-i
     
     <category term="java" scheme="https://e.printstacktrace.blog/t/java/"/>
     
+    <category term="micronaut" scheme="https://e.printstacktrace.blog/t/micronaut/"/>
+    
     <category term="graalvm" scheme="https://e.printstacktrace.blog/t/graalvm/"/>
     
     <category term="native-image" scheme="https://e.printstacktrace.blog/t/native-image/"/>
-    
-    <category term="micronaut" scheme="https://e.printstacktrace.blog/t/micronaut/"/>
     
     <category term="picocli" scheme="https://e.printstacktrace.blog/t/picocli/"/>
     
@@ -305,19 +305,19 @@ I have seen the dots, but I didn’t yet know how to connect them.&lt;/p&gt;
     <category term="Programmer&#39;s Bookshelf" scheme="https://e.printstacktrace.blog/programmers-bookshelf/"/>
     
     
+    <category term="learning" scheme="https://e.printstacktrace.blog/t/learning/"/>
+    
     <category term="book" scheme="https://e.printstacktrace.blog/t/book/"/>
     
     <category term="review" scheme="https://e.printstacktrace.blog/t/review/"/>
     
-    <category term="learning" scheme="https://e.printstacktrace.blog/t/learning/"/>
-    
-    <category term="mind-mapping" scheme="https://e.printstacktrace.blog/t/mind-mapping/"/>
-    
-    <category term="affiliate" scheme="https://e.printstacktrace.blog/t/affiliate/"/>
-    
     <category term="self-improvement" scheme="https://e.printstacktrace.blog/t/self-improvement/"/>
     
     <category term="non-fiction" scheme="https://e.printstacktrace.blog/t/non-fiction/"/>
+    
+    <category term="affiliate" scheme="https://e.printstacktrace.blog/t/affiliate/"/>
+    
+    <category term="mind-mapping" scheme="https://e.printstacktrace.blog/t/mind-mapping/"/>
     
     <category term="atomic-habits" scheme="https://e.printstacktrace.blog/t/atomic-habits/"/>
     
