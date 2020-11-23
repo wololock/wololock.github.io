@@ -3,7 +3,7 @@ config:
   archives: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "grammarly-02", "domain10-01", "vidiq-01", "bluehost-01"]
   category: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "domain10-01", "vidiq-01", "bluehost-01"]
   post_old: ["nordvpn-02", "udemy-02", "udemy-devops-02", "audible-premium-02", "domain10-02", "bluehost-02", "vidiq-02"]
-  post: ["udemy-devops-02", "audible-premium-02", "bluehost-02", "vidiq-02"]
+  post: ["udemy-cyber-deals"]
   home: ["vidiq-03"]
   jenkins: ["jenkins-from-zero-to-hero"]
   regexp: ["regular-expressions"]
@@ -53,6 +53,11 @@ ids:
     randomRation: 1
     src: /images/yml/udemy-devops-02.png
     link: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Ftopic%2Fdevops%2F
+
+  udemy-cyber-deals:
+    randomRation: 1
+    src: http://merchant.linksynergy.com/fs/banners/39197/39197_13498.png
+    link: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.13498&subid=0&type=4
 
   audible-premium-01:
     randomRation: 2
