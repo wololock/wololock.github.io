@@ -6,11 +6,11 @@
     "version": "5.2.0"
   },
   "dependencies": {
-    "asciidoctor": "^2.2.0",
+    "asciidoctor": "^2.2.1",
     "cheerio": "^0.22.0",
     "entities": "^1.1.2",
     "hexo": "^5.2.0",
-    "hexo-all-minifier": "^0.5.3",
+    "hexo-all-minifier": "^0.5.5",
     "hexo-browsersync": "^0.3.0",
     "hexo-deployer-git": "^2.1.0",
     "hexo-generator-archive": "^1.0.0",
@@ -29,7 +29,7 @@
     "hexo-tag-convertkit": "^0.2.0",
     "hexo-tag-share-post": "0.0.1",
     "hexo-util": "^2.4.0",
-    "snyk": "^1.401.0"
+    "snyk": "^1.433.0"
   },
   "scripts": {
     "snyk-protect": "snyk protect",
