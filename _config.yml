@@ -142,12 +142,12 @@ social-media:
   - icon: "fa-youtube"
     name: YouTube
     url: https://www.youtube.com/eprintstacktrace
-    number: 2.25k
+    number: 2.27k
     description: Subscribers
   - icon: "fa-github"
     name: Github
     url: https://github.com/wololock
-    number: 108
+    number: 109
     description: Followers
   - icon: "fa-stack-overflow"
     name: StackOverflow
