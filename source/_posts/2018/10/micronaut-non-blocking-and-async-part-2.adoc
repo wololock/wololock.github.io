@@ -16,7 +16,7 @@ highlightjs: true
 icon: /images/icons/36.png
 ---
 
-Welcome to the part 2 of _"Non-blocking and async Micronaut"_ article. In the https://e.printstacktrace.blog/2018/10/micronaut-non-blocking-and-async-part1/[previous part] we have
+Welcome to the part 2 of _"Non-blocking and async Micronaut"_ article. In the https://e.printstacktrace.blog/micronaut-non-blocking-and-async-part1/[previous part] we have
 explained the idea behind this demo and we have implemented product-service - a simple endpoint that returns information
 about some products. Today we will focus on implementing **recommendations-service** part and we will run some simple
 benchmark tests. Let's start!
