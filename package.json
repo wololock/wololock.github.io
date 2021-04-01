@@ -29,7 +29,7 @@
     "hexo-tag-convertkit": "^0.2.0",
     "hexo-tag-share-post": "0.0.1",
     "hexo-util": "^2.4.0",
-    "snyk": "^1.433.0"
+    "snyk": "^1.518.0"
   },
   "scripts": {
     "snyk-protect": "snyk protect",
