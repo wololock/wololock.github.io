@@ -98,7 +98,7 @@ deploy:
 Thanks to this solution I was able to keep the history of site updates and to track changes of files
 that were actually modified with the given site update.
 
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/github-hexo-history.png]
 image::/images/github-hexo-history.png[]
 
@@ -108,4 +108,3 @@ I hope you find this post useful. It describes solution for Hexo + Travis CI + G
 it can solve problems that other similar static site generators may have when running from CI server
 environment.
 
-include::source/_parts/thank-you.adoc[]

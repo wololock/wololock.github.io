@@ -611,7 +611,7 @@ Here you can see what the call stack looks like when we attach a breakpoint insi
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/groovy-quicksort-debugger.png]
 image::/images/groovy-quicksort-debugger.png[]
 --
@@ -620,7 +620,7 @@ And here is the imperative equivalent.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/groovy-quicksort-imperative-debugger.png]
 image::/images/groovy-quicksort-imperative-debugger.png[]
 --
@@ -642,4 +642,4 @@ Do you see an area for improvements?
 Would you implement a `quicksort` algorithm differently?
 Please share your thoughts in the comments section down below.
 
-include::source/_parts/thank-you.adoc[]
+

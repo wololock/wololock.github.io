@@ -520,4 +520,3 @@ me know what kind of topics interest you the most. Stay tuned, and until the nex
 
 NOTE: Continue reading here - https://e.printstacktrace.blog/micronaut-non-blocking-and-async-part-2/[Non-blocking and async Micronaut — quick start (part 2)]
 
-include::source/_parts/thank-you.adoc[]

@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: e.printstacktrace.blog - I help you become a better software developer.
+title: Szymon Stepniak - I want to help you to become a better software developer
 description: Blog about programming, created by Upwork's Top Rated freelancer, 10+ years experienced Java/Groovy developer. Contact me if you are looking for an experienced and high quality consultant.
 author: Szymon Stepniak
-bio: I help you become a better software developer.
+bio: I want to help you to become a better software developer.
 photo: https://www.gravatar.com/avatar/b22c1842c6e8f7f2b9b3ed8c0d4efb4d?s=200
 language: en
 timezone: Europe/Warsaw
@@ -60,11 +60,11 @@ index_generator:
 
 category_generator:
   path: ''
-  per_page: 10
+  per_page: 9
   order_by: -date
 
 tag_generator:
-  per_page: 0
+  per_page: 12
   order_by: -date
   
 # Category & Tag
@@ -89,7 +89,8 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 #theme: clean-blog
-theme: minimal
+theme: simple
+#theme: minimal
 
 disqus_shortname: eprintstacktrace
 
@@ -108,8 +109,8 @@ all_minifier: true
 
 # Update versions after updating resources to prevent reading from cache
 version:
-  css: 71
-  js: 11
+  css: 72
+  js: 12
 
 archive_generator:
   per_page: 0
@@ -137,22 +138,22 @@ social-media:
   - icon: "fa-twitter"
     name: Twitter
     url: https://twitter.com/wololock
-    number: 1.15k
+    number: 1.17k
     description: Followers
   - icon: "fa-youtube"
     name: YouTube
     url: https://www.youtube.com/eprintstacktrace
-    number: 2.36k
+    number: 3.29k
     description: Subscribers
   - icon: "fa-github"
     name: Github
     url: https://github.com/wololock
-    number: 110
+    number: 136
     description: Followers
   - icon: "fa-stack-overflow"
     name: StackOverflow
     url: https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile
-    number: 30.2k
+    number: 31.7k
     description: Reputation
 
 alias:
@@ -201,6 +202,8 @@ alias:
     url: https://amzn.to/3mPZKlS
   bluehost/:
     url: https://www.bluehost.com/track/szymonstepniak/
+  upwork:
+    url: https://www.upwork.com/freelancers/~01a75423a6b582de9f
 
 share_post:
   twitter:

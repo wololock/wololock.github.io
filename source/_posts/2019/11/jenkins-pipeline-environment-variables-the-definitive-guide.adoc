@@ -14,6 +14,7 @@ tags:
 card: /images/cards/1.png
 highlightjs: true
 icon: /images/icons/20.png
+hero: /images/hero/jenkins-pipeline-environment-variables.png
 ---
 :sectanchors:
 :toc: macro
@@ -33,15 +34,6 @@ After reading this article, Jenkins env variables won't surprise you anymore!
 
 toc::[]
 
-[NOTE]
-====
-.pass:q[<h2 class="mt-3">What is Jenkins Environment Variable?</h2>]
-
-*Jenkins Environment Variable* is a global variable exposed through the `env` variable and used anywhere in the `Jenkinsfile`.
-Any value stored in the `env` variable gets stored as a `String` type.
-Environment Variables can be set either at the pipeline top level, at the specific stage level, or inside the `script` block.
-====
-
 
 == List environment variables
 
@@ -54,10 +46,19 @@ You can open `${YOUR_JENKINS_HOST}/env-vars.html` page on your Jenkins master se
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/jenkins-env-vars.jpg]
 image::/images/jenkins-env-vars.jpg[alt="The list of Jenkins environment variables"]
 --
+
+[NOTE]
+====
+.pass:q[<h2 class="mt-3">What is Jenkins Environment Variable?</h2>]
+
+*Jenkins Environment Variable* is a global variable exposed through the `env` variable and used anywhere in the `Jenkinsfile`.
+Any value stored in the `env` variable gets stored as a `String` type.
+Environment Variables can be set either at the pipeline top level, at the specific stage level, or inside the `script` block.
+====
 
 === Using shell command
 
@@ -83,12 +84,10 @@ NOTE: It might be useful to use `printenv | sort` command combination to get a s
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/jenkins-printenv.jpg]
 image::/images/jenkins-printenv.jpg[alt="The result of printenv"]
 --
-
-pass:[{% banner jenkins %}]
 
 == Reading environment variables
 
@@ -116,7 +115,7 @@ pipeline {
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/jenkins-read-env-var.png]
 image::/images/jenkins-read-env-var.png[alt="Reading Jenkins pipeline environment variable"]
 --
@@ -162,7 +161,7 @@ pipeline {
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/jenkins-set-env-var.png]
 image::/images/jenkins-set-env-var.png[alt="Setting Jenkins pipeline environment variable"]
 --
@@ -232,7 +231,7 @@ pipeline {
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/jenkins-override-env-var.png]
 image::/images/jenkins-override-env-var.png[alt="Overriding Jenkins pipeline environment variable"]
 --
@@ -276,7 +275,7 @@ pipeline {
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/jenkins-string-env-var.png]
 image::/images/jenkins-string-env-var.png[alt="String type of Jenkins environment variable"]
 --
@@ -309,7 +308,7 @@ pipeline {
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/jenkins-sh-in-env-var.png]
 image::/images/jenkins-sh-in-env-var.png[alt="Capturing sh step in Jenkins pipeline environment variable"]
 --
@@ -340,12 +339,7 @@ pipeline {
 }
 ----
 
-include::source/_parts/thank-you.adoc[]
-
-++++
-<div class="imageblock img-fluid">
-<a href="https://kit.co/wololock/jenkins-pipeline-learning-kit" class="gatr" data-type="banner" data-name="Jenkins Pipeline Learning Kit 02">
-<img src="/images/yml/jenkins-pipeline-learning-kit-02.jpg" class="img-fluid" alt="Jenkins Pipeline Learning Kit" />
-</a>
-</div>
-++++
+[.text-center.mt-4]
+--
+pass:[{% ad_campaign "jenkins-01" %}]
+--

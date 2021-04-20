@@ -62,7 +62,7 @@ As you may expect, running this pipeline causes timeout in the `A` stage, and th
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/pipeline-timeout-01.png]
 image::/images/pipeline-timeout-01.png[]
 --
@@ -110,7 +110,7 @@ Let's look at what happens when we run the pipeline now.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/pipeline-timeout-02.png]
 image::/images/pipeline-timeout-02.png[]
 --
@@ -165,7 +165,7 @@ Let's run the pipeline and see how it goes.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/pipeline-timeout-03.png]
 image::/images/pipeline-timeout-03.png[]
 --
@@ -232,7 +232,7 @@ Let's run and see the final result.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/pipeline-timeout-04.png]
 image::/images/pipeline-timeout-04.png[]
 --
@@ -241,7 +241,7 @@ And here is what happens if the code that may timeout throws a different error (
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/pipeline-timeout-05.png]
 image::/images/pipeline-timeout-05.png[]
 --
@@ -251,12 +251,5 @@ Now it works just as we expect.
 The `A` stage gets executed, and it is acceptable to timeout.
 The pipeline continues in such a case, and its final result depends on the remaining stages. icon:thumbs-o-up[]
 
-include::source/_parts/thank-you.adoc[]
-
-++++
-<div class="imageblock img-fluid">
-<a href="https://kit.co/wololock/jenkins-pipeline-learning-kit" class="gatr" data-type="banner" data-name="Jenkins Pipeline Learning Kit 02">
-<img src="/images/yml/jenkins-pipeline-learning-kit-02.jpg" class="img-fluid" alt="Jenkins Pipeline Learning Kit" />
-</a>
-</div>
-++++
+[.text-center.mt-4]
+pass:[{% ad_campaign "jenkins-01" %}]

@@ -1,0 +1,53 @@
+include ../category/mixins
+
+-
+    const posts = site.posts.sort("date").reverse().limit(8).toArray()
+    const recent = posts.shift()
+
+mixin featured_large_article(post)
+    .row.my-4
+        .col-12.col-lg-6
+            a(href=url_for(post.path))
+                img.mb-4.img-fluid(data-lazy=post.card)
+        .col-12.col-lg-6
+            p.subtitle.m-0
+                each cat in post.categories.toArray()
+                    a.category(href=url_for(cat.path))=cat.name
+            h3.mb-2
+                a(href=url_for(post.path))=post.title
+
+            .small!=post.excerpt
+
+            +post_meta(post)
+
+
+section#latest
+    .py-3.bg-light
+        .container
+            h2.mb-3.mt-5 Latest articles
+
+            +featured_large_article(recent)
+
+    .py-5
+        .container
+                .row
+                    each post in posts
+                        .col-md-6.mb-4
+                            .row.no-gutters
+                                .col-12.col-md-3
+                                    a(href=url_for(post.path))
+                                        img.mb-4.img-fluid.rounded.mt-2(data-lazy=post.icon)
+                                .col-12.col-md-9
+                                    p.subtitle.m-0.p-0
+                                        each cat in post.categories.toArray()
+                                            a.category.small.m-0(href=url_for(cat.path) style="font-size:11px")=cat.name
+                                    h3.mb-2.h5.font-weight-bold
+                                        a(href=url_for(post.path))=post.title
+
+                                    +post_meta(post)
+
+                                    .small.text-justify!=truncate(strip_html(post.excerpt), {length:170})
+
+                    .col-md-6
+                        .p-3
+                            !=ad_campaign("category-default")

@@ -46,4 +46,3 @@ Tuesday, May 28th, 14:05-14:55, room `AUD-1`
 
 See you in Copenhagen! icon:smile-o[]
 
-include::source/_parts/thank-you.adoc[]

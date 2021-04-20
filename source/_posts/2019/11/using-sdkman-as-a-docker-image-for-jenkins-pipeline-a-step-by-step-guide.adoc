@@ -153,7 +153,7 @@ and Maven pass:[<em class="conum" data-value="3"></em>] are working. We run the 
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/jenkins-pipeline-sdkman-fail.png]
 image::/images/jenkins-pipeline-sdkman-fail.png[]
 --
@@ -305,7 +305,7 @@ Let's restart it and see what happens.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/jenkins-pipeline-sdkman-fail-again.png]
 image::/images/jenkins-pipeline-sdkman-fail-again.png[]
 --
@@ -421,7 +421,7 @@ It works! And now it is the time for the final test. Let's restart the pipeline.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/jenkins-pipeline-sdkman-success.png]
 image::/images/jenkins-pipeline-sdkman-success.png[]
 --
@@ -472,13 +472,3 @@ In this example, we have built four different docker images from the same Docker
 much more straightforward - when something requires fixing, we change a single Dockerfile and rebuild all tags.
 
 pass:[{% youtube_card j1lH3vOhucw %}]
-
-include::source/_parts/thank-you.adoc[]
-
-++++
-<div class="imageblock img-fluid">
-<a href="https://kit.co/wololock/jenkins-pipeline-learning-kit" class="gatr" data-type="banner" data-name="Jenkins Pipeline Learning Kit 02">
-<img src="/images/yml/jenkins-pipeline-learning-kit-02.jpg" class="img-fluid" alt="Jenkins Pipeline Learning Kit" />
-</a>
-</div>
-++++

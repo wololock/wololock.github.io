@@ -30,7 +30,7 @@ It was so addictive at some point that I decided to wake up before 6:00 AM to cr
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/aoc2017.jpg]
 image::/images/aoc2017.jpg[]
 --
@@ -53,4 +53,3 @@ It's fun to solve those non-trivial puzzles, and it does not require allocating 
 You can start anytime you want - it's not about competing with others, it's a great learning experience instead.
 Pick your strategy (learning a new programming language or sharpening the one you already know) and have fun!
 
-include::source/_parts/thank-you.adoc[]

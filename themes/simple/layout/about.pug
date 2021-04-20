@@ -1,0 +1,104 @@
+extends common/base
+
+block main
+    .jumbotron.m-0
+        .container
+            .row
+                .col-12.col-lg-4.order-1
+                    .p-5.m-4
+                        img.img-fluid.rounded-circle.mt-5(src="/images/face.jpg")
+                .col-12.col-lg-8.order-0
+                    .mt-5
+                        p.marker.m-0 About Me
+                        h1.mt-0 Who am I?
+                        p.text-justify Hi, I'm #[b Szymon Stepniak], and I'm a freelance software consultant and a content creator.
+                        p.text-justify My mission is to #[b help you to become a better software developer]. That is why I create articles, videos, and tutorials that explain various (and sometimes complex) concepts of software development using simple language and easy to follow examples.
+                        p.text-justify I don't know everything, but I keep learning new things continuously. And I try to inspire you to do the same.
+
+
+    .bg-dark.border-bottom.border-dark
+        .container.pb-5.mb-5
+            .row
+                .col-8
+                    h2 A few facts about me
+
+                    ol.about-facts
+                        li
+                            | My personality type is
+                            |
+                            a.color-orange(href="https://www.16personalities.com/profiles/892824c1fd9d4") #[b Assertive Logistician] (ISTJ-A)
+                            | .
+
+                        li
+                            | I'm a founder of
+                            |
+                            a.color-orange(href="https://torun.jug.pl/") Toruń Java User Group
+                            | .
+                        li
+                            | I have answered
+                            |
+                            a.color-orange(href="https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile") a few hundreds of questions on Stack Overflow
+                            | .
+                        li
+                            | I'm an avid book reader and printed books collector.
+
+        .container.pb-3
+
+            h2 What I'm currently #[span.mark-2 working] on?
+
+            .row.no-gutters.mb-5.bg-dark-2
+                .cl-12.col-lg-4
+                    img.img-fluid(src="/images/about/youtube.png")
+                .col-12.col-lg-8
+                    .p-5
+                        h3 YouTube videos
+
+                        p.text-justify
+                            | I create programming video tutorials for my YouTube channel.
+                            |
+                            | It allows me to connect two hobbies: sharing the knowledge I gained through the years of practice, and producing high-quality videos.
+
+                        p.font-weight-bold
+                            a(href=url_for("/youtube")) Visit my YouTube channel &raquo;
+
+            .row.no-gutters.mb-5.bg-dark-2
+                .col-12.col-lg-4
+                    img.img-fluid(src="/images/about/blogging.png")
+                .col-12.col-lg-8
+                    .p-5
+                        h3 Blogging
+
+                        p.text-justify
+                            | I use this blog as the main platform for publishing interesting and useful articles about programming.
+                            |
+                            | I started it in September 2017, and today e.printstacktrace.blog is visited by 20-30k unique visitors every month.
+
+
+            .row.no-gutters.mb-5.bg-dark-2
+                .col-12.col-lg-4
+                    img.img-fluid(src="/images/about/upwork.png")
+                .col-12.col-lg-8
+                    .p-5
+                        h3 Freelancing
+
+                        p.text-justify
+                            | I'm also a full-time freelancer.
+                            |
+                            | My mission is to help companies develop stable products that are easy to maintain and grow.
+                            |
+                            | I worked with small startups, as well as large organizations.
+
+                        p.font-weight-bold
+                            a(href=url_for("/upwork")) Hire me on Upwork.com &raquo;
+
+        .container.pb-5
+            - var twitter = "https://twitter.com/intent/tweet?text=" + encodeURI("Hi, @wololock! 👋 I read your blog " + full_url_for("/") + " and want to say hi! 🙂")
+            - var email = "collabs@printstacktrace.blog"
+
+            h2 Contact me
+
+            p
+                | Want to get in touch? Feel free to connect with me on #[i.fa.fa-twitter] #[b Twitter] and #[a(href=twitter) say "Hi!"].
+                |
+                | If you would like to reach out with a collaboration or business proposal, email me at #[a(href="mailto:"+email target="_blank") #{email}]
+

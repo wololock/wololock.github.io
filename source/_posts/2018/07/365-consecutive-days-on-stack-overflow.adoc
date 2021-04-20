@@ -44,7 +44,7 @@ things work.
 My Stack Overflow account exists since March 2013 and between 2013 and 2017 I was not very active user. My profile in the end
 of 2016footnote:[https://web.archive.org/web/20161222054315/https://stackoverflow.com/users/2194470/szymon-stepniak[WaybackMaching snapshot from December 22nd 2016]] looked like this:
 
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/stack-overflow-beginnings.png]
 image::/images/stack-overflow-beginnings.png[]
 
@@ -123,7 +123,7 @@ my progress? No. Nothing like that at all. I just want to summarize my experimen
 in Stack Overflow community in 2018 and have a lot of fun while learning new things and mastering current skills. And many many
 people can learn from you writing better software every day.
 
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/stack-overflow-now.png]
 image::/images/stack-overflow-now.png[]
 
@@ -137,4 +137,3 @@ Before this post ends - what is your Stack Overflow story? What have you learned
 Does participating in this community in 2018 make any sense to you? Please share your thoughts in the
 comments section below. I would love to hear it from you.
 
-include::source/_parts/thank-you.adoc[]

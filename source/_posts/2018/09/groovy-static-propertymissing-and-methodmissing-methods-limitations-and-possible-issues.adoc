@@ -302,4 +302,3 @@ Personally, I don't use much runtime metaprogramming in my Groovy code. Mostly b
 program at least a few times harder. But if you want to start playing around and write some DSL with Groovy
 then you might find runtime metaprogramming an interesting starting point. Happy hacking!
 
-include::source/_parts/thank-you.adoc[]

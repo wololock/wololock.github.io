@@ -116,4 +116,3 @@ I hope you have learned something useful from this short blog post. _SDKMAN!_ is
 life easier. I use it to manage in a convenient way all my Java, Groovy, or Gradle installations. If you haven't used
 it so far, I strongly recommend giving _SDKMAN!_ a chance.
 
-include::source/_parts/thank-you.adoc[]

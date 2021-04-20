@@ -1,0 +1,72 @@
+#header
+  font-family "Montserrat"
+  font-size 12px
+  line-height 40px
+  font-weight bold
+  text-transform uppercase
+  transition all .5s ease-in-out
+
+  &.header-up
+    transform translateY(-90px)
+
+  &.bg-white
+    background #fff
+
+  a
+    color #fafafa
+    display block
+    & + a
+      margin-left 20px
+
+    &:hover
+      text-decoration none
+      color #888
+
+  @media phone
+    a
+      font-size 10px
+      & + a
+        margin-left 15px
+
+  .navbar-brand
+    color #61667a
+    text-transform none
+    font-size 18px
+    font-family 'DM Mono', monospace;
+    letter-spacing -1px
+
+  .navbar-light
+    a
+      color #444
+
+      &:hover
+        color #999
+
+  &.navbar-dark
+    background #1a202c !important
+
+    a
+      color #fafafa
+      display block
+      & + a
+        margin-left 20px
+
+      &:hover
+        text-decoration none
+        color #888
+
+#pageprogress
+  position fixed
+  top 0
+  height 5px
+  background rgba(0,0,0,0.1)
+  width 100%
+  z-index 999
+
+  .bar
+    width 0px
+    height 5px
+    content ''
+    display block
+    //background-image: linear-gradient(to right, #054f80 0%, #6a90ae 100%);
+    background-image: linear-gradient(to right, #1a4d6d 0%, #8a8e92 100%);

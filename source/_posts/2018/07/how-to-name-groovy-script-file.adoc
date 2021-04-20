@@ -185,4 +185,3 @@ new public()
 
 With great power comes great responsibility.
 
-include::source/_parts/thank-you.adoc[]

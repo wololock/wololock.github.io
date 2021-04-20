@@ -177,4 +177,3 @@ java.lang.NullPointerException
 
 pass:[{% youtube_card yN6EbeevV2w %}]
 
-include::source/_parts/thank-you.adoc[]

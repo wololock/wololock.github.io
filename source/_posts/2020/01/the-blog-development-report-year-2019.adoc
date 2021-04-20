@@ -38,7 +38,7 @@ However, I would like to lower the bounce rate in 2020 to something like 80-85%.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/2019-unique-visitors.png]
 image::/images/2019-unique-visitors.png[]
 --
@@ -56,7 +56,7 @@ The least engaging channel is, of course, Organic Search with *92,22%* bounce ra
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/2019-acquisition-summary.png]
 image::/images/2019-acquisition-summary.png[]
 --
@@ -74,7 +74,7 @@ There is one honorable mention - +++{% post_link jenkins-pipeline-environment-va
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/2019-pageviews-summary.png]
 image::/images/2019-pageviews-summary.png[]
 --
@@ -87,7 +87,7 @@ It started changing in the middle of the year, and I started seeing more and mor
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/2019-google-search-summary.png]
 image::/images/2019-google-search-summary.png[]
 --
@@ -96,7 +96,7 @@ And here are the TOP 10 search keywords for my blog:
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/2019-top-search-keywords.png]
 image::/images/2019-top-search-keywords.png[]
 --
@@ -109,7 +109,7 @@ The third place belongs to Germany with *6.5%* score.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/2019-geo-summary.png]
 image::/images/2019-geo-summary.png[]
 --
@@ -118,7 +118,7 @@ And here is the TOP 10:
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/2019-top-10-countries.png]
 image::/images/2019-top-10-countries.png[]
 --
@@ -132,7 +132,7 @@ Here is the full ranking.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/2019-webbrowser-summary.png]
 image::/images/2019-webbrowser-summary.png[]
 --
@@ -158,4 +158,3 @@ Take care, and see you in the next blog post!
 
 PS: If there is something that surprised you most regarding the 2019 performance of this blog, please let me know in the comments section down below.
 
-include::source/_parts/thank-you.adoc[]

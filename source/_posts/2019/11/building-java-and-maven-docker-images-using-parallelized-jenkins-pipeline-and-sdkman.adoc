@@ -177,7 +177,7 @@ When we execute this pipeline, we get something like this.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/sdkman-docker-pipeline.png]
 image::/images/sdkman-docker-pipeline.png[]
 --
@@ -239,13 +239,3 @@ OS name: "linux", version: "5.3.8-200.fc30.x86_64", arch: "amd64", family: "unix
 NOTE: You can download the source code presented in this blog post from the following Github repository — icon:github[] {repository-url}.
 
 pass:[{% youtube_card HaGeSq-SB9E %}]
-
-include::source/_parts/thank-you.adoc[]
-
-++++
-<div class="imageblock img-fluid">
-<a href="https://kit.co/wololock/jenkins-pipeline-learning-kit" class="gatr" data-type="banner" data-name="Jenkins Pipeline Learning Kit 02">
-<img src="/images/yml/jenkins-pipeline-learning-kit-02.jpg" class="img-fluid" alt="Jenkins Pipeline Learning Kit" />
-</a>
-</div>
-++++

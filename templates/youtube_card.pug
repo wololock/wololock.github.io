@@ -1,13 +1,21 @@
+.youtube-widget.py-3
+    .container
+        .row.youtube-row
+            .col-12.col-lg-4.text-lg-left.text-center.mb-lg-0.mb-4
+                a.thumb.gatr.d-inline-block(href=`https://youtu.be/${id}` data-time=video.time data-type="youtube" data-name=video.title)
+                    img.img-fluid.shadow(data-lazy="https://i3.ytimg.com/vi/" + id + "/mqdefault.jpg")
+            .col-12.col-lg-8
+                h5.m-0.p-0.mb-3.text-lg-left.text-center
+                    a.gatr(href=`https://youtu.be/${id}` data-type="youtube" data-name=video.title)=video.title
 
-.youtube-row.py-5
-    .row
-        .col-12.col-lg-5.text-lg-left.text-center.mb-lg-0.mb-4
-            a.thumb.gatr.d-inline-block(href=`https://youtu.be/${id}` data-time=video.time data-type="youtube" data-name=video.title)
-                img.img-fluid.shadow(data-lazy="https://i3.ytimg.com/vi/" + id + "/mqdefault.jpg")
-        .col-12.col-lg-7
-            h5.m-0.p-0.mb-3.text-lg-left.text-center
-                a.gatr(href=`https://youtu.be/${id}` data-type="youtube" data-name=video.title)=video.title
-            p.sans-serif.small.text-lg-left.text-justify
-                | #{video.description}
-                |
-                a.gatr.font-weight-bold(href=`https://youtu.be/${id}` data-type="youtube" data-name=video.title) Watch&nbsp;now&nbsp;&raquo;
+                ul.youtube-meta
+                    li
+                        i.fa.fa-youtube.mr-1
+                        span YouTube
+                    li 5k views
+                    li 2.5k subscribers
+
+                p.sans-serif.small.text-lg-left.text-justify
+                    | #{video.description}
+                    |
+                    a.gatr.font-weight-bold(href=`https://youtu.be/${id}` data-type="youtube" data-name=video.title) Watch&nbsp;now&nbsp;&raquo;

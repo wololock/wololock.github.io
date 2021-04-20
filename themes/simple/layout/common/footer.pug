@@ -1,0 +1,46 @@
+footer#footer(data-debug="Scrolled to footer")
+    .container.py-3.pt-5
+        .row
+            .col-12.col-lg-3
+                h5 Popular categories
+
+                - var categories = site.categories.sort("length").reverse().limit(9).toArray()
+
+                ul.list-unstyled.list-categories
+                    each category in categories
+                        li.mb-2
+                            a.gatr(href=url_for(category.path) data-type="footer-category" data-name=category.name)
+                                != category.name
+                                span.count.ml-2.text-muted.small=category.posts.length
+
+            .col-12.col-lg-5.latest-posts
+                - var latest_posts = site.posts.sort("date").reverse().limit(6).toArray()
+
+                h5.mb-4 Latest posts
+
+                each post in latest_posts
+                    +post_media_block(post)
+
+            .col-12.col-lg-4
+                h5 Popular tags
+
+                .tags-cloud
+                    != tagcloud(site.tags.sort('length', -1).limit(36), { unit: 'em', min_font: 0.8, max_font: 0.8, start_color: '#778196', end_color: '#3982d0', color: true })
+
+                .mt-5
+                    !=ad_campaign("footer")
+
+    .border-top.border-dark.py-4.footer-bottom
+        .container
+            .justify-content-between.d-flex
+                .links
+                    ul
+                        each link in theme.footer
+                            li
+                                a.gatr(href=link.url data-type="footer-link" data-name=link.title) #{link.title}
+                .socials
+                    ul.social-links
+                        each link in theme.social
+                            li
+                                a(href=link.url)
+                                    i.fa(class=link.icon)

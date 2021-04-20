@@ -179,4 +179,3 @@ in the beginning says in the end that:
 Current number value is 15
 ----
 
-include::source/_parts/thank-you.adoc[]

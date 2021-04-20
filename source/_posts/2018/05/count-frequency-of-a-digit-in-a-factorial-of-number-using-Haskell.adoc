@@ -206,4 +206,3 @@ And the answer is that digit `5` occurs the least amount of times (213 times) in
 <script src="https://asciinema.org/a/JYOClcsZF0AP7Cm9zmNHrtVTK.js" id="asciicast-JYOClcsZF0AP7Cm9zmNHrtVTK" async></script>
 ++++
 
-include::source/_parts/thank-you.adoc[]

@@ -129,4 +129,3 @@ assert text.containsIgnoreCase("OrLd") == true
 
 pass:[{% youtube_card TjLDHIa-HVE %}]
 
-include::source/_parts/thank-you.adoc[]

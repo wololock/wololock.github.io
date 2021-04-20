@@ -1,0 +1,31 @@
+-
+    const related = page.related ?
+            page.related :
+            popular_posts_json({maxCount: 4, isImage: true, isExcerpt: true}, page)
+                    .json
+                    .map(it => it.path.slice(1, -1))
+
+    const category = page.categories.first()
+
+    const posts = site.posts
+            .find({slug: {$in: related}})
+            .toArray()
+            .sort((a, b) => related.indexOf(a.slug) - related.indexOf(b.slug))
+
+    var featured = posts[0]
+
+    var remaining = posts.slice(1)
+
+
+section#related(data-debug="Scrolled to related posts")
+    .featured-post.py-5
+        .container.py-3
+            .row
+                .col-12
+                    +recommended_featured_post(featured)
+    .remaining
+        .container.py-5
+            .row
+                each post in remaining
+                    .col-md-4
+                        +recommended_post_card(post)

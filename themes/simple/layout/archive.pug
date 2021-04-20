@@ -1,0 +1,59 @@
+extends common/base
+
+include category/mixins
+
+block variables
+    -
+        page.title = "Archives"
+        page.navbar = "navbar-light"
+
+        const archives = site.posts.sort("date", "desc").toArray().reduce((m, post) => {
+            var year = full_date(post.date, 'YYYY');
+                    if (m[year] === undefined) m[year] = [];
+                    m[year].push(post);
+                    return m;
+                    }, {});
+
+        const years = Object.keys(archives).reverse();
+
+block main
+
+    section.py-5
+        .py-5
+            each year,i in years
+                - var first = archives[year][0]
+                - var other = archives[year].slice(1,4)
+                - var posts = archives[year].slice(4)
+
+                section.archive.mt-5
+                    .container
+                        .row
+                            .col-12.text-center
+                                p.marker.mb-0 #{archives[year].length} posts
+                                h1.mb-5.border-short(title=year)=year
+                            .col-12.mt-5
+                                .row
+                                    each post in archives[year]
+                                        .col-12.col-lg-6
+                                            +featured_small_article(post)
+
+            //        .row
+            //            .col-12.col-lg-7
+            //                +featured_large_article(first)
+            //
+            //
+            //            .col-12.col-lg-5
+            //                each post in other
+            //                    +featured_small_article(post)
+            //
+            //                !=ad_campaign("category-default")
+            //
+            //if posts.length > 0
+            //    .container.py-5
+            //        .row
+            //            each post in posts
+            //                .col-12.col-lg-6
+            //                    +post_media_block(post)
+
+
+

@@ -1,0 +1,104 @@
+section#category
+  a
+    color #515666
+
+  h2
+    font-size 22px
+    line-height 1.4
+    letter-spacing -0.6px
+    //font-family "Poppins" !important
+
+  .excerpt
+    font-size 0.9rem
+    //text-align justify
+    position relative
+    padding-top 1.5rem
+
+    &::before
+      content ""
+      position absolute
+      top 0.5rem
+      display block
+      height 2px
+      width 80px
+      background #a5cad9
+
+  .sidebar
+    font-family "Roboto" !important
+    font-size 18px
+
+    .latest-articles
+      .media-body
+        line-height 1.2
+
+    .popular-categories
+      ul
+        li a
+          position relative
+          font-weight 700
+          font-family "Montserrat"
+          letter-spacing -0.5px
+          color #777
+
+          &:after
+            position absolute
+            content attr(data-count)
+            opacity 1
+            color #ddd
+            font-size 24px
+            font-weight 700
+            bottom -6px
+            left 106%
+            letter-spacing -1px
+            serif()
+
+    h3
+      font-family "Poppins" !important
+      font-size 36px
+      font-weight 700
+      //text-transform uppercase
+      letter-spacing -1px
+      color #dedede
+
+
+nav.paginator
+  text-align center
+  sans-serif()
+
+  > a, > span
+    display inline-block
+    padding 2px 10px
+    font-size 16px
+    text-align center
+    background #f3f3f3
+    margin 0 4px
+    border-radius 5px
+    font-weight bold
+    color #555
+
+  .current
+    background #888
+    color #fafafa
+
+article.small
+  h2
+    sans-serif()
+    letter-spacing -0.5px
+    font-size 18px
+
+section#youtube
+  background #f6f6f6
+
+  .fa-youtube
+    color red
+
+  h2
+    font-family "DM Sans" !important
+    font-size 400 !important
+    color #ccc
+    letter-spacing -2px
+
+    b
+      font-family "Poppins"
+      color #444
+      letter-spacing -1px

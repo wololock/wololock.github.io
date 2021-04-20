@@ -344,4 +344,3 @@ And that's it, we finally reached the end of 3 part article on quick start to no
 I hope you have enjoyed it and you've learned something useful during this journey. If you are looking for more - let's
 stay in touch. More Micronaut articles are coming soon!
 
-include::source/_parts/thank-you.adoc[]

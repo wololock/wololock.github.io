@@ -17,6 +17,7 @@ categories:
 card: /images/cards/21.png
 highlightjs: true
 icon: /images/icons/39.png
+hero: /images/hero/divide-list-java-8.png
 ---
 :toc: macro
 
@@ -116,13 +117,10 @@ Running this example will produce the following input to the console:
 [[1, 2], [3, 4], [5, 6], [7]]
 ----
 
-++++
-<div class="imageblock img-fluid">
-<a href="https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fjava-the-complete-java-developer-course%2F" class="gatr" data-type="banner" data-name="Java Programming Masterclass for Software Developers">
-<img src="/images/yml/java-programming-masterclass-for-software-developers.jpg" class="img-fluid" alt="Java Programming Masterclass for Software Developers" />
-</a>
-</div>
-++++
+[.text-center.mt-5]
+--
+pass:[{% ad_campaign "java-01" %}]
+--
 
 == Why bother with creating a new class?
 
@@ -265,7 +263,7 @@ Let's look at those results more closely and see what do they look like as graph
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/java-partition-list-01.jpg]
 image::/images/java-partition-list-01.jpg[]
 --
@@ -275,7 +273,7 @@ which approach we choose. The difference between the fastest and the slowest app
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/java-partition-list-02.jpg]
 image::/images/java-partition-list-02.jpg[]
 --
@@ -288,7 +286,7 @@ need the fastest method to do the job efficiently.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/java-partition-list-03.jpg]
 image::/images/java-partition-list-03.jpg[]
 --
@@ -319,4 +317,3 @@ To avoid some nasty side effects, you may always want to pass a copy of a list i
 Lists.partition(new ArrayList<>(numbers), 3);
 ----
 
-include::source/_parts/thank-you.adoc[]

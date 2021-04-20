@@ -109,4 +109,3 @@ class MockSessionSpec extends Specification {
 }
 ----
 
-include::source/_parts/thank-you.adoc[]

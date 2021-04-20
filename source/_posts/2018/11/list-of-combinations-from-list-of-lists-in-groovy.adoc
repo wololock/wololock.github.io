@@ -121,8 +121,3 @@ It's even more concise and more straightforward - just as expected.
 *Prelude> combinations []
 [[]]
 ----
-
-TIP: If you like learning new programming languages or exploring and mastering the one you already know by
-solving exciting puzzles, there is an excellent opportunity to do so - **Advent Of Code 2018** https://adventofcode.com/[starts on Saturday, December 1st]. It is 25 days of programming simple solutions to quite challenging problems. You can't miss it!
-
-include::source/_parts/thank-you.adoc[]

@@ -74,7 +74,7 @@ The *echo* step can be triggered only with the `String` parameter, so we get the
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/jenkins-declarative-pipeline-validation.png]
 image::/images/jenkins-declarative-pipeline-validation.png[]
 --
@@ -105,7 +105,7 @@ Let's execute it and see what result it produces.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/jenkins-scripted-pipeline-echo-error.png]
 image::/images/jenkins-scripted-pipeline-echo-error.png[]
 --
@@ -146,7 +146,7 @@ Let's execute it.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/jenkins-declarative-pipeline-restart-stage.png]
 image::/images/jenkins-declarative-pipeline-restart-stage.png[]
 --
@@ -157,7 +157,7 @@ Let's click on it and see the result.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/jenkins-declarative-pipeline-restarted.png]
 image::/images/jenkins-declarative-pipeline-restarted.png[]
 --
@@ -187,7 +187,7 @@ Let's execute it.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/jenkins-scripted-pipeline-no-restart-option.png]
 image::/images/jenkins-scripted-pipeline-no-restart-option.png[]
 --
@@ -245,7 +245,7 @@ Let's run it.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/jenkins-declarative-pipeline-options.png]
 image::/images/jenkins-declarative-pipeline-options.png[]
 --
@@ -377,7 +377,7 @@ And let's execute it.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/jenkins-declarative-pipeline-when.png]
 image::/images/jenkins-declarative-pipeline-when.png[]
 --
@@ -414,7 +414,7 @@ Let's run it and see what is the result.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/jenkins-scripted-pipeline-stage-skip.png]
 image::/images/jenkins-scripted-pipeline-stage-skip.png[]
 --
@@ -432,12 +432,7 @@ What is your choice?
 Do you prefer the declarative pipeline, or the scripted one?
 Please share your thoughts in the section down below.
 
-include::source/_parts/thank-you.adoc[]
-
-++++
-<div class="imageblock img-fluid">
-<a href="https://kit.co/wololock/jenkins-pipeline-learning-kit" class="gatr" data-type="banner" data-name="Jenkins Pipeline Learning Kit 02">
-<img src="/images/yml/jenkins-pipeline-learning-kit-02.jpg" class="img-fluid" alt="Jenkins Pipeline Learning Kit" />
-</a>
-</div>
-++++
+[.text-center.mt-4]
+--
+pass:[{% ad_campaign "jenkins-01" %}]
+--

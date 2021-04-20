@@ -40,7 +40,7 @@ However, it still contains a lot of important and interesting information, like 
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/programming-groovy-img2.jpg]
 image::/images/programming-groovy-img2.jpg[]
 --
@@ -62,7 +62,7 @@ The last part of the book puts everything into action making the story complete.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/programming-groovy-img1.jpg]
 image::/images/programming-groovy-img1.jpg[]
 --
@@ -83,7 +83,7 @@ pass:[{% book programming-groovy-2 %}]
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/programming-groovy-img4.jpg]
 image::/images/programming-groovy-img4.jpg[]
 --
@@ -96,7 +96,7 @@ Venkat is not only a great teacher but also one of the kindest person I have eve
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/programming-groovy-img3.jpg]
 image::/images/programming-groovy-img3.jpg[]
 --

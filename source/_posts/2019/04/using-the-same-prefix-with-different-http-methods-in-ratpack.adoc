@@ -205,4 +205,4 @@ However, it is a quite common use case, and people get confused by it.
 
 pass:[{% youtube_card KkL2ZMmNY3I %}]
 
-include::source/_parts/thank-you.adoc[]
+

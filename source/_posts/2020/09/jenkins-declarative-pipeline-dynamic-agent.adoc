@@ -60,12 +60,9 @@ When you start the job and choose `any` from the dropdown, any available node wi
 If you choose `docker`, `windows`, or `linux` (or any other label you will define in your pipeline), the node with that exact label will be used to run the job.
 And that's it. icon:smile-o[]
 
-++++
-<div class="imageblock img-fluid">
-<a href="https://kit.co/wololock/jenkins-pipeline-learning-kit" class="gatr" data-type="banner" data-name="Jenkins Pipeline Learning Kit 02">
-<img src="/images/yml/jenkins-pipeline-learning-kit-02.jpg" class="img-fluid" alt="Jenkins Pipeline Learning Kit" />
-</a>
-</div>
-++++
+[.text-center.mt-5]
+--
+pass:[{% ad_campaign "jenkins-01" %}]
+--
 
-include::source/_parts/thank-you.adoc[]
+

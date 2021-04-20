@@ -383,4 +383,3 @@ This final specification passes as we expect:
 
 +++{% img img-thumbnail /images/ratpack-session-test-passed.png  %}+++
 
-include::source/_parts/thank-you.adoc[]

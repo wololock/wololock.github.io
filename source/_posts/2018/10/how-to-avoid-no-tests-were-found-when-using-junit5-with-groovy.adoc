@@ -83,9 +83,12 @@ BUILD SUCCESSFUL in 1s
 
 Nothing happened. When we try to execute this test inside IntelliJ IDEA, we will see something like this:
 
-[.img-responsive.img-thumbnail]
+[.text-center]
+--
+[.img-fluid.shadow.d-inline-block]
 [link=/images/groovy-junit5-def-mistake.png]
 image::/images/groovy-junit5-def-mistake.png[]
+--
 
 What's wrong?
 
@@ -173,4 +176,3 @@ BUILD FAILED in 1s
 2 actionable tasks: 2 executed
 ----
 
-include::source/_parts/thank-you.adoc[]

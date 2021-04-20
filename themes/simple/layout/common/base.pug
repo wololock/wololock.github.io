@@ -1,0 +1,15 @@
+include mixins
+block variables
+doctype
+html(lang="en")
+    head
+        include head
+    body
+        include nav
+
+        main#main
+            block main
+
+        include footer
+
+        include scripts

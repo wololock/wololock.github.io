@@ -1,0 +1,66 @@
+extends common/base
+
+block main
+    .jumbotron.m-0
+        .container
+            .row
+                .col-12.col-lg-8
+                    .mt-5
+                        p.marker.m-0 Recommended
+                        h1.mt-0 Tools & Resources
+                        p.text-justify Here is a list of tools, services, and resources I use and can highly recommend.
+
+
+                        .tags-cloud.mt-4
+                            each resource,i in site.data.resources
+                                a.mr-2.mb-2(href=`#section-${i}`)!=resource.name
+
+
+    each resource,i in site.data.resources
+
+        .py-5(class=[i % 2 == 0 ? "bg-light": "", i === 0 ? "pt-5" : ""] id=`section-${i}`)
+
+            - var items = resource.items
+            - var first = items[0]
+            - var right = items.slice(1,5)
+            - var rest = items.slice(5)
+
+            .container
+                h2.pt-lg-5.h1.mb-5.text-lg-left.text-center.header-sans.text-muted!=resource.name
+
+                .row.pb-3
+                    .col-12.col-lg-7.mb-lg-0.mb-5
+                        .pr-lg-5.sans-serif
+                            if first.card
+                                .mb-4
+                                    a.gatr(href=first.url data-type="resource" data-name=first.name)
+                                        img.img-fluid.shadow.mb-4(data-lazy=first.card)
+
+                            h3.h2.header-sans.font-weight-bold
+                                a.gatr(href=first.url data-type="resource" data-name=first.name) #{first.name}
+
+                            p!=first.description
+
+                    .col-12.col-lg-5.sans-serif
+                        each item in right
+                            .row.mb-4
+                                .col-9
+                                    h3.h4.font-weight-bold.m-0.header-sans(style="letter-spacing:-1px")
+                                        a.gatr(href=item.url data-type="resource" data-name=item.name) #{item.name}
+
+                                    p.mt-2.small
+                                        | !{item.description}
+                                        |
+                                        a.gatr.font-weight-bold(href=item.url data-type="resource" data-name=item.name) Try&nbsp;it&nbsp;out&nbsp;&raquo;
+
+                                .col-3
+                                    .pt-1
+                                        a.gatr(href=item.url data-type="resource" data-name=item.name)
+                                            img.img-fluid(data-lazy=item.image)
+
+        if i === 0
+            section#affiliate.bg-info.text-lg-left.text-center
+                .container.py-5.sans-serif(style="color: #fff")
+                    h3.h3.sans-serif(style="color: #fff") #[i.fa.fa-info-circle] Affiliate Disclaimer
+
+                    p.small  Some of the links above are #[b affiliate links]. If you decide to click that link and subsequently make a purchase, I will get a small percentage from your purchase. Using the affiliate link #[b does not affect the final price of the product]. The commission I earn comes at no additional cost to you.

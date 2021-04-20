@@ -43,7 +43,7 @@ I {survey}[surveyed 308 Groovy community members], and here are the results.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/groovy-top-10.png]
 image::/images/groovy-top-10.png[]
 --
@@ -68,7 +68,7 @@ image::/images/groovy-top-10.png[]
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/groovy-top-20.png]
 image::/images/groovy-top-20.png[]
 --
@@ -175,5 +175,9 @@ However, I couldn't reach out to every single person.
 61 | 1     | FileBot
 62 | 1     | GQL (https://github.com/grooviter/gql) ASTEROID (https://github.com/grooviter/asteroid)
 63 | 1     | Wide use of @CompileStatic
-
 ----
+
+[.text-center.mt-5]
+--
+pass:[{% ad_campaign "groovy-01" %}]
+--

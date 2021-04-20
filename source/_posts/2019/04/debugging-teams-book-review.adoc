@@ -33,7 +33,7 @@ Let's take a quick look at how this book can help us to become a better team pla
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/debugging-teams-01.jpg]
 image::/images/debugging-teams-01.jpg[]
 --
@@ -73,7 +73,7 @@ and their unique motivations and abilities.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/debugging-teams-02.jpg]
 image::/images/debugging-teams-02.jpg[]
 --
@@ -98,7 +98,7 @@ Being patient, helpful, communicating with HRT principles creates trust and enga
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/debugging-teams-03.jpg]
 image::/images/debugging-teams-03.jpg[]
 --

@@ -68,8 +68,9 @@ Let's deconstruct it piece by piece.
 * Next, we use `map([to_entries[] | .value]) as $rows` filter which converts every key-value entry like `"foo": "bar"` into an object like `{"key":"foo","value":"bar"}` so we can extract only values as an array and store it in a `$rows` variable.
 * Once we do it, we can use `$keys,$rows[]` filter to put keys and rows together and then pipe it with the `@csv` filter to convert JSON objects to CSV rows.
 
-
 pass:[{% youtube_card uIKvYgix-L4 %}]
 
-
-include::source/_parts/thank-you.adoc[]
+[.text-center.mt-5]
+--
+pass:[{% ad_campaign "learning-01" %}]
+--

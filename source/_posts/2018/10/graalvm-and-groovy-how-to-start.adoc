@@ -558,7 +558,7 @@ This is really nice - *8 ms*. And here is how does it look like compared to the 
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/graalvm-groovy-execution-time.png]
 image::/images/graalvm-groovy-execution-time.png[]
 --
@@ -699,4 +699,3 @@ This blog gets updated whenever new version of GraalVM or Groovy gets released. 
 * [.mark]*2019-11-07*: Updated blog post to *GraalVM* `19.2.1` and *Groovy* `2.5.8`.
 * [.mark]*2019-05-11*: Updated blog post to *GraalVM* `19.0.0`.
 
-include::source/_parts/thank-you.adoc[]

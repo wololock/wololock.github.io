@@ -16,6 +16,7 @@ related:
 - groovy-regular-expressions-the-definitive-guide
 - tail-recursive-methods-in-groovy
 - groovy-string-methods-that-will-make-your-life-groovier
+- graalvm-and-groovy-how-to-start
 icon: /images/icons/28.png
 ---
 :inject-doc: http://docs.groovy-lang.org/latest/html/groovy-jdk/java/util/Collection.html#inject(java.lang.Object,%20groovy.lang.Closure)
@@ -191,6 +192,11 @@ assert e == [a: 2, b: 3, c: 4, z: [a: 10, b: 20, c: 30], y: [1,2,3,4,5,6,7]]
 In the final example, we use runtime metaprogramming to create `merge(Map rhs)` method in the `Map` interface pass:[<em class="conum" data-value="1"></em>].
 This way we can simply call `a.merge(b)` pass:[<em class="conum" data-value="2"></em>] to create a new map using deep merge operation.
 
+[.text-center.mt-5]
+--
+pass:[{% ad_campaign "groovy-01" %}]
+--
+
 == Bonus: using `Map.withDefault` method
 :reddit-comment: https://www.reddit.com/r/groovy/comments/htx1d9/how_to_merge_two_maps_in_groovy/fyk4xdg/
 :method-pointer-operator: https://docs.groovy-lang.org/latest/html/documentation/core-operators.html#method-pointer-operator
@@ -213,4 +219,5 @@ final merged = map1.withDefault(map2.&get)
 println "$merged.x, $merged.y, $merged.z"
 ----
 ____
+
 

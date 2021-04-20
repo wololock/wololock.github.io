@@ -1,0 +1,4 @@
+a.gatr(href=ad.url)
+    each banner in ad.images
+        - var display = banner.display.map(val => `d-${val}-inline-block`).join(" ")
+        img.d-none.img-fluid(data-lazy=banner.img class=display)

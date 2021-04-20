@@ -1,0 +1,42 @@
+mixin post_card(post)
+    .col-12.col-lg-4.mb-5
+
+        .row
+            .col-12
+                a(href=url_for(post.path))
+                    img.mb-0.mb-lg-4.img-fluid.shadow-sm(data-lazy=post.card)
+
+            .col-12
+                .pr-0.pr-lg-4
+                    h2.m-0.mb-2
+                        a(href=url_for(post.path))!=post.title
+
+                    .text-muted
+                        +post_meta(post)
+
+                    .excerpt!=post.excerpt
+
+
+mixin featured_large_article(post)
+    article.pr-lg-5
+        a(href=url_for(post.path))
+            img.mb-4.img-fluid(data-lazy=post.card)
+
+        h2.m-0
+            a(href=url_for(post.path))=post.title
+
+        +post_meta(post)
+        .small.mt-3!=post.excerpt
+
+mixin featured_small_article(post)
+    article.small
+        .row.mb-4.mt-lg-0.mt-5
+            .col-12.col-lg-9
+                h2.mb-0.mt-0
+                    a(href=url_for(post.path))=post.title
+                +post_meta(post)
+                p.small!=truncate(strip_html(post.excerpt), {length:120})
+
+            .col-lg-3.d-none.d-lg-block
+                a(href=url_for(post.path))
+                    img.img-fluid.rounded(data-lazy=post.icon)

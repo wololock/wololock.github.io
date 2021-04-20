@@ -23,7 +23,9 @@ related:
 - groovy-regular-expressions-the-benchmark
 - how-to-merge-two-maps-in-groovy
 - graalvm-and-groovy-how-to-start
+- tail-recursive-methods-in-groovy
 icon: /images/icons/6.png
+hero: /images/hero/groovy-regular-expressions.png
 ---
 :toc: macro
 :matcher-javadoc: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html
@@ -193,7 +195,10 @@ assert !("GROOVY-123: some change" ==~ /[A-Z]{3,6}-\d{1,4}/)
 assert "GROOVY-123: some change" ==~ /[A-Z]{3,6}-\d{1,4}.{1,100}/
 ----
 
-pass:[{% banner regexp %}]
+[.text-center.mt-4]
+--
+pass:[{% ad_campaign "groovy-01" %}]
+--
 
 == Usage examples
 

@@ -19,6 +19,7 @@ header: /images/atomic-habits/atomic-habits-header.jpg
 affiliates: true
 newsletter: atomic-habits
 icon: /images/icons/9.png
+hero: /images/books/atomic_habits.jpg
 ---
 :the-war-of-art: https://amzn.to/2MgCKMD
 :atomic-habits: https://amzn.to/3coH0EF
@@ -47,13 +48,6 @@ I have seen the dots, but I didn’t yet know how to connect them.
 
 toc::[]
 
-[NOTE]
-====
-.pass:q[<h2 class="mt-3">What is an atomic habit?</h2>]
-
-"An *atomic habit* is a regular practice or routine that is not only small and easy to do, but also the source of incredible power; a component of the system of compound growth." - James Clear
-====
-
 == The hidden enemy
 
 I guess you heard it many times before.
@@ -70,6 +64,13 @@ Again, and again.
 However, not all knowledge workers can apply the same pattern to their work - obviously, as a https://e.printstacktrace.blog/programmers-bookshelf/[software developer], I can’t just write down any code that comes to my mind and expect my career to flourish.
 So even though Pressfield aptly defines the enemy, he does not provide the ultimate solution to my biggest problem.
 But it seems that I have finally found someone else who does.
+
+[NOTE]
+====
+.pass:q[<h2 class="mt-3">What is an atomic habit?</h2>]
+
+"An *atomic habit* is a regular practice or routine that is not only small and easy to do, but also the source of incredible power; a component of the system of compound growth." - James Clear
+====
 
 == The Power of Atomic Habits
 
@@ -89,7 +90,7 @@ However, to make a habit stick, it needs to persist long enough to break through
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/the-plateau-of-latent-potential.jpg]
 image::/images/the-plateau-of-latent-potential.jpg[]
 --
@@ -108,6 +109,7 @@ You will then realize that it wasn’t the goal that helped you do so, but rathe
 While the first part of the "Atomic Habits" explains the power of systematic improvements (the _"why?"_ part), James Clear does not stop there.
 In the remaining parts, he introduces *"The Four Laws of Behavior Change."*
 
+[.ulist2]
 * *Make It Obvious.* (Train your brain to predict certain outcomes on an autopilot. Use time and location as cues. Make your environment to support a new habit.)
 * *Make It Attractive.* (Dopamine improves motivation. Make habits more attractive by pairing an action you want with an action you need to do.)
 * *Make It Easy.* (Focus on practicing, not planning. Repetition creates a habit. Reduce the friction associated with a habit. Starting a new habit should take less than two minutes to do.)
@@ -115,6 +117,7 @@ In the remaining parts, he introduces *"The Four Laws of Behavior Change."*
 
 The inversion of those laws for breaking bad habits is the following:
 
+[.ulist2]
 * *Make It Invisible.* (Reduce exposure to the bad habits triggers.)
 * *Make It Unattractive.* (Focus on highlighting the benefits of avoiding your bad habits.)
 * *Make It Difficult.* (Increase friction associated with a bad habit.)
@@ -127,7 +130,7 @@ And the best way to practice any habit is to do it through *repetition*.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.d-inline-block.rounded]
 [link=/images/atomic-habits/book.jpg]
 image::/images/atomic-habits/book.jpg[]
 --
@@ -159,10 +162,10 @@ pass:[{% book atomic-habits %}]
 
 == The conclusion
 
-* The effects of small habits *compound* over time. Apply [.mark]*1% better every day* rule to get *37 times* better over a year.
-* [.mark]*Forget about goals and focus on systems* that support the process of constant improvement instead. Winners and losers have the same goals - they just implemented different systems.
-* To make the habit stick, *repeat* small steps over and over again. Be aware of *the Plateau of Latent Potential*. The outcome is a side effect of [.mark]*the identity change*.
-* Implement [.mark]*"The Four Laws of Behavior Change"* for building desired habits and breaking the bad ones.
+1. The effects of small habits *compound* over time. Apply [.mark]*1% better every day* rule to get *37 times* better over a year.
+2. [.mark]*Forget about goals and focus on systems* that support the process of constant improvement instead. Winners and losers have the same goals - they just implemented different systems.
+3. To make the habit stick, *repeat* small steps over and over again. Be aware of *the Plateau of Latent Potential*. The outcome is a side effect of [.mark]*the identity change*.
+4. Implement [.mark]*"The Four Laws of Behavior Change"* for building desired habits and breaking the bad ones.
 
 I would strongly recommend reading {atomic-habits}[“Atomic Habits”] to everyone.
 The book is full of both scientific research and anecdotal evidence, which makes reading it fun, and applying the framework simple.

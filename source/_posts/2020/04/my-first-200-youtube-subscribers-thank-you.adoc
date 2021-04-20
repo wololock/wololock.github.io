@@ -48,7 +48,7 @@ I&nbsp;didn't plan to write a blog post about it, but then I thought that my fel
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.clearfix]
 [link=/images/yt-200-subs.png]
 image::/images/yt-200-subs.png[]
 --
@@ -109,9 +109,12 @@ I hope you will benefit from them as well.
 
 === Research before you press record
 
-[.img-fluid.border.border.shadow]
+[.text-center]
+--
+[.img-fluid.shadow.d-inline-block.mt-0]
 [link=/images/youtube-research-before-you-press-record.jpg]
 image::/images/youtube-research-before-you-press-record.jpg[]
+--
 
 Do you know that YouTube is the *2nd largest search engine* on the Internet?
 It's designed to help viewers to find (and suggest) a relevant content.
@@ -123,10 +126,12 @@ For instance, if I want to create a video on playing guitar, I would search _"ho
 Then I would use those recommendations to create a video on a topic that gets recommended to most people.
 
 === Follow YouTube video formula: Hook, Content, CTA
-
-[.img-fluid.border.border.shadow]
+[.text-center]
+--
+[.img-fluid.shadow.d-inline-block.mt-0]
 [link=/images/youtube-formula.png]
 image::/images/youtube-formula.png[]
+--
 
 There are many ways to structure your video, and different formulas may work better for different niches.
 The one that works best for me is: *Hook*, *Content*, *CTA*.
@@ -146,9 +151,12 @@ Deliver first, and then ask.
 
 === Improve your SEO
 
-[.img-fluid.border.border.shadow]
+[.text-center]
+--
+[.img-fluid.shadow.d-inline-block.mt-0]
 [link=https://e.printstacktrace.blog/vidiq]
 image::/images/youtube-vidiq-seo-keyword-research-tool.png[]
+--
 
 When you are at the beginning of your journey, every small thing matter.
 Established YouTube channels don't have to pay much attention about keywords, titles, or descriptions - they have a solid following which guarantees that every video will be watched by thousands.
@@ -160,9 +168,12 @@ I use https://e.printstacktrace.blog/vidiq[*vidIQ*] - one of the best tools desi
 
 === Design thumbnails that stand out
 
-[.img-fluid.border.border.shadow]
+[.text-center]
+--
+[.img-fluid.shadow.d-inline-block.mt-0]
 [link=https://e.printstacktrace.blog/canva]
 image::/images/youtube-thumbnail-creator-canva.png[]
+--
 
 No matter how valuable your video is - if it does not attract the audience with a good-looking thumbnail, chances are no one will watch it.
 I'm not a graphic designer, and I guess neither you.
@@ -172,9 +183,12 @@ You can design your own from scratch, or you can browse and find a template that
 
 === Engage with your community
 
-[.img-fluid.border.border.shadow]
+[.text-center]
+--
+[.img-fluid.shadow.d-inline-block.mt-0]
 [link=/images/youtube-community.png]
 image::/images/youtube-community.png[]
+--
 
 One of the biggest benefits of being a small YouTuber is the fact that you can read and answer *every* comment or message you receive from your audience.
 Don't lose this opportunity to create a strong relationship with your viewers.
@@ -183,24 +197,13 @@ Answer to every comment, ask follow-up questions, find out what your small audie
 
 === Be patient and consistent
 
-[.img-fluid.border.border.shadow]
+[.text-center]
+--
+[.img-fluid.shadow.d-inline-block.mt-0]
 [link=/images/youtube-patience.png]
 image::/images/youtube-patience.png[]
+--
 
 I know it sounds cliche, but it couldn't be closer to truth.
 Find your niche, upload on a regular schedule (once a week, once a two weeks, once a month - it doesn't matter), monitor your analytics, see what works best, experiment, and be patient.
 YouTube is a marathon, and you never know when (and which video) will suddenly build your recognition.
-
-[.clearfix.mt-4.mb-5]
---
-[.d-inline-block.shadow-sm.float-left.m-0.mr-4]
-[link={youtube-secrets}]
-image::/images/youtube-secrets.jpg[]
-
-PS: If you want to learn more about YouTube related stuff, *let me know in the comment what interests you most*.
-I can also suggest you reading the {youtube-secrets}[*"YouTube Secrets"*] book by Sean Cannell and Benji Travis.
-It goes on sale from time to time, and then you can get a Kindle version for about $5.
-Alternatively, you can try out {audible-premium}[*Audible Premium* 30-days free trial] and listen to the audiobook for free.
---
-
-*I wish you good luck!* icon:thumbs-o-up[]

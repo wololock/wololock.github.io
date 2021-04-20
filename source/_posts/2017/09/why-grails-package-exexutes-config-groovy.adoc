@@ -196,4 +196,3 @@ in the end of `Config.groovy` file, expect to see something like this when you p
 .
 ----
 
-include::source/_parts/thank-you.adoc[]
