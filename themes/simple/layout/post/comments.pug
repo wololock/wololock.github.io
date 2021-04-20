@@ -1,0 +1,33 @@
+section#comments
+    .container.py-5(data-debug="Scrolled to comments")
+        h2.disqus-comment-count(data-disqus-url=config.url + url_for(page.path)) 0 Comments
+
+        .row
+            .col-12.col-lg-3.order-lg-1.order-0
+                .sticky-top(style="top: 40px")
+                    !=ad_campaign("comments-default")
+
+            .col-12.col-lg-9.order-0.order-lg-0.order-1
+                #disqus_thread
+
+
+    script.
+        const loadDisqus = shortname => {
+            (function () {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://'+shortname+'.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        };
+
+        const disqusObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.intersectionRatio > 0) {
+                    loadDisqus("#{theme.disqus}")
+                    disqusObserver.unobserve(entry.target);
+                }
+            });
+        })
+
+        disqusObserver.observe(document.getElementById("disqus_thread"));

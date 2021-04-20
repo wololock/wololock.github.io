@@ -1,0 +1,37 @@
+extends common/base
+
+block main
+    .jumbotron.m-0.border-bottom.border-dark
+        .container
+            .row
+                .col-12.col-lg-8
+                    .mt-5
+                        p.marker.m-0 A few ways to
+                        h1.mt-0 Support the blog
+                        p.text-justify If you want to support the blog, here's how you can do it.
+
+
+            .row.mt-5
+                .col-12.col-lg-4
+                    .p-lg-3
+                        h2.sans-serif Sponsor the blog
+                        p.text-justify.mb-5.small If you value my work on this blog (and other mediums e.g. my YouTube channel), you can help me and sponsor the content creation through the GitHub Sponsors program.
+                        .text-center
+                            iframe.align-middle.gatr(src="https://github.com/sponsors/wololock/button" title="Sponsor wololock" height="35" width="116" style="border: 0;")
+
+                .col-12.col-lg-4
+                    .p-lg-3
+                        h2.sans-serif Buy me a coffee
+                        p.text-justify.mb-5.small If you found any of my blog posts or videos useful and you would like to say "Thank you!", consider buying me a coffee :-)
+                        .text-center
+                            a.align-middle.mr-2.gatr(href="/buy-me-a-coffee/" target="_blank")
+                                img(data-lazy="/images/buy-me-a-coffee.png" height=32)
+
+
+                .col-12.col-lg-4
+                    .p-lg-3
+                        h2.sans-serif Hire me
+                        p.text-justify.mb-5.small I'm a #[b Top Rated] freelancer on Upwork.com. If you have an interesting project I could help you with, check out my profile and let's get in touch.
+                        .text-center
+                            a.btn.btn-info(href="/upwork/" target="_blank") Hire me on upwork.com
+

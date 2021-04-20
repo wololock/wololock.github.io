@@ -1,3 +1,166 @@
+campaigns:
+  footer:
+    ads:
+      - ["nordvpn-01", 3]
+      - ["udemy-01", 1]
+      - ["udemy-devops-01", 1]
+      - ["audible-01", 1]
+      - ["domain-01", 1]
+      - ["bluehost-02", 3]
+
+  category-default:
+    ads:
+      - ["nordvpn-01", 1]
+      - ["grammarly-02", 1]
+      - ["udemy-01", 1]
+      - ["udemy-devops-01", 1]
+      - ["audible-01", 1]
+      - ["domain-01", 1]
+      - ["bluehost-02", 1]
+
+  comments-default:
+    ads:
+      - ["grammarly-01", 1]
+
+  jenkins-01:
+    ads:
+      - ["jenkins-docker-udemy-01", 2]
+      - ["blinkist-01", 1]
+      - ["oreilly-01", 2]
+      - ["bluehost-01", 1]
+
+  groovy-01:
+    ads:
+      - ["groovy-01", 2]
+      - ["regex-01", 2]
+      - ["blinkist-01", 1]
+      - ["oreilly-01", 2]
+      - ["bluehost-01", 1]
+
+  java-01:
+    ads:
+      - ["java-masterclass-01", 2]
+      - ["blinkist-01", 1]
+      - ["oreilly-01", 2]
+      - ["bluehost-01", 1]
+
+  learning-01:
+    ads:
+      - ["blinkist-01", 1]
+      - ["oreilly-01", 1]
+      - ["bluehost-01", 1]
+      - ["canva-01", 1]
+      - ["nordvpn-01", 1]
+
+ads:
+  nordvpn-01:
+    url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=572706.11&type=3&subid=0
+    images:
+      - display: ["lg","md"]
+        img: /images/yml/nord-vpn-03.png
+
+  nordvpn-02:
+    url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=572706.47&subid=0&type=4
+    images:
+      - display: ["lg"]
+        img: /images/yml/v2/nordvpn.png
+
+  grammarly-01:
+    url: https://www.jdoqocy.com/click-100191173-10952823
+    images:
+      - display: ["lg"]
+        img: /images/yml/grammarly-tower.png
+
+  grammarly-02:
+    url: https://www.jdoqocy.com/click-100191173-10952823
+    images:
+      - display: ["lg","md"]
+        img: /images/yml/grammarly-02.png
+
+  blinkist-01:
+    url: https://blinkist.o6eiov.net/c/2430749/978270/10732
+    images:
+      - display: ["lg"]
+        img: /images/yml/v2/blinkist.png
+
+  bluehost-01:
+    url: https://www.bluehost.com/track/szymonstepniak/
+    images:
+      - display: ["lg"]
+        img: /images/yml/v2/bluehost.png
+
+  bluehost-02:
+    url: https://www.bluehost.com/track/szymonstepniak/
+    images:
+      - display: ["lg","md"]
+        img: /images/yml/bluehost-01.png
+
+  canva-01:
+    url: https://partner.canva.com/c/2430749/903497/10068
+    images:
+      - display: ["lg"]
+        img: /images/yml/v2/canva.png
+
+  oreilly-01:
+    url: https://www.jdoqocy.com/click-100264350-13722493
+    images:
+      - display: ["lg"]
+        img: /images/yml/v2/oreilly.png
+
+  groovy-01:
+    url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fapache-groovy%2F
+    images:
+      - display: ["lg"]
+        img: /images/yml/v2/complete-apache-groovy-course.png
+
+  java-masterclass-01:
+    url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fjava-the-complete-java-developer-course%2F
+    images:
+      - display: ["lg"]
+        img: /images/yml/v2/java-programming-masterclass.png
+
+  jenkins-docker-udemy-01:
+    url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Flearn-devops-ci-cd-with-jenkins-using-pipelines-and-docker%2F
+    images:
+      - display: ["lg"]
+        img: /images/yml/v2/jenkins-docker-udemy.png
+
+  regex-01:
+    url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fregular-expressions-mastery%2F
+    images:
+      - display: ["lg"]
+        img: /images/yml/v2/regex.png
+
+  audible-01:
+    url: https://amzn.to/35QTnYE
+    images:
+      - display: ["lg","md"]
+        img: /images/yml/audible-01.png
+
+  udemy-01:
+    url: https://click.linksynergy.com/fs-bin/click?id=uow2LCEuhvQ&offerid=507388.13486&subid=0&type=4
+    images:
+      - display: ["lg","md"]
+        img: /images/yml/udemy-01.png
+
+  udemy-devops-01:
+    url: https://click.linksynergy.com/deeplink?id=uow2LCEuhvQ&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Ftopic%2Fdevops%2F
+    images:
+      - display: ["lg","md"]
+        img: /images/yml/udemy-devops-01.png
+
+  domain-01:
+    url: https://www.jdoqocy.com/click-100191173-14085090
+    images:
+      - display: ["lg","md"]
+        img: /images/yml/domain10-01.png
+
+
+
+
+
+
+
 config:
   tag: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "grammarly-02", "domain10-01", "vidiq-01", "bluehost-01"]
   archives: ["nordvpn-03", "udemy-01", "udemy-devops-01", "audible-premium-01", "grammarly-02", "domain10-01", "vidiq-01", "bluehost-01"]

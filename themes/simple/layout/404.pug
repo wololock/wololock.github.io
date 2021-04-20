@@ -1,0 +1,16 @@
+extends common/base
+
+include category/mixins
+
+block variables
+    -
+        page.title = "404 Not Found"
+block main
+
+    .jumbotron.m-0.border-bottom.border-dark
+        .container
+            .row
+                .col-12.col-lg-8.order-0
+                    .mt-5
+                        p.marker.m-0 404
+                        h1.mt-0 Page Not Found

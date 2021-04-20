@@ -52,7 +52,7 @@ Let's run the test and see what happens.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/groovy-junit-assume-notnull-npe.png]
 image::/images/groovy-junit-assume-notnull-npe.png[]
 --
@@ -83,7 +83,7 @@ public class JavaAssumeNotNull {
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/java-junit-assume-notnull.png]
 image::/images/java-junit-assume-notnull.png[]
 --
@@ -235,4 +235,3 @@ If there is any specific Groovy related topic you would like to read about, plea
 Also, don't hesitate to share, comment and thumbs up this article, so I can see it was worth spending the time on writing these words on Friday 00:47 AM :-)
 See you next time!
 
-include::source/_parts/thank-you.adoc[]

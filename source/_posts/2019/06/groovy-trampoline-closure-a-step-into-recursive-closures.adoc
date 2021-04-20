@@ -348,7 +348,7 @@ The tendencies are the same in both cases.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/groovy-trampoline-01.png]
 image::/images/groovy-trampoline-01.png[]
 --
@@ -371,4 +371,3 @@ However, in this case you can also consider refactoring to the tail recursive me
 But remember what Donald Knuth said: _"Premature optimization is the root of all evil."_ footnote:[Donald Knuth, "Computer Programming as an Art (1974)", p. 671] icon:smile-o[]
 Use whatever programming construction that works for you (and your team) best, and solve performance problems when they start occurring.
 
-include::source/_parts/thank-you.adoc[]

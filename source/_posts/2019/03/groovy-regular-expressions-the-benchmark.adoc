@@ -208,7 +208,7 @@ And here what those results look like on a single chart.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/groovy-regexp-chart-01.png]
 image::/images/groovy-regexp-chart-01.png[]
 --
@@ -343,7 +343,7 @@ And here is the chart.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/groovy-regexp-chart-02.png]
 image::/images/groovy-regexp-chart-02.png[]
 --
@@ -495,7 +495,7 @@ And here is the last chart.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/groovy-regexp-chart-03.png]
 image::/images/groovy-regexp-chart-03.png[]
 --
@@ -514,4 +514,3 @@ Measuring application performance is not trivial, and in most cases, real bottle
 I can tell you from my experience that one of the first places worth checking when tweaking application's performance is its I/O layer.
 I've seen countless times inefficient queries to the database, or threads blocked for nothing, and those are the real issues.
 
-include::source/_parts/thank-you.adoc[]

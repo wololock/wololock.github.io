@@ -1,0 +1,13 @@
+extends common/base
+
+block variables
+    -
+        page.navbar = "navbar-light"
+
+block main
+    section#page
+        .pt-5
+            .container.py-5.mt-5
+                h1=page.title
+
+                .py-3!=page.content

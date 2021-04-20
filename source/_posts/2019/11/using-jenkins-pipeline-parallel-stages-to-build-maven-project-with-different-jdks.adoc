@@ -169,19 +169,9 @@ This stage also uses the `dockerfile` agent, but this time pass:[<em class="conu
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/jenkins-pipeline-maven-parallel.png]
 image::/images/jenkins-pipeline-maven-parallel.png[]
 --
 
 pass:[{% youtube_card j1lH3vOhucw %}]
-
-include::source/_parts/thank-you.adoc[]
-
-++++
-<div class="imageblock img-fluid">
-<a href="https://kit.co/wololock/jenkins-pipeline-learning-kit" class="gatr" data-type="banner" data-name="Jenkins Pipeline Learning Kit 02">
-<img src="/images/yml/jenkins-pipeline-learning-kit-02.jpg" class="img-fluid" alt="Jenkins Pipeline Learning Kit" />
-</a>
-</div>
-++++

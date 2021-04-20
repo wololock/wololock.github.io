@@ -199,7 +199,7 @@ For the hostname, use `github.com` and paste your newly generated private key.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/circleci-new-ssh-key.jpg]
 image::/images/circleci-new-ssh-key.jpg[]
 --
@@ -215,7 +215,7 @@ Also, don't forget to check the "Allow write access" checkbox.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/circleci-github-deploy-key.jpg]
 image::/images/circleci-github-deploy-key.jpg[]
 --
@@ -270,9 +270,8 @@ We can commit changes and add our GitHub repository as a project in the CircleCI
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/circleci-workflow.jpg]
 image::/images/circleci-workflow.jpg[]
 --
 
-include::source/_parts/thank-you.adoc[]

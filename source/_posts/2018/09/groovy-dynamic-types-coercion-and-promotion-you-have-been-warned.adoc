@@ -234,4 +234,3 @@ may cause you a lot of problems when you are not careful enough. I always tend t
 writing Groovy code - I don't overuse dynamic type coercions and only use them when they are very straightforward and
 don't add any level of complication to my code.
 
-include::source/_parts/thank-you.adoc[]

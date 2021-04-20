@@ -1,0 +1,15 @@
+header#header.fixed-top
+    .container
+        nav.navbar.navbar-expand-lg.px-0.py-lg-0(class=page.navbar || "navbar-dark")
+
+            button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarLinks" aria-controls="navbarLinks")
+                span.navbar-toggler-icon
+
+            .collapse.navbar-collapse(id="navbarLinks")
+                ul.navbar-nav.ml-auto
+                    each it in theme.navbar
+                        li.nav-item
+                            a.nav-link.gatr(href=url_for(it.url) target=it.target data-type="nav" data-name=it.title)=it.title
+
+div#pageprogress
+    .bar

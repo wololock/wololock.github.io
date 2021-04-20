@@ -97,7 +97,7 @@ that getting back to this book was one of the best decisions I could make.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/pragmatic-thinking-and-learning-03.jpg]
 image::/images/pragmatic-thinking-and-learning-03.jpg[]
 --
@@ -130,7 +130,7 @@ _(An example from page 70 with a blind man blown my mind)._
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/pragmatic-thinking-and-learning-02.jpg]
 image::/images/pragmatic-thinking-and-learning-02.jpg[]
 --
@@ -182,7 +182,7 @@ _(I already practice "no notifications" principles for a couple of years)._
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/pragmatic-thinking-and-learning-04.jpg]
 image::/images/pragmatic-thinking-and-learning-04.jpg[]
 --

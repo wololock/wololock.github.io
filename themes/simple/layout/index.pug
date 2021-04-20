@@ -1,0 +1,34 @@
+extends common/base
+
+block variables
+    - page.title = config.title
+
+block main
+    .jumbotron.jumbotronw.py-5.px-0.px-sm-3.m-0.border-bottom.border-dark
+        .py-5
+            .container.py-5
+                .row.mt-2
+                    .col-12.col-lg-6
+                        .pt-3
+                            p.marker.m-0.mt-5 Hi there!
+                            h1.m-0 Szymon Stepniak
+                            p #{config.bio}
+
+                            ul.social-media
+                                each media in config["social-media"]
+                                    li
+                                        a.gatr(href=media.url data-type="social-media" data-name=media.name title=media.name)
+                                            i.fa(class=media.icon)
+                                            span.number #{media.number}
+                                            span.description #{media.description}
+
+                    .col-12.col-lg-6.text-center
+                        .mt-4
+                            .embed-responsive.embed-responsive-16by9.shadow
+                                iframe.embed-responsive-item(id="ytplayer" type="text/html" width="720" height="405" src="https://www.youtube.com/embed/RPdugI8eZgo?autoplay=1&controls=0&color=white" frameborder="0" allowfullscreen)
+
+
+
+    //include index/latest
+    //
+    //include index/youtube

@@ -1,0 +1,63 @@
+extends common/base
+
+include category/mixins
+
+block variables
+    - const category = site.categories.findOne({name: page.category})
+    - const data = site.data[category.slug] || {}
+    - const recommended = data.recommended ? site.posts.find({slug: {$in: data.recommended}}).toArray().sort((a,b) => data.recommended.indexOf(a.slug) - data.recommended.indexOf(b.slug)) : []
+
+    - page.title = category.name
+    - page.description = data.description
+
+block main
+    .jumbotron.jumbotron-category.pt-5.pb-1(class=`category-${category.slug}`)
+        .mask
+        .container.py-5
+            .row.py-5
+                .col-12.text-center.pb-4
+                    h1.mt-0.mb-2.display-3.font-weight-bold=page.category
+
+                    if data.description
+                        p!=data.description
+
+            if recommended.length > 0
+                - var first = recommended.reverse().pop()
+                .row
+                    .col-12.col-lg-7
+                        +featured_large_article(first)
+
+
+                    .col-12.col-lg-5
+                        each post in recommended.reverse()
+                            +featured_small_article(post)
+
+                        !=ad_campaign("category-default")
+
+    section#category
+        .container.py-5
+            .row
+                .col-12
+                    .row
+                        each post in page.posts.toArray()
+                            +post_card(post)
+
+                        if page.total > 1
+                            .col-12
+                                nav.paginator.pb-4
+                                    !=paginator({ prev_text: '<i class="fa fa-angle-left"></i>', next_text: '<i class="fa fa-angle-right"></i>', escape: false, format: "page/%d/#category" })
+
+    if data.youtube
+        section#youtube
+            .container.py-5
+                h2.text-center Related #[i.fa.fa-youtube] #[b YouTube] videos
+                .row.pb-4
+                    each id in data.youtube
+                        - var video = site.data.youtube[id] || {}
+
+                        if video
+                            .col-12.col-lg-4.mb-lg-0.mb-5
+                                .youtube-row.m-0
+                                    .col-12
+                                        a.thumb.gatr.d-inline-block(href=`https://youtu.be/${id}` data-time=video.time data-type="youtube" data-name=video.title)
+                                            img.img-fluid.shadow(data-lazy="https://i3.ytimg.com/vi/" + id + "/mqdefault.jpg")

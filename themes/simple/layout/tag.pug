@@ -1,0 +1,30 @@
+extends common/base
+
+include category/mixins
+
+block variables
+    - const tag = site.tags.findOne({name: page.tag})
+    - const total = tag.posts.count()
+
+block main
+    .jumbotron.jumbotron-category.pt-5.pb-1
+        .mask
+        .container.py-5
+            .row
+                .col-12.text-center.pb-4
+                    h1.mt-0.mb-2.display-3.font-weight-bold=page.tag
+                    p.mb-0.pb-0 #[b.subtitle #{total}] posts
+
+    section#category
+        .container.py-5
+            .row
+                .col-12
+                    .row
+                        each post in page.posts.toArray()
+                            +post_card(post)
+
+                        if page.total > 1
+                            .col-12
+                                nav.paginator.pb-4
+                                    !=paginator({ prev_text: '<i class="fa fa-angle-left"></i>', next_text: '<i class="fa fa-angle-right"></i>', escape: false, format: "page/%d/#category" })
+

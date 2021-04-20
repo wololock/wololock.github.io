@@ -184,4 +184,3 @@ Java program inside the container - things like available resources (CPU, memory
 networking may cause some issues. You just have to consider all pros and cons when choosing one
 option over another.
 
-include::source/_parts/thank-you.adoc[]

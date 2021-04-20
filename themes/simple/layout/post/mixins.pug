@@ -1,0 +1,63 @@
+
+mixin post_meta_extended(post)
+    ul.post-meta-extended
+        li.d-none.d-lg-inline-block
+            a(href="/about")
+                img.rounded-circle(src=config.photo height=52 width=52 style="margin-top:-24px")
+        li
+            .small Author
+            .font-weight-bold
+                a(href="/about") #{config.author}
+        li
+            .small Published
+            .font-weight-bold
+                time(datetime=date_xml(post.date))!= full_date(post.date, "MMM D, YYYY")
+        li
+            .small Reading time
+            .font-weight-bold=readingTime(post.content, 'minutes', 200)
+        li
+            .small Discussion
+            .font-weight-bold
+                a(href=config.url + url_for(post.path) + "#disqus_thread")="0 Comments"
+
+mixin recommended_featured_post(post)
+    .row
+        .col-lg-8.order-0
+            .pr-5
+                //img.img-fluid.shadow(data-lazy=post.card)
+
+                p.subtitle.m-0.p-0
+                    each cat in post.categories.toArray()
+                        a.category(href=url_for(cat.path))=cat.name
+
+                h3.mt-0.mb-2
+                    = "Continue reading: "
+                    a(href=url_for(post.path)) "#{post.title}"
+
+                .my-4
+                    !=post.excerpt
+                    a(href=url_for(post.path))
+                        ="Read more"
+                        i.fas.fa-arrow-right.ml-2
+
+                +post_meta_extended(post)
+
+        .col-lg-4.order-1.d-none.d-lg-block
+            a(href=url_for(post.path))
+                img.img-fluid.rounded(data-lazy=(post.hero || post.card) style="margin-bottom:-300px")
+
+mixin recommended_post_card(post)
+    .card.card-sm.rounded.border-0.card-post(data-read=readingTime(post.content, 'min read', 200))
+        .card-header.p-0.position-relative.rounded
+            img.card-img-top.rounded(data-lazy=post.card)
+
+            .card-img-overlay.d-flex.align-items-end.p-3.rounded
+                h4.card-title=post.title
+            .mask.rounded
+
+        .card-body.small.p-1
+            a.stretched-link(href=url_for(post.path))
+
+
+
+

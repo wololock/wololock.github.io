@@ -85,8 +85,7 @@ However, there is one difference when compared with the plain `curl` response.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
-.Plain `curl` output on the left side. The simplest `jq .` output on the right side.
+[.img-fluid.shadow.d-inline-block]
 [link=/images/curl-jq-basic-example.jpg]
 image::/images/curl-jq-basic-example.jpg[]
 --
@@ -358,6 +357,8 @@ $ jq '[.docs[] | {title,author_name: .author_name[0], publish_year: .publish_yea
 ]
 ----
 
+pass:[{% youtube_card EIhLl9ebeiA %}]
+
 == Grouping by using `group_by(expr)` filter
 
 Let's say we want to find out how many publications each author created.
@@ -488,6 +489,3 @@ And that's it for today.
 In the next episode, we will dive deeper into more advanced filters and functions that `jq` offers.
 Stay tuned! icon:smile-o[]
 
-pass:[{% youtube_card EIhLl9ebeiA %}]
-
-include::source/_parts/thank-you.adoc[]

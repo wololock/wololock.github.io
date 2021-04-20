@@ -195,4 +195,3 @@ groovy:000> "Lorem ipsum dolor sit amet".count("abc")
 
 pass:[{% youtube_card O28X60MimH4 %}]
 
-include::source/_parts/thank-you.adoc[]

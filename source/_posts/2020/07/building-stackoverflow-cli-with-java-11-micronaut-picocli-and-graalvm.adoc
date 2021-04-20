@@ -35,8 +35,6 @@ I use Java 11+, Micronaut, Picocli, and GraalVM's `native-image`.
 
 toc::[]
 
-NOTE: Source code and resources links available in the icon:github[] {github-url}[wololock/stackoverflow-cli] repository.
-
 == Introduction
 
 Let's start with explaining what the `stackoverflow-cli` application may look like.
@@ -90,7 +88,9 @@ Here is how you can install it using {sdkman}[SDKMAN!] command-line tool.
 $ sdk install micronaut 2.0.0
 ----
 
-== Creating new project
+== Creating a new project
+
+NOTE: Source code and resources links available in the icon:github[] {github-url}[wololock/stackoverflow-cli] repository.
 
 Once SDKMAN! is installed, we can create a new project.
 We use `create-cli-app` to generate a CLI-based project with the {picocli}[Picocli] support added.
@@ -110,7 +110,7 @@ After importing the new project to IntelliJ IDEA, go to Settings and search for 
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/micronaut-picocli-graalvm/enable-annotation-processing.jpg]
 image::/images/micronaut-picocli-graalvm/enable-annotation-processing.jpg[]
 --
@@ -398,7 +398,7 @@ After that, we can run the unit test to see the results.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/micronaut-picocli-graalvm/running-unit-test.jpg]
 image::/images/micronaut-picocli-graalvm/running-unit-test.jpg[]
 --
@@ -524,4 +524,4 @@ Items size: 4 | Quota max: 300 | Quota remaining: 292 | Has more: true
 - https://picocli.info/quick-guide.html[Picocli Quick Guide]
 - https://www.youtube.com/watch?v=Xdcg4Drg1hc["Building command-line app with Java 11, Micronaut, Picocli, and GraalVM" video]
 
-include::source/_parts/thank-you.adoc[]
+

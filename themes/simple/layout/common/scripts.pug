@@ -1,0 +1,24 @@
+script(src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous")
+script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous")
+script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous")
+script(src="https://kit.fontawesome.com/48c5da59c9.js" crossorigin="anonymous" async)
+script(async id="cookiebanner", src="//cdnjs.cloudflare.com/ajax/libs/cookie-banner/1.2.2/cookiebanner.min.js", data-moreinfo="/privacy-policy/", data-message="This blog uses cookies to enhance your experience. By continuing to visit it you agree to its use of cookies.", data-link="#5fc4ff", data-font-family="Lora,serif", data-font-size="16px", data-bg="#1d2b36")
+
+script(src=url_for(`/js/main.js?v=${config.version.js}`))
+
+if page.highlightjs
+    script(src=url_for("/js/highlightjs/highlight.pack.js"))
+    script hljs.initHighlightingOnLoad();
+
+if is_home() || is_post || is_tag() || is_category
+    script(async id="dsq-count-scr", src="//eprintstacktrace.disqus.com/count.js")
+
+script.
+    jQuery(document).on("mousedown", ".gatr", function (e) {
+        var a = jQuery(this);
+        var category = a.attr("data-type");
+        var name = a.attr("data-name");
+        var click = e.which === 1 ? "click" : (e.which === 2 ? "middle-click" : "right-click")
+        ga("send", "event", category, click, name);
+        return false;
+    });

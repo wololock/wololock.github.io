@@ -14,6 +14,7 @@ tags:
 highlightjs: true
 card: /images/cards/3.png
 icon: /images/icons/48.png
+hero: /images/hero/jenkins-01.png
 ---
 :toc: macro
 :pipeline-fundamentals: https://www.jenkins.io/blog/2017/02/01/pipeline-scalability-best-practice/#fundamentals
@@ -51,7 +52,10 @@ This way, you can design a topology where only a specific node can perform strat
 
 Now when you know _"why"_, let's take a look at the _"how"_ part.
 
-pass:[{% banner jenkins %}]
+[.text-center.mt-4]
+--
+pass:[{% ad_campaign "jenkins-01" %}]
+--
 
 == Capturing `sh` output with `returnStdout` option
 
@@ -84,7 +88,7 @@ pipeline {
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/curl-jenkins-pipeline/01-basic-curl.jpg]
 image::/images/curl-jenkins-pipeline/01-basic-curl.jpg[]
 --
@@ -152,7 +156,7 @@ pipeline {
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/curl-jenkins-pipeline/03-auth.jpg]
 image::/images/curl-jenkins-pipeline/03-auth.jpg[]
 --
@@ -199,7 +203,7 @@ pipeline {
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/curl-jenkins-pipeline/04-status-code.jpg]
 image::/images/curl-jenkins-pipeline/04-status-code.jpg[]
 --
@@ -264,7 +268,7 @@ If you run this example and see an error like the one below, you need to go to y
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.d-inline-block.m-0]
 [link=/images/curl-jenkins-pipeline/05-jsonslurper.jpg]
 image::/images/curl-jenkins-pipeline/05-jsonslurper.jpg[]
 --
@@ -272,7 +276,7 @@ image::/images/curl-jenkins-pipeline/05-jsonslurper.jpg[]
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/curl-jenkins-pipeline/06-jsonslurper-response.jpg]
 image::/images/curl-jenkins-pipeline/06-jsonslurper-response.jpg[]
 --
@@ -339,20 +343,13 @@ pipeline {
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block.p-2]
 [link=/images/curl-jenkins-pipeline/07-jq.jpg]
 image::/images/curl-jenkins-pipeline/07-jq.jpg[]
 --
 
 NOTE: You can learn more about `jq` from my [.mark]*jq cookbook* +++{% link "blog posts series" https://e.printstacktrace.blog/jq-cookbook/ %}+++.
 
-++++
-<div class="imageblock img-fluid">
-<a href="https://kit.co/wololock/jenkins-pipeline-learning-kit" class="gatr" data-type="banner" data-name="Jenkins Pipeline Learning Kit 02">
-<img src="/images/yml/jenkins-pipeline-learning-kit-02.jpg" class="img-fluid" alt="Jenkins Pipeline Learning Kit" />
-</a>
-</div>
-++++
 
 == Bonus: a few more useful `curl` parameters
 
@@ -405,4 +402,4 @@ sh(script: "curl -s [.highlightcode]*--retry-connrefused --retry 10 --retry-dela
 
 pass:[{% youtube_card Ei_Nk14vruE %}]
 
-include::source/_parts/thank-you.adoc[]
+

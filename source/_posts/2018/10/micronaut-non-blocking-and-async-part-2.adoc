@@ -278,7 +278,7 @@ application. It means that our demo application handled ~1429 requests per secon
 Another good information is that handling 10,000 request didn't cause significant resources consumption. Below you can
 find a screen shot taken from JProfiler attached to the application when I have repeated the same `ab` command 3 times:
 
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/micronaut-jprofiler.png]
 image::/images/micronaut-jprofiler.png[]
 
@@ -295,4 +295,3 @@ problems it may introduce. Stay tuned, and until the next time!
 
 NOTE: Continue reading here - +++{% post_link micronaut-non-blocking-and-async-part-3 Non-blocking and async Micronaut - quick start (part 3) %}+++
 
-include::source/_parts/thank-you.adoc[]

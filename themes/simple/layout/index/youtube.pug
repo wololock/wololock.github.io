@@ -1,0 +1,35 @@
+-
+    const videos = Object.entries(site.data.youtube).reverse().slice(0,3)
+
+section#latest
+    .py-5.bg-light
+        .container.py-3
+            h2 Latest #[i.fa.fa-youtube] #[span.text-dark YouTube] videos
+
+            .row
+                .col-12.col-lg-9
+                    each video in videos
+                        .row.mb-4.youtube-row
+                            .col-12.col-lg-4
+                                .m-0
+                                    a.thumb.gatr.d-inline-block(href=`https://youtu.be/${video[0]}` data-time=video[1].time data-type="youtube" data-name=video[1].title)
+                                        img.img-fluid.shadow(data-lazy="https://i3.ytimg.com/vi/" + video[0] + "/mqdefault.jpg")
+                            .col-12.col-lg-8
+                                h5.m-0.p-0.mb-3.text-lg-left.text-center
+                                    a.gatr(href=`https://youtu.be/${video[0]}` data-type="youtube" data-name=video[1].title)=video[1].title
+
+                                ul.youtube-meta
+                                    li
+                                        i.fa.fa-youtube.mr-1
+                                        span YouTube
+                                    li 5k views
+                                    li 2.5k subscribers
+
+                                p.sans-serif.small.text-justify
+                                    | #{video[1].description}
+                                    |
+                                    //a.gatr.font-weight-bold(href=`https://youtu.be/${id}` data-type="youtube" data-name=video.title) Watch&nbsp;now&nbsp;&raquo;
+
+
+                .col-12.col-lg-3
+                    !=ad_campaign("home-videos")

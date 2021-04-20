@@ -1,5 +1,5 @@
 ---
-title: About me
-layout: about-me
+title: About Me
+layout: about
 ---
 

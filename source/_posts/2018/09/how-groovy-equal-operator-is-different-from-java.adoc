@@ -291,4 +291,3 @@ I hope you have learned something interesting from this article. Let's sum it up
 and make all casts between types implicit.
 * If you read this article up to this point - thank you very much! Don't hesitate to leave a comment and tell others what is your favorite Groovy feature.
 
-include::source/_parts/thank-you.adoc[]

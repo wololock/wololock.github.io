@@ -107,4 +107,3 @@ text.eachLine { line ->
 }
 ----
 
-include::source/_parts/thank-you.adoc[]

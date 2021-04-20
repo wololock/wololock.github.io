@@ -89,7 +89,7 @@ After the first 2 or 3 hours of reading {cal-newport-url}[Cal Newport] "Deep Wor
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/deep-work-book-review-img3.jpg]
 image::/images/deep-work-book-review-img3.jpg[]
 --
@@ -108,7 +108,7 @@ The first rule explained in the book focuses on how to work deeply. It starts wi
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/deep-work-book-review-img1.jpg]
 image::/images/deep-work-book-review-img1.jpg[]
 --

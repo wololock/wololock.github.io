@@ -99,7 +99,7 @@ And now something unexpected happens. Suddenly, compiler started complaining abo
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/java-type-inference-error.png]
 image::/images/java-type-inference-error.png[]
 --
@@ -128,7 +128,7 @@ while assigning value to a `some` variable:
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/java-poly-expressions-in-action.png]
 image::/images/java-poly-expressions-in-action.png[]
 --
@@ -148,7 +148,7 @@ this problem, and our second example proves this limitation exists:
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/java-type-inference-chain-error.png]
 image::/images/java-type-inference-chain-error.png[]
 --
@@ -190,4 +190,3 @@ final class SomeExample {
 }
 ----
 
-include::source/_parts/thank-you.adoc[]

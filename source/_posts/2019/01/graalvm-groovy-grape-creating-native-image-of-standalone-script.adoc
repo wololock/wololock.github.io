@@ -363,4 +363,3 @@ the comments section below. I would love to hear your opinion.
 
 NOTE: Continue reading - +++{% post_link graalvm-native-image-inside-docker-container-does-it-make-sense GraalVM native image inside docker container - does it make sense? %}+++
 
-include::source/_parts/thank-you.adoc[]

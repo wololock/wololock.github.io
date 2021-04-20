@@ -143,7 +143,7 @@ When we run this test we will see the following result:
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/spock-then-if-assertion.png]
 image::/images/spock-then-if-assertion.png[]
 --
@@ -407,4 +407,3 @@ Don't hesitate to leave a comment in the section below.
 Maybe you have experienced some unexpected Spock behavior - please share your story with the rest of us.
 Take care and see you next time!
 
-include::source/_parts/thank-you.adoc[]

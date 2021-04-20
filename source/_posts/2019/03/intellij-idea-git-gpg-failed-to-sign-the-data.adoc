@@ -30,7 +30,7 @@ associated with your account. Github honors signing commits with this pretty lov
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/github-gpg-signing.png]
 image::/images/github-gpg-signing.png[]
 --
@@ -152,7 +152,7 @@ The `gpg-agent` prompted for the password and I was able to store it in the keyr
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/github-gpg-idea.png]
 image::/images/github-gpg-idea.png[]
 --
@@ -195,7 +195,7 @@ from the keyring), `gpg-agent` will prompt and ask you for a password that can b
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/github-gpg-idea.png]
 image::/images/github-gpg-idea.png[]
 --
@@ -220,4 +220,3 @@ $ gpg-agent --daemon
 If you are interested in enabling GPG signing of your Git commits, consider checking https://github.com/pstadler/keybase-gpg-github[this step-by-step guide],
 where you can find even more information about the setup process. Happy hacking!
 
-include::source/_parts/thank-you.adoc[]

@@ -1,0 +1,43 @@
+navbar:
+  - title: Home
+    url: /
+  - title: About Me
+    url: /about/
+  - title: Videos
+    url: /youtube/
+    target: _blank
+  - title: Archives
+    url: /archives/
+  - title: Resources
+    url: /resources/
+  - title: Hire me
+    url: /upwork/
+    target: _blank
+
+footer:
+  - title: About
+    url: /about/
+  - title: Archives
+    url: /archives/
+  - title: Resources
+    url: /resources/
+  - title: Privacy Policy
+    url: /privacy-policy/
+  - title: My Kit
+    url: https://kit.co/wololock
+  - title: RSS
+    url: https://feeds.feedburner.com/Eprintstacktracenet
+
+disqus: eprintstacktrace
+
+social:
+  - icon: fa-twitter
+    url: https://twitter.com/wololock
+  - icon: fa-youtube
+    url: https://youtube.com/eprintstacktrace
+  - icon: fa-github
+    url: https://github.com/wololock
+  - icon: fa-stack-overflow
+    url: https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile
+  - icon: fa-linkedin
+    url: https://www.linkedin.com/in/szymon-st%C4%99pniak-9a0b1630/

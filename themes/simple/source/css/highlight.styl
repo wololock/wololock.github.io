@@ -1,0 +1,82 @@
+@import "../js/highlightjs/styles/monokai.css"
+
+pre.highlightjs
+  .hljs
+    background #2f3737
+    color #d4e3ec
+    -webkit-font-smoothing antialiased
+    -moz-osx-font-smoothing grayscale
+
+
+  code
+    line-height 24px
+    padding 10px 15px
+    border-radius 0px
+    z-index 2000
+
+    .hljs-keyword
+      color #c49964
+    .hljs-meta
+      color yellow
+    .hljs-number
+      color #9fbff8
+    .hljs-attr
+      color #afd763
+
+.listingblock
+  &> .content
+    position: relative
+
+  code[data-lang]
+    &::before
+      font-family "Roboto", sans-serif
+      display none
+      content attr(data-lang)
+      position absolute
+      font-size .75em
+      top .425rem
+      right .5rem
+      line-height 1
+      text-transform uppercase
+      color #999
+
+      ~/:hover ^[1..2]
+        display block
+
+.conum[data-value]
+  sans-serif()
+  display inline-block
+  color #fff !important
+  background-color rgba(0, 0, 0, .8)
+  -webkit-border-radius 100px
+  border-radius 100px
+  text-align center
+  font-size 14px
+  width 1.67em
+  height 1.67em
+  line-height 1.67em
+  font-style normal
+  font-weight bold
+  margin-right 5px
+  padding 0
+
+.conum[data-value] *
+  color #fff !important
+
+.conum[data-value] + b
+  display none
+
+.conum[data-value]:after
+  content attr(data-value)
+
+.colist .conum[data-value]
+  font-size 0.7em
+
+p > .conum[data-value]
+  font-size 0.7em
+
+.listingblock
+  >.title
+    font-family "Roboto", sans-serif
+    font-size 0.7em
+    color #788f99

@@ -15,34 +15,14 @@ atomic-habits:
     rating: 5
     body: "We usually expect to see linear growth when building new habits. It doesn't work like that. We do not realize that making small improvements, like 1% every day, results in making 37-times better progress after a year. James Clear extends the idea of the habit loop (cue, craving, response, reward) and guides you on how to build an efficient habits building system. The book is pleasant to read, very \"actionable\", and is based on research, and not only \"because I think so.\" Highly recommended!"
   links:
-    - flag: us
-      text: Audible audiobook <span class="small">(30-days free trial)</span>
-      url: https://amzn.to/3ng73DL
-    - flag: us
-      text: Kindle ebook
+    - text: Kindle ebook
       url: https://amzn.to/35mMf7v
-    - flag: us
-      text: Get from amazon.com
+    - text: Buy a paperback
       url: https://amzn.to/3coH0EF
-    - flag: ca
-      text: Get from amazon.ca
-      url: https://amzn.to/2AyAyNU
-    - flag: de
-      text: Get from amazon.de
-      url: https://amzn.to/36YG6xt
-    - flag: gb
-      text: Get from amazon.co.uk
-      url: https://amzn.to/3ctSIxz
-    - flag: fr
-      text: Get from amazon.fr
-      url: https://amzn.to/3cxQq0N
-    - flag: es
-      text: Get from amazon.es
-      url: https://amzn.to/3crCDsg
-    - flag: pl
-      text: Get from taniaksiazka.pl
-      url: https://go.buybox.click/linkclick_4951_11?&url=https%3A%2F%2Fwww.taniaksiazka.pl%2Fatomowe-nawyki-drobne-zmiany-niezwykle-efekty-james-clear-p-1283871.html
-
+    - text: Try Audible audiobook <span class="small">(30-days free trial)</span>
+      url: https://amzn.to/3ng73DL
+    - text: Try Kindle Unlimited
+      url: https://amzn.to/2N6HYP3
 debugging-teams:
   title: "Debugging Teams: Better Productivity Through Collaboration"
   description:
@@ -64,23 +44,11 @@ debugging-teams:
       text: Kindle ebook
       url: https://amzn.to/2Itloxo
     - flag: us
-      text: Get from amazon.com
+      text: Buy paperback
       url: https://amzn.to/3dWLHaa
     - flag: ca
-      text: Get from amazon.ca
+      text: Try Amazon Unlimited
       url: https://amzn.to/3hf8ujL
-    - flag: de
-      text: Get from amazon.de
-      url: https://amzn.to/2XVUJi0
-    - flag: gb
-      text: Get from amazon.co.uk
-      url: https://amzn.to/3fgBbL9
-    - flag: fr
-      text: Get from amazon.fr
-      url: https://amzn.to/2UE5Lqp
-    - flag: es
-      text: Get from amazon.es
-      url: https://amzn.to/2YrN22b
 
 pragmatic-thinking-and-learning:
   title: "Pragmatic Thinking and Learning: Refactor Your Wetware"

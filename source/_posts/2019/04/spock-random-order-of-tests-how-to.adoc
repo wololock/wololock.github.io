@@ -83,7 +83,7 @@ When we execute this specification, we get all numbers printed in the ascending 
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/spock-random-tests-01.jpg]
 image::/images/spock-random-tests-01.jpg[]
 --
@@ -216,7 +216,7 @@ We are ready to run the test now. Let's see if the execution order has changed.
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/spock-random-tests-02.jpg]
 image::/images/spock-random-tests-02.jpg[]
 --
@@ -238,4 +238,4 @@ mechanism to add the new extension without annotating classes - might be useful 
 to deal with.)_ In other cases, we might also benefit from the random execution order as a safeguard that always
 forces us (and our teammates) to write tests that are isolated and atomic.
 
-include::source/_parts/thank-you.adoc[]
+

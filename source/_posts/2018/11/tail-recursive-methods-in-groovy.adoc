@@ -58,7 +58,7 @@ size limit (the default 1024k for OpenJDK 1.8.0_162).
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/groovy-factorial-crash.png]
 image::/images/groovy-factorial-crash.png[]
 --
@@ -103,7 +103,7 @@ previous example:
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/groovy-factorial-tail-recursion-crash.png]
 image::/images/groovy-factorial-tail-recursion-crash.png[]
 --
@@ -143,7 +143,7 @@ Let's see if we can calculate factorial of number 75,000:
 
 [.text-center]
 --
-[.img-responsive.img-thumbnail]
+[.img-fluid.shadow.d-inline-block]
 [link=/images/groovy-factorial-tail-recursive-annotation.png]
 image::/images/groovy-factorial-tail-recursive-annotation.png[]
 --
@@ -338,4 +338,3 @@ That's it for today. I hope you have learned something useful from this article.
 you would like to learn more about Groovy and its useful features, please let me know in the comments
 section below. Hope to see you next time!
 
-include::source/_parts/thank-you.adoc[]

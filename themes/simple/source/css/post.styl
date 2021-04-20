@@ -1,0 +1,375 @@
+article.post
+  overflow hidden
+
+  h2,h3,h4,h5
+    color #555
+
+  #toc
+    float right
+    margin 0 0 2rem 3rem
+    background #fbfbfb
+    padding 1.5rem
+    font-size 16px
+    max-width 500px
+
+    @media phone
+      float none
+      margin 0
+
+    @media tablet
+      float none
+      margin 0
+
+    @media desktop-lg
+      margin-right -100px !important
+
+    >.title
+      font-weight 700
+      font-size 1.2rem
+      text-transform uppercase
+      margin-bottom 0.5em
+      color #789eb8
+
+    >ul
+      list-style decimal
+      padding 0
+      margin 0 0 0 1.3rem
+      line-height 1.7
+
+      >li
+        ul
+          margin 0 0 0 2em
+          padding 0
+
+
+      li::marker
+           font-size 0.9em
+           color #aaa
+
+      a
+        color #536c7c
+        &:hover
+          color #203870
+          text-decoration none
+
+  .colist
+    font-size 80%
+
+  .imageblock.rounded
+    img
+      border-radius .5rem
+
+  .listingblock,
+  .imageblock,
+  .sectionbody,
+  .colist
+    margin 2.3rem 0
+
+  .admonitionblock
+    margin 3rem 0
+    background #fafafa
+    padding 15px
+    text-align left
+    font-size 1.1rem
+
+    pre.highlightjs:hover
+      transform none
+
+    @media phone
+      padding 15px 0
+
+    >table
+      border-collapse separate
+      border 0
+      background none
+      width 100%
+      table-layout fixed
+
+      td.icon
+        text-align center
+        width 80px
+
+        @media phone
+          width 40px
+          vertical-align top
+          padding-top 30px
+
+        img
+          max-width none
+
+      td.content
+        padding-left 1.125em
+        padding-right 1.25em
+        border-left 1px solid #ddddd8
+        color rgba(0,0,0,.6)
+        overflow auto
+
+        h2,h3,h4
+          margin 1rem 0 1rem 0
+
+        @media phone
+          padding 0 0.7em
+
+        &>:last-child,
+        &>:last-child>:last-child
+          margin-bottom 0
+
+    td.icon
+      [class^="fa icon-"]
+        font-size 2.5em
+        cursor default
+
+        @media phone
+          font-size 1.5rem
+
+      .icon-note:before
+        content "\f05a"
+        color #4878c1
+
+      .icon-tip:before
+        content "\f0eb"
+        color #ffa620
+
+      .icon-warning:before
+        content "\f071"
+        color #ffb257
+
+      .icon-caution:before
+        content "\f06d"
+        color #bf3400
+
+      .icon-important:before
+        content "\f06a"
+        color #bf0000
+
+  .ulist
+    > ul
+      li
+        p
+          margin 0 0 0.5rem 0
+
+  .olist
+    > ol
+      list-style none
+      padding-left 3em
+      margin 2rem 0
+
+      > li
+        list-style none
+        counter-increment ol-counter
+        position relative
+        padding 0 0 0 40px
+
+        &::before
+          position absolute
+          top 1px
+          left 0
+          content counter(ol-counter)
+          color #222
+          background #ffc96c
+          height 32px
+          width 32px
+          line-height 32px
+          text-align center
+          display inline-block
+          border-radius 50%
+          font-weight 700
+          serif()
+
+      @media phone
+        padding-left 0
+
+  .ulist2
+    > ul
+      list-style none
+      margin 1rem 0 2rem 0
+      padding 0 0 0 3rem
+      > li
+        list-style none
+        margin 0.5rem 0
+        padding 0 0 0 32px
+        position relative
+
+        &::before
+          font-family "FontAwesome"
+          font-size 20px
+          content '\f058'
+          color #ff9a00
+          position absolute
+          top 2px
+          left 0
+
+        > p
+          margin 0
+
+      @media phone
+        padding-left 0
+
+ul.post-meta-extended
+  list-style none
+  margin 4rem 0 1rem 0
+  padding 0
+
+  a
+    color #fff
+
+  li
+    list-style none
+    display inline-block
+    margin 0 1.5rem 0 0
+    padding 0
+
+    .small
+      line-height 1.2
+
+  @media phone
+    margin-top 2rem
+
+    li
+      margin 0 0 0.2rem 0
+      opacity 0.7
+
+    div
+      display inline-block
+    .small
+      width 90px
+      font-size 12px
+
+
+#share
+  color #798b9b
+
+  .buttons
+    img,iframe
+      transition all 0.2s ease-in-out 0s
+
+      &:hover
+        transform translateY(-5px)
+
+
+#related
+  a
+    color #8ab6c4
+
+  .remaining
+    font-size 1rem
+    color #444 !important
+
+    .card
+      transition all 0.2s ease-in-out 0s
+
+      &:hover
+        transform translateY(10px)
+        opacity 0.8
+
+      .card-header
+        background-color transparent
+
+        .card-img-overlay
+          z-index 1
+
+        .mask
+          background-image linear-gradient(to top, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.0) 100%)
+          position absolute
+          top 0
+          left 0
+          width 100%
+          height 100%
+          z-index 0
+
+
+      .card-body
+        p
+          line-height 140%
+
+    a
+      color #333
+
+    h4
+      font-family "Montserrat" !important
+      font-size 1.2rem
+      margin 0
+      font-weight 700
+      color #fff
+      padding 3px 6px
+
+  .featured-post
+    background #1a202c !important
+    color #fafafa
+
+ul.post-meta
+  list-style none
+  font-family "Poppins", sans-serif
+  opacity 0.7
+  font-size 11px
+  margin 0.3rem 0 0.5rem 0
+  padding 0
+  text-transform uppercase
+
+  a
+    color inherit
+
+  >li
+    list-style none
+    margin 0 !important
+    padding 0 !important
+    display inline-block
+
+    & + li:before
+      content "•"
+      font-size 1em
+      font-weight 700
+      padding 0 7px
+
+p.subtitle
+  a.category
+    text-transform uppercase
+    color #222 !important
+    background #ffc96c
+    font-weight 700
+    font-size 14px
+    font-family "Montserrat"
+    padding 3px 6px
+
+.card-post
+  &::after
+    content attr(data-read)
+    display block
+    position absolute
+    top 10px
+    right 10px
+    color #222
+    background #ffc96c
+    font-size 12px
+    font-weight 700
+    padding 3px 6px
+    border-radius 3px
+
+#comments
+  background #fafafa
+
+#footnotes
+  font-size 13px
+  word-break break-all
+
+  a
+    color #4878c1
+
+.get-the-book
+  padding 3rem 0
+  background #fafafa
+  width 100vw
+  margin-left 50%
+  transform translateX(-50%)
+
+  h3
+    font-family Montserrat !important
+    font-size 1.8rem
+    letter-spacing -1px
+
+  p
+    serif()
+
+  .affiliate-info
+    font-size 0.8rem
+    color #777

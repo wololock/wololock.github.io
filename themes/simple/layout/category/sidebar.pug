@@ -1,0 +1,34 @@
+section.sidebar
+    - var posts = site.posts.sort("date").reverse().limit(6).toArray()
+
+    .mb-5.latest-articles
+        h3.mb-4 Latest articles
+
+        each post in posts
+            .media.align-items-center.pb-1.mb-3
+                if post.icon
+                    a.d-block.gatr(href=url_for(post.path) data-type="latest-sidebar" data-name=post.title)
+                        img.rounded(src=post.icon width=64)
+                .media-body.pl-2.ml-1
+                    a.gatr.small.font-weight-bold(href=url_for(post.path) data-type="latest-sidebar" data-name=post.title) #{truncate(post.title, {length: 120})}
+
+
+    img.img-fluid.mb-5(data-lazy="https://via.placeholder.com/255x255")
+
+
+    .mb-5.popular-categories
+        - var categories = site.categories.sort("length").reverse().limit(10).toArray()
+
+        h3.mb-4 Popular categories
+
+        ul.list-unstyled
+            each category in categories
+                li.mb-1
+                    a.gatr(href=url_for(category.path) data-type="footer-category" data-name=category.name data-count=category.posts.length)
+                        != category.name
+
+
+
+
+
+

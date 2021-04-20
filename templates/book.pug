@@ -1,35 +1,30 @@
-.py-3
-    .get-the-book.my-5(data-debug=`Displayed book: ${title}`)
-        .container
-            .row
-                .col-12
-                    .row
-                        .col-md-3.text-center
-                            .shadow.d-inline-flex.img-fluid.mb-5(style="margin-top:-70px;")
+
+.get-the-book.my-5(data-debug=`Displayed book: ${title}`)
+    .container
+        .row
+            .col-12
+                .row
+                    .col-md-3.text-center
+                        .px-4
+                            .shadow.d-inline-flex.img-fluid.mb-5
                                 img.img-fluid(src=cover alt=title)
 
-                        .col-md-9
-                            h3.text-md-left.text-center #{title}
+                    .col-md-9
+                        h3.text-md-left.text-center #{title}
 
-                            p.description
-                                span!=description.content
-                                |
-                                |
-                                span.small (source: #[a(href=description.url)=description.source])
+                        p.description
+                            span!=description.content
+                            |
+                            |
+                            span.small (source: #[a(href=description.url)=description.source])
 
-                            .row
-                                if links
-                                    each link in links
-                                        .col-lg-6.col-10.offset-lg-0.offset-1.mb-2
-                                            img(data-lazy="/images/flags/" + link.flag + ".png")
-                                            span.ml-2
-                                                - var name = title.split(":")[0].split(".")[0] + " [" + link.text + "]";
+                        each link in links
+                            a.btn.btn-warning.mr-2.mb-2.btn-sm.shadow-sm(href=link.url)
+                                i.fa.fa-amazon
+                                span.ml-2!=link.text
 
-                                                a.gatr(href=link.url data-type="book" data-name=name)!=link.text
-
-                    .row
-                        .col-12.py-2.affiliate-info
-                            i.fas.fa-info-circle
+                        .mt-4.affiliate-info
+                            i.fas.fa-info-circle.mr-2
                             span The above links are <b>affiliate links</b>. If you decide to buy a book using my affiliate link, I will get a small percentage from your purchase. The affiliate link does not affect the final price of the product. Using it costs you nothing.
 
 script(type="application/ld+json")!=JSON.stringify(ld_json)

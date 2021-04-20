@@ -1,0 +1,48 @@
+extends common/base
+
+include post/mixins
+
+block structured_data
+    != structured_data(page, config)
+
+block main
+    - var heroimg = page.hero
+
+    article.post
+        .jumbotron.pt-lg-5.pb-1
+            .container.pt-lg-5
+                .row.py-5
+                    .order-0(class=heroimg ? "col-lg-8" : "col-lg-12")
+                        .pr-lg-5
+                            p.subtitle.m-0.p-0
+                                each cat in page.categories.toArray()
+                                    a.category(href=url_for(cat.path))=cat.name
+
+                            h1.mt-0.mb-2=page.title
+
+                            .lead.my-4!=page.excerpt
+
+                            +post_meta_extended(page)
+
+                    if heroimg
+                        .col-lg-4.order-1.d-none.d-lg-block
+                            img.img-fluid.rounded.fade-in(src=heroimg style="margin-bottom:-300px")
+        .container.py-5
+            !=page.content.substr(page.content.indexOf('<a id="more">'))
+
+    section#share
+        .container.pb-5
+            .row.justify-content-between.align-items-center
+                .col-lg
+                    p.font-size-5.text-uppercase.mb-0 Did you like this article?
+                    h3.mb-lg-0.mt-0 Consider buying me a coffee
+
+                .col-auto.buttons
+                    .pt-lg-4
+                        a.align-middle.mr-2.gatr(href="/buy-me-a-coffee/" target="_blank")
+                            img(data-lazy="/images/buy-me-a-coffee.png" height=32)
+                        iframe.align-middle.gatr(src="https://github.com/sponsors/wololock/button" title="Sponsor wololock" height="35" width="116" style="border: 0;")
+
+    include post/related
+
+    include post/comments

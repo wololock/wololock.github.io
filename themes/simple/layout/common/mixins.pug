@@ -1,0 +1,19 @@
+mixin post_meta(post)
+    ul.post-meta
+        li
+            time(datetime=date_xml(post.date))!= full_date(post.date, "MMMM D, YYYY")
+        li
+            =readingTime(post.content, 'min. read', 200)
+        li
+            a(href=config.url + url_for(post.path) + "#disqus_thread")="0 Comments"
+
+mixin post_media_block(post)
+    .media.align-items-center.pb-1.mb-2
+        if post.icon
+            a.d-block.gatr(href=url_for(post.path) data-type="latest-sidebar" data-name=post.title)
+                img.rounded(src=post.icon width=64)
+        .media-body.pl-2.ml-1
+            a.gatr.small.font-weight-bold(href=url_for(post.path) data-type="latest-sidebar" data-name=post.title) #{truncate(post.title, {length: 120})}
+
+            .text-muted
+                +post_meta(post)
