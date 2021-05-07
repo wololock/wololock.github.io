@@ -11,7 +11,7 @@ module.exports = (hexo) => {
         }
 
         const template = fs.readFileSync(path.resolve(__dirname, '../../../templates/ad.pug'), 'utf-8');
-        return hexo.render.renderSync({ text: template, engine: "pug" }, {ad: ad});
+        return hexo.render.renderSync({ text: template, engine: "pug" }, {ad: ad, id: id});
     };
 
     const ad_campaign = function(id, banners) {
