@@ -10,7 +10,7 @@
     "cheerio": "^0.22.0",
     "entities": "^1.1.2",
     "hexo": "^5.2.0",
-    "hexo-all-minifier": "^0.5.5",
+    "hexo-all-minifier": "^0.5.6",
     "hexo-browsersync": "^0.3.0",
     "hexo-deployer-git": "^2.1.0",
     "hexo-generator-archive": "^1.0.0",
