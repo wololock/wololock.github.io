@@ -138,22 +138,22 @@ social-media:
   - icon: "fa-twitter"
     name: Twitter
     url: https://twitter.com/wololock
-    number: 1.20k
+    number: 1.21k
     description: Followers
   - icon: "fa-youtube"
     name: YouTube
     url: https://www.youtube.com/eprintstacktrace
-    number: 4.87k
+    number: 4.90k
     description: Subscribers
   - icon: "fa-github"
     name: Github
     url: https://github.com/wololock
-    number: 158
+    number: 159
     description: Followers
   - icon: "fa-stack-overflow"
     name: StackOverflow
     url: https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile
-    number: 33.89k
+    number: 33.94k
     description: Reputation
 
 alias:
