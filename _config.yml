@@ -143,7 +143,7 @@ social-media:
   - icon: "fa-youtube"
     name: YouTube
     url: https://www.youtube.com/eprintstacktrace
-    number: 4.92k
+    number: 4.95k
     description: Subscribers
   - icon: "fa-github"
     name: Github
@@ -153,7 +153,7 @@ social-media:
   - icon: "fa-stack-overflow"
     name: StackOverflow
     url: https://stackoverflow.com/users/2194470/szymon-stepniak?tab=profile
-    number: 34.06k
+    number: 34.11k
     description: Reputation
 
 alias:
