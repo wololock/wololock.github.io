@@ -66,13 +66,13 @@ ads:
         img: /images/yml/v2/nordvpn.png
 
   grammarly-01:
-    url: https://www.jdoqocy.com/click-100191173-10952823
+    url: https://grammarly.go2cloud.org/aff_c?offer_id=182&aff_id=89563
     images:
       - display: ["lg"]
         img: /images/yml/grammarly-tower.png
 
   grammarly-02:
-    url: https://www.jdoqocy.com/click-100191173-10952823
+    url: https://grammarly.go2cloud.org/aff_c?offer_id=182&aff_id=89563
     images:
       - display: ["lg","md"]
         img: /images/yml/grammarly-02.png
@@ -173,12 +173,12 @@ config:
 ids:
   grammarly-01:
     src: /images/yml/grammarly-tower.png
-    link: https://www.jdoqocy.com/click-100191173-10952823
+    link: https://grammarly.go2cloud.org/aff_c?offer_id=182&aff_id=89563
 
   grammarly-02:
     randomRatio: 1
     src: /images/yml/grammarly-02.png
-    link: https://www.jdoqocy.com/click-100191173-10952823
+    link: https://grammarly.go2cloud.org/aff_c?offer_id=182&aff_id=89563
 
   nordvpn-01:
     randomRatio: 1
