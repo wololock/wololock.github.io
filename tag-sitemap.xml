@@ -3,6 +3,34 @@
 
 
     <url>
+        <loc>https://e.printstacktrace.blog/t/tips/</loc>
+        <lastmod>2022-02-14T11:44:06.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/random/</loc>
+        <lastmod>2022-02-14T11:44:06.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/string/</loc>
+        <lastmod>2022-02-14T11:44:06.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://e.printstacktrace.blog/t/groovy/</loc>
+        <lastmod>2022-02-14T11:44:06.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://e.printstacktrace.blog/t/json/</loc>
         <lastmod>2020-11-05T22:14:35.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -151,13 +179,6 @@
 
     <url>
         <loc>https://e.printstacktrace.blog/t/ratpack/</loc>
-        <lastmod>2020-09-13T05:40:19.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/groovy/</loc>
         <lastmod>2020-09-13T05:40:19.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -493,13 +514,6 @@
     </url>
 
     <url>
-        <loc>https://e.printstacktrace.blog/t/string/</loc>
-        <lastmod>2020-02-12T11:15:33.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://e.printstacktrace.blog/t/google-analytics/</loc>
         <lastmod>2020-01-12T10:01:25.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -677,13 +691,6 @@
     <url>
         <loc>https://e.printstacktrace.blog/t/team/</loc>
         <lastmod>2019-04-16T13:19:41.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://e.printstacktrace.blog/t/random/</loc>
-        <lastmod>2019-04-09T06:58:20.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
