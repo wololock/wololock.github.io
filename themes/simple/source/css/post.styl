@@ -374,6 +374,9 @@ p.subtitle
     font-size 0.8rem
     color #777
 
-iframe[src*="ads-iframe"],
-iframe[src*="tempest.services"]
-  display none !important
+#disqus_thread > iframe:first-child
+  background red !important
+  opacity 0
+  height 1px !important
+  position absolute
+  left -200%
