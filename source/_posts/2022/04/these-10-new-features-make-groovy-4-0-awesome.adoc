@@ -1,0 +1,32 @@
+---
+title: These 10 New Features Make Groovy 4.0 AWESOME!
+date: 2022-04-14 14:38:23
+updated: 2022-04-14 14:38:23
+categories:
+- Groovy Cookbook
+tags:
+- groovy
+- groovy-4.0
+- youtube
+card: /images/cards/groovy-4.0.png
+affiliates: true
+icon: /images/icons/groovy-4.0.png
+related:
+- atomic-habits-book-review
+- my-first-200-youtube-subscribers-thank-you
+- 5-common-jenkins-pipeline-mistakes
+- building-stackoverflow-cli-with-java-11-micronaut-picocli-and-graalvm
+---
+
+Sealed types, switch expressions, and record types.
+Here are just a few new features introduced in the latest Groovy 4.0 release.
+In this video, I want to show you ten things that make Groovy 4.0 amazing.
+And to keep this video short, we're not going to dive deep into each of them.
+Instead, I intend to give you a quick overview of the new features.
+
+++++
+<!-- more -->
+++++
+
+[.embed-responsive.embed-responsive-16by9.shadow]
+video::fTxFa2Sb4ts[youtube]
