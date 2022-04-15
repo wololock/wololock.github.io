@@ -11,6 +11,7 @@ tags:
 card: /images/cards/groovy-4.0.png
 affiliates: true
 icon: /images/icons/groovy-4.0.png
+highlightjs: true
 related:
 - atomic-habits-book-review
 - my-first-200-youtube-subscribers-thank-you
@@ -30,3 +31,258 @@ Instead, I intend to give you a quick overview of the new features.
 
 [.embed-responsive.embed-responsive-16by9.shadow]
 video::fTxFa2Sb4ts[youtube]
+
+NOTE: Source code repository: https://github.com/wololock/groovy-4-examples
+
+== Switch Expression
+
+Groovy has always had much more powerful switch statements compared to Java. Class case values, regular expression case values, collection case values, closure case values, or at the end, equal values case. All these options made the switch statement a first-class citizen in the Groovy world. And now, following the latest updates in the Java programming language, Groovy also supports a switch expression. The main difference between a switch statement and a switch expression is that the latter introduces a syntax compatible with Java and returns a value. You can still use a variety of combinations as cases, but the new syntax will make your code a bit more elegant.
+
+[source,groovy]
+----
+switch (value) {
+    case null -> 'just a null'
+    case 0 -> 'zero'
+    case 1 -> 'one'
+    case { it instanceof List && it.empty } -> 'an empty list'
+    case List -> 'a list'
+    case '007' -> 'James Bond'
+    case ~/\d+/ -> 'a number'
+    default -> 'unknown'
+}
+----
+
+== Feature #2: Records
+
+Records, a handy immutable "data carrier" type, were introduced in Java 16. Now, they are also available in Groovy. The same syntax, though Groovy also introduces a `@RecordType` annotation that you can use interchangeably. And even if this is not that a game-changer as it was for Java, it's good to see Groovy heading up with the latest features introduced in its mother language.
+
+[source,groovy]
+----
+record Point(int x, int y) {}
+
+def p1 = new Point(0, 0)
+def p2 = new Point(2, 4)
+def p3 = new Point(0, 0)
+
+assert p1.x() == 0
+assert p1.y() == 0
+assert p2.x() == 2
+assert p2.y() == 4
+assert p1.toString() == 'Point[x=0, y=0]'
+assert p2.toString() == 'Point[x=2, y=4]'
+assert p1 == p3
+----
+
+== Sealed Types
+
+Another feature influenced by the latest changes in the Java programming language. Sealed types allow you to restrict which classes (or interfaces) can extend the specific sealed type. It can be done either explicitly (using the "permits" keyword) or implicitly (without any keyword) if all relevant classes are stored in the same source file. Similar to records, Groovy also introduces the `@Sealed` annotation that you can use interchangeably if this is your preference. When to use sealed types? Maybe you don't want to allow anyone to extend your class for security reasons. Or perhaps you want to add new methods to the interface in the future, and you want to have strict control over affected subclasses. If that's the case - sealed types might be something you want to look at.
+
+[source,groovy]
+----
+import groovy.transform.ToString
+
+sealed interface Tree<T> { }
+
+@Singleton
+final class Empty implements Tree {
+    String toString() { "Empty" }
+}
+
+@ToString
+final class Node<T> implements Tree<T> {
+    final T value
+    final Tree<T> left, right
+
+    Node(T value, Tree<T> left, Tree<T> right) {
+        this.value = value
+        this.left = left
+        this.right = right
+    }
+}
+----
+
+== Type Checkers
+
+Even though Groovy is mainly known for its dynamic capabilities, it allows you to be much stricter in type checking than Java. The newly added `groovy-typecheckers` optional module introduces a regex checker that can help you catch errors in your regular expressions at the compile time. Just like in this example - we have a regular expression missing a closing parenthesis. Typically, the compiler cannot detect this kind of issue, so we either find it in the unit test or at the runtime. Here I run this script in the GroovyShell, so I can catch the expected MultipleCompilationErrorsException.
+
+[source,groovy]
+----
+import groovy.transform.TypeChecked
+
+@TypeChecked(extensions = 'groovy.typecheckers.RegexChecker')
+def testRegexChecker() {
+    def date = '2022-04-03'
+
+    assert date ==~ /(\d{4})-(\d{1,2})-(\d{1,2}/
+}
+----
+
+== Built-in Macro Methods
+
+Macro methods allow you to access and manipulate the compiler AST data structures. The macro method call looks like a regular method call, but that's not the case - it will be replaced by the generated code at the compile time. Here are a few examples of such macro methods. For instance, the `SV` method creates a string with variable names and associated values. The `SVI` one uses Groovy's inspect method, which produces a bit different output - for instance, it does not unroll the range object as shown in this example.
+
+[source,groovy]
+----
+def num = 42
+def list = [1 ,2, 3]
+def range = 0..5
+def string = 'foo'
+
+assert SV(num, list, range, string) == 'num=42, list=[1, 2, 3], range=[0, 1, 2, 3, 4, 5], string=foo'
+
+assert SVI(range) == 'range=0..5'
+
+assert NV(range) instanceof NamedValue
+
+assert NV(string).name == 'string' && NV(string).val == 'foo'
+----
+
+== `@Pojo` annotation
+
+If you are familiar with Groovy, you already know that every Groovy class implements the `GroovyObject` interface. There's nothing to worry about if you only stay with your code in the Groovy ecosystem. But sometimes, you want to use Groovy to write a library code that can be used in a pure Java project as well. You can bring those two worlds together with the new ' @POJO ' annotation. Any class annotated with the `@POJO` annotation can be used without adding Groovy at the runtime. Just like the `PojoPoint` class shown in this example. Let's compile it and run it as a Java program.
+
+[source,groovy]
+----
+import groovy.transform.CompileStatic
+import groovy.transform.Immutable
+import groovy.transform.stc.POJO
+
+@POJO
+@Immutable
+@CompileStatic
+class PojoPoint {
+    int x, y
+
+    static void main(String[] args) {
+        PojoPoint point = new PojoPoint(1,1)
+        System.out.println(point.toString())
+    }
+}
+----
+
+== Groovy Contracts
+
+Groovy contracts might be a blessing if you are tired of writing defensive code. The `@Invariant` class annotation defines assertions that are checked during an object's lifetime - after the constructor call, before, and after the method call. The `@Requires` annotation represents a method precondition - an assertion executed before the method call. And the `@Ensures` annotation works as a method postcondition - an assertion executed after the method call. Some may say that these annotations can be easily replaced by explicit assertions in the method's body. And that's true. But if you want to keep the contract and the business logic nicely separated, Groovy contracts sound like a good place to start.
+
+[source,groovy]
+----
+import groovy.contracts.Ensures
+import groovy.contracts.Invariant
+import groovy.contracts.Requires
+
+@Invariant({ speed >= 0 })
+class Rocket {
+    int speed = 0
+    boolean started = false
+
+    @Requires({ !started })
+    Rocket startEngine() { tap {started = true }}
+
+    @Requires({ started })
+    Rocket stopEngine() { tap { started = false }}
+
+    @Requires({ started })
+    @Ensures({ old.speed < speed })
+    Rocket accelerate(int value) { tap { speed += value }}
+}
+----
+
+== GINQ
+
+Groovy-Integrated Query language. You will love this feature if you are a fan of SQL-like languages. GINQ allows you to query collections using a SQL-like syntax. Just like in this example. We have a JSON document containing the `people` field. We use GINQ to find all people that are 18+, in descending order, taking the first three results and modifying the returned data to be upper-cased and limited to the first two letters only. As far as I know, the Groovy team plans to extend GINQ to support SQL databases so that you can write a compile-time generated and type-checked SQL queries.
+
+[source,groovy]
+----
+import groovy.json.JsonSlurper
+
+def json = new JsonSlurper().parseText '''
+    {
+        "people": [
+            {"name": "Alan", "age": 11},
+            {"name": "Mary", "age": 26},
+            {"name": "Eric", "age": 34},
+            {"name": "Elisabeth", "age": 14},
+            {"name": "Marc", "age": 2},
+            {"name": "Robert", "age": 52},
+            {"name": "Veronica", "age": 32},
+            {"name": "Alex", "age": 17}
+        ]
+    }
+    '''
+
+assert GQ {
+    from f in json.people
+    where f.age >= 18
+    orderby f.age in desc
+    limit 3
+    select f.name.toUpperCase().take(2)
+
+}.toList() == ['RO', 'ER', 'VE']
+----
+
+== TOML Support
+
+Groovy 3 added YAML format support, and now Groovy 4 adds TOML format support as well. Helpful if you are working with such a format in your codebase. It is worth mentioning that the output produced by the TomlBuilder class does not produce table headers but dot-separated field names instead.
+
+[source,groovy]
+----
+import groovy.toml.TomlBuilder
+import groovy.toml.TomlSlurper
+
+String input = '''
+# This is a TOML document (taken from https://toml.io)
+
+title = "TOML Example"
+
+[owner]
+name = "Tom Preston-Werner"
+dob = 1979-05-27T07:32:00-08:00
+
+[database]
+enabled = true
+ports = [ 8000, 8001, 8002 ]
+data = [ ["delta", "phi"], [3.14] ]
+temp_targets = { cpu = 79.5, case = 72.0 }
+
+[servers]
+
+[servers.alpha]
+ip = "10.0.0.1"
+role = "frontend"
+
+[servers.beta]
+ip = "10.0.0.2"
+role = "backend"
+'''
+
+def toml = new TomlSlurper().parseText(input)
+
+assert toml.title == 'TOML Example'
+assert toml.owner.name == 'Tom Preston-Werner'
+assert toml.database.ports == [8000, 8001, 8002]
+assert toml.servers.alpha.ip == '10.0.0.1'
+assert toml.servers.beta.ip == '10.0.0.2'
+
+
+TomlBuilder builder = new TomlBuilder()
+builder {
+    title 'This is TOML document'
+    servers {
+        alpha {
+            ip '10.0.0.1'
+        }
+        beta {
+            ip '10.0.0.2'
+        }
+    }
+}
+assert builder.toString() ==
+'''title = 'This is TOML document'
+servers.alpha.ip = '10.0.0.1'
+servers.beta.ip = '10.0.0.2'
+'''
+----
+
+== JDK 8 Compatibility
+
+The minimum Java version required to run Groovy 4 is JDK 8. You may ask - "but how does Groovy handle, e.g., records"? Let me show it to you. Here I have Java 17 and Groovy 4.0.1. I'm gonna compile this script to the class file, and when we open it in IntelliJ, we can see that it produces a Java native record equivalent as expected. Now I'm gonna switch to Java 8, and let's do the same thing. When we open the class file in IntelliJ, we can see that now the generated class "emulates" a record behavior but does not use the native record syntax. And that's the beauty of Groovy code portability - the same code and brand new language features that work even with a pretty old Java version.
