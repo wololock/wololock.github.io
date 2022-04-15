@@ -52,7 +52,7 @@ switch (value) {
 }
 ----
 
-== Feature #2: Records
+== Records
 
 Records, a handy immutable "data carrier" type, were introduced in Java 16. Now, they are also available in Groovy. The same syntax, though Groovy also introduces a `@RecordType` annotation that you can use interchangeably. And even if this is not that a game-changer as it was for Java, it's good to see Groovy heading up with the latest features introduced in its mother language.
 
@@ -137,7 +137,7 @@ assert NV(range) instanceof NamedValue
 assert NV(string).name == 'string' && NV(string).val == 'foo'
 ----
 
-== `@Pojo` annotation
+== `@POJO` annotation
 
 If you are familiar with Groovy, you already know that every Groovy class implements the `GroovyObject` interface. There's nothing to worry about if you only stay with your code in the Groovy ecosystem. But sometimes, you want to use Groovy to write a library code that can be used in a pure Java project as well. You can bring those two worlds together with the new ' @POJO ' annotation. Any class annotated with the `@POJO` annotation can be used without adding Groovy at the runtime. Just like the `PojoPoint` class shown in this example. Let's compile it and run it as a Java program.
 
