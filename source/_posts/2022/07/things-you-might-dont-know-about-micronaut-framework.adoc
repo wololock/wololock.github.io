@@ -1,0 +1,38 @@
+---
+title: Things You Might Don't Know About Micronaut Framework
+date: 2022-07-28 10:22:54
+updated: 2022-07-28 10:22:54
+categories:
+- Micronaut Cookbook
+tags:
+- micronaut
+- java
+card: /images/cards/the-mn-files.png
+image: /images/cards/the-mn-files.png
+icon: /images/icons/the-mn-files.png
+---
+
+Are you looking for a collection of code snippets showcasing interesting and useful features of the Micronaut Framework?
+You've found the right place!
+
+
+++++
+<!-- more -->
+++++
+
+== The MN Files
+
+A few weeks ago I started publishing eye-catching images (created using https://e.printstacktrace.blog/canva[Canva]) on Twitter, showcasing many interesting features of the Micronaut Framework.
+The idea behind this project is to share a quick tips and hints with the people browsing their Twitter feed.
+If you like this short form of content, then here is the collection of all published Tweets in their chronologial order:
+
+++++
+<br />
+<blockquote class="twitter-tweet tw-align-center"><p lang="en" dir="ltr">👽 The MN Files is a collection of code snippets showcasing interesting features of the <a href="https://twitter.com/micronautfw?ref_src=twsrc%5Etfw">@micronautfw</a> <a href="https://twitter.com/java?ref_src=twsrc%5Etfw">@java</a> framework!🚀 Here you can find all posts in chronological order:<br><br>👉 <a href="https://t.co/lJoocVjBRn">https://t.co/lJoocVjBRn</a><a href="https://twitter.com/hashtag/micronautfw?src=hash&amp;ref_src=twsrc%5Etfw">#micronautfw</a> <a href="https://twitter.com/hashtag/java?src=hash&amp;ref_src=twsrc%5Etfw">#java</a> <a href="https://twitter.com/hashtag/framework?src=hash&amp;ref_src=twsrc%5Etfw">#framework</a> <a href="https://twitter.com/hashtag/programming?src=hash&amp;ref_src=twsrc%5Etfw">#programming</a> <a href="https://twitter.com/hashtag/learing?src=hash&amp;ref_src=twsrc%5Etfw">#learing</a> <a href="https://twitter.com/hashtag/coding?src=hash&amp;ref_src=twsrc%5Etfw">#coding</a> <a href="https://twitter.com/hashtag/100daysofcode?src=hash&amp;ref_src=twsrc%5Etfw">#100daysofcode</a></p>&mdash; Szymon Stepniak (@wololock) <a href="https://twitter.com/wololock/status/1552284519293673472?ref_src=twsrc%5Etfw">July 27, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<br/>
+++++
+
+What do you think about this content form?
+Is it worth creating?
+Let me know in the comments' section below.
+Thanks in advance!
