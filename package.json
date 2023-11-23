@@ -9,7 +9,7 @@
     "asciidoctor": "^2.2.1",
     "cheerio": "^0.22.0",
     "entities": "^1.1.2",
-    "hexo": "^5.2.0",
+    "hexo": "^6.0.0",
     "hexo-all-minifier": "^0.5.5",
     "hexo-browsersync": "^0.3.0",
     "hexo-deployer-git": "^2.1.0",
