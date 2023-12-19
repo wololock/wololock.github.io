@@ -10,7 +10,7 @@
     "cheerio": "^0.22.0",
     "entities": "^1.1.2",
     "hexo": "^5.2.0",
-    "hexo-all-minifier": "^0.5.5",
+    "hexo-all-minifier": "^0.5.6",
     "hexo-browsersync": "^0.3.0",
     "hexo-deployer-git": "^2.1.0",
     "hexo-generator-archive": "^1.0.0",
@@ -24,12 +24,12 @@
     "hexo-reading-time": "^1.0.3",
     "hexo-related-popular-posts": "^5.0.1",
     "hexo-renderer-pug": "^1.0.0",
-    "hexo-renderer-stylus": "^2.0.1",
+    "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^2.0.0",
     "hexo-tag-convertkit": "^0.2.0",
     "hexo-tag-share-post": "0.0.1",
     "hexo-util": "^2.4.0",
-    "snyk": "^1.433.0"
+    "snyk": "^1.996.0"
   },
   "scripts": {
     "snyk-protect": "snyk protect",
