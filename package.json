@@ -6,7 +6,7 @@
     "version": "5.2.0"
   },
   "dependencies": {
-    "asciidoctor": "^2.2.1",
+    "asciidoctor": "^3.0.0",
     "cheerio": "^0.22.0",
     "entities": "^1.1.2",
     "hexo": "^5.2.0",
