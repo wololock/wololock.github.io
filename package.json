@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "asciidoctor": "^2.2.1",
-    "cheerio": "^0.22.0",
+    "cheerio": "^1.0.0",
     "entities": "^1.1.2",
     "hexo": "^5.2.0",
     "hexo-all-minifier": "^0.5.5",
